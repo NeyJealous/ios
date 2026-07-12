@@ -14,6 +14,7 @@ var TI = TI || {};
 TI.MultiAccount = {
 
   DEFAULT_STRATEGY: "Базовая стратегия",
+  DEFAULT_STRATEGY_ID: "default",
 
   prepare: function() {
     Schema.prepareSheet(CORE.SHEETS.ACCOUNTS);
@@ -41,7 +42,7 @@ TI.MultiAccount = {
   ensureStrategies: function() {
     var existing = this.strategyMap();
 
-    if (existing[this.DEFAULT_STRATEGY]) {
+    if (existing[this.DEFAULT_STRATEGY_ID]) {
       return 0;
     }
 
@@ -53,7 +54,7 @@ TI.MultiAccount = {
       allocationModel: "Инвестиционная конституция",
       active: "Да",
       comment: "Базовая стратегия по умолчанию.",
-      strategyId: "default"
+      strategyId: this.DEFAULT_STRATEGY_ID
     };
 
     this.appendRows(CORE.SHEETS.STRATEGIES, [row]);
@@ -66,9 +67,7 @@ TI.MultiAccount = {
     var rows = [];
 
     discovered.forEach(function(account) {
-      var old = existing[account.accountId] ||
-        existing[String(account.accountName || "").trim()] ||
-        {};
+      var old = existing[account.accountId] || {};
 
       rows.push({
         accountName: old.accountName || account.accountName,
@@ -86,13 +85,11 @@ TI.MultiAccount = {
     Object.keys(existing).forEach(function(key) {
       var old = existing[key];
       var id = String(old.accountId || "").trim();
-      var name = String(old.accountName || "").trim();
       var found = rows.some(function(row) {
-        return (id && row.accountId === id) ||
-          (!id && name && row.accountName === name);
+        return id && row.accountId === id;
       });
 
-      if (!found && name) {
+      if (!found && id) {
         rows.push(old);
       }
     });
@@ -109,21 +106,22 @@ TI.MultiAccount = {
     var rows = [];
 
     this.accounts().forEach(function(account) {
-      var accountName = String(account.accountName || "").trim();
+      var accountId = String(account.accountId || "").trim();
 
-      if (!accountName || links[accountName]) {
+      if (!accountId || links[accountId]) {
         return;
       }
 
       rows.push({
-        accountName: accountName,
+        accountName: String(account.accountName || "").trim(),
         strategy: account.strategy || TI.MultiAccount.DEFAULT_STRATEGY,
         startDate: new Date(),
         active: "Да",
         limits: account.limits || "",
         reserve: "",
         comment: "",
-        accountId: account.accountId || ""
+        accountId: accountId,
+        strategyId: TI.MultiAccount.DEFAULT_STRATEGY_ID
       });
     });
 
@@ -161,16 +159,16 @@ TI.MultiAccount = {
     var rows = [];
 
     TI.Data.portfolio().forEach(function(position) {
-      var name = String(position.accountName || "").trim();
+      var id = String(position.accountId || "").trim();
 
-      if (!name || seen[name]) {
+      if (!id || seen[id]) {
         return;
       }
 
-      seen[name] = true;
+      seen[id] = true;
       rows.push({
-        accountName: name,
-        accountId: position.accountId || "",
+        accountName: String(position.accountName || "").trim(),
+        accountId: id,
         broker: "Т-Инвестиции",
         accountType: ""
       });
@@ -207,10 +205,9 @@ TI.MultiAccount = {
 
     this.accounts().forEach(function(row) {
       var id = String(row.accountId || "").trim();
-      var name = String(row.accountName || "").trim();
-
-      if (id) result[id] = row;
-      if (name) result[name] = row;
+      if (!id) throw new Error("Счёт без Account ID в листе Счета.");
+      if (result[id]) throw new Error("Дубликат Account ID в листе Счета: " + TI.AccountStrategyAudit.suffix(id));
+      result[id] = row;
     });
 
     return result;
@@ -220,8 +217,10 @@ TI.MultiAccount = {
     var result = {};
 
     this.strategies().forEach(function(row) {
-      var name = String(row.strategyName || "").trim();
-      if (name) result[name] = row;
+      var id = String(row.strategyId || "").trim();
+      if (!id) throw new Error("Стратегия без Strategy ID в листе Стратегии.");
+      if (result[id]) throw new Error("Дубликат Strategy ID в листе Стратегии: " + TI.AccountStrategyAudit.suffix(id));
+      result[id] = row;
     });
 
     return result;
@@ -229,37 +228,38 @@ TI.MultiAccount = {
 
   accountStrategyMap: function() {
     var result = {};
+    var accounts = this.accountMap();
+    var strategies = this.strategyMap();
 
     this.accountStrategies().forEach(function(row) {
       if (TI.CompanyRating.isYes(row.active)) {
-        result[String(row.accountName || "").trim()] =
-          String(row.strategy || "").trim();
-      }
-    });
-
-    this.accounts().forEach(function(row) {
-      var name = String(row.accountName || "").trim();
-
-      if (name && !result[name]) {
-        result[name] = String(row.strategy || "").trim() ||
-          TI.MultiAccount.DEFAULT_STRATEGY;
+        var accountId = String(row.accountId || "").trim();
+        var strategyId = String(row.strategyId || "").trim();
+        if (!accountId || !strategyId) throw new Error("Активная связь без обязательного Account ID / Strategy ID.");
+        if (!accounts[accountId]) throw new Error("Связь с неизвестным Account ID: " + TI.AccountStrategyAudit.suffix(accountId));
+        if (!strategies[strategyId]) throw new Error("Связь с неизвестным Strategy ID: " + TI.AccountStrategyAudit.suffix(strategyId));
+        if (result[accountId]) throw new Error("Дублирующая активная связь Account ID: " + TI.AccountStrategyAudit.suffix(accountId));
+        result[accountId] = strategyId;
       }
     });
 
     return result;
   },
 
-  strategyForAccount: function(accountName) {
-    return this.accountStrategyMap()[String(accountName || "").trim()] ||
-      this.DEFAULT_STRATEGY;
+  strategyForAccount: function(accountId) {
+    accountId = String(accountId || "").trim();
+    var strategyId = this.accountStrategyMap()[accountId];
+    if (!strategyId) throw new Error("Для Account ID не найдена активная стратегия: " + TI.AccountStrategyAudit.suffix(accountId));
+    return this.strategyMap()[strategyId].strategyName;
   },
 
-  isIncludedAccount: function(accountName) {
+  isIncludedAccount: function(accountId) {
     var map = this.accountMap();
-    var row = map[String(accountName || "").trim()];
+    var key = String(accountId || "").trim();
+    var row = map[key];
 
     if (!row) {
-      return true;
+      throw new Error("Неизвестный Account ID: " + TI.AccountStrategyAudit.suffix(key));
     }
 
     return !row.includeTotal || TI.CompanyRating.isYes(row.includeTotal);
@@ -270,7 +270,7 @@ TI.MultiAccount = {
     var result = [];
 
     rows.forEach(function(row) {
-      var key = String(row.accountId || row.accountName || "").trim();
+      var key = String(row.accountId || "").trim();
 
       if (!key || seen[key]) {
         return;

@@ -26,12 +26,14 @@ TI.PortfolioHealth = {
       portfolio = TI.Data.portfolioFromFifoLots();
     }
 
-    TI.MultiAccount.ensureDefaults();
+    TI.MultiAccount.accountMap();
+    TI.MultiAccount.strategyMap();
+    TI.MultiAccount.accountStrategyMap();
 
     var cash = TI.Rebalance.cashByAccountName();
     var rows = [];
     var included = portfolio.filter(function(position) {
-      return TI.MultiAccount.isIncludedAccount(position.accountName);
+      return TI.MultiAccount.isIncludedAccount(position.accountId);
     });
 
     rows.push(this.row("Весь портфель", "Все счета", "", included, cash[TI.Rebalance.ALL_ACCOUNTS] || 0));
@@ -44,19 +46,22 @@ TI.PortfolioHealth = {
   accountRows: function(portfolio, cash) {
     var map = {};
     var rows = [];
+    var accounts = TI.MultiAccount.accountMap();
 
     portfolio.forEach(function(position) {
-      var name = String(position.accountName || "").trim() || "Без счета";
-      if (!map[name]) map[name] = [];
-      map[name].push(position);
+      var accountId = String(position.accountId || "").trim();
+      if (!accountId || !accounts[accountId]) throw new Error("Позиция с неизвестным Account ID: " + TI.AccountStrategyAudit.suffix(accountId));
+      if (!map[accountId]) map[accountId] = [];
+      map[accountId].push(position);
     });
 
-    Object.keys(map).sort().forEach(function(accountName) {
+    Object.keys(map).sort().forEach(function(accountId) {
+      var accountName = String(accounts[accountId].accountName || "").trim();
       rows.push(TI.PortfolioHealth.row(
         "Счёт",
         accountName,
-        TI.MultiAccount.strategyForAccount(accountName),
-        map[accountName],
+        TI.MultiAccount.strategyForAccount(accountId),
+        map[accountId],
         cash[accountName] || 0
       ));
     });
@@ -66,38 +71,44 @@ TI.PortfolioHealth = {
 
   strategyRows: function(portfolio, cash) {
     var accountStrategies = TI.MultiAccount.accountStrategyMap();
+    var accounts = TI.MultiAccount.accountMap();
+    var strategies = TI.MultiAccount.strategyMap();
     var map = {};
     var rows = [];
 
     portfolio.forEach(function(position) {
-      var accountName = String(position.accountName || "").trim();
-      var strategy = accountStrategies[accountName] || TI.MultiAccount.DEFAULT_STRATEGY;
+      var accountId = String(position.accountId || "").trim();
+      var strategyId = accountStrategies[accountId];
+      if (!accountId || !accounts[accountId]) throw new Error("Позиция с неизвестным Account ID: " + TI.AccountStrategyAudit.suffix(accountId));
+      if (!strategyId || !strategies[strategyId]) throw new Error("Для позиции не найдена стратегия по Strategy ID.");
 
-      if (!map[strategy]) {
-        map[strategy] = {
+      if (!map[strategyId]) {
+        map[strategyId] = {
           positions: [],
           cash: 0,
           accounts: {}
         };
       }
 
-      map[strategy].positions.push(position);
-      map[strategy].accounts[accountName] = true;
+      map[strategyId].positions.push(position);
+      map[strategyId].accounts[accountId] = true;
     });
 
-    Object.keys(map).forEach(function(strategy) {
-      Object.keys(map[strategy].accounts).forEach(function(accountName) {
-        map[strategy].cash += Number(cash[accountName]) || 0;
+    Object.keys(map).forEach(function(strategyId) {
+      Object.keys(map[strategyId].accounts).forEach(function(accountId) {
+        var accountName = String(accounts[accountId].accountName || "").trim();
+        map[strategyId].cash += Number(cash[accountName]) || 0;
       });
     });
 
-    Object.keys(map).sort().forEach(function(strategy) {
+    Object.keys(map).sort().forEach(function(strategyId) {
+      var strategyName = String(strategies[strategyId].strategyName || "").trim();
       rows.push(TI.PortfolioHealth.row(
         "Стратегия",
-        strategy,
-        strategy,
-        map[strategy].positions,
-        map[strategy].cash
+        strategyName,
+        strategyName,
+        map[strategyId].positions,
+        map[strategyId].cash
       ));
     });
 
@@ -241,4 +252,52 @@ function TI_BuildPortfolioHealth() {
   );
 
   return rows;
+}
+
+function TI_TestPortfolioHealthAggregate() {
+  var portfolio = TI.Data.portfolio();
+  if (portfolio.length === 0) portfolio = TI.Data.portfolioFromFifoLots();
+  var included = portfolio.filter(function(position) {
+    return TI.MultiAccount.isIncludedAccount(position.accountId);
+  });
+  var marketValue = TI.PortfolioHealth.sum(included, "marketValue");
+  return {
+    ok: included.length > 0 && marketValue > 0,
+    portfolioPositions: portfolio.length,
+    includedPositions: included.length,
+    excludedPositions: portfolio.length - included.length,
+    marketValue: marketValue,
+    nonZeroMarketValue: marketValue > 0
+  };
+}
+
+function TI_TestPortfolioHealthByAccount() {
+  var portfolio = TI.Data.portfolio();
+  if (portfolio.length === 0) portfolio = TI.Data.portfolioFromFifoLots();
+  var links = TI.MultiAccount.accountStrategyMap();
+  var strategies = TI.MultiAccount.strategyMap();
+  var rows = TI.MultiAccount.accounts().map(function(account) {
+    var accountId = String(account.accountId || "").trim();
+    var positions = portfolio.filter(function(position) {
+      return String(position.accountId || "").trim() === accountId;
+    });
+    var strategyId = links[accountId] || "";
+    return {
+      accountId: TI.AccountStrategyAudit.suffix(accountId),
+      accountName: String(account.accountName || "").trim(),
+      includedInAggregate: TI.MultiAccount.isIncludedAccount(accountId),
+      reportAvailable: true,
+      positions: positions.length,
+      marketValue: TI.PortfolioHealth.sum(positions, "marketValue"),
+      strategyId: TI.AccountStrategyAudit.suffix(strategyId),
+      strategyName: strategyId && strategies[strategyId]
+        ? String(strategies[strategyId].strategyName || "").trim()
+        : ""
+    };
+  });
+  return {
+    ok: rows.length === 3 && rows.every(function(row) { return row.reportAvailable; }),
+    portfolioPositions: portfolio.length,
+    accountReports: rows
+  };
 }

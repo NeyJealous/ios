@@ -59,7 +59,7 @@ TI.Portfolio = {
 
       if (!map[key]) {
         map[key] = {
-          accountName: lot.accountName || accountNames[accountId] || accountId || "",
+          accountName: lot.accountName || accountNames[accountId] || "Неизвестный счёт",
           accountId: accountId,
           ticker: lot.ticker || "",
           name: lot.name || "",
@@ -82,8 +82,7 @@ TI.Portfolio = {
       if (!map[key].accountName) {
         map[key].accountName = lot.accountName ||
           accountNames[accountId] ||
-          accountId ||
-          "";
+          "Неизвестный счёт";
       }
 
       if (!map[key].instrumentType && lot.instrumentType) {

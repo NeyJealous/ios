@@ -1,0 +1,22 @@
+{
+  "capturedAt": "2026-07-12T12:18:47.449Z",
+  "mode": "before-migration",
+  "spreadsheetSuffix": "…nR2p_4",
+  "sheet": "Стратегии счетов",
+  "row": 2,
+  "rowCount": 1,
+  "sheetCount": 40,
+  "values": {
+    "accountName": "Пасивный",
+    "strategyName": "Базовая стратегия",
+    "accountId": "",
+    "strategyId": ""
+  },
+  "target": {
+    "accountName": "Пассивный",
+    "strategyName": "Базовая стратегия",
+    "accountId": "…531683",
+    "strategyId": "…efault"
+  },
+  "portfolioDigestSuffix": "…f0f1e7"
+}

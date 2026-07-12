@@ -1,0 +1,23 @@
+{
+  "canonicalModel": {
+    "accountLink": "Accounts.accountId -> AccountStrategies.accountId",
+    "strategyLink": "Strategies.strategyId -> AccountStrategies.strategyId",
+    "portfolioLink": "Portfolio.accountId -> Accounts.accountId"
+  },
+  "modules": [
+    {"file":"Accounts.gs","accountId":"primary for API lookup","accountName":"display","risk":"low"},
+    {"file":"Strategy.gs","accountId":"not used in target rows","accountName":"validation and persisted target scope","risk":"high"},
+    {"file":"StrategyEngine.gs","strategyId":"not used","accountName":"target upsert key","risk":"high"},
+    {"file":"MultiAccount.gs","accountId":"present with name fallback","strategyId":"partially present","accountName":"fallback/runtime maps","strategyName":"runtime maps","risk":"critical"},
+    {"file":"Portfolio.gs","accountId":"stored","accountName":"stored for display","risk":"medium"},
+    {"file":"PortfolioHealth.gs","accountId":"not used","accountName":"filter/group/strategy lookup","risk":"critical"},
+    {"file":"Rebalance.gs","accountId":"not used for scope","accountName":"portfolio filtering and cash scope","risk":"high"},
+    {"file":"Schema.gs","accountId":"present in Accounts/AccountStrategies/Portfolio","strategyId":"missing in AccountStrategies","risk":"critical"}
+  ],
+  "passiveSpelling": {
+    "literalOccurrencesInCanonicalCode": 0,
+    "interpretation": "Likely live-data/display-name mismatch; runtime must be independent of this string."
+  },
+  "status": "READ_ONLY_STATIC_AUDIT"
+}
+

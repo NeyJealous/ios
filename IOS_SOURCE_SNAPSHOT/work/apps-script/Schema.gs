@@ -699,7 +699,8 @@ Object.assign(Schema.Definitions, {
     { field:"limits",      title:"Лимиты",            type:Schema.Types.TEXT, hidden:false, width:260 },
     { field:"reserve",     title:"Резерв",            type:Schema.Types.TEXT, hidden:false, width:140 },
     { field:"comment",     title:"Комментарий",       type:Schema.Types.TEXT, hidden:false, width:320 },
-    { field:"accountId",   title:"ID счёта",          type:Schema.Types.TEXT, hidden:true,  width:220 }
+    { field:"accountId",   title:"ID счёта",          type:Schema.Types.TEXT, hidden:true,  width:220 },
+    { field:"strategyId",  title:"ID стратегии",      type:Schema.Types.TEXT, hidden:true,  width:180 }
   ],
 
   PORTFOLIO_HEALTH: [
