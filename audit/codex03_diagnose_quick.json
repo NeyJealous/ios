@@ -1,0 +1,84 @@
+{
+  "dryRun": true,
+  "preconditions": {
+    "accountStrategyAuditFunction": "TI_AuditAccountStrategyLinks",
+    "noPipelineExecuted": true,
+    "remoteHealthFunction": "TI_RemoteHealthCheck"
+  },
+  "context": {
+    "sheetWriteCount": 0,
+    "sheetReadCount": 0,
+    "failedStep": "",
+    "warnings": [],
+    "startedAt": "2026-07-12T13:11:29.577Z",
+    "rowsRead": 0,
+    "finishedAt": "2026-07-12T13:11:29.578Z",
+    "completedSteps": [],
+    "mode": "quick",
+    "currentStep": "",
+    "plannedSteps": [
+      "quickData",
+      "portfolioFreshPrices",
+      "portfolioHealth",
+      "tradePlan",
+      "advisor",
+      "main"
+    ],
+    "rowsWritten": 0,
+    "runId": "…6debb5",
+    "durationMs": 1,
+    "errors": [],
+    "apiCallCount": 0,
+    "projectVersion": "1.1.0",
+    "status": "diagnostic"
+  },
+  "ok": true,
+  "expectedApis": [
+    "T-Invest accounts",
+    "cash",
+    "positions",
+    "prices"
+  ],
+  "plan": [
+    {
+      "id": "quickData",
+      "title": "Быстрые данные"
+    },
+    {
+      "id": "portfolioFreshPrices",
+      "title": "Портфель и цены"
+    },
+    {
+      "id": "portfolioHealth",
+      "title": "Здоровье портфеля"
+    },
+    {
+      "id": "tradePlan",
+      "title": "План сделок"
+    },
+    {
+      "id": "advisor",
+      "title": "Советник"
+    },
+    {
+      "id": "main",
+      "title": "Главная"
+    }
+  ],
+  "sheetsRead": [
+    "Счета",
+    "Портфель",
+    "Лоты FIFO",
+    "Справочник",
+    "Стратегии",
+    "Стратегии счетов"
+  ],
+  "potentialWrites": [
+    "Портфель",
+    "Здоровье портфеля",
+    "План сделок",
+    "Советник",
+    "Главная",
+    "Диагностика"
+  ]
+}

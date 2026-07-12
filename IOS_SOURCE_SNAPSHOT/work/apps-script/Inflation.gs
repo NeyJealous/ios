@@ -181,6 +181,7 @@ TI.Inflation = {
    */
   fetchFromUrl: function(url) {
     var fetchUrl = this.normalizeCbrUrl(url);
+    TI.SyncExecution.recordApi("Inflation");
     var response = UrlFetchApp.fetch(fetchUrl, {
       method: "get",
       muteHttpExceptions: true

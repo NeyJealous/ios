@@ -15,6 +15,7 @@ TI.Api = {
   call: function(service, method, body) {
 
     body = body || {};
+    TI.SyncExecution.recordApi("T-Invest " + service + "/" + method);
 
     var url =
       CONFIG.API_URL +

@@ -29,6 +29,7 @@ TI.Rebalance = {
   }),
 
   ALL_ACCOUNTS: "Все счета",
+  SCOPE_TYPES: Object.freeze({ AGGREGATE: "AGGREGATE", ACCOUNT: "ACCOUNT" }),
 
   TARGET_ALIASES: Object.freeze({
     "тикер": "Тикер",
@@ -91,7 +92,9 @@ TI.Rebalance = {
    * @return {Object[]}
    */
   readTargets: function() {
-    var sheet = Schema.prepareSheet(this.STRATEGY_SHEET);
+    var spreadsheet = SpreadsheetApp.openById(TI.AccountStrategyMigration.SPREADSHEET_ID);
+    var sheet = spreadsheet.getSheetByName(this.STRATEGY_SHEET);
+    if (!sheet) throw new Error("STRATEGY_SHEET_MISSING");
     var values = sheet.getDataRange().getValues();
     var targets = [];
 
@@ -145,8 +148,18 @@ TI.Rebalance = {
       return null;
     }
 
+    var accountId = String(item.accountId || "").trim();
+    var accountName = this.normalizeAccountName(item.accountName);
+    var scopeType = String(item.scopeType || "").trim().toUpperCase();
+    if (!scopeType) scopeType = accountId ? this.SCOPE_TYPES.ACCOUNT : this.SCOPE_TYPES.AGGREGATE;
+    if (scopeType === this.SCOPE_TYPES.ACCOUNT && !accountId) {
+      throw new Error("ACCOUNT_SCOPE_REQUIRES_ACCOUNT_ID");
+    }
     return {
-      accountName: this.normalizeAccountName(item.accountName),
+      scopeType: scopeType,
+      accountId: scopeType === this.SCOPE_TYPES.ACCOUNT ? accountId : "",
+      accountName: scopeType === this.SCOPE_TYPES.AGGREGATE ? this.ALL_ACCOUNTS : accountName,
+      strategyId: String(item.strategyId || "").trim(),
       kind: kind,
       name: this.normalizeTargetName(kind, name),
       targetShare: share,
@@ -254,7 +267,14 @@ TI.Rebalance = {
 
     return targets.map(function(target) {
       var scope = TI.Rebalance.portfolioForTarget(portfolio, target);
-      var accountName = target.accountName || TI.Rebalance.ALL_ACCOUNTS;
+      var accountName = target.scopeType === TI.Rebalance.SCOPE_TYPES.AGGREGATE
+        ? TI.Rebalance.ALL_ACCOUNTS
+        : target.accountName;
+      var strategyId = target.strategyId || (target.accountId
+        ? TI.MultiAccount.accountStrategyMap()[target.accountId] || ""
+        : TI.MultiAccount.DEFAULT_STRATEGY_ID);
+      var strategy = TI.MultiAccount.strategyMap()[strategyId];
+      if (!strategy) throw new Error("UNKNOWN_STRATEGY_ID: " + TI.AccountStrategyAudit.suffix(strategyId));
       var availableCash = cashByAccount.hasOwnProperty(accountName)
         ? cashByAccount[accountName]
         : "";
@@ -280,7 +300,11 @@ TI.Rebalance = {
         : TI.Rebalance.tradePlan(scope, target, amount);
 
       return {
+        scopeType: target.scopeType,
+        accountId: target.accountId || "",
         accountName: accountName,
+        strategyId: strategyId,
+        strategyName: String(strategy.strategyName || "").trim(),
         targetKind: target.kind,
         targetName: target.name,
         targetShare: target.targetShare,
@@ -479,13 +503,12 @@ TI.Rebalance = {
    * @return {Object[]}
    */
   portfolioForTarget: function(portfolio, target) {
-    if (!target.accountName) {
+    if (target.scopeType === this.SCOPE_TYPES.AGGREGATE) {
       return portfolio;
     }
 
     return portfolio.filter(function(position) {
-      return String(position.accountName || "").trim().toLowerCase() ===
-        String(target.accountName || "").trim().toLowerCase();
+      return String(position.accountId || "").trim() === String(target.accountId || "").trim();
     });
   },
 

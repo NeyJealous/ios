@@ -15,6 +15,46 @@ TI.TradePlan = {
 
   SHEET: CORE.SHEETS.TRADE_PLAN,
 
+  scopeIdentity: function(row) {
+    var scopeType = String(row.scopeType || "").trim().toUpperCase();
+    if (scopeType === TI.Rebalance.SCOPE_TYPES.AGGREGATE) {
+      var defaultStrategy = TI.MultiAccount.strategyMap()[TI.MultiAccount.DEFAULT_STRATEGY_ID];
+      if (!defaultStrategy) throw new Error("DEFAULT_STRATEGY_ID_NOT_FOUND");
+      return {
+        scopeType: scopeType,
+        accountId: "",
+        accountName: TI.Rebalance.ALL_ACCOUNTS,
+        strategyId: TI.MultiAccount.DEFAULT_STRATEGY_ID,
+        strategyName: String(defaultStrategy.strategyName || "").trim()
+      };
+    }
+    if (scopeType !== TI.Rebalance.SCOPE_TYPES.ACCOUNT) throw new Error("UNKNOWN_SCOPE_TYPE");
+    var accountId = String(row.accountId || "").trim();
+    if (!accountId) throw new Error("ACCOUNT_SCOPE_REQUIRES_ACCOUNT_ID");
+    var accounts = TI.MultiAccount.accountMap();
+    if (!accounts[accountId]) throw new Error("UNKNOWN_ACCOUNT_ID: " + TI.AccountStrategyAudit.suffix(accountId));
+    var strategyId = String(row.strategyId || TI.MultiAccount.accountStrategyMap()[accountId] || "").trim();
+    var strategy = TI.MultiAccount.strategyMap()[strategyId];
+    if (!strategy) throw new Error("UNKNOWN_STRATEGY_ID: " + TI.AccountStrategyAudit.suffix(strategyId));
+    return {
+      scopeType: scopeType,
+      accountId: accountId,
+      accountName: String(accounts[accountId].accountName || "").trim(),
+      strategyId: strategyId,
+      strategyName: String(strategy.strategyName || "").trim()
+    };
+  },
+
+  applyIdentity: function(result, row) {
+    var identity = this.scopeIdentity(row);
+    result.scopeType = identity.scopeType;
+    result.accountId = identity.accountId;
+    result.accountName = identity.accountName;
+    result.strategyId = identity.strategyId;
+    result.strategy = identity.strategyName;
+    return result;
+  },
+
   /**
    * Подготовить лист плана сделок.
    * @return {GoogleAppsScript.Spreadsheet.Sheet}
@@ -309,9 +349,8 @@ TI.TradePlan = {
       return [];
     }
 
-    return [{
+    return [this.applyIdentity({
       accountName: row.accountName,
-      strategy: TI.MultiAccount.strategyForAccount(row.accountName),
       action: "Пополнить резерв",
       ticker: "",
       targetKind: row.targetKind,
@@ -326,7 +365,7 @@ TI.TradePlan = {
       reason: "Фактический резерв ниже целевой доли.",
       status: "Резерв",
       comment: "Новые пополнения сначала оставить свободными деньгами."
-    }];
+    }, row)];
   },
 
   /**
@@ -486,9 +525,8 @@ TI.TradePlan = {
       (Number(position.currentPrice) || 0) *
       Math.max(1, Number(position.lot) || 1);
 
-    return {
+    return this.applyIdentity({
       accountName: row.accountName,
-      strategy: TI.MultiAccount.strategyForAccount(row.accountName),
       action: "Купить",
       ticker: position.ticker || "",
       targetKind: row.targetKind,
@@ -504,7 +542,7 @@ TI.TradePlan = {
         ? "Для ближайшей недовзвешенной бумаги нужен минимум " +
           TI.Rebalance.formatMoney(lotAmount) + "."
         : "Проверьте цену и лотность в справочнике."
-    };
+    }, row);
   },
 
   /**
@@ -516,6 +554,8 @@ TI.TradePlan = {
   matchingPositions: function(row, portfolio) {
     var accountName = String(row.accountName || "").trim();
     var target = {
+      scopeType: row.scopeType,
+      accountId: row.accountId || "",
       accountName: accountName === TI.Rebalance.ALL_ACCOUNTS ? "" : accountName,
       kind: row.targetKind,
       name: row.targetName
@@ -566,9 +606,8 @@ TI.TradePlan = {
       return null;
     }
 
-    return {
+    return this.applyIdentity({
       accountName: row.accountName,
-      strategy: TI.MultiAccount.strategyForAccount(row.accountName),
       action: action,
       ticker: ticker,
       targetKind: row.targetKind,
@@ -581,7 +620,7 @@ TI.TradePlan = {
       availableCash: row.availableCash,
       status: status,
       comment: comment
-    };
+    }, row);
   },
 
   /**
@@ -605,9 +644,8 @@ TI.TradePlan = {
       comment = "Сумма по лотам больше свободных денег на счёте.";
     }
 
-    return {
+    return this.applyIdentity({
       accountName: row.accountName,
-      strategy: TI.MultiAccount.strategyForAccount(row.accountName),
       action: action,
       ticker: position.ticker,
       targetKind: row.targetKind,
@@ -620,7 +658,7 @@ TI.TradePlan = {
       availableCash: row.availableCash,
       status: status,
       comment: comment
-    };
+    }, row);
   },
 
   /**
@@ -690,4 +728,34 @@ function TI_BuildTradePlan() {
   );
 
   return rows;
+}
+
+function TI_TestTradePlanScopes() {
+  var aggregate = TI.TradePlan.scopeIdentity({
+    scopeType: TI.Rebalance.SCOPE_TYPES.AGGREGATE,
+    accountId: "",
+    accountName: TI.Rebalance.ALL_ACCOUNTS
+  });
+  var links = TI.MultiAccount.accountStrategyMap();
+  var accountIds = Object.keys(links);
+  var validAccountId = accountIds[0] || "";
+  var account = TI.TradePlan.scopeIdentity({
+    scopeType: TI.Rebalance.SCOPE_TYPES.ACCOUNT,
+    accountId: validAccountId,
+    strategyId: links[validAccountId]
+  });
+  function fails(row) {
+    try { TI.TradePlan.scopeIdentity(row); return false; } catch (e) { return true; }
+  }
+  return {
+    ok: aggregate.accountId === "" && account.accountId === validAccountId &&
+      fails({ scopeType: "ACCOUNT", accountId: "" }) &&
+      fails({ scopeType: "ACCOUNT", accountId: "unknown" }) &&
+      fails({ scopeType: "ACCOUNT", accountId: "Пассивный" }),
+    aggregateScope: aggregate.scopeType,
+    validAccountScope: account.scopeType,
+    emptyAccountIdRejected: fails({ scopeType: "ACCOUNT", accountId: "" }),
+    unknownAccountIdRejected: fails({ scopeType: "ACCOUNT", accountId: "unknown" }),
+    russianNameNotUsedAsKey: fails({ scopeType: "ACCOUNT", accountId: "Пассивный" })
+  };
 }

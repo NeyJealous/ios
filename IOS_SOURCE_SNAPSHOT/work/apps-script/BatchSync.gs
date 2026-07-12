@@ -18,9 +18,11 @@ TI.BatchSync = {
   STEP_HANDLER: "TI_BatchSyncContinue",
   DAILY_HANDLER: "TI_AutoFullSync",
   MAINTENANCE_HANDLER: "TI_AutoMaintenanceSync",
+  LOCK_TIMEOUT_MS: 5000,
 
   FULL_STEPS: [
     { id: "initialize", title: "Подготовка листов" },
+    { id: "accounts", title: "Счета" },
     { id: "trades", title: "Сделки" },
     { id: "directoryShares", title: "Справочник: акции" },
     { id: "directoryBonds", title: "Справочник: облигации" },
@@ -56,15 +58,10 @@ TI.BatchSync = {
   QUICK_STEPS: [
     { id: "quickData", title: "Быстрые данные" },
     { id: "portfolioFreshPrices", title: "Портфель и цены" },
-    { id: "marketRegime", title: "Режим рынка" },
-    { id: "rebalance", title: "Ребалансировка" },
-    { id: "tradePlan", title: "План сделок" },
-    { id: "decisions", title: "Решения" },
     { id: "portfolioHealth", title: "Здоровье портфеля" },
-    { id: "portfolioIntelligence", title: "Интеллект портфеля" },
+    { id: "tradePlan", title: "План сделок" },
     { id: "advisor", title: "Советник" },
-    { id: "main", title: "Главная" },
-    { id: "ui", title: "Оформление интерфейса" }
+    { id: "main", title: "Главная" }
   ],
 
   RECALC_STEPS: [
@@ -77,8 +74,7 @@ TI.BatchSync = {
     { id: "portfolioHealth", title: "Здоровье портфеля" },
     { id: "portfolioIntelligence", title: "Интеллект портфеля" },
     { id: "advisor", title: "Советник" },
-    { id: "main", title: "Главная" },
-    { id: "ui", title: "Оформление интерфейса" }
+    { id: "main", title: "Главная" }
   ],
 
   /**
@@ -105,8 +101,18 @@ TI.BatchSync = {
 
   start: function(source, mode) {
     mode = mode || "full";
+    var lock = LockService.getScriptLock();
+    if (!lock.tryLock(this.LOCK_TIMEOUT_MS)) {
+      return this.blocked("LOCK_TIMEOUT", mode);
+    }
 
-    var state = {
+    try {
+      var active = this.loadState();
+      if (active && active.status === "running") {
+        return this.blocked("SYNC_ALREADY_RUNNING", mode, active);
+      }
+
+      var state = {
       status: "running",
       source: source || "manual",
       mode: mode,
@@ -115,14 +121,35 @@ TI.BatchSync = {
       startedAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       results: {},
-      error: ""
+      error: "",
+      context: TI.SyncExecution.create(mode, this.stepsForMode(mode))
     };
+      if (mode === "recalc") {
+        state.context.inputSnapshot = TI.SyncExecution.dataSnapshot(true);
+        state.context.dataRevision = state.context.inputSnapshot.dataRevision;
+      }
 
-    this.clearStepTriggers();
-    this.setNoApiMode(mode === "recalc");
-    this.saveState(state);
+      this.clearStepTriggers();
+      this.setNoApiMode(mode === "recalc");
+      this.saveState(state);
 
-    return state;
+      return state;
+    } finally {
+      lock.releaseLock();
+    }
+  },
+
+  blocked: function(code, requestedMode, active) {
+    return {
+      status: "blocked",
+      code: code,
+      requestedMode: requestedMode,
+      activeMode: active && active.mode ? active.mode : "",
+      activeRunId: active && active.context ? active.context.runId : "",
+      message: code === "SYNC_ALREADY_RUNNING"
+        ? "Уже выполняется другой режим синхронизации."
+        : "Не удалось получить lock синхронизации."
+    };
   },
 
   /**
@@ -130,6 +157,19 @@ TI.BatchSync = {
    * @return {Object}
    */
   runNext: function() {
+    var lock = LockService.getScriptLock();
+    if (!lock.tryLock(this.LOCK_TIMEOUT_MS)) {
+      return this.blocked("LOCK_TIMEOUT", "continue");
+    }
+    try {
+      return this.runNextUnlocked();
+    } finally {
+      TI.SyncExecution.deactivate();
+      lock.releaseLock();
+    }
+  },
+
+  runNextUnlocked: function() {
     var state = this.loadState();
 
     if (!state || state.status !== "running") {
@@ -145,7 +185,14 @@ TI.BatchSync = {
     var step = steps[state.index];
 
     try {
+      if (state.mode === "recalc") {
+        TI.SyncExecution.assertStable(state.context.inputSnapshot, state.index === 0);
+      }
+      TI.SyncExecution.startStep(state.context, step.id);
+      TI.SyncExecution.activate(state.context);
+      this.saveState(state);
       state.results[step.id] = this.executeStep(step.id);
+      TI.SyncExecution.finishStep(state.context, step.id, state.results[step.id]);
       state.index += 1;
       state.updatedAt = new Date().toISOString();
       state.error = "";
@@ -161,9 +208,11 @@ TI.BatchSync = {
       state.status = "error";
       state.updatedAt = new Date().toISOString();
       state.error = step.title + ": " + e.toString();
+      TI.SyncExecution.failStep(state.context, step.id, e);
       this.saveState(state);
       this.clearStepTriggers();
       this.setNoApiMode(false);
+      TI.SyncExecution.persist(state.context);
       throw e;
     }
   },
@@ -185,7 +234,19 @@ TI.BatchSync = {
     }
 
     if (stepId === "trades") {
-      return { rows: TI.Trades.rebuild() };
+      var incremental = TI.Operations.fetchIncremental();
+      var tradeRows = TI.Trades.sync(incremental.operations);
+      TI.Operations.commitIncrementalMarkers(incremental.markers);
+      return {
+        rows: tradeRows,
+        fetchedOperations: incremental.operations.length,
+        accounts: incremental.accountCount,
+        incremental: true
+      };
+    }
+
+    if (stepId === "accounts") {
+      return TI.MultiAccount.syncAccounts();
     }
 
     if (stepId === "directory") {
@@ -366,25 +427,15 @@ TI.BatchSync = {
   },
 
   refreshQuickData: function() {
-    var accounts = TI.MultiAccount.accounts();
-    var cash = {};
-
-    TI.Prices.clearCache();
-
-    accounts.forEach(function(account) {
-      var accountId = String(account.accountId || "").trim();
-      var accountName = String(account.accountName || accountId).trim();
-
-      if (!accountId) {
-        return;
-      }
-
-      cash[accountName] = TI.Accounts.cashForAccount(accountId);
-    });
-
+    var sources = TI.AutoDataRefresh.refreshFastSources();
+    var accounts = TI.MultiAccount.syncAccounts();
     return {
-      accounts: accounts.length,
-      cashAccounts: Object.keys(cash).length
+      accounts: accounts.total,
+      cashAccounts: sources.cash,
+      positions: sources.positions,
+      portfolios: sources.portfolios,
+      prices: sources.prices,
+      warnings: sources.warnings || []
     };
   },
 
@@ -426,12 +477,17 @@ TI.BatchSync = {
    * @return {Object}
    */
   finish: function(state) {
+    if (state.mode === "recalc" && state.context && state.context.inputSnapshot) {
+      TI.SyncExecution.assertStable(state.context.inputSnapshot, false);
+    }
     state.status = "complete";
     state.finishedAt = new Date().toISOString();
     state.updatedAt = state.finishedAt;
+    TI.SyncExecution.finish(state.context, "complete");
     this.saveState(state);
     this.clearStepTriggers();
     this.setNoApiMode(false);
+    TI.SyncExecution.persist(state.context);
     return state;
   },
 
@@ -525,7 +581,8 @@ TI.BatchSync = {
       return state;
     }
 
-    this.start("daily", "quick");
+    var started = this.start("daily", "quick");
+    if (started.status === "blocked") return started;
     return this.runNext();
   },
 
@@ -536,7 +593,8 @@ TI.BatchSync = {
       return state;
     }
 
-    this.start("maintenance", "maintenance");
+    var started = this.start("maintenance", "maintenance");
+    if (started.status === "blocked") return started;
     return this.runNext();
   },
 
@@ -637,6 +695,10 @@ TI.BatchSync = {
       return "Синхронизация ещё не запускалась.";
     }
 
+    if (state.status === "blocked") {
+      return state.message || "Другой режим синхронизации уже выполняется.";
+    }
+
     var done = Number(state.index) || 0;
     var steps = this.stateSteps(state);
     var total = steps.length;
@@ -685,8 +747,8 @@ function TI_AutoMaintenanceSync() {
 }
 
 function TI_MaintenanceSync() {
-  TI.BatchSync.start("manual", "maintenance");
-  var state = TI.BatchSync.runNext();
+  var state = TI.BatchSync.start("manual", "maintenance");
+  if (state.status !== "blocked") state = TI.BatchSync.runNext();
 
   SpreadsheetApp.getUi().alert(TI.BatchSync.statusText(state));
 }
@@ -695,8 +757,8 @@ function TI_MaintenanceSync() {
  * Быстро обновить портфель.
  */
 function TI_QuickSync() {
-  TI.BatchSync.start("manual", "quick");
-  var state = TI.BatchSync.runNext();
+  var state = TI.BatchSync.start("manual", "quick");
+  if (state.status !== "blocked") state = TI.BatchSync.runNext();
 
   SpreadsheetApp.getUi().alert(TI.BatchSync.statusText(state));
 }
@@ -705,8 +767,8 @@ function TI_QuickSync() {
  * Пересчитать рекомендации без загрузки внешних данных.
  */
 function TI_RecalculateRecommendations() {
-  TI.BatchSync.start("manual", "recalc");
-  var state = TI.BatchSync.runNext();
+  var state = TI.BatchSync.start("manual", "recalc");
+  if (state.status !== "blocked") state = TI.BatchSync.runNext();
 
   SpreadsheetApp.getUi().alert(TI.BatchSync.statusText(state));
 }
@@ -725,6 +787,33 @@ function TI_StopBatchSync() {
   var state = TI.BatchSync.stop();
 
   SpreadsheetApp.getUi().alert(TI.BatchSync.statusText(state));
+}
+
+function TI_TestSyncLock() {
+  return TI_ProbeSyncLockTest();
+}
+
+function TI_HoldSyncLockTest() {
+  var lock = LockService.getScriptLock();
+  if (!lock.tryLock(1000)) {
+    return { ok: false, code: "TEST_LOCK_UNAVAILABLE", acquired: false };
+  }
+  try {
+    Utilities.sleep(8000);
+    return { ok: true, heldMs: 8000, acquired: true };
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function TI_ProbeSyncLockTest() {
+  var lock = LockService.getScriptLock();
+  var acquired = lock.tryLock(1000);
+  if (acquired) lock.releaseLock();
+  return {
+    ok: acquired === false,
+    parallelStartBlocked: acquired === false
+  };
 }
 
 /**

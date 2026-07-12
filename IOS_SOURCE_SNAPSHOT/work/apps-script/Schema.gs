@@ -580,7 +580,10 @@ Object.assign(Schema.Definitions, {
       editable:true,
       required:false,
       description:"Если заполнено, используется вместо автоматической целевой доли."
-    }
+    },
+    { field:"scopeType",  title:"Тип области",  type:Schema.Types.TEXT, hidden:true, width:120 },
+    { field:"accountId",  title:"ID счёта",     type:Schema.Types.TEXT, hidden:true, width:220 },
+    { field:"strategyId", title:"ID стратегии", type:Schema.Types.TEXT, hidden:true, width:180 }
   ],
 
   TAX: [
@@ -617,7 +620,11 @@ Object.assign(Schema.Definitions, {
     { field:"unitsToTrade", title:"Бумаг",                type:Schema.Types.NUMBER,  hidden:false, width:90 },
     { field:"roundedAmount",title:"Сумма по лотам",       type:Schema.Types.MONEY,   hidden:false, width:130 },
     { field:"availableCash",title:"Свободные деньги",    type:Schema.Types.MONEY,   hidden:false, width:140 },
-    { field:"action",       title:"Рекомендация",        type:Schema.Types.TEXT,    hidden:false, width:220 }
+    { field:"action",       title:"Рекомендация",        type:Schema.Types.TEXT,    hidden:false, width:220 },
+    { field:"scopeType",    title:"Тип области",         type:Schema.Types.TEXT,    hidden:true, width:120 },
+    { field:"accountId",    title:"ID счёта",            type:Schema.Types.TEXT,    hidden:true, width:220 },
+    { field:"strategyId",   title:"ID стратегии",        type:Schema.Types.TEXT,    hidden:true, width:180 },
+    { field:"strategyName", title:"Название стратегии",  type:Schema.Types.TEXT,    hidden:true, width:180 }
   ],
 
   TRADE_PLAN: [
@@ -636,7 +643,10 @@ Object.assign(Schema.Definitions, {
     { field:"rating",        title:"Рейтинг",             type:Schema.Types.NUMBER, hidden:false, width:90 },
     { field:"reason",        title:"Причина",             type:Schema.Types.TEXT,   hidden:false, width:360 },
     { field:"status",        title:"Статус",              type:Schema.Types.TEXT,   hidden:false, width:170 },
-    { field:"comment",       title:"Комментарий",         type:Schema.Types.TEXT,   hidden:false, width:360 }
+    { field:"comment",       title:"Комментарий",         type:Schema.Types.TEXT,   hidden:false, width:360 },
+    { field:"scopeType",     title:"Тип области",         type:Schema.Types.TEXT,   hidden:true, width:120 },
+    { field:"accountId",     title:"ID счёта",            type:Schema.Types.TEXT,   hidden:true, width:220 },
+    { field:"strategyId",    title:"ID стратегии",        type:Schema.Types.TEXT,   hidden:true, width:180 }
   ],
 
   STRATEGY_RULES: [

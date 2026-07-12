@@ -148,8 +148,8 @@ function TI_TestConnection() {
  * Пакетная полная синхронизация.
  */
 function TI_FullSync() {
-  TI.BatchSync.start("manual", "full");
-  var state = TI.BatchSync.runNext();
+  var state = TI.BatchSync.start("manual", "full");
+  if (state.status !== "blocked") state = TI.BatchSync.runNext();
 
   SpreadsheetApp.getUi().alert(TI.BatchSync.statusText(state));
 }

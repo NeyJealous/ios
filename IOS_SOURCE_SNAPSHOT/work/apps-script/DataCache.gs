@@ -204,14 +204,16 @@ TI.DataCache = {
     var sheet = this.prepare();
     var rows = TI.Data.sheetObjects(this.SHEET);
     var count = 0;
+    var values = [];
 
-    rows.forEach(function(row, index) {
+    rows.forEach(function(row) {
       var entry = TI.DataCache.normalizeEntry(row);
       var value = entry.stale ? "Да" : "Нет";
-
-      sheet.getRange(index + 2, 5).setValue(value);
+      values.push([value]);
       count++;
     });
+
+    if (values.length) sheet.getRange(2, 5, values.length, 1).setValues(values);
 
     return count;
   },

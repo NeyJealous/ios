@@ -23,6 +23,31 @@ TI.Trades = {
 
   SELL_TYPES: CORE.OPERATION_GROUPS.SELL,
 
+  buildTradeKey: function(accountId, operationId, tradeId) {
+    return [accountId, operationId, tradeId].map(function(value) {
+      var text = String(value === null || value === undefined ? "" : value);
+      return text.length + ":" + text;
+    }).join("|");
+  },
+
+  tradeChecksum: function(trade) {
+    var significant = [
+      trade.tradeDate instanceof Date ? trade.tradeDate.toISOString() : String(trade.tradeDate || ""),
+      String(trade.ticker || ""),
+      String(trade.operationTypeCode || trade.operationType || ""),
+      Number(trade.quantity) || 0,
+      Number(trade.price) || 0,
+      Number(trade.tradeAmount) || 0,
+      Number(trade.commission) || 0,
+      String(trade.currency || "")
+    ];
+    var bytes = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, JSON.stringify(significant));
+    return bytes.map(function(byte) {
+      var normalized = byte < 0 ? byte + 256 : byte;
+      return ("0" + normalized.toString(16)).slice(-2);
+    }).join("");
+  },
+
   /**
    * Подготовить лист сделок.
    * @return {GoogleAppsScript.Spreadsheet.Sheet}
@@ -160,26 +185,30 @@ TI.Trades = {
    * Получить существующие ID сделок.
    * @return {Object}
    */
-  existingIds: function() {
+  existingIndex: function() {
     var sheet = this.prepare();
-    var tradeIdColumn = Schema.getFieldIndex(this.SHEET, "tradeId") + 1;
-    var ids = {};
+    var index = {};
 
-    if (tradeIdColumn <= 0 || sheet.getLastRow() <= 1) {
-      return ids;
+    if (sheet.getLastRow() <= 1) {
+      return index;
     }
 
-    var values = sheet
-      .getRange(2, tradeIdColumn, sheet.getLastRow() - 1, 1)
-      .getValues();
-
+    var values = sheet.getDataRange().getValues();
+    var headers = values.shift();
+    var fieldsByTitle = TI.FIFO.fieldsByTitle(this.SHEET);
     values.forEach(function(row) {
-      if (row[0]) {
-        ids[String(row[0])] = true;
+      var trade = {};
+      headers.forEach(function(title, column) {
+        trade[fieldsByTitle[title] || title] = row[column];
+      });
+      var key = TI.Trades.buildTradeKey(trade.accountId, trade.operationId, trade.tradeId);
+      if (index[key] && index[key].checksum !== TI.Trades.tradeChecksum(trade)) {
+        throw new Error("TRADE_KEY_CONFLICT: " + TI.AccountStrategyAudit.suffix(trade.tradeId));
       }
+      index[key] = { checksum: TI.Trades.tradeChecksum(trade) };
     });
 
-    return ids;
+    return index;
   },
 
   /**
@@ -207,14 +236,27 @@ TI.Trades = {
    * Синхронизировать новые сделки без дублей.
    * @return {number}
    */
-  sync: function() {
-    var operations = TI.Operations.get();
+  sync: function(operations) {
+    operations = operations || TI.Operations.get();
     var trades = this.toObjects(operations);
-    var exists = this.existingIds();
+    var exists = this.existingIndex();
+    var conflicts = [];
 
     var fresh = trades.filter(function(trade) {
-      return !exists[String(trade.tradeId)];
+      var key = TI.Trades.buildTradeKey(trade.accountId, trade.operationId, trade.tradeId);
+      var checksum = TI.Trades.tradeChecksum(trade);
+      if (!exists[key]) {
+        exists[key] = { checksum: checksum };
+        return true;
+      }
+      if (exists[key].checksum !== checksum) conflicts.push(TI.AccountStrategyAudit.suffix(trade.tradeId));
+      return false;
     });
+
+    if (conflicts.length) {
+      TI.TechLog.error("Trades", "sync", "TRADE_KEY_CONFLICT", conflicts.join(", "));
+      throw new Error("TRADE_KEY_CONFLICT: " + conflicts.join(", "));
+    }
 
     return this.write(fresh);
   },
@@ -248,13 +290,15 @@ TI.Trades = {
  * @return {number}
  */
 function TI_SyncTrades() {
-  var count = TI.Trades.sync();
+  return TI.SyncExecution.guardWrite("manual:trades-sync", function() {
+    var count = TI.Trades.sync();
 
-  SpreadsheetApp.getUi().alert(
-    "Синхронизация завершена.\n\nНовых сделок: " + count
-  );
+    SpreadsheetApp.getUi().alert(
+      "Синхронизация завершена.\n\nНовых сделок: " + count
+    );
 
-  return count;
+    return count;
+  });
 }
 
 /**
@@ -262,13 +306,15 @@ function TI_SyncTrades() {
  * @return {number}
  */
 function TI_RebuildTrades() {
-  var count = TI.Trades.rebuild();
+  return TI.SyncExecution.guardWrite("manual:trades-rebuild", function() {
+    var count = TI.Trades.rebuild();
 
-  SpreadsheetApp.getUi().alert(
-    "Лист сделок пересобран.\n\nЗагружено сделок: " + count
-  );
+    SpreadsheetApp.getUi().alert(
+      "Лист сделок пересобран.\n\nЗагружено сделок: " + count
+    );
 
-  return count;
+    return count;
+  });
 }
 
 /**
@@ -309,5 +355,16 @@ function TI_TestTrades() {
     SpreadsheetApp.getUi().alert("Ошибка:\n\n" + e.message);
     throw e;
   }
+}
+
+function TI_TestTradeKey() {
+  var first = TI.Trades.buildTradeKey("account", "operation-old", "1094");
+  var second = TI.Trades.buildTradeKey("account", "operation-new", "1094");
+  var same = TI.Trades.buildTradeKey("account", "operation-old", "1094");
+  return {
+    ok: first !== second && first === same,
+    repeatedTradeIdAllowedAcrossOperations: first !== second,
+    exactCompositeDuplicateDetected: first === same
+  };
 }
 

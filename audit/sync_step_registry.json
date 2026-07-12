@@ -1,0 +1,26 @@
+{
+  "capturedAt": "2026-07-12",
+  "source": "IOS_SOURCE_SNAPSHOT/work/apps-script/BatchSync.gs",
+  "quick": {
+    "entryPoint": "TI_QuickSync",
+    "steps": ["quickData", "portfolioFreshPrices", "marketRegime", "rebalance", "tradePlan", "decisions", "portfolioHealth", "portfolioIntelligence", "advisor", "main", "ui"]
+  },
+  "full": {
+    "entryPoint": "TI_FullSync",
+    "steps": ["initialize", "trades", "directoryShares", "directoryBonds", "directoryEtfs", "directoryPrices", "fifo", "portfolioFreshPrices", "visualization", "income", "inflation", "multiAccount", "strategy", "marketRegime", "knowledge", "companyRating", "bondAnalysis", "assetScoring", "coi", "strategyTargets", "tax", "rebalance", "tradePlan", "decisions", "portfolioHealth", "portfolioIntelligence", "advisor", "stabilization", "diagnostics", "main", "ui"]
+  },
+  "recalc": {
+    "entryPoint": "TI_RecalculateRecommendations",
+    "steps": ["portfolioNoApi", "marketRegime", "strategyTargets", "rebalance", "tradePlan", "decisions", "portfolioHealth", "portfolioIntelligence", "advisor", "main", "ui"]
+  },
+  "maintenance": {
+    "entryPoint": "TI_MaintenanceSync",
+    "steps": ["initialize", "directoryShares", "directoryBonds", "directoryEtfs", "inflation", "knowledge", "companyRating", "bondAnalysis", "assetScoring", "coi", "strategyTargets", "diagnostics", "main", "ui"]
+  },
+  "continuation": "TI_BatchSyncContinue",
+  "scheduled": ["TI_AutoFullSync", "TI_AutoMaintenanceSync"],
+  "stateProperty": "TI_BATCH_SYNC_STATE",
+  "noApiProperty": "TI_BATCH_SYNC_NO_API",
+  "lock": null,
+  "investmentUniverseModule": false
+}

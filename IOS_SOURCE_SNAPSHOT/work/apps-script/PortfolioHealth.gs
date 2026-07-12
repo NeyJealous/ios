@@ -38,7 +38,7 @@ TI.PortfolioHealth = {
 
     rows.push(this.row("Весь портфель", "Все счета", "", included, cash[TI.Rebalance.ALL_ACCOUNTS] || 0));
     rows = rows.concat(this.accountRows(portfolio, cash));
-    rows = rows.concat(this.strategyRows(portfolio, cash));
+    rows = rows.concat(this.strategyRows(included, cash));
 
     return rows;
   },
@@ -47,6 +47,8 @@ TI.PortfolioHealth = {
     var map = {};
     var rows = [];
     var accounts = TI.MultiAccount.accountMap();
+    var links = TI.MultiAccount.accountStrategyMap();
+    var strategies = TI.MultiAccount.strategyMap();
 
     portfolio.forEach(function(position) {
       var accountId = String(position.accountId || "").trim();
@@ -57,13 +59,23 @@ TI.PortfolioHealth = {
 
     Object.keys(map).sort().forEach(function(accountId) {
       var accountName = String(accounts[accountId].accountName || "").trim();
-      rows.push(TI.PortfolioHealth.row(
+      var strategyId = links[accountId] || "";
+      var included = TI.MultiAccount.isIncludedAccount(accountId);
+      if (included && (!strategyId || !strategies[strategyId])) {
+        throw new Error("Для включённого Account ID не назначена Strategy ID: " + TI.AccountStrategyAudit.suffix(accountId));
+      }
+      var healthRow = TI.PortfolioHealth.row(
         "Счёт",
         accountName,
-        TI.MultiAccount.strategyForAccount(accountId),
+        strategyId && strategies[strategyId] ? String(strategies[strategyId].strategyName || "").trim() : "",
         map[accountId],
         cash[accountName] || 0
-      ));
+      );
+      if (!strategyId) {
+        healthRow.risks = [healthRow.risks, "Для исключённого счёта не назначена стратегия"].filter(Boolean).join("; ");
+        healthRow.status = "Внимание";
+      }
+      rows.push(healthRow);
     });
 
     return rows;

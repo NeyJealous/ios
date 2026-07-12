@@ -17,6 +17,8 @@ var TI = TI || {};
 TI.Operations = {
 
   _CACHE_KEY: "operations_v2",
+  _MARKER_PREFIX: "TI_OPERATIONS_LAST_SUCCESS_",
+  _OVERLAP_DAYS: 7,
 
   /**
    * Получить операции.
@@ -42,6 +44,59 @@ TI.Operations = {
    */
   refresh: function() {
     return this.get(true);
+  },
+
+  markerKey: function(accountId) {
+    var digest = Utilities.computeDigest(
+      Utilities.DigestAlgorithm.SHA_256,
+      String(accountId || "")
+    );
+    var hex = digest.map(function(byte) {
+      var normalized = byte < 0 ? byte + 256 : byte;
+      return ("0" + normalized.toString(16)).slice(-2);
+    }).join("");
+    return this._MARKER_PREFIX + hex.slice(0, 24);
+  },
+
+  fetchIncremental: function() {
+    var accounts = this.operationAccounts();
+    var properties = PropertiesService.getScriptProperties();
+    var operations = [];
+    var markers = {};
+    var to = new Date();
+    var configuredStart = new Date(TI.Settings.getStartDate());
+
+    accounts.forEach(function(account) {
+      var key = TI.Operations.markerKey(account.id);
+      var raw = properties.getProperty(key);
+      var from = raw ? new Date(raw) : new Date(configuredStart.getTime());
+      if (raw && !isNaN(from.getTime())) {
+        from = new Date(from.getTime() - TI.Operations._OVERLAP_DAYS * 86400000);
+      }
+      if (isNaN(from.getTime()) || from < configuredStart) from = new Date(configuredStart.getTime());
+      operations = operations.concat(TI.Operations.fetchAccount(
+        account.id,
+        from,
+        to,
+        account.name || account.id
+      ));
+      markers[key] = to.toISOString();
+    });
+
+    return {
+      operations: this.sort(this.unique(operations)),
+      markers: markers,
+      accountCount: accounts.length,
+      overlapDays: this._OVERLAP_DAYS
+    };
+  },
+
+  commitIncrementalMarkers: function(markers) {
+    markers = markers || {};
+    if (Object.keys(markers).length) {
+      PropertiesService.getScriptProperties().setProperties(markers, false);
+    }
+    return Object.keys(markers).length;
   },
 
   /**

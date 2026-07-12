@@ -270,17 +270,19 @@ TI.Prices = {
  * @return {number}
  */
 function TI_UpdatePrices() {
-  TI.Prices.clearCache();
+  return TI.SyncExecution.guardWrite("manual:prices", function() {
+    TI.Prices.clearCache();
 
-  var rows = TI.Portfolio.rebuild({
-    forcePrices: true
+    var rows = TI.Portfolio.rebuild({
+      forcePrices: true
+    });
+
+    SpreadsheetApp.getUi().alert(
+      "Цены обновлены.\n\n" +
+      "Строк портфеля: " + rows
+    );
+
+    return rows;
   });
-
-  SpreadsheetApp.getUi().alert(
-    "Цены обновлены.\n\n" +
-    "Строк портфеля: " + rows
-  );
-
-  return rows;
 }
 

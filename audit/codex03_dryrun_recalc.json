@@ -1,0 +1,88 @@
+{
+  "portfolioHealthPreview": {
+    "portfolioPositions": 2,
+    "strategies": [
+      {
+        "totalValue": 13061.12,
+        "name": "Базовая стратегия",
+        "marketValue": 13061.12,
+        "positions": 1,
+        "cash": 0
+      }
+    ],
+    "accounts": [
+      {
+        "totalValue": 13061.12,
+        "name": "Пассивный",
+        "marketValue": 13061.12,
+        "positions": 1,
+        "cash": 0
+      },
+      {
+        "totalValue": 1121.2946094,
+        "name": "На тату",
+        "marketValue": 1121.2946094,
+        "positions": 1,
+        "cash": 0
+      }
+    ],
+    "aggregate": {
+      "totalValue": 13061.12,
+      "marketValue": 13061.12,
+      "positions": 1,
+      "cash": 0
+    }
+  },
+  "dataRevisionStable": true,
+  "dryRun": true,
+  "tradesWrites": 0,
+  "tradePlanStatus": "PRECONDITIONS_OK",
+  "context": {
+    "sheetReadCount": 0,
+    "sheetWriteCount": 0,
+    "failedStep": "",
+    "warnings": [],
+    "startedAt": "2026-07-12T18:18:23.603Z",
+    "rowsRead": 0,
+    "finishedAt": "2026-07-12T18:20:59.582Z",
+    "completedSteps": [],
+    "mode": "recalc",
+    "currentStep": "",
+    "plannedSteps": [
+      "portfolioNoApi",
+      "marketRegime",
+      "strategyTargets",
+      "rebalance",
+      "tradePlan",
+      "decisions",
+      "portfolioHealth",
+      "portfolioIntelligence",
+      "advisor",
+      "main"
+    ],
+    "rowsWritten": 0,
+    "dataRevision": "6bc07bc7dec35abe8c43098a78698289a1c63527847a0fb382f11d483c9000c4",
+    "runId": "…c50850",
+    "durationMs": 155979,
+    "errors": [],
+    "apiCallCount": 0,
+    "status": "diagnostic",
+    "projectVersion": "1.1.0"
+  },
+  "tradePlanRowsPlanned": 3,
+  "ok": true,
+  "operationsWrites": 0,
+  "expectedWriteSet": [
+    "Портфель",
+    "Режим рынка",
+    "Инвестиционная стратегия",
+    "Ребалансировка",
+    "План сделок",
+    "Решения",
+    "Здоровье портфеля",
+    "Интеллект портфеля",
+    "Советник",
+    "Главная",
+    "Диагностика"
+  ]
+}

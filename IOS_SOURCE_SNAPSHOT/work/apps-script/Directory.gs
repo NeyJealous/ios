@@ -977,19 +977,21 @@ TI.Directory = {
  * @return {{total:number, added:number, updated:number}}
  */
 function TI_UpdateDirectory() {
-  var stats = TI.Directory.refresh({
-    market: false,
-    prices: false
+  return TI.SyncExecution.guardWrite("manual:directory-update", function() {
+    var stats = TI.Directory.refresh({
+      market: false,
+      prices: false
+    });
+
+    SpreadsheetApp.getUi().alert(
+      "Справочник обновлён.\n\n" +
+      "Всего инструментов: " + stats.total + "\n" +
+      "Добавлено: " + stats.added + "\n" +
+      "Дополнено: " + stats.updated
+    );
+
+    return stats;
   });
-
-  SpreadsheetApp.getUi().alert(
-    "Справочник обновлён.\n\n" +
-    "Всего инструментов: " + stats.total + "\n" +
-    "Добавлено: " + stats.added + "\n" +
-    "Дополнено: " + stats.updated
-  );
-
-  return stats;
 }
 
 /**
@@ -997,15 +999,17 @@ function TI_UpdateDirectory() {
  * @return {{before:number, after:number, removed:number}}
  */
 function TI_OptimizeDirectoryExchangeOnly() {
-  var stats = TI.Directory.optimizeExchangeOnly();
+  return TI.SyncExecution.guardWrite("manual:directory-optimize", function() {
+    var stats = TI.Directory.optimizeExchangeOnly();
 
-  SpreadsheetApp.getUi().alert(
-    "Справочник оптимизирован.\n\n" +
-    "Было строк: " + stats.before + "\n" +
-    "Стало строк: " + stats.after + "\n" +
-    "Удалено: " + stats.removed
-  );
+    SpreadsheetApp.getUi().alert(
+      "Справочник оптимизирован.\n\n" +
+      "Было строк: " + stats.before + "\n" +
+      "Стало строк: " + stats.after + "\n" +
+      "Удалено: " + stats.removed
+    );
 
-  return stats;
+    return stats;
+  });
 }
 

@@ -1,0 +1,97 @@
+{
+  "dryRun": true,
+  "preconditions": {
+    "accountStrategyAuditFunction": "TI_AuditAccountStrategyLinks",
+    "noPipelineExecuted": true,
+    "remoteHealthFunction": "TI_RemoteHealthCheck"
+  },
+  "context": {
+    "sheetWriteCount": 0,
+    "sheetReadCount": 0,
+    "failedStep": "",
+    "warnings": [],
+    "startedAt": "2026-07-12T13:11:44.144Z",
+    "rowsRead": 0,
+    "finishedAt": "2026-07-12T13:11:44.145Z",
+    "currentStep": "",
+    "mode": "recalc",
+    "completedSteps": [],
+    "plannedSteps": [
+      "portfolioNoApi",
+      "marketRegime",
+      "strategyTargets",
+      "rebalance",
+      "tradePlan",
+      "decisions",
+      "portfolioHealth",
+      "portfolioIntelligence",
+      "advisor",
+      "main"
+    ],
+    "rowsWritten": 0,
+    "runId": "…18c988",
+    "durationMs": 1,
+    "errors": [],
+    "apiCallCount": 0,
+    "projectVersion": "1.1.0",
+    "status": "diagnostic"
+  },
+  "ok": true,
+  "plan": [
+    {
+      "id": "portfolioNoApi",
+      "title": "Портфель"
+    },
+    {
+      "id": "marketRegime",
+      "title": "Режим рынка"
+    },
+    {
+      "id": "strategyTargets",
+      "title": "Стратегические цели"
+    },
+    {
+      "id": "rebalance",
+      "title": "Ребалансировка"
+    },
+    {
+      "id": "tradePlan",
+      "title": "План сделок"
+    },
+    {
+      "id": "decisions",
+      "title": "Решения"
+    },
+    {
+      "id": "portfolioHealth",
+      "title": "Здоровье портфеля"
+    },
+    {
+      "id": "portfolioIntelligence",
+      "title": "Интеллект портфеля"
+    },
+    {
+      "id": "advisor",
+      "title": "Советник"
+    },
+    {
+      "id": "main",
+      "title": "Главная"
+    }
+  ],
+  "expectedApis": [],
+  "potentialWrites": [
+    "local analytical results",
+    "Здоровье портфеля",
+    "План сделок",
+    "Советник",
+    "Главная",
+    "Диагностика"
+  ],
+  "sheetsRead": [
+    "local Portfolio/FIFO",
+    "strategy",
+    "ratings",
+    "cached source data"
+  ]
+}

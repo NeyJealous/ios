@@ -222,17 +222,22 @@ TI.DirectoryBatch = {
  * @return {Object}
  */
 function TI_DirectoryBatchContinue() {
-  return TI.DirectoryBatch.runNext();
+  return TI.SyncExecution.guardWrite("trigger:directory-batch", function() {
+    return TI.DirectoryBatch.runNext();
+  });
 }
 
 /**
  * Запустить пакетное обновление справочника.
  */
 function TI_StartDirectoryBatch() {
-  TI.DirectoryBatch.start();
-  var state = TI.DirectoryBatch.runNext();
+  return TI.SyncExecution.guardWrite("manual:directory-batch", function() {
+    TI.DirectoryBatch.start();
+    var state = TI.DirectoryBatch.runNext();
 
-  SpreadsheetApp.getUi().alert(TI.DirectoryBatch.statusText(state));
+    SpreadsheetApp.getUi().alert(TI.DirectoryBatch.statusText(state));
+    return state;
+  });
 }
 
 /**

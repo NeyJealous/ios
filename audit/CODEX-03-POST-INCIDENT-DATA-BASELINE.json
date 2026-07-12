@@ -1,0 +1,205 @@
+{
+  "capturedAt": "2026-07-12T17:38:07.181Z",
+  "incidentClassification": "CONCURRENT_MANUAL_SYNC_DURING_RECALC_TEST",
+  "backup": {
+    "name": "CODEX-03 Post Incident Full Backup 20260712-1616",
+    "spreadsheetSuffix": "…RJDT0k",
+    "fullSpreadsheetCopy": true
+  },
+  "spreadsheet": {
+    "sheetCount": 40,
+    "originalSpreadsheetSuffix": "…nR2p_4"
+  },
+  "trades": {
+    "priorAcceptedRows": 149,
+    "currentRows": 162,
+    "newRows": 13,
+    "validNewTrades": 13,
+    "requiresReview": 0,
+    "duplicateFullRows": 0,
+    "invalidRows": 0,
+    "latestTradeTimestamp": "2026-07-12T07:45:44.337500Z",
+    "productionDataMustNotBeRolledBack": true,
+    "validationFile": "audit/CODEX-03-NEW-TRADES-VALIDATION.json"
+  },
+  "absentStandaloneSheets": {
+    "Операции": "No standalone sheet exists; operations are fetched/cached and normalized into Сделки.",
+    "Цены": "No standalone sheet exists; price state is represented in Портфель/Справочник/Кэш/Данные источников."
+  },
+  "sheets": {
+    "Сделки": {
+      "rows": 162,
+      "columns": 18,
+      "digestSuffix": "…db1363",
+      "semanticDigestSuffix": "…db1363",
+      "formulaDigestSuffix": "…e905e7",
+      "uniqueKey": [
+        "Account ID",
+        "Operation ID",
+        "Trade ID"
+      ]
+    },
+    "Портфель": {
+      "rows": 2,
+      "columns": 19,
+      "digestSuffix": "…d81894",
+      "semanticDigestSuffix": "…d81894",
+      "formulaDigestSuffix": "…0f2a5c",
+      "uniqueKey": [
+        "Account ID",
+        "Instrument UID/FIGI/Asset UID"
+      ]
+    },
+    "Главная": {
+      "rows": 19,
+      "columns": 6,
+      "digestSuffix": "…7e2e48",
+      "semanticDigestSuffix": "…a883a7",
+      "formulaDigestSuffix": "…38e9e3",
+      "uniqueKey": [
+        "Раздел",
+        "Показатель"
+      ]
+    },
+    "Здоровье портфеля": {
+      "rows": 4,
+      "columns": 13,
+      "digestSuffix": "…30de3b",
+      "semanticDigestSuffix": "…996d46",
+      "formulaDigestSuffix": "…55c520",
+      "uniqueKey": [
+        "Разрез",
+        "Название"
+      ]
+    },
+    "Советник": {
+      "rows": 18,
+      "columns": 10,
+      "digestSuffix": "…16d10a",
+      "semanticDigestSuffix": "…16d10a",
+      "formulaDigestSuffix": "…c5472e",
+      "uniqueKey": [
+        "Приоритет",
+        "Категория",
+        "Счёт",
+        "Инструмент"
+      ]
+    },
+    "План сделок": {
+      "rows": 3,
+      "columns": 16,
+      "digestSuffix": "…4c3e74",
+      "semanticDigestSuffix": "…4c3e74",
+      "formulaDigestSuffix": "…790509",
+      "uniqueKey": [
+        "Счёт",
+        "Действие",
+        "Тикер",
+        "Разрез",
+        "Цель"
+      ]
+    },
+    "Диагностика": {
+      "rows": 41,
+      "columns": 6,
+      "digestSuffix": "…b96c12",
+      "semanticDigestSuffix": "…620ba9",
+      "formulaDigestSuffix": "…a11210",
+      "uniqueKey": [
+        "Раздел",
+        "Проверка",
+        "Обновлено"
+      ]
+    },
+    "Конституция": {
+      "rows": 6,
+      "columns": 4,
+      "digestSuffix": "…f9842f",
+      "semanticDigestSuffix": "…9da6ef",
+      "formulaDigestSuffix": "…d936df",
+      "uniqueKey": [
+        "schema-defined row identity"
+      ]
+    },
+    "Продажи FIFO": {
+      "rows": 129,
+      "columns": 17,
+      "digestSuffix": "…17315c",
+      "semanticDigestSuffix": "…17315c",
+      "formulaDigestSuffix": "…92cacc",
+      "uniqueKey": [
+        "schema-defined row identity"
+      ]
+    },
+    "Лоты FIFO": {
+      "rows": 11,
+      "columns": 18,
+      "digestSuffix": "…53bb8f",
+      "semanticDigestSuffix": "…53bb8f",
+      "formulaDigestSuffix": "…de201f",
+      "uniqueKey": [
+        "schema-defined row identity"
+      ]
+    },
+    "Налоги": {
+      "rows": 1,
+      "columns": 5,
+      "digestSuffix": "…d2d927",
+      "semanticDigestSuffix": "…d2d927",
+      "formulaDigestSuffix": "…c78fd9",
+      "uniqueKey": [
+        "schema-defined row identity"
+      ]
+    },
+    "Справочник": {
+      "rows": 1895,
+      "columns": 16,
+      "digestSuffix": "…7b75df",
+      "semanticDigestSuffix": "…62c509",
+      "formulaDigestSuffix": "…19ff1b",
+      "uniqueKey": [
+        "schema-defined row identity"
+      ]
+    },
+    "Кэш": {
+      "rows": 1895,
+      "columns": 5,
+      "digestSuffix": "…3973ff",
+      "semanticDigestSuffix": "…3973ff",
+      "formulaDigestSuffix": "…53749d",
+      "uniqueKey": [
+        "schema-defined row identity"
+      ]
+    },
+    "Данные источников": {
+      "rows": 37,
+      "columns": 7,
+      "digestSuffix": "…96663b",
+      "semanticDigestSuffix": "…589517",
+      "formulaDigestSuffix": "…652e7b",
+      "uniqueKey": [
+        "schema-defined row identity"
+      ]
+    }
+  },
+  "maskedUserSheetSnapshot": {
+    "source": "audit/codex03_post_incident_masked_sheets.json",
+    "sheetNames": [
+      "Портфель",
+      "Стратегии счетов",
+      "Здоровье портфеля",
+      "Советник",
+      "Главная",
+      "Счета",
+      "Стратегии",
+      "План сделок"
+    ]
+  },
+  "syncState": {
+    "mode": "recalc",
+    "status": "error",
+    "failedStep": "tradePlan",
+    "apiCallCount": 0,
+    "runId": "…603498"
+  }
+}

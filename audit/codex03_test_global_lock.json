@@ -1,0 +1,11 @@
+{
+  "coverage": [
+    "recalc+trades",
+    "recalc+prices",
+    "full+quick",
+    "trigger+manual"
+  ],
+  "nestedGuardAvoidsDeadlock": true,
+  "busyStatus": "BUSY",
+  "ok": true
+}
