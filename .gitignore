@@ -1,0 +1,8 @@
+.clasprc.json
+client_secret*.json
+credentials*.json
+*.token
+.env
+.env.*
+.codex-runtime/
+
