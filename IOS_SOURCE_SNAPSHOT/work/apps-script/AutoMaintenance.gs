@@ -73,17 +73,6 @@ TI.AutoMaintenance = {
 
 };
 
-function TI_AutoMaintenanceSync() {
-  return TI.BatchSync.runMaintenance();
-}
-
-function TI_MaintenanceSync() {
-  TI.BatchSync.start("manual", "maintenance");
-  var state = TI.BatchSync.runNext();
-
-  SpreadsheetApp.getUi().alert(TI.BatchSync.statusText(state));
-}
-
 function TI_EnableMaintenanceSync() {
   TI.AutoMaintenance.ensureSettings();
   var removedFast = TI.AutoMaintenance.disableLegacyFastRefresh();
@@ -106,14 +95,4 @@ function TI_DisableMaintenanceSync() {
     "Редкое автообновление данных отключено.\n\n" +
     "Активных расписаний: " + count
   );
-}
-
-function TI_AutoRefreshFastData() {
-  var removed = TI.AutoMaintenance.disableLegacyFastRefresh();
-
-  return {
-    status: "disabled",
-    removed: removed,
-    reason: "Заменено редким автообновлением данных."
-  };
 }

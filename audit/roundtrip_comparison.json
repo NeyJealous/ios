@@ -1,0 +1,352 @@
+[
+  {
+    "local": "Accounts.gs",
+    "remote": "Accounts.js",
+    "status": "MATCH",
+    "localHash": "3a9c2723c444fb0660ee5ac79653702e49e4fd2437c66e7a339f15b209c52959",
+    "remoteHash": "3a9c2723c444fb0660ee5ac79653702e49e4fd2437c66e7a339f15b209c52959"
+  },
+  {
+    "local": "Advisor.gs",
+    "remote": "Advisor.js",
+    "status": "MATCH",
+    "localHash": "2e7709c29b64edebed180e1dc54a61ff2636aeeff6ce8f80436e4eeac28ec81a",
+    "remoteHash": "2e7709c29b64edebed180e1dc54a61ff2636aeeff6ce8f80436e4eeac28ec81a"
+  },
+  {
+    "local": "Api.gs",
+    "remote": "Api.js",
+    "status": "MATCH",
+    "localHash": "f11f7f76c25b0af57171452d023a35b217ac9466dfb155a98bc338c34971b9b8",
+    "remoteHash": "f11f7f76c25b0af57171452d023a35b217ac9466dfb155a98bc338c34971b9b8"
+  },
+  {
+    "local": "AssetScoring.gs",
+    "remote": "AssetScoring.js",
+    "status": "MATCH",
+    "localHash": "075b33c083d660b63bcc6048f22e9dd1c161433aca1b3bc9cb04131983bd7aea",
+    "remoteHash": "075b33c083d660b63bcc6048f22e9dd1c161433aca1b3bc9cb04131983bd7aea"
+  },
+  {
+    "local": "AutoMaintenance.gs",
+    "remote": "AutoMaintenance.js",
+    "status": "MATCH",
+    "localHash": "cb560fb77f76c55826a548af87273c9714ff0b4eb2a8f0362763f78877519494",
+    "remoteHash": "cb560fb77f76c55826a548af87273c9714ff0b4eb2a8f0362763f78877519494"
+  },
+  {
+    "local": "BatchSync.gs",
+    "remote": "BatchSync.js",
+    "status": "MATCH",
+    "localHash": "f92a35de93d8841aa312d62e2b395e4ec20798f6cb3a5427225c93b87cd46e39",
+    "remoteHash": "f92a35de93d8841aa312d62e2b395e4ec20798f6cb3a5427225c93b87cd46e39"
+  },
+  {
+    "local": "BondEngine.gs",
+    "remote": "BondEngine.js",
+    "status": "MATCH",
+    "localHash": "b3018e0ed0e22af616407cb2785a9bd7c4814b261cd9cadc9dadedc7e3cd07a2",
+    "remoteHash": "b3018e0ed0e22af616407cb2785a9bd7c4814b261cd9cadc9dadedc7e3cd07a2"
+  },
+  {
+    "local": "COI.gs",
+    "remote": "COI.js",
+    "status": "MATCH",
+    "localHash": "859df3017d13975217a2254ee589335bb49614b07f005c9607adeffb79c1351b",
+    "remoteHash": "859df3017d13975217a2254ee589335bb49614b07f005c9607adeffb79c1351b"
+  },
+  {
+    "local": "CompanyRating.gs",
+    "remote": "CompanyRating.js",
+    "status": "MATCH",
+    "localHash": "48ab826173978551838e70b4793fcfdaf61fb3e96b1d1750d41d1df2fb2cbe87",
+    "remoteHash": "48ab826173978551838e70b4793fcfdaf61fb3e96b1d1750d41d1df2fb2cbe87"
+  },
+  {
+    "local": "Config.gs",
+    "remote": "Config.js",
+    "status": "MATCH",
+    "localHash": "9c8db33cd1369ebfdf154cad96ff0ef9dd22102aaac3e385134999514ecc2218",
+    "remoteHash": "9c8db33cd1369ebfdf154cad96ff0ef9dd22102aaac3e385134999514ecc2218"
+  },
+  {
+    "local": "Constitution.gs",
+    "remote": "Constitution.js",
+    "status": "MATCH",
+    "localHash": "9a476240c9240906741815663f8d8b943b7bbd208769179995955b98f6f29e5f",
+    "remoteHash": "9a476240c9240906741815663f8d8b943b7bbd208769179995955b98f6f29e5f"
+  },
+  {
+    "local": "Core.gs",
+    "remote": "Core.js",
+    "status": "MATCH",
+    "localHash": "b1302d582299d4bb5bfa2aa9629b5ed5881ed3dd91a4007b570ba46d1ac88075",
+    "remoteHash": "b1302d582299d4bb5bfa2aa9629b5ed5881ed3dd91a4007b570ba46d1ac88075"
+  },
+  {
+    "local": "Data.gs",
+    "remote": "Data.js",
+    "status": "MATCH",
+    "localHash": "8e7590819b9f59083d185a0d879f6ae2e40cd7314bdbec53a1f8e091b35456a3",
+    "remoteHash": "8e7590819b9f59083d185a0d879f6ae2e40cd7314bdbec53a1f8e091b35456a3"
+  },
+  {
+    "local": "DataCache.gs",
+    "remote": "DataCache.js",
+    "status": "MATCH",
+    "localHash": "88dd8e760bf75e62c01f23ec773124d1b9daeaa332340bc87f9509b12da4ef94",
+    "remoteHash": "88dd8e760bf75e62c01f23ec773124d1b9daeaa332340bc87f9509b12da4ef94"
+  },
+  {
+    "local": "DecisionEngine.gs",
+    "remote": "DecisionEngine.js",
+    "status": "MATCH",
+    "localHash": "51f35a146c28e88f84a16f18ae598f36f41389d7034253c0b3b2d3764cb5c9e8",
+    "remoteHash": "51f35a146c28e88f84a16f18ae598f36f41389d7034253c0b3b2d3764cb5c9e8"
+  },
+  {
+    "local": "Diagnostics.gs",
+    "remote": "Diagnostics.js",
+    "status": "MATCH",
+    "localHash": "2e7e0d6d269e9a97288ba4c631aeb2280ab4b957cfd979bace7d6c9398cb4b5d",
+    "remoteHash": "2e7e0d6d269e9a97288ba4c631aeb2280ab4b957cfd979bace7d6c9398cb4b5d"
+  },
+  {
+    "local": "Directory.gs",
+    "remote": "Directory.js",
+    "status": "MATCH",
+    "localHash": "c47169f3d396a60758c565712315772d3af1b16cbc32277b6d2da77e13613441",
+    "remoteHash": "c47169f3d396a60758c565712315772d3af1b16cbc32277b6d2da77e13613441"
+  },
+  {
+    "local": "DirectoryBatch.gs",
+    "remote": "DirectoryBatch.js",
+    "status": "MATCH",
+    "localHash": "7196fbec92f64d80026a9a5d7e59d6e707df611d6580ebf5a6f437153dcce4af",
+    "remoteHash": "7196fbec92f64d80026a9a5d7e59d6e707df611d6580ebf5a6f437153dcce4af"
+  },
+  {
+    "local": "FIFO.gs",
+    "remote": "FIFO.js",
+    "status": "MATCH",
+    "localHash": "a75ef71137698933e97b72e9a219f80bfa2c3526d837cb21da79d9ab6fdc5105",
+    "remoteHash": "a75ef71137698933e97b72e9a219f80bfa2c3526d837cb21da79d9ab6fdc5105"
+  },
+  {
+    "local": "Income.gs",
+    "remote": "Income.js",
+    "status": "MATCH",
+    "localHash": "10dbfd052d6a8975bd7da3d6ed96b56f18b052979a0157a79630bc527cf2866b",
+    "remoteHash": "10dbfd052d6a8975bd7da3d6ed96b56f18b052979a0157a79630bc527cf2866b"
+  },
+  {
+    "local": "Inflation.gs",
+    "remote": "Inflation.js",
+    "status": "MATCH",
+    "localHash": "ce0cfb0163348aa52db3209410f22030334e9f944c0e9251b8a68eecbc4dd04b",
+    "remoteHash": "ce0cfb0163348aa52db3209410f22030334e9f944c0e9251b8a68eecbc4dd04b"
+  },
+  {
+    "local": "KnowledgeEngine.gs",
+    "remote": "KnowledgeEngine.js",
+    "status": "MATCH",
+    "localHash": "9aeef57e7f7c8a5a4034b1bbdcb0bc8a81fc99733d16642ec3538f8252e6edcb",
+    "remoteHash": "9aeef57e7f7c8a5a4034b1bbdcb0bc8a81fc99733d16642ec3538f8252e6edcb"
+  },
+  {
+    "local": "Main.gs",
+    "remote": "Main.js",
+    "status": "MATCH",
+    "localHash": "f6d45c5fde1427ee8801c59edf7993aeb02677efbcfcfcf844521f120b88d2f3",
+    "remoteHash": "f6d45c5fde1427ee8801c59edf7993aeb02677efbcfcfcf844521f120b88d2f3"
+  },
+  {
+    "local": "MarketRegime.gs",
+    "remote": "MarketRegime.js",
+    "status": "MATCH",
+    "localHash": "ee13ef42d1185506c21a468b2ee7005b1b5de980cb4ba1fc0953d1ff9c95f7db",
+    "remoteHash": "ee13ef42d1185506c21a468b2ee7005b1b5de980cb4ba1fc0953d1ff9c95f7db"
+  },
+  {
+    "local": "Menu.gs",
+    "remote": "Menu.js",
+    "status": "MATCH",
+    "localHash": "d15016e0c7cab4b12204cd8f295ef61e6123d7d7438bd34e635910491cf5c30a",
+    "remoteHash": "d15016e0c7cab4b12204cd8f295ef61e6123d7d7438bd34e635910491cf5c30a"
+  },
+  {
+    "local": "MultiAccount.gs",
+    "remote": "MultiAccount.js",
+    "status": "MATCH",
+    "localHash": "c6b958b03a53d14cdf68ab72f29f88037ded21b9dc6b6b77ff3449f5c8c1ae5e",
+    "remoteHash": "c6b958b03a53d14cdf68ab72f29f88037ded21b9dc6b6b77ff3449f5c8c1ae5e"
+  },
+  {
+    "local": "Operations.gs",
+    "remote": "Operations.js",
+    "status": "MATCH",
+    "localHash": "6593331976087d44ec72b6709b50642ee0e38eb343367b80cdbd48a3294ed7b2",
+    "remoteHash": "6593331976087d44ec72b6709b50642ee0e38eb343367b80cdbd48a3294ed7b2"
+  },
+  {
+    "local": "Portfolio.gs",
+    "remote": "Portfolio.js",
+    "status": "MATCH",
+    "localHash": "730b25607b440903149eabd8f5915de27274896cc5b9b6caa060741c1e3110c5",
+    "remoteHash": "730b25607b440903149eabd8f5915de27274896cc5b9b6caa060741c1e3110c5"
+  },
+  {
+    "local": "PortfolioHealth.gs",
+    "remote": "PortfolioHealth.js",
+    "status": "MATCH",
+    "localHash": "1da81e0cbd6a88ce44fa4694593678b4d8554d0e20ee84e14894a0d932bfb657",
+    "remoteHash": "1da81e0cbd6a88ce44fa4694593678b4d8554d0e20ee84e14894a0d932bfb657"
+  },
+  {
+    "local": "PortfolioIntelligence.gs",
+    "remote": "PortfolioIntelligence.js",
+    "status": "MATCH",
+    "localHash": "0b7954c974b902e6ff056dffe4e358d43b16eb54663a490780216babe3c45371",
+    "remoteHash": "0b7954c974b902e6ff056dffe4e358d43b16eb54663a490780216babe3c45371"
+  },
+  {
+    "local": "Prices.gs",
+    "remote": "Prices.js",
+    "status": "MATCH",
+    "localHash": "dad384c69ab59a187e6c685b5de725b4f6f3f1f6bb487dfa621367d86effe166",
+    "remoteHash": "dad384c69ab59a187e6c685b5de725b4f6f3f1f6bb487dfa621367d86effe166"
+  },
+  {
+    "local": "Providers.gs",
+    "remote": "Providers.js",
+    "status": "MATCH",
+    "localHash": "4d2f51206331feccccad634f2a45a1cf2fa764aa65f9ffe3465c0d04a84f8765",
+    "remoteHash": "4d2f51206331feccccad634f2a45a1cf2fa764aa65f9ffe3465c0d04a84f8765"
+  },
+  {
+    "local": "Rebalance.gs",
+    "remote": "Rebalance.js",
+    "status": "MATCH",
+    "localHash": "15976eebe17695a4f8bba9c34158bc51f6b40ed0627fee1f51752c6a15a3db30",
+    "remoteHash": "15976eebe17695a4f8bba9c34158bc51f6b40ed0627fee1f51752c6a15a3db30"
+  },
+  {
+    "local": "RuleEngine.gs",
+    "remote": "RuleEngine.js",
+    "status": "MATCH",
+    "localHash": "3bb6a7131685d9ecd6cce2d88b6c91a0a85b993a7d307d6d0fd5cf16c812c32a",
+    "remoteHash": "3bb6a7131685d9ecd6cce2d88b6c91a0a85b993a7d307d6d0fd5cf16c812c32a"
+  },
+  {
+    "local": "RuntimeHealthCheck.gs",
+    "remote": "RuntimeHealthCheck.js",
+    "status": "MATCH",
+    "localHash": "ceb020fe52422025df1fe79a75a15f5d7664b6e2b63ccae005dfb3a90c0a37a2",
+    "remoteHash": "ceb020fe52422025df1fe79a75a15f5d7664b6e2b63ccae005dfb3a90c0a37a2"
+  },
+  {
+    "local": "Schema.gs",
+    "remote": "Schema.js",
+    "status": "MATCH",
+    "localHash": "31a171d3894458a216ad0c70f976c1ad5e425ec5f4549303ec57348aed08b4a9",
+    "remoteHash": "31a171d3894458a216ad0c70f976c1ad5e425ec5f4549303ec57348aed08b4a9"
+  },
+  {
+    "local": "Settings.gs",
+    "remote": "Settings.js",
+    "status": "MATCH",
+    "localHash": "99f6152820fa7e8acc87d8bba6c08139e64ad7ae411d8c85dc907fe2b503868f",
+    "remoteHash": "99f6152820fa7e8acc87d8bba6c08139e64ad7ae411d8c85dc907fe2b503868f"
+  },
+  {
+    "local": "SmokeTests.gs",
+    "remote": "SmokeTests.js",
+    "status": "MATCH",
+    "localHash": "e642b755a2aff5f14704d2e0f27c826294f41fcba8f319d26aa34f38d1cd83ea",
+    "remoteHash": "e642b755a2aff5f14704d2e0f27c826294f41fcba8f319d26aa34f38d1cd83ea"
+  },
+  {
+    "local": "Stabilization.gs",
+    "remote": "Stabilization.js",
+    "status": "MATCH",
+    "localHash": "7ba94c85d1d56666cfd49d045264b5fd35c106bcd1b02f4747b9a27114f55238",
+    "remoteHash": "7ba94c85d1d56666cfd49d045264b5fd35c106bcd1b02f4747b9a27114f55238"
+  },
+  {
+    "local": "Strategy.gs",
+    "remote": "Strategy.js",
+    "status": "MATCH",
+    "localHash": "eb37d5c04a4b62b7c2650ecbed0af9cfc0d27d18f7944b028a07849aa24429e2",
+    "remoteHash": "eb37d5c04a4b62b7c2650ecbed0af9cfc0d27d18f7944b028a07849aa24429e2"
+  },
+  {
+    "local": "StrategyEngine.gs",
+    "remote": "StrategyEngine.js",
+    "status": "MATCH",
+    "localHash": "738a71b17fb3640848dad256c45f707988627a0d748ab2cd4ebbfb5bd089780b",
+    "remoteHash": "738a71b17fb3640848dad256c45f707988627a0d748ab2cd4ebbfb5bd089780b"
+  },
+  {
+    "local": "Tax.gs",
+    "remote": "Tax.js",
+    "status": "MATCH",
+    "localHash": "d0a243688dffda46b02d3515a819b1aac7fa9a3ab72cff028e768f67f7511577",
+    "remoteHash": "d0a243688dffda46b02d3515a819b1aac7fa9a3ab72cff028e768f67f7511577"
+  },
+  {
+    "local": "TechLog.gs",
+    "remote": "TechLog.js",
+    "status": "MATCH",
+    "localHash": "597bc3c3fead3f1e3eb4a26ad9ecefc26d6cf50a0f574599f606a026436f6c51",
+    "remoteHash": "597bc3c3fead3f1e3eb4a26ad9ecefc26d6cf50a0f574599f606a026436f6c51"
+  },
+  {
+    "local": "TokenDialog.html",
+    "remote": "TokenDialog.html",
+    "status": "MATCH",
+    "localHash": "36ec4e5738854ee4999bcb99e9c60e50f3cd6cd8d5fd8c9a3f68818319e77b10",
+    "remoteHash": "36ec4e5738854ee4999bcb99e9c60e50f3cd6cd8d5fd8c9a3f68818319e77b10"
+  },
+  {
+    "local": "TradePlan.gs",
+    "remote": "TradePlan.js",
+    "status": "MATCH",
+    "localHash": "8f4b5dbddb9b1a073fa79f0eb2d768fcc774c57c9fb4925876014558fa3f3b35",
+    "remoteHash": "8f4b5dbddb9b1a073fa79f0eb2d768fcc774c57c9fb4925876014558fa3f3b35"
+  },
+  {
+    "local": "Trades.gs",
+    "remote": "Trades.js",
+    "status": "MATCH",
+    "localHash": "305a09ec01d2463b02a9f0004cf98aa85e7fd525f0c0fb30c717196a0949841b",
+    "remoteHash": "305a09ec01d2463b02a9f0004cf98aa85e7fd525f0c0fb30c717196a0949841b"
+  },
+  {
+    "local": "UI.gs",
+    "remote": "UI.js",
+    "status": "MATCH",
+    "localHash": "b9cf52944bd3742c1de99f22b70d9a5f3944d779cc5e0a82c3f3ce3b938324a5",
+    "remoteHash": "b9cf52944bd3742c1de99f22b70d9a5f3944d779cc5e0a82c3f3ce3b938324a5"
+  },
+  {
+    "local": "Utils.gs",
+    "remote": "Utils.js",
+    "status": "MATCH",
+    "localHash": "3695bf2ef8e0d05c20167d960c4c23559ed102217d23c01e4f9d184897407a4c",
+    "remoteHash": "3695bf2ef8e0d05c20167d960c4c23559ed102217d23c01e4f9d184897407a4c"
+  },
+  {
+    "local": "Visualization.gs",
+    "remote": "Visualization.js",
+    "status": "MATCH",
+    "localHash": "252406be8e8a9acf5dd58b2c3847c94c4dfdc872dd26c100f994d5fb0afafd27",
+    "remoteHash": "252406be8e8a9acf5dd58b2c3847c94c4dfdc872dd26c100f994d5fb0afafd27"
+  },
+  {
+    "local": "appsscript.json",
+    "remote": "appsscript.json",
+    "status": "MATCH",
+    "localHash": "ae52b1671b3ccc4139bced595fcf2c342fe2fd0782fdae55d18069649470aacc",
+    "remoteHash": "ae52b1671b3ccc4139bced595fcf2c342fe2fd0782fdae55d18069649470aacc"
+  }
+]

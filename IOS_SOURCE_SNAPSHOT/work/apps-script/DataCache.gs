@@ -464,18 +464,6 @@ TI.AutoDataRefresh = {
 
 };
 
-function TI_AutoRefreshFastData() {
-  var removed = TI.AutoMaintenance && TI.AutoMaintenance.disableLegacyFastRefresh
-    ? TI.AutoMaintenance.disableLegacyFastRefresh()
-    : 0;
-
-  return {
-    status: "disabled",
-    removed: removed,
-    reason: "Заменено редким автообновлением данных."
-  };
-}
-
 function TI_RefreshFastDataNow() {
   var result = TI.AutoDataRefresh.refresh();
 

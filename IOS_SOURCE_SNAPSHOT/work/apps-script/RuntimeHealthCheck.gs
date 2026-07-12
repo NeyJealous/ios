@@ -12,6 +12,7 @@ function TI_RemoteHealthCheck() {
 
   return {
     ok: true,
+    projectVersion: String(CORE.PROJECT.VERSION || 'unknown'),
     spreadsheetName: spreadsheet.getName(),
     sheetCount: sheets.length,
     sheets: sheets

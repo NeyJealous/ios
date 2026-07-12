@@ -1,0 +1,1199 @@
+[
+  {
+    "name": ".clasp.json",
+    "extension": "json",
+    "size": 1143,
+    "sha256": "835c0d17787d09ee4f1651a67c83a43e2e92dd30262c9d3f44b5fdc2170024b8",
+    "source": "local",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Accounts.gs",
+    "extension": "gs",
+    "size": 5166,
+    "sha256": "3a9c2723c444fb0660ee5ac79653702e49e4fd2437c66e7a339f15b209c52959",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Accounts.js",
+    "extension": "js",
+    "size": 5307,
+    "sha256": "0a2a8de0e3bcf3456422d9e2ee2857aec7520d01a24472ce1fae98ba4bc97491",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "Advisor.gs",
+    "extension": "gs",
+    "size": 26109,
+    "sha256": "2e7709c29b64edebed180e1dc54a61ff2636aeeff6ce8f80436e4eeac28ec81a",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Advisor.js",
+    "extension": "js",
+    "size": 17919,
+    "sha256": "3e3495854580a325bec6bd0ad7e68dbbe3c2a233dd7d3ca9a605eb2cee25489c",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "Api.gs",
+    "extension": "gs",
+    "size": 1466,
+    "sha256": "f11f7f76c25b0af57171452d023a35b217ac9466dfb155a98bc338c34971b9b8",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Api.js",
+    "extension": "js",
+    "size": 1466,
+    "sha256": "f11f7f76c25b0af57171452d023a35b217ac9466dfb155a98bc338c34971b9b8",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "AssetScoring.gs",
+    "extension": "gs",
+    "size": 6289,
+    "sha256": "075b33c083d660b63bcc6048f22e9dd1c161433aca1b3bc9cb04131983bd7aea",
+    "source": "local",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "AutoMaintenance.gs",
+    "extension": "gs",
+    "size": 2636,
+    "sha256": "cb560fb77f76c55826a548af87273c9714ff0b4eb2a8f0362763f78877519494",
+    "source": "local",
+    "hasPair": false,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "BatchSync.gs",
+    "extension": "gs",
+    "size": 20971,
+    "sha256": "f92a35de93d8841aa312d62e2b395e4ec20798f6cb3a5427225c93b87cd46e39",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "BatchSync.js",
+    "extension": "js",
+    "size": 11209,
+    "sha256": "52ac330cbdafce66108d61e7123048704b280b9e96feba36bd4d497c32f337f4",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "BondEngine.gs",
+    "extension": "gs",
+    "size": 7815,
+    "sha256": "b3018e0ed0e22af616407cb2785a9bd7c4814b261cd9cadc9dadedc7e3cd07a2",
+    "source": "local",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "COI.gs",
+    "extension": "gs",
+    "size": 5939,
+    "sha256": "859df3017d13975217a2254ee589335bb49614b07f005c9607adeffb79c1351b",
+    "source": "local",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "CompanyRating.gs",
+    "extension": "gs",
+    "size": 7416,
+    "sha256": "48ab826173978551838e70b4793fcfdaf61fb3e96b1d1750d41d1df2fb2cbe87",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "CompanyRating.js",
+    "extension": "js",
+    "size": 6641,
+    "sha256": "62e7989ca744d5504ed02c08d1d7d628a070da1ad0542b0cde2ca0bc77c8bfca",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "Config.gs",
+    "extension": "gs",
+    "size": 2491,
+    "sha256": "9c8db33cd1369ebfdf154cad96ff0ef9dd22102aaac3e385134999514ecc2218",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Config.js",
+    "extension": "js",
+    "size": 2491,
+    "sha256": "9c8db33cd1369ebfdf154cad96ff0ef9dd22102aaac3e385134999514ecc2218",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Constitution.gs",
+    "extension": "gs",
+    "size": 9612,
+    "sha256": "9a476240c9240906741815663f8d8b943b7bbd208769179995955b98f6f29e5f",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Constitution.js",
+    "extension": "js",
+    "size": 9612,
+    "sha256": "9a476240c9240906741815663f8d8b943b7bbd208769179995955b98f6f29e5f",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Core.gs",
+    "extension": "gs",
+    "size": 5358,
+    "sha256": "b1302d582299d4bb5bfa2aa9629b5ed5881ed3dd91a4007b570ba46d1ac88075",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Core.js",
+    "extension": "js",
+    "size": 4586,
+    "sha256": "fe616b98cd14b6c314e861b610c62f58e2795ce0d946ffa6c881c686c72987c8",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "Data.gs",
+    "extension": "gs",
+    "size": 3805,
+    "sha256": "8e7590819b9f59083d185a0d879f6ae2e40cd7314bdbec53a1f8e091b35456a3",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Data.js",
+    "extension": "js",
+    "size": 2856,
+    "sha256": "f594ababd0991d75bee39e7dcd6815d7a3bc0a20b81e4ec9c4ad1ae2872bf62d",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "DataCache.gs",
+    "extension": "gs",
+    "size": 12075,
+    "sha256": "88dd8e760bf75e62c01f23ec773124d1b9daeaa332340bc87f9509b12da4ef94",
+    "source": "local",
+    "hasPair": false,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "DecisionEngine.gs",
+    "extension": "gs",
+    "size": 8426,
+    "sha256": "51f35a146c28e88f84a16f18ae598f36f41389d7034253c0b3b2d3764cb5c9e8",
+    "source": "local",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Diagnostics.gs",
+    "extension": "gs",
+    "size": 25314,
+    "sha256": "2e7e0d6d269e9a97288ba4c631aeb2280ab4b957cfd979bace7d6c9398cb4b5d",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Diagnostics.js",
+    "extension": "js",
+    "size": 18222,
+    "sha256": "80d3608b781637c30fa2b8edc3eb46d7868da6406335858955594d7d99519d40",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "Directory.gs",
+    "extension": "gs",
+    "size": 30111,
+    "sha256": "c47169f3d396a60758c565712315772d3af1b16cbc32277b6d2da77e13613441",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Directory.js",
+    "extension": "js",
+    "size": 29324,
+    "sha256": "8c0c1d6ff8c92aa20eb16c559e41598c70cad1cdf23fa0d5983fa17a21301fd9",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "DirectoryBatch.gs",
+    "extension": "gs",
+    "size": 6783,
+    "sha256": "7196fbec92f64d80026a9a5d7e59d6e707df611d6580ebf5a6f437153dcce4af",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "DirectoryBatch.js",
+    "extension": "js",
+    "size": 6783,
+    "sha256": "7196fbec92f64d80026a9a5d7e59d6e707df611d6580ebf5a6f437153dcce4af",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "FIFO.gs",
+    "extension": "gs",
+    "size": 11015,
+    "sha256": "a75ef71137698933e97b72e9a219f80bfa2c3526d837cb21da79d9ab6fdc5105",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "FIFO.js",
+    "extension": "js",
+    "size": 11015,
+    "sha256": "a75ef71137698933e97b72e9a219f80bfa2c3526d837cb21da79d9ab6fdc5105",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Income.gs",
+    "extension": "gs",
+    "size": 5576,
+    "sha256": "10dbfd052d6a8975bd7da3d6ed96b56f18b052979a0157a79630bc527cf2866b",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Income.js",
+    "extension": "js",
+    "size": 5576,
+    "sha256": "10dbfd052d6a8975bd7da3d6ed96b56f18b052979a0157a79630bc527cf2866b",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Inflation.gs",
+    "extension": "gs",
+    "size": 17253,
+    "sha256": "ce0cfb0163348aa52db3209410f22030334e9f944c0e9251b8a68eecbc4dd04b",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Inflation.js",
+    "extension": "js",
+    "size": 17253,
+    "sha256": "ce0cfb0163348aa52db3209410f22030334e9f944c0e9251b8a68eecbc4dd04b",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "KnowledgeEngine.gs",
+    "extension": "gs",
+    "size": 15178,
+    "sha256": "9aeef57e7f7c8a5a4034b1bbdcb0bc8a81fc99733d16642ec3538f8252e6edcb",
+    "source": "local",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Main.gs",
+    "extension": "gs",
+    "size": 12042,
+    "sha256": "f6d45c5fde1427ee8801c59edf7993aeb02677efbcfcfcf844521f120b88d2f3",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Main.js",
+    "extension": "js",
+    "size": 10816,
+    "sha256": "b26a4ea11c7f4a57c07d1c202bb42761f7c7d579a3131831ee13265b561984fd",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "MarketRegime.gs",
+    "extension": "gs",
+    "size": 4079,
+    "sha256": "ee13ef42d1185506c21a468b2ee7005b1b5de980cb4ba1fc0953d1ff9c95f7db",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "MarketRegime.js",
+    "extension": "js",
+    "size": 4079,
+    "sha256": "ee13ef42d1185506c21a468b2ee7005b1b5de980cb4ba1fc0953d1ff9c95f7db",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Menu.gs",
+    "extension": "gs",
+    "size": 7734,
+    "sha256": "d15016e0c7cab4b12204cd8f295ef61e6123d7d7438bd34e635910491cf5c30a",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Menu.js",
+    "extension": "js",
+    "size": 5724,
+    "sha256": "8edfdcf00e3a7d118e0cb06badb6056a5a52c3290240b711ba788dfce089e8c1",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "MultiAccount.gs",
+    "extension": "gs",
+    "size": 8714,
+    "sha256": "c6b958b03a53d14cdf68ab72f29f88037ded21b9dc6b6b77ff3449f5c8c1ae5e",
+    "source": "local",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Operations.gs",
+    "extension": "gs",
+    "size": 10088,
+    "sha256": "6593331976087d44ec72b6709b50642ee0e38eb343367b80cdbd48a3294ed7b2",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Operations.js",
+    "extension": "js",
+    "size": 9231,
+    "sha256": "94d3c4215f19b78d38dfe52cc1b9e6e558e50162be7508c89185d70b42440758",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "Portfolio.gs",
+    "extension": "gs",
+    "size": 10341,
+    "sha256": "730b25607b440903149eabd8f5915de27274896cc5b9b6caa060741c1e3110c5",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Portfolio.js",
+    "extension": "js",
+    "size": 9717,
+    "sha256": "31f7efa5845e181b9f11cb09421e00db33293e8efb2cf11a631c13462733b06c",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "PortfolioHealth.gs",
+    "extension": "gs",
+    "size": 6737,
+    "sha256": "1da81e0cbd6a88ce44fa4694593678b4d8554d0e20ee84e14894a0d932bfb657",
+    "source": "local",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "PortfolioIntelligence.gs",
+    "extension": "gs",
+    "size": 10529,
+    "sha256": "0b7954c974b902e6ff056dffe4e358d43b16eb54663a490780216babe3c45371",
+    "source": "local",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Prices.gs",
+    "extension": "gs",
+    "size": 6553,
+    "sha256": "dad384c69ab59a187e6c685b5de725b4f6f3f1f6bb487dfa621367d86effe166",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Prices.js",
+    "extension": "js",
+    "size": 5764,
+    "sha256": "596cc27d04abb1170a5d9f69e1d592247a723641a069dba655b463cd6c1275e4",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "Providers.gs",
+    "extension": "gs",
+    "size": 7344,
+    "sha256": "4d2f51206331feccccad634f2a45a1cf2fa764aa65f9ffe3465c0d04a84f8765",
+    "source": "local",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Rebalance.gs",
+    "extension": "gs",
+    "size": 19160,
+    "sha256": "15976eebe17695a4f8bba9c34158bc51f6b40ed0627fee1f51752c6a15a3db30",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Rebalance.js",
+    "extension": "js",
+    "size": 19043,
+    "sha256": "96224512af0f9cd1973068992e6976dc6f900ef7dacea56b23ba7be825e4ce30",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "RuleEngine.gs",
+    "extension": "gs",
+    "size": 5992,
+    "sha256": "3bb6a7131685d9ecd6cce2d88b6c91a0a85b993a7d307d6d0fd5cf16c812c32a",
+    "source": "local",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "RuntimeHealthCheck.gs",
+    "extension": "gs",
+    "size": 572,
+    "sha256": "ceb020fe52422025df1fe79a75a15f5d7664b6e2b63ccae005dfb3a90c0a37a2",
+    "source": "local",
+    "hasPair": false,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "Schema.gs",
+    "extension": "gs",
+    "size": 65852,
+    "sha256": "31a171d3894458a216ad0c70f976c1ad5e425ec5f4549303ec57348aed08b4a9",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Schema.js",
+    "extension": "js",
+    "size": 42733,
+    "sha256": "38c3d84cfe5eb26c863b96be26fbdea4f4bd2555255d77cfefa0fb424476f5d7",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "Settings.gs",
+    "extension": "gs",
+    "size": 8290,
+    "sha256": "99f6152820fa7e8acc87d8bba6c08139e64ad7ae411d8c85dc907fe2b503868f",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Settings.js",
+    "extension": "js",
+    "size": 6964,
+    "sha256": "009c8f693ab58a641ddf586308bb7f6ee9544d8be281fc9d7e9140e0eeeb1b30",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "SmokeTests.gs",
+    "extension": "gs",
+    "size": 13487,
+    "sha256": "e642b755a2aff5f14704d2e0f27c826294f41fcba8f319d26aa34f38d1cd83ea",
+    "source": "local",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Stabilization.gs",
+    "extension": "gs",
+    "size": 8546,
+    "sha256": "7ba94c85d1d56666cfd49d045264b5fd35c106bcd1b02f4747b9a27114f55238",
+    "source": "local",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Strategy.gs",
+    "extension": "gs",
+    "size": 13156,
+    "sha256": "eb37d5c04a4b62b7c2650ecbed0af9cfc0d27d18f7944b028a07849aa24429e2",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Strategy.js",
+    "extension": "js",
+    "size": 12651,
+    "sha256": "540440a32e55fe7780ca738bd13ed0ab97fca09b1ac6cef29241d11081905397",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "StrategyEngine.gs",
+    "extension": "gs",
+    "size": 5295,
+    "sha256": "738a71b17fb3640848dad256c45f707988627a0d748ab2cd4ebbfb5bd089780b",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "StrategyEngine.js",
+    "extension": "js",
+    "size": 5295,
+    "sha256": "738a71b17fb3640848dad256c45f707988627a0d748ab2cd4ebbfb5bd089780b",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Tax.gs",
+    "extension": "gs",
+    "size": 3766,
+    "sha256": "d0a243688dffda46b02d3515a819b1aac7fa9a3ab72cff028e768f67f7511577",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Tax.js",
+    "extension": "js",
+    "size": 3862,
+    "sha256": "747c1bef3695dfd592a5fb5da7ce01300cc29c8ed99d50f0e76e0dedabf208a9",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "TechLog.gs",
+    "extension": "gs",
+    "size": 3325,
+    "sha256": "597bc3c3fead3f1e3eb4a26ad9ecefc26d6cf50a0f574599f606a026436f6c51",
+    "source": "local",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "TokenDialog.html",
+    "extension": "html",
+    "size": 1269,
+    "sha256": "36ec4e5738854ee4999bcb99e9c60e50f3cd6cd8d5fd8c9a3f68818319e77b10",
+    "source": "local",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "TradePlan.gs",
+    "extension": "gs",
+    "size": 19855,
+    "sha256": "8f4b5dbddb9b1a073fa79f0eb2d768fcc774c57c9fb4925876014558fa3f3b35",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "TradePlan.js",
+    "extension": "js",
+    "size": 22068,
+    "sha256": "b41dfa211a969489b99d3c456a4a937c56577333c28636c64c1a94d066d4f7ec",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "Trades.gs",
+    "extension": "gs",
+    "size": 8284,
+    "sha256": "305a09ec01d2463b02a9f0004cf98aa85e7fd525f0c0fb30c717196a0949841b",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Trades.js",
+    "extension": "js",
+    "size": 8284,
+    "sha256": "305a09ec01d2463b02a9f0004cf98aa85e7fd525f0c0fb30c717196a0949841b",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "UI.gs",
+    "extension": "gs",
+    "size": 7088,
+    "sha256": "b9cf52944bd3742c1de99f22b70d9a5f3944d779cc5e0a82c3f3ce3b938324a5",
+    "source": "local",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Utils.gs",
+    "extension": "gs",
+    "size": 1313,
+    "sha256": "3695bf2ef8e0d05c20167d960c4c23559ed102217d23c01e4f9d184897407a4c",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Utils.js",
+    "extension": "js",
+    "size": 1313,
+    "sha256": "3695bf2ef8e0d05c20167d960c4c23559ed102217d23c01e4f9d184897407a4c",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Visualization.gs",
+    "extension": "gs",
+    "size": 6539,
+    "sha256": "252406be8e8a9acf5dd58b2c3847c94c4dfdc872dd26c100f994d5fb0afafd27",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Visualization.js",
+    "extension": "js",
+    "size": 6528,
+    "sha256": "4261e585d470709af73b71257c2254c070c65a0746ceb2e2f864029089153323",
+    "source": "local",
+    "hasPair": true,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "appsscript.json",
+    "extension": "json",
+    "size": 457,
+    "sha256": "ae52b1671b3ccc4139bced595fcf2c342fe2fd0782fdae55d18069649470aacc",
+    "source": "local",
+    "hasPair": false,
+    "matchesCounterpart": false
+  },
+  {
+    "name": ".clasp.json",
+    "extension": "json",
+    "size": 1143,
+    "sha256": "835c0d17787d09ee4f1651a67c83a43e2e92dd30262c9d3f44b5fdc2170024b8",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Accounts.js",
+    "extension": "js",
+    "size": 5166,
+    "sha256": "3a9c2723c444fb0660ee5ac79653702e49e4fd2437c66e7a339f15b209c52959",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Advisor.js",
+    "extension": "js",
+    "size": 26109,
+    "sha256": "2e7709c29b64edebed180e1dc54a61ff2636aeeff6ce8f80436e4eeac28ec81a",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Api.js",
+    "extension": "js",
+    "size": 1466,
+    "sha256": "f11f7f76c25b0af57171452d023a35b217ac9466dfb155a98bc338c34971b9b8",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "AssetScoring.js",
+    "extension": "js",
+    "size": 6289,
+    "sha256": "075b33c083d660b63bcc6048f22e9dd1c161433aca1b3bc9cb04131983bd7aea",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "AutoMaintenance.js",
+    "extension": "js",
+    "size": 3154,
+    "sha256": "ae837d86c4264036f592d6b2483d77207c88f588185097fef4cf39e4d1839846",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "BatchSync.js",
+    "extension": "js",
+    "size": 20971,
+    "sha256": "f92a35de93d8841aa312d62e2b395e4ec20798f6cb3a5427225c93b87cd46e39",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "BondEngine.js",
+    "extension": "js",
+    "size": 7815,
+    "sha256": "b3018e0ed0e22af616407cb2785a9bd7c4814b261cd9cadc9dadedc7e3cd07a2",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "COI.js",
+    "extension": "js",
+    "size": 5939,
+    "sha256": "859df3017d13975217a2254ee589335bb49614b07f005c9607adeffb79c1351b",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "CompanyRating.js",
+    "extension": "js",
+    "size": 7416,
+    "sha256": "48ab826173978551838e70b4793fcfdaf61fb3e96b1d1750d41d1df2fb2cbe87",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Config.js",
+    "extension": "js",
+    "size": 2491,
+    "sha256": "9c8db33cd1369ebfdf154cad96ff0ef9dd22102aaac3e385134999514ecc2218",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Constitution.js",
+    "extension": "js",
+    "size": 9612,
+    "sha256": "9a476240c9240906741815663f8d8b943b7bbd208769179995955b98f6f29e5f",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Core.js",
+    "extension": "js",
+    "size": 5358,
+    "sha256": "b1302d582299d4bb5bfa2aa9629b5ed5881ed3dd91a4007b570ba46d1ac88075",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Data.js",
+    "extension": "js",
+    "size": 3805,
+    "sha256": "8e7590819b9f59083d185a0d879f6ae2e40cd7314bdbec53a1f8e091b35456a3",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "DataCache.js",
+    "extension": "js",
+    "size": 12409,
+    "sha256": "679026a15f10d5651c8e58402b9c936990f1011bc6f1784e4895db25d343f815",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "DecisionEngine.js",
+    "extension": "js",
+    "size": 8426,
+    "sha256": "51f35a146c28e88f84a16f18ae598f36f41389d7034253c0b3b2d3764cb5c9e8",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Diagnostics.js",
+    "extension": "js",
+    "size": 25314,
+    "sha256": "2e7e0d6d269e9a97288ba4c631aeb2280ab4b957cfd979bace7d6c9398cb4b5d",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Directory.js",
+    "extension": "js",
+    "size": 30111,
+    "sha256": "c47169f3d396a60758c565712315772d3af1b16cbc32277b6d2da77e13613441",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "DirectoryBatch.js",
+    "extension": "js",
+    "size": 6783,
+    "sha256": "7196fbec92f64d80026a9a5d7e59d6e707df611d6580ebf5a6f437153dcce4af",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "FIFO.js",
+    "extension": "js",
+    "size": 11015,
+    "sha256": "a75ef71137698933e97b72e9a219f80bfa2c3526d837cb21da79d9ab6fdc5105",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Income.js",
+    "extension": "js",
+    "size": 5576,
+    "sha256": "10dbfd052d6a8975bd7da3d6ed96b56f18b052979a0157a79630bc527cf2866b",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Inflation.js",
+    "extension": "js",
+    "size": 17253,
+    "sha256": "ce0cfb0163348aa52db3209410f22030334e9f944c0e9251b8a68eecbc4dd04b",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "KnowledgeEngine.js",
+    "extension": "js",
+    "size": 15178,
+    "sha256": "9aeef57e7f7c8a5a4034b1bbdcb0bc8a81fc99733d16642ec3538f8252e6edcb",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Main.js",
+    "extension": "js",
+    "size": 12042,
+    "sha256": "f6d45c5fde1427ee8801c59edf7993aeb02677efbcfcfcf844521f120b88d2f3",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "MarketRegime.js",
+    "extension": "js",
+    "size": 4079,
+    "sha256": "ee13ef42d1185506c21a468b2ee7005b1b5de980cb4ba1fc0953d1ff9c95f7db",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Menu.js",
+    "extension": "js",
+    "size": 7734,
+    "sha256": "d15016e0c7cab4b12204cd8f295ef61e6123d7d7438bd34e635910491cf5c30a",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "MultiAccount.js",
+    "extension": "js",
+    "size": 8714,
+    "sha256": "c6b958b03a53d14cdf68ab72f29f88037ded21b9dc6b6b77ff3449f5c8c1ae5e",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Operations.js",
+    "extension": "js",
+    "size": 10088,
+    "sha256": "6593331976087d44ec72b6709b50642ee0e38eb343367b80cdbd48a3294ed7b2",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Portfolio.js",
+    "extension": "js",
+    "size": 10341,
+    "sha256": "730b25607b440903149eabd8f5915de27274896cc5b9b6caa060741c1e3110c5",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "PortfolioHealth.js",
+    "extension": "js",
+    "size": 6737,
+    "sha256": "1da81e0cbd6a88ce44fa4694593678b4d8554d0e20ee84e14894a0d932bfb657",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "PortfolioIntelligence.js",
+    "extension": "js",
+    "size": 10529,
+    "sha256": "0b7954c974b902e6ff056dffe4e358d43b16eb54663a490780216babe3c45371",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Prices.js",
+    "extension": "js",
+    "size": 6553,
+    "sha256": "dad384c69ab59a187e6c685b5de725b4f6f3f1f6bb487dfa621367d86effe166",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Providers.js",
+    "extension": "js",
+    "size": 7344,
+    "sha256": "4d2f51206331feccccad634f2a45a1cf2fa764aa65f9ffe3465c0d04a84f8765",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Rebalance.js",
+    "extension": "js",
+    "size": 19160,
+    "sha256": "15976eebe17695a4f8bba9c34158bc51f6b40ed0627fee1f51752c6a15a3db30",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "RuleEngine.js",
+    "extension": "js",
+    "size": 5992,
+    "sha256": "3bb6a7131685d9ecd6cce2d88b6c91a0a85b993a7d307d6d0fd5cf16c812c32a",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "RuntimeHealthCheck.js",
+    "extension": "js",
+    "size": 509,
+    "sha256": "de18de016bec43dade1d9de836947768277a9c2c58f2a0f0823c008121fbb378",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": false
+  },
+  {
+    "name": "Schema.js",
+    "extension": "js",
+    "size": 65852,
+    "sha256": "31a171d3894458a216ad0c70f976c1ad5e425ec5f4549303ec57348aed08b4a9",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Settings.js",
+    "extension": "js",
+    "size": 8290,
+    "sha256": "99f6152820fa7e8acc87d8bba6c08139e64ad7ae411d8c85dc907fe2b503868f",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "SmokeTests.js",
+    "extension": "js",
+    "size": 13487,
+    "sha256": "e642b755a2aff5f14704d2e0f27c826294f41fcba8f319d26aa34f38d1cd83ea",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Stabilization.js",
+    "extension": "js",
+    "size": 8546,
+    "sha256": "7ba94c85d1d56666cfd49d045264b5fd35c106bcd1b02f4747b9a27114f55238",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Strategy.js",
+    "extension": "js",
+    "size": 13156,
+    "sha256": "eb37d5c04a4b62b7c2650ecbed0af9cfc0d27d18f7944b028a07849aa24429e2",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "StrategyEngine.js",
+    "extension": "js",
+    "size": 5295,
+    "sha256": "738a71b17fb3640848dad256c45f707988627a0d748ab2cd4ebbfb5bd089780b",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Tax.js",
+    "extension": "js",
+    "size": 3766,
+    "sha256": "d0a243688dffda46b02d3515a819b1aac7fa9a3ab72cff028e768f67f7511577",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "TechLog.js",
+    "extension": "js",
+    "size": 3325,
+    "sha256": "597bc3c3fead3f1e3eb4a26ad9ecefc26d6cf50a0f574599f606a026436f6c51",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "TokenDialog.html",
+    "extension": "html",
+    "size": 1269,
+    "sha256": "36ec4e5738854ee4999bcb99e9c60e50f3cd6cd8d5fd8c9a3f68818319e77b10",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "TradePlan.js",
+    "extension": "js",
+    "size": 19855,
+    "sha256": "8f4b5dbddb9b1a073fa79f0eb2d768fcc774c57c9fb4925876014558fa3f3b35",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Trades.js",
+    "extension": "js",
+    "size": 8284,
+    "sha256": "305a09ec01d2463b02a9f0004cf98aa85e7fd525f0c0fb30c717196a0949841b",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "UI.js",
+    "extension": "js",
+    "size": 7088,
+    "sha256": "b9cf52944bd3742c1de99f22b70d9a5f3944d779cc5e0a82c3f3ce3b938324a5",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Utils.js",
+    "extension": "js",
+    "size": 1313,
+    "sha256": "3695bf2ef8e0d05c20167d960c4c23559ed102217d23c01e4f9d184897407a4c",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "Visualization.js",
+    "extension": "js",
+    "size": 6539,
+    "sha256": "252406be8e8a9acf5dd58b2c3847c94c4dfdc872dd26c100f994d5fb0afafd27",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": true
+  },
+  {
+    "name": "appsscript.json",
+    "extension": "json",
+    "size": 405,
+    "sha256": "51d897f8b1c281e6db8a8c240736fe5708f2710fc32f6b65647db6d0b606191b",
+    "source": "remote",
+    "hasPair": false,
+    "matchesCounterpart": false
+  }
+]
