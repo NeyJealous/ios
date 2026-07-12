@@ -1,0 +1,263 @@
+{
+  "CheckedAt": "2026-07-12 11:23:02 +03:00",
+  "ReadyForCodex00": false,
+  "RequiredFailureCount": 5,
+  "Results": [
+    {
+      "Category": "System",
+      "Name": "Windows",
+      "Status": "PASS",
+      "Value": "Майкрософт Windows 11 Pro 10.0.26100 build 26100",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "System",
+      "Name": "Architecture",
+      "Status": "PASS",
+      "Value": "AMD64",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "System",
+      "Name": "RAM",
+      "Status": "INFO",
+      "Value": "15,4 GB",
+      "Required": false,
+      "Details": ""
+    },
+    {
+      "Category": "Tools",
+      "Name": "winget",
+      "Status": "PASS",
+      "Value": "v1.29.280",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Tools",
+      "Name": "PowerShell 7",
+      "Status": "PASS",
+      "Value": "PowerShell 7.6.3",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Tools",
+      "Name": "Git",
+      "Status": "PASS",
+      "Value": "git version 2.55.0.windows.2",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Tools",
+      "Name": "Node.js",
+      "Status": "PASS",
+      "Value": "v24.18.0",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Tools",
+      "Name": "npm",
+      "Status": "PASS",
+      "Value": "11.16.0",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Tools",
+      "Name": "clasp",
+      "Status": "FAIL",
+      "Value": "NOT_FOUND",
+      "Required": true,
+      "Details": "Command 'clasp' is not available in PATH."
+    },
+    {
+      "Category": "Tools",
+      "Name": "Codex CLI",
+      "Status": "PASS",
+      "Value": "FOUND_BUT_VERSION_FAILED: Program 'codex.exe' failed to run: An error occurred trying to start process 'C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.707.3748.0_x64__2p2nqsd0c76g0\\app\\resources\\codex.exe' with working directory 'C:\\Users\\NeyJealous\\Documents\\Инвест'. Отказано в доступе.At C:\\Users\\NeyJealous\\Documents\\Инвест\\IOS_HANDOFF_v4\\completion_pack\\tools\\Check-IOSDevEnvironment.ps1:34 char:19\r\n+         $output = & $Command @Arguments 2>&1 | Select-Object -First 1\r\n+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~.",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Tools",
+      "Name": "VS Code",
+      "Status": "PASS",
+      "Value": "1.127.0",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Compatibility",
+      "Name": "Node.js major >= 22",
+      "Status": "PASS",
+      "Value": "24",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Git",
+      "Name": "user.name",
+      "Status": "FAIL",
+      "Value": "NOT_CONFIGURED",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Git",
+      "Name": "user.email",
+      "Status": "FAIL",
+      "Value": "NOT_CONFIGURED",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Network",
+      "Name": "github.com:443",
+      "Status": "PASS",
+      "Value": "REACHABLE",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Network",
+      "Name": "registry.npmjs.org:443",
+      "Status": "PASS",
+      "Value": "REACHABLE",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Network",
+      "Name": "script.google.com:443",
+      "Status": "PASS",
+      "Value": "REACHABLE",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Network",
+      "Name": "oauth2.googleapis.com:443",
+      "Status": "PASS",
+      "Value": "REACHABLE",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Network",
+      "Name": "chatgpt.com:443",
+      "Status": "PASS",
+      "Value": "REACHABLE",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Project",
+      "Name": "Project path",
+      "Status": "PASS",
+      "Value": "C:\\Users\\NeyJealous\\Documents\\Инвест",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Project",
+      "Name": ".gitignore",
+      "Status": "FAIL",
+      "Value": "MISSING",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Project",
+      "Name": ".clasp.json",
+      "Status": "PASS",
+      "Value": ".\\IOS_SOURCE_SNAPSHOT\\work\\apps-script\\.clasp.json",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Project",
+      "Name": ".claspignore",
+      "Status": "PASS",
+      "Value": ".\\IOS_SOURCE_SNAPSHOT\\work\\apps-script\\.claspignore",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Project",
+      "Name": "appsscript.json",
+      "Status": "PASS",
+      "Value": ".\\IOS_SOURCE_SNAPSHOT\\work\\apps-script\\appsscript.json",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Project",
+      "Name": "AGENTS.md",
+      "Status": "FAIL",
+      "Value": "MISSING",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Project",
+      "Name": "Git repository",
+      "Status": "PASS",
+      "Value": "FOUND",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Project",
+      "Name": "clasp scriptId",
+      "Status": "PASS",
+      "Value": "...5loFhY",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Project",
+      "Name": "clasp rootDir",
+      "Status": "INFO",
+      "Value": ".",
+      "Required": false,
+      "Details": ""
+    },
+    {
+      "Category": "Project",
+      "Name": "Apps Script runtime",
+      "Status": "PASS",
+      "Value": "V8",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Project",
+      "Name": "executionApi",
+      "Status": "PASS",
+      "Value": "CONFIGURED",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Security",
+      "Name": "Sensitive files in repository",
+      "Status": "PASS",
+      "Value": "NONE_FOUND",
+      "Required": true,
+      "Details": ""
+    },
+    {
+      "Category": "Encoding",
+      "Name": "UTF-8 Russian text",
+      "Status": "PASS",
+      "Value": "Счета / Стратегии / Советник",
+      "Required": true,
+      "Details": ""
+    }
+  ]
+}

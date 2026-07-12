@@ -1,0 +1,54 @@
+Я передаю тебе полный чат по проекту IOS и архив проекта.
+
+Твоя задача — довести существующую систему Google Sheets + Google Apps Script до рабочего базового релиза, а не переписать её с нуля.
+
+Сначала распакуй архив и прочитай:
+
+1. `00_START_HERE.md`
+2. `completion_pack/01_AGENTS.md`
+3. `completion_pack/ARCHITECTURE_CORRECTION_MEMO_v1.md`
+4. `completion_pack/CODEX_MASTER_HANDOFF_IOS_v1.md`
+5. `completion_pack/00A_WINDOWS_CLEAN_INSTALL_BOOTSTRAP.md`
+6. `completion_pack/02_CODEX_SEQUENTIAL_TASKS.md`
+7. `audit_and_source_requirements/project_audit_report.txt`
+8. ТЗ v2.2 по синхронизации и Investment Universe.
+
+Проанализируй чат и создай `docs/decisions/CHAT_DECISION_LEDGER.md`.
+
+Не считай каждое сообщение ассистента утверждённым решением. Разделяй:
+- принято;
+- отвергнуто;
+- отложено;
+- заменено;
+- требует подтверждения.
+
+На первом проходе выполни только CODEX-PRE-00:
+
+- проверь Windows;
+- Git;
+- Node.js;
+- npm;
+- clasp;
+- Codex CLI;
+- VS Code;
+- PowerShell;
+- PATH;
+- сеть;
+- UTF-8;
+- обязательные файлы проекта;
+- отсутствие credentials в репозитории.
+
+Не изменяй код.
+Не выполняй `clasp pull`, `clasp push` или `run-function`.
+Не устанавливай программы без моего подтверждения.
+Не выводи токены, Script Properties, полный Script ID или Spreadsheet ID.
+
+Подготовь:
+- список найденных материалов;
+- Decision Ledger;
+- environment report;
+- список отсутствующих инструментов;
+- блокирующие проблемы;
+- итог: `Готовность к CODEX-00: Да/Нет`.
+
+После этого остановись и жди моего подтверждения.

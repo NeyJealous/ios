@@ -1,0 +1,307 @@
+{
+  "bundle_version": "3",
+  "created_at_utc": "2026-07-11T21:42:17.323521+00:00",
+  "missing_expected_files": [],
+  "files": [
+    {
+      "path": "00_START_HERE.md",
+      "size_bytes": 3217,
+      "sha256": "7ae7a9252625e475cb826e0d350df40114ba105442b06489f2311218ffc53aae"
+    },
+    {
+      "path": "audit_and_source_requirements/project_audit_report.txt",
+      "size_bytes": 28988,
+      "sha256": "cfe90fbb4c41b93da22a396854a3d64822383bb766ff539baec8ce073c420c56"
+    },
+    {
+      "path": "audit_and_source_requirements/ТЗ_Codex_v2.2_Расширение_архитектуры_счетов_и_резерва.txt",
+      "size_bytes": 5334,
+      "sha256": "3a1a15684677dfa31e7763284a3933ae4ecb612711f2867958d619060d81d065"
+    },
+    {
+      "path": "audit_and_source_requirements/ТЗ_Codex_v2.2_Синхронизация_Инвестиционная_вселенная.txt",
+      "size_bytes": 26930,
+      "sha256": "0d63b7669a9ecee868c108b0a0d1e8eebec575e793bfeb4a61d651b71a599d30"
+    },
+    {
+      "path": "completion_pack/00A_WINDOWS_CLEAN_INSTALL_BOOTSTRAP.md",
+      "size_bytes": 12389,
+      "sha256": "0f6beecf7864804825e3a34540e731161d576d4e158c295de41887de264635a5"
+    },
+    {
+      "path": "completion_pack/00_EXECUTION_ORDER_AFTER_WINDOWS_REINSTALL.md",
+      "size_bytes": 1335,
+      "sha256": "321b9661deac1ebc4222cbbaede1f3daa787dd785ddc882a1e7b24635f17cdf7"
+    },
+    {
+      "path": "completion_pack/00_IOS_COMPLETION_PLAN.md",
+      "size_bytes": 9472,
+      "sha256": "4d61399329db3ee9559329dbbadb54b406787800906274c8fbadda1012ee48e1"
+    },
+    {
+      "path": "completion_pack/00_START_HERE.md",
+      "size_bytes": 3217,
+      "sha256": "7ae7a9252625e475cb826e0d350df40114ba105442b06489f2311218ffc53aae"
+    },
+    {
+      "path": "completion_pack/01_AGENTS.md",
+      "size_bytes": 4714,
+      "sha256": "d02e85a2045191d48ad6f29dad982e39db0f736fcd4ad93eacd31eccda1616d5"
+    },
+    {
+      "path": "completion_pack/02_CODEX_SEQUENTIAL_TASKS.md",
+      "size_bytes": 5247,
+      "sha256": "6dbad07b853b46fd455513503a4b9dbd17d28136183b01e6b4438b1a12d5fb3c"
+    },
+    {
+      "path": "completion_pack/03_RUN_FUNCTIONS_TROUBLESHOOTING.md",
+      "size_bytes": 6448,
+      "sha256": "c1d4ff47bd55c15774792e154ccf5e0ddd61f21aedfa49eb27299f22fd26c451"
+    },
+    {
+      "path": "completion_pack/04_ACCEPTANCE_MATRIX.md",
+      "size_bytes": 2406,
+      "sha256": "2af64b2a543eb52c9cacf8f06306038e0a4e55dbadabfb35e49d94f7097880b1"
+    },
+    {
+      "path": "completion_pack/ARCHITECTURE_CORRECTION_MEMO_v1.md",
+      "size_bytes": 7068,
+      "sha256": "ab19a43166d0219a0176cb4a7a0b5c728468e6d5da2ada125cff8d855f0bc2ec"
+    },
+    {
+      "path": "completion_pack/CODEX-00B_BROWSER_RUNTIME_FALLBACK.md",
+      "size_bytes": 10566,
+      "sha256": "f37cfdb83c431e96acebef21d1d12bc52e73751dd34160fac231fc56070191e9"
+    },
+    {
+      "path": "completion_pack/tools/Check-IOSDevEnvironment.ps1",
+      "size_bytes": 11083,
+      "sha256": "a71845b455ea92f47e655bebe6b1211182730305cf495e4f7b5f331bfffc7ce9"
+    },
+    {
+      "path": "completion_pack/tools/Install-IOSCoreTools.ps1",
+      "size_bytes": 2446,
+      "sha256": "c176b19de3ce9f72d45526230072db90422351a64642acc44c538b52418ed3b9"
+    },
+    {
+      "path": "master_specification/00_README_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 4216,
+      "sha256": "b02041306afc4642f1e409d57a3a8d64374cb21a79c90f4dc2e852c20c8670e0"
+    },
+    {
+      "path": "master_specification/01_Vision_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5252,
+      "sha256": "abe3150a2c841fc90045a8a209556dddb6593129b4b283df310b7fe79e6d2938"
+    },
+    {
+      "path": "master_specification/02_Constitution_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 6060,
+      "sha256": "b6669b7a60d9b614586b066cdd9f89feb1504130344a3f67e6d313af618a386a"
+    },
+    {
+      "path": "master_specification/03_Architecture_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 6307,
+      "sha256": "90eb57fe5809dc87499d2c1169c8bb7ce20b2aa53e5a558d938adebdf25b1d6a"
+    },
+    {
+      "path": "master_specification/04_Roadmap_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 4420,
+      "sha256": "cef8646a83c0d8cad0fe5b99c50cc8c9924832beb771fb96a7fa635b5949431f"
+    },
+    {
+      "path": "master_specification/05_Project_History_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 4771,
+      "sha256": "57a7d85a491b1733cdf5984266cb1a087c897bc3ad673808c422f3f0400239ab"
+    },
+    {
+      "path": "master_specification/06_Data_Flow_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5424,
+      "sha256": "f1a69ed6c20a719fa4e927e095fdbb5dd750382767380acbe679ae83a03ea037"
+    },
+    {
+      "path": "master_specification/07_Data_Dictionary_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5210,
+      "sha256": "96ff4ba05d75c8bf7730d9055806d9fadb0444989b7e238172ac58ff2426dda4"
+    },
+    {
+      "path": "master_specification/08_Google_Sheets_Specification_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 7317,
+      "sha256": "4fb2751e2c11c8a409655e549cf3484b9c4117968fd72bf15cf327bf20d9fb36"
+    },
+    {
+      "path": "master_specification/09_Apps_Script_Architecture_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5115,
+      "sha256": "b5ff6b688e6e1c753efbd4057fd314e95fc25c33d3c760b147649c66d8c36adc"
+    },
+    {
+      "path": "master_specification/10_Investment_Universe_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5551,
+      "sha256": "f3f6a99587c13b20c6ec0273f201ab243690491234b5bdef19f33dcf27591406"
+    },
+    {
+      "path": "master_specification/11_Universe_Diff_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 4599,
+      "sha256": "b408ce33d6c74ef4485a17f0f8d54d1b86edf77ab8dc73187c31d5949a64baad"
+    },
+    {
+      "path": "master_specification/12_Decision_Engine_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5969,
+      "sha256": "63777f3c98231200a768ad98237a93d837fcaeaa3ba666144305ceb681f4a667"
+    },
+    {
+      "path": "master_specification/13_Knowledge_Engine_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5406,
+      "sha256": "9add64c67039408db4730bed4376dad171dcc93ac4dc6716c58ad0dc4aca59ed"
+    },
+    {
+      "path": "master_specification/14_Portfolio_Engine_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5922,
+      "sha256": "27a3e48eecf1b215f224fe3c8740881527cc318585194f2ef5ffad3f266e41aa"
+    },
+    {
+      "path": "master_specification/15.1_Investment_Strategy_Foundation_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5680,
+      "sha256": "077e3f4f3a6c945518b7c892044ef3c419ec06b2fddfaba0858022580fbcdb00"
+    },
+    {
+      "path": "master_specification/15.2_Investment_Strategy_Market_Regime_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5327,
+      "sha256": "a48246824bcca3fe3ab2d2dc65b82bbb5a47c62e2a2d19f6a9424d7aa4102574"
+    },
+    {
+      "path": "master_specification/15.3_Investment_Strategy_Stocks_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 6384,
+      "sha256": "08f002926787cb5966379a47ac63985527a21958dedfbb6e7641b439654edd43"
+    },
+    {
+      "path": "master_specification/15.4_Investment_Strategy_Bonds_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5354,
+      "sha256": "04232433e554dd333f8bddeb1b0ccabc6318a7eb3da3e9e9d061db2c5ea5d22f"
+    },
+    {
+      "path": "master_specification/15.5_Reserve_Engine_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5735,
+      "sha256": "d90c8675341e4707d0411139a00e0798c2a946ed6741e1330d25e8da599af4a3"
+    },
+    {
+      "path": "master_specification/15.6_Coupon_Ladder_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5029,
+      "sha256": "d71adf3ed9f4fb096c6e3c576df5baac86e77f564c922f1a518aec23221decc2"
+    },
+    {
+      "path": "master_specification/15.7_Rebalancing_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5345,
+      "sha256": "1fde97b8e8e29bcc1403f3fc2a9852839c1fbe5c9886dc7715456f519b951dd6"
+    },
+    {
+      "path": "master_specification/15.8_Final_Decision_Algorithm_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 6450,
+      "sha256": "ff6d8e6f8814687f8a33498698ea424f8234d15fe118aaa7e1c9c42a9791b00b"
+    },
+    {
+      "path": "master_specification/16_Company_Rating_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5344,
+      "sha256": "e6a397385de683e2b8cc3b85d8eac2045e197a23c400e454b22ce933d68461a1"
+    },
+    {
+      "path": "master_specification/17_Bond_Engine_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5787,
+      "sha256": "fd20d260a2963cb9fc61d1eb29ccaf4c9604cdb86254cba9fe4a85c23ad17c5c"
+    },
+    {
+      "path": "master_specification/18_Synchronization_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5122,
+      "sha256": "794fe779aa5c244b14f9cd2638e5ae63f1b9ee55370afa9ed9669a5c520d8725"
+    },
+    {
+      "path": "master_specification/19_Cache_Strategy_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5929,
+      "sha256": "9ebf7ca3f765dc173bbaed47a836d83c54a5d1c5afab87a1918c128a72eef43f"
+    },
+    {
+      "path": "master_specification/20_Performance_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5446,
+      "sha256": "a088a40612b4234365016420013edb901a5e5285ada8d81ca6ac9c85e7a0e004"
+    },
+    {
+      "path": "master_specification/21_Development_Platform_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 4338,
+      "sha256": "9f34f55b8eacbaa911c6bcf2c331a9cdd4a35c2f215f695ba3f5a5a598413178"
+    },
+    {
+      "path": "master_specification/22_Code_Review_Checklist_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5243,
+      "sha256": "94e499308772073379e47836b09e9347f9a62540d6c66767dc58e94912450ed1"
+    },
+    {
+      "path": "master_specification/23_RFC_ADR_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5635,
+      "sha256": "008979080f26c49fe25088f2e2799f2d3ac75262b0af28c8c5009e979164831a"
+    },
+    {
+      "path": "master_specification/24_Testing_Strategy_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 3907,
+      "sha256": "5383dc2573482dd5358c01ce3c7f3bee4fbc23b4beda4081614ed63bcbdea897"
+    },
+    {
+      "path": "master_specification/25_Release_Management_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 4786,
+      "sha256": "bade0e6df7eefe8ed844e4231afaf38db5c2632c2acad2d619dc5bad5294d23e"
+    },
+    {
+      "path": "master_specification/26_Security_Secrets_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 4824,
+      "sha256": "c88cbfce7cac50f2239c08f646754cb5381652287c8b282957d9c17f6ed940f2"
+    },
+    {
+      "path": "master_specification/27_Observability_Diagnostics_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5528,
+      "sha256": "b880d8e4843ee7a5bcf80e292b5a1ec70867698bd05a0137359d86f44816f8c0"
+    },
+    {
+      "path": "master_specification/28_Google_Sheets_UX_Specification_IOS_Master_Specification_v3.0.md",
+      "size_bytes": 5135,
+      "sha256": "94d4e07f800d89365f6666c135af73824eb715cc0513a7025d631edf3fcbf64a"
+    },
+    {
+      "path": "mission_control/CODEX_Task_IOS_Mission_Control_Audit_Atlas_Roadmap_v1.md",
+      "size_bytes": 15818,
+      "sha256": "77566d6b87011f1c01e9da810b86e17aa27612d609a3bda3c5a8dca5a734eb69"
+    },
+    {
+      "path": "mission_control/IOS_Mission_Control_Correct_Specification_v1.md",
+      "size_bytes": 22875,
+      "sha256": "21c400fa8000023abccf9ade8e6e6700732a1b3579602ecd0ae5a918a6a4f004"
+    },
+    {
+      "path": "source_snapshot/work(3).zip",
+      "size_bytes": 238467,
+      "sha256": "c1ba562c812057b700060207abdf3066b58d382da25066caaa137f48cb365a9f"
+    },
+    {
+      "path": "source_snapshot/Инвестиционный портфель - чистая версия.xlsx",
+      "size_bytes": 2845680,
+      "sha256": "81a008fa92317b7b83e1c8fcbcec162fab47bcfcd09ef63d20cc5af26989717e"
+    },
+    {
+      "path": "visual_materials/IOS_Architecture_Atlas_Figma_Map_v1.svg",
+      "size_bytes": 35354,
+      "sha256": "0e120f723aa6f57e08870adca900aadb7b704f2fa8b81bb0a31bcf316318b1b7"
+    },
+    {
+      "path": "visual_materials/IOS_Architecture_Atlas_Interactive_v1.html",
+      "size_bytes": 36991,
+      "sha256": "7383de922c8822a76b40ecbc3433e46fd3583a18e72ae7ddb7a7073f8faa2608"
+    },
+    {
+      "path": "visual_materials/IOS_Mission_Control_Roadmap_v1.zip",
+      "size_bytes": 27408,
+      "sha256": "1c63cd1139e3b1c4cb208999f9e5209dcb658c1cc1aa768dbb30bf2c5563177d"
+    },
+    {
+      "path": "visual_materials/IOS_Product_Presentation_Maps_v1.pptx",
+      "size_bytes": 37758,
+      "sha256": "6b3dcb6212a31efcc5d5ad3f33324e17ce0cb39c9d4b11f4015b5fd493159c37"
+    }
+  ]
+}

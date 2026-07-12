@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <style>
+    body{
+      font-family:Arial,sans-serif;
+      padding:20px;
+    }
+
+    input{
+      width:100%;
+      padding:10px;
+      margin-top:10px;
+      box-sizing:border-box;
+    }
+
+    button{
+      margin-top:15px;
+      width:100%;
+      padding:10px;
+      cursor:pointer;
+    }
+
+    .title{
+      font-size:18px;
+      font-weight:bold;
+    }
+
+    .error{
+      color:#b00020;
+      font-size:13px;
+      margin-top:10px;
+      min-height:18px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="title">
+Токен Т-Инвестиций
+</div>
+
+<input
+id="token"
+type="password"
+placeholder="Вставьте токен">
+
+<button onclick="save()">
+Сохранить
+</button>
+
+<div id="error" class="error"></div>
+
+<script>
+
+function save(){
+
+    document.getElementById("error").textContent = "";
+
+    google.script.run
+        .withSuccessHandler(()=>{
+            google.script.host.close();
+        })
+        .withFailureHandler((error)=>{
+            document.getElementById("error").textContent =
+                error && error.message ? error.message : String(error);
+        })
+        .TI_SaveToken(
+            document.getElementById("token").value
+        );
+
+}
+
+</script>
+
+</body>
+</html>

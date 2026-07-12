@@ -1,0 +1,31 @@
+# Dependencies and generated output
+node_modules/
+dist/
+build/
+coverage/
+
+# Google / OAuth credentials
+.clasprc.json
+client_secret*.json
+credentials*.json
+*.token
+*.secret
+.env
+.env.*
+
+# Local tooling
+.vscode/
+.idea/
+*.log
+*.tmp
+Thumbs.db
+.DS_Store
+
+# Local snapshots and backups
+backups/
+*.bak
+*.backup
+
+# Extracted historical material not intended for deployment
+spec_unpack/
+
