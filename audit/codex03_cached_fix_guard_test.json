@@ -1,0 +1,8 @@
+{
+  "quickDataAccessMode": "ONLINE_ALLOWED",
+  "acquisitionApiCallCount": 1,
+  "localApiCallCount": 0,
+  "blockedCode": "UNEXPECTED_API_CALL_DURING_LOCAL_STEP",
+  "ok": true,
+  "recalcDataAccessMode": "CACHED_ONLY"
+}

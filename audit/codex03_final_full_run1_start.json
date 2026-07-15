@@ -1,0 +1,209 @@
+{
+  "mode": "full",
+  "context": {
+    "sheetWriteCount": 4,
+    "sheetReadCount": 4,
+    "failedStep": "",
+    "warnings": [],
+    "startedAt": "2026-07-12T23:06:45.598Z",
+    "rowsRead": 0,
+    "finishedAt": "",
+    "mode": "full",
+    "currentStep": "",
+    "completedSteps": [
+      "initialize"
+    ],
+    "plannedSteps": [
+      "initialize",
+      "accounts",
+      "trades",
+      "directoryShares",
+      "directoryBonds",
+      "directoryEtfs",
+      "directoryPrices",
+      "fifo",
+      "portfolioFreshPrices",
+      "visualization",
+      "income",
+      "inflation",
+      "multiAccount",
+      "strategy",
+      "marketRegime",
+      "knowledge",
+      "companyRating",
+      "bondAnalysis",
+      "assetScoring",
+      "coi",
+      "strategyTargets",
+      "tax",
+      "rebalance",
+      "tradePlan",
+      "decisions",
+      "portfolioHealth",
+      "portfolioIntelligence",
+      "advisor",
+      "stabilization",
+      "diagnostics",
+      "main",
+      "ui"
+    ],
+    "rowsWritten": 0,
+    "runId": "…2d1ed9",
+    "durationMs": 0,
+    "errors": [],
+    "apiCallCount": 0,
+    "status": "running",
+    "projectVersion": "1.1.0"
+  },
+  "startedAt": "2026-07-12T23:06:45.596Z",
+  "index": 1,
+  "source": "codex-03",
+  "error": "",
+  "results": {
+    "initialize": {
+      "settingsAdded": 0,
+      "rulesAdded": 0,
+      "multiAccount": {
+        "strategiesAdded": 0,
+        "accountStrategiesAdded": 0,
+        "accounts": {
+          "total": 3,
+          "source": "sheet"
+        }
+      },
+      "constitutionSettingsAdded": 0
+    }
+  },
+  "steps": [
+    {
+      "id": "initialize",
+      "title": "Подготовка листов"
+    },
+    {
+      "id": "accounts",
+      "title": "Счета"
+    },
+    {
+      "id": "trades",
+      "title": "Сделки"
+    },
+    {
+      "id": "directoryShares",
+      "title": "Справочник: акции"
+    },
+    {
+      "id": "directoryBonds",
+      "title": "Справочник: облигации"
+    },
+    {
+      "id": "directoryEtfs",
+      "title": "Справочник: фонды"
+    },
+    {
+      "id": "directoryPrices",
+      "title": "Цены в справочнике"
+    },
+    {
+      "id": "fifo",
+      "title": "FIFO"
+    },
+    {
+      "id": "portfolioFreshPrices",
+      "title": "Портфель и цены"
+    },
+    {
+      "id": "visualization",
+      "title": "Визуализация"
+    },
+    {
+      "id": "income",
+      "title": "Доходы и денежные потоки"
+    },
+    {
+      "id": "inflation",
+      "title": "Инфляция"
+    },
+    {
+      "id": "multiAccount",
+      "title": "Счета и стратегии"
+    },
+    {
+      "id": "strategy",
+      "title": "Стратегия"
+    },
+    {
+      "id": "marketRegime",
+      "title": "Режим рынка"
+    },
+    {
+      "id": "knowledge",
+      "title": "Факты и оценки"
+    },
+    {
+      "id": "companyRating",
+      "title": "Рейтинг компаний"
+    },
+    {
+      "id": "bondAnalysis",
+      "title": "Анализ облигаций"
+    },
+    {
+      "id": "assetScoring",
+      "title": "Оценка активов"
+    },
+    {
+      "id": "coi",
+      "title": "Индекс возможностей"
+    },
+    {
+      "id": "strategyTargets",
+      "title": "Стратегические цели"
+    },
+    {
+      "id": "tax",
+      "title": "Налоги"
+    },
+    {
+      "id": "rebalance",
+      "title": "Ребалансировка"
+    },
+    {
+      "id": "tradePlan",
+      "title": "План сделок"
+    },
+    {
+      "id": "decisions",
+      "title": "Решения"
+    },
+    {
+      "id": "portfolioHealth",
+      "title": "Здоровье портфеля"
+    },
+    {
+      "id": "portfolioIntelligence",
+      "title": "Интеллект портфеля"
+    },
+    {
+      "id": "advisor",
+      "title": "Советник"
+    },
+    {
+      "id": "stabilization",
+      "title": "Стабилизация"
+    },
+    {
+      "id": "diagnostics",
+      "title": "Диагностика"
+    },
+    {
+      "id": "main",
+      "title": "Главная"
+    },
+    {
+      "id": "ui",
+      "title": "Оформление интерфейса"
+    }
+  ],
+  "updatedAt": "2026-07-12T23:08:21.696Z",
+  "status": "running"
+}

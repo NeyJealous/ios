@@ -1,0 +1,9 @@
+{
+  "uniqueCompositeKeys": 166,
+  "duplicateCompositeKeys": 0,
+  "repeatedShortTradeIds": 9,
+  "ok": true,
+  "rows": 166,
+  "tradeKeyConflicts": 0,
+  "missingRequiredIds": 0
+}

@@ -484,8 +484,9 @@ TI.Rebalance = {
    * @return {Object}
    */
   cashByAccountName: function() {
-    if (TI.BatchSync && TI.BatchSync.isNoApiMode && TI.BatchSync.isNoApiMode()) {
-      return {};
+    if (TI.SyncExecution && TI.SyncExecution.currentDataAccessMode &&
+        TI.SyncExecution.currentDataAccessMode() === TI.SyncExecution.DATA_ACCESS.CACHED_ONLY) {
+      return TI.Accounts.cashByAccountNameCachedOnly();
     }
 
     try {

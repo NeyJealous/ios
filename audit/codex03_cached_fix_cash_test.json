@@ -1,0 +1,30 @@
+{
+  "error": {
+    "code": 3,
+    "message": "ScriptError",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.apps.script.v1.ExecutionError",
+        "scriptStackTraceElements": [
+          {
+            "function": "cashForAccountCachedOnly",
+            "lineNumber": 204
+          },
+          {
+            "lineNumber": 225
+          },
+          {
+            "function": "cashByAccountIdCachedOnly",
+            "lineNumber": 219
+          },
+          {
+            "function": "TI_TestCachedOnlyCashReader",
+            "lineNumber": 361
+          }
+        ],
+        "errorMessage": "Error: CACHED_CASH_NOT_AVAILABLE: …020546",
+        "errorType": "ScriptError"
+      }
+    ]
+  }
+}

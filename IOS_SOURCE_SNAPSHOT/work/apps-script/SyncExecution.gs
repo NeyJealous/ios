@@ -2,6 +2,26 @@
  * CODEX-03 JSON-safe execution context and dry-run synchronization diagnostics.
  */
 TI.SyncExecution = {
+  DATA_ACCESS: {
+    ONLINE_ALLOWED: "ONLINE_ALLOWED",
+    CACHED_ONLY: "CACHED_ONLY"
+  },
+
+  PHASES: {
+    ACQUISITION: "ACQUISITION",
+    LOCAL_DERIVATION: "LOCAL_DERIVATION"
+  },
+
+  FULL_LOCAL_STEPS: {
+    tax: true, rebalance: true, tradePlan: true, decisions: true,
+    portfolioHealth: true, portfolioIntelligence: true, advisor: true,
+    stabilization: true, diagnostics: true, main: true, ui: true
+  },
+
+  QUICK_LOCAL_STEPS: {
+    portfolioHealth: true, tradePlan: true, advisor: true, main: true
+  },
+
   REVISION_SHEETS: [
     "Сделки", "Портфель", "Счета", "Стратегии", "Стратегии счетов",
     "Справочник", "Данные источников", "Кэш", "Настройки", "Конституция"
@@ -82,6 +102,7 @@ TI.SyncExecution = {
     }
   },
   create: function(mode, steps) {
+    var initialPolicy = this.stepDataAccess(mode, "");
     return {
       runId: TI.AccountStrategyAudit.suffix(Utilities.getUuid()),
       mode: mode,
@@ -93,6 +114,9 @@ TI.SyncExecution = {
       completedSteps: [],
       failedStep: "",
       apiCallCount: 0,
+      apiTelemetry: [],
+      phase: initialPolicy.phase,
+      dataAccessMode: initialPolicy.dataAccessMode,
       sheetReadCount: 0,
       sheetWriteCount: 0,
       rowsRead: 0,
@@ -106,7 +130,27 @@ TI.SyncExecution = {
 
   startStep: function(context, stepId) {
     context.currentStep = stepId;
+    var policy = this.stepDataAccess(context.mode, stepId);
+    context.phase = policy.phase;
+    context.dataAccessMode = policy.dataAccessMode;
+    if (!Array.isArray(context.apiTelemetry)) context.apiTelemetry = [];
     return context;
+  },
+
+  stepDataAccess: function(mode, stepId) {
+    var cachedOnly = mode === "recalc" ||
+      (mode === "full" && this.FULL_LOCAL_STEPS[stepId] === true) ||
+      (mode === "quick" && this.QUICK_LOCAL_STEPS[stepId] === true);
+    return {
+      phase: cachedOnly ? this.PHASES.LOCAL_DERIVATION : this.PHASES.ACQUISITION,
+      dataAccessMode: cachedOnly ? this.DATA_ACCESS.CACHED_ONLY : this.DATA_ACCESS.ONLINE_ALLOWED
+    };
+  },
+
+  currentDataAccessMode: function() {
+    return this._activeContext && this._activeContext.dataAccessMode
+      ? this._activeContext.dataAccessMode
+      : this.DATA_ACCESS.ONLINE_ALLOWED;
   },
 
   finishStep: function(context, stepId, result) {
@@ -139,10 +183,37 @@ TI.SyncExecution = {
   },
 
   recordApi: function(source) {
-    if (TI.BatchSync && TI.BatchSync.isNoApiMode && TI.BatchSync.isNoApiMode()) {
-      throw new Error("RECALC_EXTERNAL_API_BLOCKED: " + String(source || "external"));
+    var context = this._activeContext;
+    var text = String(source || "external");
+    var providerClass = /^T-Invest\b/i.test(text)
+      ? "T_INVEST"
+      : /^Inflation\b/i.test(text) ? "CBR" : "OTHER";
+    if (context) {
+      if (!Array.isArray(context.apiTelemetry)) context.apiTelemetry = [];
+      var event = {
+        timestamp: new Date().toISOString(),
+        runId: context.runId || "",
+        mode: context.mode || "",
+        currentStep: context.currentStep || "",
+        phase: context.phase || "",
+        dataAccessMode: context.dataAccessMode || "",
+        providerClass: providerClass,
+        caller: text.replace(/[^A-Za-zА-Яа-я0-9_\- \/]/g, "").slice(0, 120),
+        blocked: context.dataAccessMode === this.DATA_ACCESS.CACHED_ONLY
+      };
+      context.apiTelemetry.push(event);
+      if (event.blocked) {
+        var error = new Error(
+          "UNEXPECTED_API_CALL_DURING_LOCAL_STEP: " + providerClass + " / " + event.currentStep
+        );
+        error.code = "UNEXPECTED_API_CALL_DURING_LOCAL_STEP";
+        throw error;
+      }
     }
-    if (this._activeContext) this._activeContext.apiCallCount += 1;
+    if (TI.BatchSync && TI.BatchSync.isNoApiMode && TI.BatchSync.isNoApiMode()) {
+      throw new Error("RECALC_EXTERNAL_API_BLOCKED: " + text);
+    }
+    if (context) context.apiCallCount += 1;
   },
 
   failStep: function(context, stepId, error) {
@@ -330,6 +401,44 @@ function TI_TestDataRevision() {
       TI.SyncExecution.digest(first.sheets) !== TI.SyncExecution.digest(altered.sheets),
     stableRevisionMatches: first.dataRevision === second.dataRevision,
     changedInputDetected: TI.SyncExecution.digest(first.sheets) !== TI.SyncExecution.digest(altered.sheets)
+  };
+}
+
+function TI_TestApiSafetyGuard() {
+  var local = TI.SyncExecution.create("full", []);
+  TI.SyncExecution.startStep(local, "portfolioIntelligence");
+  var blockedCode = "";
+  TI.SyncExecution.activate(local);
+  try {
+    TI.SyncExecution.recordApi("T-Invest OperationsService/GetPositions");
+  } catch (e) {
+    blockedCode = e && e.code ? e.code : "";
+  } finally {
+    TI.SyncExecution.deactivate();
+  }
+
+  var acquisition = TI.SyncExecution.create("full", []);
+  TI.SyncExecution.startStep(acquisition, "trades");
+  TI.SyncExecution.activate(acquisition);
+  try {
+    TI.SyncExecution.recordApi("T-Invest OperationsService/GetOperationsByCursor");
+  } finally {
+    TI.SyncExecution.deactivate();
+  }
+
+  var recalc = TI.SyncExecution.stepDataAccess("recalc", "rebalance");
+  var quickOnline = TI.SyncExecution.stepDataAccess("quick", "quickData");
+  return {
+    ok: blockedCode === "UNEXPECTED_API_CALL_DURING_LOCAL_STEP" &&
+      local.apiCallCount === 0 && local.apiTelemetry.length === 1 && local.apiTelemetry[0].blocked === true &&
+      acquisition.apiCallCount === 1 && acquisition.apiTelemetry[0].blocked === false &&
+      recalc.dataAccessMode === TI.SyncExecution.DATA_ACCESS.CACHED_ONLY &&
+      quickOnline.dataAccessMode === TI.SyncExecution.DATA_ACCESS.ONLINE_ALLOWED,
+    blockedCode: blockedCode,
+    localApiCallCount: local.apiCallCount,
+    acquisitionApiCallCount: acquisition.apiCallCount,
+    recalcDataAccessMode: recalc.dataAccessMode,
+    quickDataAccessMode: quickOnline.dataAccessMode
   };
 }
 

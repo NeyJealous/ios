@@ -1,0 +1,164 @@
+{
+  "mode": "recalc",
+  "context": {
+    "sheetWriteCount": 8,
+    "sheetReadCount": 8,
+    "failedStep": "",
+    "warnings": [],
+    "inputSnapshot": {
+      "sheets": {
+        "Сделки": {
+          "rows": 163,
+          "hash": "aa46af726eeed8be9c270e92f07baadbfcbdba9aee25b551e876f4f87b0a3381"
+        },
+        "Портфель": {
+          "rows": 2,
+          "hash": "72fe0b3bd0f294429a6b7dc3dfb7fbc7284a6514458cb59e026e6f2075b34604"
+        },
+        "Справочник": {
+          "rows": 1895,
+          "hash": "450f50edd319b0df047519001861031b2015d5fc321fec6a0fc8373fc4b106b7"
+        },
+        "Конституция": {
+          "rows": 6,
+          "hash": "0ad8344cf99dd1b1123f1b82ed615d6d2a468f8b45faae96812e6f51c55f38c4"
+        },
+        "Стратегии счетов": {
+          "rows": 3,
+          "hash": "16bd8e9393920a63cac66f97b046f3cf5836c672307a8bbc5cc064942bcc50a9"
+        },
+        "Кэш": {
+          "rows": 1895,
+          "hash": "24291d1a0ce3b99ae8abb469b40e930151a32394670e8670c4a65ee39f3973ff"
+        },
+        "Настройки": {
+          "rows": 24,
+          "hash": "6e6957f4b7732708330c527880815d3e71480d4978ce8d5539ab3b52c0b8aac8"
+        },
+        "Данные источников": {
+          "rows": 59,
+          "hash": "41319eb092c2508d0b205228f9bb17d14b15b90e83977ac10555e1b256fac259"
+        },
+        "Счета": {
+          "rows": 3,
+          "hash": "8b7626ff8eeefb19739db57fe32bcbd05d6935aae99aee7058cec039cf66ef7f"
+        },
+        "Стратегии": {
+          "rows": 1,
+          "hash": "39ce1ede8fa0dfda37f32b4cf02f1be7f1b2a1ed33fdc752d17566bb50d506e2"
+        }
+      },
+      "dataRevision": "e25b49ae5ca8349238ee48d90fc72b366a13e912fa78b203582edf7eda818782",
+      "capturedAt": "2026-07-12T22:04:14.948Z"
+    },
+    "startedAt": "2026-07-12T22:04:11.795Z",
+    "rowsRead": 0,
+    "finishedAt": "",
+    "mode": "recalc",
+    "currentStep": "",
+    "completedSteps": [
+      "portfolioNoApi",
+      "marketRegime",
+      "strategyTargets",
+      "rebalance",
+      "tradePlan",
+      "decisions",
+      "portfolioHealth",
+      "portfolioIntelligence"
+    ],
+    "plannedSteps": [
+      "portfolioNoApi",
+      "marketRegime",
+      "strategyTargets",
+      "rebalance",
+      "tradePlan",
+      "decisions",
+      "portfolioHealth",
+      "portfolioIntelligence",
+      "advisor",
+      "main"
+    ],
+    "dataRevision": "e25b49ae5ca8349238ee48d90fc72b366a13e912fa78b203582edf7eda818782",
+    "rowsWritten": 24,
+    "runId": "…a0e2d8",
+    "durationMs": 0,
+    "apiCallCount": 0,
+    "errors": [],
+    "projectVersion": "1.1.0",
+    "status": "running"
+  },
+  "startedAt": "2026-07-12T22:04:11.793Z",
+  "index": 8,
+  "source": "codex-03",
+  "error": "",
+  "steps": [
+    {
+      "id": "portfolioNoApi",
+      "title": "Портфель"
+    },
+    {
+      "id": "marketRegime",
+      "title": "Режим рынка"
+    },
+    {
+      "id": "strategyTargets",
+      "title": "Стратегические цели"
+    },
+    {
+      "id": "rebalance",
+      "title": "Ребалансировка"
+    },
+    {
+      "id": "tradePlan",
+      "title": "План сделок"
+    },
+    {
+      "id": "decisions",
+      "title": "Решения"
+    },
+    {
+      "id": "portfolioHealth",
+      "title": "Здоровье портфеля"
+    },
+    {
+      "id": "portfolioIntelligence",
+      "title": "Интеллект портфеля"
+    },
+    {
+      "id": "advisor",
+      "title": "Советник"
+    },
+    {
+      "id": "main",
+      "title": "Главная"
+    }
+  ],
+  "results": {
+    "rebalance": {
+      "rows": 3
+    },
+    "tradePlan": {
+      "rows": 3
+    },
+    "portfolioIntelligence": {
+      "rows": 4
+    },
+    "portfolioNoApi": {
+      "rows": 2
+    },
+    "marketRegime": {
+      "rows": 5
+    },
+    "decisions": {
+      "rows": 3
+    },
+    "portfolioHealth": {
+      "rows": 4
+    },
+    "strategyTargets": {
+      "targets": 3
+    }
+  },
+  "updatedAt": "2026-07-12T22:33:50.383Z",
+  "status": "running"
+}

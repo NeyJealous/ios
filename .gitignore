@@ -1,4 +1,5 @@
 .clasprc.json
+.clasp.json
 client_secret*.json
 credentials*.json
 *.token

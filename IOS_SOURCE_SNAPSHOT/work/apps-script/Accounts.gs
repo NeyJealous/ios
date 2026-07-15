@@ -175,6 +175,90 @@ TI.Accounts = {
   },
 
   /**
+   * Прочитать локально сохранённый денежный остаток счёта без provider fallback.
+   * @param {string} accountId
+   * @return {number}
+   */
+  cashForAccountCachedOnly: function(accountId) {
+    accountId = String(accountId || "").trim();
+    if (!accountId) {
+      var missingId = new Error("CACHED_CASH_NOT_AVAILABLE: account ID is empty");
+      missingId.code = "CACHED_CASH_NOT_AVAILABLE";
+      throw missingId;
+    }
+
+    var keys = [
+      TI.Providers.cacheKey(["tinvest", "operations", "withdrawLimits", accountId]),
+      TI.Providers.cacheKey(["tinvest", "operations", "positions", accountId])
+    ];
+    var localRecordFound = false;
+
+    for (var i = 0; i < keys.length; i++) {
+      var cached = TI.DataCache.get(keys[i], { allowStale: true });
+      if (cached !== null && cached !== undefined) localRecordFound = true;
+      var money = cached && Array.isArray(cached.money) ? cached.money : [];
+      var hasBaseCurrency = money.some(function(value) {
+        return String(value.currency || "").trim().toUpperCase() === CORE.CURRENCIES.BASE;
+      });
+      if (hasBaseCurrency) return this.moneyByCurrency(money, CORE.CURRENCIES.BASE);
+    }
+
+    if (localRecordFound) return 0;
+
+    var error = new Error(
+      "CACHED_CASH_NOT_AVAILABLE: " + TI.AccountStrategyAudit.suffix(accountId)
+    );
+    error.code = "CACHED_CASH_NOT_AVAILABLE";
+    throw error;
+  },
+
+  /**
+   * Карта локальных денежных остатков с Account ID как единственным ключом.
+   * @return {Object}
+   */
+  cashByAccountIdCachedOnly: function() {
+    var result = {};
+    TI.MultiAccount.accounts().filter(function(account) {
+      return TI.CompanyRating.isYes(account.active);
+    }).forEach(function(account) {
+      var accountId = String(account.accountId || "").trim();
+      if (!accountId) throw new Error("Активный счёт без Account ID в листе Счета.");
+      if (result.hasOwnProperty(accountId)) {
+        throw new Error("Дубликат Account ID в листе Счета: " + TI.AccountStrategyAudit.suffix(accountId));
+      }
+      result[accountId] = TI.Accounts.cashForAccountCachedOnly(accountId);
+    });
+    return result;
+  },
+
+  /**
+   * Legacy display adapter поверх ID-keyed cached-only карты.
+   * @return {Object}
+   */
+  cashByAccountNameCachedOnly: function() {
+    var byId = this.cashByAccountIdCachedOnly();
+    var result = {};
+    var total = 0;
+    TI.MultiAccount.accounts().filter(function(account) {
+      return TI.CompanyRating.isYes(account.active);
+    }).forEach(function(account) {
+      var accountId = String(account.accountId || "").trim();
+      var accountName = String(account.accountName || "").trim();
+      if (!byId.hasOwnProperty(accountId)) {
+        throw new Error("CACHED_CASH_NOT_AVAILABLE: " + TI.AccountStrategyAudit.suffix(accountId));
+      }
+      if (accountName && result.hasOwnProperty(accountName)) {
+        throw new Error("Неоднозначное имя счёта в локальном реестре: " + accountName);
+      }
+      result[accountId] = byId[accountId];
+      if (accountName) result[accountName] = byId[accountId];
+      total += byId[accountId];
+    });
+    result[TI.Rebalance.ALL_ACCOUNTS] = total;
+    return result;
+  },
+
+  /**
    * Свободные деньги одного счета в базовой валюте.
    * @param {string} accountId
    * @return {number}
@@ -268,6 +352,64 @@ TI.Accounts = {
   }
 
 };
+
+function TI_TestCachedOnlyCashReader() {
+  var getAccounts = TI.Providers.users.getAccounts;
+  var getWithdrawLimits = TI.Providers.operations.getWithdrawLimits;
+  var getPositions = TI.Providers.operations.getPositions;
+  var providerCalled = false;
+  try {
+    TI.Providers.users.getAccounts = function() { providerCalled = true; throw new Error("PROVIDER_CALLED"); };
+    TI.Providers.operations.getWithdrawLimits = function() { providerCalled = true; throw new Error("PROVIDER_CALLED"); };
+    TI.Providers.operations.getPositions = function() { providerCalled = true; throw new Error("PROVIDER_CALLED"); };
+    var cash = TI.Accounts.cashByAccountIdCachedOnly();
+    var missingError = "";
+    try {
+      TI.Accounts.cashForAccountCachedOnly("codex03-missing-account");
+    } catch (e) {
+      missingError = e && e.code ? e.code : "";
+    }
+    return {
+      ok: !providerCalled && Object.keys(cash).length > 0 && missingError === "CACHED_CASH_NOT_AVAILABLE",
+      providerCalled: providerCalled,
+      accounts: Object.keys(cash).length,
+      totalCash: Object.keys(cash).reduce(function(total, accountId) { return total + cash[accountId]; }, 0),
+      missingCacheCode: missingError
+    };
+  } finally {
+    TI.Providers.users.getAccounts = getAccounts;
+    TI.Providers.operations.getWithdrawLimits = getWithdrawLimits;
+    TI.Providers.operations.getPositions = getPositions;
+  }
+}
+
+function TI_AuditCachedCashAvailability() {
+  return {
+    ok: true,
+    readOnly: true,
+    accounts: TI.MultiAccount.accounts().filter(function(account) {
+      return TI.CompanyRating.isYes(account.active);
+    }).map(function(account) {
+      var accountId = String(account.accountId || "").trim();
+      var entries = {};
+      ["withdrawLimits", "positions", "portfolio"].forEach(function(kind) {
+        var value = TI.DataCache.get(
+          TI.Providers.cacheKey(["tinvest", "operations", kind, accountId]),
+          { allowStale: true }
+        );
+        entries[kind] = {
+          available: value !== null && value !== undefined,
+          moneyRows: value && Array.isArray(value.money) ? value.money.length : 0,
+          fields: value && typeof value === "object" ? Object.keys(value).sort().slice(0, 30) : []
+        };
+      });
+      return {
+        accountId: TI.AccountStrategyAudit.suffix(accountId),
+        sources: entries
+      };
+    })
+  };
+}
 
 /**
  * Совместимость

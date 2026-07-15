@@ -1,0 +1,143 @@
+{
+  "readOnly": true,
+  "accounts": [
+    {
+      "accountId": "…020546",
+      "sources": {
+        "portfolio": {
+          "moneyRows": 0,
+          "available": true,
+          "fields": [
+            "accountId",
+            "dailyYield",
+            "dailyYieldRelative",
+            "expectedYield",
+            "positions",
+            "totalAmountBonds",
+            "totalAmountCurrencies",
+            "totalAmountEtf",
+            "totalAmountFutures",
+            "totalAmountOptions",
+            "totalAmountPortfolio",
+            "totalAmountShares",
+            "totalAmountSp",
+            "virtualPositions"
+          ]
+        },
+        "withdrawLimits": {
+          "moneyRows": 0,
+          "available": true,
+          "fields": [
+            "blocked",
+            "blockedGuarantee",
+            "money"
+          ]
+        },
+        "positions": {
+          "moneyRows": 0,
+          "available": true,
+          "fields": [
+            "accountId",
+            "blocked",
+            "futures",
+            "limitsLoadingInProgress",
+            "money",
+            "options",
+            "securities"
+          ]
+        }
+      }
+    },
+    {
+      "accountId": "…864109",
+      "sources": {
+        "portfolio": {
+          "moneyRows": 0,
+          "available": true,
+          "fields": [
+            "accountId",
+            "dailyYield",
+            "dailyYieldRelative",
+            "expectedYield",
+            "positions",
+            "totalAmountBonds",
+            "totalAmountCurrencies",
+            "totalAmountEtf",
+            "totalAmountFutures",
+            "totalAmountOptions",
+            "totalAmountPortfolio",
+            "totalAmountShares",
+            "totalAmountSp",
+            "virtualPositions"
+          ]
+        },
+        "withdrawLimits": {
+          "moneyRows": 0,
+          "available": false,
+          "fields": []
+        },
+        "positions": {
+          "moneyRows": 1,
+          "available": true,
+          "fields": [
+            "accountId",
+            "blocked",
+            "futures",
+            "limitsLoadingInProgress",
+            "money",
+            "options",
+            "securities"
+          ]
+        }
+      }
+    },
+    {
+      "accountId": "…531683",
+      "sources": {
+        "portfolio": {
+          "moneyRows": 0,
+          "available": true,
+          "fields": [
+            "accountId",
+            "dailyYield",
+            "dailyYieldRelative",
+            "expectedYield",
+            "positions",
+            "totalAmountBonds",
+            "totalAmountCurrencies",
+            "totalAmountEtf",
+            "totalAmountFutures",
+            "totalAmountOptions",
+            "totalAmountPortfolio",
+            "totalAmountShares",
+            "totalAmountSp",
+            "virtualPositions"
+          ]
+        },
+        "withdrawLimits": {
+          "moneyRows": 1,
+          "available": true,
+          "fields": [
+            "blocked",
+            "blockedGuarantee",
+            "money"
+          ]
+        },
+        "positions": {
+          "moneyRows": 1,
+          "available": true,
+          "fields": [
+            "accountId",
+            "blocked",
+            "futures",
+            "limitsLoadingInProgress",
+            "money",
+            "options",
+            "securities"
+          ]
+        }
+      }
+    }
+  ],
+  "ok": true
+}

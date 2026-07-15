@@ -31,8 +31,13 @@ TI.Trades = {
   },
 
   tradeChecksum: function(trade) {
+    var rawDate = trade.tradeDate;
+    var parsedDate = rawDate instanceof Date ? rawDate : new Date(rawDate);
+    var normalizedDate = rawDate && !isNaN(parsedDate.getTime())
+      ? parsedDate.toISOString()
+      : String(rawDate || "");
     var significant = [
-      trade.tradeDate instanceof Date ? trade.tradeDate.toISOString() : String(trade.tradeDate || ""),
+      normalizedDate,
       String(trade.ticker || ""),
       String(trade.operationTypeCode || trade.operationType || ""),
       Number(trade.quantity) || 0,
@@ -361,10 +366,56 @@ function TI_TestTradeKey() {
   var first = TI.Trades.buildTradeKey("account", "operation-old", "1094");
   var second = TI.Trades.buildTradeKey("account", "operation-new", "1094");
   var same = TI.Trades.buildTradeKey("account", "operation-old", "1094");
+  var apiTimestamp = TI.Trades.tradeChecksum({ tradeDate: "2026-07-12T07:45:44.337500Z" });
+  var sheetDate = TI.Trades.tradeChecksum({ tradeDate: new Date("2026-07-12T07:45:44.337Z") });
   return {
-    ok: first !== second && first === same,
+    ok: first !== second && first === same && apiTimestamp === sheetDate,
     repeatedTradeIdAllowedAcrossOperations: first !== second,
-    exactCompositeDuplicateDetected: first === same
+    exactCompositeDuplicateDetected: first === same,
+    timestampPrecisionNormalized: apiTimestamp === sheetDate
+  };
+}
+
+function TI_AuditTradeHistory() {
+  var sheet = TI.Trades.prepare();
+  var values = sheet.getDataRange().getValues();
+  var headers = values.shift() || [];
+  var fieldsByTitle = TI.FIFO.fieldsByTitle(TI.Trades.SHEET);
+  var keys = {};
+  var shortIds = {};
+  var duplicates = 0;
+  var conflicts = 0;
+  var missingRequiredIds = 0;
+  values.forEach(function(row) {
+    var trade = {};
+    headers.forEach(function(title, column) {
+      trade[fieldsByTitle[title] || title] = row[column];
+    });
+    if (!String(trade.accountId || "").trim() ||
+        !String(trade.operationId || "").trim() ||
+        !String(trade.tradeId || "").trim()) missingRequiredIds += 1;
+    var key = TI.Trades.buildTradeKey(trade.accountId, trade.operationId, trade.tradeId);
+    var checksum = TI.Trades.tradeChecksum(trade);
+    if (keys[key]) {
+      if (keys[key] === checksum) duplicates += 1;
+      else conflicts += 1;
+    } else {
+      keys[key] = checksum;
+    }
+    var shortId = String(trade.tradeId || "");
+    shortIds[shortId] = (shortIds[shortId] || 0) + 1;
+  });
+  var repeatedShortTradeIds = Object.keys(shortIds).filter(function(id) {
+    return id && shortIds[id] > 1;
+  }).length;
+  return {
+    ok: duplicates === 0 && conflicts === 0 && missingRequiredIds === 0,
+    rows: values.length,
+    uniqueCompositeKeys: Object.keys(keys).length,
+    duplicateCompositeKeys: duplicates,
+    tradeKeyConflicts: conflicts,
+    missingRequiredIds: missingRequiredIds,
+    repeatedShortTradeIds: repeatedShortTradeIds
   };
 }
 

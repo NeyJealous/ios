@@ -1,0 +1,36 @@
+{
+  "portfolioPositions": 2,
+  "accountReports": [
+    {
+      "strategyName": "Базовая стратегия",
+      "accountId": "…020546",
+      "reportAvailable": true,
+      "accountName": "Брокерский счёт",
+      "marketValue": 0,
+      "includedInAggregate": false,
+      "positions": 0,
+      "strategyId": "…efault"
+    },
+    {
+      "accountId": "…864109",
+      "strategyName": "Базовая стратегия",
+      "reportAvailable": true,
+      "accountName": "На тату",
+      "marketValue": 1284.7216048,
+      "strategyId": "…efault",
+      "includedInAggregate": false,
+      "positions": 1
+    },
+    {
+      "strategyName": "Базовая стратегия",
+      "accountId": "…531683",
+      "reportAvailable": true,
+      "accountName": "Пассивный",
+      "marketValue": 13061.12,
+      "includedInAggregate": true,
+      "positions": 1,
+      "strategyId": "…efault"
+    }
+  ],
+  "ok": true
+}

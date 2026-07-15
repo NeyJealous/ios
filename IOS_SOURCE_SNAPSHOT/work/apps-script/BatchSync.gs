@@ -191,7 +191,7 @@ TI.BatchSync = {
       TI.SyncExecution.startStep(state.context, step.id);
       TI.SyncExecution.activate(state.context);
       this.saveState(state);
-      state.results[step.id] = this.executeStep(step.id);
+      state.results[step.id] = this.executeStep(step.id, state.mode);
       TI.SyncExecution.finishStep(state.context, step.id, state.results[step.id]);
       state.index += 1;
       state.updatedAt = new Date().toISOString();
@@ -222,7 +222,7 @@ TI.BatchSync = {
    * @param {string} stepId
    * @return {Object}
    */
-  executeStep: function(stepId) {
+  executeStep: function(stepId, mode) {
     if (stepId === "initialize") {
       Schema.initialize();
       return {
@@ -346,7 +346,10 @@ TI.BatchSync = {
     }
 
     if (stepId === "strategyTargets") {
-      return { targets: TI.StrategyEngine.updateTargets() };
+      return { targets: TI.StrategyEngine.updateTargets(mode === "recalc" ? {
+        skipDefaults: true,
+        skipValidationRefresh: true
+      } : {}) };
     }
 
     if (stepId === "tax") {

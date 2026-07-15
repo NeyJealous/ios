@@ -1,0 +1,206 @@
+{
+  "dryRun": true,
+  "preconditions": {
+    "accountStrategyAuditFunction": "TI_AuditAccountStrategyLinks",
+    "noPipelineExecuted": true,
+    "remoteHealthFunction": "TI_RemoteHealthCheck"
+  },
+  "context": {
+    "sheetWriteCount": 0,
+    "sheetReadCount": 0,
+    "failedStep": "",
+    "warnings": [],
+    "startedAt": "2026-07-12T23:06:17.404Z",
+    "rowsRead": 0,
+    "finishedAt": "2026-07-12T23:06:17.407Z",
+    "currentStep": "",
+    "completedSteps": [],
+    "mode": "full",
+    "plannedSteps": [
+      "initialize",
+      "accounts",
+      "trades",
+      "directoryShares",
+      "directoryBonds",
+      "directoryEtfs",
+      "directoryPrices",
+      "fifo",
+      "portfolioFreshPrices",
+      "visualization",
+      "income",
+      "inflation",
+      "multiAccount",
+      "strategy",
+      "marketRegime",
+      "knowledge",
+      "companyRating",
+      "bondAnalysis",
+      "assetScoring",
+      "coi",
+      "strategyTargets",
+      "tax",
+      "rebalance",
+      "tradePlan",
+      "decisions",
+      "portfolioHealth",
+      "portfolioIntelligence",
+      "advisor",
+      "stabilization",
+      "diagnostics",
+      "main",
+      "ui"
+    ],
+    "rowsWritten": 0,
+    "runId": "…ce1b6d",
+    "durationMs": 3,
+    "errors": [],
+    "apiCallCount": 0,
+    "status": "diagnostic",
+    "projectVersion": "1.1.0"
+  },
+  "ok": true,
+  "expectedApis": [
+    "T-Invest accounts/operations/instruments/prices",
+    "inflation source"
+  ],
+  "plan": [
+    {
+      "id": "initialize",
+      "title": "Подготовка листов"
+    },
+    {
+      "id": "accounts",
+      "title": "Счета"
+    },
+    {
+      "id": "trades",
+      "title": "Сделки"
+    },
+    {
+      "id": "directoryShares",
+      "title": "Справочник: акции"
+    },
+    {
+      "id": "directoryBonds",
+      "title": "Справочник: облигации"
+    },
+    {
+      "id": "directoryEtfs",
+      "title": "Справочник: фонды"
+    },
+    {
+      "id": "directoryPrices",
+      "title": "Цены в справочнике"
+    },
+    {
+      "id": "fifo",
+      "title": "FIFO"
+    },
+    {
+      "id": "portfolioFreshPrices",
+      "title": "Портфель и цены"
+    },
+    {
+      "id": "visualization",
+      "title": "Визуализация"
+    },
+    {
+      "id": "income",
+      "title": "Доходы и денежные потоки"
+    },
+    {
+      "id": "inflation",
+      "title": "Инфляция"
+    },
+    {
+      "id": "multiAccount",
+      "title": "Счета и стратегии"
+    },
+    {
+      "id": "strategy",
+      "title": "Стратегия"
+    },
+    {
+      "id": "marketRegime",
+      "title": "Режим рынка"
+    },
+    {
+      "id": "knowledge",
+      "title": "Факты и оценки"
+    },
+    {
+      "id": "companyRating",
+      "title": "Рейтинг компаний"
+    },
+    {
+      "id": "bondAnalysis",
+      "title": "Анализ облигаций"
+    },
+    {
+      "id": "assetScoring",
+      "title": "Оценка активов"
+    },
+    {
+      "id": "coi",
+      "title": "Индекс возможностей"
+    },
+    {
+      "id": "strategyTargets",
+      "title": "Стратегические цели"
+    },
+    {
+      "id": "tax",
+      "title": "Налоги"
+    },
+    {
+      "id": "rebalance",
+      "title": "Ребалансировка"
+    },
+    {
+      "id": "tradePlan",
+      "title": "План сделок"
+    },
+    {
+      "id": "decisions",
+      "title": "Решения"
+    },
+    {
+      "id": "portfolioHealth",
+      "title": "Здоровье портфеля"
+    },
+    {
+      "id": "portfolioIntelligence",
+      "title": "Интеллект портфеля"
+    },
+    {
+      "id": "advisor",
+      "title": "Советник"
+    },
+    {
+      "id": "stabilization",
+      "title": "Стабилизация"
+    },
+    {
+      "id": "diagnostics",
+      "title": "Диагностика"
+    },
+    {
+      "id": "main",
+      "title": "Главная"
+    },
+    {
+      "id": "ui",
+      "title": "Оформление интерфейса"
+    }
+  ],
+  "potentialWrites": [
+    "history",
+    "directory",
+    "analytics",
+    "user views",
+    "Диагностика"
+  ],
+  "sheetsRead": [
+    "all configured source and core sheets"
+  ]
+}

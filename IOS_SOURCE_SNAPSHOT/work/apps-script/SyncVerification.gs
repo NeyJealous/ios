@@ -62,3 +62,30 @@ TI.SyncVerification = {
 function TI_SnapshotCodex03() {
   return TI.SyncVerification.snapshot();
 }
+
+/** Creates one full pre-test copy without changing the source spreadsheet. */
+function TI_CreateCodex03FinalSyncBackup() {
+  var spreadsheet = SpreadsheetApp.openById(TI.AccountStrategyMigration.SPREADSHEET_ID);
+  var stamp = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "yyyyMMdd-HHmmss");
+  var name = "CODEX-03 Final Sync Backup " + stamp;
+  var backup = spreadsheet.copy(name);
+  return {
+    ok: true,
+    code: "BACKUP_CREATED",
+    createdAt: new Date().toISOString(),
+    backupName: name,
+    originalSpreadsheetSuffix: TI.AccountStrategyMigration.suffix(spreadsheet.getId()),
+    backupSpreadsheetSuffix: TI.AccountStrategyMigration.suffix(backup.getId()),
+    sheetCount: backup.getSheets().length
+  };
+}
+
+function TI_StartQuickForCodex03() {
+  var state = TI.BatchSync.start("codex-03", "quick");
+  return state.status === "blocked" ? state : TI.BatchSync.runNext();
+}
+
+function TI_StartFullForCodex03() {
+  var state = TI.BatchSync.start("codex-03", "full");
+  return state.status === "blocked" ? state : TI.BatchSync.runNext();
+}

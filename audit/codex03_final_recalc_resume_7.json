@@ -1,0 +1,8 @@
+{
+  "code": "LOCK_TIMEOUT",
+  "activeMode": "",
+  "requestedMode": "continue",
+  "message": "Не удалось получить lock синхронизации.",
+  "status": "blocked",
+  "activeRunId": ""
+}

@@ -15,8 +15,9 @@ TI.StrategyEngine = {
 
   SOURCE: "Конституция v1.1",
 
-  updateTargets: function() {
-    TI.Constitution.ensureDefaults();
+  updateTargets: function(options) {
+    options = options || {};
+    if (options.skipDefaults !== true) TI.Constitution.ensureDefaults();
     TI.MarketRegime.build();
 
     var sheet = TI.Strategy.prepare();
@@ -36,7 +37,7 @@ TI.StrategyEngine = {
     });
 
     this.writeStrategyRows(sheet, rows);
-    TI.Strategy.refreshValidationLists();
+    if (options.skipValidationRefresh !== true) TI.Strategy.refreshValidationLists();
     TI.Strategy.applyValueValidations(sheet);
     return updates.length;
   },

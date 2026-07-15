@@ -1,0 +1,311 @@
+{
+  "mode": "full",
+  "context": {
+    "sheetReadCount": 24,
+    "sheetWriteCount": 24,
+    "failedStep": "",
+    "warnings": [],
+    "startedAt": "2026-07-13T00:20:39.124Z",
+    "rowsRead": 0,
+    "finishedAt": "",
+    "currentStep": "",
+    "mode": "full",
+    "completedSteps": [
+      "initialize",
+      "accounts",
+      "trades",
+      "directoryShares",
+      "directoryBonds",
+      "directoryEtfs",
+      "directoryPrices",
+      "fifo",
+      "portfolioFreshPrices",
+      "visualization",
+      "income",
+      "inflation",
+      "multiAccount",
+      "strategy",
+      "marketRegime",
+      "knowledge",
+      "companyRating",
+      "bondAnalysis",
+      "assetScoring",
+      "coi",
+      "strategyTargets"
+    ],
+    "plannedSteps": [
+      "initialize",
+      "accounts",
+      "trades",
+      "directoryShares",
+      "directoryBonds",
+      "directoryEtfs",
+      "directoryPrices",
+      "fifo",
+      "portfolioFreshPrices",
+      "visualization",
+      "income",
+      "inflation",
+      "multiAccount",
+      "strategy",
+      "marketRegime",
+      "knowledge",
+      "companyRating",
+      "bondAnalysis",
+      "assetScoring",
+      "coi",
+      "strategyTargets",
+      "tax",
+      "rebalance",
+      "tradePlan",
+      "decisions",
+      "portfolioHealth",
+      "portfolioIntelligence",
+      "advisor",
+      "stabilization",
+      "diagnostics",
+      "main",
+      "ui"
+    ],
+    "rowsWritten": 11549,
+    "runId": "…f239c5",
+    "durationMs": 0,
+    "apiCallCount": 8,
+    "errors": [],
+    "status": "running",
+    "projectVersion": "1.1.0"
+  },
+  "index": 21,
+  "startedAt": "2026-07-13T00:20:39.122Z",
+  "source": "codex-03",
+  "error": "",
+  "steps": [
+    {
+      "id": "initialize",
+      "title": "Подготовка листов"
+    },
+    {
+      "id": "accounts",
+      "title": "Счета"
+    },
+    {
+      "id": "trades",
+      "title": "Сделки"
+    },
+    {
+      "id": "directoryShares",
+      "title": "Справочник: акции"
+    },
+    {
+      "id": "directoryBonds",
+      "title": "Справочник: облигации"
+    },
+    {
+      "id": "directoryEtfs",
+      "title": "Справочник: фонды"
+    },
+    {
+      "id": "directoryPrices",
+      "title": "Цены в справочнике"
+    },
+    {
+      "id": "fifo",
+      "title": "FIFO"
+    },
+    {
+      "id": "portfolioFreshPrices",
+      "title": "Портфель и цены"
+    },
+    {
+      "id": "visualization",
+      "title": "Визуализация"
+    },
+    {
+      "id": "income",
+      "title": "Доходы и денежные потоки"
+    },
+    {
+      "id": "inflation",
+      "title": "Инфляция"
+    },
+    {
+      "id": "multiAccount",
+      "title": "Счета и стратегии"
+    },
+    {
+      "id": "strategy",
+      "title": "Стратегия"
+    },
+    {
+      "id": "marketRegime",
+      "title": "Режим рынка"
+    },
+    {
+      "id": "knowledge",
+      "title": "Факты и оценки"
+    },
+    {
+      "id": "companyRating",
+      "title": "Рейтинг компаний"
+    },
+    {
+      "id": "bondAnalysis",
+      "title": "Анализ облигаций"
+    },
+    {
+      "id": "assetScoring",
+      "title": "Оценка активов"
+    },
+    {
+      "id": "coi",
+      "title": "Индекс возможностей"
+    },
+    {
+      "id": "strategyTargets",
+      "title": "Стратегические цели"
+    },
+    {
+      "id": "tax",
+      "title": "Налоги"
+    },
+    {
+      "id": "rebalance",
+      "title": "Ребалансировка"
+    },
+    {
+      "id": "tradePlan",
+      "title": "План сделок"
+    },
+    {
+      "id": "decisions",
+      "title": "Решения"
+    },
+    {
+      "id": "portfolioHealth",
+      "title": "Здоровье портфеля"
+    },
+    {
+      "id": "portfolioIntelligence",
+      "title": "Интеллект портфеля"
+    },
+    {
+      "id": "advisor",
+      "title": "Советник"
+    },
+    {
+      "id": "stabilization",
+      "title": "Стабилизация"
+    },
+    {
+      "id": "diagnostics",
+      "title": "Диагностика"
+    },
+    {
+      "id": "main",
+      "title": "Главная"
+    },
+    {
+      "id": "ui",
+      "title": "Оформление интерфейса"
+    }
+  ],
+  "results": {
+    "bondAnalysis": {
+      "rows": 1564
+    },
+    "income": {
+      "coupons": 0,
+      "cashflow": 573,
+      "dividends": 1
+    },
+    "visualization": {
+      "rows": 7
+    },
+    "fifo": {
+      "lots": 12,
+      "errors": 0,
+      "sales": 131
+    },
+    "directoryPrices": {
+      "rows": 1895
+    },
+    "directoryShares": {
+      "total": 1895,
+      "added": 0,
+      "updated": 0
+    },
+    "assetScoring": {
+      "rows": 1895
+    },
+    "trades": {
+      "fetchedOperations": 82,
+      "incremental": true,
+      "accounts": 3,
+      "rows": 0
+    },
+    "directoryEtfs": {
+      "total": 1895,
+      "added": 0,
+      "updated": 0
+    },
+    "portfolioFreshPrices": {
+      "rows": 2
+    },
+    "inflation": {
+      "total": 13,
+      "imported": 13,
+      "source": "https://cbr.ru/hd_base/infl/"
+    },
+    "companyRating": {
+      "rows": 331
+    },
+    "marketRegime": {
+      "rows": 5
+    },
+    "multiAccount": {
+      "strategiesAdded": 0,
+      "accountStrategiesAdded": 0,
+      "accounts": {
+        "total": 3,
+        "source": "sheet"
+      }
+    },
+    "directoryBonds": {
+      "total": 1895,
+      "added": 0,
+      "updated": 0
+    },
+    "initialize": {
+      "settingsAdded": 0,
+      "rulesAdded": 0,
+      "multiAccount": {
+        "strategiesAdded": 0,
+        "accountStrategiesAdded": 0,
+        "accounts": {
+          "total": 3,
+          "source": "sheet"
+        }
+      },
+      "constitutionSettingsAdded": 0
+    },
+    "accounts": {
+      "total": 3
+    },
+    "coi": {
+      "rows": 6
+    },
+    "strategy": {
+      "rowsAdded": 0
+    },
+    "strategyTargets": {
+      "targets": 3
+    },
+    "knowledge": {
+      "features": 13267,
+      "scores": 1895,
+      "facts": 15163
+    }
+  },
+  "status": "running",
+  "updatedAt": "2026-07-13T01:22:26.056Z"
+}

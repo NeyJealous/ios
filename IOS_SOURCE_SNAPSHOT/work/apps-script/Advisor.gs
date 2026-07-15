@@ -631,9 +631,23 @@ TI.Advisor = {
 
   tickerFromRecommendation: function(row) {
     var text = String(row.recommendation || "");
-    var match = text.match(/\b[A-ZА-Я0-9]{2,12}\b/);
+    var candidates = text.toUpperCase().match(/\b[A-Z0-9]{1,12}\b/g) || [];
+    var known = this.knownTickerMap();
+    for (var i = 0; i < candidates.length; i++) {
+      if (known[candidates[i]]) return candidates[i];
+    }
+    return "";
+  },
 
-    return match ? match[0] : "";
+  knownTickerMap: function() {
+    if (this._knownTickerMap) return this._knownTickerMap;
+    var map = {};
+    TI.Directory.readExisting().forEach(function(row) {
+      var ticker = String(row.ticker || "").trim().toUpperCase();
+      if (ticker) map[ticker] = true;
+    });
+    this._knownTickerMap = map;
+    return map;
   },
 
   confidenceFor: function(row) {
@@ -679,6 +693,22 @@ TI.Advisor = {
   }
 
 };
+
+function TI_TestAdvisorTickerSafety() {
+  TI.Advisor._knownTickerMap = { TPAY: true, TMON: true };
+  var numeric = TI.Advisor.tickerFromRecommendation({ recommendation: "Докупить примерно на 8134.09 RUB" });
+  var percent = TI.Advisor.tickerFromRecommendation({ recommendation: "Целевая доля акций 56.70%" });
+  var invalid = TI.Advisor.tickerFromRecommendation({ recommendation: "Купить 00" });
+  var valid = TI.Advisor.tickerFromRecommendation({ recommendation: "Проверить позицию TPAY" });
+  TI.Advisor._knownTickerMap = null;
+  return {
+    ok: !numeric && !percent && !invalid && valid === "TPAY",
+    numericRejected: !numeric,
+    percentRejected: !percent,
+    ticker00Rejected: !invalid,
+    validTickerAccepted: valid === "TPAY"
+  };
+}
 
 /**
  * Построить рекомендации советника.

@@ -1,0 +1,572 @@
+{
+  "sheets": {
+    "Интеллект портфеля": {
+      "formulaDigest": "4266d409eea56b47562e055839553591abe5293420ae0b9027229132a6c7f6d0",
+      "columns": 15,
+      "digest": "2f5edbded80ce62132ed2d27474d6d9b77855419d9e7d6b3dca3548dfb6c9306",
+      "rows": 4,
+      "semanticDigest": "eda38f921106782899d66ebad983461142d9a14135a5d524b6d8213fa18ea4f1"
+    },
+    "Визуализация": {
+      "formulaDigest": "8b23fdfd07d825cfb26681b7dd1cb5cd6e2e24684e4056a321ff00e2d9e1641f",
+      "columns": 5,
+      "digest": "f79db5bcff7ae2cc18796620ee05bb54c9092a587bcb69b2a8af5118708dc571",
+      "rows": 7,
+      "semanticDigest": "f79db5bcff7ae2cc18796620ee05bb54c9092a587bcb69b2a8af5118708dc571"
+    },
+    "Решения": {
+      "formulaDigest": "40d7837e3f945d0fa64ddf67bb28f2d398f2f4f0f109d770715fe51aa03ab175",
+      "columns": 11,
+      "digest": "5245ac8a18a1a1d0892b7e9ca3ddb44ffc3ced636333aae91feb45d497b563e7",
+      "rows": 3,
+      "semanticDigest": "c7582da5b740f6fb23defee056daa19cd7e708fe2421f626eaf46c462e373be0"
+    },
+    "Конституция": {
+      "formulaDigest": "40ee9428186ec742934781ca086168524cc5c61d33f82c3481a2dd1f0ad936df",
+      "columns": 4,
+      "digest": "8581cc74f17a36edd7a880df77ccef5c9356e006f756ca79ee3f523ce23709eb",
+      "rows": 6,
+      "semanticDigest": "f33164d9a13a8de8c741a91f80fdd5e092e1069aec3ffbdd23f4114d729da6ef"
+    },
+    "Денежные потоки": {
+      "formulaDigest": "7a4d0d04a20b5b12800f379cc53c92da378f4ccab3a2d52060dab40f6199cc41",
+      "columns": 5,
+      "digest": "5f4bfcb713cd11efb5b8d4a32c240805a6cc266f7bb8ac4a40a5f4602fa08594",
+      "rows": 573,
+      "semanticDigest": "5f4bfcb713cd11efb5b8d4a32c240805a6cc266f7bb8ac4a40a5f4602fa08594"
+    },
+    "Оценки": {
+      "formulaDigest": "762a9a6b9dbc417156c0891296f913844e107065ced51de2451c701e3d7f9bf1",
+      "columns": 9,
+      "digest": "483dd1bd828d9ea1245507345d6fe34f89880b6c88cb6ee28d04353e25640276",
+      "rows": 1895,
+      "semanticDigest": "2e52570ad331bd86a281c9d29cea38870d7ef7c4a78b770951a5443b5ce20130"
+    },
+    "Оценка активов": {
+      "formulaDigest": "b0bf231c931dc3d8e1de75adbf9af02b56c65818661bd57803c25ce6f363c26d",
+      "columns": 12,
+      "digest": "0f9e56184fd3a6c65df2d2560407da53755840c38264644200f46130d3a9d211",
+      "rows": 1895,
+      "semanticDigest": "535d17e1354778707afe7c59efe64887040596c31b6b8e6a5038b4166b9b4508"
+    },
+    "Индекс возможностей": {
+      "formulaDigest": "ffbb77308aefd5b65866dc31f90aaa074adf47030f6d34b2673161bcb8c927d9",
+      "columns": 6,
+      "digest": "8373a74a42271b07c18a6b09b5e07dc8cac0de5da06fadb43ca30732113ab295",
+      "rows": 6,
+      "semanticDigest": "8a3e53bed30b516b8c1c0ec81edef3ed8f1f9504e2d7c8c5efce16384855f309"
+    },
+    "Настройки": {
+      "formulaDigest": "0a12bc3763d23476b148f541c500b15db48d579bb914340bab4e1b85a27d8900",
+      "columns": 2,
+      "digest": "6e6957f4b7732708330c527880815d3e71480d4978ce8d5539ab3b52c0b8aac8",
+      "rows": 24,
+      "semanticDigest": "6e6957f4b7732708330c527880815d3e71480d4978ce8d5539ab3b52c0b8aac8"
+    },
+    "Режим рынка": {
+      "formulaDigest": "4251be55a87bdba5a0621aa2bf8714df1e322d76f49ffbf5247d038bd4544d97",
+      "columns": 5,
+      "digest": "3986831e02fbaf021a6b150109fd7616ad8ec6aed8fbbf7ffd6277096e57fc4d",
+      "rows": 5,
+      "semanticDigest": "834f44be62ef296cddb5bcaba489cc0001942a23dbdd002fb2aecca438e9b5a4"
+    },
+    "Продажи FIFO": {
+      "formulaDigest": "1d0450854f4ee415dc641045028a056294a4a91d672c3a94bfa3b6c9192833a8",
+      "columns": 17,
+      "digest": "37092ddbcf2ef7a4ed3f7ed96166fe01af09e46982a03790c2c4f34d381e319c",
+      "rows": 131,
+      "semanticDigest": "37092ddbcf2ef7a4ed3f7ed96166fe01af09e46982a03790c2c4f34d381e319c"
+    },
+    "План сделок": {
+      "formulaDigest": "b6581ca7f2fb2a8d4a1bf87f4c82c6dc76c1178e58882243aac691accc34f566",
+      "columns": 19,
+      "digest": "3c5094282f3c68f90913cf5c35d1d2eadd0c3a57694c8b5773323e2d312c8c8a",
+      "rows": 3,
+      "semanticDigest": "3c5094282f3c68f90913cf5c35d1d2eadd0c3a57694c8b5773323e2d312c8c8a"
+    },
+    "Стратегии счетов": {
+      "formulaDigest": "7b3e6d4a8c94d994d7363ecf09e1107abc2ef505dc9c3e8c7d54e7a4e05b6e9d",
+      "columns": 9,
+      "digest": "16bd8e9393920a63cac66f97b046f3cf5836c672307a8bbc5cc064942bcc50a9",
+      "rows": 3,
+      "semanticDigest": "16bd8e9393920a63cac66f97b046f3cf5836c672307a8bbc5cc064942bcc50a9"
+    },
+    "Признаки": {
+      "formulaDigest": "dd642d5b384f441bd8d26da5eec2cdd7e76af2b8f0981815263037373f8fec92",
+      "columns": 8,
+      "digest": "472086e76c252f64519cbdab2c6f815708eeb300cd86d66316d86efc0387f72e",
+      "rows": 13267,
+      "semanticDigest": "f369feac484a43ba2df44db3bc7c8eaca408afc419a0e15f00fbeef21eaca4c3"
+    },
+    "Лоты FIFO": {
+      "formulaDigest": "461968e65b84863506108292510be69d1be77555ed2cb3ddb7a146527ca70f62",
+      "columns": 18,
+      "digest": "78fcc5107e7da64da593181d90f222b140ecb870e08b5ac04ebd47dec5c53c5a",
+      "rows": 12,
+      "semanticDigest": "78fcc5107e7da64da593181d90f222b140ecb870e08b5ac04ebd47dec5c53c5a"
+    },
+    "Ошибки FIFO": {
+      "formulaDigest": "7bcdf984a237f497ddff5400ffbc4db6aa843b8e62109b40f2550ad1b3981b0b",
+      "columns": 8,
+      "digest": "3808960ef031474105cdb7a005b9c4850df700e0fcf5bc491d9cccb2609afc0c",
+      "rows": 0,
+      "semanticDigest": "3808960ef031474105cdb7a005b9c4850df700e0fcf5bc491d9cccb2609afc0c"
+    },
+    "Советник": {
+      "formulaDigest": "f3084a759cdcaf90ee16d209b34fe4b3e14e006e8606b8694aa98163d1142aea",
+      "columns": 10,
+      "digest": "b94656a287f8e9d31a877a9e95f96728565167a9ef4079fbcace180a32ff7550",
+      "rows": 17,
+      "semanticDigest": "b94656a287f8e9d31a877a9e95f96728565167a9ef4079fbcace180a32ff7550"
+    },
+    "Анализ облигаций": {
+      "formulaDigest": "703f21031e840d3bb6774ad088c6e14e19c1cd9ef836e09314044957a2cb70ec",
+      "columns": 21,
+      "digest": "4c1ca2496204881c75fbfe149f35f5b562190de19b6df729ec912625ff72f841",
+      "rows": 1564,
+      "semanticDigest": "733341641825889d2a2397be2d636f6a3bea3e2c5ba0d0ecac7bc9ed3f1b96c8"
+    },
+    "Главная": {
+      "formulaDigest": "1468a135c64a51c95dfee4678afcfbe3178ceadbd8d73df347ada5d2b838e9e3",
+      "columns": 6,
+      "digest": "df601f112dbd3256ae9f5ef5d990f1aa47992803de0cec3109a7fd6215381992",
+      "rows": 19,
+      "semanticDigest": "14215bae0cf6b3ec48ffe1b020c8cd7534781a9e5730660ae12aecefe09001ad"
+    },
+    "Дивиденды": {
+      "formulaDigest": "a99a9d0a8b5f3530c7ab657269477d3d983ba5c4c210234473dbbaccd8d73c2c",
+      "columns": 6,
+      "digest": "b14b918db455036999f60d34f617ae7a8694b55016aa870c302fb3cace11d3fc",
+      "rows": 1,
+      "semanticDigest": "b14b918db455036999f60d34f617ae7a8694b55016aa870c302fb3cace11d3fc"
+    },
+    "Стратегии": {
+      "formulaDigest": "11c760e141fcc8154fe8d678a31997115eba96124f81e69bc2e88122c0cfa984",
+      "columns": 8,
+      "digest": "39ce1ede8fa0dfda37f32b4cf02f1be7f1b2a1ed33fdc752d17566bb50d506e2",
+      "rows": 1,
+      "semanticDigest": "39ce1ede8fa0dfda37f32b4cf02f1be7f1b2a1ed33fdc752d17566bb50d506e2"
+    },
+    "Инфляция": {
+      "formulaDigest": "ca4bfe94caf6e247de702fc8c42af44b45360167cadc2f4ef77bd50a4148c84e",
+      "columns": 7,
+      "digest": "9774891a0be28351d63f8022b55e21b2c4c4cf8aa15c31db1c2b8a9514d95d59",
+      "rows": 13,
+      "semanticDigest": "2b16c9f4b401a92a8e78da48aee7be7b1251fa5dc8e5c82a67b673c4f5cd0901"
+    },
+    "Портфель": {
+      "formulaDigest": "699f3bbb15d10be5c339d24bf92ee33114b0e37ec8b9702743b2cdd7fc0f2a5c",
+      "columns": 19,
+      "digest": "e2cc3dcd449cd3bf6021cd10a719521dd3879c6202d4a362b06f72aef87eaf61",
+      "rows": 2,
+      "semanticDigest": "e2cc3dcd449cd3bf6021cd10a719521dd3879c6202d4a362b06f72aef87eaf61"
+    },
+    "Налоги": {
+      "formulaDigest": "1891c42f90bf9b3b66d15c02ac30a0137c8acbd5d297a828e7d4565fe6c78fd9",
+      "columns": 5,
+      "digest": "02763371cf15f4d486c4f32a26da54e8c657baf589a9f4cdcc438e99c0d2d927",
+      "rows": 1,
+      "semanticDigest": "02763371cf15f4d486c4f32a26da54e8c657baf589a9f4cdcc438e99c0d2d927"
+    },
+    "Факты": {
+      "formulaDigest": "096c32e9d3e270be4e771f3515ef28063215bbb14daa064ffdf318331d7973aa",
+      "columns": 8,
+      "digest": "39bb5bf2bf4caf9d71ad3804fb6e2e36d5f0f6d4308a27793435c37e0c45b5e7",
+      "rows": 17149,
+      "semanticDigest": "def2056f5a0f50fd64b3694313fe3f90c8615d18f8b547e2fec4bf767273b93c"
+    },
+    "Технический журнал": {
+      "formulaDigest": "302861dc79a1aba294423f878dbfe7167eccee30d8b2a931ea9b2503c9d3d5eb",
+      "columns": 7,
+      "digest": "0547d489066f51ec9f0abafb05df49bbe887035c958273c4a3deef4ab59a4cfd",
+      "rows": 111,
+      "semanticDigest": "0547d489066f51ec9f0abafb05df49bbe887035c958273c4a3deef4ab59a4cfd"
+    },
+    "Счета": {
+      "formulaDigest": "7b3e6d4a8c94d994d7363ecf09e1107abc2ef505dc9c3e8c7d54e7a4e05b6e9d",
+      "columns": 9,
+      "digest": "8b7626ff8eeefb19739db57fe32bcbd05d6935aae99aee7058cec039cf66ef7f",
+      "rows": 3,
+      "semanticDigest": "8b7626ff8eeefb19739db57fe32bcbd05d6935aae99aee7058cec039cf66ef7f"
+    },
+    "Диагностика": {
+      "formulaDigest": "69d23ceac24e67ec101b654973224d18aca2547adfdae465e08d57fd80b0dd38",
+      "columns": 6,
+      "digest": "0ae91d32f44741f09fb0a337d49516090fb4876e692c3c04bb058a999c65121c",
+      "rows": 44,
+      "semanticDigest": "e153d53288f39def0b8630d4f04b6ec0243955b6b0a92002607da662f399fd96"
+    },
+    "Стабилизация": {
+      "formulaDigest": "e676325ec2b048c868b8611b0c21fc6d81da1d1c809220bb7ec77639b9f58ae5",
+      "columns": 7,
+      "digest": "ea0d9325567b3b75a538347b1b7aecb9f942e9837073cb01c1f8fa1d7740dab5",
+      "rows": 18,
+      "semanticDigest": "981ec77f29694806df718751126a0c5d72a0d0cc5cf5a706288833471e090ff7"
+    },
+    "Ребалансировка": {
+      "formulaDigest": "843150fe0d590427be7f4585f98c1fa58da2cae6335d1410232eea42d5f4652a",
+      "columns": 20,
+      "digest": "456c9d7bc71becf102021b1b60e499072ae26fd368154329023c6e2958f366d0",
+      "rows": 3,
+      "semanticDigest": "456c9d7bc71becf102021b1b60e499072ae26fd368154329023c6e2958f366d0"
+    },
+    "Сделки": {
+      "formulaDigest": "73100295d2c3ad4b71497f411b7b0e44bffc288bae620695a54eb2acf444948b",
+      "columns": 18,
+      "digest": "fca1d59af4cc9e0dc17862f68add18c763bea6f1391b2fec73f51be3ee87f226",
+      "rows": 166,
+      "semanticDigest": "fca1d59af4cc9e0dc17862f68add18c763bea6f1391b2fec73f51be3ee87f226"
+    },
+    "Инвестиционная стратегия": {
+      "formulaDigest": "40d7837e3f945d0fa64ddf67bb28f2d398f2f4f0f109d770715fe51aa03ab175",
+      "columns": 11,
+      "digest": "5ee37d5e5b5542010d4f14f5c756e2e3c4f2a1eadacf79536058ed42bc27ef67",
+      "rows": 3,
+      "semanticDigest": "325159872136eddd7bb4d90eaaba7910d2f0956b9987de61702108dc875aa5b6"
+    },
+    "Справочник": {
+      "formulaDigest": "7d5fd30b7bfaf9702e0776fb66bf512081b2a85818ba468982b5ce316819ff1b",
+      "columns": 16,
+      "digest": "413f6a29743288cf9445685a0638ec561e5e24a58681a9eb364e91db9a94abd3",
+      "rows": 1895,
+      "semanticDigest": "0e7f6a45afb5388085174f5f77f176a0d58d44f503483da89e98ea0a098d7b4c"
+    },
+    "Smoke-тесты": {
+      "formulaDigest": "8aed41b8ec8ef1c046d6cc4164c5df3bf4fd634470c7a10791ea16fc082475db",
+      "columns": 6,
+      "digest": "36d264b8467d5c80549eaeb3f6cd53de0c55761eaa472935dd19a72f597fe890",
+      "rows": 17,
+      "semanticDigest": "b4fd3ab88842928f12d02b138b79b04713b54c1db74f3f63993838e01201b273"
+    },
+    "Здоровье портфеля": {
+      "formulaDigest": "6fc5c071a97e9a0e7b77889ee07f3a62c35ed85c32ce8236c983b3d7f155c520",
+      "columns": 13,
+      "digest": "380f5af50553f460dff2dfa09388cd4307f3f92a46edb8ab13fb4863ce978a88",
+      "rows": 4,
+      "semanticDigest": "7ad84aa7be58318255f91edd5977a5acadea30da2d2c7f118246025e0b2cad99"
+    },
+    "Правила стратегии": {
+      "formulaDigest": "c0181251404954a0c297b0124ce6f3fd829d4e5f8095fd3895b8c74c789ed551",
+      "columns": 12,
+      "digest": "a4187d651596b378cba30dfe51480855fe94c6d14c1d7a100955b30c1e65b42d",
+      "rows": 8,
+      "semanticDigest": "a4187d651596b378cba30dfe51480855fe94c6d14c1d7a100955b30c1e65b42d"
+    },
+    "Рейтинг компаний": {
+      "formulaDigest": "99150dbeeda3d8ff2cbbbc7919583e9866fbaf3423155fae8dda4924f827c879",
+      "columns": 21,
+      "digest": "3533858c2dad03b56acf67068f1826d480fa62d4db7f51e71f1ae1b40c612cbe",
+      "rows": 331,
+      "semanticDigest": "73f8002d8bbd682caa682af7af9918d2657a739999e0f3b68e162711a148177d"
+    },
+    "Кэш": {
+      "formulaDigest": "7f98f349e30753ab4172a993b4d623679ef222b57693f325c5119e5a9153749d",
+      "columns": 5,
+      "digest": "24291d1a0ce3b99ae8abb469b40e930151a32394670e8670c4a65ee39f3973ff",
+      "rows": 1895,
+      "semanticDigest": "24291d1a0ce3b99ae8abb469b40e930151a32394670e8670c4a65ee39f3973ff"
+    },
+    "Данные источников": {
+      "formulaDigest": "fc3d3eb73e0c72d7d8e20cf8234218db5cfa02b8b6eda2d8bb94702d98602704",
+      "columns": 7,
+      "digest": "6b27ea8fcb0d31925e4eaf7134c3208ba1f9634849b4d7c61f7d02fa762f9e75",
+      "rows": 70,
+      "semanticDigest": "8976010cdf2ee5a971b214d1c1fdf8954babf3b52d2f8de73e8fd8eae2f15cd7"
+    },
+    "Купоны": {
+      "formulaDigest": "0e52415eab4aabbc9d4887d216361dc720a5993f7acbdc3fcc73df9e5f291256",
+      "columns": 6,
+      "digest": "37368ef5a7d879e460ef434f833baa343b9866a35c1656bd5e9b25c8a15faafc",
+      "rows": 0,
+      "semanticDigest": "37368ef5a7d879e460ef434f833baa343b9866a35c1656bd5e9b25c8a15faafc"
+    }
+  },
+  "syncState": {
+    "mode": "full",
+    "context": {
+      "sheetWriteCount": 16,
+      "sheetReadCount": 16,
+      "failedStep": "",
+      "warnings": [],
+      "startedAt": "2026-07-12T23:17:15.467Z",
+      "rowsRead": 0,
+      "finishedAt": "",
+      "currentStep": "strategy",
+      "completedSteps": [
+        "initialize",
+        "accounts",
+        "trades",
+        "directoryShares",
+        "directoryBonds",
+        "directoryEtfs",
+        "directoryPrices",
+        "fifo",
+        "portfolioFreshPrices",
+        "visualization",
+        "income",
+        "inflation",
+        "multiAccount"
+      ],
+      "mode": "full",
+      "plannedSteps": [
+        "initialize",
+        "accounts",
+        "trades",
+        "directoryShares",
+        "directoryBonds",
+        "directoryEtfs",
+        "directoryPrices",
+        "fifo",
+        "portfolioFreshPrices",
+        "visualization",
+        "income",
+        "inflation",
+        "multiAccount",
+        "strategy",
+        "marketRegime",
+        "knowledge",
+        "companyRating",
+        "bondAnalysis",
+        "assetScoring",
+        "coi",
+        "strategyTargets",
+        "tax",
+        "rebalance",
+        "tradePlan",
+        "decisions",
+        "portfolioHealth",
+        "portfolioIntelligence",
+        "advisor",
+        "stabilization",
+        "diagnostics",
+        "main",
+        "ui"
+      ],
+      "rowsWritten": 7751,
+      "runId": "…69ad20",
+      "durationMs": 0,
+      "apiCallCount": 7,
+      "errors": [],
+      "status": "running",
+      "projectVersion": "1.1.0"
+    },
+    "startedAt": "2026-07-12T23:17:15.465Z",
+    "index": 13,
+    "source": "codex-03",
+    "error": "",
+    "results": {
+      "income": {
+        "coupons": 0,
+        "cashflow": 573,
+        "dividends": 1
+      },
+      "visualization": {
+        "rows": 7
+      },
+      "directoryShares": {
+        "total": 1895,
+        "added": 0,
+        "updated": 0
+      },
+      "directoryPrices": {
+        "rows": 1895
+      },
+      "fifo": {
+        "lots": 12,
+        "errors": 0,
+        "sales": 131
+      },
+      "trades": {
+        "fetchedOperations": 82,
+        "incremental": true,
+        "accounts": 3,
+        "rows": 3
+      },
+      "directoryEtfs": {
+        "total": 1895,
+        "added": 0,
+        "updated": 0
+      },
+      "portfolioFreshPrices": {
+        "rows": 2
+      },
+      "inflation": {
+        "total": 13,
+        "imported": 13,
+        "source": "https://cbr.ru/hd_base/infl/"
+      },
+      "directoryBonds": {
+        "total": 1895,
+        "added": 0,
+        "updated": 0
+      },
+      "multiAccount": {
+        "strategiesAdded": 0,
+        "accountStrategiesAdded": 0,
+        "accounts": {
+          "total": 3,
+          "source": "sheet"
+        }
+      },
+      "initialize": {
+        "settingsAdded": 0,
+        "rulesAdded": 0,
+        "multiAccount": {
+          "strategiesAdded": 0,
+          "accountStrategiesAdded": 0,
+          "accounts": {
+            "total": 3,
+            "source": "sheet"
+          }
+        },
+        "constitutionSettingsAdded": 0
+      },
+      "accounts": {
+        "total": 3
+      }
+    },
+    "steps": [
+      {
+        "id": "initialize",
+        "title": "Подготовка листов"
+      },
+      {
+        "id": "accounts",
+        "title": "Счета"
+      },
+      {
+        "id": "trades",
+        "title": "Сделки"
+      },
+      {
+        "id": "directoryShares",
+        "title": "Справочник: акции"
+      },
+      {
+        "id": "directoryBonds",
+        "title": "Справочник: облигации"
+      },
+      {
+        "id": "directoryEtfs",
+        "title": "Справочник: фонды"
+      },
+      {
+        "id": "directoryPrices",
+        "title": "Цены в справочнике"
+      },
+      {
+        "id": "fifo",
+        "title": "FIFO"
+      },
+      {
+        "id": "portfolioFreshPrices",
+        "title": "Портфель и цены"
+      },
+      {
+        "id": "visualization",
+        "title": "Визуализация"
+      },
+      {
+        "id": "income",
+        "title": "Доходы и денежные потоки"
+      },
+      {
+        "id": "inflation",
+        "title": "Инфляция"
+      },
+      {
+        "id": "multiAccount",
+        "title": "Счета и стратегии"
+      },
+      {
+        "id": "strategy",
+        "title": "Стратегия"
+      },
+      {
+        "id": "marketRegime",
+        "title": "Режим рынка"
+      },
+      {
+        "id": "knowledge",
+        "title": "Факты и оценки"
+      },
+      {
+        "id": "companyRating",
+        "title": "Рейтинг компаний"
+      },
+      {
+        "id": "bondAnalysis",
+        "title": "Анализ облигаций"
+      },
+      {
+        "id": "assetScoring",
+        "title": "Оценка активов"
+      },
+      {
+        "id": "coi",
+        "title": "Индекс возможностей"
+      },
+      {
+        "id": "strategyTargets",
+        "title": "Стратегические цели"
+      },
+      {
+        "id": "tax",
+        "title": "Налоги"
+      },
+      {
+        "id": "rebalance",
+        "title": "Ребалансировка"
+      },
+      {
+        "id": "tradePlan",
+        "title": "План сделок"
+      },
+      {
+        "id": "decisions",
+        "title": "Решения"
+      },
+      {
+        "id": "portfolioHealth",
+        "title": "Здоровье портфеля"
+      },
+      {
+        "id": "portfolioIntelligence",
+        "title": "Интеллект портфеля"
+      },
+      {
+        "id": "advisor",
+        "title": "Советник"
+      },
+      {
+        "id": "stabilization",
+        "title": "Стабилизация"
+      },
+      {
+        "id": "diagnostics",
+        "title": "Диагностика"
+      },
+      {
+        "id": "main",
+        "title": "Главная"
+      },
+      {
+        "id": "ui",
+        "title": "Оформление интерфейса"
+      }
+    ],
+    "updatedAt": "2026-07-12T23:34:42.000Z",
+    "status": "running"
+  },
+  "capturedAt": "2026-07-12T23:38:27.302Z",
+  "portfolioHealth": {
+    "aggregatePositions": 1,
+    "hasPassive": true,
+    "aggregateMarketValue": 13061.12,
+    "rows": 4,
+    "technicalIdColumns": 0,
+    "hasStaleTattoo": true
+  },
+  "ok": true,
+  "sheetCount": 40
+}

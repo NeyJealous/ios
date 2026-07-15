@@ -1,0 +1,6 @@
+{
+  "repeatedTradeIdAllowedAcrossOperations": true,
+  "exactCompositeDuplicateDetected": true,
+  "ok": true,
+  "timestampPrecisionNormalized": true
+}

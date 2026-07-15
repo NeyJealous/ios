@@ -57,12 +57,18 @@ Round-trip: 55/55 exact source matches, PASS. Privacy scan: PASS; no full protec
 
 ## Production data changes
 
-No changes were made during finalization. The earlier authorized dry-run left only its Diagnostics entry after the unintended empty schema headers were conditionally rolled back.
+Authorized Recalc, Quick and Full pipelines were executed against production data
+after backups and dry runs. Full history was preserved; Full run 2 added no Trades.
+Derived views were rebuilt through official pipelines.
 
 ## Risks and rollback
 
-Derived production sheets remain stale. Full Recalc and two-run idempotency remain unverified. Backups `…RJDT0k` (full) and `…pBu3n4` (Health) are rollback sources; Trades rollback is prohibited.
+Full Sync remains long-running and depends on checkpoint continuation. Historical
+Git objects retain three Script IDs; current-tree `.clasp.json` files are untracked
+and ignored. Production history rollback remains prohibited.
 
 ## Readiness for CODEX-04
 
-Нет — full Recalc data-change gate and idempotency are still required.
+Да — Recalc 2/2, Quick 2/2 and Full 2/2 passed. Full run 2 completed 32/32
+from checkpoint 26 without additional API calls. A separate user confirmation is
+still required before CODEX-04.

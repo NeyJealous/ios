@@ -1,0 +1,82 @@
+{
+  "mode": "quick",
+  "context": {
+    "sheetReadCount": 3,
+    "sheetWriteCount": 2,
+    "failedStep": "",
+    "warnings": [
+      "Свободные деньги: На тату"
+    ],
+    "startedAt": "2026-07-12T22:41:38.969Z",
+    "rowsRead": 0,
+    "finishedAt": "",
+    "currentStep": "",
+    "completedSteps": [
+      "quickData",
+      "portfolioFreshPrices"
+    ],
+    "mode": "quick",
+    "plannedSteps": [
+      "quickData",
+      "portfolioFreshPrices",
+      "portfolioHealth",
+      "tradePlan",
+      "advisor",
+      "main"
+    ],
+    "rowsWritten": 5,
+    "runId": "…2ed210",
+    "durationMs": 0,
+    "errors": [],
+    "apiCallCount": 12,
+    "projectVersion": "1.1.0",
+    "status": "running"
+  },
+  "index": 2,
+  "startedAt": "2026-07-12T22:41:38.968Z",
+  "source": "codex-03",
+  "error": "",
+  "results": {
+    "quickData": {
+      "cashAccounts": 2,
+      "warnings": [
+        "Свободные деньги: На тату"
+      ],
+      "portfolios": 3,
+      "positions": 3,
+      "accounts": 3,
+      "prices": 4
+    },
+    "portfolioFreshPrices": {
+      "rows": 2
+    }
+  },
+  "steps": [
+    {
+      "id": "quickData",
+      "title": "Быстрые данные"
+    },
+    {
+      "id": "portfolioFreshPrices",
+      "title": "Портфель и цены"
+    },
+    {
+      "id": "portfolioHealth",
+      "title": "Здоровье портфеля"
+    },
+    {
+      "id": "tradePlan",
+      "title": "План сделок"
+    },
+    {
+      "id": "advisor",
+      "title": "Советник"
+    },
+    {
+      "id": "main",
+      "title": "Главная"
+    }
+  ],
+  "updatedAt": "2026-07-12T22:43:00.049Z",
+  "status": "running"
+}

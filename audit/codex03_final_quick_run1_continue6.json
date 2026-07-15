@@ -1,0 +1,90 @@
+{
+  "mode": "quick",
+  "context": {
+    "sheetReadCount": 5,
+    "sheetWriteCount": 4,
+    "failedStep": "",
+    "warnings": [
+      "Свободные деньги: На тату"
+    ],
+    "startedAt": "2026-07-12T22:41:38.969Z",
+    "rowsRead": 0,
+    "finishedAt": "",
+    "mode": "quick",
+    "completedSteps": [
+      "quickData",
+      "portfolioFreshPrices",
+      "portfolioHealth",
+      "tradePlan"
+    ],
+    "currentStep": "",
+    "plannedSteps": [
+      "quickData",
+      "portfolioFreshPrices",
+      "portfolioHealth",
+      "tradePlan",
+      "advisor",
+      "main"
+    ],
+    "rowsWritten": 12,
+    "runId": "…2ed210",
+    "durationMs": 0,
+    "apiCallCount": 18,
+    "errors": [],
+    "status": "running",
+    "projectVersion": "1.1.0"
+  },
+  "startedAt": "2026-07-12T22:41:38.968Z",
+  "index": 4,
+  "source": "codex-03",
+  "error": "",
+  "results": {
+    "tradePlan": {
+      "rows": 3
+    },
+    "quickData": {
+      "cashAccounts": 2,
+      "warnings": [
+        "Свободные деньги: На тату"
+      ],
+      "portfolios": 3,
+      "positions": 3,
+      "accounts": 3,
+      "prices": 4
+    },
+    "portfolioHealth": {
+      "rows": 4
+    },
+    "portfolioFreshPrices": {
+      "rows": 2
+    }
+  },
+  "steps": [
+    {
+      "id": "quickData",
+      "title": "Быстрые данные"
+    },
+    {
+      "id": "portfolioFreshPrices",
+      "title": "Портфель и цены"
+    },
+    {
+      "id": "portfolioHealth",
+      "title": "Здоровье портфеля"
+    },
+    {
+      "id": "tradePlan",
+      "title": "План сделок"
+    },
+    {
+      "id": "advisor",
+      "title": "Советник"
+    },
+    {
+      "id": "main",
+      "title": "Главная"
+    }
+  ],
+  "status": "running",
+  "updatedAt": "2026-07-12T22:45:52.626Z"
+}
