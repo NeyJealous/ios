@@ -1,0 +1,20 @@
+{
+  "code": "CONTINUE",
+  "pass": 3,
+  "error": "",
+  "idempotent": false,
+  "completedStepCount": 29,
+  "targetAccountIdSuffix": "…864109",
+  "deleted": {
+    "cache": 17,
+    "total": 178,
+    "portfolio": 1,
+    "trades": 160
+  },
+  "stepIndex": 12,
+  "nextStep": "stabilization",
+  "runId": "…df81f9",
+  "ok": true,
+  "apiCallCount": 0,
+  "status": "running"
+}

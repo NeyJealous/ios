@@ -1,0 +1,20 @@
+{
+  "code": "GATE_B_FAILED",
+  "pass": 2,
+  "error": "SECOND_RECALC_NOT_IDEMPOTENT",
+  "idempotent": false,
+  "completedStepCount": 29,
+  "targetAccountIdSuffix": "…864109",
+  "deleted": {
+    "total": 178,
+    "cache": 17,
+    "portfolio": 1,
+    "trades": 160
+  },
+  "stepIndex": 14,
+  "nextStep": "",
+  "runId": "…df81f9",
+  "ok": false,
+  "apiCallCount": 0,
+  "status": "failed"
+}

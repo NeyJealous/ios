@@ -163,10 +163,15 @@ TI.AccountScopeGateA = {
     result.directControlledDeleteRows = directCount;
     result.expectedGateBRows = 178;
     result.gateAProductionPurgePerformed = false;
-    result.otherTradesPreserved = Math.max(0, 166 - (direct.filter(function(item) { return item.sheet === "Сделки"; })[0] || { rows: 0 }).rows);
-    var alreadyExcluded = baseCode === "ALREADY_EXCLUDED" && directCount === 0;
+    result.otherTradesPreserved = Math.max(0, TI.Data.trades().length -
+      (direct.filter(function(item) { return item.sheet === "Сделки"; })[0] || { rows: 0 }).rows);
+    var alreadyExcluded = directCount === 0 && result.target &&
+      TI.AccountExclusionMigration.FLAG_FIELDS.every(function(field) {
+        return !TI.AccountScope.isTrue(result.target.currentFlags[field]);
+      });
     result.ok = result.ok && (alreadyExcluded || (directCount === 178 && result.otherTradesPreserved === 6));
     result.code = result.ok ? (alreadyExcluded ? "ALREADY_EXCLUDED" : "PASS") : "COUNT_MISMATCH";
+    result.plannedDeletes = alreadyExcluded ? 0 : directCount;
     return result;
   },
 

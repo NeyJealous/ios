@@ -1,0 +1,34 @@
+{
+  "globalLockAvailable": true,
+  "noApiMode": false,
+  "directTargetRows": {
+    "cache": 0,
+    "total": 0,
+    "portfolio": 0,
+    "trades": 0
+  },
+  "tradesTotal": 6,
+  "readOnly": true,
+  "ok": true,
+  "continuation": {
+    "code": "GATE_B_FAILED",
+    "pass": 2,
+    "error": "SECOND_RECALC_NOT_IDEMPOTENT",
+    "idempotent": false,
+    "completedStepCount": 29,
+    "deleted": {
+      "cache": 17,
+      "total": 178,
+      "portfolio": 1,
+      "trades": 160
+    },
+    "targetAccountIdSuffix": "…864109",
+    "stepIndex": 14,
+    "nextStep": "",
+    "runId": "…df81f9",
+    "ok": false,
+    "apiCallCount": 0,
+    "status": "failed"
+  },
+  "syncStatus": "complete"
+}

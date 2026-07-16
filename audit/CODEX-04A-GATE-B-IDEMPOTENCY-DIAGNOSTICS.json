@@ -1,0 +1,40 @@
+{
+  "completedStepCount": 29,
+  "changedSheetCount": 2,
+  "readOnly": true,
+  "ok": true,
+  "error": "SECOND_RECALC_NOT_IDEMPOTENT",
+  "changedSheets": [
+    {
+      "headers": [
+        "Статус",
+        "Раздел",
+        "Проверка",
+        "Сообщение",
+        "Что сделать",
+        "Длительность, мс",
+        "Обновлено"
+      ],
+      "firstSemanticDigest": "9e1ac9ea22aa8ed65dbe9d4f8ebe2053ad90ddde9adc659d2a450898f1cbaf55",
+      "sheet": "Стабилизация",
+      "rows": 18,
+      "currentSemanticDigest": "1fdf7f6a84c2f3c142e1b3a3c4f8a6fefcaeef717f613c95e169015a182e4489"
+    },
+    {
+      "headers": [
+        "Раздел",
+        "Показатель",
+        "Значение",
+        "Статус",
+        "Комментарий",
+        "Обновлено"
+      ],
+      "firstSemanticDigest": "6defa4bae0a8baa0dfb6d7198d3514129c63f773706991e02e6bed36f9d034af",
+      "sheet": "Главная",
+      "rows": 19,
+      "currentSemanticDigest": "c35945998df5a345985f178d772b00dffa5c7fa08e475b7e4ba4b20ec4921b8d"
+    }
+  ],
+  "apiCallCount": 0,
+  "status": "failed"
+}

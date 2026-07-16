@@ -1,0 +1,137 @@
+{
+  "globalLockAvailable": true,
+  "noApiMode": false,
+  "directTargetRows": {
+    "cache": 0,
+    "total": 0,
+    "portfolio": 0,
+    "trades": 0
+  },
+  "tradesTotal": 6,
+  "readOnly": true,
+  "ok": true,
+  "continuation": {
+    "code": "COMMITTED",
+    "pass": 3,
+    "error": "",
+    "completedStepCount": 34,
+    "idempotent": true,
+    "deleted": {
+      "cache": 17,
+      "total": 178,
+      "portfolio": 1,
+      "trades": 160
+    },
+    "targetAccountIdSuffix": "…864109",
+    "stepIndex": 15,
+    "nextStep": "",
+    "runId": "…df81f9",
+    "ok": true,
+    "apiCallCount": 0,
+    "validation": {
+      "directoryUnchanged": true,
+      "tradesUnchangedDuringRecalc": true,
+      "targetDerivedTotal": 0,
+      "directTargetRows": {
+        "total": 0,
+        "cache": 0,
+        "portfolio": 0,
+        "trades": 0
+      },
+      "trades": {
+        "total": 6,
+        "other": 6,
+        "duplicateCompositeKeys": 0,
+        "conflicts": 0,
+        "invalidAccountIds": 0,
+        "target": 0
+      },
+      "displayOnlyAccount": {
+        "accountIdSuffix": "…020546",
+        "flags": [
+          true,
+          false,
+          true,
+          false,
+          true
+        ],
+        "recommendationActions": 0,
+        "informationalViewEnabled": true
+      },
+      "calculationAggregate": {
+        "portfolioRows": 1,
+        "marketValue": 12986.88,
+        "healthMarketValue": 12986.88
+      },
+      "targetDerivedRows": {
+        "Интеллект портфеля": {
+          "exactAccountIdRows": 0,
+          "exactDisplayNameRows": 0
+        },
+        "Визуализация": {
+          "exactAccountIdRows": 0,
+          "exactDisplayNameRows": 0
+        },
+        "Решения": {
+          "exactAccountIdRows": 0,
+          "exactDisplayNameRows": 0
+        },
+        "Налоги": {
+          "exactAccountIdRows": 0,
+          "exactDisplayNameRows": 0
+        },
+        "Диагностика": {
+          "exactAccountIdRows": 0,
+          "exactDisplayNameRows": 0
+        },
+        "Стабилизация": {
+          "exactAccountIdRows": 0,
+          "exactDisplayNameRows": 0
+        },
+        "Продажи FIFO": {
+          "exactAccountIdRows": 0,
+          "exactDisplayNameRows": 0
+        },
+        "План сделок": {
+          "exactAccountIdRows": 0,
+          "exactDisplayNameRows": 0
+        },
+        "Ребалансировка": {
+          "exactAccountIdRows": 0,
+          "exactDisplayNameRows": 0
+        },
+        "Здоровье портфеля": {
+          "exactAccountIdRows": 0,
+          "exactDisplayNameRows": 0
+        },
+        "Лоты FIFO": {
+          "exactAccountIdRows": 0,
+          "exactDisplayNameRows": 0
+        },
+        "Ошибки FIFO": {
+          "exactAccountIdRows": 0,
+          "exactDisplayNameRows": 0
+        },
+        "Советник": {
+          "exactAccountIdRows": 0,
+          "exactDisplayNameRows": 0
+        },
+        "Главная": {
+          "exactAccountIdRows": 0,
+          "exactDisplayNameRows": 0
+        }
+      },
+      "ok": true,
+      "targetFlags": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "accountStrategyLinksUnchanged": true
+    },
+    "status": "complete"
+  },
+  "syncStatus": "complete"
+}

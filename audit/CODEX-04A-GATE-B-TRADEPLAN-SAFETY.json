@@ -1,0 +1,8 @@
+{
+  "validAccountScope": "ACCOUNT",
+  "russianNameNotUsedAsKey": true,
+  "aggregateScope": "AGGREGATE",
+  "unknownAccountIdRejected": true,
+  "emptyAccountIdRejected": true,
+  "ok": true
+}

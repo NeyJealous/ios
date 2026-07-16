@@ -1,0 +1,34 @@
+{
+  "globalLockAvailable": false,
+  "noApiMode": true,
+  "directTargetRows": {
+    "total": 0,
+    "cache": 0,
+    "portfolio": 0,
+    "trades": 0
+  },
+  "tradesTotal": 6,
+  "readOnly": true,
+  "ok": true,
+  "continuation": {
+    "code": "CONTINUE",
+    "pass": 2,
+    "error": "",
+    "idempotent": false,
+    "completedStepCount": 24,
+    "deleted": {
+      "cache": 17,
+      "total": 178,
+      "portfolio": 1,
+      "trades": 160
+    },
+    "targetAccountIdSuffix": "…864109",
+    "stepIndex": 9,
+    "nextStep": "portfolioHealth",
+    "runId": "…df81f9",
+    "ok": true,
+    "apiCallCount": 0,
+    "status": "running"
+  },
+  "syncStatus": "complete"
+}

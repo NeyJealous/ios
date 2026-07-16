@@ -1,0 +1,147 @@
+{
+  "directControlledDeleteRows": 0,
+  "expectedGateBRows": 178,
+  "expectedDeleteRows": 1,
+  "impactedSheets": [
+    {
+      "deleteByAccountId": false,
+      "exactAccountIdRows": 1,
+      "rebuildRequired": false,
+      "exactRowNumbers": [
+        3
+      ],
+      "deleteByDisplayName": false,
+      "legacyDisplayNameRowNumbers": [],
+      "sheet": "Счета",
+      "legacyDisplayNameRows": 0
+    },
+    {
+      "deleteByAccountId": true,
+      "exactAccountIdRows": 1,
+      "rebuildRequired": false,
+      "exactRowNumbers": [
+        4
+      ],
+      "deleteByDisplayName": false,
+      "legacyDisplayNameRowNumbers": [],
+      "sheet": "Стратегии счетов",
+      "legacyDisplayNameRows": 0
+    },
+    {
+      "deleteByAccountId": true,
+      "exactAccountIdRows": 0,
+      "rebuildRequired": true,
+      "exactRowNumbers": [],
+      "deleteByDisplayName": false,
+      "legacyDisplayNameRowNumbers": [
+        5
+      ],
+      "sheet": "Интеллект портфеля",
+      "legacyDisplayNameRows": 1
+    },
+    {
+      "deleteByAccountId": true,
+      "exactAccountIdRows": 0,
+      "rebuildRequired": true,
+      "exactRowNumbers": [],
+      "deleteByDisplayName": false,
+      "legacyDisplayNameRowNumbers": [
+        4
+      ],
+      "sheet": "Здоровье портфеля",
+      "legacyDisplayNameRows": 1
+    },
+    {
+      "deleteByAccountId": true,
+      "exactAccountIdRows": 0,
+      "rebuildRequired": true,
+      "exactRowNumbers": [],
+      "deleteByDisplayName": false,
+      "legacyDisplayNameRowNumbers": [
+        13
+      ],
+      "sheet": "Советник",
+      "legacyDisplayNameRows": 1
+    },
+    {
+      "exactAccountIdRows": 0,
+      "deleteByAccountId": true,
+      "rebuildRequired": false,
+      "exactRowNumbers": [],
+      "deleteByDisplayName": false,
+      "legacyDisplayNameRowNumbers": [
+        4
+      ],
+      "sheet": "Кэш",
+      "legacyDisplayNameRows": 1
+    }
+  ],
+  "code": "COUNT_MISMATCH",
+  "targetOnly": true,
+  "readOnly": true,
+  "historySafety": {
+    "otherAccountHistoryDecreases": false,
+    "targetRowsToDelete": 0,
+    "otherAccountRowsAfterExpected": 6,
+    "otherAccountRowsBefore": 6
+  },
+  "rollbackSource": "Google Sheets backup + private account archive",
+  "expectedWriteSet": [
+    "Счета: five flags on row 3",
+    "Лоты FIFO",
+    "Продажи FIFO",
+    "Ошибки FIFO",
+    "Налоги",
+    "Ребалансировка",
+    "Решения",
+    "План сделок",
+    "Советник",
+    "Здоровье портфеля",
+    "Интеллект портфеля",
+    "Визуализация",
+    "Главная"
+  ],
+  "cacheKeysToClear": [
+    "Кэш:…864109"
+  ],
+  "target": {
+    "accountIdSuffix": "…864109",
+    "proposedFlags": {
+      "History_Enabled": false,
+      "Sync_Enabled": false,
+      "Display_Enabled": false,
+      "Recommendations_Enabled": false,
+      "Calculation_Enabled": false
+    },
+    "displayName": "На тату",
+    "accountType": "Инвесткопилка",
+    "currentFlags": {
+      "History_Enabled": false,
+      "Sync_Enabled": false,
+      "Recommendations_Enabled": false,
+      "Display_Enabled": false,
+      "Calculation_Enabled": false
+    },
+    "rowNumber": 3,
+    "status": "Да"
+  },
+  "gateAProductionPurgePerformed": false,
+  "recalculatedSheets": [
+    "Лоты FIFO",
+    "Продажи FIFO",
+    "Ошибки FIFO",
+    "Налоги",
+    "Ребалансировка",
+    "Решения",
+    "План сделок",
+    "Советник",
+    "Здоровье портфеля",
+    "Интеллект портфеля",
+    "Визуализация",
+    "Главная"
+  ],
+  "directControlledDeleteSet": [],
+  "otherTradesPreserved": 166,
+  "ok": false,
+  "externalApiCalls": 0
+}

@@ -1,0 +1,112 @@
+{
+  "directControlledDeleteRows": 0,
+  "impactedSheets": [
+    {
+      "exactAccountIdRows": 1,
+      "deleteByAccountId": false,
+      "rebuildRequired": false,
+      "exactRowNumbers": [
+        3
+      ],
+      "deleteByDisplayName": false,
+      "legacyDisplayNameRowNumbers": [],
+      "sheet": "Счета",
+      "legacyDisplayNameRows": 0
+    },
+    {
+      "exactAccountIdRows": 1,
+      "deleteByAccountId": true,
+      "rebuildRequired": false,
+      "exactRowNumbers": [
+        4
+      ],
+      "deleteByDisplayName": false,
+      "legacyDisplayNameRowNumbers": [],
+      "sheet": "Стратегии счетов",
+      "legacyDisplayNameRows": 0
+    },
+    {
+      "exactAccountIdRows": 0,
+      "deleteByAccountId": true,
+      "rebuildRequired": false,
+      "exactRowNumbers": [],
+      "deleteByDisplayName": false,
+      "legacyDisplayNameRowNumbers": [
+        4
+      ],
+      "sheet": "Кэш",
+      "legacyDisplayNameRows": 1
+    }
+  ],
+  "expectedDeleteRows": 1,
+  "expectedGateBRows": 178,
+  "targetOnly": true,
+  "code": "ALREADY_EXCLUDED",
+  "readOnly": true,
+  "historySafety": {
+    "otherAccountHistoryDecreases": false,
+    "targetRowsToDelete": 0,
+    "otherAccountRowsBefore": 6,
+    "otherAccountRowsAfterExpected": 6
+  },
+  "plannedDeletes": 0,
+  "target": {
+    "accountIdSuffix": "…864109",
+    "proposedFlags": {
+      "History_Enabled": false,
+      "Sync_Enabled": false,
+      "Recommendations_Enabled": false,
+      "Display_Enabled": false,
+      "Calculation_Enabled": false
+    },
+    "displayName": "На тату",
+    "currentFlags": {
+      "History_Enabled": false,
+      "Sync_Enabled": false,
+      "Recommendations_Enabled": false,
+      "Display_Enabled": false,
+      "Calculation_Enabled": false
+    },
+    "accountType": "Инвесткопилка",
+    "rowNumber": 3,
+    "status": "Да"
+  },
+  "rollbackSource": "Google Sheets backup + private account archive",
+  "cacheKeysToClear": [
+    "Кэш:…864109"
+  ],
+  "expectedWriteSet": [
+    "Счета: five flags on row 3",
+    "Лоты FIFO",
+    "Продажи FIFO",
+    "Ошибки FIFO",
+    "Налоги",
+    "Ребалансировка",
+    "Решения",
+    "План сделок",
+    "Советник",
+    "Здоровье портфеля",
+    "Интеллект портфеля",
+    "Визуализация",
+    "Главная"
+  ],
+  "gateAProductionPurgePerformed": false,
+  "recalculatedSheets": [
+    "Лоты FIFO",
+    "Продажи FIFO",
+    "Ошибки FIFO",
+    "Налоги",
+    "Ребалансировка",
+    "Решения",
+    "План сделок",
+    "Советник",
+    "Здоровье портфеля",
+    "Интеллект портфеля",
+    "Визуализация",
+    "Главная"
+  ],
+  "directControlledDeleteSet": [],
+  "otherTradesPreserved": 6,
+  "ok": true,
+  "externalApiCalls": 0
+}

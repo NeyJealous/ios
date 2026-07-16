@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "targetAccountIdSuffix": "…864109",
+  "counts": {
+    "trades": 160,
+    "portfolio": 1,
+    "cache": 17,
+    "total": 178
+  },
+  "hashes": {
+    "archive": true,
+    "trades": true,
+    "portfolio": true,
+    "cache": true
+  },
+  "otherAccountRowsInArchive": 0,
+  "manifestExists": true,
+  "restorePlanExists": true,
+  "archiveSha256": "017c5d8f849ec22147cee7c01724506c5a166fd8c3d798b20c812653a166952b",
+  "gitIgnored": true
+}

@@ -1,0 +1,48 @@
+{
+  "completedStepCount": 31,
+  "changedSheetCount": 2,
+  "allowedVolatilityChangedSheetCount": 1,
+  "allowedVolatilityChangedSheets": [
+    {
+      "currentDigest": "56a35b0d572243060ec9c494321a848860ddd667876c82b8fa48b6313f556e05",
+      "beforeDigest": "a8a6e9d6e92ba997e6b8c51ea2a7f74d002adbdf963c3214a76427147ec1c531",
+      "sheet": "Стабилизация"
+    }
+  ],
+  "readOnly": true,
+  "ok": true,
+  "error": "SECOND_RECALC_NOT_IDEMPOTENT",
+  "changedSheets": [
+    {
+      "headers": [
+        "Статус",
+        "Раздел",
+        "Проверка",
+        "Сообщение",
+        "Что сделать",
+        "Длительность, мс",
+        "Обновлено"
+      ],
+      "firstSemanticDigest": "9e1ac9ea22aa8ed65dbe9d4f8ebe2053ad90ddde9adc659d2a450898f1cbaf55",
+      "sheet": "Стабилизация",
+      "rows": 18,
+      "currentSemanticDigest": "4c6fa78d798fd815b8c44b19b6d4f9541f3c68418fccc483d87eaa06875a7109"
+    },
+    {
+      "headers": [
+        "Раздел",
+        "Показатель",
+        "Значение",
+        "Статус",
+        "Комментарий",
+        "Обновлено"
+      ],
+      "firstSemanticDigest": "6defa4bae0a8baa0dfb6d7198d3514129c63f773706991e02e6bed36f9d034af",
+      "sheet": "Главная",
+      "rows": 19,
+      "currentSemanticDigest": "53aa42fe0cb726503e386f94139ce8a391a838f47518218d80441c6763edf8e3"
+    }
+  ],
+  "apiCallCount": 0,
+  "status": "failed"
+}

@@ -1,0 +1,746 @@
+[
+  {
+    "invocation": 0,
+    "functionName": "TI_ResumeGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 1,
+      "error": "",
+      "idempotent": false,
+      "completedStepCount": 0,
+      "deleted": {
+        "cache": 17,
+        "total": 178,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "targetAccountIdSuffix": "…864109",
+      "stepIndex": 0,
+      "nextStep": "fifo",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 1,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 1,
+      "error": "",
+      "completedStepCount": 1,
+      "idempotent": false,
+      "deleted": {
+        "cache": 17,
+        "total": 178,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "targetAccountIdSuffix": "…864109",
+      "stepIndex": 1,
+      "nextStep": "portfolioNoApi",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 2,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 1,
+      "error": "",
+      "completedStepCount": 2,
+      "idempotent": false,
+      "deleted": {
+        "total": 178,
+        "cache": 17,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "targetAccountIdSuffix": "…864109",
+      "stepIndex": 2,
+      "nextStep": "visualization",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 3,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 1,
+      "error": "",
+      "idempotent": false,
+      "completedStepCount": 3,
+      "deleted": {
+        "total": 178,
+        "cache": 17,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "targetAccountIdSuffix": "…864109",
+      "stepIndex": 3,
+      "nextStep": "marketRegime",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 4,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 1,
+      "error": "",
+      "idempotent": false,
+      "completedStepCount": 4,
+      "deleted": {
+        "total": 178,
+        "cache": 17,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "targetAccountIdSuffix": "…864109",
+      "stepIndex": 4,
+      "nextStep": "strategyTargets",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 5,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 1,
+      "error": "",
+      "idempotent": false,
+      "completedStepCount": 5,
+      "targetAccountIdSuffix": "…864109",
+      "deleted": {
+        "cache": 17,
+        "total": 178,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "stepIndex": 5,
+      "nextStep": "tax",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 6,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 1,
+      "error": "",
+      "completedStepCount": 6,
+      "idempotent": false,
+      "deleted": {
+        "cache": 17,
+        "total": 178,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "targetAccountIdSuffix": "…864109",
+      "stepIndex": 6,
+      "nextStep": "rebalance",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 7,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 1,
+      "error": "",
+      "idempotent": false,
+      "completedStepCount": 7,
+      "deleted": {
+        "cache": 17,
+        "total": 178,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "targetAccountIdSuffix": "…864109",
+      "stepIndex": 7,
+      "nextStep": "tradePlan",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 8,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 1,
+      "error": "",
+      "idempotent": false,
+      "completedStepCount": 8,
+      "targetAccountIdSuffix": "…864109",
+      "deleted": {
+        "cache": 17,
+        "total": 178,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "stepIndex": 8,
+      "nextStep": "decisions",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 9,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 1,
+      "error": "",
+      "completedStepCount": 9,
+      "idempotent": false,
+      "targetAccountIdSuffix": "…864109",
+      "deleted": {
+        "total": 178,
+        "cache": 17,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "stepIndex": 9,
+      "nextStep": "portfolioHealth",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 10,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 1,
+      "error": "",
+      "completedStepCount": 10,
+      "idempotent": false,
+      "deleted": {
+        "total": 178,
+        "cache": 17,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "targetAccountIdSuffix": "…864109",
+      "stepIndex": 10,
+      "nextStep": "portfolioIntelligence",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 11,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 1,
+      "error": "",
+      "completedStepCount": 11,
+      "idempotent": false,
+      "deleted": {
+        "cache": 17,
+        "total": 178,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "targetAccountIdSuffix": "…864109",
+      "stepIndex": 11,
+      "nextStep": "advisor",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 12,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 1,
+      "error": "",
+      "idempotent": false,
+      "completedStepCount": 12,
+      "targetAccountIdSuffix": "…864109",
+      "deleted": {
+        "total": 178,
+        "cache": 17,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "stepIndex": 12,
+      "nextStep": "stabilization",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 13,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 1,
+      "error": "",
+      "completedStepCount": 13,
+      "idempotent": false,
+      "deleted": {
+        "total": 178,
+        "cache": 17,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "targetAccountIdSuffix": "…864109",
+      "stepIndex": 13,
+      "nextStep": "diagnostics",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 14,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 1,
+      "error": "",
+      "completedStepCount": 14,
+      "idempotent": false,
+      "deleted": {
+        "total": 178,
+        "cache": 17,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "targetAccountIdSuffix": "…864109",
+      "stepIndex": 14,
+      "nextStep": "main",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 15,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 2,
+      "error": "",
+      "idempotent": false,
+      "completedStepCount": 15,
+      "targetAccountIdSuffix": "…864109",
+      "deleted": {
+        "total": 178,
+        "cache": 17,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "stepIndex": 0,
+      "nextStep": "fifo",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 16,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 2,
+      "error": "",
+      "completedStepCount": 16,
+      "idempotent": false,
+      "targetAccountIdSuffix": "…864109",
+      "deleted": {
+        "total": 178,
+        "cache": 17,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "stepIndex": 1,
+      "nextStep": "portfolioNoApi",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 17,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 2,
+      "error": "",
+      "idempotent": false,
+      "completedStepCount": 17,
+      "targetAccountIdSuffix": "…864109",
+      "deleted": {
+        "cache": 17,
+        "total": 178,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "stepIndex": 2,
+      "nextStep": "visualization",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 18,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 2,
+      "error": "",
+      "idempotent": false,
+      "completedStepCount": 18,
+      "targetAccountIdSuffix": "…864109",
+      "deleted": {
+        "cache": 17,
+        "total": 178,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "stepIndex": 3,
+      "nextStep": "marketRegime",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 19,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 2,
+      "error": "",
+      "idempotent": false,
+      "completedStepCount": 19,
+      "deleted": {
+        "cache": 17,
+        "total": 178,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "targetAccountIdSuffix": "…864109",
+      "stepIndex": 4,
+      "nextStep": "strategyTargets",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 20,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 2,
+      "error": "",
+      "idempotent": false,
+      "completedStepCount": 20,
+      "targetAccountIdSuffix": "…864109",
+      "deleted": {
+        "cache": 17,
+        "total": 178,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "stepIndex": 5,
+      "nextStep": "tax",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 21,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 2,
+      "error": "",
+      "completedStepCount": 21,
+      "idempotent": false,
+      "targetAccountIdSuffix": "…864109",
+      "deleted": {
+        "total": 178,
+        "cache": 17,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "stepIndex": 6,
+      "nextStep": "rebalance",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 22,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 2,
+      "error": "",
+      "completedStepCount": 22,
+      "idempotent": false,
+      "targetAccountIdSuffix": "…864109",
+      "deleted": {
+        "cache": 17,
+        "total": 178,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "stepIndex": 7,
+      "nextStep": "tradePlan",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 23,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 2,
+      "error": "",
+      "completedStepCount": 23,
+      "idempotent": false,
+      "deleted": {
+        "total": 178,
+        "cache": 17,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "targetAccountIdSuffix": "…864109",
+      "stepIndex": 8,
+      "nextStep": "decisions",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 24,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 2,
+      "error": "",
+      "idempotent": false,
+      "completedStepCount": 24,
+      "deleted": {
+        "total": 178,
+        "cache": 17,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "targetAccountIdSuffix": "…864109",
+      "stepIndex": 9,
+      "nextStep": "portfolioHealth",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 25,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 2,
+      "error": "",
+      "idempotent": false,
+      "completedStepCount": 25,
+      "deleted": {
+        "total": 178,
+        "cache": 17,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "targetAccountIdSuffix": "…864109",
+      "stepIndex": 10,
+      "nextStep": "portfolioIntelligence",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 26,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 2,
+      "error": "",
+      "idempotent": false,
+      "completedStepCount": 26,
+      "deleted": {
+        "cache": 17,
+        "total": 178,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "targetAccountIdSuffix": "…864109",
+      "stepIndex": 11,
+      "nextStep": "advisor",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 27,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 2,
+      "error": "",
+      "completedStepCount": 27,
+      "idempotent": false,
+      "deleted": {
+        "cache": 17,
+        "total": 178,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "targetAccountIdSuffix": "…864109",
+      "stepIndex": 12,
+      "nextStep": "stabilization",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 28,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 2,
+      "error": "",
+      "completedStepCount": 28,
+      "idempotent": false,
+      "deleted": {
+        "cache": 17,
+        "total": 178,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "targetAccountIdSuffix": "…864109",
+      "stepIndex": 13,
+      "nextStep": "diagnostics",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 29,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "CONTINUE",
+      "pass": 2,
+      "error": "",
+      "completedStepCount": 29,
+      "idempotent": false,
+      "deleted": {
+        "total": 178,
+        "cache": 17,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "targetAccountIdSuffix": "…864109",
+      "stepIndex": 14,
+      "nextStep": "main",
+      "runId": "…df81f9",
+      "ok": true,
+      "apiCallCount": 0,
+      "status": "running"
+    }
+  },
+  {
+    "invocation": 30,
+    "functionName": "TI_ContinueGateBMigration",
+    "result": {
+      "code": "GATE_B_FAILED",
+      "pass": 2,
+      "error": "SECOND_RECALC_NOT_IDEMPOTENT",
+      "idempotent": false,
+      "completedStepCount": 29,
+      "targetAccountIdSuffix": "…864109",
+      "deleted": {
+        "total": 178,
+        "cache": 17,
+        "portfolio": 1,
+        "trades": 160
+      },
+      "stepIndex": 14,
+      "nextStep": "",
+      "runId": "…df81f9",
+      "ok": false,
+      "apiCallCount": 0,
+      "status": "failed"
+    }
+  }
+]
