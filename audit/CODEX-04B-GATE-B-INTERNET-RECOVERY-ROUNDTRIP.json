@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "canonicalFileCount": 61,
+  "exactMatches": 61,
+  "mismatchCount": 0,
+  "temporaryPullDirectory": "C:\\Users\\NEYJEA~1\\AppData\\Local\\Temp\\ios-codex04b-recovery-roundtrip-2026-07-16T18-44-22-360Z",
+  "accountControl": {
+    "localName": "AccountControl.gs",
+    "remoteName": "AccountControl.js",
+    "equal": true,
+    "localSha256": "7bdaea6e5f675b2ab9e133dfd3ed0da8daf1e441bc87661a3716336a0eb328d3",
+    "remoteSha256": "7bdaea6e5f675b2ab9e133dfd3ed0da8daf1e441bc87661a3716336a0eb328d3"
+  },
+  "mismatches": []
+}

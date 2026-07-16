@@ -57,6 +57,12 @@ const assertions = {
   noRawAccountIdInput: !/<input[^>]+account.?id/i.test(html),
   optimisticLock: control.includes('ACCOUNT_SCOPE_REVISION_CONFLICT'),
   globalLock: control.includes('LockService.getScriptLock()'),
+  exactCellWrites: control.includes('writeChangedFlagCells') &&
+    control.includes('getRangeList(trueRanges).setValue(true)'),
+  idempotencyGuard: control.includes('ACCOUNT_SCOPE_IDEMPOTENCY_CONFLICT'),
+  rollbackTargetGuard: control.includes('ACCOUNT_SCOPE_ROLLBACK_TARGET_CONFLICT'),
+  rollbackSnapshotNotOverwritten: control.includes('suppressRollbackSnapshot: true'),
+  repeatedRollbackSafe: control.includes('deleteProperty(this.SNAPSHOT_KEY)'),
   noAutomaticPurge: !/TI_ApplyExcludeAccountPurge\s*\(/.test(control),
   noArchiveRestore: !/restoreCapturedRows\s*\(/.test(control),
   marketRegimeUntouched: !/TI_BuildMarketRegime|MarketRegime\./.test(control),

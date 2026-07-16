@@ -6,6 +6,7 @@ var TI = TI || {};
 
 TI.AccountControl = {
   SNAPSHOT_KEY: "CODEX04B_ACCOUNT_SCOPE_ROLLBACK",
+  IDEMPOTENCY_PREFIX: "CODEX04B_ACCOUNT_SCOPE_IDEMPOTENCY_",
   PROTECTION_DESCRIPTION: "CODEX-04B: управляется через меню IOS → Счета",
   FLAG_FIELDS: Object.freeze([
     "Sync_Enabled",
@@ -342,6 +343,43 @@ TI.AccountControl = {
     return values.length;
   },
 
+  writeChangedFlagCells: function(layout, resolved, useAfter) {
+    var rowById = {};
+    layout.values.slice(1).forEach(function(row, index) {
+      rowById[String(row[layout.idIndex] || "").trim()] = index + 2;
+    });
+    var trueRanges = [];
+    var falseRanges = [];
+    resolved.forEach(function(change) {
+      var accountId = String(change.account.accountId || "").trim();
+      var sheetRow = rowById[accountId];
+      if (!sheetRow) throw new Error("ACCOUNT_SCOPE_TARGET_ROW_MISSING");
+      TI.AccountControl.FLAG_FIELDS.forEach(function(field, index) {
+        if (change.before[field] === change.after[field]) return;
+        var a1 = layout.sheet.getRange(sheetRow, layout.flagStart + index + 1).getA1Notation();
+        var value = useAfter ? change.after[field] : change.before[field];
+        (value ? trueRanges : falseRanges).push(a1);
+      });
+    });
+    if (trueRanges.length) layout.sheet.getRangeList(trueRanges).setValue(true);
+    if (falseRanges.length) layout.sheet.getRangeList(falseRanges).setValue(false);
+    return trueRanges.length + falseRanges.length;
+  },
+
+  idempotencyRecord: function(key) {
+    if (!key) return null;
+    var raw = PropertiesService.getDocumentProperties().getProperty(this.IDEMPOTENCY_PREFIX + key);
+    return raw ? JSON.parse(raw) : null;
+  },
+
+  saveIdempotencyRecord: function(key, requestHash, result) {
+    if (!key) return;
+    PropertiesService.getDocumentProperties().setProperty(
+      this.IDEMPOTENCY_PREFIX + key,
+      JSON.stringify({ requestHash: requestHash, result: result })
+    );
+  },
+
   buildAuditRows: function(resolved, context) {
     context = context || {};
     var now = context.timestamp || new Date();
@@ -373,6 +411,24 @@ TI.AccountControl = {
     if (!lock.tryLock(30000)) return { ok: false, code: "GLOBAL_LOCK_UNAVAILABLE" };
     var runId = this.suffix(Utilities.getUuid());
     try {
+      var idempotencyKey = String(request.idempotencyKey || "").trim();
+      var requestHash = this.digest({
+        scopeRevision: request.scopeRevision,
+        changes: request.changes || [],
+        reason: request.reason || "",
+        previewHash: request.previewHash || ""
+      });
+      var prior = this.idempotencyRecord(idempotencyKey);
+      if (prior) {
+        if (prior.requestHash !== requestHash) {
+          return { ok: false, code: "ACCOUNT_SCOPE_IDEMPOTENCY_CONFLICT", runId: runId, writes: 0 };
+        }
+        var replay = prior.result || {};
+        replay.idempotent = true;
+        replay.writes = 0;
+        replay.auditRows = 0;
+        return replay;
+      }
       var syncState = TI.BatchSync.status();
       if (syncState && syncState.status === "running") return { ok: false, code: "SYNC_ALREADY_RUNNING", runId: runId };
       var snapshot = this.scopeSnapshot();
@@ -391,28 +447,21 @@ TI.AccountControl = {
         return TI.AccountControl.digest(change.before) !== TI.AccountControl.digest(change.after);
       });
       var layout = this.sheetLayout();
-      var beforeMatrix = layout.values.slice(1).map(function(row) {
-        return TI.AccountControl.FLAG_FIELDS.map(function(field, index) {
-          return TI.AccountScope.isTrue(row[layout.flagStart + index]);
-        });
-      });
-      var afterMatrix = beforeMatrix.map(function(row) { return row.slice(); });
-      var rowById = {};
-      layout.values.slice(1).forEach(function(row, index) {
-        rowById[String(row[layout.idIndex] || "").trim()] = index;
-      });
-      resolved.forEach(function(change) {
-        var accountId = String(change.account.accountId || "").trim();
-        if (rowById[accountId] === undefined) throw new Error("ACCOUNT_SCOPE_TARGET_ROW_MISSING");
-        afterMatrix[rowById[accountId]] = TI.AccountControl.flagArray(change.after);
-      });
-      PropertiesService.getDocumentProperties().setProperty(this.SNAPSHOT_KEY, JSON.stringify({
-        createdAt: new Date().toISOString(),
-        runId: runId,
-        scopeRevision: snapshot.revision,
-        rows: snapshot.rows
-      }));
-      layout.sheet.getRange(2, layout.flagStart + 1, afterMatrix.length, this.FLAG_FIELDS.length).setValues(afterMatrix);
+      if (!request.suppressRollbackSnapshot) {
+        PropertiesService.getDocumentProperties().setProperty(this.SNAPSHOT_KEY, JSON.stringify({
+          createdAt: new Date().toISOString(),
+          runId: runId,
+          scopeRevision: snapshot.revision,
+          auditIdentity: {
+            originalRunId: runId,
+            previewHash: preview.previewHash,
+            reason: String(request.reason || "").trim(),
+            scopeRevision: snapshot.revision
+          },
+          rows: snapshot.rows
+        }));
+      }
+      var writes = this.writeChangedFlagCells(layout, resolved, true);
       SpreadsheetApp.flush();
       TI.AccountScope.resetExecutionCache();
       var afterSnapshot = this.scopeSnapshot();
@@ -421,7 +470,7 @@ TI.AccountControl = {
         return { accountId: item.accountId, flags: match ? match.after : item.flags };
       }));
       if (afterSnapshot.revision !== expectedRevision) {
-        layout.sheet.getRange(2, layout.flagStart + 1, beforeMatrix.length, this.FLAG_FIELDS.length).setValues(beforeMatrix);
+        this.writeChangedFlagCells(layout, resolved, false);
         SpreadsheetApp.flush();
         TI.AccountScope.resetExecutionCache();
         throw new Error("ACCOUNT_SCOPE_POST_VALIDATION_FAILED");
@@ -434,20 +483,23 @@ TI.AccountControl = {
         previewHash: preview.previewHash,
         scopeRevisionBefore: snapshot.revision,
         scopeRevisionAfter: afterSnapshot.revision,
-        result: "APPLIED",
-        rollbackAvailable: true
+        result: request.auditResult || "APPLIED",
+        rollbackAvailable: request.rollbackAvailable !== false
       });
       this.appendAudit(auditRows);
       TI.TechLog.info("AccountControl", "apply", "Настройки счетов изменены.", {
         runId: runId, accounts: auditRows.map(function(row) { return row.accountIdMasked; }),
         scopeRevisionBefore: snapshot.revision, scopeRevisionAfter: afterSnapshot.revision
       });
-      return {
+      var result = {
         ok: true, code: "APPLIED", runId: runId, changedAccounts: auditRows.length,
+        writes: writes, auditRows: auditRows.length,
         scopeRevisionBefore: snapshot.revision, scopeRevisionAfter: afterSnapshot.revision,
         previewHash: preview.previewHash, rollbackAvailable: true, recalcRequired: preview.recalcRequired,
         productionDataDeleted: false, productionDataRestored: false
       };
+      this.saveIdempotencyRecord(idempotencyKey, requestHash, result);
+      return result;
     } finally {
       lock.releaseLock();
     }
@@ -461,7 +513,12 @@ TI.AccountControl = {
   previewRollback: function(request) {
     request = request || {};
     var saved = this.rollbackSnapshot();
-    if (!saved || !saved.rows) return { ok: false, code: "ACCOUNT_SCOPE_ROLLBACK_NOT_AVAILABLE", readOnly: true };
+    if (!saved || !saved.rows) {
+      return { ok: false, code: "ACCOUNT_SCOPE_ROLLBACK_NOT_AVAILABLE", readOnly: true, writes: 0 };
+    }
+    if (request.rollbackRunId && request.rollbackRunId !== saved.runId) {
+      return { ok: false, code: "ACCOUNT_SCOPE_ROLLBACK_TARGET_CONFLICT", readOnly: true };
+    }
     var current = this.scopeSnapshot();
     var savedById = {};
     saved.rows.forEach(function(row) { savedById[row.accountId] = row.flags; });
@@ -491,18 +548,33 @@ TI.AccountControl = {
   applyRollback: function(request) {
     request = request || {};
     var saved = this.rollbackSnapshot();
-    if (!saved || !saved.rows) return { ok: false, code: "ACCOUNT_SCOPE_ROLLBACK_NOT_AVAILABLE" };
+    if (!saved || !saved.rows) {
+      return { ok: false, code: "ACCOUNT_SCOPE_ROLLBACK_NOT_AVAILABLE", writes: 0 };
+    }
+    if (!request.rollbackRunId || request.rollbackRunId !== saved.runId) {
+      return { ok: false, code: "ACCOUNT_SCOPE_ROLLBACK_TARGET_CONFLICT", writes: 0 };
+    }
     var current = this.scopeSnapshot();
     var changes = saved.rows.map(function(row) {
       return { accountRef: TI.AccountControl.accountRef(row.accountId), flags: row.flags };
     });
-    return this.apply({
+    var result = this.apply({
       scopeRevision: request.scopeRevision || current.revision,
       changes: changes,
       reason: String(request.reason || "Rollback настроек счетов"),
       criticalConfirmation: request.criticalConfirmation === true,
-      previewHash: request.previewHash
+      previewHash: request.previewHash,
+      idempotencyKey: request.idempotencyKey,
+      suppressRollbackSnapshot: true,
+      auditResult: "ROLLED_BACK",
+      rollbackAvailable: false
     });
+    if (result.ok && result.code === "APPLIED") {
+      PropertiesService.getDocumentProperties().deleteProperty(this.SNAPSHOT_KEY);
+      result.code = "ROLLED_BACK";
+      result.rollbackAvailable = false;
+    }
+    return result;
   },
 
   auditHistory: function() {
