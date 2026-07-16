@@ -42,6 +42,7 @@ var CORE = Object.freeze({
     STRATEGY_RULES: "Правила стратегии",
     DECISIONS: "Решения",
     ACCOUNTS: "Счета",
+    ACCOUNT_SCOPE_AUDIT: "История настроек счетов",
     STRATEGIES: "Стратегии",
     ACCOUNT_STRATEGIES: "Стратегии счетов",
     PORTFOLIO_HEALTH: "Здоровье портфеля",

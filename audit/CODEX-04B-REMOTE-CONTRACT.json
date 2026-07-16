@@ -1,0 +1,70 @@
+{
+  "diagnostics": {
+    "accountCount": 3,
+    "warnings": [],
+    "scopeRevision": "a7d3b535c87b8c56c7dbd2443a9a4c23c606f242329bf53176f215ae36f11557",
+    "displayAccounts": 2,
+    "readOnly": true,
+    "protection": {
+      "accountIdProtected": false,
+      "accountIdHidden": true,
+      "flagColumnsProtected": false
+    },
+    "duplicateIds": 0,
+    "invalidIds": 0,
+    "calculationAccounts": 1,
+    "orphanAccountStrategyLinks": 0,
+    "globalLockAvailable": true,
+    "migrationState": "EXCLUSION_COMMITTED",
+    "ok": true,
+    "errors": []
+  },
+  "productionFlagWrites": 0,
+  "presets": 5,
+  "accountCount": 3,
+  "noOpPreview": {
+    "code": "NO_CHANGES",
+    "scopeRevision": "a7d3b535c87b8c56c7dbd2443a9a4c23c606f242329bf53176f215ae36f11557",
+    "writes": 0,
+    "ok": true,
+    "apiCalls": 0
+  },
+  "contract": {
+    "fullIdsMasked": true,
+    "recommendationsWithoutCalculationRejected": true,
+    "displayWithoutCalculationSupported": true,
+    "presets": 5,
+    "ok": true
+  },
+  "knownExternalRisk": {
+    "code": "CRITICAL_ACTIVE_INFLUENCE_RISK",
+    "message": "Legacy multiplier > 1 может влиять на приоритет покупки через Decision Engine / Rule R030. Риск находится вне scope CODEX-04B.",
+    "status": "OPEN"
+  },
+  "semantics": {
+    "…020546": [
+      true,
+      false,
+      true,
+      false,
+      true
+    ],
+    "…531683": [
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "…864109": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "allIdsMasked": true,
+  "ok": true,
+  "apiCalls": 0
+}

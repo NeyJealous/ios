@@ -1,0 +1,73 @@
+{
+  "quickAccountIdSuffixes": [
+    "…020546",
+    "…531683"
+  ],
+  "recommendationAccountIdSuffixes": [
+    "…531683"
+  ],
+  "displayAccountIdSuffixes": [
+    "…020546",
+    "…531683"
+  ],
+  "readOnly": true,
+  "configuredAccounts": [
+    {
+      "calculation": false,
+      "accountIdSuffix": "…020546",
+      "display": true,
+      "history": true,
+      "sync": true,
+      "recommendations": false
+    },
+    {
+      "calculation": true,
+      "accountIdSuffix": "…531683",
+      "display": true,
+      "history": true,
+      "sync": true,
+      "recommendations": true
+    },
+    {
+      "calculation": false,
+      "accountIdSuffix": "…864109",
+      "display": false,
+      "history": false,
+      "sync": false,
+      "recommendations": false
+    }
+  ],
+  "apiCalls": 0,
+  "targetAccountIdSuffix": "…864109",
+  "historyAccountIdSuffixes": [
+    "…020546",
+    "…531683"
+  ],
+  "fullAccountIdSuffixes": [
+    "…020546",
+    "…531683"
+  ],
+  "targetPlannedApiCalls": {
+    "enrichment": 0,
+    "operations": 0,
+    "withdrawLimits": 0,
+    "trades": 0,
+    "accountsDetail": 0,
+    "positions": 0,
+    "cash": 0
+  },
+  "metrics": {
+    "skippedAccountIdSuffixes": [
+      "…864109"
+    ],
+    "savedApiCallsEstimate": 5,
+    "accountsSkipped": 1,
+    "accountsDiscovered": 3,
+    "accountsSyncEnabled": 2
+  },
+  "writes": 0,
+  "ok": true,
+  "calculationAccountIdSuffixes": [
+    "…531683"
+  ]
+}

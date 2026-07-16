@@ -1,0 +1,9 @@
+{
+  "code": "PROTECTION_APPLIED",
+  "ok": true,
+  "status": {
+    "accountIdProtected": true,
+    "accountIdHidden": true,
+    "flagColumnsProtected": true
+  }
+}
