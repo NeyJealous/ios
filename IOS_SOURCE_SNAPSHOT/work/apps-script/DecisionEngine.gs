@@ -20,6 +20,11 @@ TI.DecisionEngine = {
   },
 
   applyToTradePlanRow: function(row, portfolio, ratings, constitution, reserve, regime, total) {
+    var accountId = String(row.accountId || "").trim();
+    if (accountId && !TI.AccountScope.isRecommendationEnabled(accountId)) {
+      TI.TechLog.warning("DecisionEngine", "applyToTradePlanRow", "ACCOUNT_RECOMMENDATION_DISABLED", TI.AccountStrategyAudit.suffix(accountId));
+      return row;
+    }
     var context = this.contextForTradeRow(row, portfolio, ratings, constitution, reserve, regime, total);
     var fired = TI.RuleEngine.evaluate(context);
     var decision = this.decide(context, fired);
@@ -62,8 +67,9 @@ TI.DecisionEngine = {
     var isBuy = !isReserveAction && TI.TradePlan.isBuyAction(action);
 
     return {
+      accountId: row.accountId || "",
       accountName: row.accountName || "",
-      strategy: row.strategy || TI.MultiAccount.strategyForAccount(row.accountName),
+      strategy: row.strategy || (row.accountId ? TI.MultiAccount.strategyForAccount(row.accountId) : ""),
       ticker: ticker,
       row: row,
       rating: rating,
@@ -146,10 +152,13 @@ TI.DecisionEngine = {
     var rows = TI.TradePlan.build();
     var now = new Date();
 
-    return rows.map(function(row) {
+    return TI.AccountScope.filterDisplayScopedRows(
+      TI.AccountScope.filterRecommendationScopedRows(rows)
+    ).map(function(row) {
       return {
+        accountId: row.accountId || "",
         accountName: row.accountName || "",
-        strategy: row.strategy || TI.MultiAccount.strategyForAccount(row.accountName),
+        strategy: row.strategy || (row.accountId ? TI.MultiAccount.strategyForAccount(row.accountId) : ""),
         ticker: row.ticker || row.targetName || "",
         action: row.action || "",
         score: row.rating || "",

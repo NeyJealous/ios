@@ -330,20 +330,30 @@ TI.AutoDataRefresh = {
       positions: 0,
       portfolios: 0,
       prices: 0,
+      accountsDiscovered: 0,
+      accountsSyncEnabled: 0,
+      accountsSkipped: 0,
+      skippedAccountIdSuffixes: [],
+      savedApiCallsEstimate: 0,
       warnings: []
     };
 
     try {
       var accountResponse = TI.Providers.users.getAccounts(true);
       stats.accounts = (accountResponse.accounts || []).length;
+      stats.accountsDiscovered = stats.accounts;
     } catch (e) {
       stats.warnings.push("Счета: " + (e.message || String(e)));
     }
 
-    TI.MultiAccount.accounts().forEach(function(account) {
+    var registeredAccounts = TI.AccountScope.getAllAccounts();
+    var syncIds = TI.AccountScope.getSyncEnabledAccountIds();
+    stats.accountsSyncEnabled = syncIds.length;
+    registeredAccounts.forEach(function(account) {
       var accountId = String(account.accountId || "").trim();
 
-      if (!accountId || String(account.active || "Да").trim() === "Нет") {
+      if (!accountId || !TI.AccountScope.isSyncEnabled(accountId)) {
+        if (accountId) stats.skippedAccountIdSuffixes.push(TI.AccountStrategyAudit.suffix(accountId));
         return;
       }
 
@@ -368,9 +378,13 @@ TI.AutoDataRefresh = {
         stats.warnings.push("Портфель: " + account.accountName);
       }
     });
+    stats.accountsSkipped = stats.skippedAccountIdSuffixes.length;
+    stats.savedApiCallsEstimate = stats.accountsSkipped * 3;
 
     try {
-      stats.prices = TI.Prices.refreshForPositions(TI.Data.portfolio());
+      stats.prices = TI.Prices.refreshForPositions(
+        TI.AccountScope.filterCalculationOrDisplayRows(TI.Data.portfolio())
+      );
     } catch (priceError) {
       stats.warnings.push("Цены: " + (priceError.message || String(priceError)));
     }

@@ -157,13 +157,14 @@ TI.Accounts = {
     var result = {};
     var total = 0;
 
-    this.active().forEach(function(account) {
+    TI.AccountScope.accounts(TI.AccountScope.FLAGS.CALCULATION).forEach(function(account) {
 
-      var name = TI.Accounts.displayName(account);
-      var cash = TI.Accounts.cashForAccount(account.id);
+      var accountId = String(account.accountId || "").trim();
+      var name = String(account.accountName || accountId).trim();
+      var cash = TI.Accounts.cashForAccount(accountId);
 
       result[name] = cash;
-      result[account.id] = cash;
+      result[accountId] = cash;
       total += cash;
 
     });
@@ -218,9 +219,7 @@ TI.Accounts = {
    */
   cashByAccountIdCachedOnly: function() {
     var result = {};
-    TI.MultiAccount.accounts().filter(function(account) {
-      return TI.CompanyRating.isYes(account.active);
-    }).forEach(function(account) {
+    TI.AccountScope.accounts(TI.AccountScope.FLAGS.CALCULATION).forEach(function(account) {
       var accountId = String(account.accountId || "").trim();
       if (!accountId) throw new Error("Активный счёт без Account ID в листе Счета.");
       if (result.hasOwnProperty(accountId)) {
@@ -239,9 +238,7 @@ TI.Accounts = {
     var byId = this.cashByAccountIdCachedOnly();
     var result = {};
     var total = 0;
-    TI.MultiAccount.accounts().filter(function(account) {
-      return TI.CompanyRating.isYes(account.active);
-    }).forEach(function(account) {
+    TI.AccountScope.accounts(TI.AccountScope.FLAGS.CALCULATION).forEach(function(account) {
       var accountId = String(account.accountId || "").trim();
       var accountName = String(account.accountName || "").trim();
       if (!byId.hasOwnProperty(accountId)) {
@@ -264,6 +261,10 @@ TI.Accounts = {
    * @return {number}
    */
   cashForAccount: function(accountId) {
+    accountId = String(accountId || "").trim();
+    if (!TI.AccountScope.isSyncEnabled(accountId)) {
+      throw new Error("ACCOUNT_SYNC_DISABLED: " + TI.AccountStrategyAudit.suffix(accountId));
+    }
 
     var withdrawCash = this.withdrawLimitsCash(accountId);
 
@@ -287,6 +288,9 @@ TI.Accounts = {
    * @return {number|null}
    */
   withdrawLimitsCash: function(accountId) {
+    if (!TI.AccountScope.isSyncEnabled(accountId)) {
+      throw new Error("ACCOUNT_SYNC_DISABLED: " + TI.AccountStrategyAudit.suffix(accountId));
+    }
 
     try {
       var response = TI.Providers.operations.getWithdrawLimits(accountId);
@@ -310,6 +314,9 @@ TI.Accounts = {
    * @return {number|null}
    */
   positionsCash: function(accountId) {
+    if (!TI.AccountScope.isSyncEnabled(accountId)) {
+      throw new Error("ACCOUNT_SYNC_DISABLED: " + TI.AccountStrategyAudit.suffix(accountId));
+    }
 
     try {
       var response = TI.Providers.operations.getPositions(accountId);

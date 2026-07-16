@@ -68,16 +68,18 @@ TI.TradePlan = {
    * @return {Object[]}
    */
   build: function() {
-    var portfolio = TI.Data.portfolio();
+    var portfolio = TI.AccountScope.filterCalculationRows(TI.Data.portfolio());
 
     if (portfolio.length === 0) {
-      portfolio = TI.Data.portfolioFromFifoLots();
+      portfolio = TI.AccountScope.filterCalculationRows(TI.Data.portfolioFromFifoLots());
     }
 
     var targets = TI.Rebalance.readTargets();
     var rebalance = TI.Rebalance.calculate(portfolio, targets);
 
-    return this.fromRebalance(rebalance, portfolio);
+    return TI.AccountScope.filterDisplayScopedRows(
+      TI.AccountScope.filterRecommendationScopedRows(this.fromRebalance(rebalance, portfolio))
+    );
   },
 
   /**

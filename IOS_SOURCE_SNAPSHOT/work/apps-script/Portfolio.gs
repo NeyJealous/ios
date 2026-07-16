@@ -33,7 +33,9 @@ TI.Portfolio = {
   build: function(options) {
     options = options || {};
 
-    var trades = TI.Data.trades();
+    var trades = TI.AccountScope.filterCalculationOrDisplayRows(
+      TI.AccountScope.filterHistoryRows(TI.Data.trades())
+    );
 
     var fifo = TI.FIFO.calculate(trades);
     var rows = this.aggregateLots(fifo.lots);

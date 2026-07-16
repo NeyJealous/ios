@@ -495,7 +495,8 @@ Object.assign(Schema.Definitions, {
     { field:"confidence",   title:"Уверенность",         type:Schema.Types.TEXT,    hidden:false, width:120 },
     { field:"risk",         title:"Риск",                type:Schema.Types.TEXT,    hidden:false, width:260 },
     { field:"nextStep",     title:"Следующий шаг",       type:Schema.Types.TEXT,    hidden:false, width:320 },
-    { field:"effect",       title:"Ожидаемый эффект",    type:Schema.Types.TEXT,    hidden:false, width:220 }
+    { field:"effect",       title:"Ожидаемый эффект",    type:Schema.Types.TEXT,    hidden:false, width:220 },
+    { field:"accountId",    title:"ID счёта",            type:Schema.Types.TEXT,    hidden:true,  width:220 }
   ],
 
   STRATEGY: [
@@ -675,7 +676,8 @@ Object.assign(Schema.Definitions, {
     { field:"risks",       title:"Риски",                type:Schema.Types.TEXT,   hidden:false, width:360 },
     { field:"rules",       title:"Сработавшие правила",  type:Schema.Types.TEXT,   hidden:true,  width:280 },
     { field:"nextStep",    title:"Следующий шаг",        type:Schema.Types.TEXT,   hidden:false, width:300 },
-    { field:"updatedAt",   title:"Обновлено",            type:Schema.Types.DATE,   hidden:false, width:130 }
+    { field:"updatedAt",   title:"Обновлено",            type:Schema.Types.DATE,   hidden:false, width:130 },
+    { field:"accountId",   title:"ID счёта",             type:Schema.Types.TEXT,   hidden:true,  width:220 }
   ],
 
   ACCOUNTS: [
@@ -687,7 +689,12 @@ Object.assign(Schema.Definitions, {
     { field:"strategy",      title:"Стратегия",                  type:Schema.Types.TEXT, hidden:false, width:170 },
     { field:"limits",        title:"Лимиты",                     type:Schema.Types.TEXT, hidden:false, width:260 },
     { field:"comment",       title:"Комментарий",                type:Schema.Types.TEXT, hidden:false, width:320 },
-    { field:"accountId",     title:"ID счёта",                   type:Schema.Types.TEXT, hidden:true,  width:220 }
+    { field:"accountId",     title:"ID счёта",                   type:Schema.Types.TEXT, hidden:true,  width:220 },
+    { field:"Sync_Enabled",            title:"Синхронизировать",                type:Schema.Types.BOOLEAN, hidden:false, width:150 },
+    { field:"Calculation_Enabled",     title:"Учитывать в расчётах",            type:Schema.Types.BOOLEAN, hidden:false, width:180 },
+    { field:"Display_Enabled",         title:"Показывать",                      type:Schema.Types.BOOLEAN, hidden:false, width:110 },
+    { field:"Recommendations_Enabled", title:"Использовать в рекомендациях",    type:Schema.Types.BOOLEAN, hidden:false, width:220 },
+    { field:"History_Enabled",         title:"Хранить историю",                 type:Schema.Types.BOOLEAN, hidden:false, width:150 }
   ],
 
   STRATEGIES: [
@@ -726,7 +733,8 @@ Object.assign(Schema.Definitions, {
     { field:"strategyDeviation", title:"Отклонение от стратегии", type:Schema.Types.PERCENT, hidden:false, width:170 },
     { field:"risks",             title:"Риски",                   type:Schema.Types.TEXT,    hidden:false, width:360 },
     { field:"status",            title:"Статус",                  type:Schema.Types.TEXT,    hidden:false, width:130 },
-    { field:"updatedAt",         title:"Обновлено",               type:Schema.Types.DATE,    hidden:false, width:130 }
+    { field:"updatedAt",         title:"Обновлено",               type:Schema.Types.DATE,    hidden:false, width:130 },
+    { field:"accountId",         title:"ID счёта",                type:Schema.Types.TEXT,    hidden:true,  width:220 }
   ],
 
   PORTFOLIO_INTELLIGENCE: [
@@ -744,7 +752,8 @@ Object.assign(Schema.Definitions, {
     { field:"decision",          title:"Решение",                        type:Schema.Types.TEXT,    hidden:false, width:190 },
     { field:"reason",            title:"Причина",                        type:Schema.Types.TEXT,    hidden:false, width:420 },
     { field:"nextStep",          title:"Следующий шаг",                  type:Schema.Types.TEXT,    hidden:false, width:360 },
-    { field:"updatedAt",         title:"Обновлено",                      type:Schema.Types.DATE,    hidden:false, width:130 }
+    { field:"updatedAt",         title:"Обновлено",                      type:Schema.Types.DATE,    hidden:false, width:130 },
+    { field:"accountId",         title:"ID счёта",                       type:Schema.Types.TEXT,    hidden:true,  width:220 }
   ],
 
   BOND_ANALYSIS: [
@@ -1278,7 +1287,12 @@ Schema.applyColumnFormats = function(sheet, cols) {
     } else if (col.type === Schema.Types.NUMBER) {
       range.setNumberFormat("#,##0.########");
     } else if (col.type === Schema.Types.BOOLEAN) {
-      range.setNumberFormat("@");
+      range.setNumberFormat("General");
+      range.setDataValidation(
+        SpreadsheetApp.newDataValidation().requireCheckbox().setAllowInvalid(false).build()
+      );
+    } else if (col.type === Schema.Types.BOOLEAN) {
+      range.setHorizontalAlignment("center");
     } else {
       range.setNumberFormat("@");
     }

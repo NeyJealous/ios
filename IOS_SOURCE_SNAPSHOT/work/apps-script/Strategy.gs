@@ -76,10 +76,10 @@ TI.Strategy = {
    * @return {Object[]}
    */
   buildTemplateRows: function() {
-    var portfolio = TI.Data.portfolio();
+    var portfolio = TI.AccountScope.filterCalculationRows(TI.Data.portfolio());
 
     if (portfolio.length === 0) {
-      portfolio = TI.Data.portfolioFromFifoLots();
+      portfolio = TI.AccountScope.filterCalculationRows(TI.Data.portfolioFromFifoLots());
     }
 
     var byType = this.groupShares(portfolio, "instrumentType");
@@ -266,7 +266,7 @@ TI.Strategy = {
    * @return {string[]}
    */
   accountValues: function() {
-    var names = TI.MultiAccount.accounts()
+    var names = TI.AccountScope.accounts(TI.AccountScope.FLAGS.DISPLAY)
       .map(function(account) {
         return String(account.accountName || "").trim();
       })

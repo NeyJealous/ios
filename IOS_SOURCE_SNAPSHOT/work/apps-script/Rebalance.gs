@@ -74,13 +74,13 @@ TI.Rebalance = {
    * @return {Object[]}
    */
   build: function() {
-    var portfolio = TI.Data.portfolio();
+    var portfolio = TI.AccountScope.filterCalculationRows(TI.Data.portfolio());
 
     if (portfolio.length === 0) {
-      portfolio = TI.Data.portfolioFromFifoLots();
+      portfolio = TI.AccountScope.filterCalculationRows(TI.Data.portfolioFromFifoLots());
     }
 
-    var targets = this.readTargets();
+    var targets = TI.AccountScope.filterCalculationScopedRows(this.readTargets());
 
     return this.calculate(portfolio, targets);
   },

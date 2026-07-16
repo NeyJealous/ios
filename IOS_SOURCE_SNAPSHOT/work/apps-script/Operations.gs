@@ -163,32 +163,14 @@ TI.Operations = {
    * @return {Object[]}
    */
   operationAccounts: function() {
-    var sheetAccounts = [];
-
-    try {
-      sheetAccounts = TI.MultiAccount.accounts()
-        .filter(function(account) {
-          return String(account.active || "Да").trim() !== "Нет";
-        })
-        .filter(function(account) {
-          return !!String(account.accountId || "").trim();
-        })
-        .map(function(account) {
-          return {
-            id: account.accountId,
-            name: account.accountName || account.accountId
-          };
-        });
-    } catch (e) {
-      Logger.log(e);
-    }
-
-    return sheetAccounts.length > 0
-      ? sheetAccounts
-      : TI.Accounts.active().map(function(account) {
+    return TI.AccountScope.accounts(TI.AccountScope.FLAGS.HISTORY)
+      .filter(function(account) {
+        return TI.AccountScope.isSyncEnabled(account.accountId);
+      })
+      .map(function(account) {
         return {
-          id: account.id,
-          name: TI.Accounts.displayName(account)
+          id: String(account.accountId || "").trim(),
+          name: account.accountName || account.accountId
         };
       });
   },
@@ -202,6 +184,9 @@ TI.Operations = {
    * @return {Object[]}
    */
   fetchAccount: function(accountId, from, to, accountName) {
+    if (!TI.AccountScope.isSyncEnabled(accountId) || !TI.AccountScope.isHistoryEnabled(accountId)) {
+      throw new Error("ACCOUNT_HISTORY_SYNC_DISABLED: " + TI.AccountStrategyAudit.suffix(accountId));
+    }
     var data = [];
     var cursor = "";
     var hasNext = true;

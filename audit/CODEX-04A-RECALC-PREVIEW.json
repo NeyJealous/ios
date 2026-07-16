@@ -1,0 +1,53 @@
+{
+  "accountIdSuffix": "…864109",
+  "uiAction": "REBUILD_FROM_DISPLAY_ENABLED_ROWS_AT_GATE_B",
+  "readOnly": true,
+  "derivedWrites": 0,
+  "remainingPositions": 1,
+  "apiCalls": 0,
+  "operationsWrites": 0,
+  "sheetPreview": {
+    "Интеллект портфеля": {
+      "targetRowsExcludedOrRebuilt": 1,
+      "currentRows": 4
+    },
+    "Решения": {
+      "targetRowsExcludedOrRebuilt": 0,
+      "currentRows": 3
+    },
+    "Визуализация": {
+      "targetRowsExcludedOrRebuilt": 1,
+      "currentRows": 7
+    },
+    "Здоровье портфеля": {
+      "targetRowsExcludedOrRebuilt": 1,
+      "currentRows": 4
+    },
+    "Лоты FIFO": {
+      "targetRowsExcludedOrRebuilt": 6,
+      "currentRows": 12
+    },
+    "Советник": {
+      "targetRowsExcludedOrRebuilt": 1,
+      "currentRows": 18
+    },
+    "Главная": {
+      "targetRowsExcludedOrRebuilt": 0,
+      "currentRows": 19
+    },
+    "Продажи FIFO": {
+      "targetRowsExcludedOrRebuilt": 131,
+      "currentRows": 131
+    },
+    "План сделок": {
+      "targetRowsExcludedOrRebuilt": 0,
+      "currentRows": 3
+    }
+  },
+  "excludedPositions": 1,
+  "tradesWrites": 0,
+  "fifoAction": "REBUILD_FROM_HISTORY_ENABLED_TRADES_AT_GATE_B",
+  "remainingMarketValue": 13061.12,
+  "productionPurgePerformed": false,
+  "ok": true
+}

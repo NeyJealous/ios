@@ -243,7 +243,7 @@ TI.Trades = {
    */
   sync: function(operations) {
     operations = operations || TI.Operations.get();
-    var trades = this.toObjects(operations);
+    var trades = TI.AccountScope.filterHistoryRows(this.toObjects(operations));
     var exists = this.existingIndex();
     var conflicts = [];
 
@@ -283,7 +283,7 @@ TI.Trades = {
     }
 
     var operations = TI.Operations.get(true);
-    var trades = this.toObjects(operations);
+    var trades = TI.AccountScope.filterHistoryRows(this.toObjects(operations));
 
     return this.write(trades);
   }

@@ -1,0 +1,3276 @@
+{
+  "generatedAt": "2026-07-15T21:31:06.230Z",
+  "sourceRoot": "IOS_SOURCE_SNAPSHOT/work/apps-script",
+  "readOnlyAnalysis": true,
+  "referenceCount": 634,
+  "filesWithReferences": 41,
+  "expectedFlagsByModule": {
+    "Accounts.gs": [
+      "Sync_Enabled",
+      "Calculation_Enabled",
+      "Display_Enabled"
+    ],
+    "Operations.gs": [
+      "Sync_Enabled",
+      "History_Enabled"
+    ],
+    "Trades.gs": [
+      "History_Enabled"
+    ],
+    "Portfolio.gs": [
+      "Calculation_Enabled"
+    ],
+    "Prices.gs": [
+      "Sync_Enabled",
+      "Calculation_Enabled"
+    ],
+    "Tax.gs": [
+      "Calculation_Enabled"
+    ],
+    "FIFO.gs": [
+      "Calculation_Enabled",
+      "History_Enabled"
+    ],
+    "Rebalance.gs": [
+      "Calculation_Enabled",
+      "Recommendations_Enabled"
+    ],
+    "TradePlan.gs": [
+      "Recommendations_Enabled",
+      "Display_Enabled"
+    ],
+    "DecisionEngine.gs": [
+      "Recommendations_Enabled",
+      "Display_Enabled"
+    ],
+    "Advisor.gs": [
+      "Recommendations_Enabled",
+      "Display_Enabled"
+    ],
+    "PortfolioHealth.gs": [
+      "Calculation_Enabled",
+      "Display_Enabled"
+    ],
+    "PortfolioIntelligence.gs": [
+      "Calculation_Enabled",
+      "Recommendations_Enabled",
+      "Display_Enabled"
+    ],
+    "Main.gs": [
+      "Display_Enabled"
+    ],
+    "BatchSync.gs": [
+      "Sync_Enabled"
+    ],
+    "DataCache.gs": [
+      "Sync_Enabled"
+    ],
+    "KnowledgeEngine.gs": [
+      "Calculation_Enabled"
+    ],
+    "AssetScoring.gs": [
+      "Calculation_Enabled"
+    ],
+    "CompanyRating.gs": [
+      "Calculation_Enabled"
+    ],
+    "Diagnostics.gs": [
+      "Calculation_Enabled",
+      "Display_Enabled"
+    ],
+    "Constitution.gs": [
+      "Calculation_Enabled"
+    ],
+    "StrategyEngine.gs": [
+      "Calculation_Enabled",
+      "Recommendations_Enabled"
+    ],
+    "MultiAccount.gs": [
+      "all flags; registry owner"
+    ],
+    "Menu.gs": [
+      "delegates only"
+    ],
+    "AutoMaintenance.gs": [
+      "delegates only"
+    ]
+  },
+  "legacyPatterns": {
+    "activeAccountFilter": "account.active / TI.Accounts.active()",
+    "aggregateFilter": "includeTotal / TI.MultiAccount.isIncludedAccount()",
+    "displayKeyLeakage": "accountName used as lookup or strategy key",
+    "providerFallbackRisk": "TI.Accounts.active() fallback when sheet registry is empty or unreadable"
+  },
+  "references": [
+    {
+      "file": "AccountExclusionMigration.gs",
+      "line": 16,
+      "text": "CURRENT_SHEETS: Object.freeze([\"Портфель\", \"Данные источников\", \"Кэш\", \"API Операции\", \"API Счета\"]),"
+    },
+    {
+      "file": "AccountExclusionMigration.gs",
+      "line": 42,
+      "text": "inspect: function(accountId) {"
+    },
+    {
+      "file": "AccountExclusionMigration.gs",
+      "line": 43,
+      "text": "accountId = String(accountId || \"\").trim();"
+    },
+    {
+      "file": "AccountExclusionMigration.gs",
+      "line": 44,
+      "text": "if (!accountId) {"
+    },
+    {
+      "file": "AccountExclusionMigration.gs",
+      "line": 51,
+      "text": "var idColumn = accounts.headers.indexOf(\"ID счёта\");"
+    },
+    {
+      "file": "AccountExclusionMigration.gs",
+      "line": 56,
+      "text": "return String(item.values[idColumn] || \"\").trim() === accountId;"
+    },
+    {
+      "file": "AccountExclusionMigration.gs",
+      "line": 63,
+      "text": "accountIdSuffix: this.suffix(accountId),"
+    },
+    {
+      "file": "AccountExclusionMigration.gs",
+      "line": 75,
+      "text": "var displayName = String(targetObject.accountName || \"\").trim();"
+    },
+    {
+      "file": "AccountExclusionMigration.gs",
+      "line": 86,
+      "text": "return text === accountId || text.indexOf(accountId) !== -1;"
+    },
+    {
+      "file": "AccountExclusionMigration.gs",
+      "line": 101,
+      "text": "exactAccountIdRows: exactRows.length,"
+    },
+    {
+      "file": "AccountExclusionMigration.gs",
+      "line": 105,
+      "text": "deleteByAccountId: sheet.getName() !== CORE.SHEETS.ACCOUNTS,"
+    },
+    {
+      "file": "AccountExclusionMigration.gs",
+      "line": 118,
+      "text": "return total + (item.deleteByAccountId ? item.exactAccountIdRows : 0);"
+    },
+    {
+      "file": "AccountExclusionMigration.gs",
+      "line": 127,
+      "text": "accountIdSuffix: this.suffix(accountId),"
+    },
+    {
+      "file": "AccountExclusionMigration.gs",
+      "line": 130,
+      "text": "status: targetObject.active || \"\","
+    },
+    {
+      "file": "AccountExclusionMigration.gs",
+      "line": 144,
+      "text": "}).map(function(item) { return item.sheet + \":\" + TI.AccountExclusionMigration.suffix(accountId); }),"
+    },
+    {
+      "file": "AccountExclusionMigration.gs",
+      "line": 146,
+      "text": "expectedWriteSet: [\"Счета: five flags on row \" + target.rowNumber].concat(this.RECALC_SHEETS),"
+    },
+    {
+      "file": "AccountExclusionMigration.gs",
+      "line": 160,
+      "text": "function TI_DryRunExcludeAccount(accountId) {"
+    },
+    {
+      "file": "AccountExclusionMigration.gs",
+      "line": 161,
+      "text": "return TI.AccountExclusionMigration.inspect(accountId);"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 39,
+      "text": "var accountId = String(row.accountId || \"\").trim();"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 40,
+      "text": "if (!accountId) throw new Error(\"ACCOUNT_SCOPE_ACCOUNT_ID_REQUIRED\");"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 41,
+      "text": "if (byId[accountId]) {"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 42,
+      "text": "throw new Error(\"ACCOUNT_SCOPE_DUPLICATE_ACCOUNT_ID: \" + TI.AccountStrategyAudit.suffix(accountId));"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 49,
+      "text": "if (flags[field]) idsByFlag[field].push(accountId);"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 51,
+      "text": "byId[accountId] = { row: row, flags: flags };"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 60,
+      "text": "allAccounts: Object.keys(byId).sort().map(function(accountId) { return byId[accountId].row; })"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 73,
+      "text": "enabled: function(accountId, flag) {"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 74,
+      "text": "var key = String(accountId || \"\").trim();"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 81,
+      "text": "return TI.AccountScope.enabled(row && row.accountId, flag);"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 89,
+      "text": "String(row.accountName || \"\").trim() === TI.Rebalance.ALL_ACCOUNTS;"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 95,
+      "text": "return TI.AccountScope.enabled(row && row.accountId, flag);"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 102,
+      "text": "return self.enabled(row.accountId, flag);"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 115,
+      "text": "getSyncEnabledAccountIds: function() { return this.ids(this.FLAGS.SYNC); },"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 116,
+      "text": "getCalculationEnabledAccountIds: function() { return this.ids(this.FLAGS.CALCULATION); },"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 117,
+      "text": "getDisplayEnabledAccountIds: function() { return this.ids(this.FLAGS.DISPLAY); },"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 118,
+      "text": "getRecommendationEnabledAccountIds: function() { return this.ids(this.FLAGS.RECOMMENDATIONS); },"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 119,
+      "text": "getHistoryEnabledAccountIds: function() { return this.ids(this.FLAGS.HISTORY); },"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 121,
+      "text": "isSyncEnabled: function(accountId) { return this.enabled(accountId, this.FLAGS.SYNC); },"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 122,
+      "text": "isCalculationEnabled: function(accountId) { return this.enabled(accountId, this.FLAGS.CALCULATION); },"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 123,
+      "text": "isDisplayEnabled: function(accountId) { return this.enabled(accountId, this.FLAGS.DISPLAY); },"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 124,
+      "text": "isRecommendationEnabled: function(accountId) { return this.enabled(accountId, this.FLAGS.RECOMMENDATIONS); },"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 125,
+      "text": "isHistoryEnabled: function(accountId) { return this.enabled(accountId, this.FLAGS.HISTORY); }"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 133,
+      "text": "{ accountId: \"enabled\", Sync_Enabled: true, Calculation_Enabled: \"Да\", Display_Enabled: 1, Recommendations_Enabled: \"true\", History_Enabled: \"yes\" },"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 134,
+      "text": "{ accountId: \"disabled\", Sync_Enabled: false, Calculation_Enabled: \"Нет\" },"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 135,
+      "text": "{ accountId: \"missing\" }"
+    },
+    {
+      "file": "AccountScope.gs",
+      "line": 148,
+      "text": "enabledIds: TI.AccountScope.getSyncEnabledAccountIds(),"
+    },
+    {
+      "file": "AccountScopeGateA.gs",
+      "line": 11,
+      "text": "\"Учитывать в расчётах\","
+    },
+    {
+      "file": "AccountScopeGateA.gs",
+      "line": 28,
+      "text": "var idIndex = headers.indexOf(\"ID счёта\");"
+    },
+    {
+      "file": "AccountScopeGateA.gs",
+      "line": 58,
+      "text": "var targetId = String(config.targetAccountId || \"\").trim();"
+    },
+    {
+      "file": "AccountScopeGateA.gs",
+      "line": 80,
+      "text": "accountIdSuffixes: Object.keys(state.ids).sort().map(this.suffix),"
+    },
+    {
+      "file": "AccountScopeGateA.gs",
+      "line": 117,
+      "text": "accountIdSuffix: TI.AccountScopeGateA.suffix(row[verified.idIndex]),"
+    },
+    {
+      "file": "AccountScopeGateA.gs",
+      "line": 140,
+      "text": "var id = String(account.accountId || \"\").trim();"
+    },
+    {
+      "file": "AccountScopeGateA.gs",
+      "line": 153,
+      "text": "var result = TI.AccountExclusionMigration.inspect(target.accountId);"
+    },
+    {
+      "file": "AccountScopeGateA.gs",
+      "line": 158,
+      "text": "return { sheet: item.sheet, rows: item.exactAccountIdRows };"
+    },
+    {
+      "file": "AccountScopeGateA.gs",
+      "line": 173,
+      "text": "var portfolio = TI.Data.portfolio();"
+    },
+    {
+      "file": "AccountScopeGateA.gs",
+      "line": 191,
+      "text": "return String(row.accountId || \"\").trim() === String(target.accountId || \"\").trim();"
+    },
+    {
+      "file": "AccountScopeGateA.gs",
+      "line": 198,
+      "text": "accountIdSuffix: this.suffix(target.accountId),"
+    },
+    {
+      "file": "AccountStrategyAudit.gs",
+      "line": 7,
+      "text": "\"Счета\","
+    },
+    {
+      "file": "AccountStrategyAudit.gs",
+      "line": 9,
+      "text": "\"Стратегии счетов\","
+    },
+    {
+      "file": "AccountStrategyAudit.gs",
+      "line": 53,
+      "text": "var accounts = this.index(sheets[\"Счета\"], \"ID счёта\");"
+    },
+    {
+      "file": "AccountStrategyAudit.gs",
+      "line": 55,
+      "text": "var links = this.linkAudit(sheets[\"Стратегии счетов\"], accounts, strategies);"
+    },
+    {
+      "file": "AccountStrategyAudit.gs",
+      "line": 170,
+      "text": "var accountSuffix = String(row[\"ID счёта\"] || \"\").replace(/^…/, \"\");"
+    },
+    {
+      "file": "AccountStrategyAudit.gs",
+      "line": 173,
+      "text": "if (!accountSuffix && row[\"Счёт\"]) {"
+    },
+    {
+      "file": "AccountStrategyAudit.gs",
+      "line": 186,
+      "text": "warnings: nameOnly ? [\"Связей только по названию счёта: \" + nameOnly] : [],"
+    },
+    {
+      "file": "AccountStrategyAudit.gs",
+      "line": 187,
+      "text": "errors: hasStrategyId ? [] : [\"В листе Стратегии счетов отсутствует ID стратегии\"],"
+    },
+    {
+      "file": "AccountStrategyAudit.gs",
+      "line": 189,
+      "text": "hasAccountId: this.column(sheetData, \"ID счёта\") >= 0,"
+    },
+    {
+      "file": "AccountStrategyAudit.gs",
+      "line": 204,
+      "text": "var accountSuffix = String(row[\"ID счёта\"] || \"\").replace(/^…/, \"\");"
+    },
+    {
+      "file": "AccountStrategyAudit.gs",
+      "line": 215,
+      "text": "warnings: missing ? [\"Позиций без ID счёта: \" + missing] : [],"
+    },
+    {
+      "file": "AccountStrategyAudit.gs",
+      "line": 216,
+      "text": "errors: unknown.length ? [\"Позиции с неизвестным ID счёта: \" + unknown.length] : [],"
+    },
+    {
+      "file": "AccountStrategyAudit.gs",
+      "line": 217,
+      "text": "summary: { missingAccountIds: missing, unknownAccountSuffixes: unknown }"
+    },
+    {
+      "file": "AccountStrategyAudit.gs",
+      "line": 224,
+      "text": "var accounts = rows.filter(function(row) { return row[\"Разрез\"] === \"Счёт\"; });"
+    },
+    {
+      "file": "AccountStrategyAudit.gs",
+      "line": 243,
+      "text": "\"Счета: \" + result.counts.accounts +"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 6,
+      "text": "LINK_SHEET: \"Стратегии счетов\","
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 8,
+      "text": "\"Счёт\", \"Стратегия\", \"Дата начала\", \"Активна\", \"Лимиты\","
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 9,
+      "text": "\"Резерв\", \"Комментарий\", \"ID счёта\""
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 70,
+      "text": "var accountsSheet = spreadsheet.getSheetByName(\"Счета\");"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 83,
+      "text": "var accountIdCol = this.index(accounts.headers, \"ID счёта\");"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 84,
+      "text": "var accountNameCol = this.index(accounts.headers, \"Счёт\");"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 87,
+      "text": "var linkAccountNameCol = this.index(links.headers, \"Счёт\");"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 89,
+      "text": "var linkAccountIdCol = this.index(links.headers, \"ID счёта\");"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 91,
+      "text": "var portfolioAccountIdCol = this.index(portfolio.headers, \"ID счёта\");"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 95,
+      "text": "if (accountIdCol < 0 || accounts.rows.some(function(row) { return !String(row[accountIdCol] || \"\").trim(); })) errors.push(\"ACCOUNT_ID_EMPTY\");"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 96,
+      "text": "if (accountIdCol >= 0 && this.duplicateCount(accounts.rows, accountIdCol)) errors.push(\"ACCOUNT_ID_DUPLICATE\");"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 102,
+      "text": "if (linkAccountIdCol < 0 || (links.rows[0] && String(links.rows[0][linkAccountIdCol] || \"\").trim())) errors.push(\"LINK_ACCOUNT_ID_NOT_EMPTY\");"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 104,
+      "text": "if (!links.rows[0] || String(links.rows[0][linkAccountNameCol] || \"\").trim() !== \"Пасивный\") errors.push(\"LINK_DISPLAY_NAME_CHANGED\");"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 107,
+      "text": "var accountIds = {};"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 108,
+      "text": "accounts.rows.forEach(function(row) { accountIds[String(row[accountIdCol] || \"\").trim()] = true; });"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 109,
+      "text": "if (portfolioAccountIdCol < 0 || portfolio.rows.some(function(row) {"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 110,
+      "text": "var id = String(row[portfolioAccountIdCol] || \"\").trim();"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 111,
+      "text": "return !id || !accountIds[id];"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 115,
+      "text": "return String(row[accountNameCol] || \"\").trim() === \"Пассивный\";"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 137,
+      "text": "accountName: \"Пасивный\","
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 139,
+      "text": "accountId: \"\","
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 143,
+      "text": "accountName: \"Пассивный\","
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 145,
+      "text": "accountId: this.suffix(canonicalAccount[0][accountIdCol]),"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 148,
+      "text": "fullAccountId: String(canonicalAccount[0][accountIdCol]),"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 223,
+      "text": "newRow[7] = inspected.fullAccountId;"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 243,
+      "text": "accountId: inspected.after.accountId,"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 245,
+      "text": "accountName: \"Пассивный\","
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 269,
+      "text": "var accounts = this.rows(spreadsheet.getSheetByName(\"Счета\"));"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 273,
+      "text": "var accountIdCol = this.index(accounts.headers, \"ID счёта\");"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 275,
+      "text": "var linkAccountIdCol = this.index(links.headers, \"ID счёта\");"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 277,
+      "text": "var accountIds = {};"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 279,
+      "text": "accounts.rows.forEach(function(row) { accountIds[String(row[accountIdCol] || \"\").trim()] = true; });"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 282,
+      "text": "var accountId = String(row[linkAccountIdCol] || \"\").trim();"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 286,
+      "text": "accountId && accountIds[accountId] &&"
+    },
+    {
+      "file": "AccountStrategyMigration.gs",
+      "line": 303,
+      "text": "\"Account ID \" + result.accountId + \", Strategy ID \" + result.strategyId"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 4,
+      "text": "* Работа со счетами"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 13,
+      "text": "* Получить список всех счетов"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 17,
+      "text": "var result = TI.Providers.users.getAccounts();"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 24,
+      "text": "* Только открытые счета"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 39,
+      "text": "* Первый открытый счет"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 43,
+      "text": "var accounts = this.active();"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 46,
+      "text": "throw new Error(\"Не найдено открытых счетов.\");"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 54,
+      "text": "* ID первого счета"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 63,
+      "text": "* Найти счет по ID"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 65,
+      "text": "byId: function (accountId) {"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 71,
+      "text": "if (accounts[i].id === accountId) {"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 82,
+      "text": "* Получить все ID открытых счетов"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 88,
+      "text": "this.active().forEach(function (account) {"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 99,
+      "text": "* Отображаемое название счета."
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 116,
+      "text": "* Карта названий счетов по ID."
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 123,
+      "text": "this.active().forEach(function(account) {"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 134,
+      "text": "* Список названий счетов для выпадающих списков."
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 139,
+      "text": "return this.active().map(function(account) {"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 152,
+      "text": "* Свободные деньги по счетам в базовой валюте."
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 155,
+      "text": "cashByAccountName: function() {"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 162,
+      "text": "var accountId = String(account.accountId || \"\").trim();"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 163,
+      "text": "var name = String(account.accountName || accountId).trim();"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 164,
+      "text": "var cash = TI.Accounts.cashForAccount(accountId);"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 167,
+      "text": "result[accountId] = cash;"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 179,
+      "text": "* Прочитать локально сохранённый денежный остаток счёта без provider fallback."
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 180,
+      "text": "* @param {string} accountId"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 183,
+      "text": "cashForAccountCachedOnly: function(accountId) {"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 184,
+      "text": "accountId = String(accountId || \"\").trim();"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 185,
+      "text": "if (!accountId) {"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 192,
+      "text": "TI.Providers.cacheKey([\"tinvest\", \"operations\", \"withdrawLimits\", accountId]),"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 193,
+      "text": "TI.Providers.cacheKey([\"tinvest\", \"operations\", \"positions\", accountId])"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 210,
+      "text": "\"CACHED_CASH_NOT_AVAILABLE: \" + TI.AccountStrategyAudit.suffix(accountId)"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 220,
+      "text": "cashByAccountIdCachedOnly: function() {"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 223,
+      "text": "var accountId = String(account.accountId || \"\").trim();"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 224,
+      "text": "if (!accountId) throw new Error(\"Активный счёт без Account ID в листе Счета.\");"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 225,
+      "text": "if (result.hasOwnProperty(accountId)) {"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 226,
+      "text": "throw new Error(\"Дубликат Account ID в листе Счета: \" + TI.AccountStrategyAudit.suffix(accountId));"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 228,
+      "text": "result[accountId] = TI.Accounts.cashForAccountCachedOnly(accountId);"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 237,
+      "text": "cashByAccountNameCachedOnly: function() {"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 238,
+      "text": "var byId = this.cashByAccountIdCachedOnly();"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 242,
+      "text": "var accountId = String(account.accountId || \"\").trim();"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 243,
+      "text": "var accountName = String(account.accountName || \"\").trim();"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 244,
+      "text": "if (!byId.hasOwnProperty(accountId)) {"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 245,
+      "text": "throw new Error(\"CACHED_CASH_NOT_AVAILABLE: \" + TI.AccountStrategyAudit.suffix(accountId));"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 247,
+      "text": "if (accountName && result.hasOwnProperty(accountName)) {"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 248,
+      "text": "throw new Error(\"Неоднозначное имя счёта в локальном реестре: \" + accountName);"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 250,
+      "text": "result[accountId] = byId[accountId];"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 251,
+      "text": "if (accountName) result[accountName] = byId[accountId];"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 252,
+      "text": "total += byId[accountId];"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 259,
+      "text": "* Свободные деньги одного счета в базовой валюте."
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 260,
+      "text": "* @param {string} accountId"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 263,
+      "text": "cashForAccount: function(accountId) {"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 264,
+      "text": "accountId = String(accountId || \"\").trim();"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 265,
+      "text": "if (!TI.AccountScope.isSyncEnabled(accountId)) {"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 266,
+      "text": "throw new Error(\"ACCOUNT_SYNC_DISABLED: \" + TI.AccountStrategyAudit.suffix(accountId));"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 269,
+      "text": "var withdrawCash = this.withdrawLimitsCash(accountId);"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 275,
+      "text": "var positionsCash = this.positionsCash(accountId);"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 286,
+      "text": "* Доступные к выводу деньги счета."
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 287,
+      "text": "* @param {string} accountId"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 290,
+      "text": "withdrawLimitsCash: function(accountId) {"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 291,
+      "text": "if (!TI.AccountScope.isSyncEnabled(accountId)) {"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 292,
+      "text": "throw new Error(\"ACCOUNT_SYNC_DISABLED: \" + TI.AccountStrategyAudit.suffix(accountId));"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 296,
+      "text": "var response = TI.Providers.operations.getWithdrawLimits(accountId);"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 312,
+      "text": "* Денежные позиции счета."
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 313,
+      "text": "* @param {string} accountId"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 316,
+      "text": "positionsCash: function(accountId) {"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 317,
+      "text": "if (!TI.AccountScope.isSyncEnabled(accountId)) {"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 318,
+      "text": "throw new Error(\"ACCOUNT_SYNC_DISABLED: \" + TI.AccountStrategyAudit.suffix(accountId));"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 322,
+      "text": "var response = TI.Providers.operations.getPositions(accountId);"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 364,
+      "text": "var getAccounts = TI.Providers.users.getAccounts;"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 365,
+      "text": "var getWithdrawLimits = TI.Providers.operations.getWithdrawLimits;"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 366,
+      "text": "var getPositions = TI.Providers.operations.getPositions;"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 369,
+      "text": "TI.Providers.users.getAccounts = function() { providerCalled = true; throw new Error(\"PROVIDER_CALLED\"); };"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 370,
+      "text": "TI.Providers.operations.getWithdrawLimits = function() { providerCalled = true; throw new Error(\"PROVIDER_CALLED\"); };"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 371,
+      "text": "TI.Providers.operations.getPositions = function() { providerCalled = true; throw new Error(\"PROVIDER_CALLED\"); };"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 372,
+      "text": "var cash = TI.Accounts.cashByAccountIdCachedOnly();"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 383,
+      "text": "totalCash: Object.keys(cash).reduce(function(total, accountId) { return total + cash[accountId]; }, 0),"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 387,
+      "text": "TI.Providers.users.getAccounts = getAccounts;"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 388,
+      "text": "TI.Providers.operations.getWithdrawLimits = getWithdrawLimits;"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 389,
+      "text": "TI.Providers.operations.getPositions = getPositions;"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 398,
+      "text": "return TI.CompanyRating.isYes(account.active);"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 400,
+      "text": "var accountId = String(account.accountId || \"\").trim();"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 404,
+      "text": "TI.Providers.cacheKey([\"tinvest\", \"operations\", kind, accountId]),"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 414,
+      "text": "accountId: TI.AccountStrategyAudit.suffix(accountId),"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 424,
+      "text": "function TI_GetAccounts() {"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 426,
+      "text": "return TI.Accounts.active();"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 435,
+      "text": "var accounts = TI.Accounts.active();"
+    },
+    {
+      "file": "Accounts.gs",
+      "line": 442,
+      "text": "\"Найдено счетов: \" + accounts.length"
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 49,
+      "text": "var portfolio = TI.AccountScope.filterCalculationRows(TI.Data.portfolio());"
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 135,
+      "text": "effect: \"Налоговые подсказки появятся после расчета налоговой базы.\""
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 240,
+      "text": "accountId: row.accountId || \"\","
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 241,
+      "text": "accountName: row.accountId ? row.scopeName : TI.Rebalance.ALL_ACCOUNTS,"
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 260,
+      "text": "accountId: bestAccount.accountId || \"\","
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 261,
+      "text": "accountName: bestAccount.scopeName || \"\","
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 264,
+      "text": "category: \"Счета\","
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 265,
+      "text": "recommendation: \"Лучший счет для нового пополнения: \" + bestAccount.scopeName + \".\","
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 267,
+      "text": "effect: \"Новый капитал распределяется без смешивания стратегий разных счетов.\""
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 340,
+      "text": "accountId: row.accountId || \"\","
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 341,
+      "text": "accountName: row.accountName || TI.Rebalance.ALL_ACCOUNTS,"
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 371,
+      "text": "item.accountId = row.accountId || \"\";"
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 372,
+      "text": "item.accountName = row.accountName || TI.Rebalance.ALL_ACCOUNTS;"
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 428,
+      "text": "reason: row.comment || \"Сумма сделки больше свободных денег на счёте.\","
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 429,
+      "text": "effect: \"Нужно пополнить счёт, уменьшить цель или выбрать другой счёт.\""
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 498,
+      "text": "reason: \"Расчетная сумма налога: \" + TI.Advisor.formatMoney(row.taxAmount) + \".\","
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 620,
+      "text": "var accountId = String(row.accountId || \"\").trim();"
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 621,
+      "text": "if (accountId) {"
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 622,
+      "text": "if (!accounts[accountId] || !TI.AccountScope.isRecommendationEnabled(accountId) ||"
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 623,
+      "text": "!TI.AccountScope.isDisplayEnabled(accountId)) {"
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 624,
+      "text": "TI.TechLog.warning(\"Advisor\", \"normalizeRows\", \"ACCOUNT_RECOMMENDATION_DISABLED\", TI.AccountStrategyAudit.suffix(accountId));"
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 627,
+      "text": "row.accountName = String(accounts[accountId].accountName || \"\").trim();"
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 629,
+      "text": "row.accountName = TI.Rebalance.ALL_ACCOUNTS;"
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 641,
+      "text": "return row && row.accountId && TI.MultiAccount.accountMap()[row.accountId]"
+    },
+    {
+      "file": "Advisor.gs",
+      "line": 642,
+      "text": "? TI.MultiAccount.accountMap()[row.accountId].accountName"
+    },
+    {
+      "file": "Api.gs",
+      "line": 75,
+      "text": "\"GetAccounts\","
+    },
+    {
+      "file": "BatchSync.gs",
+      "line": 25,
+      "text": "{ id: \"accounts\", title: \"Счета\" },"
+    },
+    {
+      "file": "BatchSync.gs",
+      "line": 36,
+      "text": "{ id: \"multiAccount\", title: \"Счета и стратегии\" },"
+    },
+    {
+      "file": "BatchSync.gs",
+      "line": 470,
+      "text": "recalc: \"Пересчёт рекомендаций\","
+    },
+    {
+      "file": "COI.gs",
+      "line": 26,
+      "text": "TI.AccountScope.filterCalculationRows(TI.Data.portfolio())"
+    },
+    {
+      "file": "Constitution.gs",
+      "line": 148,
+      "text": "portfolio = TI.AccountScope.filterCalculationRows(portfolio || TI.Data.portfolio());"
+    },
+    {
+      "file": "Constitution.gs",
+      "line": 195,
+      "text": "var cashByAccount = TI.Rebalance.cashByAccountName();"
+    },
+    {
+      "file": "Constitution.gs",
+      "line": 201,
+      "text": "return Object.keys(cashByAccount).reduce(function(sum, accountName) {"
+    },
+    {
+      "file": "Constitution.gs",
+      "line": 202,
+      "text": "if (accountName === TI.Rebalance.ALL_ACCOUNTS) {"
+    },
+    {
+      "file": "Constitution.gs",
+      "line": 205,
+      "text": "return sum + (Number(cashByAccount[accountName]) || 0);"
+    },
+    {
+      "file": "Core.gs",
+      "line": 44,
+      "text": "ACCOUNTS: \"Счета\","
+    },
+    {
+      "file": "Core.gs",
+      "line": 46,
+      "text": "ACCOUNT_STRATEGIES: \"Стратегии счетов\","
+    },
+    {
+      "file": "Core.gs",
+      "line": 65,
+      "text": "API_ACCOUNTS: \"API Счета\","
+    },
+    {
+      "file": "DataCache.gs",
+      "line": 336,
+      "text": "skippedAccountIdSuffixes: [],"
+    },
+    {
+      "file": "DataCache.gs",
+      "line": 342,
+      "text": "var accountResponse = TI.Providers.users.getAccounts(true);"
+    },
+    {
+      "file": "DataCache.gs",
+      "line": 346,
+      "text": "stats.warnings.push(\"Счета: \" + (e.message || String(e)));"
+    },
+    {
+      "file": "DataCache.gs",
+      "line": 350,
+      "text": "var syncIds = TI.AccountScope.getSyncEnabledAccountIds();"
+    },
+    {
+      "file": "DataCache.gs",
+      "line": 353,
+      "text": "var accountId = String(account.accountId || \"\").trim();"
+    },
+    {
+      "file": "DataCache.gs",
+      "line": 355,
+      "text": "if (!accountId || !TI.AccountScope.isSyncEnabled(accountId)) {"
+    },
+    {
+      "file": "DataCache.gs",
+      "line": 356,
+      "text": "if (accountId) stats.skippedAccountIdSuffixes.push(TI.AccountStrategyAudit.suffix(accountId));"
+    },
+    {
+      "file": "DataCache.gs",
+      "line": 361,
+      "text": "TI.Providers.operations.getWithdrawLimits(accountId, true);"
+    },
+    {
+      "file": "DataCache.gs",
+      "line": 364,
+      "text": "stats.warnings.push(\"Свободные деньги: \" + account.accountName);"
+    },
+    {
+      "file": "DataCache.gs",
+      "line": 368,
+      "text": "TI.Providers.operations.getPositions(accountId, true);"
+    },
+    {
+      "file": "DataCache.gs",
+      "line": 371,
+      "text": "stats.warnings.push(\"Позиции: \" + account.accountName);"
+    },
+    {
+      "file": "DataCache.gs",
+      "line": 375,
+      "text": "TI.Providers.operations.getPortfolio(accountId, true);"
+    },
+    {
+      "file": "DataCache.gs",
+      "line": 378,
+      "text": "stats.warnings.push(\"Портфель: \" + account.accountName);"
+    },
+    {
+      "file": "DataCache.gs",
+      "line": 381,
+      "text": "stats.accountsSkipped = stats.skippedAccountIdSuffixes.length;"
+    },
+    {
+      "file": "DataCache.gs",
+      "line": 386,
+      "text": "TI.AccountScope.filterCalculationRows(TI.Data.portfolio())"
+    },
+    {
+      "file": "DataCache.gs",
+      "line": 464,
+      "text": "text += \"\\nСчетов: \" + (result.accounts || 0);"
+    },
+    {
+      "file": "DecisionEngine.gs",
+      "line": 65,
+      "text": "accountId: row.accountId || \"\","
+    },
+    {
+      "file": "DecisionEngine.gs",
+      "line": 66,
+      "text": "accountName: row.accountName || \"\","
+    },
+    {
+      "file": "DecisionEngine.gs",
+      "line": 67,
+      "text": "strategy: row.strategy || (row.accountId ? TI.MultiAccount.strategyForAccount(row.accountId) : \"\"),"
+    },
+    {
+      "file": "DecisionEngine.gs",
+      "line": 154,
+      "text": "accountId: row.accountId || \"\","
+    },
+    {
+      "file": "DecisionEngine.gs",
+      "line": 155,
+      "text": "accountName: row.accountName || \"\","
+    },
+    {
+      "file": "DecisionEngine.gs",
+      "line": 156,
+      "text": "strategy: row.strategy || (row.accountId ? TI.MultiAccount.strategyForAccount(row.accountId) : \"\"),"
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 11,
+      "text": "*   1.0.0 - Базовые проверки токена, счетов, стратегии, FIFO, цен и справочника."
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 70,
+      "text": "var cachedPortfolio = TI.Data.portfolio();"
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 84,
+      "text": "portfolio: TI.Data.portfolioFromFifoLots(),"
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 112,
+      "text": "* Проверить счета."
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 120,
+      "text": "\"Счета\","
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 121,
+      "text": "\"Проверка счетов пропущена, потому что токен не задан.\","
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 132,
+      "text": "\"Открытые счета\","
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 133,
+      "text": "\"Счетов в листе Счета: \" + accounts.length + \".\","
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 136,
+      "text": ": \"Запустите Заполнить счета и стратегии.\""
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 142,
+      "text": "\"Открытые счета\","
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 144,
+      "text": "\"Проверьте лист Счета и настройки подключения.\""
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 208,
+      "text": "var account = target.accountName || TI.Rebalance.ALL_ACCOUNTS;"
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 325,
+      "text": "\"Проверьте ребалансировку, цены и свободные деньги по счетам.\""
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 363,
+      "text": ": \"Пополните нужный счёт, уменьшите цель или выберите другой счёт.\""
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 539,
+      "text": "* Проверить архитектуру нескольких счетов."
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 550,
+      "text": "\"Счета\","
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 551,
+      "text": "\"Список счетов\","
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 552,
+      "text": "\"Счетов в управляющем листе: \" + accounts.length + \".\","
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 553,
+      "text": "accounts.length > 0 ? \"\" : \"Запустите Заполнить счета и стратегии.\""
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 557,
+      "text": "\"Счета\","
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 560,
+      "text": "strategies.length > 0 ? \"\" : \"Запустите Заполнить счета и стратегии.\""
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 564,
+      "text": "\"Счета\","
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 565,
+      "text": "\"Связи счет-стратегия\","
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 567,
+      "text": "links.length > 0 ? \"\" : \"Запустите Заполнить счета и стратегии.\""
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 585,
+      "text": "\"Расчет\","
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 601,
+      "text": "\"Расчет\","
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 608,
+      "text": "\"Лучший счет\","
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 609,
+      "text": "bestAccount ? \"Лучший счет: \" + bestAccount.scopeName + \".\" : \"Лучший счет не определен.\","
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 610,
+      "text": "bestAccount ? \"\" : \"Проверьте листы Счета и Здоровье портфеля.\""
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 617,
+      "text": "bestStrategy ? \"\" : \"Проверьте листы Стратегии и Стратегии счетов.\""
+    },
+    {
+      "file": "Diagnostics.gs",
+      "line": 645,
+      "text": "\"Расчет\","
+    },
+    {
+      "file": "Directory.gs",
+      "line": 392,
+      "text": "* Найти инструменты в текущих портфелях всех открытых счетов."
+    },
+    {
+      "file": "Directory.gs",
+      "line": 400,
+      "text": "var accountId = account.id || account.accountId || \"\";"
+    },
+    {
+      "file": "Directory.gs",
+      "line": 401,
+      "text": "var positions = TI.Directory.fetchPortfolioPositions(accountId);"
+    },
+    {
+      "file": "Directory.gs",
+      "line": 431,
+      "text": "* Счета для обновления справочника."
+    },
+    {
+      "file": "Directory.gs",
+      "line": 432,
+      "text": "* Источник - лист счетов, чтобы не обновлять список счетов при каждом расчете."
+    },
+    {
+      "file": "Directory.gs",
+      "line": 439,
+      "text": "id: account.accountId || \"\","
+    },
+    {
+      "file": "Directory.gs",
+      "line": 440,
+      "text": "accountId: account.accountId || \"\","
+    },
+    {
+      "file": "Directory.gs",
+      "line": 441,
+      "text": "accountName: account.accountName || \"\""
+    },
+    {
+      "file": "Directory.gs",
+      "line": 445,
+      "text": "return !!account.accountId;"
+    },
+    {
+      "file": "Directory.gs",
+      "line": 450,
+      "text": "* Получить позиции одного счёта."
+    },
+    {
+      "file": "Directory.gs",
+      "line": 451,
+      "text": "* @param {string} accountId"
+    },
+    {
+      "file": "Directory.gs",
+      "line": 454,
+      "text": "fetchPortfolioPositions: function(accountId) {"
+    },
+    {
+      "file": "Directory.gs",
+      "line": 455,
+      "text": "if (!accountId || !TI.AccountScope.isSyncEnabled(accountId)) {"
+    },
+    {
+      "file": "Directory.gs",
+      "line": 459,
+      "text": "var response = TI.Providers.operations.getPortfolio(accountId);"
+    },
+    {
+      "file": "FIFO.gs",
+      "line": 8,
+      "text": "*   Расчёт FIFO по сделкам с объектами Lot, Sale и Error."
+    },
+    {
+      "file": "FIFO.gs",
+      "line": 102,
+      "text": "return \"ACCOUNT|\" + String(trade.accountId || \"\") + \"|\" +"
+    },
+    {
+      "file": "FIFO.gs",
+      "line": 168,
+      "text": "accountName: trade.accountName || trade.accountId || \"\","
+    },
+    {
+      "file": "FIFO.gs",
+      "line": 169,
+      "text": "accountId: trade.accountId,"
+    },
+    {
+      "file": "FIFO.gs",
+      "line": 198,
+      "text": "* Выполнить FIFO-расчёт."
+    },
+    {
+      "file": "FIFO.gs",
+      "line": 270,
+      "text": "accountName: trade.accountName || trade.accountId || \"\","
+    },
+    {
+      "file": "FIFO.gs",
+      "line": 271,
+      "text": "accountId: trade.accountId,"
+    },
+    {
+      "file": "FIFO.gs",
+      "line": 320,
+      "text": "accountName: trade.accountName || trade.accountId || \"\","
+    },
+    {
+      "file": "FIFO.gs",
+      "line": 321,
+      "text": "accountId: trade.accountId,"
+    },
+    {
+      "file": "Income.gs",
+      "line": 11,
+      "text": "*   1.0.0 - Первый расчет доходных операций и cashflow."
+    },
+    {
+      "file": "KnowledgeEngine.gs",
+      "line": 163,
+      "text": "accountName: \"\","
+    },
+    {
+      "file": "Main.gs",
+      "line": 40,
+      "text": "var portfolio = TI.AccountScope.filterCalculationRows(TI.Data.portfolio());"
+    },
+    {
+      "file": "Main.gs",
+      "line": 78,
+      "text": "\"Счета\","
+    },
+    {
+      "file": "Main.gs",
+      "line": 79,
+      "text": "\"Лучший счет для пополнения\","
+    },
+    {
+      "file": "Main.gs",
+      "line": 86,
+      "text": "\"Счета\","
+    },
+    {
+      "file": "Main.gs",
+      "line": 202,
+      "text": "\"Расчётные строки\","
+    },
+    {
+      "file": "MarketRegime.gs",
+      "line": 8,
+      "text": "*   Расчет режима рынка и множителя покупок."
+    },
+    {
+      "file": "Menu.gs",
+      "line": 27,
+      "text": ".addItem(\"Заполнить счета и стратегии\", \"TI_InitializeMultiAccount\")"
+    },
+    {
+      "file": "Menu.gs",
+      "line": 49,
+      "text": ".addSubMenu(ui.createMenu(\"Расчёты\")"
+    },
+    {
+      "file": "Menu.gs",
+      "line": 111,
+      "text": "\"Счетов найдено: \" + multiAccountStats.accounts.total"
+    },
+    {
+      "file": "Menu.gs",
+      "line": 139,
+      "text": "\"Счетов найдено: \" + ((result.accounts || []).length)"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 8,
+      "text": "*   Управление счетами, стратегиями и связью счет-стратегия."
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 70,
+      "text": "var old = existing[account.accountId] || {};"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 73,
+      "text": "accountName: old.accountName || account.accountName,"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 76,
+      "text": "active: old.active || \"Да\","
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 77,
+      "text": "includeTotal: old.includeTotal || \"Да\","
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 86,
+      "text": "accountId: account.accountId || old.accountId || \"\""
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 92,
+      "text": "var id = String(old.accountId || \"\").trim();"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 94,
+      "text": "return id && row.accountId === id;"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 115,
+      "text": "var accountId = String(account.accountId || \"\").trim();"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 117,
+      "text": "if (!accountId || links[accountId]) {"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 122,
+      "text": "accountName: String(account.accountName || \"\").trim(),"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 129,
+      "text": "accountId: accountId,"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 143,
+      "text": "return TI.Accounts.active().map(function(account) {"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 145,
+      "text": "accountName: TI.Accounts.displayName(account),"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 146,
+      "text": "accountId: account.id || \"\","
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 155,
+      "text": "\"API счетов недоступен, используем названия счетов из портфеля.\","
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 167,
+      "text": "TI.Data.portfolio().forEach(function(position) {"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 168,
+      "text": "var id = String(position.accountId || \"\").trim();"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 176,
+      "text": "accountName: String(position.accountName || \"\").trim(),"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 177,
+      "text": "accountId: id,"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 213,
+      "text": "var id = String(row.accountId || \"\").trim();"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 214,
+      "text": "if (!id) throw new Error(\"Счёт без Account ID в листе Счета.\");"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 215,
+      "text": "if (result[id]) throw new Error(\"Дубликат Account ID в листе Счета: \" + TI.AccountStrategyAudit.suffix(id));"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 241,
+      "text": "if (TI.CompanyRating.isYes(row.active)) {"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 242,
+      "text": "var accountId = String(row.accountId || \"\").trim();"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 244,
+      "text": "if (!accountId || !strategyId) throw new Error(\"Активная связь без обязательного Account ID / Strategy ID.\");"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 245,
+      "text": "if (!accounts[accountId]) throw new Error(\"Связь с неизвестным Account ID: \" + TI.AccountStrategyAudit.suffix(accountId));"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 247,
+      "text": "if (result[accountId]) throw new Error(\"Дублирующая активная связь Account ID: \" + TI.AccountStrategyAudit.suffix(accountId));"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 248,
+      "text": "result[accountId] = strategyId;"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 255,
+      "text": "strategyForAccount: function(accountId) {"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 256,
+      "text": "accountId = String(accountId || \"\").trim();"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 257,
+      "text": "var strategyId = this.accountStrategyMap()[accountId];"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 258,
+      "text": "if (!strategyId) throw new Error(\"Для Account ID не найдена активная стратегия: \" + TI.AccountStrategyAudit.suffix(accountId));"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 262,
+      "text": "isIncludedAccount: function(accountId) {"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 264,
+      "text": "var key = String(accountId || \"\").trim();"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 271,
+      "text": "return !row.includeTotal || TI.CompanyRating.isYes(row.includeTotal);"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 279,
+      "text": "var key = String(row.accountId || \"\").trim();"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 327,
+      "text": "\"Счета и стратегии подготовлены.\\n\\n\" +"
+    },
+    {
+      "file": "MultiAccount.gs",
+      "line": 329,
+      "text": "\"Счетов найдено: \" + stats.accounts.total + \"\\n\" +"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 49,
+      "text": "markerKey: function(accountId) {"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 52,
+      "text": "String(accountId || \"\")"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 138,
+      "text": "* Получить операции по всем открытым счетам."
+    },
+    {
+      "file": "Operations.gs",
+      "line": 153,
+      "text": "accounts[i].name || accounts[i].accountName || accounts[i].id"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 162,
+      "text": "* Счета для загрузки операций."
+    },
+    {
+      "file": "Operations.gs",
+      "line": 168,
+      "text": "return TI.AccountScope.isSyncEnabled(account.accountId);"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 172,
+      "text": "id: String(account.accountId || \"\").trim(),"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 173,
+      "text": "name: account.accountName || account.accountId"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 179,
+      "text": "* Получить операции одного счета."
+    },
+    {
+      "file": "Operations.gs",
+      "line": 180,
+      "text": "* @param {string} accountId"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 183,
+      "text": "* @param {string=} accountName"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 186,
+      "text": "fetchAccount: function(accountId, from, to, accountName) {"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 187,
+      "text": "if (!TI.AccountScope.isSyncEnabled(accountId) || !TI.AccountScope.isHistoryEnabled(accountId)) {"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 188,
+      "text": "throw new Error(\"ACCOUNT_HISTORY_SYNC_DISABLED: \" + TI.AccountStrategyAudit.suffix(accountId));"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 195,
+      "text": "var response = TI.Providers.operations.getOperationsByCursor({"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 196,
+      "text": "accountId: accountId,"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 210,
+      "text": "data.push(this.normalizeOperation(accountId, items[i], accountName));"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 222,
+      "text": "* @param {string} accountId"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 224,
+      "text": "* @param {string=} accountName"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 227,
+      "text": "normalizeOperation: function(accountId, item, accountName) {"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 229,
+      "text": "accountId: accountId,"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 230,
+      "text": "accountName: accountName || accountId,"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 274,
+      "text": "(op.accountId + \"_\" + op.date + \"_\" + op.type + \"_\" + op.payment);"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 423,
+      "text": "* Поиск по счету."
+    },
+    {
+      "file": "Operations.gs",
+      "line": 424,
+      "text": "* @param {string} accountId"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 428,
+      "text": "byAccount: function(accountId, list) {"
+    },
+    {
+      "file": "Operations.gs",
+      "line": 432,
+      "text": "return op.accountId === accountId;"
+    },
+    {
+      "file": "Portfolio.gs",
+      "line": 11,
+      "text": "*   1.0.0 - Первая версия расчёта портфеля поверх FIFO."
+    },
+    {
+      "file": "Portfolio.gs",
+      "line": 54,
+      "text": "var accountNames = this.accountNamesById();"
+    },
+    {
+      "file": "Portfolio.gs",
+      "line": 57,
+      "text": "var accountId = String(lot.accountId || \"\").trim();"
+    },
+    {
+      "file": "Portfolio.gs",
+      "line": 58,
+      "text": "var key = accountId + \"|\" + TI.FIFO.instrumentKey(lot);"
+    },
+    {
+      "file": "Portfolio.gs",
+      "line": 62,
+      "text": "accountName: lot.accountName || accountNames[accountId] || \"Неизвестный счёт\","
+    },
+    {
+      "file": "Portfolio.gs",
+      "line": 63,
+      "text": "accountId: accountId,"
+    },
+    {
+      "file": "Portfolio.gs",
+      "line": 82,
+      "text": "if (!map[key].accountName) {"
+    },
+    {
+      "file": "Portfolio.gs",
+      "line": 83,
+      "text": "map[key].accountName = lot.accountName ||"
+    },
+    {
+      "file": "Portfolio.gs",
+      "line": 84,
+      "text": "accountNames[accountId] ||"
+    },
+    {
+      "file": "Portfolio.gs",
+      "line": 85,
+      "text": "\"Неизвестный счёт\";"
+    },
+    {
+      "file": "Portfolio.gs",
+      "line": 115,
+      "text": "accountName: item.accountName,"
+    },
+    {
+      "file": "Portfolio.gs",
+      "line": 130,
+      "text": "accountId: item.accountId,"
+    },
+    {
+      "file": "Portfolio.gs",
+      "line": 148,
+      "text": "var accountCompare = String(a.accountName || \"\")"
+    },
+    {
+      "file": "Portfolio.gs",
+      "line": 149,
+      "text": ".localeCompare(String(b.accountName || \"\"));"
+    },
+    {
+      "file": "Portfolio.gs",
+      "line": 160,
+      "text": "* Получить названия счетов по ID из листа счетов."
+    },
+    {
+      "file": "Portfolio.gs",
+      "line": 163,
+      "text": "accountNamesById: function() {"
+    },
+    {
+      "file": "Portfolio.gs",
+      "line": 167,
+      "text": "var id = String(account.accountId || \"\").trim();"
+    },
+    {
+      "file": "Portfolio.gs",
+      "line": 168,
+      "text": "var name = String(account.accountName || \"\").trim();"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 8,
+      "text": "*   Оценка здоровья портфеля по счетам, стратегиям и всему капиталу."
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 23,
+      "text": "var portfolio = TI.AccountScope.filterCalculationRows(TI.Data.portfolio());"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 26,
+      "text": "portfolio = TI.AccountScope.filterCalculationRows(TI.Data.portfolioFromFifoLots());"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 33,
+      "text": "var cash = TI.Rebalance.cashByAccountName();"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 37,
+      "text": "rows.push(this.row(\"Весь портфель\", \"Все счета\", \"\", included, cash[TI.Rebalance.ALL_ACCOUNTS] || 0, \"\"));"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 52,
+      "text": "var accountId = String(position.accountId || \"\").trim();"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 53,
+      "text": "if (!accountId || !accounts[accountId]) throw new Error(\"Позиция с неизвестным Account ID: \" + TI.AccountStrategyAudit.suffix(accountId));"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 54,
+      "text": "if (!map[accountId]) map[accountId] = [];"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 55,
+      "text": "map[accountId].push(position);"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 58,
+      "text": "Object.keys(map).sort().forEach(function(accountId) {"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 59,
+      "text": "if (!TI.AccountScope.isDisplayEnabled(accountId)) return;"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 60,
+      "text": "var accountName = String(accounts[accountId].accountName || \"\").trim();"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 61,
+      "text": "var strategyId = links[accountId] || \"\";"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 62,
+      "text": "var included = TI.AccountScope.isCalculationEnabled(accountId);"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 64,
+      "text": "throw new Error(\"Для включённого Account ID не назначена Strategy ID: \" + TI.AccountStrategyAudit.suffix(accountId));"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 67,
+      "text": "\"Счёт\","
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 68,
+      "text": "accountName,"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 70,
+      "text": "map[accountId],"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 71,
+      "text": "cash[accountName] || 0,"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 72,
+      "text": "accountId"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 75,
+      "text": "healthRow.risks = [healthRow.risks, \"Для исключённого счёта не назначена стратегия\"].filter(Boolean).join(\"; \");"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 92,
+      "text": "var accountId = String(position.accountId || \"\").trim();"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 93,
+      "text": "var strategyId = accountStrategies[accountId];"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 94,
+      "text": "if (!accountId || !accounts[accountId]) throw new Error(\"Позиция с неизвестным Account ID: \" + TI.AccountStrategyAudit.suffix(accountId));"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 106,
+      "text": "map[strategyId].accounts[accountId] = true;"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 110,
+      "text": "Object.keys(map[strategyId].accounts).forEach(function(accountId) {"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 111,
+      "text": "var accountName = String(accounts[accountId].accountName || \"\").trim();"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 112,
+      "text": "map[strategyId].cash += Number(cash[accountName]) || 0;"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 130,
+      "text": "row: function(scopeType, scopeName, strategy, positions, cash, accountId) {"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 145,
+      "text": "accountId: accountId || \"\","
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 163,
+      "text": "if (scopeType === \"Счёт\") {"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 165,
+      "text": "return !target.accountName || target.accountName === scopeName;"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 271,
+      "text": "var portfolio = TI.Data.portfolio();"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 272,
+      "text": "if (portfolio.length === 0) portfolio = TI.Data.portfolioFromFifoLots();"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 286,
+      "text": "var portfolio = TI.Data.portfolio();"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 287,
+      "text": "if (portfolio.length === 0) portfolio = TI.Data.portfolioFromFifoLots();"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 291,
+      "text": "var accountId = String(account.accountId || \"\").trim();"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 293,
+      "text": "return String(position.accountId || \"\").trim() === accountId;"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 295,
+      "text": "var strategyId = links[accountId] || \"\";"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 297,
+      "text": "accountId: TI.AccountStrategyAudit.suffix(accountId),"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 298,
+      "text": "accountName: String(account.accountName || \"\").trim(),"
+    },
+    {
+      "file": "PortfolioHealth.gs",
+      "line": 299,
+      "text": "includedInAggregate: TI.AccountScope.isCalculationEnabled(accountId),"
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 8,
+      "text": "*   Выбор лучшего счета, стратегии и распределения капитала."
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 25,
+      "text": ".filter(function(account) { return TI.AccountScope.isDisplayEnabled(account.accountId); });"
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 45,
+      "text": "var healthMap = this.healthMap(health, \"Счёт\");"
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 46,
+      "text": "var cash = TI.Rebalance.cashByAccountName();"
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 50,
+      "text": "var accountId = String(account.accountId || \"\").trim();"
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 51,
+      "text": "var accountName = String(account.accountName || \"\").trim();"
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 53,
+      "text": "if (!accountName || !TI.CompanyRating.isYes(account.active || \"Да\")) {"
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 57,
+      "text": "var healthRow = healthMap[accountName] || {};"
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 62,
+      "text": "scopeType: \"Счёт\","
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 63,
+      "text": "scopeName: accountName,"
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 64,
+      "text": "accountId: accountId,"
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 65,
+      "text": "strategy: account.strategy || TI.MultiAccount.strategyForAccount(accountId),"
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 68,
+      "text": "availableCash: Number(cash[accountName]) || Number(healthRow.cash) || 0,"
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 91,
+      "text": "if (!strategyName || !TI.CompanyRating.isYes(strategy.active || \"Да\")) {"
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 154,
+      "text": "if (TI.CompanyRating.isYes(account.includeTotal || \"Да\")) {"
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 209,
+      "text": "reasons.push(\"резерв на счете ниже минимального уровня\");"
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 221,
+      "text": "reasons.push(\"счет подходит для планового распределения капитала\");"
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 251,
+      "text": "return row.scopeType === \"Счёт\" ? \"Лучший счет для пополнения\" : \"Лучшая стратегия для пополнения\";"
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 267,
+      "text": "return \"Использовать как второй эшелон пополнения после счета или стратегии с первым местом.\";"
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 296,
+      "text": "return String(row.scopeType || \"\") === \"Счёт\" &&"
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 297,
+      "text": "TI.AccountScope.isRecommendationEnabled(row.accountId) &&"
+    },
+    {
+      "file": "PortfolioIntelligence.gs",
+      "line": 298,
+      "text": "TI.AccountScope.isDisplayEnabled(row.accountId);"
+    },
+    {
+      "file": "Prices.gs",
+      "line": 11,
+      "text": "*   1.0.0 - Первый сервис цен для расчета портфеля."
+    },
+    {
+      "file": "Providers.gs",
+      "line": 56,
+      "text": "getAccounts: function(forceRefresh) {"
+    },
+    {
+      "file": "Providers.gs",
+      "line": 59,
+      "text": "\"GetAccounts\","
+    },
+    {
+      "file": "Providers.gs",
+      "line": 62,
+      "text": "cacheKey: \"tinvest:users:getAccounts\","
+    },
+    {
+      "file": "Providers.gs",
+      "line": 66,
+      "text": "comment: \"Список брокерских счетов.\""
+    },
+    {
+      "file": "Providers.gs",
+      "line": 73,
+      "text": "getPortfolio: function(accountId, forceRefresh) {"
+    },
+    {
+      "file": "Providers.gs",
+      "line": 76,
+      "text": "\"GetPortfolio\","
+    },
+    {
+      "file": "Providers.gs",
+      "line": 78,
+      "text": "accountId: accountId,"
+    },
+    {
+      "file": "Providers.gs",
+      "line": 86,
+      "text": "accountId"
+    },
+    {
+      "file": "Providers.gs",
+      "line": 91,
+      "text": "comment: \"Портфель по счету.\""
+    },
+    {
+      "file": "Providers.gs",
+      "line": 96,
+      "text": "getWithdrawLimits: function(accountId, forceRefresh) {"
+    },
+    {
+      "file": "Providers.gs",
+      "line": 99,
+      "text": "\"GetWithdrawLimits\","
+    },
+    {
+      "file": "Providers.gs",
+      "line": 100,
+      "text": "{ accountId: accountId },"
+    },
+    {
+      "file": "Providers.gs",
+      "line": 106,
+      "text": "accountId"
+    },
+    {
+      "file": "Providers.gs",
+      "line": 111,
+      "text": "comment: \"Свободные деньги по счету.\""
+    },
+    {
+      "file": "Providers.gs",
+      "line": 116,
+      "text": "getPositions: function(accountId, forceRefresh) {"
+    },
+    {
+      "file": "Providers.gs",
+      "line": 119,
+      "text": "\"GetPositions\","
+    },
+    {
+      "file": "Providers.gs",
+      "line": 120,
+      "text": "{ accountId: accountId },"
+    },
+    {
+      "file": "Providers.gs",
+      "line": 126,
+      "text": "accountId"
+    },
+    {
+      "file": "Providers.gs",
+      "line": 131,
+      "text": "comment: \"Позиции и денежные остатки по счету.\""
+    },
+    {
+      "file": "Providers.gs",
+      "line": 136,
+      "text": "getOperationsByCursor: function(body, forceRefresh) {"
+    },
+    {
+      "file": "Providers.gs",
+      "line": 141,
+      "text": "\"GetOperationsByCursor\","
+    },
+    {
+      "file": "Providers.gs",
+      "line": 148,
+      "text": "body.accountId || \"\","
+    },
+    {
+      "file": "Providers.gs",
+      "line": 157,
+      "text": "comment: \"Операции по счету.\""
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 8,
+      "text": "*   Расчет отклонений портфеля от целевых долей стратегии."
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 12,
+      "text": "*   1.0.0 - Первый расчет рекомендаций по ребалансировке."
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 31,
+      "text": "ALL_ACCOUNTS: \"Все счета\","
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 77,
+      "text": "var portfolio = TI.AccountScope.filterCalculationRows(TI.Data.portfolio());"
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 80,
+      "text": "portfolio = TI.AccountScope.filterCalculationRows(TI.Data.portfolioFromFifoLots());"
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 151,
+      "text": "var accountId = String(item.accountId || \"\").trim();"
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 152,
+      "text": "var accountName = this.normalizeAccountName(item.accountName);"
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 154,
+      "text": "if (!scopeType) scopeType = accountId ? this.SCOPE_TYPES.ACCOUNT : this.SCOPE_TYPES.AGGREGATE;"
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 155,
+      "text": "if (scopeType === this.SCOPE_TYPES.ACCOUNT && !accountId) {"
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 160,
+      "text": "accountId: scopeType === this.SCOPE_TYPES.ACCOUNT ? accountId : \"\","
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 161,
+      "text": "accountName: scopeType === this.SCOPE_TYPES.AGGREGATE ? this.ALL_ACCOUNTS : accountName,"
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 182,
+      "text": "* Нормализовать счет стратегии."
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 186,
+      "text": "normalizeAccountName: function(value) {"
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 189,
+      "text": "if (!value || value.toLowerCase() === \"все счета\") {"
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 266,
+      "text": "var cashByAccount = this.cashByAccountName();"
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 270,
+      "text": "var accountName = target.scopeType === TI.Rebalance.SCOPE_TYPES.AGGREGATE"
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 272,
+      "text": ": target.accountName;"
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 273,
+      "text": "var strategyId = target.strategyId || (target.accountId"
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 274,
+      "text": "? TI.MultiAccount.accountStrategyMap()[target.accountId] || \"\""
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 278,
+      "text": "var availableCash = cashByAccount.hasOwnProperty(accountName)"
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 279,
+      "text": "? cashByAccount[accountName]"
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 304,
+      "text": "accountId: target.accountId || \"\","
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 305,
+      "text": "accountName: accountName,"
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 451,
+      "text": "* Справочник по тикеру для расчета бумаг вне портфеля."
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 483,
+      "text": "* Свободные деньги по счетам без падения расчета при ошибке API."
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 486,
+      "text": "cashByAccountName: function() {"
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 489,
+      "text": "return TI.Accounts.cashByAccountNameCachedOnly();"
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 493,
+      "text": "return TI.Accounts.cashByAccountName();"
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 512,
+      "text": "return String(position.accountId || \"\").trim() === String(target.accountId || \"\").trim();"
+    },
+    {
+      "file": "Rebalance.gs",
+      "line": 613,
+      "text": "\", свободно на счёте \" + this.formatMoney(availableCash);"
+    },
+    {
+      "file": "RuleEngine.gs",
+      "line": 41,
+      "text": "accountName: \"\","
+    },
+    {
+      "file": "RuleEngine.gs",
+      "line": 127,
+      "text": "return !rule.accountName ||"
+    },
+    {
+      "file": "RuleEngine.gs",
+      "line": 128,
+      "text": "String(rule.accountName || \"\").trim() === String(context.accountName || \"\").trim();"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 160,
+      "text": "field: \"accountName\","
+    },
+    {
+      "file": "Schema.gs",
+      "line": 161,
+      "text": "title: \"Счёт\","
+    },
+    {
+      "file": "Schema.gs",
+      "line": 192,
+      "text": "field: \"accountId\","
+    },
+    {
+      "file": "Schema.gs",
+      "line": 193,
+      "text": "title: \"ID счёта\","
+    },
+    {
+      "file": "Schema.gs",
+      "line": 269,
+      "text": "{ field:\"accountId\",     title:\"ID счёта\",             type:Schema.Types.TEXT, hidden:true, width:220 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 296,
+      "text": "{ field:\"accountId\",    title:\"ID счёта\",           type:Schema.Types.TEXT, hidden:true, width:220 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 313,
+      "text": "{ field:\"accountId\",     title:\"ID счёта\",        type:Schema.Types.TEXT, hidden:true, width:220 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 342,
+      "text": "{ field:\"accountName\",    title:\"Счёт\",                 type:Schema.Types.TEXT,    hidden:false, width:140 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 358,
+      "text": "{ field:\"accountId\",      title:\"ID счёта\",              type:Schema.Types.TEXT, hidden:true, width:220 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 491,
+      "text": "{ field:\"accountName\",  title:\"Счёт\",                type:Schema.Types.TEXT,    hidden:false, width:140 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 499,
+      "text": "{ field:\"accountId\",    title:\"ID счёта\",            type:Schema.Types.TEXT,    hidden:true,  width:220 }"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 550,
+      "text": "field:\"accountName\","
+    },
+    {
+      "file": "Schema.gs",
+      "line": 551,
+      "text": "title:\"Счёт\","
+    },
+    {
+      "file": "Schema.gs",
+      "line": 556,
+      "text": "description:\"Пусто или Все счета - цель применяется ко всему портфелю.\""
+    },
+    {
+      "file": "Schema.gs",
+      "line": 586,
+      "text": "{ field:\"accountId\",  title:\"ID счёта\",     type:Schema.Types.TEXT, hidden:true, width:220 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 602,
+      "text": "{ field:\"usedInflation\",     title:\"Используется в расчётах\",   type:Schema.Types.PERCENT, hidden:false, width:180 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 609,
+      "text": "{ field:\"accountName\",   title:\"Счёт\",                type:Schema.Types.TEXT,    hidden:false, width:140 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 626,
+      "text": "{ field:\"accountId\",    title:\"ID счёта\",            type:Schema.Types.TEXT,    hidden:true, width:220 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 632,
+      "text": "{ field:\"accountName\",   title:\"Счёт\",                type:Schema.Types.TEXT,   hidden:false, width:140 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 649,
+      "text": "{ field:\"accountId\",     title:\"ID счёта\",            type:Schema.Types.TEXT,   hidden:true, width:220 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 658,
+      "text": "{ field:\"accountName\", title:\"Счёт\",             type:Schema.Types.TEXT,   hidden:false, width:150 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 669,
+      "text": "{ field:\"accountName\", title:\"Счёт\",                 type:Schema.Types.TEXT,   hidden:false, width:140 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 680,
+      "text": "{ field:\"accountId\",   title:\"ID счёта\",             type:Schema.Types.TEXT,   hidden:true,  width:220 }"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 684,
+      "text": "{ field:\"accountName\",   title:\"Счёт\",                       type:Schema.Types.TEXT, hidden:false, width:180 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 686,
+      "text": "{ field:\"accountType\",   title:\"Тип счёта\",                  type:Schema.Types.TEXT, hidden:false, width:130 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 688,
+      "text": "{ field:\"includeTotal\",  title:\"Включать в общий портфель\",  type:Schema.Types.TEXT, hidden:false, width:190, validator:{ values:[\"Да\", \"Нет\"], allowInvalid:false } },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 692,
+      "text": "{ field:\"accountId\",     title:\"ID счёта\",                   type:Schema.Types.TEXT, hidden:true,  width:220 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 694,
+      "text": "{ field:\"Calculation_Enabled\",     title:\"Учитывать в расчётах\",            type:Schema.Types.BOOLEAN, hidden:false, width:180 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 712,
+      "text": "{ field:\"accountName\", title:\"Счёт\",              type:Schema.Types.TEXT, hidden:false, width:180 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 719,
+      "text": "{ field:\"accountId\",   title:\"ID счёта\",          type:Schema.Types.TEXT, hidden:true,  width:220 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 737,
+      "text": "{ field:\"accountId\",         title:\"ID счёта\",                type:Schema.Types.TEXT,    hidden:true,  width:220 }"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 756,
+      "text": "{ field:\"accountId\",         title:\"ID счёта\",                       type:Schema.Types.TEXT,    hidden:true,  width:220 }"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 870,
+      "text": "{ field:\"accountName\", title:\"Счёт\",             type:Schema.Types.TEXT,   hidden:false, width:140 },"
+    },
+    {
+      "file": "Schema.gs",
+      "line": 876,
+      "text": "{ field:\"updatedAt\",   title:\"Дата расчёта\",     type:Schema.Types.DATE,   hidden:false, width:130 }"
+    },
+    {
+      "file": "SmokeTests.gs",
+      "line": 37,
+      "text": "[\"Счета и стратегии\", TI_TestMultiAccount],"
+    },
+    {
+      "file": "SmokeTests.gs",
+      "line": 242,
+      "text": "\", счета: \" + hasAccountsProvider +"
+    },
+    {
+      "file": "SmokeTests.gs",
+      "line": 316,
+      "text": "? \"Слой счетов и стратегий доступен.\""
+    },
+    {
+      "file": "SmokeTests.gs",
+      "line": 317,
+      "text": ": \"Слой счетов и стратегий не найден.\","
+    },
+    {
+      "file": "SmokeTests.gs",
+      "line": 318,
+      "text": "details: \"Листы счетов/стратегий/связей: \" + hasSheets"
+    },
+    {
+      "file": "Stabilization.gs",
+      "line": 105,
+      "text": "rows > 0 ? \"\" : \"Запустите полную пакетную синхронизацию или соответствующий расчет.\""
+    },
+    {
+      "file": "Strategy.gs",
+      "line": 79,
+      "text": "var portfolio = TI.AccountScope.filterCalculationRows(TI.Data.portfolio());"
+    },
+    {
+      "file": "Strategy.gs",
+      "line": 82,
+      "text": "portfolio = TI.AccountScope.filterCalculationRows(TI.Data.portfolioFromFifoLots());"
+    },
+    {
+      "file": "Strategy.gs",
+      "line": 271,
+      "text": "return String(account.accountName || \"\").trim();"
+    },
+    {
+      "file": "Strategy.gs",
+      "line": 348,
+      "text": "var accountColumn = this.schemaColumn(\"accountName\");"
+    },
+    {
+      "file": "StrategyEngine.gs",
+      "line": 67,
+      "text": "accountName: TI.Rebalance.ALL_ACCOUNTS,"
+    },
+    {
+      "file": "StrategyEngine.gs",
+      "line": 120,
+      "text": "rows[i].accountName = rows[i].accountName || update.accountName;"
+    },
+    {
+      "file": "StrategyEngine.gs",
+      "line": 132,
+      "text": "var accountName = String(row.accountName || \"\").trim();"
+    },
+    {
+      "file": "StrategyEngine.gs",
+      "line": 134,
+      "text": "if (!accountName || accountName.toLowerCase() === \"все счета\") {"
+    },
+    {
+      "file": "StrategyEngine.gs",
+      "line": 135,
+      "text": "accountName = \"\";"
+    },
+    {
+      "file": "StrategyEngine.gs",
+      "line": 141,
+      "text": "accountName.toLowerCase()"
+    },
+    {
+      "file": "SyncExecution.gs",
+      "line": 26,
+      "text": "\"Сделки\", \"Портфель\", \"Счета\", \"Стратегии\", \"Стратегии счетов\","
+    },
+    {
+      "file": "SyncExecution.gs",
+      "line": 277,
+      "text": "reads: [\"Счета\", \"Портфель\", \"Лоты FIFO\", \"Справочник\", \"Стратегии\", \"Стратегии счетов\"],"
+    },
+    {
+      "file": "SyncExecution.gs",
+      "line": 287,
+      "text": "reads: [\"Сделки\", \"Портфель\", \"Счета\", \"Стратегии\", \"Стратегии счетов\", \"Справочник\", \"Кэш\", \"Данные источников\", \"Настройки\", \"Конституция\"],"
+    },
+    {
+      "file": "SyncExecution.gs",
+      "line": 330,
+      "text": "var portfolio = TI.Data.portfolio();"
+    },
+    {
+      "file": "SyncExecution.gs",
+      "line": 338,
+      "text": "var accounts = health.filter(function(row) { return row.scopeType === \"Счёт\"; });"
+    },
+    {
+      "file": "SyncExecution.gs",
+      "line": 413,
+      "text": "TI.SyncExecution.recordApi(\"T-Invest OperationsService/GetPositions\");"
+    },
+    {
+      "file": "SyncExecution.gs",
+      "line": 424,
+      "text": "TI.SyncExecution.recordApi(\"T-Invest OperationsService/GetOperationsByCursor\");"
+    },
+    {
+      "file": "SyncExecution.gs",
+      "line": 460,
+      "text": "var expected = [\"Тип области\", \"ID счёта\", \"ID стратегии\"];"
+    },
+    {
+      "file": "Tax.gs",
+      "line": 8,
+      "text": "*   Расчет налоговой базы по закрытым FIFO-продажам."
+    },
+    {
+      "file": "Tax.gs",
+      "line": 11,
+      "text": "*   1.0.0 - Первая версия расчета НДФЛ по годам."
+    },
+    {
+      "file": "Tax.gs",
+      "line": 30,
+      "text": "* Построить налоговый расчет на основе FIFO."
+    },
+    {
+      "file": "Tax.gs",
+      "line": 99,
+      "text": "* Записать расчет в лист."
+    },
+    {
+      "file": "Tax.gs",
+      "line": 172,
+      "text": "\"Налоговый расчет выполнен.\\n\\n\" +"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 25,
+      "text": "accountId: \"\","
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 26,
+      "text": "accountName: TI.Rebalance.ALL_ACCOUNTS,"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 32,
+      "text": "var accountId = String(row.accountId || \"\").trim();"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 33,
+      "text": "if (!accountId) throw new Error(\"ACCOUNT_SCOPE_REQUIRES_ACCOUNT_ID\");"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 35,
+      "text": "if (!accounts[accountId]) throw new Error(\"UNKNOWN_ACCOUNT_ID: \" + TI.AccountStrategyAudit.suffix(accountId));"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 36,
+      "text": "var strategyId = String(row.strategyId || TI.MultiAccount.accountStrategyMap()[accountId] || \"\").trim();"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 41,
+      "text": "accountId: accountId,"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 42,
+      "text": "accountName: String(accounts[accountId].accountName || \"\").trim(),"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 51,
+      "text": "result.accountId = identity.accountId;"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 52,
+      "text": "result.accountName = identity.accountName;"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 71,
+      "text": "var portfolio = TI.AccountScope.filterCalculationRows(TI.Data.portfolio());"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 74,
+      "text": "portfolio = TI.AccountScope.filterCalculationRows(TI.Data.portfolioFromFifoLots());"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 355,
+      "text": "accountName: row.accountName,"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 531,
+      "text": "accountName: row.accountName,"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 557,
+      "text": "var accountName = String(row.accountName || \"\").trim();"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 560,
+      "text": "accountId: row.accountId || \"\","
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 561,
+      "text": "accountName: accountName === TI.Rebalance.ALL_ACCOUNTS ? \"\" : accountName,"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 604,
+      "text": "comment = \"Сумма по лотам больше свободных денег на счёте.\";"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 612,
+      "text": "accountName: row.accountName,"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 646,
+      "text": "comment = \"Сумма по лотам больше свободных денег на счёте.\";"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 650,
+      "text": "accountName: row.accountName,"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 738,
+      "text": "accountId: \"\","
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 739,
+      "text": "accountName: TI.Rebalance.ALL_ACCOUNTS"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 742,
+      "text": "var accountIds = Object.keys(links);"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 743,
+      "text": "var validAccountId = accountIds[0] || \"\";"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 746,
+      "text": "accountId: validAccountId,"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 747,
+      "text": "strategyId: links[validAccountId]"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 753,
+      "text": "ok: aggregate.accountId === \"\" && account.accountId === validAccountId &&"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 754,
+      "text": "fails({ scopeType: \"ACCOUNT\", accountId: \"\" }) &&"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 755,
+      "text": "fails({ scopeType: \"ACCOUNT\", accountId: \"unknown\" }) &&"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 756,
+      "text": "fails({ scopeType: \"ACCOUNT\", accountId: \"Пассивный\" }),"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 759,
+      "text": "emptyAccountIdRejected: fails({ scopeType: \"ACCOUNT\", accountId: \"\" }),"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 760,
+      "text": "unknownAccountIdRejected: fails({ scopeType: \"ACCOUNT\", accountId: \"unknown\" }),"
+    },
+    {
+      "file": "TradePlan.gs",
+      "line": 761,
+      "text": "russianNameNotUsedAsKey: fails({ scopeType: \"ACCOUNT\", accountId: \"Пассивный\" })"
+    },
+    {
+      "file": "Trades.gs",
+      "line": 26,
+      "text": "buildTradeKey: function(accountId, operationId, tradeId) {"
+    },
+    {
+      "file": "Trades.gs",
+      "line": 27,
+      "text": "return [accountId, operationId, tradeId].map(function(value) {"
+    },
+    {
+      "file": "Trades.gs",
+      "line": 167,
+      "text": "accountName: operation.accountName || operation.accountId,"
+    },
+    {
+      "file": "Trades.gs",
+      "line": 170,
+      "text": "accountId: operation.accountId,"
+    },
+    {
+      "file": "Trades.gs",
+      "line": 209,
+      "text": "var key = TI.Trades.buildTradeKey(trade.accountId, trade.operationId, trade.tradeId);"
+    },
+    {
+      "file": "Trades.gs",
+      "line": 251,
+      "text": "var key = TI.Trades.buildTradeKey(trade.accountId, trade.operationId, trade.tradeId);"
+    },
+    {
+      "file": "Trades.gs",
+      "line": 394,
+      "text": "if (!String(trade.accountId || \"\").trim() ||"
+    },
+    {
+      "file": "Trades.gs",
+      "line": 397,
+      "text": "var key = TI.Trades.buildTradeKey(trade.accountId, trade.operationId, trade.tradeId);"
+    },
+    {
+      "file": "Visualization.gs",
+      "line": 32,
+      "text": "TI.AccountScope.filterCalculationRows(TI.Data.portfolio())"
+    },
+    {
+      "file": "Visualization.gs",
+      "line": 37,
+      "text": "TI.AccountScope.filterCalculationRows(TI.Data.portfolioFromFifoLots())"
+    },
+    {
+      "file": "Visualization.gs",
+      "line": 44,
+      "text": ".concat(this.groupRows(portfolio, \"Счета\", \"accountName\", 0))"
+    },
+    {
+      "file": "Visualization.gs",
+      "line": 193,
+      "text": "var sections = [\"Счета\", \"Типы инструментов\", \"Эмитенты\", \"Топ позиций\"];"
+    }
+  ]
+}

@@ -7,3 +7,4 @@ credentials*.json
 .env.*
 .codex-runtime/
 backups/
+audit/account-archive/invest-piggy-bank/

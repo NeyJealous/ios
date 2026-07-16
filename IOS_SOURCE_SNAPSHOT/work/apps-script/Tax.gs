@@ -31,10 +31,10 @@ TI.Tax = {
    * @return {Object[]}
    */
   build: function() {
-    var sales = TI.Data.fifoSales();
+    var sales = TI.AccountScope.filterCalculationRows(TI.Data.fifoSales());
 
     if (sales.length === 0) {
-      sales = TI.FIFO.calculate(TI.Data.trades()).sales;
+      sales = TI.FIFO.calculate(TI.AccountScope.filterCalculationRows(TI.Data.trades())).sales;
     }
 
     return this.aggregateSales(sales);

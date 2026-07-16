@@ -22,7 +22,9 @@ TI.COI = {
   build: function() {
     var now = new Date();
     var regime = TI.MarketRegime.current();
-    var reserve = TI.Constitution.reserveStatus(TI.Data.portfolio());
+    var reserve = TI.Constitution.reserveStatus(
+      TI.AccountScope.filterCalculationRows(TI.Data.portfolio())
+    );
     var bonds = TI.BondEngine.read();
     var assets = TI.AssetScoring.read();
     var rows = this.components(regime, reserve, bonds, assets, now);

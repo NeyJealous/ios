@@ -75,6 +75,11 @@ TI.MultiAccount = {
         accountType: old.accountType || account.accountType || "",
         active: old.active || "Да",
         includeTotal: old.includeTotal || "Да",
+        Sync_Enabled: TI.AccountScope ? TI.AccountScope.isTrue(old.Sync_Enabled) : old.Sync_Enabled === true,
+        Calculation_Enabled: TI.AccountScope ? TI.AccountScope.isTrue(old.Calculation_Enabled) : old.Calculation_Enabled === true,
+        Display_Enabled: TI.AccountScope ? TI.AccountScope.isTrue(old.Display_Enabled) : old.Display_Enabled === true,
+        Recommendations_Enabled: TI.AccountScope ? TI.AccountScope.isTrue(old.Recommendations_Enabled) : old.Recommendations_Enabled === true,
+        History_Enabled: TI.AccountScope ? TI.AccountScope.isTrue(old.History_Enabled) : old.History_Enabled === true,
         strategy: old.strategy || TI.MultiAccount.DEFAULT_STRATEGY,
         limits: old.limits || "",
         comment: old.comment || "",
@@ -95,6 +100,7 @@ TI.MultiAccount = {
     });
 
     this.writeRows(CORE.SHEETS.ACCOUNTS, this.uniqueAccountRows(rows));
+    if (TI.AccountScope) TI.AccountScope.resetExecutionCache();
 
     return {
       total: rows.length

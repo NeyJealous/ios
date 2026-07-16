@@ -46,7 +46,7 @@ TI.Advisor = {
    * @return {Object[]}
    */
   build: function() {
-    var portfolio = TI.Data.portfolio();
+    var portfolio = TI.AccountScope.filterCalculationRows(TI.Data.portfolio());
     var targets = TI.Rebalance.readTargets();
     var rebalance = TI.Rebalance.calculate(portfolio, targets);
     var tradePlan = TI.Data.tradePlan();
@@ -231,12 +231,15 @@ TI.Advisor = {
    * @return {Object[]}
    */
   portfolioHealthRecommendations: function() {
-    var rows = TI.PortfolioHealth.read();
+    var rows = TI.AccountScope.filterDisplayScopedRows(TI.PortfolioHealth.read());
 
     return rows.filter(function(row) {
       return String(row.status || "").trim() !== "OK";
     }).map(function(row) {
       return {
+        accountId: row.accountId || "",
+        accountName: row.accountId ? row.scopeName : TI.Rebalance.ALL_ACCOUNTS,
+        scopeType: row.scopeType || "",
         priority: TI.Advisor.PRIORITY.MEDIUM,
         category: "Риск",
         recommendation: "Проверить здоровье портфеля: " +
@@ -254,6 +257,9 @@ TI.Advisor = {
 
     if (bestAccount) {
       rows.push({
+        accountId: bestAccount.accountId || "",
+        accountName: bestAccount.scopeName || "",
+        scopeType: "ACCOUNT",
         priority: this.PRIORITY.MEDIUM,
         category: "Счета",
         recommendation: "Лучший счет для нового пополнения: " + bestAccount.scopeName + ".",
@@ -325,12 +331,15 @@ TI.Advisor = {
   rebalanceRecommendations: function(rows) {
     var threshold = TI.Settings.getRebalanceThreshold();
 
-    return rows.filter(function(row) {
+    return TI.AccountScope.filterRecommendationScopedRows(rows).filter(function(row) {
       return Math.abs(Number(row.deviation) || 0) > threshold;
     }).map(function(row) {
       var deviation = Math.abs(Number(row.deviation) || 0);
 
       return {
+        accountId: row.accountId || "",
+        accountName: row.accountName || TI.Rebalance.ALL_ACCOUNTS,
+        scopeType: row.scopeType || "",
         priority: deviation >= threshold * 2
           ? TI.Advisor.PRIORITY.HIGH
           : TI.Advisor.PRIORITY.MEDIUM,
@@ -352,15 +361,21 @@ TI.Advisor = {
   tradePlanRecommendations: function(rows) {
     var recommendations = [];
 
-    (rows || []).forEach(function(row) {
+    TI.AccountScope.filterRecommendationScopedRows(rows || []).forEach(function(row) {
       var status = String(row.status || "").trim();
       var ticker = String(row.ticker || "").trim();
       var action = String(row.action || "").trim();
       var amount = Number(row.amount) || 0;
       var target = row.targetKind + " " + row.targetName;
+      var add = function(item) {
+        item.accountId = row.accountId || "";
+        item.accountName = row.accountName || TI.Rebalance.ALL_ACCOUNTS;
+        item.scopeType = row.scopeType || "";
+        recommendations.push(item);
+      };
 
       if (status === "Проверить продажу") {
-        recommendations.push({
+        add({
           priority: TI.Advisor.PRIORITY.HIGH,
           category: "Проверка продажи",
           recommendation: "Проверить продажу " + (ticker || row.targetName) + ".",
@@ -371,7 +386,7 @@ TI.Advisor = {
       }
 
       if (action === "Не покупать") {
-        recommendations.push({
+        add({
           priority: TI.Advisor.PRIORITY.MEDIUM,
           category: "Покупки",
           recommendation: "Не докупать " + (ticker || row.targetName) + ".",
@@ -382,7 +397,7 @@ TI.Advisor = {
       }
 
       if (status === "Пониженный приоритет") {
-        recommendations.push({
+        add({
           priority: TI.Advisor.PRIORITY.MEDIUM,
           category: "Резерв",
           recommendation: "Понизить приоритет покупки " + (ticker || row.targetName) + ".",
@@ -393,7 +408,7 @@ TI.Advisor = {
       }
 
       if (status === "Готово" && ticker && amount > 0) {
-        recommendations.push({
+        add({
           priority: TI.Advisor.PRIORITY.MEDIUM,
           category: "План сделок",
           recommendation: action + " " + ticker + ": " +
@@ -405,7 +420,7 @@ TI.Advisor = {
       }
 
       if (status === "Недостаточно денег") {
-        recommendations.push({
+        add({
           priority: TI.Advisor.PRIORITY.HIGH,
           category: "План сделок",
           recommendation: "Не хватает свободных денег для " +
@@ -417,7 +432,7 @@ TI.Advisor = {
       }
 
       if (status === "Меньше минимального лота") {
-        recommendations.push({
+        add({
           priority: TI.Advisor.PRIORITY.LOW,
           category: "План сделок",
           recommendation: "Сумма докупки меньше минимального лота " +
@@ -429,7 +444,7 @@ TI.Advisor = {
       }
 
       if (status === "Нужно распределить") {
-        recommendations.push({
+        add({
           priority: TI.Advisor.PRIORITY.MEDIUM,
           category: "План сделок",
           recommendation: "Распределить групповую цель между тикерами: " +
@@ -600,33 +615,32 @@ TI.Advisor = {
   },
 
   normalizeRows: function(rows) {
-    return (rows || []).map(function(row) {
-      row.accountName = row.accountName || TI.Advisor.accountFromRecommendation(row);
+    var accounts = TI.MultiAccount.accountMap();
+    return (rows || []).reduce(function(result, row) {
+      var accountId = String(row.accountId || "").trim();
+      if (accountId) {
+        if (!accounts[accountId] || !TI.AccountScope.isRecommendationEnabled(accountId) ||
+            !TI.AccountScope.isDisplayEnabled(accountId)) {
+          TI.TechLog.warning("Advisor", "normalizeRows", "ACCOUNT_RECOMMENDATION_DISABLED", TI.AccountStrategyAudit.suffix(accountId));
+          return result;
+        }
+        row.accountName = String(accounts[accountId].accountName || "").trim();
+      } else {
+        row.accountName = TI.Rebalance.ALL_ACCOUNTS;
+      }
       row.ticker = row.ticker || TI.Advisor.tickerFromRecommendation(row);
       row.confidence = row.confidence || TI.Advisor.confidenceFor(row);
       row.risk = row.risk || TI.Advisor.riskFor(row);
       row.nextStep = row.nextStep || TI.Advisor.nextStepFor(row);
-      return row;
-    });
+      result.push(row);
+      return result;
+    }, []);
   },
 
   accountFromRecommendation: function(row) {
-    var text = [
-      row.recommendation,
-      row.reason,
-      row.effect
-    ].join(" ");
-    var accounts = TI.MultiAccount.accounts();
-
-    for (var i = 0; i < accounts.length; i++) {
-      var name = String(accounts[i].accountName || "").trim();
-
-      if (name && text.indexOf(name) >= 0) {
-        return name;
-      }
-    }
-
-    return "Все счета";
+    return row && row.accountId && TI.MultiAccount.accountMap()[row.accountId]
+      ? TI.MultiAccount.accountMap()[row.accountId].accountName
+      : TI.Rebalance.ALL_ACCOUNTS;
   },
 
   tickerFromRecommendation: function(row) {

@@ -433,10 +433,7 @@ TI.Directory = {
    * @return {Object[]}
    */
   directoryAccounts: function() {
-    return TI.MultiAccount.accounts()
-      .filter(function(account) {
-        return String(account.active || "Да").trim() !== "Нет";
-      })
+    return TI.AccountScope.accounts(TI.AccountScope.FLAGS.SYNC)
       .map(function(account) {
         return {
           id: account.accountId || "",
@@ -455,7 +452,7 @@ TI.Directory = {
    * @return {Object[]}
    */
   fetchPortfolioPositions: function(accountId) {
-    if (!accountId) {
+    if (!accountId || !TI.AccountScope.isSyncEnabled(accountId)) {
       return [];
     }
 

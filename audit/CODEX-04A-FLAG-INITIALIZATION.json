@@ -1,0 +1,47 @@
+{
+  "otherAccountPolicy": "PRESERVE_LEGACY",
+  "cellsWritten": 15,
+  "rollbackSnapshot": "CODEX04A_ACCOUNTS_FLAGS_BEFORE",
+  "flagColumns": [
+    "Синхронизировать",
+    "Учитывать в расчётах",
+    "Показывать",
+    "Использовать в рекомендациях",
+    "Хранить историю"
+  ],
+  "writeOnlyAccountsFlags": true,
+  "accounts": [
+    {
+      "accountIdSuffix": "…020546",
+      "flags": [
+        true,
+        false,
+        true,
+        false,
+        true
+      ]
+    },
+    {
+      "accountIdSuffix": "…864109",
+      "flags": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "accountIdSuffix": "…531683",
+      "flags": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    }
+  ],
+  "productionPurgePerformed": false,
+  "ok": true
+}

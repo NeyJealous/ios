@@ -392,7 +392,9 @@ TI.FIFO = {
    * @return {{lots:Object[], sales:Object[], errors:Object[]}}
    */
   build: function() {
-    var trades = this.readTrades();
+    var trades = TI.AccountScope.filterCalculationRows(
+      TI.AccountScope.filterHistoryRows(this.readTrades())
+    );
     var result = this.calculate(trades);
 
     this.writeResults(result);

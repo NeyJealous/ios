@@ -28,10 +28,10 @@ TI.Visualization = {
    * @return {Object[]}
    */
   build: function() {
-    var portfolio = TI.Data.portfolio();
+    var portfolio = TI.AccountScope.filterDisplayRows(TI.Data.portfolio());
 
     if (portfolio.length === 0) {
-      portfolio = TI.Data.portfolioFromFifoLots();
+      portfolio = TI.AccountScope.filterDisplayRows(TI.Data.portfolioFromFifoLots());
     }
 
     var rows = [];

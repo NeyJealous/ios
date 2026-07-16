@@ -103,6 +103,7 @@ TI.SyncExecution = {
   },
   create: function(mode, steps) {
     var initialPolicy = this.stepDataAccess(mode, "");
+    var scopeMetrics = TI.AccountScope.syncMetrics();
     return {
       runId: TI.AccountStrategyAudit.suffix(Utilities.getUuid()),
       mode: mode,
@@ -123,6 +124,11 @@ TI.SyncExecution = {
       rowsWritten: 0,
       warnings: [],
       errors: [],
+      accountsDiscovered: scopeMetrics.accountsDiscovered,
+      accountsSyncEnabled: scopeMetrics.accountsSyncEnabled,
+      accountsSkipped: scopeMetrics.accountsSkipped,
+      skippedAccountIdSuffixes: scopeMetrics.skippedAccountIdSuffixes,
+      savedApiCallsEstimate: scopeMetrics.savedApiCallsEstimate,
       projectVersion: CORE.PROJECT.VERSION,
       plannedSteps: (steps || []).map(function(step) { return step.id; })
     };
@@ -327,8 +333,8 @@ TI.SyncExecution = {
       var context = this.create("recalc", steps);
       this.activate(context);
       var before = this.dataSnapshot(true);
-      var portfolio = TI.Data.portfolio();
-      var targets = TI.Rebalance.readTargets();
+      var portfolio = TI.AccountScope.filterCalculationRows(TI.Data.portfolio());
+      var targets = TI.AccountScope.filterCalculationScopedRows(TI.Rebalance.readTargets());
       var rebalance = TI.Rebalance.calculate(portfolio, targets);
       var tradePlan = TI.TradePlan.fromRebalance(rebalance, portfolio);
       var health = TI.PortfolioHealth.build();

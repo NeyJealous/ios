@@ -37,10 +37,10 @@ TI.Main = {
    * @return {Object[]}
    */
   build: function() {
-    var portfolio = TI.Data.portfolio();
+    var portfolio = TI.AccountScope.filterCalculationRows(TI.Data.portfolio());
     var taxes = TI.Data.taxes();
     var diagnostics = TI.Data.diagnostics();
-    var advisor = TI.Data.advisor();
+    var advisor = TI.AccountScope.filterDisplayScopedRows(TI.Data.advisor());
 
     var income = this.incomeCounts();
     var totalMarketValue = this.sum(portfolio, "marketValue");

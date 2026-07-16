@@ -438,6 +438,11 @@ TI.BatchSync = {
       positions: sources.positions,
       portfolios: sources.portfolios,
       prices: sources.prices,
+      accountsDiscovered: sources.accountsDiscovered,
+      accountsSyncEnabled: sources.accountsSyncEnabled,
+      accountsSkipped: sources.accountsSkipped,
+      skippedAccountIdSuffixes: sources.skippedAccountIdSuffixes,
+      savedApiCallsEstimate: sources.savedApiCallsEstimate,
       warnings: sources.warnings || []
     };
   },

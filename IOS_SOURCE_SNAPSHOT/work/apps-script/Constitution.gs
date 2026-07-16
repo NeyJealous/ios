@@ -145,7 +145,7 @@ TI.Constitution = {
   },
 
   actual: function(portfolio) {
-    portfolio = portfolio || TI.Data.portfolio();
+    portfolio = TI.AccountScope.filterCalculationRows(portfolio || TI.Data.portfolio());
 
     var portfolioValue = this.sum(portfolio, "marketValue");
     var cash = this.totalCash();

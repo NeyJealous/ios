@@ -20,10 +20,9 @@ TI.PortfolioIntelligence = {
   },
 
   build: function() {
-    TI.MultiAccount.ensureDefaults();
-
     var health = TI.PortfolioHealth.build();
-    var accounts = TI.MultiAccount.accounts();
+    var accounts = TI.AccountScope.accounts(TI.AccountScope.FLAGS.RECOMMENDATIONS)
+      .filter(function(account) { return TI.AccountScope.isDisplayEnabled(account.accountId); });
     var strategies = TI.MultiAccount.strategies();
     var rows = [];
     var now = new Date();
@@ -39,7 +38,6 @@ TI.PortfolioIntelligence = {
       return scope !== 0 ? scope : (Number(a.rank) || 999) - (Number(b.rank) || 999);
     });
 
-    this.write(rows);
     return rows;
   },
 
@@ -49,6 +47,7 @@ TI.PortfolioIntelligence = {
     var rows = [];
 
     (accounts || []).forEach(function(account) {
+      var accountId = String(account.accountId || "").trim();
       var accountName = String(account.accountName || "").trim();
 
       if (!accountName || !TI.CompanyRating.isYes(account.active || "Да")) {
@@ -62,7 +61,8 @@ TI.PortfolioIntelligence = {
       rows.push({
         scopeType: "Счёт",
         scopeName: accountName,
-        strategy: account.strategy || TI.MultiAccount.strategyForAccount(accountName),
+        accountId: accountId,
+        strategy: account.strategy || TI.MultiAccount.strategyForAccount(accountId),
         rank: 0,
         score: score,
         availableCash: Number(cash[accountName]) || Number(healthRow.cash) || 0,
@@ -293,7 +293,9 @@ TI.PortfolioIntelligence = {
 
   bestAccount: function() {
     return this.read().filter(function(row) {
-      return String(row.scopeType || "") === "Счёт";
+      return String(row.scopeType || "") === "Счёт" &&
+        TI.AccountScope.isRecommendationEnabled(row.accountId) &&
+        TI.AccountScope.isDisplayEnabled(row.accountId);
     }).sort(function(a, b) {
       return (Number(a.rank) || 999) - (Number(b.rank) || 999);
     })[0] || null;

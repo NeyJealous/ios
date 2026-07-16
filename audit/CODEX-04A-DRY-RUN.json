@@ -1,0 +1,469 @@
+{
+  "ok": true,
+  "code": "DRY_RUN_PASS_OFFLINE_PREVIEW",
+  "generatedAt": "2026-07-15T20:55:04.628Z",
+  "readOnly": true,
+  "source": "read-only XLSX export + private exact-ID archive",
+  "externalApiCalls": 0,
+  "target": {
+    "displayName": "На тату",
+    "accountType": "Инвесткопилка",
+    "status": "Да",
+    "accountIdSuffix": "…864109",
+    "uniqueAccountId": true,
+    "flagsBefore": {
+      "Синхронизировать": null,
+      "Учитывать в расчётах": null,
+      "Показывать": null,
+      "Использовать в рекомендациях": null,
+      "Хранить историю": null
+    },
+    "flagsAfter": {
+      "Синхронизировать": false,
+      "Учитывать в расчётах": false,
+      "Показывать": false,
+      "Использовать в рекомендациях": false,
+      "Хранить историю": false
+    }
+  },
+  "backup": {
+    "googleSheetsBackupIdSuffix": "…965QXM",
+    "privateArchivePresent": true,
+    "archiveFiles": [
+      "manifest.json",
+      "trades.json",
+      "operations.json",
+      "portfolio.json",
+      "derived-data.json",
+      "migration-summary.md"
+    ],
+    "archiveSha256": "017c5d8f849ec22147cee7c01724506c5a166fd8c3d798b20c812653a166952b"
+  },
+  "writeSet": {
+    "schemaHeaders": {
+      "sheet": "Счета",
+      "range": "J1:N1",
+      "count": 5
+    },
+    "flagWrites": [
+      {
+        "sheet": "Счета",
+        "row": 2,
+        "accountIdSuffix": "…020546",
+        "displayName": "Брокерский счёт",
+        "range": "J2:N2",
+        "values": [
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "sheet": "Счета",
+        "row": 3,
+        "accountIdSuffix": "…864109",
+        "displayName": "На тату",
+        "range": "J3:N3",
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "sheet": "Счета",
+        "row": 4,
+        "accountIdSuffix": "…531683",
+        "displayName": "Пассивный",
+        "range": "J4:N4",
+        "values": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    ],
+    "cacheKeysToClear": [
+      "tinvest:operations:withdrawLimits:…864109",
+      "tinvest:operations:positions:…864109",
+      "tinvest:operations:portfolio:…864109",
+      "operations_v2 entries for …864109",
+      "incremental marker for …864109"
+    ],
+    "derivedRebuilds": [
+      "Лоты FIFO",
+      "Продажи FIFO",
+      "Ошибки FIFO",
+      "Налоги",
+      "Ребалансировка",
+      "Решения",
+      "План сделок",
+      "Советник",
+      "Здоровье портфеля",
+      "Интеллект портфеля",
+      "Визуализация",
+      "Главная"
+    ]
+  },
+  "deleteSet": [
+    {
+      "sheet": "Сделки",
+      "exists": true,
+      "rowCount": 160,
+      "rowNumbers": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167
+      ],
+      "predicate": "exact Account ID match (or exact Account ID embedded in account-specific cache key/value)"
+    },
+    {
+      "sheet": "Операции",
+      "exists": false,
+      "rowCount": 0,
+      "rowNumbers": [],
+      "predicate": "exact Account ID match (or exact Account ID embedded in account-specific cache key/value)"
+    },
+    {
+      "sheet": "Портфель",
+      "exists": true,
+      "rowCount": 1,
+      "rowNumbers": [
+        2
+      ],
+      "predicate": "exact Account ID match (or exact Account ID embedded in account-specific cache key/value)"
+    },
+    {
+      "sheet": "Данные источников",
+      "exists": true,
+      "rowCount": 17,
+      "rowNumbers": [
+        3,
+        6,
+        10,
+        15,
+        18,
+        23,
+        27,
+        31,
+        34,
+        37,
+        40,
+        59,
+        64,
+        67,
+        70,
+        73,
+        76
+      ],
+      "predicate": "exact Account ID match (or exact Account ID embedded in account-specific cache key/value)"
+    },
+    {
+      "sheet": "API Операции",
+      "exists": false,
+      "rowCount": 0,
+      "rowNumbers": [],
+      "predicate": "exact Account ID match (or exact Account ID embedded in account-specific cache key/value)"
+    },
+    {
+      "sheet": "API Счета",
+      "exists": false,
+      "rowCount": 0,
+      "rowNumbers": [],
+      "predicate": "exact Account ID match (or exact Account ID embedded in account-specific cache key/value)"
+    }
+  ],
+  "preservedSet": [
+    {
+      "sheet": "Счета",
+      "rowCount": 1,
+      "rowNumbers": [
+        3
+      ],
+      "action": "keep row; set five flags false"
+    },
+    {
+      "sheet": "Стратегии счетов",
+      "rowCount": 1,
+      "rowNumbers": [
+        4
+      ],
+      "action": "keep link for reversible re-enable"
+    }
+  ],
+  "rebuildSet": [
+    {
+      "sheet": "Лоты FIFO",
+      "exactAccountIdRowsBefore": 6,
+      "legacyDisplayNameRowsBefore": 0,
+      "action": "rebuild from remaining enabled accounts; do not delete by display name"
+    },
+    {
+      "sheet": "Продажи FIFO",
+      "exactAccountIdRowsBefore": 131,
+      "legacyDisplayNameRowsBefore": 0,
+      "action": "rebuild from remaining enabled accounts; do not delete by display name"
+    },
+    {
+      "sheet": "Ошибки FIFO",
+      "exactAccountIdRowsBefore": 0,
+      "legacyDisplayNameRowsBefore": 0,
+      "action": "rebuild from remaining enabled accounts; do not delete by display name"
+    },
+    {
+      "sheet": "Налоги",
+      "exactAccountIdRowsBefore": 0,
+      "legacyDisplayNameRowsBefore": 0,
+      "action": "rebuild from remaining enabled accounts; do not delete by display name"
+    },
+    {
+      "sheet": "Ребалансировка",
+      "exactAccountIdRowsBefore": 0,
+      "legacyDisplayNameRowsBefore": 0,
+      "action": "rebuild from remaining enabled accounts; do not delete by display name"
+    },
+    {
+      "sheet": "Решения",
+      "exactAccountIdRowsBefore": 0,
+      "legacyDisplayNameRowsBefore": 0,
+      "action": "rebuild from remaining enabled accounts; do not delete by display name"
+    },
+    {
+      "sheet": "План сделок",
+      "exactAccountIdRowsBefore": 0,
+      "legacyDisplayNameRowsBefore": 0,
+      "action": "rebuild from remaining enabled accounts; do not delete by display name"
+    },
+    {
+      "sheet": "Советник",
+      "exactAccountIdRowsBefore": 0,
+      "legacyDisplayNameRowsBefore": 1,
+      "action": "rebuild from remaining enabled accounts; do not delete by display name"
+    },
+    {
+      "sheet": "Здоровье портфеля",
+      "exactAccountIdRowsBefore": 0,
+      "legacyDisplayNameRowsBefore": 1,
+      "action": "rebuild from remaining enabled accounts; do not delete by display name"
+    },
+    {
+      "sheet": "Интеллект портфеля",
+      "exactAccountIdRowsBefore": 0,
+      "legacyDisplayNameRowsBefore": 1,
+      "action": "rebuild from remaining enabled accounts; do not delete by display name"
+    },
+    {
+      "sheet": "Визуализация",
+      "exactAccountIdRowsBefore": 0,
+      "legacyDisplayNameRowsBefore": 1,
+      "action": "rebuild from remaining enabled accounts; do not delete by display name"
+    },
+    {
+      "sheet": "Главная",
+      "exactAccountIdRowsBefore": 0,
+      "legacyDisplayNameRowsBefore": 0,
+      "action": "rebuild from remaining enabled accounts; do not delete by display name"
+    }
+  ],
+  "historySafety": [
+    {
+      "sheet": "Сделки",
+      "totalRowsBefore": 166,
+      "targetRowsToDelete": 160,
+      "otherAccountRowsBefore": 6,
+      "otherAccountRowsAfterExpected": 6
+    },
+    {
+      "sheet": "Операции",
+      "totalRowsBefore": 0,
+      "targetRowsToDelete": 0,
+      "otherAccountRowsBefore": 0,
+      "otherAccountRowsAfterExpected": 0
+    }
+  ],
+  "assertions": {
+    "targetOnly": true,
+    "otherAccountsTouchedByDelete": false,
+    "otherAccountHistoryDecreases": false,
+    "deleteByDisplayName": false,
+    "brokerApiCalls": 0,
+    "targetAbsentFromFutureSyncListAfterFlags": true,
+    "repeatedMigrationResultExpected": "ALREADY_EXCLUDED"
+  },
+  "apiImpact": {
+    "accountsDiscoveredExpected": 3,
+    "accountsSyncEnabledExpected": 2,
+    "accountsSkippedExpected": 1,
+    "skippedAccountIdSuffixes": [
+      "…864109"
+    ],
+    "savedApiCallsEstimate": {
+      "minimumDetailedEndpointCallsPerCycle": 4,
+      "note": "plus paginated Operations calls and account-specific enrichment"
+    }
+  },
+  "rollbackSource": "Google Sheets backup …965QXM + ignored private account archive"
+}

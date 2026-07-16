@@ -32,12 +32,24 @@ TI.PortfolioHealth = {
 
     var cash = TI.Rebalance.cashByAccountName();
     var rows = [];
-    var included = portfolio.filter(function(position) {
-      return TI.MultiAccount.isIncludedAccount(position.accountId);
+    var included = TI.AccountScope.filterCalculationRows(portfolio);
+    var displayed = TI.AccountScope.filterDisplayRows(portfolio);
+    TI.AccountScope.accounts(TI.AccountScope.FLAGS.DISPLAY).forEach(function(account) {
+      var accountId = String(account.accountId || "").trim();
+      var accountName = String(account.accountName || "").trim();
+      if (!accountId || TI.AccountScope.isCalculationEnabled(accountId) || cash.hasOwnProperty(accountName)) return;
+      try {
+        var displayCash = TI.Accounts.cashForAccountCachedOnly(accountId);
+        cash[accountId] = displayCash;
+        if (accountName) cash[accountName] = displayCash;
+      } catch (ignoredDisplayCash) {
+        cash[accountId] = 0;
+        if (accountName) cash[accountName] = 0;
+      }
     });
 
-    rows.push(this.row("Весь портфель", "Все счета", "", included, cash[TI.Rebalance.ALL_ACCOUNTS] || 0));
-    rows = rows.concat(this.accountRows(portfolio, cash));
+    rows.push(this.row("Весь портфель", "Все счета", "", included, cash[TI.Rebalance.ALL_ACCOUNTS] || 0, ""));
+    rows = rows.concat(this.accountRows(displayed, cash));
     rows = rows.concat(this.strategyRows(included, cash));
 
     return rows;
@@ -58,9 +70,10 @@ TI.PortfolioHealth = {
     });
 
     Object.keys(map).sort().forEach(function(accountId) {
+      if (!TI.AccountScope.isDisplayEnabled(accountId)) return;
       var accountName = String(accounts[accountId].accountName || "").trim();
       var strategyId = links[accountId] || "";
-      var included = TI.MultiAccount.isIncludedAccount(accountId);
+      var included = TI.AccountScope.isCalculationEnabled(accountId);
       if (included && (!strategyId || !strategies[strategyId])) {
         throw new Error("Для включённого Account ID не назначена Strategy ID: " + TI.AccountStrategyAudit.suffix(accountId));
       }
@@ -69,7 +82,8 @@ TI.PortfolioHealth = {
         accountName,
         strategyId && strategies[strategyId] ? String(strategies[strategyId].strategyName || "").trim() : "",
         map[accountId],
-        cash[accountName] || 0
+        cash[accountName] || 0,
+        accountId
       );
       if (!strategyId) {
         healthRow.risks = [healthRow.risks, "Для исключённого счёта не назначена стратегия"].filter(Boolean).join("; ");
@@ -127,7 +141,7 @@ TI.PortfolioHealth = {
     return rows;
   },
 
-  row: function(scopeType, scopeName, strategy, positions, cash) {
+  row: function(scopeType, scopeName, strategy, positions, cash, accountId) {
     positions = positions || [];
     cash = Number(cash) || 0;
 
@@ -142,6 +156,7 @@ TI.PortfolioHealth = {
     return {
       scopeType: scopeType,
       scopeName: scopeName,
+      accountId: accountId || "",
       strategy: strategy || "",
       marketValue: marketValue,
       cash: cash,
@@ -269,9 +284,7 @@ function TI_BuildPortfolioHealth() {
 function TI_TestPortfolioHealthAggregate() {
   var portfolio = TI.Data.portfolio();
   if (portfolio.length === 0) portfolio = TI.Data.portfolioFromFifoLots();
-  var included = portfolio.filter(function(position) {
-    return TI.MultiAccount.isIncludedAccount(position.accountId);
-  });
+  var included = TI.AccountScope.filterCalculationRows(portfolio);
   var marketValue = TI.PortfolioHealth.sum(included, "marketValue");
   return {
     ok: included.length > 0 && marketValue > 0,
@@ -288,7 +301,7 @@ function TI_TestPortfolioHealthByAccount() {
   if (portfolio.length === 0) portfolio = TI.Data.portfolioFromFifoLots();
   var links = TI.MultiAccount.accountStrategyMap();
   var strategies = TI.MultiAccount.strategyMap();
-  var rows = TI.MultiAccount.accounts().map(function(account) {
+  var rows = TI.AccountScope.accounts(TI.AccountScope.FLAGS.DISPLAY).map(function(account) {
     var accountId = String(account.accountId || "").trim();
     var positions = portfolio.filter(function(position) {
       return String(position.accountId || "").trim() === accountId;
@@ -297,7 +310,7 @@ function TI_TestPortfolioHealthByAccount() {
     return {
       accountId: TI.AccountStrategyAudit.suffix(accountId),
       accountName: String(account.accountName || "").trim(),
-      includedInAggregate: TI.MultiAccount.isIncludedAccount(accountId),
+      includedInAggregate: TI.AccountScope.isCalculationEnabled(accountId),
       reportAvailable: true,
       positions: positions.length,
       marketValue: TI.PortfolioHealth.sum(positions, "marketValue"),
