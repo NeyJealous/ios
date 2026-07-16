@@ -1,0 +1,53 @@
+{
+  "ok": true,
+  "controlledAccountSuffix": "…020546",
+  "apply": {
+    "code": "APPLIED",
+    "runId": "…c59e18",
+    "physicalWrites": 1,
+    "auditRows": 1,
+    "apiCalls": 0,
+    "productionDataDeleted": false,
+    "productionDataRestored": false
+  },
+  "rollback": {
+    "code": "ROLLED_BACK",
+    "runId": "…6000ca",
+    "physicalWrites": 1,
+    "auditRows": 1,
+    "apiCalls": 0,
+    "rollbackAvailable": false
+  },
+  "repeatedRollback": {
+    "code": "ACCOUNT_SCOPE_ROLLBACK_NOT_AVAILABLE",
+    "writes": 0
+  },
+  "finalFlags": {
+    "…020546": [true, false, true, false, true],
+    "…531683": [true, true, true, true, true],
+    "…864109": [false, false, false, false, false]
+  },
+  "dataIntegrity": {
+    "nonAuditSemanticChanges": [],
+    "tradesBefore": 6,
+    "tradesAfter": 6,
+    "portfolioBefore": 1,
+    "portfolioAfter": 1,
+    "deletedRows": 0,
+    "purgeExecuted": false,
+    "restoreExecuted": false,
+    "syncExecuted": false,
+    "recalcExecuted": false
+  },
+  "auditTrail": {
+    "businessRowsAdded": 2,
+    "applyRowsReported": 1,
+    "rollbackRowsReported": 1,
+    "repeatedRollbackRows": 0,
+    "status": "PASS"
+  },
+  "remoteHealth": "PASS",
+  "roundTrip": "PASS_61_OF_61",
+  "privacy": "PASS",
+  "deployments": 15
+}

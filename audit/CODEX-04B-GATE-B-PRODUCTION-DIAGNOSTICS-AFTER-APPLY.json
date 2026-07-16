@@ -1,0 +1,20 @@
+{
+  "accountCount": 3,
+  "scopeRevision": "ba4b53e59f7ac071ae77a3a6c352a744cb3d6f8debf5c3f71fcb816d3cf4aa84",
+  "warnings": [],
+  "displayAccounts": 1,
+  "protection": {
+    "accountIdProtected": true,
+    "accountIdHidden": true,
+    "flagColumnsProtected": true
+  },
+  "readOnly": true,
+  "duplicateIds": 0,
+  "invalidIds": 0,
+  "calculationAccounts": 1,
+  "orphanAccountStrategyLinks": 0,
+  "globalLockAvailable": true,
+  "migrationState": "EXCLUSION_COMMITTED",
+  "ok": true,
+  "errors": []
+}

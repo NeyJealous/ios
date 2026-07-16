@@ -1,0 +1,163 @@
+{
+  "presets": [
+    {
+      "flags": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "id": "FULL",
+      "title": "Полностью активный",
+      "explanation": "Синхронизация, расчёты, отображение, рекомендации и история включены."
+    },
+    {
+      "flags": [
+        true,
+        false,
+        true,
+        false,
+        true
+      ],
+      "id": "DISPLAY_HISTORY",
+      "explanation": "Счёт синхронизируется и виден, история сохраняется, но агрегаты и рекомендации его не используют.",
+      "title": "Только отображение и история"
+    },
+    {
+      "flags": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "id": "HISTORY_ONLY",
+      "explanation": "Новые текущие данные не синхронизируются, но исторический контур разрешён.",
+      "title": "Только история"
+    },
+    {
+      "flags": [
+        true,
+        false,
+        false,
+        false,
+        true
+      ],
+      "id": "SYNC_NO_CALC",
+      "title": "Синхронизация без расчётов",
+      "explanation": "Текущие данные и история загружаются, но счёт скрыт и не влияет на расчёты."
+    },
+    {
+      "flags": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "id": "EXCLUDED",
+      "explanation": "Счёт не синхронизируется, не рассчитывается, не отображается и не создаёт рекомендации.",
+      "title": "Полностью исключён"
+    }
+  ],
+  "scopeRevision": "ba4b53e59f7ac071ae77a3a6c352a744cb3d6f8debf5c3f71fcb816d3cf4aa84",
+  "knownExternalRisk": {
+    "code": "CRITICAL_ACTIVE_INFLUENCE_RISK",
+    "message": "Legacy multiplier > 1 может влиять на приоритет покупки через Decision Engine / Rule R030. Риск находится вне scope CODEX-04B.",
+    "status": "OPEN"
+  },
+  "readOnly": true,
+  "accounts": [
+    {
+      "accountIdMasked": "…020546",
+      "accountName": "Брокерский счёт",
+      "strategies": [
+        "Базовая стратегия"
+      ],
+      "warnings": [],
+      "accountType": "Брокерский",
+      "flags": {
+        "History_Enabled": true,
+        "Sync_Enabled": true,
+        "Recommendations_Enabled": false,
+        "Display_Enabled": false,
+        "Calculation_Enabled": false
+      },
+      "exclusion": {
+        "excluded": false,
+        "archiveAvailable": false,
+        "dataPurged": false
+      },
+      "accountRef": "bb42964b0281097ac41a",
+      "status": "Да",
+      "statistics": {
+        "operations": 0,
+        "historyRows": 0,
+        "trades": 0,
+        "positions": 0
+      }
+    },
+    {
+      "accountIdMasked": "…531683",
+      "strategies": [
+        "Базовая стратегия"
+      ],
+      "accountName": "Пассивный",
+      "accountType": "ИИС",
+      "warnings": [],
+      "flags": {
+        "History_Enabled": true,
+        "Sync_Enabled": true,
+        "Display_Enabled": true,
+        "Recommendations_Enabled": true,
+        "Calculation_Enabled": true
+      },
+      "exclusion": {
+        "excluded": false,
+        "archiveAvailable": false,
+        "dataPurged": false
+      },
+      "accountRef": "97f80362561162d4df8f",
+      "status": "Да",
+      "statistics": {
+        "operations": 0,
+        "historyRows": 6,
+        "trades": 6,
+        "positions": 1
+      }
+    },
+    {
+      "accountIdMasked": "…864109",
+      "strategies": [
+        "Базовая стратегия"
+      ],
+      "accountName": "На тату",
+      "warnings": [
+        "Счёт исключён. Данные очищены. Архив доступен; включение флагов не восстановит данные автоматически."
+      ],
+      "accountType": "Инвесткопилка",
+      "flags": {
+        "History_Enabled": false,
+        "Sync_Enabled": false,
+        "Recommendations_Enabled": false,
+        "Display_Enabled": false,
+        "Calculation_Enabled": false
+      },
+      "exclusion": {
+        "excluded": true,
+        "archiveAvailable": true,
+        "dataPurged": true
+      },
+      "accountRef": "8c5b0a8989a94ea349d7",
+      "status": "Да",
+      "statistics": {
+        "operations": 0,
+        "historyRows": 0,
+        "trades": 0,
+        "positions": 0
+      }
+    }
+  ],
+  "ok": true
+}

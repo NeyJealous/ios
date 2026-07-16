@@ -1,0 +1,17 @@
+{
+  "scopeRevision": "a7d3b535c87b8c56c7dbd2443a9a4c23c606f242329bf53176f215ae36f11557",
+  "reason": "CODEX-04B Gate B controlled Display-only production test",
+  "criticalConfirmation": false,
+  "changes": [
+    {
+      "accountRef": "bb42964b0281097ac41a",
+      "flags": {
+        "Sync_Enabled": true,
+        "Calculation_Enabled": false,
+        "Display_Enabled": false,
+        "Recommendations_Enabled": false,
+        "History_Enabled": true
+      }
+    }
+  ]
+}
