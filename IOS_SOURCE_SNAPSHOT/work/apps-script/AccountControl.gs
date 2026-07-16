@@ -580,13 +580,42 @@ TI.AccountControl = {
   auditHistory: function() {
     var sheet = SpreadsheetApp.getActive().getSheetByName(CORE.SHEETS.ACCOUNT_SCOPE_AUDIT);
     if (!sheet || sheet.getLastRow() <= 1) return [];
-    return TI.Data.sheetObjects(CORE.SHEETS.ACCOUNT_SCOPE_AUDIT).slice(-100).reverse().map(function(row) {
+    return TI.Data.sheetObjects(CORE.SHEETS.ACCOUNT_SCOPE_AUDIT).filter(function(row) {
+      return String(row.runId || "").trim() &&
+        String(row.accountIdMasked || "").trim() &&
+        String(row.result || "").trim();
+    }).slice(-100).reverse().map(function(row) {
       return {
-        timestamp: row.timestamp, runId: row.runId, user: row.user,
-        accountIdMasked: row.accountIdMasked, result: row.result, reason: row.reason,
+        timestamp: TI.AccountControl.jsonSafeValue(row.timestamp),
+        runId: String(row.runId || ""),
+        user: String(row.user || ""),
+        accountIdMasked: String(row.accountIdMasked || ""),
+        beforeSync: TI.AccountScope.isTrue(row.beforeSync),
+        beforeCalculation: TI.AccountScope.isTrue(row.beforeCalculation),
+        beforeDisplay: TI.AccountScope.isTrue(row.beforeDisplay),
+        beforeRecommendations: TI.AccountScope.isTrue(row.beforeRecommendations),
+        beforeHistory: TI.AccountScope.isTrue(row.beforeHistory),
+        afterSync: TI.AccountScope.isTrue(row.afterSync),
+        afterCalculation: TI.AccountScope.isTrue(row.afterCalculation),
+        afterDisplay: TI.AccountScope.isTrue(row.afterDisplay),
+        afterRecommendations: TI.AccountScope.isTrue(row.afterRecommendations),
+        afterHistory: TI.AccountScope.isTrue(row.afterHistory),
+        reason: String(row.reason || ""),
+        previewHash: String(row.previewHash || ""),
+        scopeRevisionBefore: String(row.scopeRevisionBefore || ""),
+        scopeRevisionAfter: String(row.scopeRevisionAfter || ""),
+        result: String(row.result || ""),
         rollbackAvailable: TI.AccountScope.isTrue(row.rollbackAvailable)
       };
     });
+  },
+
+  jsonSafeValue: function(value) {
+    var isDate = value instanceof Date ||
+      Object.prototype.toString.call(value) === "[object Date]";
+    if (!isDate) return value === undefined ? null : value;
+    var timestamp = value.getTime();
+    return isFinite(timestamp) ? value.toISOString() : null;
   },
 
   protectionStatus: function() {
@@ -717,6 +746,38 @@ function TI_EnsureAccountScopeProtection() {
 
 function TI_GetAccountScopeHistory() {
   return TI.AccountControl.auditHistory();
+}
+
+function TI_TestAccountScopeHistoryJsonSafe() {
+  var sheet = SpreadsheetApp.getActive().getSheetByName(CORE.SHEETS.ACCOUNT_SCOPE_AUDIT);
+  var rowsBefore = sheet ? Math.max(sheet.getLastRow() - 1, 0) : 0;
+  var revisionBefore = TI.AccountControl.scopeSnapshot().revision;
+  var history = TI.AccountControl.auditHistory();
+  var serialized = JSON.stringify(history);
+  var parsed = JSON.parse(serialized);
+  var revisionAfter = TI.AccountControl.scopeSnapshot().revision;
+  var rowsAfter = sheet ? Math.max(sheet.getLastRow() - 1, 0) : 0;
+  var masked = parsed.every(function(row) {
+    return /^…\d{6}$/.test(String(row.accountIdMasked || ""));
+  });
+  var timestampsSafe = parsed.every(function(row) {
+    return row.timestamp === null ||
+      /^\d{4}-\d{2}-\d{2}T/.test(String(row.timestamp || ""));
+  });
+  return {
+    ok: serialized.length >= 2 && masked && timestampsSafe &&
+      rowsBefore === rowsAfter && revisionBefore === revisionAfter,
+    readOnly: true,
+    historyRows: parsed.length,
+    rowsBefore: rowsBefore,
+    rowsAfter: rowsAfter,
+    scopeRevisionBefore: revisionBefore,
+    scopeRevisionAfter: revisionAfter,
+    fullIdsMasked: masked,
+    timestampsJsonSafe: timestampsSafe,
+    jsonStringifyPass: true,
+    history: parsed
+  };
 }
 
 function TI_TestAccountControlContract() {

@@ -131,7 +131,11 @@ Audit trail status: PASS.
 - apply row contains masked account, RunId, before/after, reason, preview hash, revisions and rollback availability through the verified `buildAuditRows` contract
 - rollback row uses result `ROLLED_BACK` and `RollbackAvailable=false`
 
-Incident: the existing `TI_GetAccountScopeHistory` wrapper cannot serialize the Sheet `Date` value through Apps Script Execution API and returned `ScriptError`. No source or production state was changed to work around this read-only presentation defect. Audit persistence was validated through both successful apply responses (`auditRows=1`), the append-only sheet digest, the rollback result, and the zero-write repeated rollback.
+The two business audit rows were subsequently read and verified through the fixed JSON-safe history wrapper:
+
+- apply: RunId `…c59e18`, result `APPLIED`, rollback available
+- rollback: RunId `…6000ca`, result `ROLLED_BACK`, rollback consumed
+- both rows contain ISO Timestamp, masked account, before/after vectors, reason, preview hash and scope revisions
 
 ## 11. Negative read-only tests
 
@@ -166,9 +170,37 @@ Result: PASS, API calls=0, writes=0.
 - Market Regime, multiplier, Decision Engine, Rule R030 and TradePlan source were not changed
 - Gate B did not create recommendations
 
-## 14. Incidents
+## 14. History wrapper incident and resolution
 
-One non-blocking audit-history serialization issue was recorded as described above. It did not affect the append-only audit write, controlled transition, rollback or final account state.
+Incident:
+
+- `TI_GetAccountScopeHistory` originally returned a Sheet `Date` object that Apps Script Execution API could not serialize.
+- The formatted audit sheet also exposed empty preallocated rows through `TI.Data.sheetObjects()`.
+
+Root cause:
+
+- Timestamp was not converted to a JSON-safe primitive.
+- Business rows were not filtered before applying the 100-row history limit.
+
+Fix:
+
+- valid Date/Timestamp values are converted to ISO-8601 strings
+- invalid dates return `null`
+- empty formatted rows are filtered by RunId, masked account and result
+- all returned fields use stable JSON-safe primitives
+- full Account IDs remain unavailable
+- reading history does not append rows or change scope revision
+
+Verification:
+
+- local history contract: PASS
+- remote `TI_TestAccountScopeHistoryJsonSafe`: PASS
+- remote history business rows: exactly 2
+- rows before/after read: unchanged
+- scope revision before/after read: unchanged
+- round-trip source match: 61/61
+
+Incident status: RESOLVED.
 
 ## 15. Acceptance
 
@@ -180,4 +212,5 @@ One non-blocking audit-history serialization issue was recorded as described abo
 - Initial configuration restored: Да
 - Data loss: Нет
 - Audit trail: PASS
+- History wrapper: PASS
 - Readiness for final CODEX-04B acceptance: **Да**

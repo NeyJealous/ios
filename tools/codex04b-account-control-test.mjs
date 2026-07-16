@@ -8,6 +8,7 @@ const controlPath = resolve(source, 'AccountControl.gs');
 const menu = readFileSync(resolve(source, 'Menu.gs'), 'utf8');
 const html = readFileSync(resolve(source, 'AccountControlDialog.html'), 'utf8');
 const control = readFileSync(controlPath, 'utf8');
+let auditData = [];
 
 const digest = (value) => JSON.stringify(value);
 const context = {
@@ -27,14 +28,50 @@ const context = {
       directCaptures: () => ({}),
       directCounts: () => ({ total: 1 }),
     },
-    Data: { portfolio: () => [], trades: () => [], sheetObjects: () => [] },
+    Data: { portfolio: () => [], trades: () => [], sheetObjects: () => auditData.slice() },
     MultiAccount: { accounts: () => [], accountStrategies: () => [], strategyMap: () => ({}) },
     CompanyRating: { isYes: () => true },
+  },
+  SpreadsheetApp: {
+    getActive: () => ({
+      getSheetByName: () => ({ getLastRow: () => auditData.length + 1 }),
+    }),
   },
 };
 vm.createContext(context);
 vm.runInContext(control, context, { filename: controlPath });
 const contract = context.TI_TestAccountControlContract();
+const emptyHistory = context.TI.AccountControl.auditHistory();
+auditData = [
+  {
+    timestamp: new Date('2026-07-16T18:00:00.000Z'),
+    runId: '…apply1',
+    accountIdMasked: '…111111',
+    beforeDisplay: true,
+    afterDisplay: false,
+    reason: 'apply',
+    previewHash: 'hash-apply',
+    scopeRevisionBefore: 'before',
+    scopeRevisionAfter: 'after',
+    result: 'APPLIED',
+    rollbackAvailable: true,
+  },
+  {
+    timestamp: new Date(Number.NaN),
+    runId: '…roll01',
+    accountIdMasked: '…111111',
+    beforeDisplay: false,
+    afterDisplay: true,
+    reason: 'rollback',
+    previewHash: 'hash-rollback',
+    scopeRevisionBefore: 'after',
+    scopeRevisionAfter: 'before',
+    result: 'ROLLED_BACK',
+    rollbackAvailable: false,
+  },
+];
+const history = context.TI.AccountControl.auditHistory();
+const historyJson = JSON.stringify(history);
 
 const requiredMenu = [
   'Настроить счета',
@@ -63,6 +100,17 @@ const assertions = {
   rollbackTargetGuard: control.includes('ACCOUNT_SCOPE_ROLLBACK_TARGET_CONFLICT'),
   rollbackSnapshotNotOverwritten: control.includes('suppressRollbackSnapshot: true'),
   repeatedRollbackSafe: control.includes('deleteProperty(this.SNAPSHOT_KEY)'),
+  historyDateIso: history[1].timestamp === '2026-07-16T18:00:00.000Z',
+  invalidDateSafe: history[0].timestamp === null,
+  historyJsonSafe: JSON.parse(historyJson).length === 2,
+  historyMasked: history.every((row) => /^…\d{6}$/.test(row.accountIdMasked)),
+  historyReadOnly: auditData.length === 2,
+  emptyHistory: Array.isArray(emptyHistory) && emptyHistory.length === 0,
+  historyUiContract: history.every((row) =>
+    Object.hasOwn(row, 'timestamp') &&
+    Object.hasOwn(row, 'runId') &&
+    Object.hasOwn(row, 'result') &&
+    Object.hasOwn(row, 'rollbackAvailable')),
   noAutomaticPurge: !/TI_ApplyExcludeAccountPurge\s*\(/.test(control),
   noArchiveRestore: !/restoreCapturedRows\s*\(/.test(control),
   marketRegimeUntouched: !/TI_BuildMarketRegime|MarketRegime\./.test(control),
