@@ -1,0 +1,53 @@
+{
+  "displaySheets": [
+    "Главная",
+    "Портфель",
+    "Здоровье портфеля",
+    "Советник",
+    "План сделок",
+    "Пользовательские отчёты"
+  ],
+  "productionDataDeleted": false,
+  "productionDataRestored": false,
+  "code": "PREVIEW_READY",
+  "calculationSheets": [],
+  "scopeRevision": "a7d3b535c87b8c56c7dbd2443a9a4c23c606f242329bf53176f215ae36f11557",
+  "changes": [
+    {
+      "accountIdMasked": "…020546",
+      "changedFlags": [
+        "Display_Enabled"
+      ],
+      "before": [
+        true,
+        false,
+        true,
+        false,
+        true
+      ],
+      "accountName": "Брокерский счёт",
+      "after": [
+        true,
+        false,
+        false,
+        false,
+        true
+      ]
+    }
+  ],
+  "recalcRequired": true,
+  "readOnly": true,
+  "apiCalls": 0,
+  "previewHash": "d2905e9f221001c9f732e5506a640f75c74319baf1c5d71e72a847778548e8e2",
+  "separateDataGateRequired": false,
+  "apiPaths": [],
+  "ok": true,
+  "writes": 0,
+  "recommendationSheets": [],
+  "validation": {
+    "warnings": [],
+    "criticalConfirmationRequired": false,
+    "ok": true,
+    "errors": []
+  }
+}

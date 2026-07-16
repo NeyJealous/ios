@@ -1,0 +1,19 @@
+{
+  "scopeRevision": "a7d3b535c87b8c56c7dbd2443a9a4c23c606f242329bf53176f215ae36f11557",
+  "previewHash": "d2905e9f221001c9f732e5506a640f75c74319baf1c5d71e72a847778548e8e2",
+  "idempotencyKey": "codex04b-gateb-display-off-20260716-2154-msk",
+  "reason": "CODEX-04B Gate B controlled Display-only production test",
+  "criticalConfirmation": false,
+  "changes": [
+    {
+      "accountRef": "bb42964b0281097ac41a",
+      "flags": {
+        "Sync_Enabled": true,
+        "Calculation_Enabled": false,
+        "Display_Enabled": false,
+        "Recommendations_Enabled": false,
+        "History_Enabled": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "invalidRecommendations": {
+    "code": "VALIDATION_FAILED",
+    "rejected": true
+  },
+  "lastCalculationGuard": {
+    "rejectedWithoutCriticalConfirmation": true,
+    "criticalConfirmationRequired": true
+  },
+  "ok": true,
+  "writes": 0,
+  "revisionConflict": "ACCOUNT_SCOPE_REVISION_CONFLICT",
+  "apiCalls": 0,
+  "excludedAccount": {
+    "productionDataRestored": false,
+    "previewOnly": true,
+    "separateRestoreGateRequired": true
+  }
+}

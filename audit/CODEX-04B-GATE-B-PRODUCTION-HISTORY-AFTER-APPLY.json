@@ -1,0 +1,13 @@
+{
+  "error": {
+    "code": 3,
+    "message": "ScriptError",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.apps.script.v1.ExecutionError",
+        "errorMessage": "The script completed but the returned value is not a supported return type.",
+        "errorType": "ScriptError"
+      }
+    ]
+  }
+}

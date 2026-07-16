@@ -1,0 +1,58 @@
+{
+  "displaySheets": [
+    "Главная",
+    "Портфель",
+    "Здоровье портфеля",
+    "Советник",
+    "План сделок",
+    "Пользовательские отчёты"
+  ],
+  "productionDataDeleted": false,
+  "productionDataRestored": false,
+  "code": "ROLLBACK_PREVIEW_READY",
+  "calculationSheets": [],
+  "scopeRevision": "ba4b53e59f7ac071ae77a3a6c352a744cb3d6f8debf5c3f71fcb816d3cf4aa84",
+  "changes": [
+    {
+      "changedFlags": [
+        "Display_Enabled"
+      ],
+      "accountIdMasked": "…020546",
+      "accountName": "Брокерский счёт",
+      "before": [
+        true,
+        false,
+        false,
+        false,
+        true
+      ],
+      "after": [
+        true,
+        false,
+        true,
+        false,
+        true
+      ]
+    }
+  ],
+  "restoresCache": false,
+  "runsPurge": false,
+  "recalcRequired": true,
+  "readOnly": true,
+  "apiCalls": 0,
+  "previewHash": "fe8f1a4744a3d00adf6006ecc2e27b66ed9936d2de8672953dec391fdb79175d",
+  "separateDataGateRequired": false,
+  "restoresTrades": false,
+  "restoresPortfolio": false,
+  "apiPaths": [],
+  "ok": true,
+  "writes": 0,
+  "recommendationSheets": [],
+  "rollbackOnlyFlags": true,
+  "validation": {
+    "warnings": [],
+    "criticalConfirmationRequired": false,
+    "ok": true,
+    "errors": []
+  }
+}

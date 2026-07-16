@@ -63,6 +63,7 @@ Schema.SheetKeys = Object.freeze({
   STRATEGY_RULES: "STRATEGY_RULES",
   DECISIONS: "DECISIONS",
   ACCOUNTS: "ACCOUNTS",
+  ACCOUNT_SCOPE_AUDIT: "ACCOUNT_SCOPE_AUDIT",
   STRATEGIES: "STRATEGIES",
   ACCOUNT_STRATEGIES: "ACCOUNT_STRATEGIES",
   PORTFOLIO_HEALTH: "PORTFOLIO_HEALTH",
@@ -695,6 +696,29 @@ Object.assign(Schema.Definitions, {
     { field:"Display_Enabled",         title:"Показывать",                      type:Schema.Types.BOOLEAN, hidden:false, width:110 },
     { field:"Recommendations_Enabled", title:"Использовать в рекомендациях",    type:Schema.Types.BOOLEAN, hidden:false, width:220 },
     { field:"History_Enabled",         title:"Хранить историю",                 type:Schema.Types.BOOLEAN, hidden:false, width:150 }
+  ],
+
+  ACCOUNT_SCOPE_AUDIT: [
+    { field:"timestamp",           title:"Timestamp",           type:Schema.Types.DATE,    hidden:false, width:150 },
+    { field:"runId",               title:"RunId",               type:Schema.Types.TEXT,    hidden:false, width:130 },
+    { field:"user",                title:"User",                type:Schema.Types.TEXT,    hidden:false, width:220 },
+    { field:"accountIdMasked",     title:"AccountIdMasked",     type:Schema.Types.TEXT,    hidden:false, width:140 },
+    { field:"beforeSync",          title:"BeforeSync",          type:Schema.Types.BOOLEAN, hidden:false, width:110 },
+    { field:"beforeCalculation",   title:"BeforeCalculation",   type:Schema.Types.BOOLEAN, hidden:false, width:140 },
+    { field:"beforeDisplay",       title:"BeforeDisplay",       type:Schema.Types.BOOLEAN, hidden:false, width:120 },
+    { field:"beforeRecommendations",title:"BeforeRecommendations",type:Schema.Types.BOOLEAN,hidden:false, width:180 },
+    { field:"beforeHistory",       title:"BeforeHistory",       type:Schema.Types.BOOLEAN, hidden:false, width:120 },
+    { field:"afterSync",           title:"AfterSync",           type:Schema.Types.BOOLEAN, hidden:false, width:100 },
+    { field:"afterCalculation",    title:"AfterCalculation",    type:Schema.Types.BOOLEAN, hidden:false, width:130 },
+    { field:"afterDisplay",        title:"AfterDisplay",        type:Schema.Types.BOOLEAN, hidden:false, width:110 },
+    { field:"afterRecommendations",title:"AfterRecommendations",type:Schema.Types.BOOLEAN, hidden:false, width:170 },
+    { field:"afterHistory",        title:"AfterHistory",        type:Schema.Types.BOOLEAN, hidden:false, width:110 },
+    { field:"reason",              title:"Reason",              type:Schema.Types.TEXT,    hidden:false, width:320 },
+    { field:"previewHash",         title:"PreviewHash",         type:Schema.Types.TEXT,    hidden:true,  width:220 },
+    { field:"scopeRevisionBefore", title:"ScopeRevisionBefore", type:Schema.Types.TEXT,    hidden:true,  width:220 },
+    { field:"scopeRevisionAfter",  title:"ScopeRevisionAfter",  type:Schema.Types.TEXT,    hidden:true,  width:220 },
+    { field:"result",              title:"Result",              type:Schema.Types.TEXT,    hidden:false, width:150 },
+    { field:"rollbackAvailable",   title:"RollbackAvailable",   type:Schema.Types.BOOLEAN, hidden:false, width:150 }
   ],
 
   STRATEGIES: [
@@ -1339,6 +1363,7 @@ Schema.initialize = function() {
     CORE.SHEETS.STRATEGY_RULES,
     CORE.SHEETS.DECISIONS,
     CORE.SHEETS.ACCOUNTS,
+    CORE.SHEETS.ACCOUNT_SCOPE_AUDIT,
     CORE.SHEETS.STRATEGIES,
     CORE.SHEETS.ACCOUNT_STRATEGIES,
     CORE.SHEETS.PORTFOLIO_HEALTH,

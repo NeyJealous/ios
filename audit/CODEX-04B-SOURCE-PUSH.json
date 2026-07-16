@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "pushedFileCount": 61,
+  "force": false,
+  "commandSemantics": "clasp.files.push",
+  "reasonForCoreInvocation": "The installed clasp CLI requires an interactive manifest confirmation whenever any source changes; the automation shell has no TTY. appsscript.json exact match was verified before invoking the same clasp.files.push operation used by ordinary clasp push.",
+  "deploymentChanged": false,
+  "roundTripExactMatches": 61,
+  "roundTripMismatchCount": 0
+}

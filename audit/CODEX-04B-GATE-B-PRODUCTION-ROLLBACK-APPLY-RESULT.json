@@ -1,0 +1,15 @@
+{
+  "productionDataDeleted": false,
+  "productionDataRestored": false,
+  "code": "ROLLED_BACK",
+  "changedAccounts": 1,
+  "auditRows": 1,
+  "scopeRevisionBefore": "ba4b53e59f7ac071ae77a3a6c352a744cb3d6f8debf5c3f71fcb816d3cf4aa84",
+  "recalcRequired": true,
+  "rollbackAvailable": false,
+  "previewHash": "fe8f1a4744a3d00adf6006ecc2e27b66ed9936d2de8672953dec391fdb79175d",
+  "scopeRevisionAfter": "a7d3b535c87b8c56c7dbd2443a9a4c23c606f242329bf53176f215ae36f11557",
+  "runId": "…6000ca",
+  "writes": 1,
+  "ok": true
+}

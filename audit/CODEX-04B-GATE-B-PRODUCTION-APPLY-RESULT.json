@@ -1,0 +1,15 @@
+{
+  "productionDataDeleted": false,
+  "productionDataRestored": false,
+  "code": "APPLIED",
+  "changedAccounts": 1,
+  "scopeRevisionBefore": "a7d3b535c87b8c56c7dbd2443a9a4c23c606f242329bf53176f215ae36f11557",
+  "auditRows": 1,
+  "recalcRequired": true,
+  "rollbackAvailable": true,
+  "previewHash": "d2905e9f221001c9f732e5506a640f75c74319baf1c5d71e72a847778548e8e2",
+  "scopeRevisionAfter": "ba4b53e59f7ac071ae77a3a6c352a744cb3d6f8debf5c3f71fcb816d3cf4aa84",
+  "runId": "…c59e18",
+  "writes": 1,
+  "ok": true
+}

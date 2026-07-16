@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <meta charset="utf-8">
+  <style>
+    :root { color-scheme: light; --blue:#0b57d0; --red:#b3261e; --amber:#8a4f00; --line:#dadce0; --muted:#5f6368; }
+    * { box-sizing:border-box; }
+    body { margin:0; font:14px Arial,sans-serif; color:#202124; background:#f8f9fa; }
+    header { padding:18px 22px; background:white; border-bottom:1px solid var(--line); }
+    h1 { margin:0 0 6px; font-size:21px; }
+    .muted { color:var(--muted); }
+    main { padding:18px 22px 90px; }
+    .toolbar { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+    button { border:1px solid var(--line); border-radius:6px; background:white; padding:9px 14px; cursor:pointer; }
+    button.primary { background:var(--blue); color:white; border-color:var(--blue); }
+    button.danger { background:var(--red); color:white; border-color:var(--red); }
+    button:disabled { opacity:.55; cursor:not-allowed; }
+    .card { background:white; border:1px solid var(--line); border-radius:10px; padding:16px; margin:12px 0; }
+    .account-head { display:flex; justify-content:space-between; gap:18px; align-items:flex-start; }
+    .account-name { font-size:18px; font-weight:700; }
+    .badge { display:inline-block; border-radius:999px; padding:4px 9px; background:#e8f0fe; margin:3px 4px 0 0; }
+    .badge.excluded { background:#fce8e6; color:var(--red); }
+    .flags { display:grid; grid-template-columns:repeat(5,minmax(130px,1fr)); gap:8px; margin-top:14px; }
+    label.flag { border:1px solid var(--line); border-radius:7px; padding:9px; background:#fafafa; }
+    label.flag input { margin-right:7px; }
+    select, input[type=text] { width:100%; padding:9px; border:1px solid var(--line); border-radius:6px; }
+    .preset { margin-top:12px; display:grid; grid-template-columns:240px 1fr; gap:10px; align-items:center; }
+    .warning { color:var(--amber); margin-top:7px; }
+    .error { color:var(--red); margin-top:7px; white-space:pre-wrap; }
+    .ok { color:#137333; }
+    .summary { white-space:pre-wrap; line-height:1.45; }
+    table { width:100%; border-collapse:collapse; background:white; }
+    th,td { border:1px solid var(--line); padding:8px; text-align:left; vertical-align:top; }
+    th { background:#f1f3f4; }
+    footer { position:fixed; bottom:0; left:0; right:0; padding:12px 22px; background:white; border-top:1px solid var(--line); display:flex; gap:10px; align-items:center; }
+    #status { flex:1; }
+    .critical { background:#fce8e6; border:1px solid #f4b8b2; border-radius:7px; padding:10px; margin-top:10px; }
+    @media(max-width:900px){ .flags{grid-template-columns:1fr 1fr}.preset{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+<header>
+  <h1 id="title">Управление счетами</h1>
+  <div class="muted">Account ID используется только на сервере. В форме показываются маскированные идентификаторы.</div>
+</header>
+<main>
+  <div id="risk" class="card warning" hidden></div>
+  <div id="content"><div class="card">Загрузка…</div></div>
+</main>
+<footer>
+  <div id="status" class="muted"></div>
+  <button onclick="google.script.host.close()">Закрыть</button>
+  <button id="previewButton" class="primary" onclick="preview()" hidden>Предпросмотр</button>
+  <button id="applyButton" class="danger" onclick="applyChanges()" hidden disabled>Применить</button>
+</footer>
+<script>
+const initialMode = <?!= JSON.stringify(initialMode) ?>;
+let model = null;
+let lastPreview = null;
+let rollbackCritical = false;
+
+function call(name, args, onSuccess) {
+  document.getElementById('status').textContent = 'Выполняется…';
+  const runner = google.script.run
+    .withSuccessHandler(result => {
+      document.getElementById('status').textContent = '';
+      onSuccess(result);
+    })
+    .withFailureHandler(error => {
+      document.getElementById('status').textContent = '';
+      showError(error && error.message ? error.message : String(error));
+    });
+  if (args === undefined) runner[name](); else runner[name](args);
+}
+
+function esc(value) {
+  return String(value == null ? '' : value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function showError(message) {
+  const content = document.getElementById('content');
+  content.insertAdjacentHTML('afterbegin', `<div class="card error">${esc(message)}</div>`);
+}
+
+function flagCheckbox(ref, field, label, checked) {
+  return `<label class="flag"><input type="checkbox" data-ref="${esc(ref)}" data-field="${field}" ${checked?'checked':''}>${esc(label)}</label>`;
+}
+
+function renderConfigure(readOnlyPreview) {
+  document.getElementById('title').textContent = readOnlyPreview ? 'Предпросмотр влияния' : 'Настроить счета';
+  const labels = {
+    Sync_Enabled:'Синхронизация',
+    Calculation_Enabled:'Учитывать в расчётах',
+    Display_Enabled:'Показывать пользователю',
+    Recommendations_Enabled:'Создавать рекомендации',
+    History_Enabled:'Сохранять историю'
+  };
+  document.getElementById('content').innerHTML = model.accounts.map(account => {
+    const f = account.flags;
+    const exclusion = account.exclusion.excluded
+      ? `<span class="badge excluded">Счёт исключён</span>${account.exclusion.dataPurged?'<span class="badge excluded">Данные очищены</span>':''}${account.exclusion.archiveAvailable?'<span class="badge">Архив доступен</span>':''}`
+      : '';
+    const warnings = account.warnings.map(w => `<div class="warning">⚠ ${esc(w)}</div>`).join('');
+    const strategies = account.strategies.length ? account.strategies.join(', ') : 'Не назначена';
+    const options = model.presets.map(p => `<option value="${p.id}">${esc(p.title)} — ${esc(p.explanation)}</option>`).join('');
+    return `<section class="card" data-account="${esc(account.accountRef)}">
+      <div class="account-head">
+        <div><div class="account-name">${esc(account.accountName)}</div>
+          <div class="muted">${esc(account.accountType)} · ${esc(account.status)} · ${esc(account.accountIdMasked)}</div>
+          <div><span class="badge">Стратегия: ${esc(strategies)}</span>
+          <span class="badge">Позиции: ${account.statistics.positions}</span>
+          <span class="badge">Сделки: ${account.statistics.trades}</span>
+          <span class="badge">История: ${account.statistics.historyRows}</span></div>
+        </div><div>${exclusion}</div>
+      </div>
+      ${warnings}
+      <div class="flags">
+        ${Object.keys(labels).map(k => flagCheckbox(account.accountRef,k,labels[k],f[k])).join('')}
+      </div>
+      <div class="preset"><select onchange="usePreset('${esc(account.accountRef)}',this.value)"><option value="">Выбрать preset…</option>${options}</select><div class="muted">Preset меняет только пять scope-флагов.</div></div>
+    </section>`;
+  }).join('') + `<section class="card"><label>Причина изменения<input id="reason" type="text" placeholder="Кратко опишите цель изменения"></label>
+    <div id="criticalBox" class="critical" hidden><label><input id="criticalConfirmation" type="checkbox"> Я понимаю критическое влияние и явно подтверждаю изменение.</label></div>
+    <div id="previewResult" class="summary"></div></section>`;
+  document.getElementById('previewButton').hidden = false;
+  document.getElementById('applyButton').hidden = readOnlyPreview;
+}
+
+function usePreset(ref, presetId) {
+  const preset = model.presets.find(p => p.id === presetId);
+  if (!preset) return;
+  const fields = ['Sync_Enabled','Calculation_Enabled','Display_Enabled','Recommendations_Enabled','History_Enabled'];
+  fields.forEach((field,index) => {
+    const input = document.querySelector(`input[data-ref="${ref}"][data-field="${field}"]`);
+    if (input) input.checked = preset.flags[index];
+  });
+  lastPreview = null;
+  document.getElementById('applyButton').disabled = true;
+}
+
+function requestPayload() {
+  return {
+    scopeRevision:model.scopeRevision,
+    reason:(document.getElementById('reason')||{}).value||'',
+    criticalConfirmation:!!(document.getElementById('criticalConfirmation')||{}).checked,
+    changes:model.accounts.map(account => {
+      const flags={};
+      ['Sync_Enabled','Calculation_Enabled','Display_Enabled','Recommendations_Enabled','History_Enabled'].forEach(field => {
+        flags[field]=document.querySelector(`input[data-ref="${account.accountRef}"][data-field="${field}"]`).checked;
+      });
+      return {accountRef:account.accountRef,flags};
+    })
+  };
+}
+
+function preview() {
+  const request=requestPayload();
+  call('TI_PreviewAccountScopeChanges',request,result => {
+    lastPreview=result;
+    const box=document.getElementById('previewResult');
+    const critical=document.getElementById('criticalBox');
+    critical.hidden=!(result.validation&&result.validation.criticalConfirmationRequired);
+    const errors=(result.validation&&result.validation.errors||[]).map(x=>`ОШИБКА: ${x}`).join('\n');
+    const warnings=(result.validation&&result.validation.warnings||[]).map(x=>`ПРЕДУПРЕЖДЕНИЕ: ${x}`).join('\n');
+    box.className='summary '+(result.ok?'ok':'error');
+    box.textContent=[
+      `Результат: ${result.code}`,
+      `Затронуто счетов: ${(result.changes||[]).length}`,
+      `API paths: ${(result.apiPaths||[]).join(', ')||'без изменений'}`,
+      `Расчётные листы: ${(result.calculationSheets||[]).join(', ')||'без изменений'}`,
+      `UI-листы: ${(result.displaySheets||[]).join(', ')||'без изменений'}`,
+      `Рекомендации: ${(result.recommendationSheets||[]).join(', ')||'без изменений'}`,
+      `Нужен Recalc: ${result.recalcRequired?'Да':'Нет'}`,
+      `Нужен отдельный purge/restore gate: ${result.separateDataGateRequired?'Да':'Нет'}`,
+      errors,warnings
+    ].filter(Boolean).join('\n');
+    document.getElementById('applyButton').disabled=!result.ok||result.code==='NO_CHANGES';
+  });
+}
+
+function applyChanges() {
+  if (!lastPreview || !lastPreview.ok) return;
+  const request=requestPayload();
+  request.previewHash=lastPreview.previewHash;
+  call('TI_ApplyAccountScopeChanges',request,result => {
+    document.getElementById('previewResult').textContent=`Результат: ${result.code}\nRun ID: ${result.runId||''}\nИзменено счетов: ${result.changedAccounts||0}`;
+    document.getElementById('applyButton').disabled=true;
+    if(result.ok) loadModel();
+  });
+}
+
+function renderDiagnostics(result) {
+  document.getElementById('title').textContent='Проверить настройки счетов';
+  document.getElementById('content').innerHTML=`<div class="card summary ${result.ok?'ok':'error'}">${esc(JSON.stringify(result,null,2))}</div>`;
+}
+
+function renderHistory(rows) {
+  document.getElementById('title').textContent='История изменений';
+  document.getElementById('content').innerHTML=rows.length?`<table><thead><tr><th>Время</th><th>Run ID</th><th>Пользователь</th><th>Счёт</th><th>Результат</th><th>Причина</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r.timestamp)}</td><td>${esc(r.runId)}</td><td>${esc(r.user)}</td><td>${esc(r.accountIdMasked)}</td><td>${esc(r.result)}</td><td>${esc(r.reason)}</td></tr>`).join('')}</tbody></table>`:'<div class="card">История изменений пока пуста.</div>';
+}
+
+function renderRollback(result) {
+  document.getElementById('title').textContent='Восстановить предыдущие настройки';
+  lastPreview=result;
+  document.getElementById('content').innerHTML=`<div class="card summary ${result.ok?'ok':'error'}">${esc(JSON.stringify(result,null,2))}</div>
+    <div class="card"><label>Причина rollback<input id="reason" type="text" value="Rollback настроек счетов"></label>
+    <div id="criticalBox" class="critical" ${result.validation&&result.validation.criticalConfirmationRequired?'':'hidden'}>
+      <label><input id="criticalConfirmation" type="checkbox" onchange="reloadRollback()" ${rollbackCritical?'checked':''}> Я явно подтверждаю критическое влияние rollback.</label>
+    </div>
+    <div class="warning">Rollback восстанавливает только флаги. Сделки, позиции, cache и архивы не восстанавливаются.</div></div>`;
+  document.getElementById('applyButton').hidden=false;
+  document.getElementById('applyButton').disabled=!result.ok||result.code==='NO_CHANGES';
+  document.getElementById('applyButton').onclick=applyRollback;
+}
+
+function reloadRollback() {
+  rollbackCritical=!!(document.getElementById('criticalConfirmation')||{}).checked;
+  call('TI_PreviewAccountScopeRollback',{criticalConfirmation:rollbackCritical},renderRollback);
+}
+
+function applyRollback() {
+  if(!lastPreview||!lastPreview.ok)return;
+  const request={
+    scopeRevision:lastPreview.scopeRevision,
+    previewHash:lastPreview.previewHash,
+    reason:(document.getElementById('reason')||{}).value||'Rollback настроек счетов',
+    criticalConfirmation:rollbackCritical
+  };
+  call('TI_ApplyAccountScopeRollback',request,result=>{
+    document.getElementById('content').innerHTML=`<div class="card summary ${result.ok?'ok':'error'}">${esc(JSON.stringify(result,null,2))}</div>`;
+    document.getElementById('applyButton').disabled=true;
+  });
+}
+
+function loadModel() {
+  call('TI_GetAccountControlModel',undefined,result => {
+    model=result;
+    const risk=document.getElementById('risk');
+    risk.hidden=false;
+    risk.textContent=`${result.knownExternalRisk.code}: ${result.knownExternalRisk.message} Статус: ${result.knownExternalRisk.status}.`;
+    if(initialMode==='diagnostics') call('TI_AccountScopeDiagnostics',undefined,renderDiagnostics);
+    else if(initialMode==='history') call('TI_GetAccountScopeHistory',undefined,renderHistory);
+    else if(initialMode==='rollback') call('TI_PreviewAccountScopeRollback',undefined,renderRollback);
+    else renderConfigure(initialMode==='preview');
+  });
+}
+loadModel();
+</script>
+</body>
+</html>

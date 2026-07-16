@@ -1,0 +1,13 @@
+{
+  "ok": true,
+  "apply": {
+    "code": "NO_CHANGES",
+    "scopeRevision": "a7d3b535c87b8c56c7dbd2443a9a4c23c606f242329bf53176f215ae36f11557",
+    "auditRows": 0,
+    "runId": "…8c40d1",
+    "writes": 0,
+    "ok": true
+  },
+  "scopeUnchanged": true,
+  "comparison": "deep equality after recursive object-key sorting"
+}

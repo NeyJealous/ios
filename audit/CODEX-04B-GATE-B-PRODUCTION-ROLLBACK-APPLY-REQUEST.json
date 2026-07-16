@@ -1,0 +1,8 @@
+{
+  "rollbackRunId": "…c59e18",
+  "scopeRevision": "ba4b53e59f7ac071ae77a3a6c352a744cb3d6f8debf5c3f71fcb816d3cf4aa84",
+  "previewHash": "fe8f1a4744a3d00adf6006ecc2e27b66ed9936d2de8672953dec391fdb79175d",
+  "idempotencyKey": "codex04b-gateb-display-rollback-20260716-2157-msk",
+  "reason": "CODEX-04B Gate B immediate rollback",
+  "criticalConfirmation": false
+}

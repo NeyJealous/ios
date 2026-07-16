@@ -36,6 +36,12 @@ function onOpen() {
       .addSeparator()
       .addItem("Включить быстрое автообновление 21:00", "TI_EnableDailySync")
       .addItem("Отключить автообновление", "TI_DisableDailySync"))
+    .addSubMenu(ui.createMenu("Счета")
+      .addItem("Настроить счета", "TI_ShowAccountControl")
+      .addItem("Проверить настройки счетов", "TI_ShowAccountScopeDiagnostics")
+      .addItem("Предпросмотр влияния", "TI_ShowAccountScopeImpactPreview")
+      .addItem("История изменений", "TI_ShowAccountScopeHistory")
+      .addItem("Восстановить предыдущие настройки", "TI_ShowAccountScopeRollback"))
     .addSubMenu(ui.createMenu("Редкие данные")
       .addItem("Обновить редкие данные сейчас", "TI_MaintenanceSync")
       .addItem("Включить редкое автообновление", "TI_EnableMaintenanceSync")
@@ -92,6 +98,34 @@ function TI_ShowTokenDialog() {
   SpreadsheetApp
     .getUi()
     .showModalDialog(html, "Настройка токена");
+}
+
+function TI_ShowAccountControlDialog_(mode, title) {
+  var template = HtmlService.createTemplateFromFile("AccountControlDialog");
+  template.initialMode = String(mode || "configure");
+  var html = template.evaluate().setWidth(1100).setHeight(720);
+  SpreadsheetApp.getUi().showModalDialog(html, title || "Настройки счетов");
+}
+
+function TI_ShowAccountControl() {
+  TI.AccountControl.ensureProtection();
+  TI_ShowAccountControlDialog_("configure", "Настроить счета");
+}
+
+function TI_ShowAccountScopeDiagnostics() {
+  TI_ShowAccountControlDialog_("diagnostics", "Проверить настройки счетов");
+}
+
+function TI_ShowAccountScopeImpactPreview() {
+  TI_ShowAccountControlDialog_("preview", "Предпросмотр влияния");
+}
+
+function TI_ShowAccountScopeHistory() {
+  TI_ShowAccountControlDialog_("history", "История изменений настроек счетов");
+}
+
+function TI_ShowAccountScopeRollback() {
+  TI_ShowAccountControlDialog_("rollback", "Восстановить предыдущие настройки");
 }
 
 /**
