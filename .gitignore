@@ -9,6 +9,7 @@ credentials*.json
 .env
 .env.*
 .codex-runtime/
+.audit/connection-recovery/
 backups/
 audit/account-archive/invest-piggy-bank/
 IOS_HANDOFF_v4/source_snapshot/*.xlsx

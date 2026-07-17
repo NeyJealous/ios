@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "operationTypes": {
+    "GIT_PUSH": { "expectedState": "PUSH_COMPLETED", "adapter": "git" },
+    "PR_CREATE": { "expectedState": "PR_CREATED", "adapter": "github-pr" },
+    "PR_UPDATE": { "expectedState": "PR_CREATED", "adapter": "github-pr" },
+    "PR_MERGE": { "expectedState": "MERGED", "adapter": "github-pr" },
+    "GH_WORKFLOW_DISPATCH": { "expectedState": "REMOTE_APPLY_COMPLETED", "adapter": "github-run" },
+    "CLASP_PUSH": { "expectedState": "REMOTE_APPLY_COMPLETED", "adapter": "apps-script" },
+    "APPS_SCRIPT_DEPLOY": { "expectedState": "REMOTE_APPLY_COMPLETED", "adapter": "apps-script" },
+    "GOOGLE_SHEETS_WRITE": { "expectedState": "REMOTE_APPLY_COMPLETED", "adapter": "evidence" },
+    "BROKER_API_WRITE": { "expectedState": "REMOTE_APPLY_COMPLETED", "adapter": "evidence" },
+    "ICEPANEL_IMPORT": { "expectedState": "REMOTE_APPLY_COMPLETED", "adapter": "evidence" },
+    "ICEPANEL_SNAPSHOT": { "expectedState": "REMOTE_APPLY_COMPLETED", "adapter": "evidence" },
+    "GENERIC_REMOTE_WRITE": { "expectedState": "REMOTE_APPLY_COMPLETED", "adapter": "evidence" }
+  }
+}

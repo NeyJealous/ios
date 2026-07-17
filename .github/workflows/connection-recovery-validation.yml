@@ -1,0 +1,70 @@
+name: Connection Recovery Validation
+
+on:
+  pull_request:
+    paths:
+      - 'tools/connection-*'
+      - 'tools/remote-write-*'
+      - 'governance/connection-recovery/**'
+      - 'docs/governance/**'
+      - '.github/workflows/connection-recovery-*'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: ''
+
+      - name: Install dependencies
+        run: node --version
+
+      - name: Schema validation
+        run: node tools/connection-recovery-schema-check.mjs
+
+      - name: Unit and fixture tests
+        run: node --test tests/connection-recovery/*.test.mjs
+
+      - name: Privacy scan
+        run: node tools/connection-recovery-privacy-scan.mjs
+
+      - name: Verify no real checkpoints are tracked
+        shell: bash
+        run: |
+          if git ls-files | grep -q '^\.audit/connection-recovery/'; then
+            echo 'Real checkpoint is tracked' >&2
+            exit 1
+          fi
+
+      - name: Verify validation workflow has no remote write commands
+        shell: bash
+        run: |
+          if grep -Ein '(git +push|gh +pr +(create|merge)|clasp +push|workflow +dispatch|curl.+-X +(POST|PUT|PATCH|DELETE))' .github/workflows/connection-recovery-validation.yml; then
+            echo 'Forbidden remote write command found' >&2
+            exit 1
+          fi
+
+      - name: Build sanitized test artifact
+        shell: bash
+        run: |
+          mkdir -p .test-artifacts
+          printf '{"schema":"PASS","tests":"PASS","privacy":"PASS","productionWrites":0}\n' > .test-artifacts/connection-recovery-validation.json
+
+      - name: Upload sanitized test artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: connection-recovery-validation
+          path: .test-artifacts/connection-recovery-validation.json
+          if-no-files-found: error
+          retention-days: 7

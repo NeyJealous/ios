@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/NeyJealous/ios/governance/connection-recovery/schema.json",
+  "title": "Connection Recovery operation checkpoint",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "operationId", "operationType", "gate", "branch",
+    "baselineSha", "localCommitSha", "targetSystem", "targetRef", "startedAt",
+    "lastVerifiedAt", "expectedState", "observedState", "recoveryStatus",
+    "idempotencyKey", "verificationCommands", "safeNextStep", "evidence",
+    "errorClass", "disconnectObserved", "userApprovalRequired", "sanitizedNotes",
+    "verificationHistory", "closedAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "operationId": { "type": "string", "pattern": "^crp-[a-z0-9-]{12,96}$" },
+    "operationType": { "enum": ["GIT_PUSH", "PR_CREATE", "PR_UPDATE", "PR_MERGE", "GH_WORKFLOW_DISPATCH", "CLASP_PUSH", "APPS_SCRIPT_DEPLOY", "GOOGLE_SHEETS_WRITE", "BROKER_API_WRITE", "ICEPANEL_IMPORT", "ICEPANEL_SNAPSHOT", "GENERIC_REMOTE_WRITE"] },
+    "gate": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "branch": { "type": "string", "minLength": 1, "maxLength": 240 },
+    "baselineSha": { "type": ["string", "null"], "pattern": "^[0-9a-f]{40}$" },
+    "localCommitSha": { "type": ["string", "null"], "pattern": "^[0-9a-f]{40}$" },
+    "targetSystem": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "targetRef": { "type": "string", "minLength": 1, "maxLength": 500 },
+    "startedAt": { "type": "string", "format": "date-time" },
+    "lastVerifiedAt": { "type": ["string", "null"], "format": "date-time" },
+    "expectedState": { "$ref": "#/$defs/status" },
+    "observedState": { "$ref": "#/$defs/status" },
+    "recoveryStatus": { "$ref": "#/$defs/status" },
+    "idempotencyKey": { "type": ["string", "null"], "maxLength": 240 },
+    "verificationCommands": { "type": "array", "items": { "type": "string", "maxLength": 500 } },
+    "safeNextStep": { "type": "string", "maxLength": 1000 },
+    "evidence": { "type": "array", "items": { "type": "object" } },
+    "errorClass": { "type": ["string", "null"], "maxLength": 120 },
+    "disconnectObserved": { "type": "boolean" },
+    "userApprovalRequired": { "type": "boolean" },
+    "sanitizedNotes": { "type": "array", "items": { "type": "string", "maxLength": 1000 } },
+    "verificationHistory": { "type": "array", "items": { "type": "object" } },
+    "closedAt": { "type": ["string", "null"], "format": "date-time" }
+  },
+  "$defs": {
+    "status": { "enum": ["NOT_STARTED", "LOCAL_ONLY", "PUSH_COMPLETED", "PR_CREATED", "MERGED", "REMOTE_APPLY_COMPLETED", "UNKNOWN"] }
+  }
+}

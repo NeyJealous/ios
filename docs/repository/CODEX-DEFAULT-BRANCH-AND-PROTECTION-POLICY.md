@@ -94,6 +94,8 @@ was such an approved bootstrap operation.
 
 Before any canonical merge or release:
 
+- CONNECTION RECOVERY CHECK завершён: unresolved `UNKNOWN` = 0, pre-write
+  guard и post-write evidence зафиксированы, checkpoints закрыты;
 - working tree is clean;
 - privacy scanner is PASS;
 - tracked `.clasp.json`, secrets, full identifiers, private backups, production
@@ -107,6 +109,9 @@ Before any canonical merge or release:
 - read-only gates report production writes as zero;
 - branch-specific migration, rollback, and idempotency checks pass;
 - the integration report identifies every runtime and documentation change.
+
+После timeout/network error/app crash внешнюю операцию запрещено повторять до
+read-only классификации. Timeout не является доказательством failure.
 
 GitHub can require only status checks that exist in the repository. Until CI
 workflows publish stable named checks, these validations remain mandatory

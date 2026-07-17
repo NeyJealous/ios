@@ -1,0 +1,9 @@
+{
+  "operationId": "crp-example-git-push-0001",
+  "recoveryStatus": "PUSH_COMPLETED",
+  "provedCompleted": ["remote branch SHA совпадает с ожидаемым commit SHA"],
+  "notProved": [],
+  "firstSafeIncompleteStep": "Проверить существующий PR по head/base веткам.",
+  "userApprovalRequired": false,
+  "forbiddenRetries": ["git push"]
+}
