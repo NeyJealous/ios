@@ -1,0 +1,17 @@
+{
+  "gitRemoteAbsent": { "localSha": "1111111111111111111111111111111111111111", "remoteSha": null },
+  "gitRemoteMatches": { "localSha": "1111111111111111111111111111111111111111", "remoteSha": "1111111111111111111111111111111111111111" },
+  "gitRemoteDiffers": { "localSha": "1111111111111111111111111111111111111111", "remoteSha": "2222222222222222222222222222222222222222" },
+  "prAbsent": { "matches": [], "remoteBranchConfirmed": true },
+  "prOpen": { "matches": [{ "number": 7, "state": "OPEN", "mergeCommit": null }] },
+  "prMerged": { "matches": [{ "number": 7, "state": "MERGED", "mergeCommit": { "oid": "3333333333333333333333333333333333333333" } }] },
+  "prClosed": { "matches": [{ "number": 7, "state": "CLOSED", "mergeCommit": null }] },
+  "prDuplicate": { "matches": [{ "number": 7, "state": "OPEN" }, { "number": 8, "state": "OPEN" }] },
+  "deploymentCompleted": { "status": "completed", "targetConfirmed": true },
+  "deploymentPending": { "status": "pending", "targetConfirmed": false },
+  "deploymentFailed": { "status": "failed", "targetConfirmed": false },
+  "statusUnavailable": { "unavailable": true },
+  "timeout": { "timeout": true },
+  "conflicting": { "conflict": true },
+  "stale": { "stale": true }
+}

@@ -232,3 +232,37 @@ The next gate may begin only after explicit permission to create an isolated
 CODEX-05 worktree and perform the read-only production-active trace. That
 permission does not authorize runtime changes, `clasp push`, production writes,
 or approval of AppliedMultiplier.
+
+## 12. CONNECTION RECOVERY CHECK
+
+Этот раздел меняет только Git/GitHub workflow CODEX-05 и не расширяет его
+функциональный scope.
+
+Перед branch push:
+
+1. Создать `GIT_PUSH` operation и checkpoint.
+2. Получить pre-write guard PASS для точных branch/commit/target.
+3. Выполнить push ровно один раз.
+4. Read-only проверить remote branch SHA; только точное совпадение даёт
+   `PUSH_COMPLETED`. Timeout/mismatch даёт `UNKNOWN`, повтор запрещён.
+
+Перед PR create:
+
+1. Read-only найти PR по точным head/base.
+2. Один существующий PR классифицировать `PR_CREATED` и не создавать второй.
+3. Несколько совпадений либо недоступный status дают `UNKNOWN` и stop.
+4. При доказанном отсутствии выполнить одну `PR_CREATE` operation и verify.
+
+Перед merge:
+
+1. Merge запрещён без отдельного разрешения пользователя.
+2. После разрешения создать `PR_MERGE` operation и выполнить merge один раз.
+3. Только GitHub `state=MERGED` с merge commit даёт `MERGED`.
+4. После timeout merge не повторять; выполнить disconnect handler/read-only
+   verification, при `UNKNOWN` остановиться.
+
+`clasp push` в рамках этого workflow остаётся запрещён.
+
+Дополнение к Definition of Done: unresolved `UNKNOWN` = 0, все remote writes
+verified, checkpoints closed, duplicate PR/push/deployment = 0, production
+writes явно посчитаны.
