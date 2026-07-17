@@ -22,5 +22,8 @@
   "userApprovalRequired": true,
   "sanitizedNotes": [],
   "verificationHistory": [],
-  "closedAt": null
+  "closedAt": null,
+  "supersededAt": null,
+  "supersededBy": null,
+  "closureReason": null
 }

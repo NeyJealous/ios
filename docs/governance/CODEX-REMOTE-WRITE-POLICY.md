@@ -28,3 +28,11 @@ status endpoint дают `UNKNOWN`.
   невозможно.
 - Credentials, private payloads и полные Account/Script ID не входят в evidence.
 - Workflow validation не получает production secrets и не выполняет write.
+
+## Supersede невыполненной operation
+
+`NOT_STARTED`/`LOCAL_ONLY` checkpoint разрешено закрыть без повторной write
+только при явном approval, санитизированной причине, сохранённом evidence
+отсутствия remote result и ссылке на более поздний закрытый successor того же
+типа/ветки с доказанным exact post-state. Status не повышается и история не
+переписывается. `UNKNOWN` supersede запрещён.

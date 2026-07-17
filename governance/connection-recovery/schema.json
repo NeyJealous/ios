@@ -36,7 +36,10 @@
     "userApprovalRequired": { "type": "boolean" },
     "sanitizedNotes": { "type": "array", "items": { "type": "string", "maxLength": 1000 } },
     "verificationHistory": { "type": "array", "items": { "type": "object" } },
-    "closedAt": { "type": ["string", "null"], "format": "date-time" }
+    "closedAt": { "type": ["string", "null"], "format": "date-time" },
+    "supersededAt": { "type": ["string", "null"], "format": "date-time" },
+    "supersededBy": { "type": ["string", "null"], "pattern": "^crp-[a-z0-9-]{12,96}$" },
+    "closureReason": { "type": ["string", "null"], "minLength": 8, "maxLength": 1000 }
   },
   "$defs": {
     "status": { "enum": ["NOT_STARTED", "LOCAL_ONLY", "PUSH_COMPLETED", "PR_CREATED", "MERGED", "REMOTE_APPLY_COMPLETED", "UNKNOWN"] }

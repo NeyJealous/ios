@@ -2,7 +2,7 @@
 import {
   closeCheckpoint, createOperation, exitCodeFor, findCheckpoint, handleCliError,
   listCheckpoints, outputRussian, parseArgs, report, repoRoot, resumePlan,
-  saveCheckpoint, safeNextStep, verifyCheckpoint,
+  saveCheckpoint, safeNextStep, supersedeCheckpoint, verifyCheckpoint,
 } from './connection-recovery-lib.mjs';
 
 const usage = `Использование:
@@ -34,7 +34,7 @@ try {
     }
     if (command === 'resume-plan') outputRussian('ПЛАН БЕЗОПАСНОГО ВОЗОБНОВЛЕНИЯ', resumePlan(checkpoint));
     else if (command === 'close') {
-      checkpoint = closeCheckpoint(root, checkpoint);
+      checkpoint = args.supersede ? supersedeCheckpoint(root, checkpoint, args) : closeCheckpoint(root, checkpoint);
       outputRussian('CHECKPOINT ЗАКРЫТ', report(checkpoint));
     } else outputRussian(command === 'status' ? 'СТАТУС ОПЕРАЦИИ' : 'РЕЗУЛЬТАТ КЛАССИФИКАЦИИ', report(checkpoint));
     process.exitCode = exitCodeFor(checkpoint);

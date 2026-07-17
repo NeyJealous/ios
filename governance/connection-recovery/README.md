@@ -24,6 +24,20 @@ node tools/remote-write-verify.mjs --operation-id <id>
 node tools/connection-recovery.mjs close --operation-id <id>
 ```
 
+Доказанную невыполненную `NOT_STARTED`/`LOCAL_ONLY` operation можно закрыть как
+superseded только явно:
+
+```powershell
+node tools/connection-recovery.mjs close --operation-id <old-id> --supersede --superseded-by <closed-successor-id> --reason "точная причина" --approved
+```
+
+Команда требует сохранённое evidence отсутствия исходного remote result,
+более поздний закрытый successor того же типа/ветки и доказательство exact
+remote post-state successor. `UNKNOWN`, неподтверждённый successor или отсутствие
+явного approval всегда блокируют close. Recovery status не переписывается:
+исходная operation остаётся исторически `LOCAL_ONLY`, но получает terminal
+audit closure `supersededAt/supersededBy`.
+
 Checkpoints записываются атомарно в `.audit/connection-recovery/`, исключены из
 Git и всегда санитизируются. Реальные checkpoints, credentials, cookies,
 Authorization headers, полные Script/Account ID и private payloads коммитить

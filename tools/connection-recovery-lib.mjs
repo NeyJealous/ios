@@ -409,6 +409,39 @@ export function closeCheckpoint(root, checkpoint) {
   return saveCheckpoint(root, checkpoint);
 }
 
+export function supersedeCheckpoint(root, checkpoint, args = {}) {
+  if (!args.approved) throw new RecoveryError('SUPERSEDE=FAIL: требуется явный --approved.', 1);
+  if (!args.reason || args.reason === true || sanitizeText(args.reason).trim().length < 8) throw new RecoveryError('SUPERSEDE=FAIL: требуется санитизированный --reason.', 3);
+  if (!args['superseded-by'] || args['superseded-by'] === true) throw new RecoveryError('SUPERSEDE=FAIL: требуется --superseded-by.', 3);
+  if (checkpoint.closedAt) throw new RecoveryError('SUPERSEDE=FAIL: checkpoint уже закрыт.', 1);
+  if (!['NOT_STARTED', 'LOCAL_ONLY'].includes(checkpoint.recoveryStatus)) throw new RecoveryError('SUPERSEDE=FAIL: разрешены только NOT_STARTED/LOCAL_ONLY.', checkpoint.recoveryStatus === 'UNKNOWN' ? 2 : 1);
+
+  const sourceEvidence = checkpoint.evidence.some((item) =>
+    item.localSha === checkpoint.localCommitSha && !item.remoteSha && !item.errorClass && !item.timeout && !item.unavailable);
+  const sourceHistory = checkpoint.verificationHistory.some((item) =>
+    ['NOT_STARTED', 'LOCAL_ONLY'].includes(item.status) && !item.errorClass);
+  if (!sourceEvidence || !sourceHistory) throw new RecoveryError('SUPERSEDE=FAIL: невыполненный исходный remote result не доказан.', 2);
+
+  const successor = loadCheckpoint(root, args['superseded-by']);
+  if (successor.operationId === checkpoint.operationId) throw new RecoveryError('SUPERSEDE=FAIL: operation не может supersede сама себя.', 1);
+  if (successor.operationType !== checkpoint.operationType || successor.branch !== checkpoint.branch) throw new RecoveryError('SUPERSEDE=FAIL: successor имеет другой type/branch.', 1);
+  if (successor.startedAt <= checkpoint.startedAt) throw new RecoveryError('SUPERSEDE=FAIL: successor должен быть создан позже.', 1);
+  if (!successor.closedAt || successor.recoveryStatus !== successor.expectedState) throw new RecoveryError('SUPERSEDE=FAIL: successor не закрыт с доказанным expected state.', 2);
+  const successorEvidence = successor.evidence.some((item) =>
+    item.localSha === successor.localCommitSha && item.remoteSha === successor.localCommitSha && !item.errorClass);
+  if (!successorEvidence) throw new RecoveryError('SUPERSEDE=FAIL: exact remote post-state successor не доказан.', 2);
+
+  const closedAt = nowIso();
+  checkpoint.closedAt = closedAt;
+  checkpoint.supersededAt = closedAt;
+  checkpoint.supersededBy = successor.operationId;
+  checkpoint.closureReason = sanitizeText(args.reason).trim();
+  checkpoint.userApprovalRequired = false;
+  checkpoint.safeNextStep = `Operation закрыта как superseded доказанным successor ${successor.operationId}; remote write не выполнялась.`;
+  checkpoint.sanitizedNotes.push(`Superseded ${closedAt}: ${checkpoint.closureReason}`);
+  return saveCheckpoint(root, checkpoint);
+}
+
 export function findCheckpoint(root, args) {
   if (args['operation-id']) return loadCheckpoint(root, args['operation-id']);
   requireOperationArgs(args);
