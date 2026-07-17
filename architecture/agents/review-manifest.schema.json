@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IOS Agent Review Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["GateId","TaskType","Branch","BaseSHA","HeadSHA","ChangedPaths","ApplicableAgents","RequiredAgents","ExecutedAgents","MissingAgents","BlockingFindings","Warnings","ArchitectureImpact","SecurityImpact","ProductionImpact","OverallStatus"],
+  "properties": {
+    "GateId":{"type":"string"}, "TaskType":{"type":"string"}, "Branch":{"type":"string"},
+    "BaseSHA":{"type":"string","pattern":"^[0-9a-f]{40}$"}, "HeadSHA":{"type":"string","pattern":"^[0-9a-f]{40}$"},
+    "ChangedPaths":{"type":"array","items":{"type":"string"}},
+    "ApplicableAgents":{"type":"array","items":{"type":"string"}},
+    "RequiredAgents":{"type":"array","items":{"type":"string"}},
+    "ExecutedAgents":{"type":"array","items":{"type":"string"}},
+    "MissingAgents":{"type":"array","items":{"type":"string"}},
+    "BlockingFindings":{"type":"array"}, "Warnings":{"type":"array"},
+    "ArchitectureImpact":{"type":"string"}, "SecurityImpact":{"type":"string"},
+    "ProductionImpact":{"type":"string"},
+    "OverallStatus":{"enum":["PASS","BLOCKED","FAIL","INCOMPLETE"]}
+  }
+}

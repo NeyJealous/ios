@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/NeyJealous/ios/architecture/agents/agent-registry.schema.json",
+  "title": "IOS Agent Registry",
+  "type": "object",
+  "required": ["Version", "CanonicalBranch", "Agents"],
+  "additionalProperties": false,
+  "properties": {
+    "Version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "CanonicalBranch": { "const": "integration/ios-current" },
+    "Agents": {
+      "type": "array",
+      "minItems": 10,
+      "items": { "$ref": "#/$defs/agent" }
+    }
+  },
+  "$defs": {
+    "agent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "AgentId", "Name", "SpecificationSources", "Purpose", "Scope",
+        "Triggers", "RequiredInputs", "Checks", "ForbiddenActions",
+        "RequiredOutputs", "SeverityLevels", "BlockingLevels",
+        "CanModifyCode", "CanModifyDocs", "CanUseNetwork", "CanUseMCP",
+        "CanWriteRemote", "CanApproveMerge", "CanDeploy",
+        "CanProductionWrite", "CanModifySecrets", "Escalation",
+        "FallbackMode", "Version", "Status"
+      ],
+      "properties": {
+        "AgentId": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]+$" },
+        "Name": { "type": "string", "minLength": 3 },
+        "SpecificationSources": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 3 } },
+        "Purpose": { "type": "string", "minLength": 10 },
+        "Scope": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "Triggers": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "RequiredInputs": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "Checks": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "ForbiddenActions": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "RequiredOutputs": { "type": "array", "minItems": 2, "items": { "type": "string" } },
+        "SeverityLevels": { "const": ["INFO", "LOW", "MEDIUM", "HIGH", "CRITICAL", "BLOCKER"] },
+        "BlockingLevels": { "const": ["CRITICAL", "BLOCKER"] },
+        "CanModifyCode": { "type": "boolean" },
+        "CanModifyDocs": { "type": "boolean" },
+        "CanUseNetwork": { "type": "boolean" },
+        "CanUseMCP": { "type": "boolean" },
+        "CanWriteRemote": { "const": false },
+        "CanApproveMerge": { "const": false },
+        "CanDeploy": { "const": false },
+        "CanProductionWrite": { "const": false },
+        "CanModifySecrets": { "const": false },
+        "Escalation": { "type": "string", "minLength": 3 },
+        "FallbackMode": { "enum": ["CODEX_ROLE_SIMULATION", "CI_VALIDATOR", "CODEX_ROLE_SIMULATION+CI_VALIDATOR", "NOT_AVAILABLE"] },
+        "Version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "Status": { "enum": ["SPECIFIED", "IMPLEMENTED", "PARTIAL", "MISSING", "CONFLICTING", "DEPRECATED"] }
+      }
+    }
+  }
+}
