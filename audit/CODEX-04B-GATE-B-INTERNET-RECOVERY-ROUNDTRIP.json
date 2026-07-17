@@ -3,7 +3,7 @@
   "canonicalFileCount": 61,
   "exactMatches": 61,
   "mismatchCount": 0,
-  "temporaryPullDirectory": "C:\\Users\\NEYJEA~1\\AppData\\Local\\Temp\\ios-codex04b-recovery-roundtrip-2026-07-16T19-57-17-251Z",
+  "temporaryPullDirectory": "<TEMP_ROOT>",
   "accountControl": {
     "localName": "AccountControl.gs",
     "remoteName": "AccountControl.js",

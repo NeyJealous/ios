@@ -15,7 +15,7 @@
 | Tools | Node.js | PASS | v24.18.0 | Да |
 | Tools | npm | PASS | 11.16.0 | Да |
 | Tools | clasp | FAIL | NOT_FOUND | Да |
-| Tools | Codex CLI | PASS | FOUND_BUT_VERSION_FAILED: Program 'codex.exe' failed to run: An error occurred trying to start process 'C:\Program Files\WindowsApps\OpenAI.Codex_26.707.3748.0_x64__2p2nqsd0c76g0\app\resources\codex.exe' with working directory 'C:\Users\NeyJealous\Documents\Инвест'. Отказано в доступе.At C:\Users\NeyJealous\Documents\Инвест\IOS_HANDOFF_v4\completion_pack\tools\Check-IOSDevEnvironment.ps1:34 char:19  +         $output = & $Command @Arguments 2>&1 \| Select-Object -First 1  +                   ~~~~~~~~~~~~~~~~~~~~~~~~~~. | Да |
+| Tools | Codex CLI | PASS | FOUND_BUT_VERSION_FAILED: Program 'codex.exe' failed to run: An error occurred trying to start process '<PROGRAM_FILES>\WindowsApps\OpenAI.Codex_26.707.3748.0_x64__2p2nqsd0c76g0\app\resources\codex.exe' with working directory '<REPO_ROOT>'. Отказано в доступе.At <REPO_ROOT>\IOS_HANDOFF_v4\completion_pack\tools\Check-IOSDevEnvironment.ps1:34 char:19  +         $output = & $Command @Arguments 2>&1 \| Select-Object -First 1  +                   ~~~~~~~~~~~~~~~~~~~~~~~~~~. | Да |
 | Tools | VS Code | PASS | 1.127.0 | Да |
 | Compatibility | Node.js major >= 22 | PASS | 24 | Да |
 | Git | user.name | FAIL | NOT_CONFIGURED | Да |
@@ -25,7 +25,7 @@
 | Network | script.google.com:443 | PASS | REACHABLE | Да |
 | Network | oauth2.googleapis.com:443 | PASS | REACHABLE | Да |
 | Network | chatgpt.com:443 | PASS | REACHABLE | Да |
-| Project | Project path | PASS | C:\Users\NeyJealous\Documents\Инвест | Да |
+| Project | Project path | PASS | <REPO_ROOT> | Да |
 | Project | .gitignore | FAIL | MISSING | Да |
 | Project | .clasp.json | PASS | .\IOS_SOURCE_SNAPSHOT\work\apps-script\.clasp.json | Да |
 | Project | .claspignore | PASS | .\IOS_SOURCE_SNAPSHOT\work\apps-script\.claspignore | Да |

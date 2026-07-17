@@ -1,6 +1,6 @@
 # Remote Baseline Inventory
 
-Remote folder: `C:/Users/NeyJealous/AppData/Local/Temp/ios-remote-baseline-20260712-052000`
+Remote folder: `<TEMP_ROOT>/ios-remote-baseline-20260712-052000`
 
 | Source | File | Ext | Size | SHA-256 | Pair | Matches counterpart |
 |---|---|---:|---:|---|---|---|

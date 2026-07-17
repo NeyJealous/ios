@@ -2,7 +2,7 @@
 
 ## Canonical local working copy
 
-- Path: `C:\Users\NeyJealous\Documents\Инвест`
+- Path: `<REPO_ROOT>`
 - Branch: `codex-02-account-strategy-core`
 - Git root verified before changes.
 - CODEX-02 baseline tag: `codex-02-baseline-20260712`.

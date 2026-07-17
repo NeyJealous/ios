@@ -1,7 +1,7 @@
 # Canonical Local Copy Verification
 
-- Local working copy: `C:\Users\NeyJealous\Documents\Инвест`
-- Git root: `C:\Users\NeyJealous\Documents\Инвест`
+- Local working copy: `<REPO_ROOT>`
+- Git root: `<REPO_ROOT>`
 - Verified source branch: `codex-01-canonical-files`
 - Verified commit: `d274bdcaa0db8658076d29e3d1b3a7280c31fb67`
 - Baseline tag: `codex-01-baseline-20260712`

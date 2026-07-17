@@ -1,10 +1,25 @@
 .clasprc.json
 .clasp.json
+**/.clasp.json
 client_secret*.json
 credentials*.json
 *.token
+*.zip
+**/*.zip
 .env
 .env.*
 .codex-runtime/
 backups/
 audit/account-archive/invest-piggy-bank/
+IOS_HANDOFF_v4/source_snapshot/*.xlsx
+
+# Production-derived row snapshots are retained locally for audit/recovery.
+audit/CODEX-03-NEW-TRADES-VALIDATION.json
+audit/codex03_before_recalc_masked.json
+audit/codex03_checkpoint26_account_strategy.json
+audit/codex03_final_full_run1_account_audit.json
+audit/codex03_final_recalc_run1_account_audit.json
+audit/codex03_full_run2_final_account_audit.json
+audit/codex03_post_incident_masked_sheets.json
+audit/live_account_strategy_snapshot.json
+audit/CODEX-04B-*MODEL*.json

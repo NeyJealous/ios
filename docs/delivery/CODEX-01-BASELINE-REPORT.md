@@ -10,7 +10,7 @@
 
 ## Backup
 
-- Path: `C:\Users\NeyJealous\Documents\Инвест\backups\CODEX-01-baseline-20260712.zip`
+- Path: `<REPO_ROOT>\backups\CODEX-01-baseline-20260712.zip`
 - Size: 1,876,015 bytes
 - SHA-256: `7ce510ac6f7d1bc8b51c2c6626046341688739197bdc0393c917b6cc894a71b8`
 - Excluded: `.git`, `backups`, `.codex-runtime`

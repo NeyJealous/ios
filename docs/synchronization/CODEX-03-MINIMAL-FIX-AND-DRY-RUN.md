@@ -2,7 +2,7 @@
 
 ## Canonical local working copy
 
-`C:\Users\NeyJealous\Documents\Инвест`, branch `codex-03-sync-modes`.
+`<REPO_ROOT>`, branch `codex-03-sync-modes`.
 
 ## Approved trade key and new trades status
 

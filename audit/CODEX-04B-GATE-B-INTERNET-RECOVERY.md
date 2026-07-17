@@ -2,7 +2,7 @@
 
 ## Worktree
 
-- Path: `C:\Users\NeyJealous\Documents\IOS_CODEX_04B_WORKTREE`
+- Path: `<WORKTREE_ROOT>`
 - Branch: `codex-04b-account-control-ux`
 - Gate A commit: `18ca359`
 - CODEX-06-PRE worktree preserved and clean: Да

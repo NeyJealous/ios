@@ -3,7 +3,7 @@
 ## 1. Baseline and safety-fix commit
 
 - Branch: `codex-04b-account-control-ux`
-- Worktree: `C:\Users\NeyJealous\Documents\IOS_CODEX_04B_WORKTREE`
+- Worktree: `<WORKTREE_ROOT>`
 - Gate A commit: `18ca359`
 - Safety-fix commit: `03b0bf3` — `CODEX-04B: harden exact writes and idempotent rollback`
 - Remote source before production test: 61/61 exact match

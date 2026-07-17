@@ -43,7 +43,7 @@ const report = {
   canonicalFileCount: comparisons.length,
   exactMatches: comparisons.length - mismatches.length,
   mismatchCount: mismatches.length,
-  temporaryPullDirectory: target,
+  temporaryPullDirectory: '<TEMP_ROOT>',
   accountControl: comparisons.find((item) => item.localName === 'AccountControl.gs'),
   mismatches,
 };

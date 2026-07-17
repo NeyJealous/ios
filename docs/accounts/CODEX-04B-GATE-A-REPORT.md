@@ -10,7 +10,7 @@
 ## 2. Branch and isolation
 
 - Branch: `codex-04b-account-control-ux`
-- Worktree: `C:\Users\NeyJealous\Documents\IOS_CODEX_04B_WORKTREE`
+- Worktree: `<WORKTREE_ROOT>`
 - CODEX-06-PRE files absent from this worktree.
 - Private `.clasp.json` is ignored and not Git-visible.
 

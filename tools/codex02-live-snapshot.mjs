@@ -1,7 +1,13 @@
 import { readFile, writeFile } from 'node:fs/promises';
+import { execFileSync } from 'node:child_process';
+import os from 'node:os';
 import path from 'node:path';
-import { initAuth } from 'file:///C:/Users/NeyJealous/AppData/Roaming/npm/node_modules/@google/clasp/build/src/auth/auth.js';
-import { google } from 'file:///C:/Users/NeyJealous/AppData/Roaming/npm/node_modules/@google/clasp/node_modules/googleapis/build/src/index.js';
+import { pathToFileURL } from 'node:url';
+
+const npmRoot = process.env.NPM_GLOBAL_ROOT || execFileSync('npm', ['root', '-g'], { encoding: 'utf8' }).trim();
+const claspRoot = process.env.CLASP_PACKAGE_ROOT || path.join(npmRoot, '@google', 'clasp');
+const { initAuth } = await import(pathToFileURL(path.join(claspRoot, 'build', 'src', 'auth', 'auth.js')).href);
+const { google } = await import(pathToFileURL(path.join(claspRoot, 'node_modules', 'googleapis', 'build', 'src', 'index.js')).href);
 
 const repo = process.argv[2];
 if (!repo) throw new Error('Usage: node tools/codex02-live-snapshot.mjs <repo>');
@@ -9,8 +15,8 @@ if (!repo) throw new Error('Usage: node tools/codex02-live-snapshot.mjs <repo>')
 const appDir = path.join(repo, 'IOS_SOURCE_SNAPSHOT', 'work', 'apps-script');
 const clasp = JSON.parse(await readFile(path.join(appDir, '.clasp.json'), 'utf8'));
 const auth = await initAuth({
-  authFilePath: 'C:/Users/NeyJealous/.clasprc.json',
-  userKey: 'ios-dev',
+  authFilePath: process.env.CLASP_AUTH_FILE || path.join(os.homedir(), '.clasprc.json'),
+  userKey: process.env.CLASP_USER_KEY || 'ios-dev',
   useApplicationDefaultCredentials: false,
 });
 if (!auth.credentials) throw new Error('Named clasp credentials ios-dev are unavailable');

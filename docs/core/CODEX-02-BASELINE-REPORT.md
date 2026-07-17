@@ -1,6 +1,6 @@
 # CODEX-02 Baseline Report
 
-- Canonical working copy: `C:\Users\NeyJealous\Documents\Инвест`
+- Canonical working copy: `<REPO_ROOT>`
 - Branch: `codex-02-account-strategy-core`
 - Starting commit: `d274bdcaa0db8658076d29e3d1b3a7280c31fb67`
 - Tag: `codex-02-baseline-20260712`

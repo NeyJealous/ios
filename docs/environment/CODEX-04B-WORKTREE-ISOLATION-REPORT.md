@@ -4,7 +4,7 @@
 - Исходный worktree не изменён: Да
 - Исходная ветка: `codex-06-pre-market-regime-spec`
 - Исходный commit: `aa2b10a`
-- Новый worktree: `C:\Users\NeyJealous\Documents\IOS_CODEX_04B_WORKTREE`
+- Новый worktree: `<WORKTREE_ROOT>`
 - Ветка CODEX-04B: `codex-04b-account-control-ux`
 - Baseline commit: `86493f7`
 - CODEX-06-PRE файлы в новом worktree: отсутствуют

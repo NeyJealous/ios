@@ -2,8 +2,8 @@
 
 ## Canonical local working copy
 
-- Path: `C:\Users\NeyJealous\Documents\Инвест`
-- Git root: `C:/Users/NeyJealous/Documents/Инвест`
+- Path: `<REPO_ROOT>`
+- Git root: `<REPO_ROOT>`
 - Starting CODEX-02 commit: `57ef293`
 - Branch: `codex-03-sync-modes`
 - Baseline tag: `codex-03-baseline-20260712`

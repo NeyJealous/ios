@@ -17,7 +17,7 @@ The implementation includes preview, validation, optimistic locking, exact-cell 
 - CODEX-04A baseline: `86493f7`
 - Final branch: `codex-04b-account-control-ux`
 - Acceptance baseline commit: `b3dd0cd`
-- Isolated worktree: `C:\Users\NeyJealous\Documents\IOS_CODEX_04B_WORKTREE`
+- Isolated worktree: `<WORKTREE_ROOT>`
 - CODEX-06-PRE worktree unchanged: PASS
 
 ## 3. Gate A

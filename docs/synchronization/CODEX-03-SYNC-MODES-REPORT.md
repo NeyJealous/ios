@@ -2,7 +2,7 @@
 
 ## Canonical local working copy
 
-`C:\Users\NeyJealous\Documents\Инвест`, branch `codex-03-sync-modes`, baseline commit `57ef293`.
+`<REPO_ROOT>`, branch `codex-03-sync-modes`, baseline commit `57ef293`.
 
 ## Baseline and incident
 

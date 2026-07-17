@@ -9,7 +9,7 @@
 ## 2. Integration target
 
 - Integration branch: `integration/codex-04b-account-control`
-- Integration worktree: `IOS_INTEGRATION_CODEX_04B`
+- Integration worktree: `<WORKTREE_ROOT>`
 - Integration base: `86493f7`
 - Merge-base with CODEX-06-PRE: `86493f7`
 - Merge commit: `8722780`

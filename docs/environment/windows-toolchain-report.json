@@ -79,7 +79,7 @@
       "Category": "Tools",
       "Name": "Codex CLI",
       "Status": "PASS",
-      "Value": "FOUND_BUT_VERSION_FAILED: Program 'codex.exe' failed to run: An error occurred trying to start process 'C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.707.3748.0_x64__2p2nqsd0c76g0\\app\\resources\\codex.exe' with working directory 'C:\\Users\\NeyJealous\\Documents\\Инвест'. Отказано в доступе.At C:\\Users\\NeyJealous\\Documents\\Инвест\\IOS_HANDOFF_v4\\completion_pack\\tools\\Check-IOSDevEnvironment.ps1:34 char:19\r\n+         $output = & $Command @Arguments 2>&1 | Select-Object -First 1\r\n+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~.",
+      "Value": "FOUND_BUT_VERSION_FAILED: Program 'codex.exe' failed to run: An error occurred trying to start process '<PROGRAM_FILES>\\WindowsApps\\OpenAI.Codex_26.707.3748.0_x64__2p2nqsd0c76g0\\app\\resources\\codex.exe' with working directory '<REPO_ROOT>'. Отказано в доступе.At <REPO_ROOT>\\IOS_HANDOFF_v4\\completion_pack\\tools\\Check-IOSDevEnvironment.ps1:34 char:19\r\n+         $output = & $Command @Arguments 2>&1 | Select-Object -First 1\r\n+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~.",
       "Required": true,
       "Details": ""
     },
@@ -159,7 +159,7 @@
       "Category": "Project",
       "Name": "Project path",
       "Status": "PASS",
-      "Value": "C:\\Users\\NeyJealous\\Documents\\Инвест",
+      "Value": "<REPO_ROOT>",
       "Required": true,
       "Details": ""
     },

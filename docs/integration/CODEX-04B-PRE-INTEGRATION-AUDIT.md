@@ -5,7 +5,7 @@
 - Repository root: canonical local repository
 - CODEX-06-PRE worktree: `codex-06-pre-market-regime-spec` at `aa2b10a`, clean
 - CODEX-04B worktree: `codex-04b-account-control-ux` at `8ea8537`, clean
-- Integration worktree: `IOS_INTEGRATION_CODEX_04B`
+- Integration worktree: `<WORKTREE_ROOT>`
 
 Private runtime paths and identifiers are intentionally omitted.
 

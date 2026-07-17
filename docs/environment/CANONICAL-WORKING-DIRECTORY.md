@@ -1,13 +1,13 @@
 # Canonical Working Directory
 
-`CANONICAL_LOCAL_WORKING_COPY = C:\Users\NeyJealous\Documents\Инвест`
+`CANONICAL_LOCAL_WORKING_COPY = <REPO_ROOT>`
 
-- Git root: `C:\Users\NeyJealous\Documents\Инвест`
+- Git root: `<REPO_ROOT>`
 - Active CODEX-02 branch: `codex-02-account-strategy-core`
 - Starting commit: `d274bdcaa0db8658076d29e3d1b3a7280c31fb67`
 - CODEX-01 baseline tag: `codex-01-baseline-20260712`
 - CODEX-02 baseline tag: `codex-02-baseline-20260712`
-- clasp project directory: `C:\Users\NeyJealous\Documents\Инвест\IOS_SOURCE_SNAPSHOT\work\apps-script`
+- clasp project directory: `<REPO_ROOT>\IOS_SOURCE_SNAPSHOT\work\apps-script`
 - clasp rootDir: `.`
 - Script ID suffix: `5loFhY`
 - Spreadsheet ID suffix: `nR2p_4`
