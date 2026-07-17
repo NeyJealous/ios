@@ -56,11 +56,12 @@ Merge требует отдельного разрешения; `clasp push` о�
 ## Проверки
 
 - JSON schema/runtime manifest: PASS.
-- Node unit/integration/fixture tests: PASS, 49/49.
+- Node unit/integration/fixture tests: PASS, 51/51.
 - CLI lifecycle всех шести команд: PASS.
 - Dirty/detached/mismatch/timeout/conflicting/stale/duplicate scenarios: PASS.
 - Disconnect/app crash/network restored/idempotent handler scenarios: PASS.
 - Supersede success и блокировки UNKNOWN/unproved/wrong-branch successor: PASS.
+- Fast-forward update guard и divergent remote SHA → UNKNOWN: PASS.
 - Scoped Connection Recovery privacy scan: PASS.
 - Repository-wide publication privacy scan: PASS.
 - Реальные checkpoints в Git: 0.

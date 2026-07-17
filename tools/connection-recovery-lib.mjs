@@ -389,7 +389,45 @@ export function assertGuard(root, checkpoint, args = {}) {
   if (checkpoint.operationType === 'GIT_PUSH' && checkpoint.localCommitSha !== snapshot.head) throw new RecoveryError('REMOTE_WRITE_GUARD=FAIL: commit SHA не совпадает с HEAD.', 1);
   if (!checkpoint.targetSystem || !checkpoint.targetRef) throw new RecoveryError('REMOTE_WRITE_GUARD=FAIL: target не определён.', 1);
   if (checkpoint.operationType.includes('WRITE') && !checkpoint.idempotencyKey) throw new RecoveryError('REMOTE_WRITE_GUARD=FAIL: target не поддерживает/не получил idempotency key.', 1);
-  if (['GIT_PUSH', 'PR_CREATE', 'PR_MERGE'].includes(checkpoint.operationType)) {
+  if (checkpoint.operationType === 'GIT_PUSH') {
+    const evidence = collectEvidence(root, checkpoint, args);
+    if (evidence.remoteSha && evidence.localSha && evidence.remoteSha !== evidence.localSha) {
+      let remoteIsAncestor = false;
+      try {
+        execFileSync('git', ['merge-base', '--is-ancestor', evidence.remoteSha, evidence.localSha], {
+          cwd: root, windowsHide: true, timeout: 30000, stdio: ['ignore', 'pipe', 'pipe'],
+        });
+        remoteIsAncestor = true;
+      } catch {
+        remoteIsAncestor = false;
+      }
+      const verifiedAt = nowIso();
+      checkpoint.lastVerifiedAt = verifiedAt;
+      checkpoint.evidence.push(sanitize({ ...evidence, remoteIsAncestor }));
+      if (remoteIsAncestor) {
+        checkpoint.observedState = 'LOCAL_ONLY';
+        checkpoint.recoveryStatus = 'LOCAL_ONLY';
+        checkpoint.errorClass = null;
+        checkpoint.verificationHistory.push({ verifiedAt, status: 'LOCAL_ONLY', errorClass: null, remoteIsAncestor: true });
+        checkpoint.safeNextStep = 'Доказан fast-forward: remote SHA является предком exact local SHA; разрешена одна guarded update write.';
+        saveCheckpoint(root, checkpoint);
+      } else {
+        checkpoint.observedState = 'UNKNOWN';
+        checkpoint.recoveryStatus = 'UNKNOWN';
+        checkpoint.errorClass = 'REMOTE_SHA_DIVERGENCE';
+        checkpoint.userApprovalRequired = true;
+        checkpoint.verificationHistory.push({ verifiedAt, status: 'UNKNOWN', errorClass: checkpoint.errorClass });
+        checkpoint.safeNextStep = safeNextStep(checkpoint);
+        saveCheckpoint(root, checkpoint);
+        throw new RecoveryError('REMOTE_WRITE_GUARD=UNKNOWN: remote SHA не является предком local SHA.', 2);
+      }
+    } else {
+      checkpoint = verifyCheckpoint(root, checkpoint, args);
+    }
+    if (checkpoint.recoveryStatus === 'UNKNOWN') throw new RecoveryError(`REMOTE_WRITE_GUARD=UNKNOWN: ${checkpoint.errorClass}`, 2);
+    if (checkpoint.recoveryStatus === checkpoint.expectedState) throw new RecoveryError(`REMOTE_WRITE_GUARD=FAIL: expected state ${checkpoint.expectedState} уже доказан; duplicate write запрещена.`, 1);
+  }
+  if (['PR_CREATE', 'PR_MERGE'].includes(checkpoint.operationType)) {
     checkpoint = verifyCheckpoint(root, checkpoint, args);
     if (checkpoint.recoveryStatus === 'UNKNOWN') throw new RecoveryError(`REMOTE_WRITE_GUARD=UNKNOWN: ${checkpoint.errorClass}`, 2);
     if (checkpoint.recoveryStatus === checkpoint.expectedState) throw new RecoveryError(`REMOTE_WRITE_GUARD=FAIL: expected state ${checkpoint.expectedState} уже доказан; duplicate write запрещена.`, 1);

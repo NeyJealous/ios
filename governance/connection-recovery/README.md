@@ -49,6 +49,11 @@ Git/GitHub adapters запускают только `status`, `log`, `rev-parse`
 API принимают только evidence из документированного GET/status/list endpoint;
 если endpoint отсутствует или недоступен, результат — `UNKNOWN`.
 
+Для update push существующей branch SHA mismatch разрешается только до write и
+только когда `git merge-base --is-ancestor <remote-sha> <exact-local-sha>`
+доказал fast-forward. Divergence, неизвестный объект или post-write mismatch
+остаются `UNKNOWN` и блокируют push.
+
 Exit codes: `0` — состояние доказано и safe next step определён; `1` —
 блокирующий конфликт; `2` — `UNKNOWN`/недостаточно evidence; `3` — неверное
 использование или окружение.
