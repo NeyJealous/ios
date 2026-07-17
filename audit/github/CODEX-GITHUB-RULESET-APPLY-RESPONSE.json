@@ -1,0 +1,50 @@
+{
+  "ok": true,
+  "repository": "NeyJealous/ios",
+  "rulesetId": 19090538,
+  "name": "Protect integration/ios-current",
+  "target": "branch",
+  "enforcement": "active",
+  "conditions": {
+    "include": [
+      "refs/heads/integration/ios-current"
+    ],
+    "exclude": []
+  },
+  "rules": [
+    {
+      "type": "deletion"
+    },
+    {
+      "type": "non_fast_forward"
+    },
+    {
+      "type": "pull_request",
+      "parameters": {
+        "allowedMergeMethods": [
+          "merge",
+          "squash",
+          "rebase"
+        ],
+        "dismissStaleReviewsOnPush": true,
+        "requireCodeOwnerReview": false,
+        "requireLastPushApproval": false,
+        "requiredApprovingReviewCount": 1,
+        "requiredReviewThreadResolution": true,
+        "requiredReviewers": []
+      }
+    }
+  ],
+  "bypassActors": [
+    {
+      "actor": "repository-owner",
+      "actorType": "User",
+      "bypassMode": "pull_request"
+    }
+  ],
+  "createdAt": "2026-07-17T10:22:39.820+03:00",
+  "updatedAt": "2026-07-17T10:22:39.854+03:00",
+  "effectiveRuleCount": 3,
+  "githubSettingsWrites": 1,
+  "credentialsIncluded": false
+}
