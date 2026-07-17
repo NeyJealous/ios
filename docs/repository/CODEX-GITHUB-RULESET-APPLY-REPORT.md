@@ -65,6 +65,26 @@ three rules apply to `integration/ios-current`:
 
 No destructive force-push or branch-deletion test was performed.
 
+## Enforcement proof and publication status
+
+After the documentation commit, one ordinary non-force push to
+`integration/ios-current` was attempted as requested. GitHub rejected it with
+`GH013` and the effective rule message:
+
+```text
+Changes must be made through a pull request.
+```
+
+This is a safe, non-destructive proof that the pull-request rule is enforced.
+The remote canonical branch was not changed. No force push, ruleset bypass,
+ruleset weakening, or second push was attempted.
+
+The local documentation commit is `f344e71`. Publication now requires a
+separate authorization to push the commit to a dedicated documentation branch,
+open a pull request into `integration/ios-current`, and merge it under the new
+ruleset. Until that gate, the local canonical branch is clean but ahead of its
+upstream.
+
 ## Runtime and data safety
 
 - Apps Script changed: no.
