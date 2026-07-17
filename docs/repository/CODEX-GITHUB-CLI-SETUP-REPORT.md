@@ -1,7 +1,7 @@
 # CODEX GitHub CLI Setup Report
 
-Date: 2026-07-17  
-Repository: `NeyJealous/ios`  
+Date: 2026-07-17
+Repository: `NeyJealous/ios`
 Canonical branch: `integration/ios-current`
 
 ## 1. Windows environment
