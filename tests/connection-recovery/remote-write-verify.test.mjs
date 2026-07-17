@@ -4,6 +4,9 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { classifyEvidence } from '../../tools/connection-recovery-lib.mjs';
+import { createOperation, verifyCheckpoint } from '../../tools/connection-recovery-lib.mjs';
+import { args, tempGitRepo } from './helpers.mjs';
+import { writeFileSync } from 'node:fs';
 
 const here = fileURLToPath(new URL('.', import.meta.url));
 const f = JSON.parse(readFileSync(join(here, 'fixtures', 'evidence-states.json'), 'utf8'));
@@ -21,3 +24,14 @@ test('deployment pending is UNKNOWN', () => assert.equal(classifyEvidence('APPS_
 test('deployment failed is UNKNOWN', () => assert.equal(classifyEvidence('APPS_SCRIPT_DEPLOY', f.deploymentFailed).status, 'UNKNOWN'));
 test('deployment status unavailable is UNKNOWN', () => assert.equal(classifyEvidence('APPS_SCRIPT_DEPLOY', f.statusUnavailable).status, 'UNKNOWN'));
 test('timeout after write is UNKNOWN and therefore blocks retry', () => assert.equal(classifyEvidence('GENERIC_REMOTE_WRITE', f.timeout).status, 'UNKNOWN'));
+
+test('unverified post-state re-arms user approval before another write attempt', () => {
+  const root = tempGitRepo();
+  const checkpoint = createOperation(root, args('GENERIC_REMOTE_WRITE'));
+  checkpoint.userApprovalRequired = false;
+  const evidence = join(root, '.audit', 'connection-recovery', 'not-completed.json');
+  writeFileSync(evidence, JSON.stringify({ status: 'failed', targetConfirmed: false, observedAt: new Date().toISOString() }));
+  const verified = verifyCheckpoint(root, checkpoint, { 'evidence-file': evidence });
+  assert.equal(verified.recoveryStatus, 'UNKNOWN');
+  assert.equal(verified.userApprovalRequired, true);
+});

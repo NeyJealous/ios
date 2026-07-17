@@ -346,6 +346,7 @@ export function verifyCheckpoint(root, checkpoint, args = {}) {
   checkpoint.observedState = result.status;
   checkpoint.recoveryStatus = result.status;
   checkpoint.errorClass = result.errorClass;
+  checkpoint.userApprovalRequired = result.status !== checkpoint.expectedState;
   checkpoint.evidence.push(sanitize(evidence));
   checkpoint.verificationHistory.push({ verifiedAt, status: result.status, errorClass: result.errorClass });
   checkpoint.safeNextStep = safeNextStep(checkpoint);
