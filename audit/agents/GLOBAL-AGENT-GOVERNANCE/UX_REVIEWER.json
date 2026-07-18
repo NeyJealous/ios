@@ -3,7 +3,7 @@
   "AgentVersion": "1.0.0",
   "GateId": "GLOBAL-AGENT-GOVERNANCE",
   "Branch": "codex-global-agent-governance",
-  "CommitSHA": "93909f69dc58da0cdc25eed170666024820ecfc4",
+  "CommitSHA": "055fb47bf83a9376842eea6b57d1f6bf67d2cc9b",
   "ReviewScope": "Review user-facing governance instructions and the zero-impact boundary for Google Sheets UX",
   "FilesReviewed": ["AGENTS.md", "docs/agents/README.md", "docs/agents/AGENT-ORCHESTRATION-POLICY.md", "docs/agents/AGENT-REVIEW-CONTRACT.md", ".codex/agents/ux-reviewer.toml"],
   "SpecificationReferences": ["Master Specification 08", "Master Specification 21", "Master Specification 28"],

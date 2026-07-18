@@ -3,7 +3,7 @@
   "AgentVersion": "0.1.0",
   "GateId": "GLOBAL-AGENT-GOVERNANCE",
   "Branch": "codex-global-agent-governance",
-  "CommitSHA": "93909f69dc58da0cdc25eed170666024820ecfc4",
+  "CommitSHA": "055fb47bf83a9376842eea6b57d1f6bf67d2cc9b",
   "ReviewScope": "Least privilege, anti-tamper, fork safety, secret/privacy handling and zero remote/production authority",
   "FilesReviewed": ["AGENTS.md", ".codex/agents/", "architecture/agents/agent-registry.yaml", "architecture/agents/review-matrix.yaml", ".github/workflows/agent-governance.yml", "tools/publication-privacy-check.mjs"],
   "SpecificationReferences": ["Master Specification 26", "docs/governance/CODEX-REMOTE-WRITE-POLICY.md", "RFC-GLOBAL-AGENT-GOVERNANCE"],

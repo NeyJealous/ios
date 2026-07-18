@@ -3,7 +3,7 @@
   "AgentVersion": "1.0.0",
   "GateId": "GLOBAL-AGENT-GOVERNANCE",
   "Branch": "codex-global-agent-governance",
-  "CommitSHA": "93909f69dc58da0cdc25eed170666024820ecfc4",
+  "CommitSHA": "055fb47bf83a9376842eea6b57d1f6bf67d2cc9b",
   "ReviewScope": "Specification audit, Codex capability audit, policy, contract, adoption, rollback, RFC/ADR and upstream provenance",
   "FilesReviewed": ["docs/agents/", "rfc/RFC-GLOBAL-AGENT-GOVERNANCE.md", "adr/ADR-GLOBAL-AGENT-GOVERNANCE.md", "third_party/VoltAgent-awesome-codex-subagents-LICENSE.txt", "IOS_HANDOFF_v4/master_specification/21_Development_Platform_IOS_Master_Specification_v3.0.md"],
   "SpecificationReferences": ["Master Specification 21", "Master Specification 22", "Master Specification 23", "Master Specification 26", "official Codex manual 2026-07-18"],
