@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { existsSync, lstatSync, readFileSync, readdirSync } from 'node:fs';
 import { basename, join, relative, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { validateJsonSchema } from './json-schema-validator.mjs';
@@ -28,6 +28,13 @@ export function readJsonCompatibleYaml(path) {
   } catch (error) {
     throw new Error(`Cannot parse JSON-compatible YAML ${path}: ${error.message}`);
   }
+}
+
+function readGovernanceJson(path, label, maximumBytes = 2_000_000) {
+  const stat = lstatSync(path);
+  if (!stat.isFile() || stat.isSymbolicLink()) throw new Error(`${label}: unsafe file type`);
+  if (stat.size > maximumBytes) throw new Error(`${label}: exceeds ${maximumBytes} byte cap`);
+  return JSON.parse(readFileSync(path, 'utf8'));
 }
 
 export function normalizeRepoPath(value) {
@@ -261,15 +268,15 @@ export function findManifest(root, branch) {
     if (!gate.isDirectory()) continue;
     const path = join(root, gate.name, 'manifest.json');
     if (!existsSync(path)) continue;
-    const value = JSON.parse(readFileSync(path, 'utf8'));
+    const value = readGovernanceJson(path, `manifest ${gate.name}`);
     if (value.Branch === branch) candidates.push({ path, value });
   }
   if (candidates.length !== 1) throw new Error(`Expected exactly one manifest for ${branch}; found ${candidates.length}.`);
   return candidates[0];
 }
 
-export function validateManifest({ manifestPath, required, root, branch, base, actualHead, schemaRoot: explicitSchemaRoot }) {
-  const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+export function validateManifest({ manifestPath, required, root, branch, base, actualHead, schemaRoot: explicitSchemaRoot, forbiddenPassingExecutionModes = [] }) {
+  const manifest = readGovernanceJson(manifestPath, 'manifest');
   const schemaRoot = explicitSchemaRoot || (existsSync(join(root, 'architecture', 'agents', 'review-manifest.schema.json'))
     ? root : resolve(import.meta.dirname, '..'));
   const manifestSchema = JSON.parse(readFileSync(join(schemaRoot, 'architecture', 'agents', 'review-manifest.schema.json'), 'utf8'));
@@ -323,11 +330,14 @@ export function validateManifest({ manifestPath, required, root, branch, base, a
       errors.push(`missing review JSON ${agentId}`);
       continue;
     }
-    const review = JSON.parse(readFileSync(reviewPath, 'utf8'));
+    const review = readGovernanceJson(reviewPath, `review ${agentId}`);
     errors.push(...validateJsonSchema(review, reviewSchema, { path: `review ${agentId}` }));
     errors.push(...validateReview(review, {
       AgentId: agentId, GateId: manifest.GateId, Branch: branch, CommitSHA: manifest.HeadSHA,
     }));
+    if (forbiddenPassingExecutionModes.includes(review.ExecutionMode) && ['PASS', 'PASS_WITH_WARNINGS', 'NOT_APPLICABLE'].includes(review.Status)) {
+      errors.push(`${agentId}: ${review.ExecutionMode} cannot satisfy a mandatory trusted review`);
+    }
     const markdownPath = join(root, 'docs', 'reviews', manifest.GateId, `${agentId}.md`);
     if (!existsSync(markdownPath)) errors.push(`missing review Markdown ${agentId}`);
     executed.push(agentId);

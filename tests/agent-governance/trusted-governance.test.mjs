@@ -56,6 +56,45 @@ function trustedOptions(trustedRoot, candidateRoot, baseSha, headSha) {
   };
 }
 
+const FAIL_CLOSED_AGENTS = [
+  'ARCHITECTURE_REVIEWER', 'APPS_SCRIPT_REVIEWER', 'PERFORMANCE_AUDITOR',
+  'INVESTMENT_LOGIC_REVIEWER', 'GOOGLE_SHEETS_REVIEWER', 'UX_REVIEWER',
+  'DOCUMENTATION_REVIEWER', 'TEST_GENERATOR', 'SECURITY_REVIEWER',
+];
+
+function writeTrustedAttestation(candidate, {
+  baseSha, reviewedSha, malformedAgent, executionMode = 'CODEX_ROLE_SIMULATION',
+}) {
+  const gate = 'TRUSTED-FIXTURE';
+  const branch = 'feature/untrusted-candidate';
+  const auditDir = join(candidate, 'audit', 'agents', gate);
+  const reviewDir = join(candidate, 'docs', 'reviews', gate);
+  mkdirSync(auditDir, { recursive: true });
+  mkdirSync(reviewDir, { recursive: true });
+  for (const agent of FAIL_CLOSED_AGENTS) {
+    const review = {
+      AgentId: agent, AgentVersion: '1.0.0', GateId: gate, Branch: branch,
+      CommitSHA: reviewedSha, ReviewScope: 'fixture', FilesReviewed: ['docs/candidate.md'],
+      SpecificationReferences: ['Master Specification 24'], ChecksPerformed: ['fixture'],
+      Findings: [], Severity: 'INFO', Evidence: executionMode === 'REAL_SUBAGENT'
+        ? [`AgentThreadId=fixture-${agent}`] : ['fixture evidence'], RequiredFixes: [],
+      ResidualRisk: 'fixture', Status: 'PASS', Timestamp: '2026-07-18T00:00:00Z',
+      ExecutionMode: executionMode,
+    };
+    if (agent === malformedAgent) review.FilesReviewed = 'not-an-array';
+    writeFileSync(join(auditDir, `${agent}.json`), `${JSON.stringify(review, null, 2)}\n`);
+    writeFileSync(join(reviewDir, `${agent}.md`), '# Fixture review\n');
+  }
+  const manifest = {
+    GateId: gate, TaskType: 'mixed/unknown', Branch: branch, BaseSHA: baseSha, HeadSHA: reviewedSha,
+    ChangedPaths: ['docs/candidate.md'], ApplicableAgents: FAIL_CLOSED_AGENTS,
+    RequiredAgents: FAIL_CLOSED_AGENTS, ExecutedAgents: FAIL_CLOSED_AGENTS,
+    MissingAgents: [], BlockingFindings: [], Warnings: [], ArchitectureImpact: 'none',
+    SecurityImpact: 'none', ProductionImpact: 'none', OverallStatus: 'PASS',
+  };
+  writeFileSync(join(auditDir, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`);
+}
+
 test('non-agent safety validator passes its mixed known/unknown fail-closed probe deterministically', () => {
   const first = runNonAgentSafety(sourceRoot);
   const second = runNonAgentSafety(sourceRoot);
@@ -85,6 +124,108 @@ test('trusted validator ignores a candidate that self-weakens its local validato
   } finally {
     rmSync(candidate, { recursive: true, force: true });
     rmSync(fixture.root, { recursive: true, force: true });
+  }
+});
+
+test('trusted validator rejects malformed candidate review evidence even when the manifest and every report exist', () => {
+  const fixture = createTrustedFixture();
+  const candidate = `${fixture.root}-candidate`;
+  try {
+    git(resolve(fixture.root, '..'), 'clone', '--no-local', fixture.root, candidate);
+    git(candidate, 'config', 'user.name', 'Agent Governance Test');
+    git(candidate, 'config', 'user.email', 'agent-governance@example.invalid');
+    mkdirSync(join(candidate, 'docs'), { recursive: true });
+    writeFileSync(join(candidate, 'docs', 'candidate.md'), 'candidate change\n');
+    const reviewedSha = commit(candidate, 'candidate implementation');
+    writeTrustedAttestation(candidate, {
+      baseSha: fixture.sha, reviewedSha, malformedAgent: 'DOCUMENTATION_REVIEWER',
+    });
+    const candidateSha = commit(candidate, 'candidate malformed attestation');
+
+    const result = validateTrusted(trustedOptions(fixture.root, candidate, fixture.sha, candidateSha));
+    assert.equal(result.OverallStatus, 'BLOCKED');
+    assert.ok(result.IntegrityErrors.some((error) => /review DOCUMENTATION_REVIEWER.*FilesReviewed/i.test(error)));
+    assert.equal(result.MissingAgents.length, 0);
+  } finally {
+    rmSync(candidate, { recursive: true, force: true });
+    rmSync(fixture.root, { recursive: true, force: true });
+  }
+});
+
+test('trusted validator accepts a complete unchanged-trust-root candidate with REAL_SUBAGENT evidence', () => {
+  const fixture = createTrustedFixture();
+  const candidate = `${fixture.root}-candidate`;
+  try {
+    git(resolve(fixture.root, '..'), 'clone', '--no-local', fixture.root, candidate);
+    git(candidate, 'config', 'user.name', 'Agent Governance Test');
+    git(candidate, 'config', 'user.email', 'agent-governance@example.invalid');
+    mkdirSync(join(candidate, 'docs'), { recursive: true });
+    writeFileSync(join(candidate, 'docs', 'candidate.md'), 'candidate change\n');
+    const reviewedSha = commit(candidate, 'candidate implementation');
+    writeTrustedAttestation(candidate, {
+      baseSha: fixture.sha, reviewedSha, executionMode: 'REAL_SUBAGENT',
+    });
+    const candidateSha = commit(candidate, 'candidate real-subagent attestation');
+
+    const result = validateTrusted(trustedOptions(fixture.root, candidate, fixture.sha, candidateSha));
+    assert.equal(result.OverallStatus, 'PASS', result.IntegrityErrors.join('\n'));
+    assert.equal(result.TrustRootChanged, false);
+    assert.deepEqual(result.MissingAgents, []);
+  } finally {
+    rmSync(candidate, { recursive: true, force: true });
+    rmSync(fixture.root, { recursive: true, force: true });
+  }
+});
+
+test('CODEX_ROLE_SIMULATION cannot satisfy a complete mandatory trusted review', () => {
+  const fixture = createTrustedFixture();
+  const candidate = `${fixture.root}-candidate`;
+  try {
+    git(resolve(fixture.root, '..'), 'clone', '--no-local', fixture.root, candidate);
+    git(candidate, 'config', 'user.name', 'Agent Governance Test');
+    git(candidate, 'config', 'user.email', 'agent-governance@example.invalid');
+    mkdirSync(join(candidate, 'docs'), { recursive: true });
+    writeFileSync(join(candidate, 'docs', 'candidate.md'), 'candidate change\n');
+    const reviewedSha = commit(candidate, 'candidate implementation');
+    writeTrustedAttestation(candidate, { baseSha: fixture.sha, reviewedSha });
+    const candidateSha = commit(candidate, 'candidate simulated attestation');
+
+    const result = validateTrusted(trustedOptions(fixture.root, candidate, fixture.sha, candidateSha));
+    assert.equal(result.OverallStatus, 'BLOCKED');
+    assert.ok(result.IntegrityErrors.some((error) => /CODEX_ROLE_SIMULATION cannot satisfy a mandatory trusted review/.test(error)));
+  } finally {
+    rmSync(candidate, { recursive: true, force: true });
+    rmSync(fixture.root, { recursive: true, force: true });
+  }
+});
+
+test('trusted validator requires an owner gate for every trust-root modification', () => {
+  const paths = [
+    '.github/workflows/trusted-agent-governance.yml',
+    'tools/trusted-governance/policy-floor.json',
+    'tools/json-schema-validator.mjs',
+    'tools/agent-governance-lib.mjs',
+    'architecture/agents/review-contract.schema.json',
+  ];
+  for (const path of paths) {
+    const fixture = createTrustedFixture();
+    const candidate = `${fixture.root}-candidate`;
+    try {
+      git(resolve(fixture.root, '..'), 'clone', '--no-local', fixture.root, candidate);
+      git(candidate, 'config', 'user.name', 'Agent Governance Test');
+      git(candidate, 'config', 'user.email', 'agent-governance@example.invalid');
+      const target = join(candidate, ...path.split('/'));
+      mkdirSync(resolve(target, '..'), { recursive: true });
+      writeFileSync(target, `${path.endsWith('.json') ? '{}' : '// candidate trust-root modification'}\n`);
+      const candidateSha = commit(candidate, `candidate changes ${path}`);
+      const result = validateTrusted(trustedOptions(fixture.root, candidate, fixture.sha, candidateSha));
+      assert.equal(result.OverallStatus, 'BLOCKED', path);
+      assert.equal(result.TrustRootChanged, true, path);
+      assert.ok(result.IntegrityErrors.includes('TRUST_ROOT_CHANGE_REQUIRES_OWNER_GATE'), path);
+    } finally {
+      rmSync(candidate, { recursive: true, force: true });
+      rmSync(fixture.root, { recursive: true, force: true });
+    }
   }
 });
 

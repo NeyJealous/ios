@@ -21,13 +21,18 @@ function git(root, command) {
 function tracked(root) {
   const output = git(root, ['ls-files', '-s', '-z']);
   const files = new Map();
+  const foldedPaths = new Map();
   for (const record of output.split('\0').filter(Boolean)) {
     const match = /^(\d{6}) ([0-9a-f]+) \d+\t(.+)$/.exec(record);
     if (!match) throw new Error('Malformed git index record');
     const [, mode, oid, rawPath] = match;
     const path = normalizeRepoPath(rawPath);
-    if (path !== rawPath || path.includes('..') || /^\//.test(path) || /[\u0000-\u001f]/.test(path)) throw new Error(`Unsafe path: ${rawPath}`);
+    const unsafeSegment = path.split('/').some((segment) => /^(?:con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\.|$)/i.test(segment) || /[:. ]$/.test(segment));
+    if (path !== rawPath || path.includes('..') || /^\//.test(path) || /^[A-Za-z]:/.test(path) || /[\u0000-\u001f]/.test(path) || unsafeSegment) throw new Error(`Unsafe path: ${rawPath}`);
     if (['120000', '160000'].includes(mode)) throw new Error(`Symlink/submodule forbidden in reviewed tree: ${path}`);
+    const folded = path.normalize('NFC').toLocaleLowerCase('en-US');
+    if (foldedPaths.has(folded) && foldedPaths.get(folded) !== path) throw new Error(`Case/Unicode path collision: ${foldedPaths.get(folded)} <> ${path}`);
+    foldedPaths.set(folded, path);
     files.set(path, { mode, oid });
   }
   return files;
@@ -87,6 +92,13 @@ export function validateTrusted(options) {
   const requiredAgents = unique([...floor.MandatoryAgents, ...baseResolution.RequiredAgents, ...headResolution.RequiredAgents]);
   const requiredControls = unique([...floor.MandatoryControls, ...baseResolution.RequiredControls, ...headResolution.RequiredControls]);
   if (!floor.ProductionWritesAllowed && !requiredControls.includes('governance-tamper-check')) errors.push('Trusted governance control floor missing');
+  const trustRootChanged = paths.some((path) =>
+    path.startsWith('tools/trusted-governance/') ||
+    path === '.github/workflows/trusted-agent-governance.yml' ||
+    path === 'tools/json-schema-validator.mjs' ||
+    path === 'tools/agent-governance-lib.mjs' ||
+    /^architecture\/agents\/(?:agent-registry|review-matrix|review-contract|review-manifest)\.schema\.json$/.test(path));
+  if (trustRootChanged) errors.push('TRUST_ROOT_CHANGE_REQUIRES_OWNER_GATE');
 
   let manifestResult;
   try {
@@ -99,6 +111,7 @@ export function validateTrusted(options) {
     manifestResult = validateManifest({
       manifestPath: located.path, required, root: candidateRoot, branch, base: baseSha,
       actualHead: headSha, schemaRoot: trustedRoot,
+      forbiddenPassingExecutionModes: floor.ForbiddenPassingExecutionModes,
     });
     errors.push(...manifestResult.errors);
   } catch (error) {
@@ -110,7 +123,7 @@ export function validateTrusted(options) {
   const overallStatus = errors.length === 0 && manifestResult?.manifest?.OverallStatus === 'PASS' ? 'PASS' : 'BLOCKED';
   return {
     ValidatorVersion: '1.0.0', TrustedValidatorSHA256: validatorHash, BaseSHA: baseSha, HeadSHA: headSha,
-    ChangedPaths: paths, TrustRootChanged: paths.some((path) => path.startsWith('tools/trusted-governance/') || path === '.github/workflows/trusted-agent-governance.yml'),
+    ChangedPaths: paths, TrustRootChanged: trustRootChanged,
     BasePolicyVersion: baseMatrix.Version, CandidatePolicyVersion: headMatrix.Version,
     RequiredAgents: requiredAgents, RequiredControls: requiredControls,
     MissingAgents: missingAgents, IntegrityErrors: errors, BlockingFindings: errors,

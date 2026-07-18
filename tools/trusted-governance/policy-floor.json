@@ -3,7 +3,7 @@
   "CanonicalBranch": "integration/ios-current",
   "MandatoryAgents": ["ARCHITECTURE_REVIEWER", "DOCUMENTATION_REVIEWER", "SECURITY_REVIEWER", "TEST_GENERATOR"],
   "MandatoryControls": ["security", "privacy", "secret-scan", "architecture-impact", "governance-tamper-check"],
-  "ForbiddenPassingExecutionModes": ["NOT_AVAILABLE"],
+  "ForbiddenPassingExecutionModes": ["NOT_AVAILABLE", "CODEX_ROLE_SIMULATION"],
   "MaximumInputBytes": 2000000,
   "ProductionWritesAllowed": false
 }
