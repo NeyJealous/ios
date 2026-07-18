@@ -1,0 +1,19 @@
+{
+  "AgentId": "DOCUMENTATION_REVIEWER",
+  "AgentVersion": "1.0.0",
+  "GateId": "GLOBAL-AGENT-GOVERNANCE",
+  "Branch": "codex-global-agent-governance",
+  "CommitSHA": "93909f69dc58da0cdc25eed170666024820ecfc4",
+  "ReviewScope": "Specification audit, Codex capability audit, policy, contract, adoption, rollback, RFC/ADR and upstream provenance",
+  "FilesReviewed": ["docs/agents/", "rfc/RFC-GLOBAL-AGENT-GOVERNANCE.md", "adr/ADR-GLOBAL-AGENT-GOVERNANCE.md", "third_party/VoltAgent-awesome-codex-subagents-LICENSE.txt", "IOS_HANDOFF_v4/master_specification/21_Development_Platform_IOS_Master_Specification_v3.0.md"],
+  "SpecificationReferences": ["Master Specification 21", "Master Specification 22", "Master Specification 23", "Master Specification 26", "official Codex manual 2026-07-18"],
+  "ChecksPerformed": ["ten canonical role names", "candidate-role exact-name search", "real subagent versus simulation distinction", "branch inheritance wording", "rollback and limitations", "VoltAgent pinned provenance and MIT notice"],
+  "Findings": [{"Severity": "MEDIUM", "Description": "Market Regime v3.2 is absent from canonical baseline; only v3.0 was auditable and candidate roles were not promoted to mandatory."}],
+  "Severity": "MEDIUM",
+  "Evidence": ["exact-role search found ten names only in Master Specification 21:73-82", "candidate role exact-name search returned no canonical hits", "Market Regime v3.2 search returned no canonical document", "VoltAgent upstream pinned to 5605c9c18b3687993919d6cc467af4a34898fee2 with MIT notice"],
+  "RequiredFixes": [],
+  "ResidualRisk": "RFC/ADR acceptance and future Market Regime v3.2 role policy remain owner decisions.",
+  "Status": "PASS_WITH_WARNINGS",
+  "Timestamp": "2026-07-18T08:08:45Z",
+  "ExecutionMode": "CODEX_ROLE_SIMULATION"
+}
