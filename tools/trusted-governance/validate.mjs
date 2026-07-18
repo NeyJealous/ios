@@ -120,13 +120,17 @@ export function validateTrusted(options) {
 
   const validatorHash = createHash('sha256').update(readFileSync(import.meta.filename)).digest('hex');
   const missingAgents = manifestResult?.manifest?.MissingAgents || requiredAgents;
+  const attestationErrors = errors.filter((error) => error.includes('cannot satisfy a mandatory trusted review'));
+  const integrityErrors = errors.filter((error) => !attestationErrors.includes(error));
   const overallStatus = errors.length === 0 && manifestResult?.manifest?.OverallStatus === 'PASS' ? 'PASS' : 'BLOCKED';
   return {
     ValidatorVersion: '1.0.0', TrustedValidatorSHA256: validatorHash, BaseSHA: baseSha, HeadSHA: headSha,
     ChangedPaths: paths, TrustRootChanged: trustRootChanged,
     BasePolicyVersion: baseMatrix.Version, CandidatePolicyVersion: headMatrix.Version,
     RequiredAgents: requiredAgents, RequiredControls: requiredControls,
-    MissingAgents: missingAgents, IntegrityErrors: errors, BlockingFindings: errors,
+    MissingAgents: missingAgents, IntegrityStatus: integrityErrors.length ? 'FAIL' : 'PASS',
+    IntegrityErrors: integrityErrors, AttestationStatus: attestationErrors.length ? 'INSUFFICIENT_EVIDENCE' : 'VERIFIED',
+    AttestationErrors: attestationErrors, BlockingFindings: errors,
     OverallStatus: overallStatus,
   };
 }

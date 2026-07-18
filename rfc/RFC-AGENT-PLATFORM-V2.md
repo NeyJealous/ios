@@ -24,6 +24,8 @@
 
 ## Предлагаемое решение
 
+Owner decision for this task is a narrow bootstrap authorization to implement and review Phase 1 remediation before ADR acceptance. It is not retrospective architecture acceptance and does not authorize Phase 2 removal. The normal accepted-ADR prerequisite resumes at the removal gate: Phase 2 remains blocked until the final ADR text receives a separate owner decision.
+
 ### Phase 1 — safety remediation
 
 - исправить per-path mixed known/unknown fail-closed;
@@ -66,6 +68,8 @@ GitHub документирует, что `pull_request_target` исполняе
 ## Trusted execution attestation
 
 PR-authored text недостаточен для REAL_SUBAGENT, фактической модели и owner approval. Versioned manifest сохраняет claims, но trusted verifier должен получать независимый runtime/GitHub evidence. До реализации claims получают `INSUFFICIENT_EVIDENCE`; automatic dispatch не объявляется полностью подтверждённым.
+
+Bootstrap verifier therefore separates `IntegrityStatus` from `AttestationStatus`. A structurally valid candidate can obtain `IntegrityStatus=PASS`, but every candidate-authored execution mode, including `REAL_SUBAGENT`, remains insufficient and keeps `OverallStatus=BLOCKED` until a separately trusted provider contract supplies commit-bound execution evidence. `AgentThreadId` remains traceability metadata only.
 
 ## Model policy
 

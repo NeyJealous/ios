@@ -152,7 +152,7 @@ test('trusted validator rejects malformed candidate review evidence even when th
   }
 });
 
-test('trusted validator accepts a complete unchanged-trust-root candidate with REAL_SUBAGENT evidence', () => {
+test('complete candidate has valid integrity but fabricated AgentThreadId cannot satisfy external attestation', () => {
   const fixture = createTrustedFixture();
   const candidate = `${fixture.root}-candidate`;
   try {
@@ -168,9 +168,12 @@ test('trusted validator accepts a complete unchanged-trust-root candidate with R
     const candidateSha = commit(candidate, 'candidate real-subagent attestation');
 
     const result = validateTrusted(trustedOptions(fixture.root, candidate, fixture.sha, candidateSha));
-    assert.equal(result.OverallStatus, 'PASS', result.IntegrityErrors.join('\n'));
+    assert.equal(result.IntegrityStatus, 'PASS', result.IntegrityErrors.join('\n'));
+    assert.equal(result.AttestationStatus, 'INSUFFICIENT_EVIDENCE');
+    assert.equal(result.OverallStatus, 'BLOCKED');
     assert.equal(result.TrustRootChanged, false);
     assert.deepEqual(result.MissingAgents, []);
+    assert.ok(result.AttestationErrors.some((error) => /REAL_SUBAGENT cannot satisfy a mandatory trusted review/.test(error)));
   } finally {
     rmSync(candidate, { recursive: true, force: true });
     rmSync(fixture.root, { recursive: true, force: true });
@@ -192,7 +195,9 @@ test('CODEX_ROLE_SIMULATION cannot satisfy a complete mandatory trusted review',
 
     const result = validateTrusted(trustedOptions(fixture.root, candidate, fixture.sha, candidateSha));
     assert.equal(result.OverallStatus, 'BLOCKED');
-    assert.ok(result.IntegrityErrors.some((error) => /CODEX_ROLE_SIMULATION cannot satisfy a mandatory trusted review/.test(error)));
+    assert.equal(result.IntegrityStatus, 'PASS', result.IntegrityErrors.join('\n'));
+    assert.equal(result.AttestationStatus, 'INSUFFICIENT_EVIDENCE');
+    assert.ok(result.AttestationErrors.some((error) => /CODEX_ROLE_SIMULATION cannot satisfy a mandatory trusted review/.test(error)));
   } finally {
     rmSync(candidate, { recursive: true, force: true });
     rmSync(fixture.root, { recursive: true, force: true });

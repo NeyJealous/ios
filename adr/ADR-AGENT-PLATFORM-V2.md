@@ -12,6 +12,8 @@
 
 ## Draft decision
 
+Implementation of the Phase 1 safety bootstrap proceeds under the owner's explicit limited remediation authorization, not under this draft ADR. That exception ends at the PRE_REMOVAL gate. No Phase 2 removal or v2 activation may rely on this draft, and later acceptance must not be represented as retrospective approval of unreviewed work.
+
 Предлагается принять трёхфазную миграцию из RFC-AGENT-PLATFORM-V2:
 
 1. safety remediation при сохранении старых profiles;
