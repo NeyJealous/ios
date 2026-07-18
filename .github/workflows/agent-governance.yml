@@ -34,7 +34,7 @@ jobs:
       HEAD_BRANCH: ${{ github.event.pull_request.head.ref || inputs.branch }}
     steps:
       - name: Checkout reviewed head without credentials
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
           ref: ${{ github.event.pull_request.head.sha || inputs.head }}
           fetch-depth: 0
@@ -42,6 +42,9 @@ jobs:
 
       - name: Validate registry, matrix, project agents, and instructions
         run: node tools/validate-agent-governance.mjs --all
+
+      - name: Run non-agent fail-closed safety validator
+        run: node tools/non-agent-safety-validator.mjs
 
       - name: Resolve required agents from full diff
         run: >-

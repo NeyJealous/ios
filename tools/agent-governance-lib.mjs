@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { basename, join, relative, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { validateJsonSchema } from './json-schema-validator.mjs';
 
 export const REVIEW_STATUSES = [
   'PASS', 'PASS_WITH_WARNINGS', 'BLOCKED', 'FAIL',
@@ -126,11 +127,14 @@ export function resolveRequiredAgents({
   if (paths.length === 0 && !allowEmpty) {
     throw new Error('Empty diff is blocked by fail-closed policy.');
   }
-  const matchedRules = matrix.Rules.filter((rule) =>
-    paths.some((path) => matchesAny(path, rule.PathPatterns)) ||
-    (branch && matchesAny(branch, rule.BranchPatterns || [])));
-
-  const unknown = paths.length > 0 && matchedRules.length === 0;
+  const pathRules = new Map(paths.map((path) => [
+    path,
+    matrix.Rules.filter((rule) => matchesAny(path, rule.PathPatterns)),
+  ]));
+  const branchRules = matrix.Rules.filter((rule) => branch && matchesAny(branch, rule.BranchPatterns || []));
+  const matchedRules = [...new Set([...pathRules.values()].flat().concat(branchRules))];
+  const unknownPaths = paths.filter((path) => pathRules.get(path).length === 0);
+  const unknown = unknownPaths.length > 0;
   const taskTypes = [...new Set(matchedRules.map((rule) => rule.TaskType))].sort();
   const required = new Set(matrix.AlwaysRequiredAgents);
   const controls = new Set(matrix.BaselineControls);
@@ -154,6 +158,7 @@ export function resolveRequiredAgents({
     TaskType: unknown || taskTypes.length !== 1 ? 'mixed/unknown' : taskTypes[0],
     MatchedTaskTypes: unknown ? ['mixed/unknown'] : taskTypes,
     ChangedPaths: paths,
+    UnknownPaths: unknownPaths,
     MatchedRules: matchedRules.map((rule) => rule.RuleId),
     ApplicableAgents: [...required].sort(),
     RequiredAgents: [...required].sort(),
@@ -225,12 +230,22 @@ const REVIEW_FIELDS = [
 ];
 
 export function validateReview(review, expected = {}) {
+  if (!review || typeof review !== 'object' || Array.isArray(review)) return ['review UNKNOWN: must be an object'];
   const errors = requireFields(review, REVIEW_FIELDS, `review ${review.AgentId || 'UNKNOWN'}`);
+  const unexpected = Object.keys(review).filter((field) => !REVIEW_FIELDS.includes(field));
+  for (const field of unexpected) errors.push(`${review.AgentId || 'UNKNOWN'}: unexpected property ${field}`);
+  for (const field of ['FilesReviewed', 'SpecificationReferences', 'ChecksPerformed', 'Findings', 'Evidence', 'RequiredFixes']) {
+    if (!Array.isArray(review[field])) errors.push(`${review.AgentId || 'UNKNOWN'}: ${field} must be an array`);
+  }
+  if (typeof review.CommitSHA !== 'string' || !/^[0-9a-f]{40}$/.test(review.CommitSHA)) errors.push(`${review.AgentId || 'UNKNOWN'}: invalid CommitSHA`);
+  if (typeof review.Timestamp !== 'string' || Number.isNaN(Date.parse(review.Timestamp))) errors.push(`${review.AgentId || 'UNKNOWN'}: invalid Timestamp`);
   if (!REVIEW_STATUSES.includes(review.Status)) errors.push(`${review.AgentId}: invalid Status`);
   if (!SEVERITIES.includes(review.Severity)) errors.push(`${review.AgentId}: invalid Severity`);
   if (!EXECUTION_MODES.includes(review.ExecutionMode)) errors.push(`${review.AgentId}: invalid ExecutionMode`);
   for (const [field, value] of Object.entries(expected)) if (value !== undefined && review[field] !== value) errors.push(`${review.AgentId}: wrong ${field}`);
   if (review.Status === 'NOT_EXECUTED') errors.push(`${review.AgentId}: mandatory review NOT_EXECUTED`);
+  if (['BLOCKED', 'FAIL'].includes(review.Status)) errors.push(`${review.AgentId}: mandatory review ${review.Status}`);
+  if (review.ExecutionMode === 'NOT_AVAILABLE' && ['PASS', 'PASS_WITH_WARNINGS', 'NOT_APPLICABLE'].includes(review.Status)) errors.push(`${review.AgentId}: NOT_AVAILABLE cannot produce ${review.Status}`);
   if (review.Status === 'NOT_APPLICABLE' && (!review.Evidence?.length || !review.ResidualRisk)) errors.push(`${review.AgentId}: NOT_APPLICABLE lacks justification`);
   if (review.ExecutionMode === 'REAL_SUBAGENT' && !review.Evidence?.some((item) => String(item).startsWith('AgentThreadId='))) errors.push(`${review.AgentId}: REAL_SUBAGENT lacks AgentThreadId evidence`);
   const findings = Array.isArray(review.Findings) ? review.Findings : [];
@@ -253,14 +268,13 @@ export function findManifest(root, branch) {
   return candidates[0];
 }
 
-export function validateManifest({ manifestPath, required, root, branch, base, actualHead }) {
+export function validateManifest({ manifestPath, required, root, branch, base, actualHead, schemaRoot: explicitSchemaRoot }) {
   const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
-  const errors = requireFields(manifest, [
-    'GateId', 'TaskType', 'Branch', 'BaseSHA', 'HeadSHA', 'ChangedPaths',
-    'ApplicableAgents', 'RequiredAgents', 'ExecutedAgents', 'MissingAgents',
-    'BlockingFindings', 'Warnings', 'ArchitectureImpact', 'SecurityImpact',
-    'ProductionImpact', 'OverallStatus',
-  ], 'manifest');
+  const schemaRoot = explicitSchemaRoot || (existsSync(join(root, 'architecture', 'agents', 'review-manifest.schema.json'))
+    ? root : resolve(import.meta.dirname, '..'));
+  const manifestSchema = JSON.parse(readFileSync(join(schemaRoot, 'architecture', 'agents', 'review-manifest.schema.json'), 'utf8'));
+  const reviewSchema = JSON.parse(readFileSync(join(schemaRoot, 'architecture', 'agents', 'review-contract.schema.json'), 'utf8'));
+  const errors = validateJsonSchema(manifest, manifestSchema, { path: 'manifest' });
   if (manifest.Branch !== branch) errors.push('manifest: wrong branch');
   if (manifest.BaseSHA !== base) errors.push('manifest: wrong base SHA');
   if (manifest.TaskType !== required.TaskType) errors.push('manifest: wrong task type');
@@ -310,6 +324,7 @@ export function validateManifest({ manifestPath, required, root, branch, base, a
       continue;
     }
     const review = JSON.parse(readFileSync(reviewPath, 'utf8'));
+    errors.push(...validateJsonSchema(review, reviewSchema, { path: `review ${agentId}` }));
     errors.push(...validateReview(review, {
       AgentId: agentId, GateId: manifest.GateId, Branch: branch, CommitSHA: manifest.HeadSHA,
     }));

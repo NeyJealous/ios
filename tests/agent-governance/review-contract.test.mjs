@@ -36,6 +36,28 @@ test('REAL_SUBAGENT cannot be fabricated without thread evidence', () => {
   assert.deepEqual(validateReview({ ...review, Evidence: ['AgentThreadId=agent-123'] }), []);
 });
 
+test('NOT_AVAILABLE cannot be represented as a passing mandatory review', () => {
+  const errors = validateReview({ ...base, ExecutionMode: 'NOT_AVAILABLE', Status: 'PASS' }).join('\n');
+  assert.match(errors, /NOT_AVAILABLE|not available/i);
+});
+
+test('review contract rejects malformed schema values rather than only missing fields', () => {
+  const malformed = {
+    ...base,
+    CommitSHA: 'not-a-sha',
+    ReviewScope: 7,
+    FilesReviewed: 'docs/a.md',
+    SpecificationReferences: 'Master Specification 23',
+    ChecksPerformed: 'traceability',
+    Findings: 'none',
+    Evidence: 'node --test: PASS',
+    RequiredFixes: 'none',
+    Timestamp: 'not-a-date',
+    UnexpectedField: true,
+  };
+  assert.notDeepEqual(validateReview(malformed), []);
+});
+
 test('wrong branch and gate are rejected', () => {
   const errors = validateReview(base, { Branch: 'other', GateId: 'OTHER' }).join('\n');
   assert.match(errors, /wrong Branch/);

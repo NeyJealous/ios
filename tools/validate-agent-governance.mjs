@@ -5,6 +5,7 @@ import {
   findManifest, readJsonCompatibleYaml, validateInstructionHierarchy,
   validateManifest, validateMatrix, validateProjectAgentFiles, validateRegistry,
 } from './agent-governance-lib.mjs';
+import { validateJsonSchema } from './json-schema-validator.mjs';
 
 function parseArgs(argv) {
   const args = {};
@@ -21,6 +22,8 @@ export function validateStaticGovernance(root) {
   const registry = readJsonCompatibleYaml(resolve(root, 'architecture/agents/agent-registry.yaml'));
   const matrix = readJsonCompatibleYaml(resolve(root, 'architecture/agents/review-matrix.yaml'));
   const errors = [
+    ...validateJsonSchema(registry, JSON.parse(readFileSync(resolve(root, 'architecture/agents/agent-registry.schema.json'), 'utf8')), { path: 'registry' }),
+    ...validateJsonSchema(matrix, JSON.parse(readFileSync(resolve(root, 'architecture/agents/review-matrix.schema.json'), 'utf8')), { path: 'matrix' }),
     ...validateRegistry(registry),
     ...validateMatrix(matrix, registry),
     ...validateInstructionHierarchy(root),
