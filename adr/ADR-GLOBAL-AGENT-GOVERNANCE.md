@@ -1,6 +1,6 @@
 # ADR-GLOBAL-AGENT-GOVERNANCE
 
-- Статус: PROPOSED — не ACCEPTED
+- Статус: ACCEPTED
 - Дата: 2026-07-18
 - Связанный RFC: `rfc/RFC-GLOBAL-AGENT-GOVERNANCE.md`
 - Связанные спецификации: Master Specification 21, 22, 23, 24, 26
@@ -17,7 +17,7 @@ Local user-level agents, prompt-only, repository instructions, CI enforcement,
 hybrid repository + CI и external orchestration service; сравнительный анализ
 зафиксирован в RFC.
 
-## Предлагаемое решение
+## Решение
 
 Принять `HYBRID_REPOSITORY_PLUS_CI`. Реальные project agents являются
 исполняемыми профилями Codex, но каждый review обязан явно фиксировать
@@ -40,5 +40,6 @@ governance self-change review.
 
 ## Решение об утверждении
 
-Этот ADR намеренно остаётся `PROPOSED`. Merge PR или отдельное явное
-утверждение владельца должно определить, становится ли он `ACCEPTED`.
+Владелец репозитория явно разрешил продолжение governance gate 2026-07-18.
+ADR принят как `ACCEPTED`; это решение не отменяет ruleset, обязательный review
+или отдельную проверку mergeability непосредственно перед merge.
