@@ -1,0 +1,19 @@
+{
+  "AgentId": "UX_REVIEWER",
+  "AgentVersion": "1.0.0",
+  "GateId": "GLOBAL-AGENT-GOVERNANCE",
+  "Branch": "codex-global-agent-governance",
+  "CommitSHA": "93909f69dc58da0cdc25eed170666024820ecfc4",
+  "ReviewScope": "Review user-facing governance instructions and the zero-impact boundary for Google Sheets UX",
+  "FilesReviewed": ["AGENTS.md", "docs/agents/README.md", "docs/agents/AGENT-ORCHESTRATION-POLICY.md", "docs/agents/AGENT-REVIEW-CONTRACT.md", ".codex/agents/ux-reviewer.toml"],
+  "SpecificationReferences": ["Master Specification 08", "Master Specification 21", "Master Specification 28"],
+  "ChecksPerformed": ["instruction clarity", "review status readability", "actionable failure guidance", "no Google Sheets UI or formatting changes", "no production Sheets write"],
+  "Findings": [],
+  "Severity": "INFO",
+  "Evidence": ["repository instructions define an ordered gate and stop conditions", "review contract defines machine-readable and human-readable artifacts", "no spreadsheet, formula, formatting or Sheets UI paths changed", "Google Sheets writes: 0"],
+  "RequiredFixes": [],
+  "ResidualRisk": "User experience of CI annotations will require observation after the workflow is enabled on a real pull request.",
+  "Status": "PASS_WITH_WARNINGS",
+  "Timestamp": "2026-07-18T08:08:45Z",
+  "ExecutionMode": "CODEX_ROLE_SIMULATION"
+}
