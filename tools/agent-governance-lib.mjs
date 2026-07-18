@@ -270,6 +270,24 @@ export function validateManifest({ manifestPath, required, root, branch, base, a
   if (JSON.stringify([...manifest.ApplicableAgents].sort()) !== JSON.stringify([...required.ApplicableAgents].sort())) errors.push('manifest: ApplicableAgents differs from resolver');
   if (manifest.MissingAgents.length) errors.push(`manifest: missing agents ${manifest.MissingAgents.join(', ')}`);
   if (manifest.BlockingFindings.length) errors.push('manifest: blocking findings present');
+  if (manifest.OwnerBypass !== undefined) {
+    const bypass = manifest.OwnerBypass;
+    errors.push(...requireFields(bypass, [
+      'ReviewMode', 'IndependentReviewer', 'CIEvidence', 'HumanAuthorization',
+      'AuthorizedActor', 'Reason', 'Scope', 'OtherProtectionsBypassed',
+      'ProductionDeploymentAuthorized', 'UnresolvedConversations', 'Timestamp',
+    ], 'manifest.OwnerBypass'));
+    if (bypass.ReviewMode !== 'SOLO_MAINTAINER_OWNER_BYPASS') errors.push('manifest.OwnerBypass: invalid ReviewMode');
+    if (bypass.IndependentReviewer !== 'NOT_AVAILABLE') errors.push('manifest.OwnerBypass: independent reviewer must be NOT_AVAILABLE');
+    if (bypass.CIEvidence !== 'PASS') errors.push('manifest.OwnerBypass: CI evidence must be PASS');
+    if (!bypass.HumanAuthorization?.trim()) errors.push('manifest.OwnerBypass: missing human authorization');
+    if (!bypass.AuthorizedActor?.trim()) errors.push('manifest.OwnerBypass: missing authorized actor');
+    if (!bypass.Reason?.trim()) errors.push('manifest.OwnerBypass: missing reason');
+    if (bypass.Scope !== 'APPROVAL_REQUIREMENT_ONLY') errors.push('manifest.OwnerBypass: scope exceeds approval requirement');
+    if (bypass.OtherProtectionsBypassed !== false) errors.push('manifest.OwnerBypass: other protections cannot be bypassed');
+    if (bypass.ProductionDeploymentAuthorized !== false) errors.push('manifest.OwnerBypass: production/deployment cannot be authorized');
+    if (bypass.UnresolvedConversations !== 0) errors.push('manifest.OwnerBypass: unresolved conversations must be zero');
+  }
 
   const ancestor = git(root, ['merge-base', '--is-ancestor', manifest.HeadSHA, actualHead], { allowFailure: true });
   if (ancestor.status !== 0) errors.push('manifest: HeadSHA is not actual HEAD or its ancestor');

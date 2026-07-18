@@ -43,3 +43,15 @@ governance self-change review.
 Владелец репозитория явно разрешил продолжение governance gate 2026-07-18.
 ADR принят как `ACCEPTED`; это решение не отменяет ruleset, обязательный review
 или отдельную проверку mergeability непосредственно перед merge.
+
+## Исключение для единственного владельца
+
+`SOLO_MAINTAINER_OWNER_BYPASS` разрешает владельцу репозитория обойти только
+approval requirement конкретного PR, когда другой активный уполномоченный
+reviewer отсутствует. Необходимы PASS всех обязательных CI checks, отсутствие
+CRITICAL/BLOCKER, ноль unresolved conversations, актуальная base и явная
+авторизация владельца. Причина и evidence обязательны в PR и audit manifest.
+
+Исключение не создаёт фиктивный review, не ослабляет ruleset и не обходит
+status checks, conversation resolution или другие protections. Production,
+deployment, Apps Script/`clasp` и Google Sheets writes им не разрешаются.

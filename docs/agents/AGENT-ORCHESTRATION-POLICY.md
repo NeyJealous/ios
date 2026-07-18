@@ -51,6 +51,23 @@ Architecture Reviewer, Security Reviewer, Documentation Reviewer, owner
 approval и ADR при изменении модели. CODEOWNERS рекомендуется, но адреса не
 добавляются без подтверждения владельца.
 
+## SOLO_MAINTAINER_OWNER_BYPASS
+
+В репозитории с единственным активным уполномоченным reviewer владелец может
+однократно обойти только требование независимого approval для конкретного PR.
+Bypass допустим, только если все обязательные CI checks имеют `PASS`, нет
+CRITICAL/BLOCKER findings, unresolved conversations равны нулю, ветка не
+отстаёт от canonical и авторизацию дал владелец репозитория.
+
+Причина, scope и evidence фиксируются в PR и `OwnerBypass` audit manifest:
+`ReviewMode=SOLO_MAINTAINER_OWNER_BYPASS`,
+`IndependentReviewer=NOT_AVAILABLE`, `CIEvidence=PASS` и явная human
+authorization. Bypass не является review и не может выдаваться за независимое
+одобрение. Он не обходит status checks, conversation resolution, актуальность
+base/head, privacy, secrets, manifest или иные protections. Он не разрешает
+production write, deployment, `clasp push`, Sheets write или ослабление
+ruleset. Применение ограничено approval requirement одного указанного PR.
+
 ## Recovery
 
 После disconnect/timeout нельзя повторять external write до read-only

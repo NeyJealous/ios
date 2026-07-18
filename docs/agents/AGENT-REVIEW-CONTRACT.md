@@ -29,6 +29,14 @@ ExecutedAgents, MissingAgents, BlockingFindings, Warnings, ArchitectureImpact,
 SecurityImpact, ProductionImpact и OverallStatus (`PASS`, `BLOCKED`, `FAIL`,
 `INCOMPLETE`).
 
+Опциональный `OwnerBypass` фиксирует применение
+`SOLO_MAINTAINER_OWNER_BYPASS`. Это approval metadata, а не agent review:
+`ReviewMode`, `IndependentReviewer`, `CIEvidence`, `HumanAuthorization`,
+`AuthorizedActor`, `Reason`, `Scope`, `OtherProtectionsBypassed`,
+`ProductionDeploymentAuthorized`, `UnresolvedConversations` и `Timestamp`.
+Разрешено только `Scope=APPROVAL_REQUIREMENT_ONLY`; остальные protections и
+production/deployment gates должны оставаться необойдёнными.
+
 ## Reviewed SHA и attestation tail
 
 Самоссылающийся commit невозможен: файл внутри commit не может надёжно хранить

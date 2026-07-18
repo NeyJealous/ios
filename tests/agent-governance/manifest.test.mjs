@@ -52,6 +52,14 @@ test('manifest accepts report-only attestation tail and rejects stale code tail'
       ApplicableAgents: [agent], RequiredAgents: [agent], ExecutedAgents: [agent],
       MissingAgents: [], BlockingFindings: [], Warnings: [],
       ArchitectureImpact: 'none', SecurityImpact: 'none', ProductionImpact: 'none',
+      OwnerBypass: {
+        ReviewMode: 'SOLO_MAINTAINER_OWNER_BYPASS',
+        IndependentReviewer: 'NOT_AVAILABLE', CIEvidence: 'PASS',
+        HumanAuthorization: 'received from repository owner', AuthorizedActor: 'owner',
+        Reason: 'no other active authorized reviewer', Scope: 'APPROVAL_REQUIREMENT_ONLY',
+        OtherProtectionsBypassed: false, ProductionDeploymentAuthorized: false,
+        UnresolvedConversations: 0, Timestamp: '2026-07-18T00:00:00Z',
+      },
       OverallStatus: 'PASS',
     };
     const manifestPath = join(auditDir, 'manifest.json');
@@ -59,6 +67,12 @@ test('manifest accepts report-only attestation tail and rejects stale code tail'
     const attestedHead = commit(root, 'attestation');
     const required = { TaskType: 'documentation only', RequiredAgents: [agent], ApplicableAgents: [agent] };
     assert.deepEqual(validateManifest({ manifestPath, required, root, branch, base, actualHead: attestedHead }).errors, []);
+
+    manifest.OwnerBypass.ProductionDeploymentAuthorized = true;
+    writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+    assert.match(validateManifest({ manifestPath, required, root, branch, base, actualHead: attestedHead }).errors.join('\n'), /production\/deployment cannot be authorized/);
+    manifest.OwnerBypass.ProductionDeploymentAuthorized = false;
+    writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
 
     writeFileSync(join(root, 'feature.txt'), 'changed after review\n');
     const staleHead = commit(root, 'unsafe tail');
