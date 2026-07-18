@@ -3,7 +3,7 @@
   "AgentVersion": "1.0.0",
   "GateId": "GLOBAL-AGENT-GOVERNANCE",
   "Branch": "codex-global-agent-governance",
-  "CommitSHA": "055fb47bf83a9376842eea6b57d1f6bf67d2cc9b",
+  "CommitSHA": "8db70b095d7480530402c5578d395a156b377110",
   "ReviewScope": "Governance registry, matrix, resolver, exceptions, manifest, CI and instruction hierarchy tests",
   "FilesReviewed": ["tests/agent-governance/", "tools/agent-governance-lib.mjs", "tools/resolve-required-agents.mjs", "tools/validate-agent-governance.mjs", ".github/workflows/agent-governance.yml"],
   "SpecificationReferences": ["Master Specification 21", "Master Specification 22", "Master Specification 24", "AGENT-REVIEW-CONTRACT.md"],

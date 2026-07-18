@@ -3,7 +3,7 @@
   "AgentVersion": "1.0.0",
   "GateId": "GLOBAL-AGENT-GOVERNANCE",
   "Branch": "codex-global-agent-governance",
-  "CommitSHA": "055fb47bf83a9376842eea6b57d1f6bf67d2cc9b",
+  "CommitSHA": "8db70b095d7480530402c5578d395a156b377110",
   "ReviewScope": "Apps Script scoped instructions and proof of zero production source/runtime impact",
   "FilesReviewed": ["apps-script/AGENTS.md", "IOS_SOURCE_SNAPSHOT/work/apps-script/AGENTS.md", ".codex/agents/apps-script-reviewer.toml", "architecture/agents/review-matrix.yaml"],
   "SpecificationReferences": ["Master Specification 09", "Master Specification 20", "Master Specification 21", "Master Specification 22"],

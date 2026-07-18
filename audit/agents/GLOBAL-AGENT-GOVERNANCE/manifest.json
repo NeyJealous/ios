@@ -3,7 +3,7 @@
   "TaskType": "mixed/unknown",
   "Branch": "codex-global-agent-governance",
   "BaseSHA": "f9fbe266265a89b0db8815c5977f3ae874703d71",
-  "HeadSHA": "055fb47bf83a9376842eea6b57d1f6bf67d2cc9b",
+  "HeadSHA": "8db70b095d7480530402c5578d395a156b377110",
   "ChangedPaths": [
     ".codex/agents/apps-script-reviewer.toml",
     ".codex/agents/architecture-reviewer.toml",
@@ -81,5 +81,18 @@
   "ArchitectureImpact": "Adds Agent Governance Layer, Registry, Review Matrix, Resolver, Manifest and CI Enforcement; runtime IOS architecture is unchanged.",
   "SecurityImpact": "Reduces authority by default, adds anti-tamper and privacy gates, and introduces no credentials or remote-write capability.",
   "ProductionImpact": "None: Apps Script source, Google Sheets, deployments and investment logic are unchanged; production writes=0.",
+  "OwnerBypass": {
+    "ReviewMode": "SOLO_MAINTAINER_OWNER_BYPASS",
+    "IndependentReviewer": "NOT_AVAILABLE",
+    "CIEvidence": "PASS",
+    "HumanAuthorization": "Получено явное разрешение владельца проекта завершить PR №3 с owner bypass.",
+    "AuthorizedActor": "NeyJealous (repository owner)",
+    "Reason": "В репозитории нет другого активного уполномоченного reviewer; обязательное внешнее approval фактически недоступно для solo-maintainer проекта.",
+    "Scope": "APPROVAL_REQUIREMENT_ONLY",
+    "OtherProtectionsBypassed": false,
+    "ProductionDeploymentAuthorized": false,
+    "UnresolvedConversations": 0,
+    "Timestamp": "2026-07-18T08:35:00Z"
+  },
   "OverallStatus": "PASS"
 }
