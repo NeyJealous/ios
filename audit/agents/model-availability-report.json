@@ -1,0 +1,38 @@
+{
+  "reportVersion": "1.0.0",
+  "gate": "PRE_REMOVAL_AGENT_PLATFORM_V2",
+  "generatedAt": "2026-07-18T00:00:00+03:00",
+  "trustedAttestationStatus": "INSUFFICIENT_EVIDENCE",
+  "silentDowngradeAllowed": false,
+  "models": [
+    {
+      "configuredSlug": "gpt-5.6-terra",
+      "status": "AVAILABLE_RUNTIME_EVIDENCE",
+      "executionMode": "REAL_SUBAGENT",
+      "agentThreadId": "/root/model_smoke_terra",
+      "nonce": "IOS_MODEL_SMOKE_TERRA_20260718",
+      "limitation": "Repository text is not an external trusted attestation."
+    },
+    {
+      "configuredSlug": "gpt-5.6-sol",
+      "status": "AVAILABLE_RUNTIME_EVIDENCE",
+      "executionMode": "REAL_SUBAGENT",
+      "agentThreadId": "/root/model_smoke_sol",
+      "nonce": "IOS_MODEL_SMOKE_SOL_20260718",
+      "limitation": "Repository text is not an external trusted attestation."
+    },
+    {
+      "configuredSlug": "gpt-5.6-luna",
+      "status": "UNVERIFIED",
+      "executionMode": "NOT_AVAILABLE",
+      "limitation": "The current spawn interface does not expose this exact slug; no substitute was attempted."
+    },
+    {
+      "configuredSlug": "gpt-5.6-sol-pro",
+      "status": "UNVERIFIED",
+      "executionMode": "NOT_AVAILABLE",
+      "limitation": "The current spawn interface does not expose this exact slug; no substitute was attempted."
+    }
+  ],
+  "activationImpact": "Any agent whose mandatory verdict floor requires an unverified model remains MODEL_NOT_AVAILABLE."
+}
