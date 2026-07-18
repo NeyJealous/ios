@@ -1,0 +1,19 @@
+{
+  "AgentId": "TEST_GENERATOR",
+  "AgentVersion": "1.0.0",
+  "GateId": "GLOBAL-AGENT-GOVERNANCE",
+  "Branch": "codex-global-agent-governance",
+  "CommitSHA": "8db70b095d7480530402c5578d395a156b377110",
+  "ReviewScope": "Governance registry, matrix, resolver, exceptions, manifest, CI and instruction hierarchy tests",
+  "FilesReviewed": ["tests/agent-governance/", "tools/agent-governance-lib.mjs", "tools/resolve-required-agents.mjs", "tools/validate-agent-governance.mjs", ".github/workflows/agent-governance.yml"],
+  "SpecificationReferences": ["Master Specification 21", "Master Specification 22", "Master Specification 24", "AGENT-REVIEW-CONTRACT.md"],
+  "ChecksPerformed": ["registry positive/negative", "matrix task types", "Windows/Linux paths", "rename/delete/add", "valid/expired/unauthorized exceptions", "empty diff", "stale SHA and attestation tail", "review modes/status/severity", "workflow and instruction safety"],
+  "Findings": [],
+  "Severity": "INFO",
+  "Evidence": ["node --test explicit tests/agent-governance/*.test.mjs list: 31 passed, 0 failed", "manifest test rejects non-report stale tail", "REAL_SUBAGENT test requires AgentThreadId evidence", "privacy and production-access workflow assertions passed"],
+  "RequiredFixes": [],
+  "ResidualRisk": "GitHub-hosted execution remains to be observed on the opened PR; local Windows suite is green.",
+  "Status": "PASS",
+  "Timestamp": "2026-07-18T08:08:45Z",
+  "ExecutionMode": "CODEX_ROLE_SIMULATION"
+}

@@ -1,0 +1,26 @@
+{
+  "Version": "1.0.0",
+  "Purpose": "Specification-to-implementation audit index. Operational definitions are in agent-registry.yaml.",
+  "SpecifiedCount": 10,
+  "ImplementedProjectAgents": 10,
+  "Roles": [
+    {"AgentId":"ARCHITECTURE_REVIEWER","CanonicalName":"Architecture Reviewer","Status":"IMPLEMENTED","Implementation":".codex/agents/architecture-reviewer.toml"},
+    {"AgentId":"APPS_SCRIPT_REVIEWER","CanonicalName":"Apps Script Reviewer","Status":"IMPLEMENTED","Implementation":".codex/agents/apps-script-reviewer.toml"},
+    {"AgentId":"PERFORMANCE_AUDITOR","CanonicalName":"Performance Auditor","Status":"IMPLEMENTED","Implementation":".codex/agents/performance-auditor.toml"},
+    {"AgentId":"INVESTMENT_LOGIC_REVIEWER","CanonicalName":"Investment Logic Reviewer","Status":"IMPLEMENTED","Implementation":".codex/agents/investment-logic-reviewer.toml"},
+    {"AgentId":"BOND_SPECIALIST","CanonicalName":"Bond Specialist","Status":"IMPLEMENTED","Implementation":".codex/agents/bond-specialist.toml"},
+    {"AgentId":"COMPANY_RATING_REVIEWER","CanonicalName":"Company Rating Reviewer","Status":"IMPLEMENTED","Implementation":".codex/agents/company-rating-reviewer.toml"},
+    {"AgentId":"GOOGLE_SHEETS_REVIEWER","CanonicalName":"Google Sheets Reviewer","Status":"IMPLEMENTED","Implementation":".codex/agents/google-sheets-reviewer.toml"},
+    {"AgentId":"DOCUMENTATION_REVIEWER","CanonicalName":"Documentation Reviewer","Status":"IMPLEMENTED","Implementation":".codex/agents/documentation-reviewer.toml"},
+    {"AgentId":"UX_REVIEWER","CanonicalName":"UX Reviewer","Status":"IMPLEMENTED","Implementation":".codex/agents/ux-reviewer.toml"},
+    {"AgentId":"TEST_GENERATOR","CanonicalName":"Test Generator","Status":"IMPLEMENTED","Implementation":".codex/agents/test-generator.toml"},
+    {"AgentId":"SECURITY_REVIEWER","CanonicalName":"Security Reviewer","Status":"PARTIAL","Implementation":"review profile + CI; exact canonical role name absent"},
+    {"AgentId":"PRIVACY_REVIEWER","CanonicalName":"Privacy Reviewer","Status":"PARTIAL","Implementation":"CI validator; exact canonical role name absent"},
+    {"AgentId":"DATA_QUALITY_REVIEWER","CanonicalName":"Data Quality Reviewer","Status":"MISSING","Implementation":"not made mandatory; RFC required"},
+    {"AgentId":"QUANTITATIVE_VALIDATION_REVIEWER","CanonicalName":"Quantitative Validation Reviewer","Status":"MISSING","Implementation":"not made mandatory; RFC required"},
+    {"AgentId":"RELEASE_REVIEWER","CanonicalName":"Release Reviewer","Status":"MISSING","Implementation":"release checklist exists, named role absent"},
+    {"AgentId":"OBSERVABILITY_REVIEWER","CanonicalName":"Observability Reviewer","Status":"MISSING","Implementation":"observability requirements exist, named role absent"},
+    {"AgentId":"GIT_INTEGRATION_REVIEWER","CanonicalName":"Git Integration Reviewer","Status":"MISSING","Implementation":"repository policy exists, named role absent"},
+    {"AgentId":"MARKET_REGIME_REVIEWER","CanonicalName":"Market Regime Reviewer","Status":"CONFLICTING","Implementation":"v3.2 absent from canonical baseline; role not enabled"}
+  ]
+}

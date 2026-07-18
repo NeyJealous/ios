@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IOS Agent Review Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["GateId","TaskType","Branch","BaseSHA","HeadSHA","ChangedPaths","ApplicableAgents","RequiredAgents","ExecutedAgents","MissingAgents","BlockingFindings","Warnings","ArchitectureImpact","SecurityImpact","ProductionImpact","OverallStatus"],
+  "properties": {
+    "GateId":{"type":"string"}, "TaskType":{"type":"string"}, "Branch":{"type":"string"},
+    "BaseSHA":{"type":"string","pattern":"^[0-9a-f]{40}$"}, "HeadSHA":{"type":"string","pattern":"^[0-9a-f]{40}$"},
+    "ChangedPaths":{"type":"array","items":{"type":"string"}},
+    "ApplicableAgents":{"type":"array","items":{"type":"string"}},
+    "RequiredAgents":{"type":"array","items":{"type":"string"}},
+    "ExecutedAgents":{"type":"array","items":{"type":"string"}},
+    "MissingAgents":{"type":"array","items":{"type":"string"}},
+    "BlockingFindings":{"type":"array"}, "Warnings":{"type":"array"},
+    "ArchitectureImpact":{"type":"string"}, "SecurityImpact":{"type":"string"},
+    "ProductionImpact":{"type":"string"},
+    "OwnerBypass":{
+      "type":"object",
+      "additionalProperties":false,
+      "required":["ReviewMode","IndependentReviewer","CIEvidence","HumanAuthorization","AuthorizedActor","Reason","Scope","OtherProtectionsBypassed","ProductionDeploymentAuthorized","UnresolvedConversations","Timestamp"],
+      "properties":{
+        "ReviewMode":{"const":"SOLO_MAINTAINER_OWNER_BYPASS"},
+        "IndependentReviewer":{"const":"NOT_AVAILABLE"},
+        "CIEvidence":{"const":"PASS"},
+        "HumanAuthorization":{"type":"string","minLength":1},
+        "AuthorizedActor":{"type":"string","minLength":1},
+        "Reason":{"type":"string","minLength":1},
+        "Scope":{"const":"APPROVAL_REQUIREMENT_ONLY"},
+        "OtherProtectionsBypassed":{"const":false},
+        "ProductionDeploymentAuthorized":{"const":false},
+        "UnresolvedConversations":{"const":0},
+        "Timestamp":{"type":"string","format":"date-time"}
+      }
+    },
+    "OverallStatus":{"enum":["PASS","BLOCKED","FAIL","INCOMPLETE"]}
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "Version": "1.0.0",
+  "TaskTypes": [
+    "Apps Script source", "Google Sheets schema/formulas", "API/provider",
+    "investment logic", "Decision Engine", "bonds", "company rating",
+    "Market Regime", "UI/UX", "documentation only", "GitHub Actions",
+    "security/secrets", "data model", "performance", "tests",
+    "release/deployment", "architecture", "research", "hotfix", "mixed/unknown"
+  ],
+  "AlwaysRequiredAgents": ["DOCUMENTATION_REVIEWER", "TEST_GENERATOR"],
+  "BaselineControls": ["security", "privacy", "secret-scan", "architecture-impact"],
+  "Rules": [
+    {
+      "RuleId": "GOVERNANCE_SELF_CHANGE",
+      "TaskType": "architecture",
+      "PathPatterns": ["AGENTS.md", "**/AGENTS.md", ".codex/agents/**", "architecture/agents/**", "docs/agents/**", "tools/*agent*", ".github/workflows/agent-governance.yml", "rfc/RFC-GLOBAL-AGENT-GOVERNANCE.md", "adr/ADR-GLOBAL-AGENT-GOVERNANCE.md"],
+      "RequiredAgents": ["ARCHITECTURE_REVIEWER", "SECURITY_REVIEWER", "DOCUMENTATION_REVIEWER", "TEST_GENERATOR"],
+      "RequiredControls": ["owner-approval", "privacy", "secret-scan", "governance-tamper-check"],
+      "Reason": "Governance self-change is anti-tamper protected; model changes require ADR."
+    },
+    {
+      "RuleId": "APPS_SCRIPT_SOURCE",
+      "TaskType": "Apps Script source",
+      "PathPatterns": ["apps-script/**", "IOS_SOURCE_SNAPSHOT/work/apps-script/**"],
+      "RequiredAgents": ["APPS_SCRIPT_REVIEWER", "PERFORMANCE_AUDITOR"],
+      "RequiredControls": ["no-clasp-push", "no-production-write"],
+      "Reason": "Master Specification 09, 20, 21 and 22."
+    },
+    {
+      "RuleId": "SHEETS_SCHEMA",
+      "TaskType": "Google Sheets schema/formulas",
+      "PathPatterns": ["**/schema-parts/**", "**/*Schema*.gs", "**/*Sheets*.md", "**/*Google_Sheets*.md"],
+      "RequiredAgents": ["GOOGLE_SHEETS_REVIEWER", "UX_REVIEWER", "PERFORMANCE_AUDITOR"],
+      "RequiredControls": ["no-sheets-write", "migration-rollback"],
+      "Reason": "Master Specification 08, 20, 21 and 28."
+    },
+    {
+      "RuleId": "API_PROVIDER",
+      "TaskType": "API/provider",
+      "PathPatterns": ["**/Api.gs", "**/Providers.gs", "**/*Provider*.mjs"],
+      "RequiredAgents": ["APPS_SCRIPT_REVIEWER", "PERFORMANCE_AUDITOR"],
+      "RequiredControls": ["security", "no-production-write"],
+      "Reason": "Provider changes affect quotas, caching and credentials."
+    },
+    {
+      "RuleId": "INVESTMENT_LOGIC",
+      "TaskType": "investment logic",
+      "PathPatterns": ["**/Strategy*.gs", "**/Reserve*.gs", "**/Advisor*.gs", "**/15.*Investment*.md"],
+      "RequiredAgents": ["INVESTMENT_LOGIC_REVIEWER", "ARCHITECTURE_REVIEWER"],
+      "RequiredControls": ["no-investment-policy-change-without-gate"],
+      "Reason": "Master Specification 12 and 15; Correction Memo."
+    },
+    {
+      "RuleId": "DECISION_ENGINE",
+      "TaskType": "Decision Engine",
+      "PathPatterns": ["**/DecisionEngine.gs", "**/RuleEngine.gs", "**/12_Decision_Engine*.md"],
+      "RequiredAgents": ["INVESTMENT_LOGIC_REVIEWER", "ARCHITECTURE_REVIEWER"],
+      "RequiredControls": ["decision-authority", "regression-tests"],
+      "Reason": "Only Decision Engine may publish investment actions."
+    },
+    {
+      "RuleId": "BONDS",
+      "TaskType": "bonds",
+      "PathPatterns": ["**/BondEngine.gs", "**/*Bond*.md", "**/*Coupon*.md"],
+      "RequiredAgents": ["BOND_SPECIALIST", "INVESTMENT_LOGIC_REVIEWER"],
+      "RequiredControls": ["quantitative-evidence"],
+      "Reason": "Master Specification 17 and 15.4."
+    },
+    {
+      "RuleId": "COMPANY_RATING",
+      "TaskType": "company rating",
+      "PathPatterns": ["**/CompanyRating.gs", "**/*Company_Rating*.md"],
+      "RequiredAgents": ["COMPANY_RATING_REVIEWER", "INVESTMENT_LOGIC_REVIEWER"],
+      "RequiredControls": ["data-quality-evidence"],
+      "Reason": "Master Specification 16 and Decision Engine boundary."
+    },
+    {
+      "RuleId": "MARKET_REGIME",
+      "TaskType": "Market Regime",
+      "PathPatterns": ["**/MarketRegime.gs", "**/*Market_Regime*.md", "**/*market-regime*"],
+      "RequiredAgents": ["INVESTMENT_LOGIC_REVIEWER", "ARCHITECTURE_REVIEWER"],
+      "RequiredControls": ["quantitative-evidence", "data-quality-evidence", "no-r030-change"],
+      "AdvisoryCandidateRoles": ["MARKET_REGIME_REVIEWER", "QUANTITATIVE_VALIDATION_REVIEWER", "DATA_QUALITY_REVIEWER"],
+      "Reason": "Only named canonical agents are mandatory; v3.2 and candidate role names are not in canonical baseline."
+    },
+    {
+      "RuleId": "UI_UX",
+      "TaskType": "UI/UX",
+      "PathPatterns": ["**/*.html", "**/UI.gs", "**/Menu.gs", "**/*UX*.md"],
+      "RequiredAgents": ["UX_REVIEWER", "GOOGLE_SHEETS_REVIEWER"],
+      "RequiredControls": ["russian-ui", "hidden-identifiers"],
+      "Reason": "Master Specification 22 and 28; Correction Memo section 10."
+    },
+    {
+      "RuleId": "DOCUMENTATION",
+      "TaskType": "documentation only",
+      "PathPatterns": ["docs/**", "rfc/**", "adr/**", "IOS_HANDOFF_v4/master_specification/**"],
+      "RequiredAgents": ["DOCUMENTATION_REVIEWER", "TEST_GENERATOR"],
+      "RequiredControls": ["traceability"],
+      "Reason": "All changes require documentation and test-impact review."
+    },
+    {
+      "RuleId": "GITHUB_ACTIONS",
+      "TaskType": "GitHub Actions",
+      "PathPatterns": [".github/workflows/**", ".github/actions/**"],
+      "RequiredAgents": ["ARCHITECTURE_REVIEWER", "SECURITY_REVIEWER"],
+      "RequiredControls": ["fork-safety", "least-privilege", "no-production-secrets"],
+      "AdvisoryCandidateRoles": ["GIT_INTEGRATION_REVIEWER", "RELEASE_REVIEWER"],
+      "Reason": "Named candidates are not canonical; security/architecture controls are enforceable."
+    },
+    {
+      "RuleId": "SECURITY_SECRETS",
+      "TaskType": "security/secrets",
+      "PathPatterns": ["**/*security*", "**/*security*/**", "**/*secret*", "**/*secret*/**", ".gitignore", ".github/CODEOWNERS"],
+      "RequiredAgents": ["SECURITY_REVIEWER"],
+      "RequiredControls": ["privacy", "secret-scan", "least-privilege"],
+      "Reason": "Master Specification 26."
+    },
+    {
+      "RuleId": "DATA_MODEL",
+      "TaskType": "data model",
+      "PathPatterns": ["**/*schema*", "**/*Data_Dictionary*.md", "architecture/**/*.schema.json"],
+      "RequiredAgents": ["ARCHITECTURE_REVIEWER", "GOOGLE_SHEETS_REVIEWER"],
+      "RequiredControls": ["data-integrity", "migration-rollback"],
+      "AdvisoryCandidateRoles": ["DATA_QUALITY_REVIEWER"],
+      "Reason": "Data Quality Reviewer is not a named canonical role."
+    },
+    {
+      "RuleId": "PERFORMANCE",
+      "TaskType": "performance",
+      "PathPatterns": ["**/*performance*", "**/*benchmark*"],
+      "RequiredAgents": ["PERFORMANCE_AUDITOR"],
+      "RequiredControls": ["measurable-evidence"],
+      "Reason": "Master Specification 20."
+    },
+    {
+      "RuleId": "TESTS",
+      "TaskType": "tests",
+      "PathPatterns": ["tests/**", "**/*.test.mjs", "**/*Test*.gs"],
+      "RequiredAgents": ["TEST_GENERATOR"],
+      "RequiredControls": ["determinism", "no-production-access"],
+      "Reason": "Master Specification 24."
+    },
+    {
+      "RuleId": "RELEASE_DEPLOYMENT",
+      "TaskType": "release/deployment",
+      "PathPatterns": ["**/*release*", "**/*deployment*", "appsscript.json"],
+      "RequiredAgents": ["ARCHITECTURE_REVIEWER", "SECURITY_REVIEWER"],
+      "RequiredControls": ["rollback", "no-deployment", "owner-approval"],
+      "AdvisoryCandidateRoles": ["RELEASE_REVIEWER", "GIT_INTEGRATION_REVIEWER"],
+      "Reason": "Release checklist is canonical; named candidate reviewers require RFC/ADR."
+    },
+    {
+      "RuleId": "ARCHITECTURE",
+      "TaskType": "architecture",
+      "PathPatterns": ["architecture/**", "**/*Architecture*.md", "**/*Correction_Memo*.md"],
+      "RequiredAgents": ["ARCHITECTURE_REVIEWER"],
+      "RequiredControls": ["rfc-adr", "architecture-impact"],
+      "Reason": "Master Specification 03 and 23."
+    },
+    {
+      "RuleId": "RESEARCH",
+      "TaskType": "research",
+      "PathPatterns": ["research/**"],
+      "RequiredAgents": ["ARCHITECTURE_REVIEWER"],
+      "RequiredControls": ["hypothesis-label", "no-production-write"],
+      "Reason": "Research must remain isolated from production truth."
+    },
+    {
+      "RuleId": "HOTFIX_BRANCH",
+      "TaskType": "hotfix",
+      "PathPatterns": [],
+      "BranchPatterns": ["hotfix/**"],
+      "RequiredAgents": ["ARCHITECTURE_REVIEWER", "SECURITY_REVIEWER"],
+      "RequiredControls": ["rollback", "regression-tests", "owner-approval"],
+      "Reason": "Hotfix urgency does not bypass governance."
+    }
+  ],
+  "FailClosed": {
+    "UnknownTaskType": "mixed/unknown",
+    "EmptyDiff": "BLOCK",
+    "RequiredAgents": ["ARCHITECTURE_REVIEWER", "APPS_SCRIPT_REVIEWER", "PERFORMANCE_AUDITOR", "INVESTMENT_LOGIC_REVIEWER", "GOOGLE_SHEETS_REVIEWER", "UX_REVIEWER", "DOCUMENTATION_REVIEWER", "TEST_GENERATOR", "SECURITY_REVIEWER"]
+  },
+  "AntiTamperPaths": ["AGENTS.md", "**/AGENTS.md", ".codex/agents/**", "architecture/agents/**", "docs/agents/**", "tools/*agent*", ".github/workflows/agent-governance.yml"],
+  "ExceptionPolicy": {
+    "VersionedFileRequired": true,
+    "RequiredFields": ["ExceptionId", "RfcAdrReference", "OwnerApproval", "Reason", "Expiry", "RiskAcceptance", "ExcludedAgents"],
+    "CannotExcludeAgents": ["DOCUMENTATION_REVIEWER", "TEST_GENERATOR"],
+    "CannotDisableControls": ["security", "privacy", "secret-scan", "architecture-impact"],
+    "ExpiredOrUnauthorized": "BLOCK"
+  }
+}

@@ -1,0 +1,80 @@
+name: Agent Governance
+
+on:
+  pull_request:
+    branches:
+      - integration/ios-current
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+    inputs:
+      base:
+        description: Base commit SHA
+        required: true
+        type: string
+      head:
+        description: Head commit SHA
+        required: true
+        type: string
+      branch:
+        description: Head branch name
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  agent-governance:
+    name: agent-governance
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      BASE_SHA: ${{ github.event.pull_request.base.sha || inputs.base }}
+      HEAD_SHA: ${{ github.event.pull_request.head.sha || inputs.head }}
+      HEAD_BRANCH: ${{ github.event.pull_request.head.ref || inputs.branch }}
+    steps:
+      - name: Checkout reviewed head without credentials
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || inputs.head }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Validate registry, matrix, project agents, and instructions
+        run: node tools/validate-agent-governance.mjs --all
+
+      - name: Resolve required agents from full diff
+        run: >-
+          node tools/resolve-required-agents.mjs
+          --base "$BASE_SHA"
+          --head "$HEAD_SHA"
+          --branch "$HEAD_BRANCH"
+          --output "$RUNNER_TEMP/required-agents.json"
+
+      - name: Validate manifest and mandatory reports
+        run: >-
+          node tools/validate-agent-governance.mjs
+          --manifest-root audit/agents
+          --required-file "$RUNNER_TEMP/required-agents.json"
+          --branch "$HEAD_BRANCH"
+          --base "$BASE_SHA"
+          --head "$HEAD_SHA"
+
+      - name: Privacy and secret scan
+        run: node tools/publication-privacy-check.mjs
+
+      - name: Publish deterministic summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo '## Agent Governance'
+            echo
+            echo '```json'
+            if test -f "$RUNNER_TEMP/required-agents.json"; then
+              cat "$RUNNER_TEMP/required-agents.json"
+            else
+              echo '{"status":"resolver output unavailable"}'
+            fi
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
