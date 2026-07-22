@@ -14,14 +14,28 @@ const register = JSON.parse(readFileSync(resolve(root, 'architecture/agents/regi
 test('upstream selection register contains exact pinned provenance for all 44 rows', () => {
   const result = validateSelectionRegister(register);
   assert.equal(result.ok, true, result.errors.join('\n'));
-  assert.deepEqual(result.counts, { SELECTED: 13, UPSTREAM_PROFILE_NOT_FOUND: 0, REQUIRES_OWNER_DECISION: 31 });
+  assert.deepEqual(result.counts, { SELECTED: 18, UPSTREAM_PROFILE_NOT_FOUND: 0, REQUIRES_OWNER_DECISION: 26 });
 });
 
-test('every formerly unresolved composition is explicitly owner-blocked without activation', () => {
+test('remaining unresolved compositions are owner-blocked without activation', () => {
   const blocked = register.selections.filter((selection) => selection.status === 'REQUIRES_OWNER_DECISION');
-  assert.equal(blocked.length, 31);
+  assert.equal(blocked.length, 26);
   assert.equal(register.activationAllowed, false);
   assert.ok(blocked.every((selection) => selection.selectedProfiles.length === 0 && selection.candidateProfiles.length > 0));
+});
+
+test('first-wave selections are exact, owner-bound and remain non-activating', () => {
+  const ids = ['ios-agent-orchestrator', 'agent-governance-auditor', 'security-privacy-auditor', 'audit-traceability-reviewer', 'ios-codebase-auditor'];
+  for (const agentId of ids) {
+    const selection = register.selections.find((row) => row.agentId === agentId);
+    assert.equal(selection.status, 'SELECTED');
+    assert.equal(selection.decisionReference, 'OWNER_DECISION_FIRST_WAVE_20260722');
+    assert.equal(selection.ownerDecisionCommit, '6da06f7f0a32c343f565e4f0a36354538087236a');
+    assert.equal(selection.compositionOrder.length, selection.selectedProfiles.length);
+    assert.ok(selection.restrictions.length > 0);
+    assert.deepEqual(selection.compositionOrder, selection.selectedProfiles.map((profile) => `${profile.repository}:${profile.sourcePath}`));
+  }
+  assert.equal(register.activationAllowed, false);
 });
 
 test('duplicate upstream basenames retain distinct exact paths and profile IDs', () => {
@@ -32,10 +46,14 @@ test('duplicate upstream basenames retain distinct exact paths and profile IDs',
   assert.equal(new Set(testAutomators.map((profile) => profile.profileId)).size, testAutomators.length);
 });
 
-test('register contains no legacy unresolved status and no generated agent paths', () => {
+test('register contains no legacy unresolved status and no generated paths in provenance', () => {
   const text = JSON.stringify(register);
   assert.doesNotMatch(text, /"status":"UNRESOLVED"/);
-  assert.doesNotMatch(text, /\.codex\/agents/);
+  for (const selection of register.selections) {
+    for (const profile of [...selection.selectedProfiles, ...selection.candidateProfiles]) {
+      assert.doesNotMatch(profile.sourcePath, /^\.codex\/agents\//);
+    }
+  }
 });
 
 test('selection validator fails closed on mutated pin and content hash', () => {

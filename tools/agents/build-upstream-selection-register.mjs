@@ -23,6 +23,29 @@ const SELECTED = {
   'credit-risk-reviewer': ['V:categories/07-specialized-domains/risk-manager.toml', 'V:categories/10-research-analysis/research-analyst.toml', 'W:plugins/quantitative-trading/agents/risk-manager.md', 'W:plugins/business-analytics/agents/business-analyst.md'],
   'performance-attribution-reviewer': ['V:categories/07-specialized-domains/quant-analyst.toml', 'V:categories/05-data-ai/data-scientist.toml', 'W:plugins/quantitative-trading/agents/quant-analyst.md', 'W:plugins/machine-learning-ops/agents/data-scientist.md'],
   'russia-investment-regulatory-tax-reviewer': ['V:categories/08-business-product/legal-advisor.toml', 'V:categories/04-quality-security/compliance-auditor.toml', 'V:categories/10-research-analysis/research-analyst.toml', 'W:plugins/hr-legal-compliance/agents/legal-advisor.md', 'W:plugins/content-marketing/agents/search-specialist.md'],
+  'ios-agent-orchestrator': ['V:categories/09-meta-orchestration/agent-organizer.toml', 'V:categories/09-meta-orchestration/agent-installer.toml', 'W:plugins/conductor/agents/conductor-validator.md', 'W:plugins/agent-teams/agents/team-lead.md'],
+  'agent-governance-auditor': ['V:categories/11-ai-governance-safety/ai-governance-auditor.toml', 'V:categories/11-ai-governance-safety/policy-guardrail-designer.toml', 'V:categories/13-llmops-evals-observability/eval-engineer.toml', 'W:plugins/conductor/agents/conductor-validator.md', 'W:plugins/comprehensive-review/agents/code-reviewer.md'],
+  'security-privacy-auditor': ['V:categories/04-quality-security/security-auditor.toml', 'V:categories/04-quality-security/compliance-auditor.toml', 'W:plugins/security-compliance/agents/security-auditor.md', 'W:plugins/comprehensive-review/agents/code-reviewer.md'],
+  'audit-traceability-reviewer': ['V:categories/04-quality-security/compliance-auditor.toml', 'V:categories/06-developer-experience/documentation-engineer.toml', 'W:plugins/code-documentation/agents/docs-architect.md', 'W:plugins/business-analytics/agents/business-analyst.md'],
+  'ios-codebase-auditor': ['V:categories/09-meta-orchestration/codebase-orchestrator.toml', 'V:categories/01-core-development/code-mapper.toml', 'W:plugins/comprehensive-review/agents/code-reviewer.md', 'W:plugins/c4-architecture/agents/c4-code.md'],
+};
+
+const OWNER_SELECTED_METADATA = {
+  'ios-agent-orchestrator': {
+    restrictions: ['no agent installation or removal', 'no global Codex or user-environment mutation', 'no autonomous .codex/agents changes', 'no floating upstream download or install scripts', 'no package installation', 'no autonomous Registry or Model Registry mutation', 'no activation, merge, deployment or production approval', 'supervisor-only; no subject-matter verdict or self-review'],
+  },
+  'agent-governance-auditor': {
+    restrictions: ['IOS constraints do not rewrite upstream text', 'security floor cannot be weakened by evaluation', 'successful evaluation cannot cancel a governance blocker', 'code review limited to governance/platform paths', 'no self-review of generated profile', 'self-reported evidence is not trusted attestation'],
+  },
+  'security-privacy-auditor': {
+    restrictions: ['read-only by default', 'masked evidence only; no credential use', 'no deployment or production write authority', 'no automatic remediation or self-approval', 'privacy scanner cannot be weakened', 'tracked, untracked, generated, downloaded and diff artifacts remain in scope', 'HIGH or CRITICAL finding blocks the gate', 'Windows symlink SKIP requires Linux CI evidence'],
+  },
+  'audit-traceability-reviewer': {
+    restrictions: ['no owner requirement creation', 'ambiguity is not an owner decision', 'no autonomous RFC or ADR status change', 'documentation is not runtime evidence', 'runtime is not normative acceptance evidence', 'missing owner or evidence returns INSUFFICIENT_EVIDENCE or BLOCKED'],
+  },
+  'ios-codebase-auditor': {
+    restrictions: ['repository read-only', 'no file modification, refactoring, deletion or dependency update', 'no production, Apps Script, Sheets, provider or broker access', 'no deployment, commit, push or merge', 'only the exact recommended code-reviewer path is included'],
+  },
 };
 
 const REQUIRES_OWNER = {
@@ -37,16 +60,11 @@ const REQUIRES_OWNER = {
   'russia-ofz-rates-specialist': { V: ['quant-analyst', 'data-researcher'], W: ['quant-analyst', 'search-specialist'] },
   'market-regime-model-risk-reviewer': { V: ['model-risk-manager', 'risk-manager', 'quant-analyst'], W: ['risk-manager', 'quant-analyst'] },
   'historical-execution-simulator-reviewer': { V: ['quant-analyst', 'performance-engineer'], W: ['quant-analyst', 'performance-engineer'] },
-  'ios-agent-orchestrator': { V: ['agent-organizer', 'agent-installer'], W: ['conductor-validator'], gap: 'Normative multi-agent workflow phrase has no exact profile ID' },
-  'ios-codebase-auditor': { V: ['codebase-orchestrator', 'code-mapper'], W: ['code-reviewer', 'c4-code'] },
   'apps-script-specialist': { V: ['typescript-pro', 'backend-developer', 'tooling-engineer'], W: ['code-reviewer', 'deployment-engineer'] },
   'google-sheets-systems-reviewer': { V: ['data-analyst', 'qa-expert'], W: ['business-analyst', 'test-automator'] },
   'provider-integration-reviewer': { V: ['fintech-engineer', 'api-designer'], W: ['data-engineer', 'deployment-engineer', 'api-documenter'] },
-  'security-privacy-auditor': { V: ['security-auditor', 'compliance-auditor'], W: ['security-auditor', 'code-reviewer'] },
   'release-deployment-gatekeeper': { V: ['deployment-engineer', 'devops-engineer', 'platform-engineer'], W: ['deployment-engineer', 'devops-troubleshooter'] },
   'recovery-idempotency-reviewer': { V: ['incident-responder', 'chaos-engineer', 'error-coordinator'], W: ['incident-responder', 'devops-troubleshooter'] },
-  'audit-traceability-reviewer': { V: ['compliance-auditor', 'documentation-engineer'], W: ['docs-architect', 'business-analyst'] },
-  'agent-governance-auditor': { V: ['ai-governance-auditor', 'policy-guardrail-designer', 'eval-engineer'], W: ['conductor-validator', 'code-reviewer'] },
   'production-influence-gate-reviewer': { V: ['model-risk-manager', 'code-mapper', 'compliance-auditor'], W: ['risk-manager', 'code-reviewer', 'quant-analyst'] },
   'data-schema-migration-reviewer': { V: ['data-engineer', 'database-administrator', 'database-optimizer'], W: ['database-admin', 'database-optimizer', 'data-engineer'] },
   'performance-quota-reviewer': { V: ['performance-engineer', 'performance-monitor'], W: ['performance-engineer', 'observability-engineer'] },
@@ -134,7 +152,21 @@ function main() {
       const [repoKey, sourcePath] = source.split(':', 2);
       return record(repoKey, roots[repoKey], sourcePath);
     });
-    selections.push({ agentId, status: 'SELECTED', decisionReason: 'Specification provides deterministic exact components and order', selectedProfiles: profiles, candidateProfiles: [] });
+    const ownerMetadata = OWNER_SELECTED_METADATA[agentId];
+    selections.push({
+      agentId,
+      status: 'SELECTED',
+      decisionReason: ownerMetadata ? 'Owner accepted the exact first-wave recommendation with explicit restrictions' : 'Specification provides deterministic exact components and order',
+      selectedProfiles: profiles,
+      candidateProfiles: [],
+      ...(ownerMetadata ? {
+        compositionOrder: profiles.map((profile) => `${profile.repository}:${profile.sourcePath}`),
+        decisionReference: 'OWNER_DECISION_FIRST_WAVE_20260722',
+        ownerDecisionCommit: '6da06f7f0a32c343f565e4f0a36354538087236a',
+        restrictions: ownerMetadata.restrictions,
+        selectedAt: '2026-07-22T00:00:00Z',
+      } : {}),
+    });
   }
   for (const [agentId, names] of Object.entries(REQUIRES_OWNER)) {
     const candidates = [];
