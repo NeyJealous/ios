@@ -127,6 +127,23 @@ test('incomplete trusted expected plan fails closed for every omitted security b
   }
 });
 
+test('undefined, null, empty and malformed trusted expected values fail closed', () => {
+  const mutations = [
+    ['repository', undefined], ['branch', null], ['modelRequested', ''],
+    ['baseSha', 'not-a-sha'], ['profileHash', 'not-a-hash'],
+    ['startedAt', 'not-a-date'], ['executionMode', 'CODEX_ROLE_SIMULATION'],
+    ['independenceStatus', 'SELF_REVIEW'], ['reasoningLevel', 'unknown'],
+    ['issuerType', 'PR_AUTHORED'], ['audience', 'other'],
+    ['ownerApprovalRequired', null], ['maxTtlSeconds', 0],
+  ];
+  for (const [key, value] of mutations) {
+    const malformed = { ...expected, [key]: value };
+    const result = evaluateTrustedAttestation({ attestation: envelope(), schema, expected: malformed, transport: 'CODEX_RUNTIME_CHANNEL', ...evaluation, ...cryptographicallyVerified });
+    assert.equal(result.structuralStatus, 'FAIL', key);
+    assert.ok(result.errors.some((error) => error === `ATTESTATION_EXPECTED_PLAN_INVALID: ${key}` || error === `ATTESTATION_EXPECTED_PLAN_MISSING: ${key}`), key);
+  }
+});
+
 test('trusted transport and issuer class must be paired', () => {
   const claim = envelope();
   claim.issuer.type = 'GITHUB_OIDC_VERIFIED';

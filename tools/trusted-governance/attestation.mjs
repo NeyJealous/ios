@@ -17,10 +17,21 @@ export function validateTrustedExpectedPlan(expected) {
   const errors = [];
   if (!expected || typeof expected !== 'object' || Array.isArray(expected)) return ['ATTESTATION_EXPECTED_PLAN_INVALID'];
   for (const key of REQUIRED_EXPECTED_FIELDS) if (!(key in expected)) errors.push(`ATTESTATION_EXPECTED_PLAN_MISSING: ${key}`);
+  const stringFields = REQUIRED_EXPECTED_FIELDS.filter((key) => !['ownerApprovalRequired', 'maxTtlSeconds'].includes(key));
+  for (const key of stringFields) if (typeof expected[key] !== 'string' || !expected[key].trim()) errors.push(`ATTESTATION_EXPECTED_PLAN_INVALID: ${key}`);
+  for (const key of ['baseSha', 'headSha']) if (typeof expected[key] === 'string' && !/^[0-9a-f]{40}$/.test(expected[key])) errors.push(`ATTESTATION_EXPECTED_PLAN_INVALID: ${key}`);
+  for (const key of ['profileHash', 'overlayHash', 'resultHash']) if (typeof expected[key] === 'string' && !/^[0-9a-f]{64}$/.test(expected[key])) errors.push(`ATTESTATION_EXPECTED_PLAN_INVALID: ${key}`);
+  for (const key of ['startedAt', 'completedAt']) if (typeof expected[key] === 'string' && !Number.isFinite(Date.parse(expected[key]))) errors.push(`ATTESTATION_EXPECTED_PLAN_INVALID: ${key}`);
+  if (expected.executionMode !== 'REAL_SUBAGENT') errors.push('ATTESTATION_EXPECTED_PLAN_INVALID: executionMode');
+  if (expected.independenceStatus !== 'INDEPENDENT') errors.push('ATTESTATION_EXPECTED_PLAN_INVALID: independenceStatus');
+  if (!['low', 'medium', 'high', 'extra_high'].includes(expected.reasoningLevel)) errors.push('ATTESTATION_EXPECTED_PLAN_INVALID: reasoningLevel');
+  if (!['CODEX_RUNTIME_ATTESTER', 'GITHUB_OIDC_VERIFIED'].includes(expected.issuerType)) errors.push('ATTESTATION_EXPECTED_PLAN_INVALID: issuerType');
+  if (expected.audience !== 'ios-agent-governance') errors.push('ATTESTATION_EXPECTED_PLAN_INVALID: audience');
   if (typeof expected.ownerApprovalRequired !== 'boolean') errors.push('ATTESTATION_EXPECTED_PLAN_INVALID: ownerApprovalRequired');
   if (!Number.isInteger(expected.maxTtlSeconds) || expected.maxTtlSeconds < 1 || expected.maxTtlSeconds > 3600) errors.push('ATTESTATION_EXPECTED_PLAN_INVALID: maxTtlSeconds');
   if (expected.ownerApprovalRequired === true) {
-    for (const key of ['ownerEvidenceRef', 'ownerScope', 'ownerActorId', 'ownerApprovedAt']) if (!expected[key]) errors.push(`ATTESTATION_EXPECTED_PLAN_MISSING: ${key}`);
+    for (const key of ['ownerEvidenceRef', 'ownerScope', 'ownerActorId', 'ownerApprovedAt']) if (typeof expected[key] !== 'string' || !expected[key].trim()) errors.push(`ATTESTATION_EXPECTED_PLAN_MISSING: ${key}`);
+    if (typeof expected.ownerApprovedAt === 'string' && !Number.isFinite(Date.parse(expected.ownerApprovedAt))) errors.push('ATTESTATION_EXPECTED_PLAN_INVALID: ownerApprovedAt');
   }
   return errors;
 }
@@ -34,7 +45,7 @@ export function evaluateTrustedAttestation({ attestation, schema, expected, tran
   if (TRANSPORT_ISSUER.get(transport) && attestation?.issuer?.type !== TRANSPORT_ISSUER.get(transport)) errors.push('ATTESTATION_TRANSPORT_ISSUER_MISMATCH');
   const bindings = attestation?.bindings || {};
   for (const key of ['repository', 'branch', 'baseSha', 'headSha', 'profileHash', 'overlayHash']) {
-    if (expected?.[key] !== undefined && bindings[key] !== expected[key]) errors.push(`ATTESTATION_BINDING_MISMATCH: ${key}`);
+    if (bindings[key] !== expected?.[key]) errors.push(`ATTESTATION_BINDING_MISMATCH: ${key}`);
   }
   const expectedPaths = [
     ['agentId', attestation?.subject?.agentId], ['executionId', attestation?.subject?.executionId],
@@ -46,7 +57,7 @@ export function evaluateTrustedAttestation({ attestation, schema, expected, tran
     ['audience', attestation?.issuer?.audience], ['trustAnchorId', attestation?.issuer?.trustAnchorId],
     ['verifierId', attestation?.verification?.verifierId], ['keyId', attestation?.verification?.keyId],
   ];
-  for (const [key, actual] of expectedPaths) if (expected?.[key] !== undefined && actual !== expected[key]) errors.push(`ATTESTATION_BINDING_MISMATCH: ${key}`);
+  for (const [key, actual] of expectedPaths) if (actual !== expected?.[key]) errors.push(`ATTESTATION_BINDING_MISMATCH: ${key}`);
   if (attestation?.verification?.signatureVerified !== true) errors.push('ATTESTATION_SIGNATURE_NOT_VERIFIED');
   if (typeof signatureVerifier !== 'function' || signatureVerifier(attestation, expected) !== true) errors.push('ATTESTATION_SIGNATURE_CRYPTOGRAPHICALLY_UNVERIFIED');
   const evaluationTime = Date.parse(now || new Date().toISOString());
@@ -71,7 +82,7 @@ export function evaluateTrustedAttestation({ attestation, schema, expected, tran
   )) errors.push('OWNER_APPROVAL_NOT_ATTESTED');
   if (ownerRequired) {
     for (const [key, actual] of [['ownerEvidenceRef', attestation.ownerApproval.evidenceRef], ['ownerScope', attestation.ownerApproval.scope], ['ownerActorId', attestation.ownerApproval.actorId], ['ownerApprovedAt', attestation.ownerApproval.approvedAt]]) {
-      if (expected?.[key] !== undefined && actual !== expected[key]) errors.push(`ATTESTATION_BINDING_MISMATCH: ${key}`);
+      if (actual !== expected?.[key]) errors.push(`ATTESTATION_BINDING_MISMATCH: ${key}`);
     }
   }
   const structuralErrors = [...new Set(errors)].sort();

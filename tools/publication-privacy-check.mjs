@@ -23,12 +23,12 @@ export function scanPublicationPrivacy(root) {
     /"client_secret"\s*:\s*"[^"\r\n]+"/,
     /"refresh_token"\s*:\s*"[^"\r\n]+"/,
     /"access_token"\s*:\s*"[^"\r\n]+"/,
-    /authorization\s*:\s*(?:bearer|basic)\s+[A-Za-z0-9._~+\/-]{16,}/i,
-    /(?:cookie|set-cookie)\s*:\s*[^\r\n=]*(?:session|auth|token)[^\r\n=]*=[^;\s\r\n]{12,}/i,
+    /(?:^|\n)\s*authorization\s*:\s*[a-z][a-z0-9_-]*\s+\S+/im,
+    /(?:^|\n)\s*(?:cookie|set-cookie)\s*:\s*\S+/im,
     /(?:^|[\s"'`{,])(?:api[_-]?key|client[_-]?secret|password|passwd|private[_-]?token|access[_-]?token|refresh[_-]?token)\s*[:=]\s*["']?[A-Za-z0-9._~+\/-]{12,}/im,
     /(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|sk-[A-Za-z0-9_-]{20,}|AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{20,}|xox[baprs]-[A-Za-z0-9-]{12,})/,
     /eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}/,
-    /[a-z][a-z0-9+.-]*:\/\/[^\s\/:@]+:[^\s\/@]{8,}@/i,
+    /[a-z][a-z0-9+.-]*:\/\/[^\s\/:@]+:[^\s\/@]+@/i,
   ];
   const findings = { personalizedPaths: [], fullAccountIds: [], scriptIds: [], secrets: [] };
   const prohibitedPaths = [];
