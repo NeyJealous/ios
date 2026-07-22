@@ -1,0 +1,21 @@
+{
+  "AgentId": "DOCUMENTATION_REVIEWER",
+  "AgentVersion": "1.0.0",
+  "GateId": "MODEL_RUNTIME_SMOKE_20260722",
+  "Branch": "feature/agent-platform-v2-integration",
+  "CommitSHA": "62129358f48b7cc98a3c2b61feef17626cf11324",
+  "ReviewScope": "Owner decision, RFC/draft ADR, current versioned evidence, immutable historical evidence and status language",
+  "FilesReviewed": ["audit/agents/OWNER-DECISION-MODEL-RUNTIME-SMOKE-2026-07-22.md", "audit/agents/MODEL_RUNTIME_SMOKE_20260722/", "rfc/RFC-AGENT-PLATFORM-V2.md", "adr/ADR-AGENT-PLATFORM-V2.md"],
+  "SpecificationReferences": ["IOS Master Specification v4.0", "IOS Agent Platform Specification v2.1", "RFC-AGENT-PLATFORM-V2", "ADR-AGENT-PLATFORM-V2"],
+  "ChecksPerformed": ["owner authorization scope", "requested/resolved wording", "provider versus execution response distinction", "latency definition", "historical/current separation", "non-activation language"],
+  "Findings": [
+    {"Severity": "LOW", "Description": "Runtime smoke remains repository-recorded observational evidence and must not be described as signed external attestation."}
+  ],
+  "Severity": "LOW",
+  "Evidence": ["AgentThreadId=/root/phase3a_documentation_review", "RFC remains READY_FOR_OWNER_REVIEW_PHASE_3A_BLOCKERS_OPEN", "ADR remains DRAFT_NOT_ACCEPTED", "Overall model status is count-neutral", "No unsupported activation or trusted-attestation PASS claim"],
+  "RequiredFixes": [],
+  "ResidualRisk": "Canonical activation remains blocked pending trusted attestation and existing RFC/ADR acceptance gates.",
+  "Status": "PASS_WITH_WARNINGS",
+  "Timestamp": "2026-07-22T19:50:00Z",
+  "ExecutionMode": "REAL_SUBAGENT"
+}
