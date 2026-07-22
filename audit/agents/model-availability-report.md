@@ -1,21 +1,25 @@
-# Model availability report — actual Codex runtime smoke
+# Model availability report
 
-Overall status: `RUNTIME_SMOKE_COMPLETE_WITH_ONE_UNAVAILABLE`
+Overall status: `PARTIAL_INSUFFICIENT_EVIDENCE`
 
-Probe window: `2026-07-22T19:22:45.0881997Z` — `2026-07-22T19:24:50.2278672Z`
-Repository HEAD at probe: `a744cbd8d4139b9a65c4d755b467767127b03117`
+Branch: `feature/agent-platform-v2-integration`
+Repository HEAD at probe: `bc3314ac6f95aa6acf15fc6a86736e4fb8a2e8da`
+Probe timestamp: `2026-07-22T08:24:31.5074370Z`
 
-| Platform model | Requested | Resolved | Result | Provider/execution response | Observed latency | Agent runtime use |
-|---|---|---|---|---|---:|---|
-| Terra | `gpt-5.6-terra`, `medium` | `gpt-5.6-terra`, `medium` | `SUCCESS` | dispatch `/root/runtime_smoke_terra`; nonce response received | 23,884 ms | yes |
-| Luna | `gpt-5.6-luna`, `medium` | — | `FAILURE` | provider rejected exact request as unknown model; no execution created | 17,259 ms | no |
-| Sol | `gpt-5.6-sol`, `high` | `gpt-5.6-sol`, `high` | `SUCCESS` | dispatch `/root/runtime_smoke_sol`; nonce response received | 24,721 ms | yes |
-| Sol Ultra | `gpt-5.6-sol`, `ultra` | `gpt-5.6-sol`, `ultra` | `SUCCESS` | dispatch `/root/runtime_smoke_sol_ultra`; nonce response received | 30,486 ms | yes |
+| Requested exact slug | Resolved | Runtime smoke | Registry status | Trusted attestation |
+|---|---|---|---|---|
+| `gpt-5.6-terra` | `gpt-5.6-terra` | dispatch accepted; probe self-report insufficient | `AVAILABLE_CANDIDATE` | `INSUFFICIENT_EVIDENCE` |
+| `gpt-5.6-sol` | `gpt-5.6-sol` | dispatch accepted; `MODEL_SMOKE_OK` | `AVAILABLE_CANDIDATE` | `INSUFFICIENT_EVIDENCE` |
+| `gpt-5.6-luna` | — | runtime catalog entry absent; not dispatched | `MODEL_NOT_AVAILABLE` | `INSUFFICIENT_EVIDENCE` |
+| `gpt-5.6-sol-pro` | — | runtime catalog entry absent; not dispatched | `MODEL_NOT_AVAILABLE` | `INSUFFICIENT_EVIDENCE` |
 
-Statuses above are derived only from the four actual Codex runtime requests and their responses. Capability lists, UI and documentation were not used to assign availability.
+The model override runtime accepted exact Terra and Sol dispatch requests (`AgentThreadId=/root/terra_smoke` and `AgentThreadId=/root/sol_smoke`). This
+is current-run availability evidence, not a signed external attestation. Terra
+returned the conservative self-report `MODEL_SMOKE_INSUFFICIENT_EVIDENCE`; Sol
+returned `MODEL_SMOKE_OK`. Neither response is promoted to trusted evidence by
+repository text.
 
-Latency is end-to-end UTC wall-clock between the timestamp immediately before the runtime request and the timestamp after execution completion/provider rejection. It includes orchestration and timestamp-call overhead and is therefore an observed upper-bound, not pure model inference latency.
-
-No substitution occurred. Luna was not replaced by Terra. `Sol Ultra` is the successfully executed `gpt-5.6-sol` runtime request with reasoning level `ultra`; it is not represented as a separate untested slug.
-
-Runtime usability is separate from platform activation. All four records retain `platformActivationEligible=false` because the external signed attestation boundary remains unavailable; this does not change the actual runtime availability result.
+Luna was not replaced by Terra. Sol Pro was not replaced by Sol and was not
+requested. Silent downgrade and substitution count are zero. Agents whose
+primary or verdict-floor model is unavailable remain `MODEL_NOT_AVAILABLE` and
+must not activate.

@@ -1,11 +1,15 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import test from 'node:test';
+import { buildModelAvailabilityJson, buildModelAvailabilityMarkdown } from '../../tools/agents/render-model-availability-report.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const registry = JSON.parse(readFileSync(resolve(root, 'architecture/agents/registry/model-availability.yaml'), 'utf8'));
-const report = JSON.parse(readFileSync(resolve(root, 'audit/agents/model-availability-report.json'), 'utf8'));
+const reportPath = resolve(root, 'audit/agents/MODEL_RUNTIME_SMOKE_20260722/model-availability-report.json');
+const markdownPath = resolve(root, 'audit/agents/MODEL_RUNTIME_SMOKE_20260722/model-availability-report.md');
+const report = JSON.parse(readFileSync(reportPath, 'utf8'));
 
 test('availability status comes only from actual Codex runtime smoke and forbids downgrade', () => {
   assert.equal(registry.policy.statusSource, 'ACTUAL_CODEX_RUNTIME_SMOKE_ONLY');
@@ -53,29 +57,24 @@ test('runtime success does not fabricate trusted activation evidence', () => {
   }
 });
 
-test('machine-readable report is a deterministic projection of the registry evidence', () => {
-  assert.equal(report.repositoryHeadAtProbe, registry.probeWindow.repositoryHead);
-  assert.equal(report.results.length, registry.models.length);
-  for (const model of registry.models) {
-    const row = report.results.find((candidate) => candidate.modelId === model.modelId);
-    assert.ok(row, model.modelId);
-    assert.equal(row.requestedModel, model.requestedSlug);
-    assert.equal(row.requestedReasoning, model.requestedReasoningLevel);
-    assert.equal(row.resolvedModel, model.resolvedSlug);
-    assert.equal(row.resolvedReasoning, model.resolvedReasoningLevel);
-    assert.equal(row.success, model.smokeResult === 'SUCCESS');
-    assert.deepEqual(row.providerResponse, model.providerDispatchResponse);
-    assert.equal(row.executionResponse, model.executionResponse);
-    assert.equal(row.latencyMs, model.observedEndToEndLatencyMs);
-    assert.equal(row.agentUsable, model.agentUsableAtRuntime);
-    assert.equal(row.trustedAttestation, model.attestationStatus);
-  }
+test('JSON and Markdown reports are deterministic full projections of registry evidence', () => {
+  assert.deepEqual(report, buildModelAvailabilityJson(registry));
+  assert.equal(readFileSync(markdownPath, 'utf8'), buildModelAvailabilityMarkdown(registry));
 });
 
-test('current RFC and draft ADR use the owner-declared Sol Ultra model set without rewriting historical evidence', () => {
-  for (const path of ['rfc/RFC-AGENT-PLATFORM-V2.md', 'adr/ADR-AGENT-PLATFORM-V2.md', 'audit/agents/phase-3a-acceptance-report.md']) {
+test('current policy uses Sol Ultra while historical Phase 3A evidence remains byte-preserved', () => {
+  for (const path of ['rfc/RFC-AGENT-PLATFORM-V2.md', 'adr/ADR-AGENT-PLATFORM-V2.md', 'audit/agents/MODEL_RUNTIME_SMOKE_20260722/acceptance-report.md']) {
     const text = readFileSync(resolve(root, path), 'utf8');
     assert.match(text, /Sol Ultra/);
     assert.doesNotMatch(text, /Luna\/Sol Pro|Luna и Sol Pro/);
+  }
+  const historical = new Map([
+    ['audit/agents/model-availability-report.json', '7fffc248a9cc65f64fbb44bb7f77504544f31070c57797b63fdcc27985ef43f9'],
+    ['audit/agents/model-availability-report.md', '5969d1b5dbad2159be3d4d76ab5716d81518d49a4d0929ea8d0e9155f68cb727'],
+    ['audit/agents/phase-3a-acceptance-report.md', '107bc414de1786be504cc386b08b57865c7fdd326e0d92fdbf3ef1f9bffdfe1a'],
+  ]);
+  for (const [path, expectedHash] of historical) {
+    const actualHash = createHash('sha256').update(readFileSync(resolve(root, path))).digest('hex');
+    assert.equal(actualHash, expectedHash, path);
   }
 });
