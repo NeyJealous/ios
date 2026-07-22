@@ -59,6 +59,7 @@ test('runtime success does not fabricate trusted activation evidence', () => {
 
 test('JSON and Markdown reports are deterministic full projections of registry evidence', () => {
   assert.deepEqual(report, buildModelAvailabilityJson(registry));
+  assert.equal(report.overallStatus, 'RUNTIME_SMOKE_COMPLETE_WITH_UNAVAILABLE_MODELS');
   assert.equal(readFileSync(markdownPath, 'utf8'), buildModelAvailabilityMarkdown(registry));
 });
 

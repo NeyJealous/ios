@@ -11,7 +11,7 @@ export function buildModelAvailabilityJson(registry) {
     branch: registry.probeWindow.branch,
     repositoryHeadAtProbe: registry.probeWindow.repositoryHead,
     overallStatus: registry.models.some((model) => model.smokeResult === 'FAILURE')
-      ? 'RUNTIME_SMOKE_COMPLETE_WITH_ONE_UNAVAILABLE'
+      ? 'RUNTIME_SMOKE_COMPLETE_WITH_UNAVAILABLE_MODELS'
       : 'RUNTIME_SMOKE_COMPLETE',
     measurement: MEASUREMENT,
     silentDowngrade: registry.policy.silentDowngradeAllowed,

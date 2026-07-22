@@ -1,6 +1,6 @@
 # Model availability report — actual Codex runtime smoke
 
-Overall status: `RUNTIME_SMOKE_COMPLETE_WITH_ONE_UNAVAILABLE`
+Overall status: `RUNTIME_SMOKE_COMPLETE_WITH_UNAVAILABLE_MODELS`
 
 Probe window: `2026-07-22T19:22:45.0881997Z` — `2026-07-22T19:24:50.2278672Z`
 Repository HEAD at probe: `a744cbd8d4139b9a65c4d755b467767127b03117`
