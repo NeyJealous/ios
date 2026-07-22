@@ -7,6 +7,7 @@ Status: `INSUFFICIENT_EVIDENCE`
 - Versioned JSON Schema связывает execution/model/profile/overlay/base/head, owner approval и independence.
 - Base-owned evaluator отделяет schema validity от trusted transport.
 - Evaluator связывает execution ID/mode, issuer/audience/trust anchor, reasoning/times/result, owner policy и verifier key с trusted expected state.
+- Trusted expected plan обязан содержать каждый binding, explicit owner-policy boolean и TTL; отсутствие любого поля fail-closed. Transport/issuer пары фиксированы.
 - JSON Schema runtime применяет используемые `format`, `maxLength`, `allOf`, `if` и `then`.
 - Boolean signature claim недостаточен: требуется внешний cryptographic verifier; replay key включает issuer, attestation ID, nonce и envelope hash.
 - Spoofed PR-authored envelope, binding mismatches, invalid schema semantics, TTL/temporal order и replay покрыты negative tests.

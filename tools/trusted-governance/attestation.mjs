@@ -1,12 +1,37 @@
 import { validateJsonSchema } from '../json-schema-validator.mjs';
 
 const TRUSTED_TRANSPORTS = new Set(['CODEX_RUNTIME_CHANNEL', 'GITHUB_OIDC_CHANNEL']);
+const REQUIRED_EXPECTED_FIELDS = [
+  'repository', 'branch', 'baseSha', 'headSha', 'profileHash', 'overlayHash',
+  'agentId', 'executionId', 'executionMode', 'independenceStatus',
+  'modelRequested', 'modelResolved', 'reasoningLevel', 'startedAt', 'completedAt', 'resultHash',
+  'issuerType', 'issuerUri', 'audience', 'trustAnchorId', 'verifierId', 'keyId',
+  'ownerApprovalRequired', 'maxTtlSeconds',
+];
+const TRANSPORT_ISSUER = new Map([
+  ['CODEX_RUNTIME_CHANNEL', 'CODEX_RUNTIME_ATTESTER'],
+  ['GITHUB_OIDC_CHANNEL', 'GITHUB_OIDC_VERIFIED'],
+]);
+
+export function validateTrustedExpectedPlan(expected) {
+  const errors = [];
+  if (!expected || typeof expected !== 'object' || Array.isArray(expected)) return ['ATTESTATION_EXPECTED_PLAN_INVALID'];
+  for (const key of REQUIRED_EXPECTED_FIELDS) if (!(key in expected)) errors.push(`ATTESTATION_EXPECTED_PLAN_MISSING: ${key}`);
+  if (typeof expected.ownerApprovalRequired !== 'boolean') errors.push('ATTESTATION_EXPECTED_PLAN_INVALID: ownerApprovalRequired');
+  if (!Number.isInteger(expected.maxTtlSeconds) || expected.maxTtlSeconds < 1 || expected.maxTtlSeconds > 3600) errors.push('ATTESTATION_EXPECTED_PLAN_INVALID: maxTtlSeconds');
+  if (expected.ownerApprovalRequired === true) {
+    for (const key of ['ownerEvidenceRef', 'ownerScope', 'ownerActorId', 'ownerApprovedAt']) if (!expected[key]) errors.push(`ATTESTATION_EXPECTED_PLAN_MISSING: ${key}`);
+  }
+  return errors;
+}
 
 export function evaluateTrustedAttestation({ attestation, schema, expected, transport, now, seenAttestationIds = [], seenReplayKeys = [], signatureVerifier, replayStore }) {
   const errors = validateJsonSchema(attestation, schema, { path: 'executionAttestation' });
+  errors.push(...validateTrustedExpectedPlan(expected));
   if (!TRUSTED_TRANSPORTS.has(transport)) {
     errors.push('ATTESTATION_ORIGIN_UNTRUSTED: repository/PR-authored evidence is insufficient');
   }
+  if (TRANSPORT_ISSUER.get(transport) && attestation?.issuer?.type !== TRANSPORT_ISSUER.get(transport)) errors.push('ATTESTATION_TRANSPORT_ISSUER_MISMATCH');
   const bindings = attestation?.bindings || {};
   for (const key of ['repository', 'branch', 'baseSha', 'headSha', 'profileHash', 'overlayHash']) {
     if (expected?.[key] !== undefined && bindings[key] !== expected[key]) errors.push(`ATTESTATION_BINDING_MISMATCH: ${key}`);
@@ -30,7 +55,7 @@ export function evaluateTrustedAttestation({ attestation, schema, expected, tran
   const startedAt = Date.parse(attestation?.execution?.startedAt || '');
   const completedAt = Date.parse(attestation?.execution?.completedAt || '');
   const verifiedAt = Date.parse(attestation?.verification?.verifiedAt || '');
-  const maxTtlMilliseconds = (expected?.maxTtlSeconds ?? 300) * 1000;
+  const maxTtlMilliseconds = (Number.isInteger(expected?.maxTtlSeconds) ? expected.maxTtlSeconds : 0) * 1000;
   if (!Number.isFinite(issuedAt) || !Number.isFinite(expiresAt) || issuedAt > evaluationTime || expiresAt <= evaluationTime || expiresAt <= issuedAt || expiresAt - issuedAt > maxTtlMilliseconds) errors.push('ATTESTATION_TIME_WINDOW_INVALID');
   if (![startedAt, completedAt, issuedAt, verifiedAt].every(Number.isFinite) || startedAt > completedAt || completedAt > issuedAt || issuedAt > verifiedAt || verifiedAt > evaluationTime) errors.push('ATTESTATION_TEMPORAL_ORDER_INVALID');
   const replayKey = [attestation?.issuer?.issuerUri, attestation?.attestationId, attestation?.nonce, attestation?.verification?.envelopeHash].join('|');

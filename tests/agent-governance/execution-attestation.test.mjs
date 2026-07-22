@@ -23,7 +23,7 @@ function envelope() {
   };
 }
 
-const expected = { repository: 'NeyJealous/ios', branch: 'feature/agent-platform-v2-integration', baseSha: gitSha, headSha, profileHash: hash, overlayHash: hash, agentId: 'architecture-reviewer', executionId: 'execution-0001', executionMode: 'REAL_SUBAGENT', independenceStatus: 'INDEPENDENT', modelRequested: 'gpt-5.6-sol', modelResolved: 'gpt-5.6-sol', reasoningLevel: 'high', startedAt: '2026-07-22T00:00:00Z', completedAt: '2026-07-22T00:01:00Z', resultHash: hash, issuerType: 'CODEX_RUNTIME_ATTESTER', issuerUri: 'https://attester.example.invalid', audience: 'ios-agent-governance', trustAnchorId: 'fixture-anchor', verifierId: 'fixture-verifier', keyId: 'fixture-key', ownerApprovalRequired: false };
+const expected = { repository: 'NeyJealous/ios', branch: 'feature/agent-platform-v2-integration', baseSha: gitSha, headSha, profileHash: hash, overlayHash: hash, agentId: 'architecture-reviewer', executionId: 'execution-0001', executionMode: 'REAL_SUBAGENT', independenceStatus: 'INDEPENDENT', modelRequested: 'gpt-5.6-sol', modelResolved: 'gpt-5.6-sol', reasoningLevel: 'high', startedAt: '2026-07-22T00:00:00Z', completedAt: '2026-07-22T00:01:00Z', resultHash: hash, issuerType: 'CODEX_RUNTIME_ATTESTER', issuerUri: 'https://attester.example.invalid', audience: 'ios-agent-governance', trustAnchorId: 'fixture-anchor', verifierId: 'fixture-verifier', keyId: 'fixture-key', ownerApprovalRequired: false, maxTtlSeconds: 300 };
 const evaluation = { now: '2026-07-22T00:02:00Z' };
 const cryptographicallyVerified = { signatureVerifier: () => true };
 
@@ -115,4 +115,22 @@ test('schema enforces uri, maxLength and conditional owner approval semantics', 
   assert.ok(result.errors.some((error) => error.includes('invalid uri')));
   assert.ok(result.errors.some((error) => error.includes('longer than maxLength')));
   assert.ok(result.errors.some((error) => error.includes('must equal schema const')));
+});
+
+test('incomplete trusted expected plan fails closed for every omitted security binding', () => {
+  for (const key of Object.keys(expected)) {
+    const incomplete = { ...expected };
+    delete incomplete[key];
+    const result = evaluateTrustedAttestation({ attestation: envelope(), schema, expected: incomplete, transport: 'CODEX_RUNTIME_CHANNEL', ...evaluation, ...cryptographicallyVerified });
+    assert.equal(result.structuralStatus, 'FAIL', key);
+    assert.ok(result.errors.includes(`ATTESTATION_EXPECTED_PLAN_MISSING: ${key}`), key);
+  }
+});
+
+test('trusted transport and issuer class must be paired', () => {
+  const claim = envelope();
+  claim.issuer.type = 'GITHUB_OIDC_VERIFIED';
+  const result = evaluateTrustedAttestation({ attestation: claim, schema, expected, transport: 'CODEX_RUNTIME_CHANNEL', ...evaluation, ...cryptographicallyVerified });
+  assert.ok(result.errors.includes('ATTESTATION_TRANSPORT_ISSUER_MISMATCH'));
+  assert.ok(result.errors.includes('ATTESTATION_BINDING_MISMATCH: issuerType'));
 });

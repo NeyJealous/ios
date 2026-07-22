@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import test from 'node:test';
 import { validateSelectionRegister, verifySelectionSources } from '../../tools/agents/validate-upstream-selection.mjs';
+import { listPinnedCatalogPaths } from '../../tools/agents/build-upstream-selection-register.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const register = JSON.parse(readFileSync(resolve(root, 'architecture/agents/registry/upstream-selection-register.yaml'), 'utf8'));
@@ -62,6 +63,15 @@ test('selection validator rejects Windows paths, duplicate profiles and malforme
   assert.ok(result.errors.some((error) => error.includes('profile collections must be arrays')));
 });
 
+test('selection validator requires exactly both unique approved repository descriptors', () => {
+  const missing = structuredClone(register); missing.repositories = [];
+  assert.ok(validateSelectionRegister(missing).errors.some((error) => error.includes('exactly two')));
+  const duplicate = structuredClone(register); duplicate.repositories[1] = structuredClone(duplicate.repositories[0]);
+  const result = validateSelectionRegister(duplicate);
+  assert.ok(result.errors.includes('duplicate repository descriptor'));
+  assert.ok(result.errors.some((error) => error.includes('repository descriptor missing')));
+});
+
 function git(cwd, args, input) {
   const result = spawnSync('git', args, { cwd, input, encoding: input === undefined ? 'utf8' : null, shell: false });
   assert.equal(result.status, 0, result.stderr?.toString() || result.stdout?.toString());
@@ -96,12 +106,25 @@ test('source verifier recomputes profile and license provenance from exact commi
     const clean = verifySelectionSources(fixture.fixtureRegister, { [fixture.repository]: fixture.repo });
     assert.equal(clean.ok, true, clean.errors.join('\n'));
     assert.equal(clean.verifiedProfiles, 1);
+    const noRoots = verifySelectionSources(fixture.fixtureRegister, {});
+    assert.equal(noRoots.ok, false);
+    assert.equal(noRoots.verifiedProfiles, 0);
+    assert.ok(noRoots.errors.some((error) => error.includes('source root required')));
     const modified = structuredClone(fixture.fixtureRegister);
     modified.selections[0].selectedProfiles[0].rawSha256 = '0'.repeat(64);
     assert.ok(verifySelectionSources(modified, { [fixture.repository]: fixture.repo }).errors.some((error) => error.includes('content hash mismatch')));
     const missing = structuredClone(fixture.fixtureRegister);
     missing.selections[0].selectedProfiles[0].sourcePath = 'categories/missing.toml';
     assert.ok(verifySelectionSources(missing, { [fixture.repository]: fixture.repo }).errors.some((error) => error.includes('unsafe or missing object mode')));
+  } finally { rmSync(fixture.repo, { recursive: true, force: true }); }
+});
+
+test('pinned catalog enumeration ignores dirty or deleted working-tree files', () => {
+  const fixture = provenanceFixture();
+  try {
+    unlinkSync(join(fixture.repo, 'categories', 'fixture.toml'));
+    const paths = listPinnedCatalogPaths(fixture.repo, fixture.fixtureRegister.repositories[0].commitSha, 'categories', '.toml');
+    assert.deepEqual(paths, ['categories/fixture.toml']);
   } finally { rmSync(fixture.repo, { recursive: true, force: true }); }
 });
 

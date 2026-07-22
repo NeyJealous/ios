@@ -50,6 +50,32 @@ test('privacy scan denies prohibited credential paths even without recognizable 
   }
 });
 
+test('privacy scan blocks tracked and untracked secret content in ordinary filenames', () => {
+  const fixtures = [
+    ['authorization', ['Authorization', ': Bearer ', 'fixtureTokenValue123456789'].join('')],
+    ['cookie', ['Cookie', ': session=', 'fixtureSessionValue12345'].join('')],
+    ['assignment', ['API', '_KEY=', 'fixtureApiValue123456'].join('')],
+    ['github', ['gh', 'p_', 'FixtureTokenValue1234567890'].join('')],
+    ['openai', ['s', 'k-', 'FixtureTokenValue1234567890'].join('')],
+    ['aws', ['AK', 'IA', 'FIXTUREVALUE123456'].join('')],
+    ['jwt', ['eyJfixtureHeader', 'fixtureSegment123', 'fixtureSignature123'].join('.')],
+    ['credential-url', ['https', '://fixture-user:', 'fixturePassword123@example.invalid'].join('')],
+  ];
+  for (const [kind, content] of fixtures) {
+    const root = mkdtempSync(join(tmpdir(), 'ios-privacy-content-'));
+    try {
+      git(root, 'init', '-b', 'main');
+      writeFileSync(join(root, 'tracked.txt'), `${content}\n`);
+      git(root, 'add', 'tracked.txt');
+      assert.deepEqual(scanPublicationPrivacy(root).findings.secrets, ['tracked.txt'], kind);
+      rmSync(join(root, 'tracked.txt'));
+      git(root, 'rm', '--cached', '--ignore-unmatch', 'tracked.txt');
+      writeFileSync(join(root, 'untracked.txt'), `${content}\n`);
+      assert.deepEqual(scanPublicationPrivacy(root).findings.secrets, ['untracked.txt'], kind);
+    } finally { rmSync(root, { recursive: true, force: true }); }
+  }
+});
+
 test('privacy scan fails closed on oversized publication inputs', () => {
   const root = mkdtempSync(join(tmpdir(), 'ios-privacy-input-'));
   try {

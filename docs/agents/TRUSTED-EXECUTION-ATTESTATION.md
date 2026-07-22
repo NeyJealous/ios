@@ -19,6 +19,8 @@ Envelope связывает одну независимую execution с `agentI
 
 Base-owned verifier получает attestation через отдельный trusted input, а не ищет её внутри candidate tree. Он повторно связывает repository, branch, base/head SHA, execution ID/mode, independence, agent/profile/overlay, requested/resolved model, reasoning, execution times, result hash, issuer/audience/trust anchor и verifier key с ожидаемым execution plan. Owner-required policy выводится из trusted base state, а не из claim. Любое несовпадение даёт `INSUFFICIENT_EVIDENCE`.
 
+Trusted expected plan сам является обязательным contract: отсутствие любого security-critical binding либо явного boolean `ownerApprovalRequired` считается ошибкой. Transport и issuer образуют фиксированную пару: `CODEX_RUNTIME_CHANNEL` только с `CODEX_RUNTIME_ATTESTER`, `GITHUB_OIDC_CHANNEL` только с `GITHUB_OIDC_VERIFIED`.
+
 ## Owner approval и independence
 
 Owner approval — отдельная attestable decision. Repository-файл может хранить текст решения для audit trail, но trusted envelope должен ссылаться на внешний идентификатор решения и подтверждать actor/time/scope. Отсутствие approval при `required=true` блокирует verdict. Attestation не заменяет merge или deployment approval.

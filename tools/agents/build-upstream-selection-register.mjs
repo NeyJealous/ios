@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { createHash } from 'node:crypto';
-import { lstatSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
-import { relative, resolve } from 'node:path';
+import { writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 const PINS = {
@@ -65,17 +65,13 @@ function parseArgs(argv) {
   return result;
 }
 
-function walk(root, accept, output = []) {
-  for (const entry of readdirSync(root, { withFileTypes: true })) {
-    const path = resolve(root, entry.name);
-    if (entry.isSymbolicLink()) throw new Error(`Symlink forbidden: ${path}`);
-    if (entry.isDirectory()) walk(path, accept, output);
-    else if (entry.isFile() && accept(path)) output.push(path);
-  }
-  return output;
-}
-
 function sha(bytes) { return createHash('sha256').update(bytes).digest('hex'); }
+
+export function listPinnedCatalogPaths(root, commitSha, prefix, extension) {
+  const result = spawnSync('git', ['-c', 'core.hooksPath=', '--no-optional-locks', 'ls-tree', '-r', '-z', '--name-only', commitSha, '--', prefix], { cwd: root, encoding: 'utf8', shell: false });
+  if (result.status !== 0) throw new Error(`Cannot enumerate pinned Git tree: ${prefix}`);
+  return result.stdout.split('\0').filter((path) => path.endsWith(extension)).sort();
+}
 
 function gitBlob(root, commitSha, sourcePath) {
   const mode = spawnSync('git', ['-c', 'core.hooksPath=', '--no-optional-locks', 'ls-tree', commitSha, '--', sourcePath], { cwd: root, encoding: 'utf8', shell: false });
@@ -91,10 +87,7 @@ function gitHead(root) {
   return result.stdout.trim();
 }
 
-function record(repoKey, root, absolutePath) {
-  const stat = lstatSync(absolutePath);
-  if (!stat.isFile() || stat.isSymbolicLink()) throw new Error(`Unsafe source: ${absolutePath}`);
-  const sourcePath = relative(root, absolutePath).replaceAll('\\', '/');
+function record(repoKey, root, sourcePath) {
   if (!sourcePath || sourcePath.startsWith('../') || sourcePath.includes('/../')) throw new Error(`Path escape: ${sourcePath}`);
   const raw = gitBlob(root, PINS[repoKey].commitSha, sourcePath);
   const text = raw.toString('utf8');
@@ -118,17 +111,18 @@ function main() {
   const roots = { V: resolve(args['voltagent-root']), W: resolve(args['wshobson-root']) };
   for (const key of ['V', 'W']) {
     if (gitHead(roots[key]) !== PINS[key].commitSha) throw new Error(`${key} checkout does not match pinned commit`);
-    if (!readFileSync(resolve(roots[key], 'LICENSE'), 'utf8').startsWith('MIT License')) throw new Error(`${key} license mismatch`);
+    const license = gitBlob(roots[key], PINS[key].commitSha, PINS[key].licensePath);
+    if (!license.toString('utf8').startsWith('MIT License') || sha(license) !== PINS[key].licenseRawSha256) throw new Error(`${key} license mismatch`);
   }
   const catalogs = {
-    V: walk(resolve(roots.V, 'categories'), (path) => path.endsWith('.toml')),
-    W: walk(roots.W, (path) => path.endsWith('.md') && /[\\/]agents[\\/]/.test(path)),
+    V: listPinnedCatalogPaths(roots.V, PINS.V.commitSha, 'categories', '.toml'),
+    W: listPinnedCatalogPaths(roots.W, PINS.W.commitSha, 'plugins', '.md').filter((path) => /(^|\/)agents\//.test(path)),
   };
   const byBase = {};
   for (const key of ['V', 'W']) {
     byBase[key] = new Map();
     for (const path of catalogs[key]) {
-      const base = path.split(/[\\/]/).at(-1).replace(/\.(?:toml|md)$/, '');
+      const base = path.split('/').at(-1).replace(/\.(?:toml|md)$/, '');
       if (!byBase[key].has(base)) byBase[key].set(base, []);
       byBase[key].get(base).push(path);
     }
@@ -138,7 +132,7 @@ function main() {
   for (const [agentId, sources] of Object.entries(SELECTED)) {
     const profiles = sources.map((source) => {
       const [repoKey, sourcePath] = source.split(':', 2);
-      return record(repoKey, roots[repoKey], resolve(roots[repoKey], ...sourcePath.split('/')));
+      return record(repoKey, roots[repoKey], sourcePath);
     });
     selections.push({ agentId, status: 'SELECTED', decisionReason: 'Specification provides deterministic exact components and order', selectedProfiles: profiles, candidateProfiles: [] });
   }
@@ -163,4 +157,4 @@ function main() {
   writeFileSync(resolve(args.output), `${JSON.stringify(output, null, 2)}\n`, 'utf8');
 }
 
-main();
+if (process.argv[1] && resolve(process.argv[1]) === resolve(import.meta.filename)) main();

@@ -15,6 +15,10 @@ regular-file object modes, recomputes all profile IDs and raw/normalized hashes,
 and verifies the MIT license bytes against separately recorded license hashes.
 Missing source roots, missing blobs, symlink/submodule modes and modified
 content fail closed. The catalog walk is separator-neutral on Windows/Linux.
+Candidate enumeration uses `git ls-tree -r` at the exact pin, so dirty or
+deleted working-tree files cannot alter the owner-choice catalog. Validation
+requires exactly the two approved unique repository descriptors and both
+source roots; `verifiedProfiles` counts only fully rehashed blobs.
 
 ## Result
 

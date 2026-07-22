@@ -23,6 +23,12 @@ export function scanPublicationPrivacy(root) {
     /"client_secret"\s*:\s*"[^"\r\n]+"/,
     /"refresh_token"\s*:\s*"[^"\r\n]+"/,
     /"access_token"\s*:\s*"[^"\r\n]+"/,
+    /authorization\s*:\s*(?:bearer|basic)\s+[A-Za-z0-9._~+\/-]{16,}/i,
+    /(?:cookie|set-cookie)\s*:\s*[^\r\n=]*(?:session|auth|token)[^\r\n=]*=[^;\s\r\n]{12,}/i,
+    /(?:^|[\s"'`{,])(?:api[_-]?key|client[_-]?secret|password|passwd|private[_-]?token|access[_-]?token|refresh[_-]?token)\s*[:=]\s*["']?[A-Za-z0-9._~+\/-]{12,}/im,
+    /(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|sk-[A-Za-z0-9_-]{20,}|AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{20,}|xox[baprs]-[A-Za-z0-9-]{12,})/,
+    /eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}/,
+    /[a-z][a-z0-9+.-]*:\/\/[^\s\/:@]+:[^\s\/@]{8,}@/i,
   ];
   const findings = { personalizedPaths: [], fullAccountIds: [], scriptIds: [], secrets: [] };
   const prohibitedPaths = [];
@@ -58,7 +64,7 @@ export function scanPublicationPrivacy(root) {
     if (accountId.test(content)) findings.fullAccountIds.push(file);
     scriptId.lastIndex = 0;
     if (scriptId.test(content)) findings.scriptIds.push(file);
-    if (secrets.some((pattern) => pattern.test(content))) findings.secrets.push(file);
+    if (secrets.some((pattern) => { pattern.lastIndex = 0; return pattern.test(content); })) findings.secrets.push(file);
   }
   const trackedClasp = trackedFiles.filter((file) => /(^|\/)\.clasp\.json$/i.test(file));
   const trackedArchives = trackedFiles.filter((file) => /\.(?:zip|xlsx?|csv|tsv)$/i.test(file));

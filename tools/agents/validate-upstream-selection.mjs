@@ -15,8 +15,13 @@ export function validateSelectionRegister(register) {
   if (register.schemaVersion !== '1.0.0') errors.push('unsupported schemaVersion');
   if (register.activationAllowed !== false) errors.push('activation must remain disabled');
   if (!Array.isArray(register.selections) || register.selections.length !== 44) errors.push('register must contain 44 IOS agents');
+  const descriptors = Array.isArray(register.repositories) ? register.repositories : [];
+  if (descriptors.length !== PINS.size) errors.push('repositories must contain exactly two approved descriptors');
+  const descriptorNames = new Set(descriptors.map((item) => item.repository));
+  if (descriptorNames.size !== descriptors.length) errors.push('duplicate repository descriptor');
+  for (const repositoryName of PINS.keys()) if (!descriptorNames.has(repositoryName)) errors.push(`${repositoryName}: repository descriptor missing`);
   const ids = new Set();
-  for (const repository of register.repositories || []) {
+  for (const repository of descriptors) {
     if (PINS.get(repository.repository) !== repository.commitSha) errors.push(`${repository.repository}: invalid repository pin`);
     if (repository.license !== 'MIT' || repository.licensePath !== 'LICENSE') errors.push(`${repository.repository}: invalid license declaration`);
     if (!/^[0-9a-f]{64}$/.test(repository.licenseRawSha256 || '') || !/^[0-9a-f]{64}$/.test(repository.licenseNormalizedSha256 || '')) errors.push(`${repository.repository}: invalid license hash`);
@@ -35,6 +40,7 @@ export function validateSelectionRegister(register) {
     const rowIds = new Set();
     for (const profile of [...selected, ...candidates]) {
       if (PINS.get(profile.repository) !== profile.commitSha) errors.push(`${selection.agentId}: unapproved repository/commit`);
+      if (!descriptorNames.has(profile.repository)) errors.push(`${selection.agentId}: profile repository descriptor missing`);
       if (!profile.sourcePath || /^[A-Za-z]:|^\/|^\\|\\/.test(profile.sourcePath) || profile.sourcePath.split('/').includes('..')) errors.push(`${selection.agentId}: unsafe sourcePath`);
       if (!profile.profileId) errors.push(`${selection.agentId}: missing profileId`);
       if (!/^[0-9a-f]{64}$/.test(profile.rawSha256 || '') || !/^[0-9a-f]{64}$/.test(profile.normalizedSha256 || '')) errors.push(`${selection.agentId}: invalid hash`);
@@ -63,7 +69,8 @@ function normalizedHash(bytes) { return hash(Buffer.from(bytes.toString('utf8').
 
 export function verifySelectionSources(register, repositoryRoots) {
   const errors = [];
-  const verified = new Set();
+  const attempted = new Set();
+  let verifiedProfiles = 0;
   const roots = new Map(Object.entries(repositoryRoots || {}));
   for (const repository of register.repositories || []) {
     const root = roots.get(repository.repository);
@@ -81,10 +88,10 @@ export function verifySelectionSources(register, repositoryRoots) {
   for (const selection of register.selections || []) {
     for (const profile of [...(selection.selectedProfiles || []), ...(selection.candidateProfiles || [])]) {
       const key = `${profile.repository}:${profile.sourcePath}`;
-      if (verified.has(key)) continue;
-      verified.add(key);
+      if (attempted.has(key)) continue;
+      attempted.add(key);
       const root = roots.get(profile.repository);
-      if (!root) continue;
+      if (!root) { errors.push(`${key}: source root required`); continue; }
       try {
         const mode = git(root, ['ls-tree', profile.commitSha, '--', profile.sourcePath]).trim().split(/\s+/)[0];
         if (mode !== '100644' && mode !== '100755') { errors.push(`${key}: unsafe or missing object mode ${mode || '<missing>'}`); continue; }
@@ -93,10 +100,11 @@ export function verifySelectionSources(register, repositoryRoots) {
         const text = raw.toString('utf8');
         const actualId = profile.sourcePath.endsWith('.toml') ? /^name\s*=\s*["']([^"']+)["']/m.exec(text)?.[1] : /^name:\s*(.+?)\s*$/m.exec(text)?.[1];
         if (actualId?.trim() !== profile.profileId) errors.push(`${key}: profile ID mismatch`);
+        if (hash(raw) === profile.rawSha256 && normalizedHash(raw) === profile.normalizedSha256 && actualId?.trim() === profile.profileId) verifiedProfiles += 1;
       } catch (error) { errors.push(`${key}: ${error.message}`); }
     }
   }
-  return { ok: errors.length === 0, verifiedProfiles: verified.size, errors };
+  return { ok: errors.length === 0, verifiedProfiles, errors };
 }
 
 function main() {
