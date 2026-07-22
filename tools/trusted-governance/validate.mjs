@@ -99,6 +99,10 @@ export function validateTrusted(options) {
     path === 'tools/json-schema-validator.mjs' ||
     path === 'tools/agent-governance-lib.mjs' ||
     path === 'architecture/agents/schemas/execution-attestation.schema.json' ||
+    path === 'specification/NORMATIVE-SOURCE-REGISTER.json' ||
+    path === 'specification/IOS_Master_Specification_v4.0_Package.manifest.json' ||
+    path.startsWith('specification/IOS_Master_Specification_v4.0_Package/') ||
+    path.startsWith('specification/agent-platform/v2.1/') ||
     /^architecture\/agents\/(?:agent-registry|review-matrix|review-contract|review-manifest)\.schema\.json$/.test(path));
   if (trustRootChanged) errors.push('TRUST_ROOT_CHANGE_REQUIRES_OWNER_GATE');
 

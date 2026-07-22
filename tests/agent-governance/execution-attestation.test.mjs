@@ -69,3 +69,15 @@ test('expired and replayed envelopes fail closed', () => {
   assert.ok(result.errors.includes('ATTESTATION_TIME_WINDOW_INVALID'));
   assert.ok(result.errors.includes('ATTESTATION_REPLAY_DETECTED'));
 });
+
+test('complete owner approval is structurally valid but still not trusted', () => {
+  const claim = envelope();
+  claim.ownerApproval = {
+    required: true, decision: 'APPROVED', evidenceRef: 'owner-decision:fixture-1',
+    scope: 'PHASE_3A_ONLY', actorId: 'owner-fixture', approvedAt: '2026-07-22T00:00:30Z',
+  };
+  const result = evaluateTrustedAttestation({ attestation: claim, schema, expected, transport: 'CODEX_RUNTIME_CHANNEL', ...evaluation });
+  assert.equal(result.status, 'INSUFFICIENT_EVIDENCE');
+  assert.equal(result.structuralStatus, 'PASS');
+  assert.deepEqual(result.errors, ['TRUSTED_ATTESTATION_PROVIDER_NOT_CONFIGURED']);
+});

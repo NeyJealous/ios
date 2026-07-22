@@ -209,6 +209,8 @@ test('trusted validator requires an owner gate for every trust-root modification
     'tools/agent-governance-lib.mjs',
     'architecture/agents/review-contract.schema.json',
     'architecture/agents/schemas/execution-attestation.schema.json',
+    'specification/NORMATIVE-SOURCE-REGISTER.json',
+    'specification/IOS_Master_Specification_v4.0_Package/specification/v4.0/20_AGENT_GOVERNANCE.md',
   ];
   for (const path of paths) {
     const fixture = createTrustedFixture();

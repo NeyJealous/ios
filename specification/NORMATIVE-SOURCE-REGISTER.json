@@ -5,7 +5,10 @@
     "version": "4.0",
     "ownerDecision": "audit/agents/OWNER-DECISION-AGENT-PLATFORM-V2.md",
     "repositoryRoot": "specification/IOS_Master_Specification_v4.0_Package",
-    "ownerProvidedPackageSha256": "a8e941965c140c88434dc14804c256b83a87da40ca896c0674be319863ace889",
+    "ownerProvidedArchiveSha256": "a8e941965c140c88434dc14804c256b83a87da40ca896c0674be319863ace889",
+    "archiveHashAlgorithm": "SHA-256 over owner-provided ZIP bytes",
+    "archiveEvidenceStatus": "ACQUISITION_VERIFIED_ARCHIVE_NOT_TRACKED",
+    "treeManifest": "specification/IOS_Master_Specification_v4.0_Package.manifest.json",
     "retrievedAt": "2026-07-22",
     "status": "VERSIONED_IMMUTABLE_SOURCE"
   },
