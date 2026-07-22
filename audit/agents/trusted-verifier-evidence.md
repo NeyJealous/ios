@@ -16,7 +16,7 @@ Status: `LOCAL_IMPLEMENTATION_PASS_EXTERNAL_EVIDENCE_MISSING`
 
 ## Local evidence
 
-The governance suite contains positive and adversarial tests for head validator self-weakening, trust-root mutation, malformed SHA, symlink/submodule index modes, zero-agent blocking and spoofed execution evidence. Phase 3A execution results are recorded in the final task report/commit evidence.
+The governance suite contains positive and adversarial tests for head validator self-weakening, trust-root mutation, malformed SHA, symlink/submodule index modes, zero-agent blocking and spoofed execution evidence. Final local run on reviewed implementation `54fe944138d304e47d693dd508a507a92e7dc2ac`: `135 total`, `134 PASS`, `0 FAIL`, `1` Windows filesystem-symlink fixture skipped. Governance and non-agent validators, privacy scan, exact pinned-source replay for `102` unique profile paths, and `git diff --check` passed.
 
 ## Evidence not available locally
 

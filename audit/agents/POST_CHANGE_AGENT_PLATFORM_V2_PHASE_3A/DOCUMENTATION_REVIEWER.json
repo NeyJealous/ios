@@ -1,0 +1,19 @@
+{
+  "AgentId": "DOCUMENTATION_REVIEWER",
+  "AgentVersion": "1.0.0",
+  "GateId": "POST_CHANGE_AGENT_PLATFORM_V2_PHASE_3A",
+  "Branch": "feature/agent-platform-v2-integration",
+  "CommitSHA": "54fe944138d304e47d693dd508a507a92e7dc2ac",
+  "ReviewScope": "Authoritative source transition, RFC/ADR status and evidence-claim integrity",
+  "FilesReviewed": ["specification/", "rfc/RFC-AGENT-PLATFORM-V2.md", "adr/ADR-AGENT-PLATFORM-V2.md", "docs/agents/", "audit/agents/"],
+  "SpecificationReferences": ["IOS Master Specification v4.0", "IOS Agent Platform Specification v2.1", "Correction Memo v1", "NORMATIVE-SOURCE-REGISTER"],
+  "ChecksPerformed": ["normative hashes and source precedence", "RFC/ADR lifecycle wording", "owner scope", "model and attestation claim honesty", "selection and activation wording", "runtime path exclusion"],
+  "Findings": [{"Severity": "LOW", "Description": "Windows symlink publication behavior remains unexecuted and is not represented as PASS."}],
+  "Severity": "LOW",
+  "Evidence": ["AgentThreadId=/root/phase3a_documentation_review", "RFC status READY_FOR_OWNER_REVIEW_PHASE_3A_BLOCKERS_OPEN", "ADR status DRAFT_NOT_ACCEPTED", "13 SELECTED / 31 REQUIRES_OWNER_DECISION / 0 not found", "Requested/resolved runtime role model gpt-5.6-terra; trusted attestation=INSUFFICIENT_EVIDENCE"],
+  "RequiredFixes": [],
+  "ResidualRisk": "Canonical-base GitHub and trusted attestation evidence remain absent.",
+  "Status": "PASS_WITH_WARNINGS",
+  "Timestamp": "2026-07-22T19:02:00Z",
+  "ExecutionMode": "REAL_SUBAGENT"
+}
