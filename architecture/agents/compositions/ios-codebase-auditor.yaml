@@ -58,7 +58,7 @@
   "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml",
   "overlayHash": "d91b146dbbed3b0072d548764d7b1da298435c079cb2c0cab3c2d2b84fce7443",
   "generatedPath": ".codex/agents/ios-codebase-auditor.toml",
-  "generatedHash": null,
+  "generatedHash": "bbb2bf9c5628d715060d1950808bab43664eec5af6b97ef8f6b4c2100943892a",
   "upstreamCompositionHash": "626944224e588160c794b403f13d5108c5a9fae1d7ddc4020db148597b2029d5",
   "status": "PROVISIONAL",
   "activationEligible": false,

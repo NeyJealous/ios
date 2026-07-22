@@ -6,51 +6,51 @@
     {
       "agentId": "ios-agent-orchestrator",
       "compositionPath": "architecture/agents/compositions/ios-agent-orchestrator.yaml",
-      "compositionHash": "7d031aefb9a2ebd69a013bbac58baf0fd34fb4bc22120406d2536f4a48b56c46",
+      "compositionHash": "e618661149bd1e42e06fe2957be486bb78e21b38464e9f91d2dcbc8a6c090b08",
       "upstreamCompositionHash": "a774ba47839dc25e1b860531c682a4939fdb40f2e04bcd66d2552f6e77f60741",
       "overlayHash": "1478dfd701a691c1a5bff0a210ec19bf1ee749b690f8f92b6024cd531e8e44c3",
       "generatedPath": ".codex/agents/ios-agent-orchestrator.toml",
-      "generatedHash": null,
+      "generatedHash": "9ff0ed03bd5c744d5afe15f6cb57ca229cfab34b22087fa2a7ed275531aa9891",
       "status": "PROVISIONAL"
     },
     {
       "agentId": "agent-governance-auditor",
       "compositionPath": "architecture/agents/compositions/agent-governance-auditor.yaml",
-      "compositionHash": "df298d3b4e6e6377c4073f3da89ca5b494af4fb8bf071779d1a847266dd8c1c5",
+      "compositionHash": "c862e7411a2e456de031fd39e8dfd40bad4a3d46e5f9e2f44b46eb09e47e41a8",
       "upstreamCompositionHash": "eb122fcba1ed79a23f43ca5ffc535fe2662d475a7e23484d08d004651b148483",
       "overlayHash": "e024df0d9028e30e8316b97795d2196c032746cd35512df3a8bb8053ca083303",
       "generatedPath": ".codex/agents/agent-governance-auditor.toml",
-      "generatedHash": null,
+      "generatedHash": "30fd4451fbd21ad7b5f32ce634940c55fcf0f3ee07a59f0f34c8bb48d97310e3",
       "status": "PROVISIONAL"
     },
     {
       "agentId": "security-privacy-auditor",
       "compositionPath": "architecture/agents/compositions/security-privacy-auditor.yaml",
-      "compositionHash": "9fef3c686136b2e24fd71182cf8fb40aca816edebf9bea41bf99d64318497f18",
+      "compositionHash": "10064ea7710fa0778c3a26bf35e6fbdd37c4b03c24a1e21fa60c5b250833c740",
       "upstreamCompositionHash": "07130ca621c6b05f858bbfbf5ba2074852e5154ed46e9b8adb0d8627abf5aff9",
       "overlayHash": "cd0a8c4f4a286fc82987fab32b23fa9fba9db4c7a4536877e99a528cd6acf093",
       "generatedPath": ".codex/agents/security-privacy-auditor.toml",
-      "generatedHash": null,
+      "generatedHash": "0353355931040b791d321cb8056fa2108ae7b67df10f036dfd41484222affa7d",
       "status": "PROVISIONAL"
     },
     {
       "agentId": "audit-traceability-reviewer",
       "compositionPath": "architecture/agents/compositions/audit-traceability-reviewer.yaml",
-      "compositionHash": "dd6153ea93657077e461e1d5f7c2d1b4d277bd74e96f888f5294f6dcd35f5241",
+      "compositionHash": "168e6882eb1d5ad8cb827e968b5e86fd2fcfdd03cfcf0c5803f669781a3cb2ea",
       "upstreamCompositionHash": "0a4309df123f0dbbf53c41d515f7647da5c01ff41418f1407a1b09f911224c94",
       "overlayHash": "527b27aa75a7dce2f2e8ed93df3b6257c80f6a9553b6bee46ea82c7c8a1765a2",
       "generatedPath": ".codex/agents/audit-traceability-reviewer.toml",
-      "generatedHash": null,
+      "generatedHash": "4fb5c17e0c6ee5ba5bfba07cc8883822e5caa355b80906b2c0cf0de088c2899a",
       "status": "PROVISIONAL"
     },
     {
       "agentId": "ios-codebase-auditor",
       "compositionPath": "architecture/agents/compositions/ios-codebase-auditor.yaml",
-      "compositionHash": "6edafcbe19de03fa29501ab3ebd2916d32dd32bba38d865e73b62107bba16fa9",
+      "compositionHash": "5d45b1597cf48a438a9dc3ae602f4c845c0536b4860ce67ce2e80d354682d587",
       "upstreamCompositionHash": "626944224e588160c794b403f13d5108c5a9fae1d7ddc4020db148597b2029d5",
       "overlayHash": "d91b146dbbed3b0072d548764d7b1da298435c079cb2c0cab3c2d2b84fce7443",
       "generatedPath": ".codex/agents/ios-codebase-auditor.toml",
-      "generatedHash": null,
+      "generatedHash": "bbb2bf9c5628d715060d1950808bab43664eec5af6b97ef8f6b4c2100943892a",
       "status": "PROVISIONAL"
     }
   ]

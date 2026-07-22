@@ -54,9 +54,13 @@ export function validateGeneratedAgents(root) {
       if (existsSync(profilePath)) {
         const profileBytes = readFileSync(profilePath);
         const profileText = profileBytes.toString('utf8');
+        const instructionLiteral = /^developer_instructions = (.+)$/m.exec(profileText)?.[1];
+        let instructions = '';
+        try { instructions = JSON.parse(instructionLiteral); } catch { errors.push(`${agentId}:GENERATED_INSTRUCTIONS_INVALID`); }
         if (composition.generatedHash !== sha(profileBytes) || lockEntry.generatedHash !== composition.generatedHash) errors.push(`${agentId}:GENERATED_HASH_MISMATCH`);
-        if (!profileText.includes('# status = PROVISIONAL') || !profileText.includes('# activationEligible = false') || !profileText.includes(JSON.stringify(overlay).slice(1, -1).split(',')[0])) errors.push(`${agentId}:GENERATED_METADATA_MISSING`);
-        for (const base of composition.bases) if (!profileText.includes(readFileSync(resolve(root, base.snapshotPath), 'utf8'))) errors.push(`${agentId}:UPSTREAM_BASE_NOT_FULLY_INCLUDED`);
+        if (!profileText.includes('# status = PROVISIONAL') || !profileText.includes('# activationEligible = false') || !instructions.includes(JSON.stringify(overlay, null, 2))) errors.push(`${agentId}:GENERATED_METADATA_MISSING`);
+        if (!profileText.includes(`model = ${JSON.stringify(overlay.modelContract.primaryModel)}`) || !profileText.includes(`model_reasoning_effort = ${JSON.stringify(overlay.modelContract.primaryReasoning)}`) || !profileText.includes('sandbox_mode = "read-only"')) errors.push(`${agentId}:GENERATED_MODEL_OR_SANDBOX_MISMATCH`);
+        for (const base of composition.bases) if (!instructions.includes(readFileSync(resolve(root, base.snapshotPath), 'utf8'))) errors.push(`${agentId}:UPSTREAM_BASE_NOT_FULLY_INCLUDED`);
       } else if (composition.generatedHash !== null || lockEntry.generatedHash !== null) errors.push(`${agentId}:GENERATED_PROFILE_MISSING`);
     }
     const agentDir = resolve(root, '.codex/agents');

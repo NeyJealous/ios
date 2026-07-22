@@ -58,7 +58,7 @@
   "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml",
   "overlayHash": "cd0a8c4f4a286fc82987fab32b23fa9fba9db4c7a4536877e99a528cd6acf093",
   "generatedPath": ".codex/agents/security-privacy-auditor.toml",
-  "generatedHash": null,
+  "generatedHash": "0353355931040b791d321cb8056fa2108ae7b67df10f036dfd41484222affa7d",
   "upstreamCompositionHash": "07130ca621c6b05f858bbfbf5ba2074852e5154ed46e9b8adb0d8627abf5aff9",
   "status": "PROVISIONAL",
   "activationEligible": false,
