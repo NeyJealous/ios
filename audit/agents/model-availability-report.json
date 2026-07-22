@@ -1,45 +1,16 @@
 {
-  "schemaVersion": "1.0.0",
-  "testedAt": "2026-07-22T08:24:31.5074370Z",
+  "schemaVersion": "1.1.0",
+  "testedAt": "2026-07-22T19:24:50.2278672Z",
   "branch": "feature/agent-platform-v2-integration",
-  "repositoryHeadAtProbe": "bc3314ac6f95aa6acf15fc6a86736e4fb8a2e8da",
-  "overallStatus": "PARTIAL_INSUFFICIENT_EVIDENCE",
+  "repositoryHeadAtProbe": "a744cbd8d4139b9a65c4d755b467767127b03117",
+  "overallStatus": "RUNTIME_SMOKE_COMPLETE_WITH_ONE_UNAVAILABLE",
+  "measurement": "UTC wall-clock from immediately before dispatch request through completion/rejection timestamp; includes orchestration and timestamp-call overhead",
   "silentDowngrade": false,
   "productionWrites": 0,
   "results": [
-    {
-      "requested": "gpt-5.6-terra",
-      "resolved": "gpt-5.6-terra",
-      "runtimeDispatch": "ACCEPTED",
-      "executionReference": "AgentThreadId=/root/terra_smoke",
-      "probeResponse": "MODEL_SMOKE_INSUFFICIENT_EVIDENCE",
-      "availability": "AVAILABLE_CANDIDATE",
-      "trustedAttestation": "INSUFFICIENT_EVIDENCE"
-    },
-    {
-      "requested": "gpt-5.6-sol",
-      "resolved": "gpt-5.6-sol",
-      "runtimeDispatch": "ACCEPTED",
-      "executionReference": "AgentThreadId=/root/sol_smoke",
-      "probeResponse": "MODEL_SMOKE_OK",
-      "availability": "AVAILABLE_CANDIDATE",
-      "trustedAttestation": "INSUFFICIENT_EVIDENCE"
-    },
-    {
-      "requested": "gpt-5.6-luna",
-      "resolved": null,
-      "runtimeDispatch": "NOT_ATTEMPTED_CATALOG_ABSENT",
-      "probeResponse": null,
-      "availability": "MODEL_NOT_AVAILABLE",
-      "trustedAttestation": "INSUFFICIENT_EVIDENCE"
-    },
-    {
-      "requested": "gpt-5.6-sol-pro",
-      "resolved": null,
-      "runtimeDispatch": "NOT_ATTEMPTED_CATALOG_ABSENT",
-      "probeResponse": null,
-      "availability": "MODEL_NOT_AVAILABLE",
-      "trustedAttestation": "INSUFFICIENT_EVIDENCE"
-    }
+    {"modelId":"terra","requestedModel":"gpt-5.6-terra","requestedReasoning":"medium","resolvedModel":"gpt-5.6-terra","resolvedReasoning":"medium","success":true,"providerResponse":{"task_name":"/root/runtime_smoke_terra"},"executionResponse":"MODEL_RUNTIME_SMOKE_OK terra nonce=TERRA-20260722-192245Z","latencyMs":23884,"agentUsable":true,"trustedAttestation":"INSUFFICIENT_EVIDENCE"},
+    {"modelId":"luna","requestedModel":"gpt-5.6-luna","requestedReasoning":"medium","resolvedModel":null,"resolvedReasoning":null,"success":false,"providerResponse":"Unknown model gpt-5.6-luna for spawn_agent","executionResponse":null,"latencyMs":17259,"agentUsable":false,"trustedAttestation":"INSUFFICIENT_EVIDENCE"},
+    {"modelId":"sol","requestedModel":"gpt-5.6-sol","requestedReasoning":"high","resolvedModel":"gpt-5.6-sol","resolvedReasoning":"high","success":true,"providerResponse":{"task_name":"/root/runtime_smoke_sol"},"executionResponse":"MODEL_RUNTIME_SMOKE_OK sol nonce=SOL-20260722-192345Z","latencyMs":24721,"agentUsable":true,"trustedAttestation":"INSUFFICIENT_EVIDENCE"},
+    {"modelId":"sol-ultra","requestedModel":"gpt-5.6-sol","requestedReasoning":"ultra","resolvedModel":"gpt-5.6-sol","resolvedReasoning":"ultra","success":true,"providerResponse":{"task_name":"/root/runtime_smoke_sol_ultra"},"executionResponse":"MODEL_RUNTIME_SMOKE_OK sol-ultra nonce=SOL-ULTRA-20260722-192419Z","latencyMs":30486,"agentUsable":true,"trustedAttestation":"INSUFFICIENT_EVIDENCE"}
   ]
 }
