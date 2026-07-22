@@ -27,52 +27,53 @@ test('all governance JSON schemas are syntactically valid draft 2020-12 document
   }
 });
 
-test('registry rejects duplicate, unknown status, remote permission, source and output omissions', () => {
-  const copy = structuredClone(registry);
-  copy.Agents.push(structuredClone(copy.Agents[0]));
-  copy.Agents[0].Status = 'MAGIC';
-  copy.Agents[1].CanWriteRemote = true;
-  copy.Agents[2].SpecificationSources = [];
-  copy.Agents[3].RequiredOutputs = [];
-  const errors = validateRegistry(copy).join('\n');
-  for (const expected of ['duplicate AgentId', 'unknown status', 'forbidden permission', 'missing source', 'missing output contract']) {
-    assert.match(errors, new RegExp(expected));
+test('zero-agent transition removes every active registry and matrix role', () => {
+  assert.equal(registry.PlatformState, 'ZERO_AGENT_TRANSITION');
+  assert.equal(registry.ActiveCustomAgents, 0);
+  assert.deepEqual(registry.Agents, []);
+  assert.equal(matrix.PlatformState, 'ZERO_AGENT_TRANSITION');
+  assert.deepEqual(matrix.AlwaysRequiredAgents, []);
+  assert.deepEqual(matrix.FailClosed.RequiredAgents, []);
+  for (const rule of matrix.Rules) assert.deepEqual(rule.RequiredAgents, [], rule.RuleId);
+  const serialized = JSON.stringify({ registry, matrix });
+  for (const oldId of ['APPS_SCRIPT_REVIEWER', 'ARCHITECTURE_REVIEWER', 'BOND_SPECIALIST', 'COMPANY_RATING_REVIEWER', 'DOCUMENTATION_REVIEWER', 'GOOGLE_SHEETS_REVIEWER', 'INVESTMENT_LOGIC_REVIEWER', 'PERFORMANCE_AUDITOR', 'TEST_GENERATOR', 'UX_REVIEWER']) {
+    assert.equal(serialized.includes(oldId), false, `stale agent identifier: ${oldId}`);
   }
 });
 
 const cases = [
-  ['Apps Script', 'IOS_SOURCE_SNAPSHOT/work/apps-script/Core.gs', ['APPS_SCRIPT_REVIEWER', 'PERFORMANCE_AUDITOR']],
-  ['investment', 'IOS_SOURCE_SNAPSHOT/work/apps-script/StrategyEngine.gs', ['INVESTMENT_LOGIC_REVIEWER', 'ARCHITECTURE_REVIEWER']],
-  ['bonds', 'IOS_SOURCE_SNAPSHOT/work/apps-script/BondEngine.gs', ['BOND_SPECIALIST', 'INVESTMENT_LOGIC_REVIEWER']],
-  ['Sheets', 'IOS_SOURCE_SNAPSHOT/work/schema-parts/Schema_part1.gs', ['GOOGLE_SHEETS_REVIEWER', 'UX_REVIEWER', 'PERFORMANCE_AUDITOR']],
-  ['Market Regime', 'IOS_SOURCE_SNAPSHOT/work/apps-script/MarketRegime.gs', ['INVESTMENT_LOGIC_REVIEWER', 'ARCHITECTURE_REVIEWER']],
-  ['docs only', 'docs/guide.md', ['DOCUMENTATION_REVIEWER', 'TEST_GENERATOR']],
-  ['security', 'docs/security/policy.md', ['SECURITY_REVIEWER']],
-  ['workflow', '.github/workflows/check.yml', ['ARCHITECTURE_REVIEWER', 'SECURITY_REVIEWER']],
-  ['governance', 'architecture/agents/review-matrix.yaml', ['ARCHITECTURE_REVIEWER', 'SECURITY_REVIEWER']],
+  ['Apps Script', 'IOS_SOURCE_SNAPSHOT/work/apps-script/Core.gs', 'no-production-write'],
+  ['investment', 'IOS_SOURCE_SNAPSHOT/work/apps-script/StrategyEngine.gs', 'no-investment-policy-change-without-gate'],
+  ['bonds', 'IOS_SOURCE_SNAPSHOT/work/apps-script/BondEngine.gs', 'quantitative-evidence'],
+  ['Sheets', 'IOS_SOURCE_SNAPSHOT/work/schema-parts/Schema_part1.gs', 'no-sheets-write'],
+  ['Market Regime', 'IOS_SOURCE_SNAPSHOT/work/apps-script/MarketRegime.gs', 'no-r030-change'],
+  ['docs only', 'docs/guide.md', 'traceability'],
+  ['security', 'docs/security/policy.md', 'least-privilege'],
+  ['workflow', '.github/workflows/check.yml', 'fork-safety'],
+  ['governance', 'architecture/agents/review-matrix.yaml', 'governance-tamper-check'],
 ];
 
-for (const [label, path, expected] of cases) {
-  test(`matrix resolves ${label}`, () => {
+for (const [label, path, requiredControl] of cases) {
+  test(`zero-agent resolver blocks ${label} while preserving controls`, () => {
     const result = resolveRequiredAgents({ changedPaths: [path], matrix });
-    for (const id of expected) assert.ok(result.RequiredAgents.includes(id), `${label} missing ${id}`);
-    assert.ok(result.RequiredAgents.includes('DOCUMENTATION_REVIEWER'));
-    assert.ok(result.RequiredAgents.includes('TEST_GENERATOR'));
-    assert.ok(result.RequiredControls.includes('privacy'));
+    assert.deepEqual(result.RequiredAgents, []);
+    assert.equal(result.MandatoryAgentAvailability, 'NOT_AVAILABLE');
+    assert.equal(result.OverallResult, 'BLOCKED');
+    assert.equal(result.FailClosed, true);
+    assert.ok(result.BlockedByUnavailableAgents.length > 0);
+    assert.ok(result.RequiredControls.includes(requiredControl));
+    assert.ok(result.RequiredControls.includes('zero-agent-fail-closed'));
   });
 }
 
-test('mixed changes union every matching rule', () => {
+test('mixed and unknown changes remain fail-closed without restoring historical agents', () => {
   const result = resolveRequiredAgents({
-    changedPaths: ['docs/guide.md', 'IOS_SOURCE_SNAPSHOT/work/apps-script/BondEngine.gs'], matrix,
+    changedPaths: ['docs/guide.md', 'IOS_SOURCE_SNAPSHOT/work/apps-script/BondEngine.gs', 'unclassified/file.weird'], matrix,
   });
   assert.equal(result.TaskType, 'mixed/unknown');
-  assert.ok(result.RequiredAgents.includes('BOND_SPECIALIST'));
-  assert.ok(result.RequiredAgents.includes('APPS_SCRIPT_REVIEWER'));
-});
-
-test('unknown paths fail closed with broad agent set', () => {
-  const result = resolveRequiredAgents({ changedPaths: ['unclassified/file.weird'], matrix });
-  assert.equal(result.FailClosed, true);
-  assert.ok(result.RequiredAgents.length >= 9);
+  assert.deepEqual(result.RequiredAgents, []);
+  assert.deepEqual(result.UnknownPaths, ['unclassified/file.weird']);
+  assert.equal(result.MandatoryAgentAvailability, 'NOT_AVAILABLE');
+  assert.equal(result.OverallResult, 'BLOCKED');
+  assert.ok(result.BlockedByUnavailableAgents.length > 0);
 });

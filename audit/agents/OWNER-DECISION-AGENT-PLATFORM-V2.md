@@ -25,3 +25,14 @@ Terra/Sol — `AVAILABLE_CANDIDATE_PENDING_SMOKE_TEST`; Luna/Sol Pro — `UNVERI
 Старый слой может быть удалён только после PASS mixed-path, schemas, `NOT_AVAILABLE + PASS`, CRLF, add/delete/rename, non-agent validator и trusted anti-tamper checks. До этого active profiles не изменяются.
 
 Safety invariants: production writes `0`; `clasp push` `0`; deployments `0`; Sheets writes `0`; broker/API writes `0`; Market Regime influence `CLOSED`; `AppliedMultiplier = 1.00`.
+
+The last two values are the owner's required migration safety boundary, not a claim that this governance task inspected or changed production runtime. Canonical R030 risk evidence remains `OPEN` and the production multiplier remains `NOT_VERIFIED/NOT_APPROVED` unless a separately authorized remediation gate proves otherwise.
+
+## Subsequent explicit cutover authorization
+
+After the PRE_REMOVAL blockers were reported, the owner explicitly authorized
+completion of the zero-agent cutover without restoring the ten legacy profiles.
+This authorization permits removal of legacy active Registry, Review Matrix and
+Resolver bindings while preserving fail-closed `NOT_AVAILABLE/BLOCKED` safety.
+It does not accept the draft ADR, resolve upstream selections, attest models or
+executions, authorize merge/deployment, or activate Agent Platform v2 profiles.

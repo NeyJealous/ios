@@ -83,3 +83,13 @@ privacy, approval или remote-write ограничения.
 Documentation Reviewer, Test Generator и baseline security/privacy controls.
 Изменение governance-файлов требует Architecture Reviewer, Security Reviewer,
 Documentation Reviewer, owner approval и ADR при изменении модели.
+
+## Временный zero-agent transition
+
+Пока `architecture/agents/agent-registry.yaml` имеет
+`PlatformState=ZERO_AGENT_TRANSITION`, активные project-local profiles
+отсутствуют. Resolver обязан вернуть `MandatoryAgentAvailability=NOT_AVAILABLE`,
+непустой `BlockedByUnavailableAgents`, `FailClosed=true` и
+`OverallResult=BLOCKED` для любого значимого diff. Simulation и текстовые claims
+не заменяют обязательный review. Разрешение владельца на controlled removal не
+является acceptance новой платформы, merge approval или production authority.

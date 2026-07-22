@@ -23,5 +23,5 @@
 - Deployment updates: `0`.
 - Google Sheets writes: `0`.
 - Broker/API writes: `0`.
-- Market Regime production influence: `CLOSED`.
-- AppliedMultiplier: `1.00` normative invariant; production runtime was not accessed.
+- Migration authorization boundary: Market Regime production influence must remain `CLOSED` and `AppliedMultiplier` must remain `1.00`.
+- Observed production state: `NOT_VERIFIED`; production runtime was not accessed, and canonical R030 risk remains `OPEN/NOT_APPROVED`.

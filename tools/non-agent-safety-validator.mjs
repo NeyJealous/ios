@@ -60,12 +60,16 @@ export function runNonAgentSafety(root) {
   for (const id of matrix.FailClosed.RequiredAgents) if (!probe.RequiredAgents.includes(id)) errors.push(`Fail-closed probe omitted ${id}`);
 
   const unavailableProbe = {
-    AgentId: 'TEST_GENERATOR', AgentVersion: 'probe', GateId: 'probe', Branch: 'probe',
+    AgentId: 'TRANSITION_PROBE', AgentVersion: 'probe', GateId: 'probe', Branch: 'probe',
     CommitSHA: '0'.repeat(40), ReviewScope: 'probe', FilesReviewed: [], SpecificationReferences: [],
     ChecksPerformed: [], Findings: [], Severity: 'INFO', Evidence: ['probe'], RequiredFixes: [],
     ResidualRisk: 'probe', Status: 'PASS', Timestamp: '2026-01-01T00:00:00Z', ExecutionMode: 'NOT_AVAILABLE',
   };
   if (!validateReview(unavailableProbe).some((error) => error.includes('NOT_AVAILABLE'))) errors.push('NOT_AVAILABLE + PASS probe was accepted');
+  if (registry.PlatformState === 'ZERO_AGENT_TRANSITION') {
+    if (registry.Agents.length !== 0) errors.push('Zero-agent registry is not empty');
+    if (probe.OverallResult !== 'BLOCKED' || probe.MandatoryAgentAvailability !== 'NOT_AVAILABLE') errors.push('Zero-agent resolver did not block on NOT_AVAILABLE');
+  }
 
   return {
     Validator: 'IOS_NON_AGENT_SAFETY', Version: '1.0.0', OverallStatus: errors.length ? 'FAIL' : 'PASS',

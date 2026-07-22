@@ -127,7 +127,7 @@ test('trusted validator ignores a candidate that self-weakens its local validato
   }
 });
 
-test('trusted validator rejects malformed candidate review evidence even when the manifest and every report exist', () => {
+test('trusted validator blocks legacy manifest evidence in the zero-agent transition before it can pass', () => {
   const fixture = createTrustedFixture();
   const candidate = `${fixture.root}-candidate`;
   try {
@@ -144,15 +144,15 @@ test('trusted validator rejects malformed candidate review evidence even when th
 
     const result = validateTrusted(trustedOptions(fixture.root, candidate, fixture.sha, candidateSha));
     assert.equal(result.OverallStatus, 'BLOCKED');
-    assert.ok(result.IntegrityErrors.some((error) => /review DOCUMENTATION_REVIEWER.*FilesReviewed/i.test(error)));
-    assert.equal(result.MissingAgents.length, 0);
+    assert.ok(result.IntegrityErrors.includes('ZERO_AGENT_TRANSITION_MANDATORY_AGENT_NOT_AVAILABLE'));
+    assert.notEqual(result.IntegrityStatus, 'PASS');
   } finally {
     rmSync(candidate, { recursive: true, force: true });
     rmSync(fixture.root, { recursive: true, force: true });
   }
 });
 
-test('complete candidate has valid integrity but fabricated AgentThreadId cannot satisfy external attestation', () => {
+test('trusted verifier is BLOCKED in zero-agent state even with fabricated legacy REAL_SUBAGENT evidence', () => {
   const fixture = createTrustedFixture();
   const candidate = `${fixture.root}-candidate`;
   try {
@@ -168,19 +168,16 @@ test('complete candidate has valid integrity but fabricated AgentThreadId cannot
     const candidateSha = commit(candidate, 'candidate real-subagent attestation');
 
     const result = validateTrusted(trustedOptions(fixture.root, candidate, fixture.sha, candidateSha));
-    assert.equal(result.IntegrityStatus, 'PASS', result.IntegrityErrors.join('\n'));
-    assert.equal(result.AttestationStatus, 'INSUFFICIENT_EVIDENCE');
     assert.equal(result.OverallStatus, 'BLOCKED');
     assert.equal(result.TrustRootChanged, false);
-    assert.deepEqual(result.MissingAgents, []);
-    assert.ok(result.AttestationErrors.some((error) => /REAL_SUBAGENT cannot satisfy a mandatory trusted review/.test(error)));
+    assert.ok(result.IntegrityErrors.includes('ZERO_AGENT_TRANSITION_MANDATORY_AGENT_NOT_AVAILABLE'));
   } finally {
     rmSync(candidate, { recursive: true, force: true });
     rmSync(fixture.root, { recursive: true, force: true });
   }
 });
 
-test('CODEX_ROLE_SIMULATION cannot satisfy a complete mandatory trusted review', () => {
+test('trusted verifier remains BLOCKED in zero-agent state with simulated legacy reports', () => {
   const fixture = createTrustedFixture();
   const candidate = `${fixture.root}-candidate`;
   try {
@@ -195,9 +192,7 @@ test('CODEX_ROLE_SIMULATION cannot satisfy a complete mandatory trusted review',
 
     const result = validateTrusted(trustedOptions(fixture.root, candidate, fixture.sha, candidateSha));
     assert.equal(result.OverallStatus, 'BLOCKED');
-    assert.equal(result.IntegrityStatus, 'PASS', result.IntegrityErrors.join('\n'));
-    assert.equal(result.AttestationStatus, 'INSUFFICIENT_EVIDENCE');
-    assert.ok(result.AttestationErrors.some((error) => /CODEX_ROLE_SIMULATION cannot satisfy a mandatory trusted review/.test(error)));
+    assert.ok(result.IntegrityErrors.includes('ZERO_AGENT_TRANSITION_MANDATORY_AGENT_NOT_AVAILABLE'));
   } finally {
     rmSync(candidate, { recursive: true, force: true });
     rmSync(fixture.root, { recursive: true, force: true });

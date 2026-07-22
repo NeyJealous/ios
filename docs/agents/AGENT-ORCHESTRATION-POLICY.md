@@ -12,10 +12,10 @@ governance-файлы, и для каждого PR в canonical через CI. P
 2. Проверить remote, canonical base, clean status, Git operation state,
    privacy и recovery checkpoints.
 3. Создать отдельную branch/worktree от `origin/integration/ios-current`.
-4. Получить changed paths и required agents детерминированным resolver.
+4. Получить changed paths и transition result детерминированным resolver.
 5. Реализовать изменение без production write.
-6. Выполнить обязательные reviews в `REAL_SUBAGENT` либо честном fallback
-   `CODEX_ROLE_SIMULATION`; выполнить CI validators.
+6. В `ZERO_AGENT_TRANSITION` зафиксировать mandatory agent как
+   `NOT_AVAILABLE` и остановить gate; simulation не заменяет review.
 7. Материализовать JSON+Markdown reports и manifest.
 8. Исправить CRITICAL/BLOCKER, повторить reviews на актуальном reviewed SHA.
 9. Выполнить tests, Architecture Impact Check, privacy/secret scan и docs.
@@ -25,16 +25,15 @@ governance-файлы, и для каждого PR в canonical через CI. P
 
 `tools/resolve-required-agents.mjs` нормализует Windows/Linux paths, учитывает
 rename/delete/add и объединяет все matching rules. Empty diff блокируется.
-Unknown path получает широкую fail-closed комбинацию. Versioned exception
-действует только до expiry и после проверенного owner approval; базовые
-Documentation/Test и security/privacy controls не исключаются.
+Unknown path блокируется. В переходном состоянии любой diff также блокируется:
+active agents отсутствуют, `BlockedByUnavailableAgents` не пуст и общий result
+равен `BLOCKED`. Versioned exception не может отключить этот safety floor.
 
 ## Execution и authority
 
-Project custom agents не получают merge/deploy/remote/production authority.
-Reviewer по умолчанию read-only. Test Generator может менять только явно
-назначенные test files. Main Codex материализует отчёты и отвечает за итоговую
-проверку. Owner/ruleset — единственная approval authority.
+Активные project custom agents отсутствуют. Ни simulation, ни transition
+metadata не получают merge/deploy/remote/production authority. Owner/ruleset —
+единственная approval authority.
 
 ## Inheritance
 

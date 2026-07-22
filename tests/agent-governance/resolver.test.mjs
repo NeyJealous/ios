@@ -46,11 +46,15 @@ test('expired exception fails', () => {
   assert.equal(validateException(expired, matrix, { ownerApproved: true }).valid, false);
 });
 
-test('exception cannot remove global mandatory agents', () => {
-  const forbidden = { ...valid, ExcludedAgents: ['DOCUMENTATION_REVIEWER'] };
-  const result = validateException(forbidden, matrix, { ownerApproved: true });
-  assert.equal(result.valid, false);
-  assert.match(result.errors.join('\n'), /cannot exclude/);
+test('a valid zero-agent exception cannot override the transition block', () => {
+  const result = resolveRequiredAgents({
+    changedPaths: ['docs/guide.md'], matrix, exceptions: [valid], ownerApproved: true,
+  });
+  assert.equal(result.ExceptionResults[0].valid, true);
+  assert.equal(result.MandatoryAgentAvailability, 'NOT_AVAILABLE');
+  assert.equal(result.OverallResult, 'BLOCKED');
+  assert.equal(result.FailClosed, true);
+  assert.ok(result.BlockedByUnavailableAgents.length > 0);
 });
 
 test('empty diff is blocked', () => {
@@ -65,15 +69,16 @@ test('resolver is deterministic', () => {
   assert.deepEqual(a.ChangedPaths, b.ChangedPaths);
 });
 
-test('a mixed known and unknown path fails closed for every changed path', () => {
+test('a mixed known and unknown path always blocks with mandatory agents unavailable', () => {
   const result = resolveRequiredAgents({
     changedPaths: ['docs/known.md', 'unclassified/unknown.bin'], matrix,
   });
   assert.equal(result.FailClosed, true);
   assert.equal(result.TaskType, 'mixed/unknown');
-  for (const agent of matrix.FailClosed.RequiredAgents) {
-    assert.ok(result.RequiredAgents.includes(agent), `missing fail-closed agent ${agent}`);
-  }
+  assert.deepEqual(result.RequiredAgents, []);
+  assert.equal(result.MandatoryAgentAvailability, 'NOT_AVAILABLE');
+  assert.equal(result.OverallResult, 'BLOCKED');
+  assert.ok(result.BlockedByUnavailableAgents.length > 0);
 });
 
 function git(cwd, ...args) {
@@ -107,13 +112,17 @@ test('Git add, delete, and rename changes are classified from both affected path
     const afterAdd = commit(fixture, 'add docs');
     const addDiff = changedPathsFromGit(fixture, initial, afterAdd);
     assert.deepEqual(addDiff.changes, [{ status: 'A', path: 'docs/added.md' }]);
-    assert.ok(resolveRequiredAgents({ changedPaths: addDiff.paths, matrix }).RequiredAgents.includes('DOCUMENTATION_REVIEWER'));
+    const addResolution = resolveRequiredAgents({ changedPaths: addDiff.paths, matrix });
+    assert.equal(addResolution.OverallResult, 'BLOCKED');
+    assert.equal(addResolution.MandatoryAgentAvailability, 'NOT_AVAILABLE');
 
     git(fixture, 'rm', 'docs/added.md');
     const afterDelete = commit(fixture, 'delete docs');
     const deleteDiff = changedPathsFromGit(fixture, afterAdd, afterDelete);
     assert.deepEqual(deleteDiff.changes, [{ status: 'D', path: 'docs/added.md' }]);
-    assert.ok(resolveRequiredAgents({ changedPaths: deleteDiff.paths, matrix }).RequiredAgents.includes('DOCUMENTATION_REVIEWER'));
+    const deleteResolution = resolveRequiredAgents({ changedPaths: deleteDiff.paths, matrix });
+    assert.equal(deleteResolution.OverallResult, 'BLOCKED');
+    assert.equal(deleteResolution.MandatoryAgentAvailability, 'NOT_AVAILABLE');
 
     write(fixture, 'docs/before.md');
     const beforeRename = commit(fixture, 'rename source');
@@ -125,9 +134,38 @@ test('Git add, delete, and rename changes are classified from both affected path
       status: 'R100', oldPath: 'docs/before.md', path: 'IOS_SOURCE_SNAPSHOT/work/apps-script/Core.gs',
     }]);
     const resolved = resolveRequiredAgents({ changedPaths: renameDiff.paths, matrix });
-    for (const agent of ['DOCUMENTATION_REVIEWER', 'TEST_GENERATOR', 'APPS_SCRIPT_REVIEWER', 'PERFORMANCE_AUDITOR']) {
-      assert.ok(resolved.RequiredAgents.includes(agent), `rename missing ${agent}`);
-    }
+    assert.deepEqual(resolved.RequiredAgents, []);
+    assert.equal(resolved.OverallResult, 'BLOCKED');
+    assert.equal(resolved.MandatoryAgentAvailability, 'NOT_AVAILABLE');
+    assert.ok(resolved.RequiredControls.includes('zero-agent-fail-closed'));
+  } finally {
+    rmSync(fixture, { recursive: true, force: true });
+  }
+});
+
+test('resolver CLI resolves HEAD to an exact SHA and exits 2 for zero-agent blocking', () => {
+  const fixture = mkdtempSync(join(tmpdir(), 'ios-agent-resolver-cli-'));
+  try {
+    git(fixture, 'init', '-b', 'main');
+    git(fixture, 'config', 'user.name', 'Agent Governance Test');
+    git(fixture, 'config', 'user.email', 'agent-governance@example.invalid');
+    write(fixture, 'architecture/agents/review-matrix.yaml', `${JSON.stringify(matrix, null, 2)}\n`);
+    write(fixture, 'README.md');
+    const base = commit(fixture, 'baseline');
+    write(fixture, 'docs/cli-change.md');
+    const head = commit(fixture, 'documentation change');
+
+    const result = spawnSync(process.execPath, [
+      resolve(root, 'tools/resolve-required-agents.mjs'), '--root', fixture,
+      '--base', base, '--head', 'HEAD', '--branch', 'feature/cli-fixture',
+    ], { encoding: 'utf8' });
+    assert.equal(result.status, 2, result.stderr || result.stdout);
+    const output = JSON.parse(result.stdout);
+    assert.match(output.BaseSHA, /^[0-9a-f]{40}$/i);
+    assert.match(output.HeadSHA, /^[0-9a-f]{40}$/i);
+    assert.equal(output.HeadSHA, head);
+    assert.equal(output.OverallResult, 'BLOCKED');
+    assert.equal(output.MandatoryAgentAvailability, 'NOT_AVAILABLE');
   } finally {
     rmSync(fixture, { recursive: true, force: true });
   }

@@ -86,6 +86,7 @@ export function validateTrusted(options) {
   errors.push(...validateJsonSchema(baseMatrix, matrixSchema, { path: 'base.matrix' }));
   errors.push(...validateJsonSchema(headRegistry, registrySchema, { path: 'candidate.registry' }));
   errors.push(...validateJsonSchema(headMatrix, matrixSchema, { path: 'candidate.matrix' }));
+  if (headRegistry.PlatformState === 'ZERO_AGENT_TRANSITION') errors.push('ZERO_AGENT_TRANSITION_MANDATORY_AGENT_NOT_AVAILABLE');
 
   const baseResolution = resolveRequiredAgents({ changedPaths: paths, branch, matrix: baseMatrix });
   const headResolution = resolveRequiredAgents({ changedPaths: paths, branch, matrix: headMatrix });

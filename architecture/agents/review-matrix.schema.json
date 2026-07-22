@@ -1,42 +1,20 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/NeyJealous/ios/architecture/agents/review-matrix.schema.json",
-  "title": "IOS Review Matrix",
+  "title": "IOS Review Matrix — zero-agent transition",
   "type": "object",
   "additionalProperties": false,
-  "required": ["Version", "TaskTypes", "AlwaysRequiredAgents", "BaselineControls", "Rules", "FailClosed"],
+  "required": ["Version","PlatformState","TaskTypes","AlwaysRequiredAgents","BaselineControls","Rules","FailClosed","Transition"],
   "properties": {
-    "Version": { "type": "string" },
-    "TaskTypes": { "type": "array", "minItems": 19, "uniqueItems": true, "items": { "type": "string" } },
-    "AlwaysRequiredAgents": { "const": ["DOCUMENTATION_REVIEWER", "TEST_GENERATOR"] },
-    "BaselineControls": { "type": "array", "contains": { "const": "security" }, "minContains": 1 },
-    "Rules": {
-      "type": "array", "minItems": 1,
-      "items": {
-        "type": "object", "additionalProperties": false,
-        "required": ["RuleId", "TaskType", "PathPatterns", "RequiredAgents", "RequiredControls"],
-        "properties": {
-          "RuleId": { "type": "string", "pattern": "^[A-Z0-9_-]+$" },
-          "TaskType": { "type": "string" },
-          "PathPatterns": { "type": "array", "items": { "type": "string" } },
-          "BranchPatterns": { "type": "array", "items": { "type": "string" } },
-          "RequiredAgents": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
-          "RequiredControls": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
-          "AdvisoryCandidateRoles": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
-          "Reason": { "type": "string" }
-        }
-      }
-    },
-    "FailClosed": {
-      "type": "object", "additionalProperties": false,
-      "required": ["UnknownTaskType", "EmptyDiff", "RequiredAgents"],
-      "properties": {
-        "UnknownTaskType": { "const": "mixed/unknown" },
-        "EmptyDiff": { "enum": ["BLOCK", "ALLOW_EXPLICIT_NO_CHANGE"] },
-        "RequiredAgents": { "type": "array", "minItems": 4, "uniqueItems": true, "items": { "type": "string" } }
-      }
-    },
-    "AntiTamperPaths": { "type": "array", "items": { "type": "string" } },
-    "ExceptionPolicy": { "type": "object" }
+    "Version": {"const":"2.0.0-transition"},
+    "PlatformState": {"const":"ZERO_AGENT_TRANSITION"},
+    "TaskTypes": {"type":"array","minItems":19,"uniqueItems":true,"items":{"type":"string"}},
+    "AlwaysRequiredAgents": {"const":[]},
+    "BaselineControls": {"type":"array","contains":{"const":"zero-agent-fail-closed"},"minContains":1},
+    "Rules": {"type":"array","minItems":1,"items":{"type":"object","additionalProperties":false,"required":["RuleId","TaskType","PathPatterns","RequiredAgents","RequiredControls"],"properties":{"RuleId":{"type":"string","pattern":"^[A-Z0-9_-]+$"},"TaskType":{"type":"string"},"PathPatterns":{"type":"array","items":{"type":"string"}},"BranchPatterns":{"type":"array","items":{"type":"string"}},"RequiredAgents":{"const":[]},"RequiredControls":{"type":"array","uniqueItems":true,"items":{"type":"string"}},"Reason":{"type":"string"}}}},
+    "FailClosed": {"type":"object","additionalProperties":false,"required":["UnknownTaskType","EmptyDiff","RequiredAgents","MandatoryAvailability","OverallResult"],"properties":{"UnknownTaskType":{"const":"mixed/unknown"},"EmptyDiff":{"const":"BLOCK"},"RequiredAgents":{"const":[]},"MandatoryAvailability":{"const":"NOT_AVAILABLE"},"OverallResult":{"const":"BLOCKED"}}},
+    "Transition": {"type":"object","additionalProperties":false,"required":["ActiveCustomAgents","OldRegistryReferences","OldMatrixReferences","OldResolverReferences","OldManifestsAccepted","ResolverBehavior"],"properties":{"ActiveCustomAgents":{"const":0},"OldRegistryReferences":{"const":0},"OldMatrixReferences":{"const":0},"OldResolverReferences":{"const":0},"OldManifestsAccepted":{"const":false},"ResolverBehavior":{"const":"FAIL_CLOSED"}}},
+    "AntiTamperPaths": {"type":"array","items":{"type":"string"}},
+    "ExceptionPolicy": {"type":"object"}
   }
 }

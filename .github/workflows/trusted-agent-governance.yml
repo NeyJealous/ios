@@ -8,6 +8,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: trusted-agent-governance-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   trusted-agent-governance:
     name: trusted-agent-governance
@@ -43,3 +47,6 @@ jobs:
           --base-sha "$BASE_SHA"
           --head-sha "$HEAD_SHA"
           --branch "$HEAD_BRANCH"
+
+      - name: Run only base-owned governance regression tests
+        run: node --test trusted-base/tests/agent-governance/*.test.mjs

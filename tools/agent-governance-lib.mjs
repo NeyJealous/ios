@@ -15,12 +15,7 @@ export const EXECUTION_MODES = [
 export const IMPLEMENTATION_STATUSES = [
   'SPECIFIED', 'IMPLEMENTED', 'PARTIAL', 'MISSING', 'CONFLICTING', 'DEPRECATED',
 ];
-export const CANONICAL_AGENT_IDS = [
-  'ARCHITECTURE_REVIEWER', 'APPS_SCRIPT_REVIEWER', 'PERFORMANCE_AUDITOR',
-  'INVESTMENT_LOGIC_REVIEWER', 'BOND_SPECIALIST',
-  'COMPANY_RATING_REVIEWER', 'GOOGLE_SHEETS_REVIEWER',
-  'DOCUMENTATION_REVIEWER', 'UX_REVIEWER', 'TEST_GENERATOR',
-];
+export const CANONICAL_AGENT_IDS = [];
 
 export function readJsonCompatibleYaml(path) {
   try {
@@ -172,7 +167,11 @@ export function resolveRequiredAgents({
     RequiredControls: [...controls].sort(),
     AdvisoryCandidateRoles: [...advisory].sort(),
     ExceptionResults: exceptionResults,
-    FailClosed: unknown || exceptionResults.some((result) => !result.valid),
+    BlockedByUnavailableAgents: matrix.PlatformState === 'ZERO_AGENT_TRANSITION'
+      ? ['MANDATORY_AGENT_NOT_AVAILABLE'] : [],
+    MandatoryAgentAvailability: matrix.FailClosed.MandatoryAvailability || 'AVAILABLE',
+    OverallResult: matrix.FailClosed.OverallResult || 'RESOLVED',
+    FailClosed: matrix.PlatformState === 'ZERO_AGENT_TRANSITION' || unknown || exceptionResults.some((result) => !result.valid),
   };
 }
 
@@ -189,6 +188,13 @@ function requireFields(value, fields, label) {
 export function validateRegistry(registry) {
   const errors = requireFields(registry, ['Version', 'CanonicalBranch', 'Agents'], 'registry');
   if (!Array.isArray(registry.Agents)) return [...errors, 'registry: Agents must be an array'];
+  if (registry.PlatformState === 'ZERO_AGENT_TRANSITION') {
+    if (registry.Agents.length !== 0) errors.push('registry: zero-agent transition must contain no agents');
+    if (registry.ActiveCustomAgents !== 0) errors.push('registry: ActiveCustomAgents must be 0');
+    if (registry.MandatoryAgentAvailability !== 'NOT_AVAILABLE') errors.push('registry: mandatory agent must be NOT_AVAILABLE');
+    if (registry.ActivationAllowed !== false) errors.push('registry: activation must be disabled');
+    return errors;
+  }
   const required = [
     'AgentId', 'Name', 'SpecificationSources', 'Purpose', 'Scope', 'Triggers',
     'RequiredInputs', 'Checks', 'ForbiddenActions', 'RequiredOutputs',
@@ -282,6 +288,9 @@ export function validateManifest({ manifestPath, required, root, branch, base, a
   const manifestSchema = JSON.parse(readFileSync(join(schemaRoot, 'architecture', 'agents', 'review-manifest.schema.json'), 'utf8'));
   const reviewSchema = JSON.parse(readFileSync(join(schemaRoot, 'architecture', 'agents', 'review-contract.schema.json'), 'utf8'));
   const errors = validateJsonSchema(manifest, manifestSchema, { path: 'manifest' });
+  const registryPath = join(root, 'architecture', 'agents', 'agent-registry.yaml');
+  const transitionRegistry = existsSync(registryPath) ? readJsonCompatibleYaml(registryPath) : null;
+  const zeroAgentTransition = transitionRegistry?.PlatformState === 'ZERO_AGENT_TRANSITION';
   if (manifest.Branch !== branch) errors.push('manifest: wrong branch');
   if (manifest.BaseSHA !== base) errors.push('manifest: wrong base SHA');
   if (manifest.TaskType !== required.TaskType) errors.push('manifest: wrong task type');
@@ -291,6 +300,14 @@ export function validateManifest({ manifestPath, required, root, branch, base, a
   if (JSON.stringify([...manifest.ApplicableAgents].sort()) !== JSON.stringify([...required.ApplicableAgents].sort())) errors.push('manifest: ApplicableAgents differs from resolver');
   if (manifest.MissingAgents.length) errors.push(`manifest: missing agents ${manifest.MissingAgents.join(', ')}`);
   if (manifest.BlockingFindings.length) errors.push('manifest: blocking findings present');
+  if (zeroAgentTransition) {
+    if (manifest.AgentPlatformVersion !== '2.0.0-transition') errors.push('manifest: old agent platform version is not accepted');
+    if (manifest.PlatformState !== 'ZERO_AGENT_TRANSITION') errors.push('manifest: old platform state is not accepted');
+    if (manifest.RequiredAgents.length || manifest.ExecutedAgents.length) errors.push('manifest: zero-agent transition cannot execute agents');
+    if (!manifest.BlockedByUnavailableAgents?.length) errors.push('manifest: mandatory NOT_AVAILABLE blocker missing');
+    if (manifest.OverallStatus !== 'BLOCKED') errors.push('manifest: zero-agent transition must be BLOCKED');
+    errors.push('manifest: ZERO_AGENT_TRANSITION_MANDATORY_AGENT_NOT_AVAILABLE');
+  }
   if (manifest.OwnerBypass !== undefined) {
     const bypass = manifest.OwnerBypass;
     errors.push(...requireFields(bypass, [
@@ -343,7 +360,7 @@ export function validateManifest({ manifestPath, required, root, branch, base, a
     executed.push(agentId);
   }
   if (JSON.stringify([...manifest.ExecutedAgents].sort()) !== JSON.stringify(executed.sort())) errors.push('manifest: ExecutedAgents differs from reports');
-  if (errors.length === 0 && manifest.OverallStatus !== 'PASS') errors.push('manifest: OverallStatus must be PASS when all mandatory evidence passes');
+  if (!zeroAgentTransition && errors.length === 0 && manifest.OverallStatus !== 'PASS') errors.push('manifest: OverallStatus must be PASS when all mandatory evidence passes');
   return { errors, manifest };
 }
 
@@ -373,7 +390,7 @@ export function validateInstructionHierarchy(root) {
 
 export function validateProjectAgentFiles(root, registry) {
   const errors = [];
-  const implemented = registry.Agents.filter((agent) => CANONICAL_AGENT_IDS.includes(agent.AgentId) && agent.Status === 'IMPLEMENTED');
+  const implemented = registry.Agents.filter((agent) => agent.Status === 'IMPLEMENTED');
   const dir = join(root, '.codex', 'agents');
   const files = existsSync(dir) ? readdirSync(dir).filter((file) => file.endsWith('.toml')) : [];
   if (files.length < implemented.length) errors.push(`expected at least ${implemented.length} project agents; found ${files.length}`);
@@ -381,10 +398,8 @@ export function validateProjectAgentFiles(root, registry) {
     const text = readFileSync(join(dir, file), 'utf8');
     for (const field of ['name =', 'description =', 'developer_instructions =']) if (!text.includes(field)) errors.push(`${file}: missing ${field}`);
     if (!/remote write|push/i.test(text)) errors.push(`${file}: missing remote-write prohibition`);
-    if (!text.includes('# upstream_repo = https://github.com/VoltAgent/awesome-codex-subagents')) errors.push(`${file}: missing upstream repository provenance`);
-    if (!text.includes('# upstream_commit = 5605c9c18b3687993919d6cc467af4a34898fee2')) errors.push(`${file}: missing pinned upstream commit`);
-    if (!text.includes('model = "gpt-5.6-terra"')) errors.push(`${file}: model must be gpt-5.6-terra`);
   }
+  if (registry.PlatformState === 'ZERO_AGENT_TRANSITION' && files.length !== 0) errors.push(`zero-agent transition must contain 0 project agents; found ${files.length}`);
   return errors;
 }
 

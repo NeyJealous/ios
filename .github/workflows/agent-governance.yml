@@ -23,6 +23,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: agent-governance-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   agent-governance:
     name: agent-governance
@@ -45,6 +49,9 @@ jobs:
 
       - name: Run non-agent fail-closed safety validator
         run: node tools/non-agent-safety-validator.mjs
+
+      - name: Run governance regression suite
+        run: node --test tests/agent-governance/*.test.mjs
 
       - name: Resolve required agents from full diff
         run: >-
