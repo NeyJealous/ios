@@ -27,14 +27,16 @@ test('all governance JSON schemas are syntactically valid draft 2020-12 document
   }
 });
 
-test('zero-agent transition removes every active registry and matrix role', () => {
-  assert.equal(registry.PlatformState, 'ZERO_AGENT_TRANSITION');
+test('first wave remains provisional with activation closed', () => {
+  assert.equal(registry.PlatformState, 'PROVISIONAL_PLATFORM_BUILD');
   assert.equal(registry.ActiveCustomAgents, 0);
-  assert.deepEqual(registry.Agents, []);
-  assert.equal(matrix.PlatformState, 'ZERO_AGENT_TRANSITION');
+  assert.equal(registry.ProvisionedAgents, 5);
+  assert.equal(registry.Agents.length, 5);
+  assert.ok(registry.Agents.every((agent) => agent.Status === 'PROVISIONAL' && agent.ActivationEligible === false));
+  assert.equal(matrix.PlatformState, 'PROVISIONAL_PLATFORM_BUILD');
   assert.deepEqual(matrix.AlwaysRequiredAgents, []);
-  assert.deepEqual(matrix.FailClosed.RequiredAgents, []);
-  for (const rule of matrix.Rules) assert.deepEqual(rule.RequiredAgents, [], rule.RuleId);
+  assert.equal(matrix.FailClosed.RequiredAgents.length, 4);
+  assert.equal(matrix.Transition.ActivationGate, 'CLOSED');
   const serialized = JSON.stringify({ registry, matrix });
   for (const oldId of ['APPS_SCRIPT_REVIEWER', 'ARCHITECTURE_REVIEWER', 'BOND_SPECIALIST', 'COMPANY_RATING_REVIEWER', 'DOCUMENTATION_REVIEWER', 'GOOGLE_SHEETS_REVIEWER', 'INVESTMENT_LOGIC_REVIEWER', 'PERFORMANCE_AUDITOR', 'TEST_GENERATOR', 'UX_REVIEWER']) {
     assert.equal(serialized.includes(oldId), false, `stale agent identifier: ${oldId}`);
@@ -42,38 +44,35 @@ test('zero-agent transition removes every active registry and matrix role', () =
 });
 
 const cases = [
-  ['Apps Script', 'IOS_SOURCE_SNAPSHOT/work/apps-script/Core.gs', 'no-production-write'],
-  ['investment', 'IOS_SOURCE_SNAPSHOT/work/apps-script/StrategyEngine.gs', 'no-investment-policy-change-without-gate'],
-  ['bonds', 'IOS_SOURCE_SNAPSHOT/work/apps-script/BondEngine.gs', 'quantitative-evidence'],
-  ['Sheets', 'IOS_SOURCE_SNAPSHOT/work/schema-parts/Schema_part1.gs', 'no-sheets-write'],
-  ['Market Regime', 'IOS_SOURCE_SNAPSHOT/work/apps-script/MarketRegime.gs', 'no-r030-change'],
+  ['production domain', 'IOS_SOURCE_SNAPSHOT/work/apps-script/Core.gs', 'no-production-write'],
   ['docs only', 'docs/guide.md', 'traceability'],
-  ['security', 'docs/security/policy.md', 'least-privilege'],
-  ['workflow', '.github/workflows/check.yml', 'fork-safety'],
   ['governance', 'architecture/agents/review-matrix.yaml', 'governance-tamper-check'],
+  ['profiles', '.codex/agents/ios-agent-orchestrator.toml', 'upstream-integrity'],
+  ['tests', 'tests/agent-governance/resolver.test.mjs', 'determinism'],
 ];
 
 for (const [label, path, requiredControl] of cases) {
-  test(`zero-agent resolver blocks ${label} while preserving controls`, () => {
+  test(`provisional resolver routes ${label} but blocks activation`, () => {
     const result = resolveRequiredAgents({ changedPaths: [path], matrix });
-    assert.deepEqual(result.RequiredAgents, []);
-    assert.equal(result.MandatoryAgentAvailability, 'NOT_AVAILABLE');
+    assert.ok(result.RequiredAgents.length > 0);
+    assert.equal(result.MandatoryAgentAvailability, 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED');
     assert.equal(result.OverallResult, 'BLOCKED');
     assert.equal(result.FailClosed, true);
     assert.ok(result.BlockedByUnavailableAgents.length > 0);
     assert.ok(result.RequiredControls.includes(requiredControl));
-    assert.ok(result.RequiredControls.includes('zero-agent-fail-closed'));
+    assert.ok(result.RequiredControls.includes('activation-closed'));
   });
 }
 
-test('mixed and unknown changes remain fail-closed without restoring historical agents', () => {
+test('mixed and unknown changes require governance wave and remain fail-closed', () => {
   const result = resolveRequiredAgents({
     changedPaths: ['docs/guide.md', 'IOS_SOURCE_SNAPSHOT/work/apps-script/BondEngine.gs', 'unclassified/file.weird'], matrix,
   });
   assert.equal(result.TaskType, 'mixed/unknown');
-  assert.deepEqual(result.RequiredAgents, []);
+  for (const agentId of matrix.FailClosed.RequiredAgents) assert.ok(result.RequiredAgents.includes(agentId));
+  assert.ok(result.RequiredAgents.includes('ios-codebase-auditor'));
   assert.deepEqual(result.UnknownPaths, ['unclassified/file.weird']);
-  assert.equal(result.MandatoryAgentAvailability, 'NOT_AVAILABLE');
+  assert.equal(result.MandatoryAgentAvailability, 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED');
   assert.equal(result.OverallResult, 'BLOCKED');
   assert.ok(result.BlockedByUnavailableAgents.length > 0);
 });

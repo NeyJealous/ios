@@ -127,7 +127,7 @@ test('trusted validator ignores a candidate that self-weakens its local validato
   }
 });
 
-test('trusted validator blocks legacy manifest evidence in the zero-agent transition before it can pass', () => {
+test('trusted validator blocks legacy manifest evidence while provisional activation is closed', () => {
   const fixture = createTrustedFixture();
   const candidate = `${fixture.root}-candidate`;
   try {
@@ -144,7 +144,7 @@ test('trusted validator blocks legacy manifest evidence in the zero-agent transi
 
     const result = validateTrusted(trustedOptions(fixture.root, candidate, fixture.sha, candidateSha));
     assert.equal(result.OverallStatus, 'BLOCKED');
-    assert.ok(result.IntegrityErrors.includes('ZERO_AGENT_TRANSITION_MANDATORY_AGENT_NOT_AVAILABLE'));
+    assert.ok(result.IntegrityErrors.includes('PROVISIONAL_PLATFORM_ACTIVATION_CLOSED'));
     assert.notEqual(result.IntegrityStatus, 'PASS');
   } finally {
     rmSync(candidate, { recursive: true, force: true });
@@ -152,7 +152,7 @@ test('trusted validator blocks legacy manifest evidence in the zero-agent transi
   }
 });
 
-test('trusted verifier is BLOCKED in zero-agent state even with fabricated legacy REAL_SUBAGENT evidence', () => {
+test('trusted verifier is BLOCKED in provisional state even with fabricated legacy REAL_SUBAGENT evidence', () => {
   const fixture = createTrustedFixture();
   const candidate = `${fixture.root}-candidate`;
   try {
@@ -172,14 +172,14 @@ test('trusted verifier is BLOCKED in zero-agent state even with fabricated legac
     assert.equal(result.AttestationStatus, 'INSUFFICIENT_EVIDENCE');
     assert.ok(result.AttestationErrors.includes('TRUSTED_EXECUTION_ATTESTATION_INSUFFICIENT_EVIDENCE'));
     assert.equal(result.TrustRootChanged, false);
-    assert.ok(result.IntegrityErrors.includes('ZERO_AGENT_TRANSITION_MANDATORY_AGENT_NOT_AVAILABLE'));
+    assert.ok(result.IntegrityErrors.includes('PROVISIONAL_PLATFORM_ACTIVATION_CLOSED'));
   } finally {
     rmSync(candidate, { recursive: true, force: true });
     rmSync(fixture.root, { recursive: true, force: true });
   }
 });
 
-test('trusted verifier remains BLOCKED in zero-agent state with simulated legacy reports', () => {
+test('trusted verifier remains BLOCKED in provisional state with simulated legacy reports', () => {
   const fixture = createTrustedFixture();
   const candidate = `${fixture.root}-candidate`;
   try {
@@ -194,7 +194,7 @@ test('trusted verifier remains BLOCKED in zero-agent state with simulated legacy
 
     const result = validateTrusted(trustedOptions(fixture.root, candidate, fixture.sha, candidateSha));
     assert.equal(result.OverallStatus, 'BLOCKED');
-    assert.ok(result.IntegrityErrors.includes('ZERO_AGENT_TRANSITION_MANDATORY_AGENT_NOT_AVAILABLE'));
+    assert.ok(result.IntegrityErrors.includes('PROVISIONAL_PLATFORM_ACTIVATION_CLOSED'));
   } finally {
     rmSync(candidate, { recursive: true, force: true });
     rmSync(fixture.root, { recursive: true, force: true });

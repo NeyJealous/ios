@@ -1,38 +1,226 @@
 {
-  "Version": "2.0.0-transition",
-  "PlatformState": "ZERO_AGENT_TRANSITION",
+  "Version": "2.1.0-provisional",
+  "PlatformState": "PROVISIONAL_PLATFORM_BUILD",
   "TaskTypes": [
-    "Apps Script source", "Google Sheets schema/formulas", "API/provider", "investment logic",
-    "Decision Engine", "bonds", "company rating", "Market Regime", "UI/UX", "documentation only",
-    "GitHub Actions", "security/secrets", "data model", "performance", "tests",
-    "release/deployment", "architecture", "research", "hotfix", "mixed/unknown"
+    "orchestrator self-change",
+    "upstream/profile/model",
+    "governance",
+    "repository-wide architecture audit",
+    "documentation only",
+    "tests",
+    "production/runtime domain",
+    "mixed/unknown"
   ],
   "AlwaysRequiredAgents": [],
-  "BaselineControls": ["security", "privacy", "secret-scan", "architecture-impact", "zero-agent-fail-closed"],
-  "Rules": [
-    {"RuleId":"GOVERNANCE_SELF_CHANGE","TaskType":"architecture","PathPatterns":["AGENTS.md","**/AGENTS.md",".codex/agents/**","architecture/agents/**","docs/agents/**","tools/*agent*","tools/trusted-governance/**",".github/workflows/*agent*","rfc/**","adr/**"],"RequiredAgents":[],"RequiredControls":["owner-approval","privacy","secret-scan","governance-tamper-check","zero-agent-fail-closed"]},
-    {"RuleId":"APPS_SCRIPT_SOURCE","TaskType":"Apps Script source","PathPatterns":["apps-script/**","IOS_SOURCE_SNAPSHOT/work/apps-script/**"],"RequiredAgents":[],"RequiredControls":["no-clasp-push","no-production-write","zero-agent-fail-closed"]},
-    {"RuleId":"SHEETS_SCHEMA","TaskType":"Google Sheets schema/formulas","PathPatterns":["**/schema-parts/**","**/*Schema*.gs","**/*Sheets*.md","**/*Google_Sheets*.md"],"RequiredAgents":[],"RequiredControls":["no-sheets-write","migration-rollback","zero-agent-fail-closed"]},
-    {"RuleId":"API_PROVIDER","TaskType":"API/provider","PathPatterns":["**/Api.gs","**/Providers.gs","**/*Provider*.mjs"],"RequiredAgents":[],"RequiredControls":["security","no-production-write","zero-agent-fail-closed"]},
-    {"RuleId":"INVESTMENT_LOGIC","TaskType":"investment logic","PathPatterns":["**/Strategy*.gs","**/Reserve*.gs","**/Advisor*.gs","**/15.*Investment*.md"],"RequiredAgents":[],"RequiredControls":["no-investment-policy-change-without-gate","zero-agent-fail-closed"]},
-    {"RuleId":"DECISION_ENGINE","TaskType":"Decision Engine","PathPatterns":["**/DecisionEngine.gs","**/RuleEngine.gs","**/12_Decision_Engine*.md"],"RequiredAgents":[],"RequiredControls":["decision-authority","regression-tests","zero-agent-fail-closed"]},
-    {"RuleId":"BONDS","TaskType":"bonds","PathPatterns":["**/BondEngine.gs","**/*Bond*.md","**/*Coupon*.md"],"RequiredAgents":[],"RequiredControls":["quantitative-evidence","zero-agent-fail-closed"]},
-    {"RuleId":"COMPANY_RATING","TaskType":"company rating","PathPatterns":["**/CompanyRating.gs","**/*Company_Rating*.md"],"RequiredAgents":[],"RequiredControls":["data-quality-evidence","zero-agent-fail-closed"]},
-    {"RuleId":"MARKET_REGIME","TaskType":"Market Regime","PathPatterns":["**/MarketRegime.gs","**/*Market_Regime*.md","**/*market-regime*"],"RequiredAgents":[],"RequiredControls":["quantitative-evidence","data-quality-evidence","no-r030-change","zero-agent-fail-closed"]},
-    {"RuleId":"UI_UX","TaskType":"UI/UX","PathPatterns":["**/*.html","**/UI.gs","**/Menu.gs","**/*UX*.md"],"RequiredAgents":[],"RequiredControls":["russian-ui","hidden-identifiers","zero-agent-fail-closed"]},
-    {"RuleId":"DOCUMENTATION","TaskType":"documentation only","PathPatterns":["docs/**","rfc/**","adr/**","IOS_HANDOFF_v4/master_specification/**"],"RequiredAgents":[],"RequiredControls":["traceability","zero-agent-fail-closed"]},
-    {"RuleId":"GITHUB_ACTIONS","TaskType":"GitHub Actions","PathPatterns":[".github/workflows/**",".github/actions/**"],"RequiredAgents":[],"RequiredControls":["fork-safety","least-privilege","no-production-secrets","zero-agent-fail-closed"]},
-    {"RuleId":"SECURITY_SECRETS","TaskType":"security/secrets","PathPatterns":["**/*security*","**/*security*/**","**/*secret*","**/*secret*/**",".gitignore",".github/CODEOWNERS"],"RequiredAgents":[],"RequiredControls":["privacy","secret-scan","least-privilege","zero-agent-fail-closed"]},
-    {"RuleId":"DATA_MODEL","TaskType":"data model","PathPatterns":["**/*schema*","**/*Data_Dictionary*.md","architecture/**/*.schema.json"],"RequiredAgents":[],"RequiredControls":["data-integrity","migration-rollback","zero-agent-fail-closed"]},
-    {"RuleId":"PERFORMANCE","TaskType":"performance","PathPatterns":["**/*performance*","**/*benchmark*"],"RequiredAgents":[],"RequiredControls":["measurable-evidence","zero-agent-fail-closed"]},
-    {"RuleId":"TESTS","TaskType":"tests","PathPatterns":["tests/**","**/*.test.mjs","**/*Test*.gs"],"RequiredAgents":[],"RequiredControls":["determinism","no-production-access","zero-agent-fail-closed"]},
-    {"RuleId":"RELEASE_DEPLOYMENT","TaskType":"release/deployment","PathPatterns":["**/*release*","**/*deployment*","appsscript.json"],"RequiredAgents":[],"RequiredControls":["rollback","no-deployment","owner-approval","zero-agent-fail-closed"]},
-    {"RuleId":"ARCHITECTURE","TaskType":"architecture","PathPatterns":["architecture/**","**/*Architecture*.md","**/*Correction_Memo*.md"],"RequiredAgents":[],"RequiredControls":["rfc-adr","architecture-impact","zero-agent-fail-closed"]},
-    {"RuleId":"RESEARCH","TaskType":"research","PathPatterns":["research/**"],"RequiredAgents":[],"RequiredControls":["hypothesis-label","no-production-write","zero-agent-fail-closed"]},
-    {"RuleId":"HOTFIX_BRANCH","TaskType":"hotfix","PathPatterns":[],"BranchPatterns":["hotfix/**"],"RequiredAgents":[],"RequiredControls":["rollback","regression-tests","owner-approval","zero-agent-fail-closed"]}
+  "BaselineControls": [
+    "security",
+    "privacy",
+    "secret-scan",
+    "architecture-impact",
+    "activation-closed"
   ],
-  "FailClosed": {"UnknownTaskType":"mixed/unknown","EmptyDiff":"BLOCK","RequiredAgents":[],"MandatoryAvailability":"NOT_AVAILABLE","OverallResult":"BLOCKED"},
-  "Transition": {"ActiveCustomAgents":0,"OldRegistryReferences":0,"OldMatrixReferences":0,"OldResolverReferences":0,"OldManifestsAccepted":false,"ResolverBehavior":"FAIL_CLOSED"},
-  "AntiTamperPaths": ["AGENTS.md","**/AGENTS.md",".codex/agents/**","architecture/agents/**","docs/agents/**","tools/*agent*","tools/trusted-governance/**",".github/workflows/*agent*"],
-  "ExceptionPolicy": {"VersionedFileRequired":true,"RequiredFields":["ExceptionId","RfcAdrReference","OwnerApproval","Reason","Expiry","RiskAcceptance","ExcludedAgents"],"CannotExcludeAgents":[],"CannotDisableControls":["security","privacy","secret-scan","architecture-impact","zero-agent-fail-closed"],"ExpiredOrUnauthorized":"BLOCK"}
+  "Rules": [
+    {
+      "RuleId": "ORCHESTRATOR_SELF_CHANGE",
+      "TaskType": "orchestrator self-change",
+      "PathPatterns": [
+        ".codex/agents/ios-agent-orchestrator.toml",
+        "architecture/agents/overlays/ios-agent-orchestrator.yaml",
+        "architecture/agents/compositions/ios-agent-orchestrator.yaml",
+        "tools/agents/orchestrate.mjs"
+      ],
+      "RequiredAgents": [
+        "agent-governance-auditor",
+        "security-privacy-auditor"
+      ],
+      "RequiredControls": [
+        "owner-approval",
+        "anti-self-review",
+        "governance-tamper-check"
+      ]
+    },
+    {
+      "RuleId": "UPSTREAM_PROFILE_MODEL",
+      "TaskType": "upstream/profile/model",
+      "PathPatterns": [
+        "architecture/agents/upstream/**",
+        "architecture/agents/overlays/**",
+        "architecture/agents/compositions/**",
+        "architecture/agents/registry/**",
+        ".codex/agents/**"
+      ],
+      "RequiredAgents": [
+        "ios-agent-orchestrator",
+        "agent-governance-auditor",
+        "security-privacy-auditor"
+      ],
+      "RequiredControls": [
+        "upstream-integrity",
+        "append-only-overlay",
+        "no-silent-downgrade"
+      ]
+    },
+    {
+      "RuleId": "GOVERNANCE_SELF_CHANGE",
+      "TaskType": "governance",
+      "PathPatterns": [
+        "AGENTS.md",
+        "**/AGENTS.md",
+        "architecture/agents/**",
+        "docs/agents/**",
+        "tools/*agent*",
+        "tools/agents/**",
+        "tools/trusted-governance/**",
+        ".github/workflows/*agent*",
+        "rfc/**",
+        "adr/**"
+      ],
+      "RequiredAgents": [
+        "ios-agent-orchestrator",
+        "agent-governance-auditor",
+        "security-privacy-auditor",
+        "audit-traceability-reviewer"
+      ],
+      "RequiredControls": [
+        "owner-approval",
+        "privacy",
+        "secret-scan",
+        "governance-tamper-check",
+        "activation-closed"
+      ]
+    },
+    {
+      "RuleId": "REPOSITORY_ARCHITECTURE_AUDIT",
+      "TaskType": "repository-wide architecture audit",
+      "PathPatterns": [
+        "architecture/**",
+        "specification/**",
+        "IOS_SOURCE_SNAPSHOT/**",
+        "IOS_HANDOFF_v4/**"
+      ],
+      "RequiredAgents": [
+        "ios-agent-orchestrator",
+        "ios-codebase-auditor",
+        "audit-traceability-reviewer"
+      ],
+      "RequiredControls": [
+        "architecture-impact",
+        "traceability",
+        "activation-closed"
+      ]
+    },
+    {
+      "RuleId": "DOCUMENTATION",
+      "TaskType": "documentation only",
+      "PathPatterns": [
+        "docs/**"
+      ],
+      "RequiredAgents": [
+        "ios-agent-orchestrator",
+        "audit-traceability-reviewer"
+      ],
+      "RequiredControls": [
+        "traceability",
+        "activation-closed"
+      ]
+    },
+    {
+      "RuleId": "TESTS",
+      "TaskType": "tests",
+      "PathPatterns": [
+        "tests/**",
+        "**/*.test.mjs"
+      ],
+      "RequiredAgents": [
+        "ios-agent-orchestrator",
+        "agent-governance-auditor"
+      ],
+      "RequiredControls": [
+        "determinism",
+        "no-production-access",
+        "activation-closed"
+      ]
+    },
+    {
+      "RuleId": "PRODUCTION_RUNTIME_UNAVAILABLE",
+      "TaskType": "production/runtime domain",
+      "PathPatterns": [
+        "apps-script/**",
+        "IOS_SOURCE_SNAPSHOT/work/apps-script/**",
+        "**/*Schema*.gs",
+        "**/*Provider*.mjs",
+        "**/MarketRegime.gs",
+        "**/DecisionEngine.gs",
+        "**/R030*",
+        "**/TradePlan*"
+      ],
+      "RequiredAgents": [
+        "ios-agent-orchestrator",
+        "agent-governance-auditor",
+        "security-privacy-auditor",
+        "audit-traceability-reviewer"
+      ],
+      "RequiredControls": [
+        "mandatory-domain-reviewer-not-integrated",
+        "no-production-write",
+        "activation-closed"
+      ]
+    }
+  ],
+  "FailClosed": {
+    "UnknownTaskType": "mixed/unknown",
+    "EmptyDiff": "BLOCK",
+    "RequiredAgents": [
+      "ios-agent-orchestrator",
+      "agent-governance-auditor",
+      "security-privacy-auditor",
+      "audit-traceability-reviewer"
+    ],
+    "MandatoryAvailability": "PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED",
+    "OverallResult": "BLOCKED"
+  },
+  "Transition": {
+    "ActiveCustomAgents": 0,
+    "ProvisionalAgents": 5,
+    "OldRegistryReferences": 0,
+    "OldMatrixReferences": 0,
+    "OldResolverReferences": 0,
+    "OldManifestsAccepted": false,
+    "ResolverBehavior": "FAIL_CLOSED",
+    "ActivationGate": "CLOSED"
+  },
+  "AntiTamperPaths": [
+    "AGENTS.md",
+    "**/AGENTS.md",
+    ".codex/agents/**",
+    "architecture/agents/**",
+    "docs/agents/**",
+    "tools/agents/**",
+    "tools/trusted-governance/**",
+    ".github/workflows/*agent*"
+  ],
+  "ExceptionPolicy": {
+    "VersionedFileRequired": true,
+    "RequiredFields": [
+      "ExceptionId",
+      "RfcAdrReference",
+      "OwnerApproval",
+      "Reason",
+      "Expiry",
+      "RiskAcceptance",
+      "ExcludedAgents"
+    ],
+    "CannotExcludeAgents": [
+      "agent-governance-auditor",
+      "security-privacy-auditor"
+    ],
+    "CannotDisableControls": [
+      "security",
+      "privacy",
+      "secret-scan",
+      "architecture-impact",
+      "activation-closed"
+    ],
+    "ExpiredOrUnauthorized": "BLOCK"
+  }
 }

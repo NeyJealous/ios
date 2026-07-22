@@ -1,8 +1,34 @@
 {
-  "Version": "2.0.0-transition",
-  "Purpose": "Zero-agent transition index. Historical v1 definitions are preserved in audit evidence and Git history.",
-  "PlatformState": "ZERO_AGENT_TRANSITION",
-  "SpecifiedCount": 0,
-  "ImplementedProjectAgents": 0,
-  "Roles": []
+  "Version": "2.1.0-provisional",
+  "Purpose": "Compatibility index; canonical source is architecture/agents/registry/agents.yaml.",
+  "PlatformState": "PROVISIONAL_PLATFORM_BUILD",
+  "ActiveCount": 0,
+  "ProvisionalCount": 5,
+  "Roles": [
+    {
+      "AgentId": "ios-agent-orchestrator",
+      "Status": "PROVISIONAL",
+      "ActivationEligible": false
+    },
+    {
+      "AgentId": "agent-governance-auditor",
+      "Status": "PROVISIONAL",
+      "ActivationEligible": false
+    },
+    {
+      "AgentId": "security-privacy-auditor",
+      "Status": "PROVISIONAL",
+      "ActivationEligible": false
+    },
+    {
+      "AgentId": "audit-traceability-reviewer",
+      "Status": "PROVISIONAL",
+      "ActivationEligible": false
+    },
+    {
+      "AgentId": "ios-codebase-auditor",
+      "Status": "PROVISIONAL",
+      "ActivationEligible": false
+    }
+  ]
 }

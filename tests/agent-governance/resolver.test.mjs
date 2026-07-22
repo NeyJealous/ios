@@ -46,12 +46,12 @@ test('expired exception fails', () => {
   assert.equal(validateException(expired, matrix, { ownerApproved: true }).valid, false);
 });
 
-test('a valid zero-agent exception cannot override the transition block', () => {
+test('a valid exception cannot override the provisional activation block', () => {
   const result = resolveRequiredAgents({
     changedPaths: ['docs/guide.md'], matrix, exceptions: [valid], ownerApproved: true,
   });
   assert.equal(result.ExceptionResults[0].valid, true);
-  assert.equal(result.MandatoryAgentAvailability, 'NOT_AVAILABLE');
+  assert.equal(result.MandatoryAgentAvailability, 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED');
   assert.equal(result.OverallResult, 'BLOCKED');
   assert.equal(result.FailClosed, true);
   assert.ok(result.BlockedByUnavailableAgents.length > 0);
@@ -69,14 +69,14 @@ test('resolver is deterministic', () => {
   assert.deepEqual(a.ChangedPaths, b.ChangedPaths);
 });
 
-test('a mixed known and unknown path always blocks with mandatory agents unavailable', () => {
+test('a mixed known and unknown path always blocks with mandatory provisional agents', () => {
   const result = resolveRequiredAgents({
     changedPaths: ['docs/known.md', 'unclassified/unknown.bin'], matrix,
   });
   assert.equal(result.FailClosed, true);
   assert.equal(result.TaskType, 'mixed/unknown');
-  assert.deepEqual(result.RequiredAgents, []);
-  assert.equal(result.MandatoryAgentAvailability, 'NOT_AVAILABLE');
+  assert.deepEqual(result.RequiredAgents, matrix.FailClosed.RequiredAgents.slice().sort());
+  assert.equal(result.MandatoryAgentAvailability, 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED');
   assert.equal(result.OverallResult, 'BLOCKED');
   assert.ok(result.BlockedByUnavailableAgents.length > 0);
 });
@@ -114,7 +114,7 @@ test('Git add, delete, and rename changes are classified from both affected path
     assert.deepEqual(addDiff.changes, [{ status: 'A', path: 'docs/added.md' }]);
     const addResolution = resolveRequiredAgents({ changedPaths: addDiff.paths, matrix });
     assert.equal(addResolution.OverallResult, 'BLOCKED');
-    assert.equal(addResolution.MandatoryAgentAvailability, 'NOT_AVAILABLE');
+    assert.equal(addResolution.MandatoryAgentAvailability, 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED');
 
     git(fixture, 'rm', 'docs/added.md');
     const afterDelete = commit(fixture, 'delete docs');
@@ -122,7 +122,7 @@ test('Git add, delete, and rename changes are classified from both affected path
     assert.deepEqual(deleteDiff.changes, [{ status: 'D', path: 'docs/added.md' }]);
     const deleteResolution = resolveRequiredAgents({ changedPaths: deleteDiff.paths, matrix });
     assert.equal(deleteResolution.OverallResult, 'BLOCKED');
-    assert.equal(deleteResolution.MandatoryAgentAvailability, 'NOT_AVAILABLE');
+    assert.equal(deleteResolution.MandatoryAgentAvailability, 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED');
 
     write(fixture, 'docs/before.md');
     const beforeRename = commit(fixture, 'rename source');
@@ -134,16 +134,16 @@ test('Git add, delete, and rename changes are classified from both affected path
       status: 'R100', oldPath: 'docs/before.md', path: 'IOS_SOURCE_SNAPSHOT/work/apps-script/Core.gs',
     }]);
     const resolved = resolveRequiredAgents({ changedPaths: renameDiff.paths, matrix });
-    assert.deepEqual(resolved.RequiredAgents, []);
+    assert.ok(resolved.RequiredAgents.includes('ios-agent-orchestrator'));
     assert.equal(resolved.OverallResult, 'BLOCKED');
-    assert.equal(resolved.MandatoryAgentAvailability, 'NOT_AVAILABLE');
-    assert.ok(resolved.RequiredControls.includes('zero-agent-fail-closed'));
+    assert.equal(resolved.MandatoryAgentAvailability, 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED');
+    assert.ok(resolved.RequiredControls.includes('activation-closed'));
   } finally {
     rmSync(fixture, { recursive: true, force: true });
   }
 });
 
-test('resolver CLI resolves HEAD to an exact SHA and exits 2 for zero-agent blocking', () => {
+test('resolver CLI resolves HEAD to an exact SHA and exits 2 for provisional activation blocking', () => {
   const fixture = mkdtempSync(join(tmpdir(), 'ios-agent-resolver-cli-'));
   try {
     git(fixture, 'init', '-b', 'main');
@@ -165,7 +165,7 @@ test('resolver CLI resolves HEAD to an exact SHA and exits 2 for zero-agent bloc
     assert.match(output.HeadSHA, /^[0-9a-f]{40}$/i);
     assert.equal(output.HeadSHA, head);
     assert.equal(output.OverallResult, 'BLOCKED');
-    assert.equal(output.MandatoryAgentAvailability, 'NOT_AVAILABLE');
+    assert.equal(output.MandatoryAgentAvailability, 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED');
   } finally {
     rmSync(fixture, { recursive: true, force: true });
   }

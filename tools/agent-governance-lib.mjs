@@ -13,7 +13,7 @@ export const EXECUTION_MODES = [
   'MANUAL_REVIEW', 'NOT_AVAILABLE',
 ];
 export const IMPLEMENTATION_STATUSES = [
-  'SPECIFIED', 'IMPLEMENTED', 'PARTIAL', 'MISSING', 'CONFLICTING', 'DEPRECATED',
+  'SPECIFIED', 'PROVISIONAL', 'IMPLEMENTED', 'PARTIAL', 'MISSING', 'CONFLICTING', 'DEPRECATED',
 ];
 export const CANONICAL_AGENT_IDS = [];
 
@@ -156,6 +156,7 @@ export function resolveRequiredAgents({
     for (const id of exception.ExcludedAgents) required.delete(id);
   }
 
+  const activationClosed = matrix.PlatformState !== 'ACTIVE';
   return {
     TaskType: unknown || taskTypes.length !== 1 ? 'mixed/unknown' : taskTypes[0],
     MatchedTaskTypes: unknown ? ['mixed/unknown'] : taskTypes,
@@ -167,11 +168,11 @@ export function resolveRequiredAgents({
     RequiredControls: [...controls].sort(),
     AdvisoryCandidateRoles: [...advisory].sort(),
     ExceptionResults: exceptionResults,
-    BlockedByUnavailableAgents: matrix.PlatformState === 'ZERO_AGENT_TRANSITION'
-      ? ['MANDATORY_AGENT_NOT_AVAILABLE'] : [],
+    BlockedByUnavailableAgents: activationClosed
+      ? [matrix.PlatformState === 'ZERO_AGENT_TRANSITION' ? 'MANDATORY_AGENT_NOT_AVAILABLE' : 'PLATFORM_ACTIVATION_CLOSED'] : [],
     MandatoryAgentAvailability: matrix.FailClosed.MandatoryAvailability || 'AVAILABLE',
     OverallResult: matrix.FailClosed.OverallResult || 'RESOLVED',
-    FailClosed: matrix.PlatformState === 'ZERO_AGENT_TRANSITION' || unknown || exceptionResults.some((result) => !result.valid),
+    FailClosed: activationClosed || unknown || exceptionResults.some((result) => !result.valid),
   };
 }
 
@@ -195,6 +196,12 @@ export function validateRegistry(registry) {
     if (registry.ActivationAllowed !== false) errors.push('registry: activation must be disabled');
     return errors;
   }
+  if (registry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD') {
+    if (registry.ActiveCustomAgents !== 0) errors.push('registry: provisional build must contain 0 active agents');
+    if (registry.ProvisionedAgents !== registry.Agents.length) errors.push('registry: ProvisionedAgents must match Agents length');
+    if (registry.MandatoryAgentAvailability !== 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED') errors.push('registry: provisional availability mismatch');
+    if (registry.ActivationAllowed !== false) errors.push('registry: activation must be disabled');
+  }
   const required = [
     'AgentId', 'Name', 'SpecificationSources', 'Purpose', 'Scope', 'Triggers',
     'RequiredInputs', 'Checks', 'ForbiddenActions', 'RequiredOutputs',
@@ -209,6 +216,8 @@ export function validateRegistry(registry) {
     if (ids.has(agent.AgentId)) errors.push(`duplicate AgentId ${agent.AgentId}`);
     ids.add(agent.AgentId);
     if (!IMPLEMENTATION_STATUSES.includes(agent.Status)) errors.push(`${agent.AgentId}: unknown status ${agent.Status}`);
+    if (registry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD' && agent.Status !== 'PROVISIONAL') errors.push(`${agent.AgentId}: provisional build requires PROVISIONAL status`);
+    if (registry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD' && agent.ActivationEligible !== false) errors.push(`${agent.AgentId}: activation must remain ineligible`);
     for (const field of ['CanWriteRemote', 'CanApproveMerge', 'CanDeploy', 'CanProductionWrite', 'CanModifySecrets']) {
       if (agent[field] !== false) errors.push(`${agent.AgentId}: forbidden permission ${field}`);
     }
@@ -390,16 +399,17 @@ export function validateInstructionHierarchy(root) {
 
 export function validateProjectAgentFiles(root, registry) {
   const errors = [];
-  const implemented = registry.Agents.filter((agent) => agent.Status === 'IMPLEMENTED');
+  const provisioned = registry.Agents.filter((agent) => ['PROVISIONAL', 'IMPLEMENTED'].includes(agent.Status));
   const dir = join(root, '.codex', 'agents');
   const files = existsSync(dir) ? readdirSync(dir).filter((file) => file.endsWith('.toml')) : [];
-  if (files.length < implemented.length) errors.push(`expected at least ${implemented.length} project agents; found ${files.length}`);
+  if (files.length < provisioned.length) errors.push(`expected at least ${provisioned.length} project agents; found ${files.length}`);
   for (const file of files) {
     const text = readFileSync(join(dir, file), 'utf8');
     for (const field of ['name =', 'description =', 'developer_instructions =']) if (!text.includes(field)) errors.push(`${file}: missing ${field}`);
-    if (!/remote write|push/i.test(text)) errors.push(`${file}: missing remote-write prohibition`);
+    if (!/remote write|push|perform writes/i.test(text)) errors.push(`${file}: missing remote-write prohibition`);
   }
   if (registry.PlatformState === 'ZERO_AGENT_TRANSITION' && files.length !== 0) errors.push(`zero-agent transition must contain 0 project agents; found ${files.length}`);
+  if (registry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD' && files.length !== provisioned.length) errors.push(`provisional build must contain exactly ${provisioned.length} project agents; found ${files.length}`);
   return errors;
 }
 

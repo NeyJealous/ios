@@ -1,20 +1,62 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/NeyJealous/ios/architecture/agents/review-matrix.schema.json",
-  "title": "IOS Review Matrix — zero-agent transition",
+  "title": "IOS Review Matrix — provisional first wave",
   "type": "object",
   "additionalProperties": false,
-  "required": ["Version","PlatformState","TaskTypes","AlwaysRequiredAgents","BaselineControls","Rules","FailClosed","Transition"],
+  "required": ["Version", "PlatformState", "TaskTypes", "AlwaysRequiredAgents", "BaselineControls", "Rules", "FailClosed", "Transition"],
   "properties": {
-    "Version": {"const":"2.0.0-transition"},
-    "PlatformState": {"const":"ZERO_AGENT_TRANSITION"},
-    "TaskTypes": {"type":"array","minItems":19,"uniqueItems":true,"items":{"type":"string"}},
-    "AlwaysRequiredAgents": {"const":[]},
-    "BaselineControls": {"type":"array","contains":{"const":"zero-agent-fail-closed"},"minContains":1},
-    "Rules": {"type":"array","minItems":1,"items":{"type":"object","additionalProperties":false,"required":["RuleId","TaskType","PathPatterns","RequiredAgents","RequiredControls"],"properties":{"RuleId":{"type":"string","pattern":"^[A-Z0-9_-]+$"},"TaskType":{"type":"string"},"PathPatterns":{"type":"array","items":{"type":"string"}},"BranchPatterns":{"type":"array","items":{"type":"string"}},"RequiredAgents":{"const":[]},"RequiredControls":{"type":"array","uniqueItems":true,"items":{"type":"string"}},"Reason":{"type":"string"}}}},
-    "FailClosed": {"type":"object","additionalProperties":false,"required":["UnknownTaskType","EmptyDiff","RequiredAgents","MandatoryAvailability","OverallResult"],"properties":{"UnknownTaskType":{"const":"mixed/unknown"},"EmptyDiff":{"const":"BLOCK"},"RequiredAgents":{"const":[]},"MandatoryAvailability":{"const":"NOT_AVAILABLE"},"OverallResult":{"const":"BLOCKED"}}},
-    "Transition": {"type":"object","additionalProperties":false,"required":["ActiveCustomAgents","OldRegistryReferences","OldMatrixReferences","OldResolverReferences","OldManifestsAccepted","ResolverBehavior"],"properties":{"ActiveCustomAgents":{"const":0},"OldRegistryReferences":{"const":0},"OldMatrixReferences":{"const":0},"OldResolverReferences":{"const":0},"OldManifestsAccepted":{"const":false},"ResolverBehavior":{"const":"FAIL_CLOSED"}}},
-    "AntiTamperPaths": {"type":"array","items":{"type":"string"}},
-    "ExceptionPolicy": {"type":"object"}
+    "Version": { "const": "2.1.0-provisional" },
+    "PlatformState": { "const": "PROVISIONAL_PLATFORM_BUILD" },
+    "TaskTypes": { "type": "array", "minItems": 7, "uniqueItems": true, "items": { "type": "string" } },
+    "AlwaysRequiredAgents": { "const": [] },
+    "BaselineControls": { "type": "array", "contains": { "const": "activation-closed" }, "minContains": 1 },
+    "Rules": {
+      "type": "array",
+      "minItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["RuleId", "TaskType", "PathPatterns", "RequiredAgents", "RequiredControls"],
+        "properties": {
+          "RuleId": { "type": "string", "pattern": "^[A-Z0-9_-]+$" },
+          "TaskType": { "type": "string" },
+          "PathPatterns": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+          "BranchPatterns": { "type": "array", "items": { "type": "string" } },
+          "RequiredAgents": { "type": "array", "uniqueItems": true, "items": { "enum": ["ios-agent-orchestrator", "agent-governance-auditor", "security-privacy-auditor", "audit-traceability-reviewer", "ios-codebase-auditor"] } },
+          "RequiredControls": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+          "Reason": { "type": "string" }
+        }
+      }
+    },
+    "FailClosed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["UnknownTaskType", "EmptyDiff", "RequiredAgents", "MandatoryAvailability", "OverallResult"],
+      "properties": {
+        "UnknownTaskType": { "const": "mixed/unknown" },
+        "EmptyDiff": { "const": "BLOCK" },
+        "RequiredAgents": { "type": "array", "minItems": 4, "uniqueItems": true },
+        "MandatoryAvailability": { "const": "PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED" },
+        "OverallResult": { "const": "BLOCKED" }
+      }
+    },
+    "Transition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ActiveCustomAgents", "ProvisionalAgents", "OldRegistryReferences", "OldMatrixReferences", "OldResolverReferences", "OldManifestsAccepted", "ResolverBehavior", "ActivationGate"],
+      "properties": {
+        "ActiveCustomAgents": { "const": 0 },
+        "ProvisionalAgents": { "const": 5 },
+        "OldRegistryReferences": { "const": 0 },
+        "OldMatrixReferences": { "const": 0 },
+        "OldResolverReferences": { "const": 0 },
+        "OldManifestsAccepted": { "const": false },
+        "ResolverBehavior": { "const": "FAIL_CLOSED" },
+        "ActivationGate": { "const": "CLOSED" }
+      }
+    },
+    "AntiTamperPaths": { "type": "array", "items": { "type": "string" } },
+    "ExceptionPolicy": { "type": "object" }
   }
 }
