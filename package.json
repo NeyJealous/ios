@@ -1,0 +1,15 @@
+{
+  "name": "ios-agent-platform",
+  "version": "2.1.0",
+  "private": true,
+  "description": "Project-local governance tooling for the provisional IOS Agent Platform v2.",
+  "scripts": {
+    "agents:resolve": "node tools/agents/resolve.mjs",
+    "agents:orchestrate": "node tools/agents/orchestrate.mjs",
+    "agents:preflight": "node tools/agents/preflight.mjs",
+    "agents:postflight": "node tools/agents/postflight.mjs",
+    "agents:bootstrap": "node tools/agents/bootstrap.mjs",
+    "agents:check": "node tools/agents/check.mjs"
+  },
+  "license": "UNLICENSED"
+}
