@@ -1,0 +1,66 @@
+{
+  "agentId": "ios-codebase-auditor",
+  "compositionVersion": "1.0.0",
+  "bases": [
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/09-meta-orchestration/codebase-orchestrator.toml",
+      "profileId": "codebase-orchestrator",
+      "rawHash": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+      "normalizedHash": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/09-meta-orchestration/codebase-orchestrator.toml",
+      "inclusionMode": "FULL_UNMODIFIED"
+    },
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/01-core-development/code-mapper.toml",
+      "profileId": "code-mapper",
+      "rawHash": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+      "normalizedHash": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/01-core-development/code-mapper.toml",
+      "inclusionMode": "FULL_UNMODIFIED"
+    },
+    {
+      "repository": "wshobson/agents",
+      "commit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+      "profileId": "comprehensive-review-code-reviewer",
+      "rawHash": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "normalizedHash": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/comprehensive-review/agents/code-reviewer.md",
+      "inclusionMode": "FULL_UNMODIFIED"
+    },
+    {
+      "repository": "wshobson/agents",
+      "commit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/c4-architecture/agents/c4-code.md",
+      "profileId": "c4-code",
+      "rawHash": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+      "normalizedHash": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/c4-architecture/agents/c4-code.md",
+      "inclusionMode": "FULL_UNMODIFIED"
+    }
+  ],
+  "compositionOrder": [
+    "VoltAgent/awesome-codex-subagents:categories/09-meta-orchestration/codebase-orchestrator.toml",
+    "VoltAgent/awesome-codex-subagents:categories/01-core-development/code-mapper.toml",
+    "wshobson/agents:plugins/comprehensive-review/agents/code-reviewer.md",
+    "wshobson/agents:plugins/c4-architecture/agents/c4-code.md"
+  ],
+  "conflictResolution": [
+    "preserve every base byte-for-byte",
+    "planning, mapping, defect review and C4 mapping remain distinct",
+    "read-only overlay wins over implementation recommendations",
+    "runtime/spec conflicts remain findings without correction"
+  ],
+  "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml",
+  "overlayHash": "d91b146dbbed3b0072d548764d7b1da298435c079cb2c0cab3c2d2b84fce7443",
+  "generatedPath": ".codex/agents/ios-codebase-auditor.toml",
+  "generatedHash": null,
+  "upstreamCompositionHash": "626944224e588160c794b403f13d5108c5a9fae1d7ddc4020db148597b2029d5",
+  "status": "PROVISIONAL",
+  "activationEligible": false,
+  "platformActivationEligible": false
+}

@@ -1,0 +1,77 @@
+{
+  "agentId": "agent-governance-auditor",
+  "compositionVersion": "1.0.0",
+  "bases": [
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/11-ai-governance-safety/ai-governance-auditor.toml",
+      "profileId": "ai-governance-auditor",
+      "rawHash": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+      "normalizedHash": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/11-ai-governance-safety/ai-governance-auditor.toml",
+      "inclusionMode": "FULL_UNMODIFIED"
+    },
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+      "profileId": "policy-guardrail-designer",
+      "rawHash": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+      "normalizedHash": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+      "inclusionMode": "FULL_UNMODIFIED"
+    },
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/13-llmops-evals-observability/eval-engineer.toml",
+      "profileId": "eval-engineer",
+      "rawHash": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+      "normalizedHash": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/13-llmops-evals-observability/eval-engineer.toml",
+      "inclusionMode": "FULL_UNMODIFIED"
+    },
+    {
+      "repository": "wshobson/agents",
+      "commit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/conductor/agents/conductor-validator.md",
+      "profileId": "conductor-validator",
+      "rawHash": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+      "normalizedHash": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/conductor/agents/conductor-validator.md",
+      "inclusionMode": "FULL_UNMODIFIED"
+    },
+    {
+      "repository": "wshobson/agents",
+      "commit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+      "profileId": "comprehensive-review-code-reviewer",
+      "rawHash": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "normalizedHash": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/comprehensive-review/agents/code-reviewer.md",
+      "inclusionMode": "FULL_UNMODIFIED"
+    }
+  ],
+  "compositionOrder": [
+    "VoltAgent/awesome-codex-subagents:categories/11-ai-governance-safety/ai-governance-auditor.toml",
+    "VoltAgent/awesome-codex-subagents:categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+    "VoltAgent/awesome-codex-subagents:categories/13-llmops-evals-observability/eval-engineer.toml",
+    "wshobson/agents:plugins/conductor/agents/conductor-validator.md",
+    "wshobson/agents:plugins/comprehensive-review/agents/code-reviewer.md"
+  ],
+  "conflictResolution": [
+    "preserve every base byte-for-byte",
+    "IOS security floor cannot be weakened by evaluation",
+    "successful evaluation cannot cancel a blocker",
+    "code-review scope is limited to governance/platform paths"
+  ],
+  "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml",
+  "overlayHash": "e024df0d9028e30e8316b97795d2196c032746cd35512df3a8bb8053ca083303",
+  "generatedPath": ".codex/agents/agent-governance-auditor.toml",
+  "generatedHash": null,
+  "upstreamCompositionHash": "eb122fcba1ed79a23f43ca5ffc535fe2662d475a7e23484d08d004651b148483",
+  "status": "PROVISIONAL",
+  "activationEligible": false,
+  "platformActivationEligible": false
+}

@@ -1,0 +1,66 @@
+{
+  "agentId": "security-privacy-auditor",
+  "compositionVersion": "1.0.0",
+  "bases": [
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/04-quality-security/security-auditor.toml",
+      "profileId": "security-auditor",
+      "rawHash": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+      "normalizedHash": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/04-quality-security/security-auditor.toml",
+      "inclusionMode": "FULL_UNMODIFIED"
+    },
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/04-quality-security/compliance-auditor.toml",
+      "profileId": "compliance-auditor",
+      "rawHash": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+      "normalizedHash": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/04-quality-security/compliance-auditor.toml",
+      "inclusionMode": "FULL_UNMODIFIED"
+    },
+    {
+      "repository": "wshobson/agents",
+      "commit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/security-compliance/agents/security-auditor.md",
+      "profileId": "security-compliance-security-auditor",
+      "rawHash": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+      "normalizedHash": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/security-compliance/agents/security-auditor.md",
+      "inclusionMode": "FULL_UNMODIFIED"
+    },
+    {
+      "repository": "wshobson/agents",
+      "commit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+      "profileId": "comprehensive-review-code-reviewer",
+      "rawHash": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "normalizedHash": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/comprehensive-review/agents/code-reviewer.md",
+      "inclusionMode": "FULL_UNMODIFIED"
+    }
+  ],
+  "compositionOrder": [
+    "VoltAgent/awesome-codex-subagents:categories/04-quality-security/security-auditor.toml",
+    "VoltAgent/awesome-codex-subagents:categories/04-quality-security/compliance-auditor.toml",
+    "wshobson/agents:plugins/security-compliance/agents/security-auditor.md",
+    "wshobson/agents:plugins/comprehensive-review/agents/code-reviewer.md"
+  ],
+  "conflictResolution": [
+    "preserve overlapping security duties",
+    "technical audit precedes compliance mapping, independent validation and changed-code confirmation",
+    "strictest prohibition wins",
+    "no automatic remediation or self-approval"
+  ],
+  "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml",
+  "overlayHash": "cd0a8c4f4a286fc82987fab32b23fa9fba9db4c7a4536877e99a528cd6acf093",
+  "generatedPath": ".codex/agents/security-privacy-auditor.toml",
+  "generatedHash": null,
+  "upstreamCompositionHash": "07130ca621c6b05f858bbfbf5ba2074852e5154ed46e9b8adb0d8627abf5aff9",
+  "status": "PROVISIONAL",
+  "activationEligible": false,
+  "platformActivationEligible": false
+}
