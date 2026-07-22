@@ -67,7 +67,7 @@ privacy, approval или remote-write ограничения.
 
 ## Status и evidence
 
-- Agent implementation: `SPECIFIED`, `IMPLEMENTED`, `PARTIAL`, `MISSING`,
+- Agent implementation: `SPECIFIED`, `PROVISIONAL`, `IMPLEMENTED`, `PARTIAL`, `MISSING`,
   `CONFLICTING`, `DEPRECATED`.
 - Review: `PASS`, `PASS_WITH_WARNINGS`, `BLOCKED`, `FAIL`, `NOT_APPLICABLE`,
   `NOT_EXECUTED`.
@@ -84,12 +84,22 @@ Documentation Reviewer, Test Generator и baseline security/privacy controls.
 Изменение governance-файлов требует Architecture Reviewer, Security Reviewer,
 Documentation Reviewer, owner approval и ADR при изменении модели.
 
-## Временный zero-agent transition
+## Provisional Agent Platform v2 workflow
 
-Пока `architecture/agents/agent-registry.yaml` имеет
-`PlatformState=ZERO_AGENT_TRANSITION`, активные project-local profiles
-отсутствуют. Resolver обязан вернуть `MandatoryAgentAvailability=NOT_AVAILABLE`,
-непустой `BlockedByUnavailableAgents`, `FailClosed=true` и
-`OverallResult=BLOCKED` для любого значимого diff. Simulation и текстовые claims
-не заменяют обязательный review. Разрешение владельца на controlled removal не
-является acceptance новой платформы, merge approval или production authority.
+Перед значимым изменением выполнить `tools/agents/preflight.mjs`, получить
+детерминированный Resolver result и delegation plan `ios-agent-orchestrator`.
+После изменения scope и после фактического diff повторить Resolver через
+`tools/agents/postflight.mjs`, собрать отдельные commit-bound reports и
+остановиться при `BLOCKER`, `CRITICAL`, `UNKNOWN`, mandatory `NOT_AVAILABLE`,
+model-floor failure или stale evidence. Точки обязательного повторения:
+task start, перед первым write, scope change, pre-commit, pre-push, pre-PR,
+governance/profile/model/upstream changes, migrations и production-related paths.
+
+Первая волна имеет `PlatformState=PROVISIONAL_PLATFORM_BUILD`, все пять
+профилей имеют `status=PROVISIONAL`, `activationEligible=false`, а activation
+gate закрыт. Поэтому tooling может только вычислять Resolver/DAG и возвращает
+`AUTOMATIC_DISPATCH_CONFIGURED`, `NOT_DISPATCHED_ACTIVATION_CLOSED` и
+`TRUSTED_EXTERNAL_ATTESTATION_MISSING`; он не запускает provisional agents.
+Simulation и PR-authored text не заменяют обязательный независимый review.
+Automatic dispatch не даёт merge, deploy, production-write или owner-approval
+authority и не ослабляет sandbox permissions.
