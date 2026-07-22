@@ -4,10 +4,13 @@
   "title": "IOS Trusted Execution Attestation Envelope",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "attestationId", "issuer", "subject", "execution", "bindings", "ownerApproval", "verification"],
+  "required": ["schemaVersion", "attestationId", "nonce", "issuedAt", "expiresAt", "issuer", "subject", "execution", "bindings", "ownerApproval", "verification"],
   "properties": {
     "schemaVersion": { "const": "1.0.0" },
     "attestationId": { "type": "string", "minLength": 16, "maxLength": 256 },
+    "nonce": { "type": "string", "minLength": 16, "maxLength": 256 },
+    "issuedAt": { "type": "string", "format": "date-time" },
+    "expiresAt": { "type": "string", "format": "date-time" },
     "issuer": {
       "type": "object", "additionalProperties": false,
       "required": ["type", "issuerUri", "audience", "trustAnchorId"],
@@ -54,14 +57,30 @@
     },
     "ownerApproval": {
       "type": "object", "additionalProperties": false,
-      "required": ["required", "decision", "evidenceRef"],
+      "required": ["required", "decision", "evidenceRef", "scope"],
       "properties": {
         "required": { "type": "boolean" },
         "decision": { "enum": ["APPROVED", "NOT_REQUIRED", "NOT_PROVIDED"] },
         "evidenceRef": { "type": ["string", "null"] },
+        "scope": { "type": ["string", "null"] },
         "approvedAt": { "type": ["string", "null"], "format": "date-time" },
         "actorId": { "type": ["string", "null"] }
-      }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "required": { "const": true } }, "required": ["required"] },
+          "then": {
+            "required": ["approvedAt", "actorId"],
+            "properties": {
+              "decision": { "const": "APPROVED" },
+              "evidenceRef": { "type": "string", "minLength": 1 },
+              "scope": { "type": "string", "minLength": 1 },
+              "approvedAt": { "type": "string", "format": "date-time" },
+              "actorId": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      ]
     },
     "verification": {
       "type": "object", "additionalProperties": false,

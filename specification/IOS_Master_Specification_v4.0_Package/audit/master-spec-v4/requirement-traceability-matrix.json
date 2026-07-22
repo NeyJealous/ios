@@ -1,0 +1,22 @@
+[
+  {
+    "requirementId": "REQ-PROD-001",
+    "title": "AppliedMultiplier remains neutral before approval",
+    "decisionStatus": "ACCEPTED",
+    "implementationStatus": "UNKNOWN",
+    "productionStatus": "CLOSED",
+    "sourceDocuments": [
+      "19_PRODUCTION_INFLUENCE_GATES.md",
+      "17_DECISION_ENGINE_AND_R030.md"
+    ],
+    "sourceCommits": [],
+    "implementationFiles": [],
+    "tests": [],
+    "evidence": [],
+    "risks": [
+      "RISK-001"
+    ],
+    "owner": "Project Owner",
+    "nextGate": "Canonical code audit"
+  }
+]

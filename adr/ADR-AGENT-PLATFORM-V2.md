@@ -24,6 +24,8 @@ Phase 1 remediation, commit `bc3314ac6f95aa6acf15fc6a86736e4fb8a2e8da` zero-agen
 
 Master Specification v4.0 становится authoritative audit baseline этой миграции. V3 и прежний ADR сохраняются исторически. Старый ADR считается superseded только после отдельного owner acceptance этого ADR.
 
+Immutable repository sources and hashes are recorded in `specification/NORMATIVE-SOURCE-REGISTER.json`; Phase 3A authorization is recorded in `audit/agents/OWNER-DECISION-AGENT-PLATFORM-V2-PHASE-3A.md`. These references provide traceability but do not change this ADR status.
+
 ## Последствия
 
 - Governance self-change проверяется base-pinned minimum validator и head validator.

@@ -5,8 +5,12 @@ import { spawnSync } from 'node:child_process';
 const root = resolve(import.meta.dirname, '..');
 const listed = spawnSync('git', ['ls-files', '-z'], { cwd: root, encoding: 'utf8' });
 if (listed.status !== 0) throw new Error(listed.stderr || 'git ls-files failed');
+const untrackedListed = spawnSync('git', ['ls-files', '--others', '--exclude-standard', '-z'], { cwd: root, encoding: 'utf8' });
+if (untrackedListed.status !== 0) throw new Error(untrackedListed.stderr || 'git untracked listing failed');
 
-const files = listed.stdout.split('\0').filter(Boolean);
+const trackedFiles = listed.stdout.split('\0').filter(Boolean);
+const untrackedFiles = untrackedListed.stdout.split('\0').filter(Boolean);
+const files = [...new Set([...trackedFiles, ...untrackedFiles])];
 const windowsUserPath = new RegExp('C:' + String.raw`\\Users\\`, 'i');
 const slashUserPath = new RegExp('C:' + '/Users/', 'i');
 const privateWorktreeName = new RegExp(['IOS', 'CODEX'].join('_') + '_', 'i');
@@ -44,16 +48,18 @@ for (const file of files) {
   if (secrets.some((pattern) => pattern.test(content))) findings.secrets.push(file);
 }
 
-const trackedClasp = files.filter((file) => /(^|\/)\.clasp\.json$/i.test(file));
-const trackedArchives = files.filter((file) => /\.(?:zip|xlsx?|csv|tsv)$/i.test(file));
-const trackedPrivate = files.filter((file) =>
+const trackedClasp = trackedFiles.filter((file) => /(^|\/)\.clasp\.json$/i.test(file));
+const trackedArchives = trackedFiles.filter((file) => /\.(?:zip|xlsx?|csv|tsv)$/i.test(file));
+const trackedPrivate = trackedFiles.filter((file) =>
   file.startsWith('backups/') || file.startsWith('audit/account-archive/'));
 const ok = trackedClasp.length === 0 && trackedArchives.length === 0 &&
   trackedPrivate.length === 0 && Object.values(findings).every((items) => items.length === 0);
 
 const result = {
   ok,
-  trackedFiles: files.length,
+  trackedFiles: trackedFiles.length,
+  untrackedFiles: untrackedFiles.length,
+  scannedFiles: files.length,
   trackedClasp,
   trackedArchives,
   trackedPrivate,

@@ -14,6 +14,8 @@
 
 Для этой миграции authoritative audit baseline — Master Specification v4.0. V3.0 остаётся immutable historical baseline. Correction Memo остаётся historical evidence и superseded только в явно включённой/заменённой v4 части. Расхождение runtime со спецификацией становится finding.
 
+Versioned sources are repository-local and hash-bound through `specification/NORMATIVE-SOURCE-REGISTER.json`: Master v4 package is preserved under `specification/IOS_Master_Specification_v4.0_Package/`, and Agent Platform v2.1 under `specification/agent-platform/v2.1/`. Phase 3A scope is recorded separately in `audit/agents/OWNER-DECISION-AGENT-PLATFORM-V2-PHASE-3A.md`.
+
 ## Рассмотренные варианты
 
 1. Сохранить прежнюю 10-agent/Terra-only платформу — отклонено как несовместимое с v2.1.

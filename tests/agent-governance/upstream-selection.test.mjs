@@ -33,3 +33,28 @@ test('register contains no legacy unresolved status and no generated agent paths
   assert.doesNotMatch(text, /"status":"UNRESOLVED"/);
   assert.doesNotMatch(text, /\.codex\/agents/);
 });
+
+test('selection validator fails closed on mutated pin and content hash', () => {
+  const mutated = structuredClone(register);
+  const selected = mutated.selections.find((selection) => selection.status === 'SELECTED');
+  selected.selectedProfiles[0].commitSha = '0'.repeat(40);
+  selected.selectedProfiles[1].rawSha256 = 'not-a-hash';
+  const result = validateSelectionRegister(mutated);
+  assert.equal(result.ok, false);
+  assert.ok(result.errors.some((error) => error.includes('unapproved repository/commit')));
+  assert.ok(result.errors.some((error) => error.includes('invalid hash')));
+});
+
+test('selection validator rejects Windows paths, duplicate profiles and malformed collections', () => {
+  const mutated = structuredClone(register);
+  const selected = mutated.selections.find((selection) => selection.status === 'SELECTED');
+  selected.selectedProfiles[0].sourcePath = '\\\\server\\share\\profile.toml';
+  selected.selectedProfiles.push(structuredClone(selected.selectedProfiles[1]));
+  const ownerBlocked = mutated.selections.find((selection) => selection.status === 'REQUIRES_OWNER_DECISION');
+  ownerBlocked.candidateProfiles = 'not-an-array';
+  const result = validateSelectionRegister(mutated);
+  assert.equal(result.ok, false);
+  assert.ok(result.errors.some((error) => error.includes('unsafe sourcePath')));
+  assert.ok(result.errors.some((error) => error.includes('duplicate profile path')));
+  assert.ok(result.errors.some((error) => error.includes('profile collections must be arrays')));
+});

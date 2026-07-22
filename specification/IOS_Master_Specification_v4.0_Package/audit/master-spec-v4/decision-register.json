@@ -1,0 +1,65 @@
+[
+  {
+    "id": "PH-0100",
+    "title": "AccountScope",
+    "decisionStatus": "ACCEPTED",
+    "implementationStatus": "IMPLEMENTED_AND_VERIFIED",
+    "productionStatus": "ACTIVE"
+  },
+  {
+    "id": "PH-0101",
+    "title": "Controlled account exclusion",
+    "decisionStatus": "ACCEPTED",
+    "implementationStatus": "IMPLEMENTED_AND_VERIFIED",
+    "productionStatus": "COMPLETED"
+  },
+  {
+    "id": "PH-0102",
+    "title": "Account Control UX",
+    "decisionStatus": "ACCEPTED",
+    "implementationStatus": "IMPLEMENTED_AND_VERIFIED",
+    "productionStatus": "ACTIVE"
+  },
+  {
+    "id": "PH-0103",
+    "title": "Canonical integration branch",
+    "decisionStatus": "ACCEPTED",
+    "implementationStatus": "IMPLEMENTED_AND_VERIFIED",
+    "productionStatus": "ACTIVE"
+  },
+  {
+    "id": "PH-0104",
+    "title": "GitHub protection ruleset",
+    "decisionStatus": "ACCEPTED",
+    "implementationStatus": "IMPLEMENTED_AND_VERIFIED",
+    "productionStatus": "ACTIVE"
+  },
+  {
+    "id": "PH-0106",
+    "title": "Connection Recovery Protocol",
+    "decisionStatus": "ACCEPTED",
+    "implementationStatus": "IMPLEMENTED_AND_VERIFIED",
+    "productionStatus": "ACTIVE"
+  },
+  {
+    "id": "PH-0107",
+    "title": "Global Agent Governance",
+    "decisionStatus": "ACCEPTED",
+    "implementationStatus": "IMPLEMENTED_AND_VERIFIED",
+    "productionStatus": "ACTIVE"
+  },
+  {
+    "id": "PH-0109",
+    "title": "Market Regime v3.2",
+    "decisionStatus": "RESEARCH_SEED",
+    "implementationStatus": "RESEARCH_ONLY",
+    "productionStatus": "CLOSED"
+  },
+  {
+    "id": "PH-0110",
+    "title": "R030 neutralization",
+    "decisionStatus": "ACCEPTED",
+    "implementationStatus": "UNKNOWN",
+    "productionStatus": "CLOSED"
+  }
+]

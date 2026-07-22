@@ -18,17 +18,26 @@ export function validateSelectionRegister(register) {
     if (!selection.agentId || ids.has(selection.agentId)) errors.push(`duplicate/missing agentId: ${selection.agentId || '<missing>'}`);
     ids.add(selection.agentId);
     if (!ALLOWED.has(selection.status)) errors.push(`${selection.agentId}: invalid status ${selection.status}`);
-    const selected = selection.selectedProfiles || [];
-    const candidates = selection.candidateProfiles || [];
+    const selected = Array.isArray(selection.selectedProfiles) ? selection.selectedProfiles : [];
+    const candidates = Array.isArray(selection.candidateProfiles) ? selection.candidateProfiles : [];
+    if (!Array.isArray(selection.selectedProfiles) || !Array.isArray(selection.candidateProfiles)) errors.push(`${selection.agentId}: profile collections must be arrays`);
     if (selection.status === 'SELECTED' && (!selected.length || candidates.length)) errors.push(`${selection.agentId}: invalid selected composition`);
     if (selection.status === 'REQUIRES_OWNER_DECISION' && (selected.length || !candidates.length)) errors.push(`${selection.agentId}: owner decision must expose candidates only`);
     if (selection.status === 'UPSTREAM_PROFILE_NOT_FOUND' && (selected.length || candidates.length)) errors.push(`${selection.agentId}: not-found row must not contain profiles`);
+    const rowPaths = new Set();
+    const rowIds = new Set();
     for (const profile of [...selected, ...candidates]) {
       if (PINS.get(profile.repository) !== profile.commitSha) errors.push(`${selection.agentId}: unapproved repository/commit`);
-      if (!profile.sourcePath || /^[A-Za-z]:|^\//.test(profile.sourcePath) || profile.sourcePath.includes('..')) errors.push(`${selection.agentId}: unsafe sourcePath`);
+      if (!profile.sourcePath || /^[A-Za-z]:|^\/|^\\|\\/.test(profile.sourcePath) || profile.sourcePath.split('/').includes('..')) errors.push(`${selection.agentId}: unsafe sourcePath`);
       if (!profile.profileId) errors.push(`${selection.agentId}: missing profileId`);
       if (!/^[0-9a-f]{64}$/.test(profile.rawSha256 || '') || !/^[0-9a-f]{64}$/.test(profile.normalizedSha256 || '')) errors.push(`${selection.agentId}: invalid hash`);
       if (profile.license !== 'MIT') errors.push(`${selection.agentId}: unexpected license`);
+      const pathKey = `${profile.repository}:${profile.sourcePath}`;
+      const idKey = `${profile.repository}:${profile.profileId}`;
+      if (rowPaths.has(pathKey)) errors.push(`${selection.agentId}: duplicate profile path`);
+      if (rowIds.has(idKey)) errors.push(`${selection.agentId}: duplicate profile ID`);
+      rowPaths.add(pathKey);
+      rowIds.add(idKey);
     }
   }
   const computed = Object.fromEntries([...ALLOWED].map((status) => [status, (register.selections || []).filter((item) => item.status === status).length]));

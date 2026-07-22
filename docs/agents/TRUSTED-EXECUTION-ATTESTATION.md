@@ -27,6 +27,6 @@ Owner approval — отдельная attestable decision. Repository-файл �
 
 ## Validation result
 
-`tools/trusted-governance/attestation.mjs` отклоняет schema-valid spoofed claim, если transport происходит из repository/PR artifacts, а также stale SHA, profile/overlay/model mismatch и неподтверждённый owner approval.
+`tools/trusted-governance/attestation.mjs` отклоняет schema-valid spoofed claim, если transport происходит из repository/PR artifacts, а также stale SHA, profile/overlay/model mismatch, expired/replayed envelope и неподтверждённый owner approval. Owner evidence требует внешний reference, actor, timestamp и scope.
 
-В текущем repository отсутствуют runtime issuer, key discovery/rotation, signature verification service и GitHub OIDC canary evidence. Поэтому текущий статус остаётся `INSUFFICIENT_EVIDENCE`; automatic dispatch не считается доверенно подтверждённым.
+В текущем repository отсутствуют runtime issuer, key discovery/rotation, signature verification service и GitHub OIDC canary evidence. Поэтому даже полностью связанный structurally valid envelope возвращает `INSUFFICIENT_EVIDENCE` с `TRUSTED_ATTESTATION_PROVIDER_NOT_CONFIGURED`; automatic dispatch не считается доверенно подтверждённым.

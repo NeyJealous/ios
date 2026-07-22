@@ -11,6 +11,7 @@
       "requested": "gpt-5.6-terra",
       "resolved": "gpt-5.6-terra",
       "runtimeDispatch": "ACCEPTED",
+      "executionReference": "AgentThreadId=/root/terra_smoke",
       "probeResponse": "MODEL_SMOKE_INSUFFICIENT_EVIDENCE",
       "availability": "AVAILABLE_CANDIDATE",
       "trustedAttestation": "INSUFFICIENT_EVIDENCE"
@@ -19,6 +20,7 @@
       "requested": "gpt-5.6-sol",
       "resolved": "gpt-5.6-sol",
       "runtimeDispatch": "ACCEPTED",
+      "executionReference": "AgentThreadId=/root/sol_smoke",
       "probeResponse": "MODEL_SMOKE_OK",
       "availability": "AVAILABLE_CANDIDATE",
       "trustedAttestation": "INSUFFICIENT_EVIDENCE"

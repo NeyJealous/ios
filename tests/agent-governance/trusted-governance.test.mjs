@@ -169,6 +169,8 @@ test('trusted verifier is BLOCKED in zero-agent state even with fabricated legac
 
     const result = validateTrusted(trustedOptions(fixture.root, candidate, fixture.sha, candidateSha));
     assert.equal(result.OverallStatus, 'BLOCKED');
+    assert.equal(result.AttestationStatus, 'INSUFFICIENT_EVIDENCE');
+    assert.ok(result.AttestationErrors.includes('TRUSTED_EXECUTION_ATTESTATION_INSUFFICIENT_EVIDENCE'));
     assert.equal(result.TrustRootChanged, false);
     assert.ok(result.IntegrityErrors.includes('ZERO_AGENT_TRANSITION_MANDATORY_AGENT_NOT_AVAILABLE'));
   } finally {

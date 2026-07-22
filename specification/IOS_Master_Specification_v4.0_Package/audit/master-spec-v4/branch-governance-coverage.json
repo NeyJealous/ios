@@ -1,0 +1,6 @@
+{
+  "canonicalBranch": "integration/ios-current",
+  "newBranchesInheritGovernance": true,
+  "existingBranchesRequireExplicitAdoption": true,
+  "coverageStatus": "INVENTORY_REQUIRED"
+}
