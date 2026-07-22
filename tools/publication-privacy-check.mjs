@@ -1,5 +1,5 @@
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { lstatSync, readFileSync } from 'node:fs';
+import { basename, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 function gitFiles(root, args, label) {
@@ -25,9 +25,34 @@ export function scanPublicationPrivacy(root) {
     /"access_token"\s*:\s*"[^"\r\n]+"/,
   ];
   const findings = { personalizedPaths: [], fullAccountIds: [], scriptIds: [], secrets: [] };
+  const prohibitedPaths = [];
+  const unsafeInputs = [];
+  const maximumFileBytes = 5 * 1024 * 1024;
+  const prohibitedBasename = /^(?:\.env(?:\..+)?|\.clasprc\.json|\.clasp\.json|credentials?(?:\.[^.]+)?|client[_-]?secret(?:\.[^.]+)?|service[_-]?account(?:\.[^.]+)?|id_(?:rsa|dsa|ecdsa|ed25519)(?:\.pub)?)$/i;
+  const prohibitedExtension = /\.(?:pem|key|p12|pfx|jks|keystore|kdbx|zip|xlsx?|csv|tsv)$/i;
+  const prohibitedDirectory = /^(?:backups|audit\/account-archive)(?:\/|$)/i;
   for (const file of files) {
+    const normalized = file.replaceAll('\\', '/');
+    if (prohibitedBasename.test(basename(normalized)) || prohibitedExtension.test(normalized) || prohibitedDirectory.test(normalized)) {
+      prohibitedPaths.push(file);
+      continue;
+    }
     let content;
-    try { content = readFileSync(resolve(root, file), 'utf8'); } catch { continue; }
+    try {
+      const stat = lstatSync(resolve(root, file));
+      if (stat.isSymbolicLink() || !stat.isFile()) {
+        unsafeInputs.push({ file, reason: stat.isSymbolicLink() ? 'SYMLINK' : 'NON_REGULAR_FILE' });
+        continue;
+      }
+      if (stat.size > maximumFileBytes) {
+        unsafeInputs.push({ file, reason: 'FILE_TOO_LARGE' });
+        continue;
+      }
+      content = readFileSync(resolve(root, file), 'utf8');
+    } catch {
+      unsafeInputs.push({ file, reason: 'UNREADABLE' });
+      continue;
+    }
     if (windowsUserPath.test(content) || slashUserPath.test(content) || privateWorktreeName.test(content)) findings.personalizedPaths.push(file);
     accountId.lastIndex = 0;
     if (accountId.test(content)) findings.fullAccountIds.push(file);
@@ -37,9 +62,9 @@ export function scanPublicationPrivacy(root) {
   }
   const trackedClasp = trackedFiles.filter((file) => /(^|\/)\.clasp\.json$/i.test(file));
   const trackedArchives = trackedFiles.filter((file) => /\.(?:zip|xlsx?|csv|tsv)$/i.test(file));
-  const trackedPrivate = trackedFiles.filter((file) => file.startsWith('backups/') || file.startsWith('audit/account-archive/'));
-  const ok = trackedClasp.length === 0 && trackedArchives.length === 0 && trackedPrivate.length === 0 && Object.values(findings).every((items) => items.length === 0);
-  return { ok, trackedFiles: trackedFiles.length, untrackedFiles: untrackedFiles.length, scannedFiles: files.length, trackedClasp, trackedArchives, trackedPrivate, findings };
+  const trackedPrivate = trackedFiles.filter((file) => prohibitedDirectory.test(file.replaceAll('\\', '/')));
+  const ok = prohibitedPaths.length === 0 && unsafeInputs.length === 0 && Object.values(findings).every((items) => items.length === 0);
+  return { ok, trackedFiles: trackedFiles.length, untrackedFiles: untrackedFiles.length, scannedFiles: files.length, maximumFileBytes, prohibitedPaths, unsafeInputs, trackedClasp, trackedArchives, trackedPrivate, findings };
 }
 
 function main() {

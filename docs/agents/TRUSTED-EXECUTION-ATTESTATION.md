@@ -17,7 +17,7 @@ Envelope связывает одну независимую execution с `agentI
 - `CODEX_RUNTIME_CHANNEL`: подписанный envelope от runtime attester, доставленный verifier вне candidate checkout;
 - `GITHUB_OIDC_CHANNEL`: envelope, чей issuer/audience и signature проверены base-owned verifier относительно защищённого trust anchor.
 
-Base-owned verifier получает attestation через отдельный trusted input, а не ищет её внутри candidate tree. Он повторно связывает repository, branch, base/head SHA, agent/profile/overlay/model и result hash с ожидаемым execution plan. Любое несовпадение даёт `INSUFFICIENT_EVIDENCE`.
+Base-owned verifier получает attestation через отдельный trusted input, а не ищет её внутри candidate tree. Он повторно связывает repository, branch, base/head SHA, execution ID/mode, independence, agent/profile/overlay, requested/resolved model, reasoning, execution times, result hash, issuer/audience/trust anchor и verifier key с ожидаемым execution plan. Owner-required policy выводится из trusted base state, а не из claim. Любое несовпадение даёт `INSUFFICIENT_EVIDENCE`.
 
 ## Owner approval и independence
 
@@ -27,6 +27,6 @@ Owner approval — отдельная attestable decision. Repository-файл �
 
 ## Validation result
 
-`tools/trusted-governance/attestation.mjs` отклоняет schema-valid spoofed claim, если transport происходит из repository/PR artifacts, а также stale SHA, profile/overlay/model mismatch, expired/replayed envelope и неподтверждённый owner approval. Owner evidence требует внешний reference, actor, timestamp и scope.
+`tools/trusted-governance/attestation.mjs` отклоняет schema-valid spoofed claim, если transport происходит из repository/PR artifacts, а также stale SHA, несовпадение любого security-critical binding, expired/replayed envelope и неподтверждённый owner approval. Проверяются temporal order и ограниченный TTL. Replay key связывает issuer, attestation ID, nonce и envelope hash и должен храниться внешним durable replay store. Boolean `signatureVerified` недостаточен: обязательна внешняя cryptographic verifier callback относительно pinned issuer/key. Owner evidence требует внешний reference, actor, timestamp и scope.
 
 В текущем repository отсутствуют runtime issuer, key discovery/rotation, signature verification service и GitHub OIDC canary evidence. Поэтому даже полностью связанный structurally valid envelope возвращает `INSUFFICIENT_EVIDENCE` с `TRUSTED_ATTESTATION_PROVIDER_NOT_CONFIGURED`; automatic dispatch не считается доверенно подтверждённым.

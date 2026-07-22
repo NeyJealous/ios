@@ -10,6 +10,11 @@ Status: `PARTIAL_EXACT_SELECTION_OWNER_DECISIONS_REQUIRED`
 Both exact commits were checked out detached in a temporary research directory.
 Their code was not executed. Profile files were read as data only; symlinks,
 path escape and pin/license mismatch are rejected by the register builder.
+The hardened validator reads exact Git blobs at each pinned commit, verifies
+regular-file object modes, recomputes all profile IDs and raw/normalized hashes,
+and verifies the MIT license bytes against separately recorded license hashes.
+Missing source roots, missing blobs, symlink/submodule modes and modified
+content fail closed. The catalog walk is separator-neutral on Windows/Linux.
 
 ## Result
 
@@ -23,6 +28,9 @@ The machine-readable register contains, for every selected or candidate
 component, exact repository, commit SHA, source path, actual profile ID, raw
 SHA-256, normalized SHA-256 and license. Normalization is UTF-8 text with CRLF
 converted to LF and Unicode NFC.
+
+Pinned-blob verification result: `102` unique source paths verified, `0`
+provenance errors. Upstream code and dependency lifecycle hooks were not run.
 
 ## Selected deterministic rows
 

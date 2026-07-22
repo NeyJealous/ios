@@ -5,8 +5,8 @@ import { relative, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 const PINS = {
-  V: { repository: 'VoltAgent/awesome-codex-subagents', commitSha: '5605c9c18b3687993919d6cc467af4a34898fee2', license: 'MIT' },
-  W: { repository: 'wshobson/agents', commitSha: 'b6af3711058190e4b5c5274b9758498fe626ec5a', license: 'MIT' },
+  V: { repository: 'VoltAgent/awesome-codex-subagents', commitSha: '5605c9c18b3687993919d6cc467af4a34898fee2', license: 'MIT', licensePath: 'LICENSE', licenseRawSha256: '6d4bdc9a9cf30e7beb593475fdcdbf29f981ea6bd7923f202866145409f87b44', licenseNormalizedSha256: '6d4bdc9a9cf30e7beb593475fdcdbf29f981ea6bd7923f202866145409f87b44' },
+  W: { repository: 'wshobson/agents', commitSha: 'b6af3711058190e4b5c5274b9758498fe626ec5a', license: 'MIT', licensePath: 'LICENSE', licenseRawSha256: 'f89abb55d9f073f38f1703e4518f0613c788c6174be7f13b8dfe48a1c076c746', licenseNormalizedSha256: 'f89abb55d9f073f38f1703e4518f0613c788c6174be7f13b8dfe48a1c076c746' },
 };
 
 const SELECTED = {
@@ -77,6 +77,14 @@ function walk(root, accept, output = []) {
 
 function sha(bytes) { return createHash('sha256').update(bytes).digest('hex'); }
 
+function gitBlob(root, commitSha, sourcePath) {
+  const mode = spawnSync('git', ['-c', 'core.hooksPath=', '--no-optional-locks', 'ls-tree', commitSha, '--', sourcePath], { cwd: root, encoding: 'utf8', shell: false });
+  if (mode.status !== 0 || !/^(?:100644|100755)\s/.test(mode.stdout)) throw new Error(`Unsafe or missing Git blob: ${sourcePath}`);
+  const result = spawnSync('git', ['-c', 'core.hooksPath=', '--no-optional-locks', 'show', `${commitSha}:${sourcePath}`], { cwd: root, encoding: null, shell: false });
+  if (result.status !== 0) throw new Error(`Cannot read pinned Git blob: ${sourcePath}`);
+  return result.stdout;
+}
+
 function gitHead(root) {
   const result = spawnSync('git', ['-c', 'core.hooksPath=', '--no-optional-locks', 'rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8', shell: false });
   if (result.status !== 0) throw new Error(`Cannot verify pinned checkout: ${root}`);
@@ -88,7 +96,7 @@ function record(repoKey, root, absolutePath) {
   if (!stat.isFile() || stat.isSymbolicLink()) throw new Error(`Unsafe source: ${absolutePath}`);
   const sourcePath = relative(root, absolutePath).replaceAll('\\', '/');
   if (!sourcePath || sourcePath.startsWith('../') || sourcePath.includes('/../')) throw new Error(`Path escape: ${sourcePath}`);
-  const raw = readFileSync(absolutePath);
+  const raw = gitBlob(root, PINS[repoKey].commitSha, sourcePath);
   const text = raw.toString('utf8');
   const name = repoKey === 'V'
     ? /^name\s*=\s*["']([^"']+)["']/m.exec(text)?.[1]
@@ -113,7 +121,7 @@ function main() {
     if (!readFileSync(resolve(roots[key], 'LICENSE'), 'utf8').startsWith('MIT License')) throw new Error(`${key} license mismatch`);
   }
   const catalogs = {
-    V: walk(roots.V, (path) => path.endsWith('.toml') && path.includes(`${resolve(roots.V, 'categories')}\\`)),
+    V: walk(resolve(roots.V, 'categories'), (path) => path.endsWith('.toml')),
     W: walk(roots.W, (path) => path.endsWith('.md') && /[\\/]agents[\\/]/.test(path)),
   };
   const byBase = {};

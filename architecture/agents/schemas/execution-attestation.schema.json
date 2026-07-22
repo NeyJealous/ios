@@ -84,13 +84,16 @@
     },
     "verification": {
       "type": "object", "additionalProperties": false,
-      "required": ["status", "signatureVerified", "verifiedAt", "verifierId", "envelopeHash"],
+      "required": ["status", "signatureVerified", "verifiedAt", "verifierId", "envelopeHash", "signatureAlgorithm", "keyId", "signature"],
       "properties": {
         "status": { "const": "VERIFIED" },
         "signatureVerified": { "const": true },
         "verifiedAt": { "type": "string", "format": "date-time" },
         "verifierId": { "type": "string", "minLength": 1 },
-        "envelopeHash": { "$ref": "#/$defs/sha256" }
+        "envelopeHash": { "$ref": "#/$defs/sha256" },
+        "signatureAlgorithm": { "enum": ["EdDSA", "ES256"] },
+        "keyId": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "signature": { "type": "string", "minLength": 43, "maxLength": 2048, "pattern": "^[A-Za-z0-9_-]+$" }
       }
     }
   },

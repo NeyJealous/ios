@@ -23,6 +23,16 @@ function isDateTime(value) {
   return !Number.isNaN(Date.parse(value));
 }
 
+function isUri(value) {
+  if (typeof value !== 'string') return false;
+  try {
+    const parsed = new URL(value);
+    return Boolean(parsed.protocol && parsed.hostname);
+  } catch {
+    return false;
+  }
+}
+
 export function validateJsonSchema(value, schema, options = {}) {
   const rootSchema = options.rootSchema || schema;
   const startPath = options.path || '$';
@@ -36,6 +46,16 @@ export function validateJsonSchema(value, schema, options = {}) {
     if (rule.$ref) {
       visit(current, resolveLocalRef(rootSchema, rule.$ref), path);
       return;
+    }
+
+    for (const item of rule.allOf || []) visit(current, item, path);
+    if (rule.if) {
+      const before = errors.length;
+      visit(current, rule.if, path);
+      const conditionMatched = errors.length === before;
+      errors.splice(before);
+      if (conditionMatched && rule.then) visit(current, rule.then, path);
+      if (!conditionMatched && rule.else) visit(current, rule.else, path);
     }
 
     if ('const' in rule && !sameJson(current, rule.const)) errors.push(`${path}: must equal schema const`);
@@ -53,8 +73,10 @@ export function validateJsonSchema(value, schema, options = {}) {
 
     if (typeof current === 'string') {
       if (rule.minLength !== undefined && current.length < rule.minLength) errors.push(`${path}: shorter than minLength ${rule.minLength}`);
+      if (rule.maxLength !== undefined && current.length > rule.maxLength) errors.push(`${path}: longer than maxLength ${rule.maxLength}`);
       if (rule.pattern !== undefined && !new RegExp(rule.pattern, 'u').test(current)) errors.push(`${path}: does not match pattern ${rule.pattern}`);
       if (rule.format === 'date-time' && !isDateTime(current)) errors.push(`${path}: invalid date-time`);
+      if (rule.format === 'uri' && !isUri(current)) errors.push(`${path}: invalid uri`);
     }
 
     if (Array.isArray(current)) {
