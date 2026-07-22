@@ -1,0 +1,65 @@
+{
+  "gateId": "FIRST_WAVE_EXACT_SELECTION",
+  "branch": "feature/agent-platform-v2-integration",
+  "baseSha": "76fffc38e4d8b30e75592fb885c51f91815de0aa",
+  "status": "AWAITING_OWNER_DECISION",
+  "activeAgentChanges": 0,
+  "activationAllowed": false,
+  "changedCanonicalSelectionStatuses": 0,
+  "agents": [
+    {
+      "agentId": "ios-agent-orchestrator",
+      "status": "REQUIRES_OWNER_DECISION",
+      "confidence": "MEDIUM",
+      "candidateCount": 4
+    },
+    {
+      "agentId": "agent-governance-auditor",
+      "status": "REQUIRES_OWNER_DECISION",
+      "confidence": "MEDIUM",
+      "candidateCount": 11
+    },
+    {
+      "agentId": "security-privacy-auditor",
+      "status": "REQUIRES_OWNER_DECISION",
+      "confidence": "HIGH",
+      "candidateCount": 14
+    },
+    {
+      "agentId": "audit-traceability-reviewer",
+      "status": "REQUIRES_OWNER_DECISION",
+      "confidence": "MEDIUM",
+      "candidateCount": 5
+    },
+    {
+      "agentId": "ios-codebase-auditor",
+      "status": "REQUIRES_OWNER_DECISION",
+      "confidence": "MEDIUM",
+      "candidateCount": 10
+    }
+  ],
+  "checks": {
+    "pinnedCommitVerification": "PASS",
+    "pathExistence": "PASS",
+    "hashVerification": "PASS",
+    "licenseVerification": "PASS",
+    "duplicateProfileDetection": "PASS",
+    "compositionConflictDetection": "PASS_WITH_DOCUMENTED_CONFLICTS"
+  },
+  "files": [
+    "audit/agents/FIRST_WAVE_EXACT_SELECTION/owner-choice-package.md",
+    "audit/agents/FIRST_WAVE_EXACT_SELECTION/owner-choice-package.json",
+    "audit/agents/FIRST_WAVE_EXACT_SELECTION/candidate-comparison.md",
+    "audit/agents/FIRST_WAVE_EXACT_SELECTION/manifest.json",
+    "architecture/agents/registry/upstream-selection-candidates.yaml"
+  ],
+  "safety": {
+    "productionWrites": 0,
+    "claspPush": 0,
+    "deploymentUpdates": 0,
+    "googleSheetsWrites": 0,
+    "brokerApiWrites": 0,
+    "agentActivation": 0,
+    "push": 0
+  }
+}
