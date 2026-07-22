@@ -44,6 +44,17 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - name: Install project-local tooling without lifecycle scripts
+        run: npm ci --ignore-scripts
+
+      - name: Rebuild locked provisional profiles
+        run: npm run agents:bootstrap
+
+      - name: Verify reproducible clean checkout
+        run: |
+          npm run agents:check
+          git diff --exit-code
+
       - name: Validate registry, matrix, project agents, and instructions
         run: node tools/validate-agent-governance.mjs --all
 

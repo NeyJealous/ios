@@ -4,3 +4,10 @@
 specification/IOS_Master_Specification_v4.0_Package/** -text whitespace=-trailing-space
 specification/agent-platform/v2.1/*.md -text whitespace=-trailing-space
 architecture/agents/upstream/** -text whitespace=-trailing-space
+.codex/agents/** text eol=lf
+architecture/agents/compositions/** text eol=lf
+architecture/agents/registry/*.json text eol=lf
+architecture/agents/registry/*.yaml text eol=lf
+architecture/agents/agent-registry.json text eol=lf
+architecture/agents/agent-registry.yaml text eol=lf
+architecture/agents/review-matrix.yaml text eol=lf

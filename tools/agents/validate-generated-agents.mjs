@@ -2,6 +2,7 @@
 import { createHash } from 'node:crypto';
 import { existsSync, lstatSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const FIRST_WAVE = ['ios-agent-orchestrator', 'agent-governance-auditor', 'security-privacy-auditor', 'audit-traceability-reviewer', 'ios-codebase-auditor'];
 const sha = (bytes) => createHash('sha256').update(bytes).digest('hex');
@@ -73,7 +74,9 @@ export function validateGeneratedAgents(root) {
   return { ok: errors.length === 0, agents: FIRST_WAVE.length, errors };
 }
 
-const root = resolve(process.argv[2] || resolve(import.meta.dirname, '../..'));
-const result = validateGeneratedAgents(root);
-console.log(JSON.stringify(result, null, 2));
-process.exitCode = result.ok ? 0 : 2;
+if (process.argv[1] && resolve(process.argv[1]) === resolve(fileURLToPath(import.meta.url))) {
+  const root = resolve(process.argv[2] || resolve(import.meta.dirname, '../..'));
+  const result = validateGeneratedAgents(root);
+  console.log(JSON.stringify(result, null, 2));
+  process.exitCode = result.ok ? 0 : 2;
+}
