@@ -34,7 +34,7 @@ Immutable repository sources and hashes are recorded in `specification/NORMATIVE
 - Недоступная mandatory model блокирует activation; silent downgrade отсутствует.
 - REAL_SUBAGENT/model/owner claims без trusted transport получают `INSUFFICIENT_EVIDENCE` даже при schema-valid repository JSON.
 - 31 ambiguous compositions остаются `REQUIRES_OWNER_DECISION`; 13 deterministic rows selected только на уровне provenance.
-- Terra/Sol остаются availability candidates; Luna/Sol Pro — `MODEL_NOT_AVAILABLE`; substitution отсутствует.
+- Текущий owner-declared runtime model set: Terra, Luna, Sol и Sol Ultra. Фактический smoke подтверждает Terra/Sol/Sol Ultra как `RUNTIME_AVAILABLE`, Luna как `MODEL_NOT_AVAILABLE`; substitution отсутствует. Sol Ultra — `gpt-5.6-sol` с reasoning `ultra`. Все модели остаются `platformActivationEligible=false` до trusted attestation. Это draft policy text и не меняет статус ADR `DRAFT_NOT_ACCEPTED`.
 - Runtime IOS, Apps Script, Sheets и production не меняются.
 
 ## Acceptance conditions

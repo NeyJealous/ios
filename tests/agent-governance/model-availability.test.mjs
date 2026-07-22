@@ -5,6 +5,7 @@ import test from 'node:test';
 
 const root = resolve(import.meta.dirname, '../..');
 const registry = JSON.parse(readFileSync(resolve(root, 'architecture/agents/registry/model-availability.yaml'), 'utf8'));
+const report = JSON.parse(readFileSync(resolve(root, 'audit/agents/model-availability-report.json'), 'utf8'));
 
 test('availability status comes only from actual Codex runtime smoke and forbids downgrade', () => {
   assert.equal(registry.policy.statusSource, 'ACTUAL_CODEX_RUNTIME_SMOKE_ONLY');
@@ -49,5 +50,32 @@ test('runtime success does not fabricate trusted activation evidence', () => {
     assert.equal(model.platformActivationEligible, false);
     assert.equal(model.attestationStatus, 'INSUFFICIENT_EVIDENCE');
     assert.ok(Number.isInteger(model.observedEndToEndLatencyMs) && model.observedEndToEndLatencyMs > 0);
+  }
+});
+
+test('machine-readable report is a deterministic projection of the registry evidence', () => {
+  assert.equal(report.repositoryHeadAtProbe, registry.probeWindow.repositoryHead);
+  assert.equal(report.results.length, registry.models.length);
+  for (const model of registry.models) {
+    const row = report.results.find((candidate) => candidate.modelId === model.modelId);
+    assert.ok(row, model.modelId);
+    assert.equal(row.requestedModel, model.requestedSlug);
+    assert.equal(row.requestedReasoning, model.requestedReasoningLevel);
+    assert.equal(row.resolvedModel, model.resolvedSlug);
+    assert.equal(row.resolvedReasoning, model.resolvedReasoningLevel);
+    assert.equal(row.success, model.smokeResult === 'SUCCESS');
+    assert.deepEqual(row.providerResponse, model.providerDispatchResponse);
+    assert.equal(row.executionResponse, model.executionResponse);
+    assert.equal(row.latencyMs, model.observedEndToEndLatencyMs);
+    assert.equal(row.agentUsable, model.agentUsableAtRuntime);
+    assert.equal(row.trustedAttestation, model.attestationStatus);
+  }
+});
+
+test('current RFC and draft ADR use the owner-declared Sol Ultra model set without rewriting historical evidence', () => {
+  for (const path of ['rfc/RFC-AGENT-PLATFORM-V2.md', 'adr/ADR-AGENT-PLATFORM-V2.md', 'audit/agents/phase-3a-acceptance-report.md']) {
+    const text = readFileSync(resolve(root, path), 'utf8');
+    assert.match(text, /Sol Ultra/);
+    assert.doesNotMatch(text, /Luna\/Sol Pro|Luna и Sol Pro/);
   }
 });

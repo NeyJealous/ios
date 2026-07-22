@@ -82,7 +82,7 @@ Bootstrap verifier therefore separates `IntegrityStatus` from `AttestationStatus
 
 ## Model policy
 
-Exact-slug runtime dispatch принят для `gpt-5.6-terra` и `gpt-5.6-sol`; они остаются `AVAILABLE_CANDIDATE`, поскольку signed model attestation отсутствует. `gpt-5.6-luna` и `gpt-5.6-sol-pro` отсутствуют в доступном runtime catalog и записаны как `MODEL_NOT_AVAILABLE`. Sol Pro не запрашивался. Silent downgrade и substitution отсутствуют. Agent с недоступным verdict floor не активируется; Luna→Terra и Sol Pro→Sol требуют отдельного model-policy amendment.
+Owner model-policy amendment от 2026-07-22 определяет проверяемый runtime-набор: Terra, Luna, Sol и Sol Ultra. Статус присваивается только из фактического Codex runtime smoke, не из UI, документации или capability lists. Terra (`gpt-5.6-terra`, `medium`), Sol (`gpt-5.6-sol`, `high`) и Sol Ultra (`gpt-5.6-sol`, `ultra`) приняли exact override и вернули nonce execution response, поэтому имеют `RUNTIME_AVAILABLE`. Exact request `gpt-5.6-luna` был отклонён runtime provider и получает `MODEL_NOT_AVAILABLE`; substitution отсутствует. Sol Ultra является reasoning-конфигурацией Sol, а не отдельным придуманным slug и не заменой Sol Pro. Старые Sol Pro availability statements сохраняются только как historical evidence и superseded для текущего model set. Signed model attestation отсутствует, поэтому `platformActivationEligible=false` для всех записей.
 
 ## Rollback
 
@@ -109,6 +109,6 @@ Exact-slug runtime dispatch принят для `gpt-5.6-terra` и `gpt-5.6-sol`
 ## Открытые вопросы
 
 - Независимый provider trusted runtime/owner attestation.
-- Доступность exact slugs Luna и Sol Pro.
+- Возможное появление exact runtime support для Luna; повторный smoke обязателен перед activation gate.
 - Owner decisions для 31 exact candidate set.
 - Canonical-base canaries и protected ruleset evidence для выбранного base-checkout verifier.
