@@ -1,6 +1,6 @@
 # RFC-AGENT-PLATFORM-V2
 
-- Статус: `PROPOSED_FOR_REVIEW`
+- Статус: `READY_FOR_OWNER_REVIEW_PHASE_3A_BLOCKERS_OPEN`
 - Дата: 2026-07-18
 - Область: repository-wide Agent Platform v2 migration
 - Owner authorization: `audit/agents/OWNER-DECISION-AGENT-PLATFORM-V2.md`
@@ -8,7 +8,7 @@
 
 ## Проблема
 
-Действующая платформа содержит десять активных TOML-профилей, которые переписывают upstream prompts, Terra-only overrides, два registry-only partial agents и resolver/manifest validation gaps. Она не соответствует Agent Platform v2.1 и не обеспечивает immutable composition, exact model routing, trusted execution attestation или защищённый governance self-change.
+Исходная платформа содержала десять активных TOML-профилей, которые переписывали upstream prompts, Terra-only overrides, два registry-only partial agents и resolver/manifest validation gaps. После owner-authorized commit `bc3314ac6f95aa6acf15fc6a86736e4fb8a2e8da` repository находится в fail-closed `ZERO_AGENT_TRANSITION`: активные profiles и legacy bindings отсутствуют, а non-agent safety validator сохранён. Новая платформа ещё не активирована и пока не обеспечивает complete immutable composition, trusted execution attestation или automatic dispatch acceptance.
 
 ## Authoritative baseline transition
 
@@ -24,7 +24,7 @@
 
 ## Предлагаемое решение
 
-Owner decision for this task is a narrow bootstrap authorization to implement and review Phase 1 remediation before ADR acceptance. It is not retrospective architecture acceptance and does not authorize Phase 2 removal. The normal accepted-ADR prerequisite resumes at the removal gate: Phase 2 remains blocked until the final ADR text receives a separate owner decision.
+Owner decisions отдельно разрешили Phase 1 remediation, затем контролируемый zero-agent cutover без восстановления legacy profiles и Phase 3A governance prerequisites. Эти решения являются scope authorization и audit evidence, но не означают acceptance draft ADR, activation нового агента, merge/deployment approval или production-write permission.
 
 ### Phase 1 — safety remediation
 
@@ -37,19 +37,24 @@ Owner decision for this task is a narrow bootstrap authorization to implement an
 - создать base-pinned trusted verifier boundary;
 - пройти PRE_REMOVAL reviews и tests.
 
-Старые profiles остаются активными до PASS этой фазы.
+Phase 1 remediation и regression suite завершены локально. External GitHub trust evidence не могло быть получено до появления verifier в canonical base и остаётся отдельным blocker.
 
 ### Phase 2 — controlled removal
 
-После PRE_REMOVAL PASS удаляются старые TOML, registry/matrix/resolver mappings. Historical reports и pre-cleanup inventory сохраняются. Zero-agent состояние защищает только non-agent validator; mandatory unavailable agent даёт fail-closed.
+Phase 2 завершена commit `bc3314ac6f95aa6acf15fc6a86736e4fb8a2e8da` по отдельному явному owner decision несмотря на сохранённые и раскрытые external blockers. Старые TOML и registry/matrix/resolver mappings удалены, historical reports и pre-cleanup inventory сохранены. Zero-agent состояние защищает non-agent validator; mandatory unavailable agent даёт fail-closed.
 
 ### Phase 3 — new platform
 
-Создаются immutable snapshots, locks, append-only overlays, deterministic compositions, generated profiles, registries, resolver, orchestrator, manifests, fixtures, bootstrap и CI. Все агенты первоначально `PROVISIONAL`.
+Phase 3 разделена на контролируемые waves:
+
+1. **3A — governance prerequisites:** base-pinned verifier design, trusted attestation contract, exact-selection register, model availability evidence, RFC/ADR review и independent reports. Генерация и activation запрещены.
+2. **3B — supply-chain foundation:** immutable snapshots/locks, append-only overlays, deterministic compositions, registries и validators только для owner-approved exact selections.
+3. **3C — provisional generation:** project-local generated profiles, resolver/orchestrator, fixtures, bootstrap и CI. Все агенты первоначально `PROVISIONAL` и не становятся `ACTIVE` без полного acceptance evidence.
+4. **3D — activation:** отдельный reviewed/owner-approved change после trusted execution, model, security, reproducibility и GitHub gate evidence.
 
 ## Exact upstream selection
 
-Pinned commit не равен profile acceptance. Для каждого component фиксируются repository, commit, exact path/profile ID, raw/normalized SHA-256, license, order и selection rationale. `or`, `equivalent`, `if available` не выбираются автоматически. До reviewed decision статус `UNRESOLVED`; отсутствующий профиль — `UPSTREAM_PROFILE_NOT_FOUND`.
+Pinned commit не равен profile acceptance. Для каждого component фиксируются repository, commit, exact path/profile ID, raw/normalized SHA-256, license, order и selection rationale. Неоднозначные и условные формулировки не выбираются автоматически. Phase 3A register содержит 13 `SELECTED`, 31 `REQUIRES_OWNER_DECISION` и 0 `UPSTREAM_PROFILE_NOT_FOUND`; у owner-blocked rows выбранная composition пуста. Две workflow-фразы не задают exact profile ID и сохранены как explicit gaps. Никакой row не активирован.
 
 ## Supply-chain security
 
@@ -65,23 +70,24 @@ GitHub документирует, что `pull_request_target` исполняе
 
 Первый bootstrap PR не может доказать base-pinned execution собственной новой версии: его acceptance требует independent review и owner merge decision. Любой последующий removal/platform PR блокируется, пока trusted verifier отсутствует в canonical base.
 
-После merge bootstrap PR обязателен canary PR и внешняя настройка ruleset, требующая exact check context `trusted-agent-governance`. Эти GitHub settings не могут быть доказаны или изменены repository text. До canary и ruleset evidence anti-tamper verdict остаётся `BLOCKED`.
+После merge bootstrap PR обязателен canary PR и внешняя настройка ruleset, требующая exact check context `trusted-agent-governance`. Эти GitHub settings не могут быть доказаны или изменены repository text. До canary и ruleset evidence anti-tamper verdict остаётся `BLOCKED_EXTERNAL_EVIDENCE_MISSING`. Полная архитектура, threat model и rollback закреплены в `docs/agents/TRUSTED-GOVERNANCE-VERIFIER.md`.
 
 ## Trusted execution attestation
 
 PR-authored text недостаточен для REAL_SUBAGENT, фактической модели и owner approval. Versioned manifest сохраняет claims, но trusted verifier должен получать независимый runtime/GitHub evidence. До реализации claims получают `INSUFFICIENT_EVIDENCE`; automatic dispatch не объявляется полностью подтверждённым.
 
-Bootstrap verifier therefore separates `IntegrityStatus` from `AttestationStatus`. A structurally valid candidate can obtain `IntegrityStatus=PASS`, but every candidate-authored execution mode, including `REAL_SUBAGENT`, remains insufficient and keeps `OverallStatus=BLOCKED` until a separately trusted provider contract supplies commit-bound execution evidence. `AgentThreadId` remains traceability metadata only.
+Bootstrap verifier therefore separates `IntegrityStatus` from `AttestationStatus`. A structurally valid candidate can obtain local structural integrity evidence, but every candidate-authored execution mode, including `REAL_SUBAGENT`, remains insufficient and keeps `OverallStatus=BLOCKED` until a separately trusted provider contract supplies commit-bound execution evidence. `AgentThreadId` remains traceability metadata only. Versioned contract `architecture/agents/schemas/execution-attestation.schema.json` binds issuer, execution/model, profile/overlay, base/head, owner decision and independence; trusted transport remains unavailable, so current status is `INSUFFICIENT_EVIDENCE`.
 
 ## Model policy
 
-Terra и Sol регистрируются только как candidates до exact-slug smoke tests. Luna и Sol Pro — `UNVERIFIED`. Silent downgrade запрещён. Agent с недоступным verdict floor остаётся `MODEL_NOT_AVAILABLE`. Изменение Luna→Terra или Sol Pro→Sol требует отдельного model-policy amendment.
+Exact-slug runtime dispatch принят для `gpt-5.6-terra` и `gpt-5.6-sol`; они остаются `AVAILABLE_CANDIDATE`, поскольку signed model attestation отсутствует. `gpt-5.6-luna` и `gpt-5.6-sol-pro` отсутствуют в доступном runtime catalog и записаны как `MODEL_NOT_AVAILABLE`. Sol Pro не запрашивался. Silent downgrade и substitution отсутствуют. Agent с недоступным verdict floor не активируется; Luna→Terra и Sol Pro→Sol требуют отдельного model-policy amendment.
 
 ## Rollback
 
 - Phase 1 rollback: revert PR; old platform remains intact.
 - Phase 2 rollback: revert removal PR; historical evidence and old profiles восстанавливаются из Git.
-- Phase 3 rollback: revert platform PR; production/App Script/Sheets/deployments не затрагиваются.
+- Phase 3A rollback: revert только Phase 3A governance commit обычным новым commit; zero-agent cutover не восстанавливается автоматически.
+- Phase 3B/3C rollback: revert соответствующий platform commit; production/App Script/Sheets/deployments не затрагиваются.
 - Force push/history rewrite запрещены.
 
 ## Architecture Impact Check
@@ -90,15 +96,17 @@ Terra и Sol регистрируются только как candidates до ex
 
 ## Acceptance gates
 
-1. Phase 1 tests/reviews PASS.
-2. Trusted verifier находится в canonical base до removal PR.
-3. Exact-selection register reviewed.
-4. Upstream/model/security evidence complete.
-5. Draft ADR отдельно подтверждён владельцем и только затем меняет status на `ACCEPTED`.
+1. Governance and Phase 3A regression suite PASS locally.
+2. Trusted verifier находится в canonical base и имеет negative/positive canary plus required-ruleset evidence.
+3. 31 owner-blocked exact selections имеют отдельные decisions или остаются негенерируемыми.
+4. Trusted execution/model/owner attestation provider реализован и tested.
+5. Upstream prompt-injection/capability/license/privacy acceptance complete для каждой генерируемой composition.
+6. Mandatory contract-compatible reviews привязаны к актуальному committed head.
+7. Draft ADR отдельно подтверждён владельцем и только затем меняет status на `ACCEPTED`.
 
 ## Открытые вопросы
 
-- Независимый provider trusted runtime attestation.
-- Exact model slugs Luna и Sol Pro.
-- Exact selection для всех неоднозначных composition rows.
-- Protected reusable workflow или base-checkout verifier как долгосрочный GitHub boundary.
+- Независимый provider trusted runtime/owner attestation.
+- Доступность exact slugs Luna и Sol Pro.
+- Owner decisions для 31 exact candidate set.
+- Canonical-base canaries и protected ruleset evidence для выбранного base-checkout verifier.

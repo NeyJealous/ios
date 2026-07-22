@@ -1,38 +1,43 @@
 {
-  "reportVersion": "1.0.0",
-  "gate": "PRE_REMOVAL_AGENT_PLATFORM_V2",
-  "generatedAt": "2026-07-18T00:00:00+03:00",
-  "trustedAttestationStatus": "INSUFFICIENT_EVIDENCE",
-  "silentDowngradeAllowed": false,
-  "models": [
+  "schemaVersion": "1.0.0",
+  "testedAt": "2026-07-22T08:24:31.5074370Z",
+  "branch": "feature/agent-platform-v2-integration",
+  "repositoryHeadAtProbe": "bc3314ac6f95aa6acf15fc6a86736e4fb8a2e8da",
+  "overallStatus": "PARTIAL_INSUFFICIENT_EVIDENCE",
+  "silentDowngrade": false,
+  "productionWrites": 0,
+  "results": [
     {
-      "configuredSlug": "gpt-5.6-terra",
-      "status": "AVAILABLE_RUNTIME_EVIDENCE",
-      "executionMode": "REAL_SUBAGENT",
-      "agentThreadId": "/root/model_smoke_terra",
-      "nonce": "IOS_MODEL_SMOKE_TERRA_20260718",
-      "limitation": "Repository text is not an external trusted attestation."
+      "requested": "gpt-5.6-terra",
+      "resolved": "gpt-5.6-terra",
+      "runtimeDispatch": "ACCEPTED",
+      "probeResponse": "MODEL_SMOKE_INSUFFICIENT_EVIDENCE",
+      "availability": "AVAILABLE_CANDIDATE",
+      "trustedAttestation": "INSUFFICIENT_EVIDENCE"
     },
     {
-      "configuredSlug": "gpt-5.6-sol",
-      "status": "AVAILABLE_RUNTIME_EVIDENCE",
-      "executionMode": "REAL_SUBAGENT",
-      "agentThreadId": "/root/model_smoke_sol",
-      "nonce": "IOS_MODEL_SMOKE_SOL_20260718",
-      "limitation": "Repository text is not an external trusted attestation."
+      "requested": "gpt-5.6-sol",
+      "resolved": "gpt-5.6-sol",
+      "runtimeDispatch": "ACCEPTED",
+      "probeResponse": "MODEL_SMOKE_OK",
+      "availability": "AVAILABLE_CANDIDATE",
+      "trustedAttestation": "INSUFFICIENT_EVIDENCE"
     },
     {
-      "configuredSlug": "gpt-5.6-luna",
-      "status": "UNVERIFIED",
-      "executionMode": "NOT_AVAILABLE",
-      "limitation": "The current spawn interface does not expose this exact slug; no substitute was attempted."
+      "requested": "gpt-5.6-luna",
+      "resolved": null,
+      "runtimeDispatch": "NOT_ATTEMPTED_CATALOG_ABSENT",
+      "probeResponse": null,
+      "availability": "MODEL_NOT_AVAILABLE",
+      "trustedAttestation": "INSUFFICIENT_EVIDENCE"
     },
     {
-      "configuredSlug": "gpt-5.6-sol-pro",
-      "status": "UNVERIFIED",
-      "executionMode": "NOT_AVAILABLE",
-      "limitation": "The current spawn interface does not expose this exact slug; no substitute was attempted."
+      "requested": "gpt-5.6-sol-pro",
+      "resolved": null,
+      "runtimeDispatch": "NOT_ATTEMPTED_CATALOG_ABSENT",
+      "probeResponse": null,
+      "availability": "MODEL_NOT_AVAILABLE",
+      "trustedAttestation": "INSUFFICIENT_EVIDENCE"
     }
-  ],
-  "activationImpact": "Any agent whose mandatory verdict floor requires an unverified model remains MODEL_NOT_AVAILABLE."
+  ]
 }

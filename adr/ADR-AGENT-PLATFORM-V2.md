@@ -3,7 +3,7 @@
 - Статус: `DRAFT_NOT_ACCEPTED`
 - Дата: 2026-07-18
 - Связанный RFC: `rfc/RFC-AGENT-PLATFORM-V2.md`
-- Owner authorization scope: preparation and remediation only
+- Owner authorization scope: Phase 1 remediation, explicit zero-agent cutover and Phase 3A preparation; ADR acceptance excluded
 - Supersedes after acceptance: `adr/ADR-GLOBAL-AGENT-GOVERNANCE.md`
 
 ## Контекст
@@ -12,13 +12,15 @@
 
 ## Draft decision
 
-Implementation of the Phase 1 safety bootstrap proceeds under the owner's explicit limited remediation authorization, not under this draft ADR. That exception ends at the PRE_REMOVAL gate. No Phase 2 removal or v2 activation may rely on this draft, and later acceptance must not be represented as retrospective approval of unreviewed work.
+Phase 1 remediation, commit `bc3314ac6f95aa6acf15fc6a86736e4fb8a2e8da` zero-agent cutover and Phase 3A governance design proceed under explicit scoped owner instructions, not under acceptance of this draft ADR. No new agent activation may rely on this draft, and later acceptance must not be represented as retrospective approval of unresolved work.
 
 Предлагается принять трёхфазную миграцию из RFC-AGENT-PLATFORM-V2:
 
-1. safety remediation при сохранении старых profiles;
-2. controlled removal после PRE_REMOVAL PASS и наличия trusted verifier в canonical base;
-3. создание v2 platform с provisional-only activation.
+1. завершённая safety remediation;
+2. завершённый owner-authorized controlled removal с сохранёнными external blockers;
+3. Phase 3A governance prerequisites без generation/activation;
+4. последующее создание v2 platform по отдельным reviewed waves с provisional-only status;
+5. отдельный activation gate после принятия ADR и полного evidence.
 
 Master Specification v4.0 становится authoritative audit baseline этой миграции. V3 и прежний ADR сохраняются исторически. Старый ADR считается superseded только после отдельного owner acceptance этого ADR.
 
@@ -28,7 +30,9 @@ Master Specification v4.0 становится authoritative audit baseline эт
 - Zero-agent state не означает отсутствие safety enforcement.
 - Ambiguous upstream selections блокируют конкретного агента.
 - Недоступная mandatory model блокирует activation; silent downgrade отсутствует.
-- REAL_SUBAGENT/model/owner claims без trusted evidence получают `INSUFFICIENT_EVIDENCE`.
+- REAL_SUBAGENT/model/owner claims без trusted transport получают `INSUFFICIENT_EVIDENCE` даже при schema-valid repository JSON.
+- 31 ambiguous compositions остаются `REQUIRES_OWNER_DECISION`; 13 deterministic rows selected только на уровне provenance.
+- Terra/Sol остаются availability candidates; Luna/Sol Pro — `MODEL_NOT_AVAILABLE`; substitution отсутствует.
 - Runtime IOS, Apps Script, Sheets и production не меняются.
 
 ## Acceptance conditions

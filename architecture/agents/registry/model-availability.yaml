@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.0.0",
+  "policy": {
+    "silentDowngradeAllowed": false,
+    "unavailableResult": "MODEL_NOT_AVAILABLE",
+    "trustedAttestationRequired": true
+  },
+  "models": [
+    {
+      "displayName": "GPT-5.6 Terra",
+      "requestedSlug": "gpt-5.6-terra",
+      "resolvedSlug": "gpt-5.6-terra",
+      "availability": "AVAILABLE_CANDIDATE",
+      "smokeStatus": "DISPATCH_ACCEPTED",
+      "attestationStatus": "INSUFFICIENT_EVIDENCE",
+      "substitutionUsed": false
+    },
+    {
+      "displayName": "GPT-5.6 Sol",
+      "requestedSlug": "gpt-5.6-sol",
+      "resolvedSlug": "gpt-5.6-sol",
+      "availability": "AVAILABLE_CANDIDATE",
+      "smokeStatus": "DISPATCH_ACCEPTED",
+      "attestationStatus": "INSUFFICIENT_EVIDENCE",
+      "substitutionUsed": false
+    },
+    {
+      "displayName": "GPT-5.6 Luna",
+      "requestedSlug": "gpt-5.6-luna",
+      "resolvedSlug": null,
+      "availability": "MODEL_NOT_AVAILABLE",
+      "smokeStatus": "RUNTIME_CATALOG_ABSENT",
+      "attestationStatus": "INSUFFICIENT_EVIDENCE",
+      "substitutionUsed": false
+    },
+    {
+      "displayName": "GPT-5.6 Sol Pro",
+      "requestedSlug": "gpt-5.6-sol-pro",
+      "resolvedSlug": null,
+      "availability": "MODEL_NOT_AVAILABLE",
+      "smokeStatus": "NOT_REQUESTED_NO_RUNTIME_CATALOG_ENTRY",
+      "attestationStatus": "INSUFFICIENT_EVIDENCE",
+      "substitutionUsed": false
+    }
+  ]
+}

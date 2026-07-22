@@ -98,6 +98,7 @@ export function validateTrusted(options) {
     path === '.github/workflows/trusted-agent-governance.yml' ||
     path === 'tools/json-schema-validator.mjs' ||
     path === 'tools/agent-governance-lib.mjs' ||
+    path === 'architecture/agents/schemas/execution-attestation.schema.json' ||
     /^architecture\/agents\/(?:agent-registry|review-matrix|review-contract|review-manifest)\.schema\.json$/.test(path));
   if (trustRootChanged) errors.push('TRUST_ROOT_CHANGE_REQUIRES_OWNER_GATE');
 
@@ -122,8 +123,12 @@ export function validateTrusted(options) {
   const validatorHash = createHash('sha256').update(readFileSync(import.meta.filename)).digest('hex');
   const missingAgents = manifestResult?.manifest?.MissingAgents || requiredAgents;
   const attestationErrors = errors.filter((error) => error.includes('cannot satisfy a mandatory trusted review'));
+  if (floor.TrustedExecutionAttestation === 'REQUIRED_EXTERNAL') {
+    attestationErrors.push('TRUSTED_EXECUTION_ATTESTATION_INSUFFICIENT_EVIDENCE');
+  }
   const integrityErrors = errors.filter((error) => !attestationErrors.includes(error));
-  const overallStatus = errors.length === 0 && manifestResult?.manifest?.OverallStatus === 'PASS' ? 'PASS' : 'BLOCKED';
+  const blockingFindings = unique([...errors, ...attestationErrors]);
+  const overallStatus = blockingFindings.length === 0 && manifestResult?.manifest?.OverallStatus === 'PASS' ? 'PASS' : 'BLOCKED';
   return {
     ValidatorVersion: '1.0.0', TrustedValidatorSHA256: validatorHash, BaseSHA: baseSha, HeadSHA: headSha,
     ChangedPaths: paths, TrustRootChanged: trustRootChanged,
@@ -131,7 +136,7 @@ export function validateTrusted(options) {
     RequiredAgents: requiredAgents, RequiredControls: requiredControls,
     MissingAgents: missingAgents, IntegrityStatus: integrityErrors.length ? 'FAIL' : 'PASS',
     IntegrityErrors: integrityErrors, AttestationStatus: attestationErrors.length ? 'INSUFFICIENT_EVIDENCE' : 'VERIFIED',
-    AttestationErrors: attestationErrors, BlockingFindings: errors,
+    AttestationErrors: attestationErrors, BlockingFindings: blockingFindings,
     OverallStatus: overallStatus,
   };
 }
