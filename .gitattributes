@@ -1,0 +1,5 @@
+# Preserve owner-provided normative Markdown byte-for-byte. Its intentional
+# two-space hard line breaks are excluded from whitespace diagnostics only in
+# the immutable source locations below.
+specification/IOS_Master_Specification_v4.0_Package/**/*.md whitespace=-trailing-space
+specification/agent-platform/v2.1/*.md whitespace=-trailing-space
