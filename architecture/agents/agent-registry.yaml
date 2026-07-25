@@ -111,7 +111,7 @@
       "ActivationEligible": false,
       "OverlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml",
       "CompositionPath": "architecture/agents/compositions/ios-agent-orchestrator.yaml",
-      "GeneratedProfilePath": ".codex/agents/ios-agent-orchestrator.toml"
+      "GeneratedProfilePath": "architecture/agents/generated/provisional/ios-agent-orchestrator.toml"
     },
     {
       "AgentId": "agent-governance-auditor",
@@ -214,7 +214,7 @@
       "ActivationEligible": false,
       "OverlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml",
       "CompositionPath": "architecture/agents/compositions/agent-governance-auditor.yaml",
-      "GeneratedProfilePath": ".codex/agents/agent-governance-auditor.toml"
+      "GeneratedProfilePath": "architecture/agents/generated/provisional/agent-governance-auditor.toml"
     },
     {
       "AgentId": "security-privacy-auditor",
@@ -312,7 +312,7 @@
       "ActivationEligible": false,
       "OverlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml",
       "CompositionPath": "architecture/agents/compositions/security-privacy-auditor.yaml",
-      "GeneratedProfilePath": ".codex/agents/security-privacy-auditor.toml"
+      "GeneratedProfilePath": "architecture/agents/generated/provisional/security-privacy-auditor.toml"
     },
     {
       "AgentId": "audit-traceability-reviewer",
@@ -407,7 +407,7 @@
       "ActivationEligible": false,
       "OverlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml",
       "CompositionPath": "architecture/agents/compositions/audit-traceability-reviewer.yaml",
-      "GeneratedProfilePath": ".codex/agents/audit-traceability-reviewer.toml"
+      "GeneratedProfilePath": "architecture/agents/generated/provisional/audit-traceability-reviewer.toml"
     },
     {
       "AgentId": "ios-codebase-auditor",
@@ -506,7 +506,7 @@
       "ActivationEligible": false,
       "OverlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml",
       "CompositionPath": "architecture/agents/compositions/ios-codebase-auditor.yaml",
-      "GeneratedProfilePath": ".codex/agents/ios-codebase-auditor.toml"
+      "GeneratedProfilePath": "architecture/agents/generated/provisional/ios-codebase-auditor.toml"
     }
   ]
 }

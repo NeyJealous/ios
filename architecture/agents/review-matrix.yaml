@@ -25,6 +25,7 @@
       "TaskType": "orchestrator self-change",
       "PathPatterns": [
         ".codex/agents/ios-agent-orchestrator.toml",
+        "architecture/agents/generated/provisional/ios-agent-orchestrator.toml",
         "architecture/agents/overlays/ios-agent-orchestrator.yaml",
         "architecture/agents/compositions/ios-agent-orchestrator.yaml",
         "tools/agents/orchestrate.mjs"
@@ -44,6 +45,7 @@
       "TaskType": "upstream/profile/model",
       "PathPatterns": [
         "architecture/agents/upstream/**",
+        "architecture/agents/generated/provisional/**",
         "architecture/agents/overlays/**",
         "architecture/agents/compositions/**",
         "architecture/agents/registry/**",
@@ -57,7 +59,8 @@
       "RequiredControls": [
         "upstream-integrity",
         "append-only-overlay",
-        "no-silent-downgrade"
+        "no-silent-downgrade",
+        "runtime-discovery-empty"
       ]
     },
     {
@@ -193,6 +196,7 @@
     "AGENTS.md",
     "**/AGENTS.md",
     ".codex/agents/**",
+    "architecture/agents/generated/provisional/**",
     "architecture/agents/**",
     "docs/agents/**",
     "tools/agents/**",

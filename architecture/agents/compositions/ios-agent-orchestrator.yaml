@@ -57,7 +57,7 @@
   ],
   "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml",
   "overlayHash": "1478dfd701a691c1a5bff0a210ec19bf1ee749b690f8f92b6024cd531e8e44c3",
-  "generatedPath": ".codex/agents/ios-agent-orchestrator.toml",
+  "generatedPath": "architecture/agents/generated/provisional/ios-agent-orchestrator.toml",
   "generatedHash": "9ff0ed03bd5c744d5afe15f6cb57ca229cfab34b22087fa2a7ed275531aa9891",
   "upstreamCompositionHash": "a774ba47839dc25e1b860531c682a4939fdb40f2e04bcd66d2552f6e77f60741",
   "status": "PROVISIONAL",

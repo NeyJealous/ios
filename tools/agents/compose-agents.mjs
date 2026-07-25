@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { createHash } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 
 const FIRST_WAVE = ['ios-agent-orchestrator', 'agent-governance-auditor', 'security-privacy-auditor', 'audit-traceability-reviewer', 'ios-codebase-auditor'];
@@ -18,6 +18,13 @@ function main() {
   const generateProfiles = process.argv.includes('--generate-profiles');
   const rootArg = process.argv.indexOf('--root');
   const root = resolve(rootArg >= 0 ? process.argv[rootArg + 1] : resolve(import.meta.dirname, '../..'));
+  const runtimeDiscoveryDir = resolve(root, '.codex/agents');
+  const discoveredPlatformProfiles = existsSync(runtimeDiscoveryDir)
+    ? readdirSync(runtimeDiscoveryDir).filter((name) => FIRST_WAVE.includes(name.replace(/\.toml$/i, '')))
+    : [];
+  if (discoveredPlatformProfiles.length) {
+    throw new Error(`RUNTIME_DISCOVERY_PATH_NOT_EMPTY:${discoveredPlatformProfiles.sort().join(',')}`);
+  }
   const register = readJson(resolve(root, 'architecture/agents/registry/upstream-selection-register.yaml'));
   const lock = readJson(resolve(root, 'architecture/agents/registry/upstream-lock.json'));
   const lockByKey = new Map(lock.entries.map((entry) => [`${entry.repository}:${entry.sourcePath}`, entry]));
@@ -38,7 +45,7 @@ function main() {
     const compositionOrder = bases.map((base) => `${base.repository}:${base.sourcePath}`);
     if (JSON.stringify(compositionOrder) !== JSON.stringify(selection.compositionOrder)) throw new Error(`${agentId}: COMPOSITION_ORDER_MISMATCH`);
     const upstreamCompositionHash = sha(Buffer.from(JSON.stringify(bases.map(({ repository, commit, sourcePath, profileId, rawHash, normalizedHash, inclusionMode }) => ({ repository, commit, sourcePath, profileId, rawHash, normalizedHash, inclusionMode }))), 'utf8'));
-    const generatedPath = `.codex/agents/${agentId}.toml`;
+    const generatedPath = `architecture/agents/generated/provisional/${agentId}.toml`;
     if (generateProfiles) {
       const sections = bases.map((base, index) => `=== IMMUTABLE UPSTREAM BASE ${index + 1}: ${base.repository}:${base.sourcePath}@${base.commit} ===\n${readFileSync(resolve(root, base.snapshotPath), 'utf8')}\n=== END IMMUTABLE UPSTREAM BASE ${index + 1} ===`);
       sections.push(`=== APPEND-ONLY IOS OVERLAY ===\n${JSON.stringify(overlay, null, 2)}\n=== END APPEND-ONLY IOS OVERLAY ===`);

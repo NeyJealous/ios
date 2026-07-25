@@ -38,6 +38,8 @@ export function validateGeneratedAgents(root) {
       if (overlay.modelContract?.silentDowngradeAllowed !== false || JSON.stringify(overlay.modelContract).includes('gpt-5.6-luna')) errors.push(`${agentId}:MODEL_CONTRACT_INVALID`);
       if (!Array.isArray(overlay.forbiddenActions) || !overlay.forbiddenActions.length || !Array.isArray(overlay.failClosedOn) || !overlay.failClosedOn.includes('UNKNOWN')) errors.push(`${agentId}:FAIL_CLOSED_OVERLAY_MISSING`);
       if (composition.agentId !== agentId || composition.status !== 'PROVISIONAL' || composition.activationEligible !== false || composition.platformActivationEligible !== false) errors.push(`${agentId}:COMPOSITION_STATUS_INVALID`);
+      const expectedGeneratedPath = `architecture/agents/generated/provisional/${agentId}.toml`;
+      if (composition.generatedPath !== expectedGeneratedPath || composition.generatedPath.includes('..') || composition.generatedPath.includes('\\')) errors.push(`${agentId}:GENERATED_STAGING_PATH_INVALID`);
       if (composition.overlayHash !== sha(overlayBytes) || composition.overlayPath !== `architecture/agents/overlays/${agentId}.yaml`) errors.push(`${agentId}:OVERLAY_HASH_MISMATCH`);
       if (!Array.isArray(composition.conflictResolution) || !composition.conflictResolution.length) errors.push(`${agentId}:CONFLICT_RESOLUTION_MISSING`);
       const expectedOrder = selection.selectedProfiles.map((profile) => `${profile.repository}:${profile.sourcePath}`);
@@ -64,12 +66,13 @@ export function validateGeneratedAgents(root) {
         for (const base of composition.bases) if (!instructions.includes(readFileSync(resolve(root, base.snapshotPath), 'utf8'))) errors.push(`${agentId}:UPSTREAM_BASE_NOT_FULLY_INCLUDED`);
       } else if (composition.generatedHash !== null || lockEntry.generatedHash !== null) errors.push(`${agentId}:GENERATED_PROFILE_MISSING`);
     }
+    const stagingDir = resolve(root, 'architecture/agents/generated/provisional');
+    const staged = existsSync(stagingDir) ? readdirSync(stagingDir).filter((name) => name.endsWith('.toml')).sort() : [];
+    const expected = FIRST_WAVE.map((id) => `${id}.toml`).sort();
+    if (JSON.stringify(staged) !== JSON.stringify(expected)) errors.push('PROVISIONAL_STAGING_PROFILE_SET_INVALID');
     const agentDir = resolve(root, '.codex/agents');
-    if (existsSync(agentDir)) {
-      const actual = readdirSync(agentDir).filter((name) => name.endsWith('.toml')).sort();
-      const expected = FIRST_WAVE.map((id) => `${id}.toml`).sort();
-      if (actual.length && JSON.stringify(actual) !== JSON.stringify(expected)) errors.push('UNEXPECTED_GENERATED_AGENT_PROFILE');
-    }
+    const discovered = existsSync(agentDir) ? readdirSync(agentDir).filter((name) => name.endsWith('.toml')).sort() : [];
+    if (discovered.some((name) => expected.includes(name))) errors.push('RUNTIME_DISCOVERY_CONTAINS_PROVISIONAL_PROFILE');
   } catch (error) { errors.push(error.message); }
   return { ok: errors.length === 0, agents: FIRST_WAVE.length, errors };
 }

@@ -57,7 +57,7 @@
   ],
   "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml",
   "overlayHash": "527b27aa75a7dce2f2e8ed93df3b6257c80f6a9553b6bee46ea82c7c8a1765a2",
-  "generatedPath": ".codex/agents/audit-traceability-reviewer.toml",
+  "generatedPath": "architecture/agents/generated/provisional/audit-traceability-reviewer.toml",
   "generatedHash": "4fb5c17e0c6ee5ba5bfba07cc8883822e5caa355b80906b2c0cf0de088c2899a",
   "upstreamCompositionHash": "0a4309df123f0dbbf53c41d515f7647da5c01ff41418f1407a1b09f911224c94",
   "status": "PROVISIONAL",

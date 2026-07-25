@@ -57,7 +57,7 @@
       ],
       "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml",
       "compositionPath": "architecture/agents/compositions/ios-agent-orchestrator.yaml",
-      "generatedProfilePath": ".codex/agents/ios-agent-orchestrator.toml",
+      "generatedProfilePath": "architecture/agents/generated/provisional/ios-agent-orchestrator.toml",
       "triggers": [
         "significant task start",
         "scope change",
@@ -186,7 +186,7 @@
       ],
       "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml",
       "compositionPath": "architecture/agents/compositions/agent-governance-auditor.yaml",
-      "generatedProfilePath": ".codex/agents/agent-governance-auditor.toml",
+      "generatedProfilePath": "architecture/agents/generated/provisional/agent-governance-auditor.toml",
       "triggers": [
         "Registry and Matrix consistency",
         "Resolver determinism",
@@ -300,7 +300,7 @@
       ],
       "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml",
       "compositionPath": "architecture/agents/compositions/security-privacy-auditor.yaml",
-      "generatedProfilePath": ".codex/agents/security-privacy-auditor.toml",
+      "generatedProfilePath": "architecture/agents/generated/provisional/security-privacy-auditor.toml",
       "triggers": [
         "scan current and historical trees",
         "scan tracked, untracked, generated, downloaded and diff artifacts",
@@ -412,7 +412,7 @@
       ],
       "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml",
       "compositionPath": "architecture/agents/compositions/audit-traceability-reviewer.yaml",
-      "generatedProfilePath": ".codex/agents/audit-traceability-reviewer.toml",
+      "generatedProfilePath": "architecture/agents/generated/provisional/audit-traceability-reviewer.toml",
       "triggers": [
         "trace business requirement to owner decision to RFC/ADR to specification to implementation to tests to evidence to production status",
         "detect orphan requirements",
@@ -522,7 +522,7 @@
       ],
       "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml",
       "compositionPath": "architecture/agents/compositions/ios-codebase-auditor.yaml",
-      "generatedProfilePath": ".codex/agents/ios-codebase-auditor.toml",
+      "generatedProfilePath": "architecture/agents/generated/provisional/ios-codebase-auditor.toml",
       "triggers": [
         "plan repository-wide read-only audit",
         "inventory files, symbols, dependencies and active/dead/legacy paths",

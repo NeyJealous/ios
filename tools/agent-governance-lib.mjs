@@ -400,7 +400,7 @@ export function validateInstructionHierarchy(root) {
 export function validateProjectAgentFiles(root, registry) {
   const errors = [];
   const provisioned = registry.Agents.filter((agent) => ['PROVISIONAL', 'IMPLEMENTED'].includes(agent.Status));
-  const dir = join(root, '.codex', 'agents');
+  const dir = join(root, 'architecture', 'agents', 'generated', 'provisional');
   const files = existsSync(dir) ? readdirSync(dir).filter((file) => file.endsWith('.toml')) : [];
   if (files.length < provisioned.length) errors.push(`expected at least ${provisioned.length} project agents; found ${files.length}`);
   for (const file of files) {
@@ -408,8 +408,11 @@ export function validateProjectAgentFiles(root, registry) {
     for (const field of ['name =', 'description =', 'developer_instructions =']) if (!text.includes(field)) errors.push(`${file}: missing ${field}`);
     if (!/remote write|push|perform writes/i.test(text)) errors.push(`${file}: missing remote-write prohibition`);
   }
-  if (registry.PlatformState === 'ZERO_AGENT_TRANSITION' && files.length !== 0) errors.push(`zero-agent transition must contain 0 project agents; found ${files.length}`);
-  if (registry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD' && files.length !== provisioned.length) errors.push(`provisional build must contain exactly ${provisioned.length} project agents; found ${files.length}`);
+  const runtimeDir = join(root, '.codex', 'agents');
+  const runtimeFiles = existsSync(runtimeDir) ? readdirSync(runtimeDir).filter((file) => file.endsWith('.toml')) : [];
+  if (registry.PlatformState === 'ZERO_AGENT_TRANSITION' && runtimeFiles.length !== 0) errors.push(`zero-agent transition must contain 0 runtime agents; found ${runtimeFiles.length}`);
+  if (registry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD' && files.length !== provisioned.length) errors.push(`provisional build must contain exactly ${provisioned.length} staged agents; found ${files.length}`);
+  if (registry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD' && runtimeFiles.length !== 0) errors.push(`provisional build must contain 0 runtime-discovered agents; found ${runtimeFiles.length}`);
   return errors;
 }
 

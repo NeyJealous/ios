@@ -68,7 +68,7 @@
   ],
   "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml",
   "overlayHash": "e024df0d9028e30e8316b97795d2196c032746cd35512df3a8bb8053ca083303",
-  "generatedPath": ".codex/agents/agent-governance-auditor.toml",
+  "generatedPath": "architecture/agents/generated/provisional/agent-governance-auditor.toml",
   "generatedHash": "30fd4451fbd21ad7b5f32ce634940c55fcf0f3ee07a59f0f34c8bb48d97310e3",
   "upstreamCompositionHash": "eb122fcba1ed79a23f43ca5ffc535fe2662d475a7e23484d08d004651b148483",
   "status": "PROVISIONAL",
