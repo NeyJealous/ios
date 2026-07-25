@@ -1,0 +1,21 @@
+{
+  "AgentId": "AGENT_GOVERNANCE_AUDITOR",
+  "AgentVersion": "external-bootstrap-1.0.0",
+  "GateId": "FIRST_WAVE_PROVISIONAL_BUILD",
+  "Branch": "feature/agent-platform-v2-integration",
+  "CommitSHA": "7c81e2e28f04e4bbf9e5e56744afbe600d99cfc1",
+  "ReviewScope": "Phase 3B Registry, Matrix, Resolver, orchestration, evidence and activation governance",
+  "FilesReviewed": ["architecture/agents/registry/", "architecture/agents/review-matrix.yaml", "tools/agents/", "tools/agent-governance-lib.mjs", "tests/agent-governance/"],
+  "SpecificationReferences": ["IOS Agent Platform Specification v2.1", "RFC-AGENT-PLATFORM-V2", "ADR-AGENT-PLATFORM-V2", "OWNER_DECISION_FIRST_WAVE_20260722"],
+  "ChecksPerformed": ["schema consistency", "resolver determinism", "unknown path fail-closed", "mandatory NOT_AVAILABLE rejection", "DAG cycle rejection", "self-review rejection", "activation trust boundary", "owner scope"],
+  "Findings": [
+    {"Severity": "LOW", "Description": "Phase 3C external enforcement and attestation remain unavailable by design."}
+  ],
+  "Severity": "LOW",
+  "Evidence": ["AgentThreadId=/root/phase3b_governance_review", "ExecutionMode=EXTERNAL_BOOTSTRAP_REAL_SUBAGENT", "modelRequested/modelResolved=UNVERIFIED", "109 tests: 107 PASS, 0 FAIL, 2 SKIP", "TrustedAttestation=INSUFFICIENT_EVIDENCE"],
+  "RequiredFixes": [],
+  "ResidualRisk": "External GitHub and attestation gates block Phase 3C; four stale audit outputs required intentional regeneration in the evidence tail.",
+  "Status": "PASS_WITH_WARNINGS",
+  "Timestamp": "2026-07-25T23:46:14Z",
+  "ExecutionMode": "REAL_SUBAGENT"
+}

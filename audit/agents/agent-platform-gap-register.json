@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0.0",
+  "implementationHead": "7c81e2e28f04e4bbf9e5e56744afbe600d99cfc1",
+  "platformBuildStatus": "FIRST_WAVE_PROVISIONAL_BUILD_COMPLETE",
+  "platformActivationEligible": false,
+  "gaps": [
+    {"id":"GAP-LINUX-SYMLINK","severity":"HIGH","status":"LINUX_SYMLINK_EVIDENCE_MISSING","scope":"PHASE_3C_ACTIVATION","description":"Windows cannot execute two filesystem-symlink fixtures; Linux CI evidence is required."},
+    {"id":"GAP-GITHUB-CANARY","severity":"BLOCKER","status":"GITHUB_CANARY_NOT_EXECUTED","scope":"PHASE_3C_ACTIVATION","description":"Positive and negative GitHub canaries have not been executed."},
+    {"id":"GAP-REQUIRED-RULESET","severity":"BLOCKER","status":"REQUIRED_RULESET_NOT_VERIFIED","scope":"PHASE_3C_ACTIVATION","description":"Protected required-ruleset enforcement is not verified."},
+    {"id":"GAP-TRUSTED-ATTESTATION","severity":"BLOCKER","status":"TRUSTED_EXTERNAL_ATTESTATION_MISSING","scope":"PHASE_3C_ACTIVATION","description":"Trusted external execution, model and owner attestation is absent."},
+    {"id":"GAP-REPLAY-STORE","severity":"BLOCKER","status":"REPLAY_STORE_NOT_IMPLEMENTED","scope":"PHASE_3C_ACTIVATION","description":"Durable replay store is not implemented."},
+    {"id":"GAP-KEY-LIFECYCLE","severity":"BLOCKER","status":"KEY_LIFECYCLE_NOT_VERIFIED","scope":"PHASE_3C_ACTIVATION","description":"Production trust-key lifecycle is not verified."},
+    {"id":"GAP-RUNTIME-CAPABILITIES","severity":"HIGH","status":"RUNTIME_ENFORCEMENT_UNVERIFIED","scope":"PHASE_3C_ACTIVATION","description":"Capability envelopes are locally validated contracts, not runtime enforcement evidence."},
+    {"id":"GAP-RUNTIME-DISPATCH","severity":"HIGH","status":"NOT_DISPATCHED_ACTIVATION_CLOSED","scope":"PHASE_3C_ACTIVATION","description":"No provisional profile was runtime-dispatched; activation operation is not implemented."},
+    {"id":"GAP-REMAINING-SELECTIONS","severity":"MEDIUM","status":"REQUIRES_OWNER_DECISION","scope":"LATER_WAVES","description":"26 catalog selections remain owner-blocked and were not integrated."},
+    {"id":"GAP-ADR","severity":"BLOCKER","status":"DRAFT_NOT_ACCEPTED","scope":"PHASE_3C_ACTIVATION","description":"ADR requires a separate owner acceptance after review."}
+  ]
+}
