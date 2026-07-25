@@ -96,8 +96,11 @@ task start, перед первым write, scope change, pre-commit, pre-push, p
 governance/profile/model/upstream changes, migrations и production-related paths.
 
 Первая волна имеет `PlatformState=PROVISIONAL_PLATFORM_BUILD`, все пять
-профилей имеют `status=PROVISIONAL`, `activationEligible=false`, а activation
-gate закрыт. Поэтому tooling может только вычислять Resolver/DAG и возвращает
+профилей имеют `status=PROVISIONAL`, `activationEligible=false` и хранятся
+только в `architecture/agents/generated/provisional/`. Runtime discovery path
+`.codex/agents/` не должен содержать first-wave platform profiles; bootstrap
+не копирует их туда, а activation command не реализован. Поэтому tooling может
+только вычислять Resolver/DAG и возвращает
 `AUTOMATIC_DISPATCH_CONFIGURED`, `NOT_DISPATCHED_ACTIVATION_CLOSED` и
 `TRUSTED_EXTERNAL_ATTESTATION_MISSING`; он не запускает provisional agents.
 Simulation и PR-authored text не заменяют обязательный независимый review.

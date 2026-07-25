@@ -1,6 +1,24 @@
 # Upstream exact-selection report
 
-Status: `PARTIAL_EXACT_SELECTION_OWNER_DECISIONS_REQUIRED`
+Status: `HISTORICAL_PHASE_3A_SNAPSHOT_SUPERSEDED`
+
+## Supersession notice
+
+This report preserves the Phase 3A snapshot produced before the first-wave
+owner decision. Its historical `13 / 31 / 0` table is not the current register
+state. It is superseded for current status by:
+
+- decision: `OWNER_DECISION_FIRST_WAVE_20260722`;
+- source evidence commit: `6da06f7f0a32c343f565e4f0a36354538087236a`;
+- canonical register: `architecture/agents/registry/upstream-selection-register.yaml`;
+- recorded current state at 2026-07-26: `18 SELECTED`,
+  `26 REQUIRES_OWNER_DECISION`, `0 UPSTREAM_PROFILE_NOT_FOUND`.
+
+The five newly selected rows are `ios-agent-orchestrator`,
+`agent-governance-auditor`, `security-privacy-auditor`,
+`audit-traceability-reviewer` and `ios-codebase-auditor`. The remaining 26
+rows stay owner-blocked. Historical evidence below is retained unchanged in
+meaning for reconstructibility.
 
 ## Pins and license
 
@@ -20,7 +38,7 @@ deleted working-tree files cannot alter the owner-choice catalog. Validation
 requires exactly the two approved unique repository descriptors and both
 source roots; `verifiedProfiles` counts only fully rehashed blobs.
 
-## Result
+## Historical Phase 3A result (superseded)
 
 | Status | Count |
 |---|---:|
@@ -96,7 +114,11 @@ references a multi-agent orchestration workflow. Exact surrounding profile
 candidates are recorded, but these non-ID phrases remain explicit selection
 gaps rather than being replaced by an invented profile.
 
-## Activation boundary
+## Historical activation boundary
 
 `activationAllowed=false`. No `.codex/agents/**` profile was generated or
 activated. Exact profile content security acceptance remains a later gate.
+
+Current Phase 3B profiles are generated only under
+`architecture/agents/generated/provisional/`; `.codex/agents/` remains empty
+of first-wave profiles and activation remains forbidden.

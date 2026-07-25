@@ -1,6 +1,6 @@
 # RFC-AGENT-PLATFORM-V2
 
-- Статус: `READY_FOR_OWNER_REVIEW_PHASE_3A_BLOCKERS_OPEN`
+- Статус: `PHASE_3B_REMEDIATION_IN_REVIEW`
 - Дата: 2026-07-18
 - Область: repository-wide Agent Platform v2 migration
 - Owner authorization: `audit/agents/OWNER-DECISION-AGENT-PLATFORM-V2.md`
@@ -26,7 +26,7 @@ Versioned sources are repository-local and hash-bound through `specification/NOR
 
 ## Предлагаемое решение
 
-Owner decisions отдельно разрешили Phase 1 remediation, затем контролируемый zero-agent cutover без восстановления legacy profiles и Phase 3A governance prerequisites. Эти решения являются scope authorization и audit evidence, но не означают acceptance draft ADR, activation нового агента, merge/deployment approval или production-write permission.
+Owner decisions отдельно разрешили Phase 1 remediation, затем контролируемый zero-agent cutover без восстановления legacy profiles, Phase 3A governance prerequisites и Phase 3B provisional first-wave build. Эти решения являются scope authorization и audit evidence, но не означают acceptance draft ADR, activation нового агента, merge/deployment approval или production-write permission.
 
 ### Phase 1 — safety remediation
 
@@ -50,13 +50,22 @@ Phase 2 завершена commit `bc3314ac6f95aa6acf15fc6a86736e4fb8a2e8da` п�
 Phase 3 разделена на контролируемые waves:
 
 1. **3A — governance prerequisites:** base-pinned verifier design, trusted attestation contract, exact-selection register, model availability evidence, RFC/ADR review и independent reports. Генерация и activation запрещены.
-2. **3B — supply-chain foundation:** immutable snapshots/locks, append-only overlays, deterministic compositions, registries и validators только для owner-approved exact selections.
-3. **3C — provisional generation:** project-local generated profiles, resolver/orchestrator, fixtures, bootstrap и CI. Все агенты первоначально `PROVISIONAL` и не становятся `ACTIVE` без полного acceptance evidence.
-4. **3D — activation:** отдельный reviewed/owner-approved change после trusted execution, model, security, reproducibility и GitHub gate evidence.
+2. **3B — PROVISIONAL BUILD:** exact selections, immutable snapshots/locks, append-only overlays, deterministic compositions, generated profiles только в non-discovery staging, Registry, Matrix, Resolver, orchestration configuration, offline bootstrap, reproducibility и negative tests. Все агенты остаются `PROVISIONAL`, а `.codex/agents/` не содержит first-wave profiles.
+3. **3C — TRUSTED RUNTIME ACTIVATION:** external attestation, GitHub enforcement, accepted ADR, отдельное owner activation decision и controlled runtime dispatch. Phase 3C не начинается автоматически и не является частью provisional build.
 
 ## Exact upstream selection
 
-Pinned commit не равен profile acceptance. Для каждого component фиксируются repository, commit, exact path/profile ID, raw/normalized SHA-256, license, order и selection rationale. Неоднозначные и условные формулировки не выбираются автоматически. Phase 3A register содержит 13 `SELECTED`, 31 `REQUIRES_OWNER_DECISION` и 0 `UPSTREAM_PROFILE_NOT_FOUND`; у owner-blocked rows выбранная composition пуста. Две workflow-фразы не задают exact profile ID и сохранены как explicit gaps. Никакой row не активирован.
+Pinned commit не равен profile acceptance. Для каждого component фиксируются repository, commit, exact path/profile ID, raw/normalized SHA-256, license, order и selection rationale. Неоднозначные и условные формулировки не выбираются автоматически. После решения `OWNER_DECISION_FIRST_WAVE_20260722` register содержит 18 `SELECTED`, 26 `REQUIRES_OWNER_DECISION` и 0 `UPSTREAM_PROFILE_NOT_FOUND`; у owner-blocked rows выбранная composition пуста. Пять first-wave selections привязаны к evidence commit `6da06f7f0a32c343f565e4f0a36354538087236a`. Никакой row не активирован.
+
+## Phase 3B provisional first wave
+
+Первая волна строится только для `ios-agent-orchestrator`, `agent-governance-auditor`, `security-privacy-auditor`, `audit-traceability-reviewer` и `ios-codebase-auditor`. В repository находятся 17 уникальных immutable upstream profiles из двух pinned commits, пять append-only overlays, пять deterministic composition manifests и пять generated TOML profiles в `architecture/agents/generated/provisional/`. Runtime discovery path `.codex/agents/` не содержит first-wave profiles. Все записи имеют `PROVISIONAL`, `activationEligible=false` и `platformActivationEligible=false`; active agents и runtime-discovered platform agents остаются 0.
+
+Canonical Registry и compatibility projection, Model Registry, Review Matrix и Resolver вычисляют first-wave routes, но activation gate остаётся `CLOSED`. Orchestrator строит PRE_CHANGE/POST_CHANGE DAG, проверяет exact model bindings и self-review restriction, затем возвращает `NOT_DISPATCHED_ACTIVATION_CLOSED`. Поэтому текущее состояние означает `AUTOMATIC_DISPATCH_CONFIGURED`, но не `RUNTIME_DISPATCH_OBSERVED` для generated profiles и не trusted automatic dispatch.
+
+Project-local bootstrap не обращается к сети, не исполняет downloaded upstream code и использует только committed locks/snapshots. Он генерирует только staging artifacts и не копирует их в `.codex/agents/`; activation command имеет статус `NOT_IMPLEMENTED`. Fresh-checkout gate выполняет `npm ci`, `npm run agents:bootstrap`, `npm run agents:check`, runtime-discovery inspection и `git diff --exit-code`; Windows CRLF воспроизводимость закреплена targeted LF attributes для generated inputs/outputs. Linux symlink fixture остаётся обязательным CI evidence и не считается пройденным на Windows.
+
+Capability envelopes для пяти профилей запрещают filesystem/network/MCP/shell/git/remote/production/Sheets/Apps Script/broker/deploy/merge/push authority по deny-by-default contract. Локально проверены schema, hashes, generated inclusion и activation boundary. Эти controls имеют `CONTRACT_DECLARED`/`LOCALLY_VALIDATED`, но runtime tool enforcement остаётся `RUNTIME_ENFORCEMENT_UNVERIFIED`; documentation не заменяет runtime evidence.
 
 ## Supply-chain security
 
@@ -89,7 +98,8 @@ Owner model-policy amendment от 2026-07-22 определяет проверя
 - Phase 1 rollback: revert PR; old platform remains intact.
 - Phase 2 rollback: revert removal PR; historical evidence and old profiles восстанавливаются из Git.
 - Phase 3A rollback: revert только Phase 3A governance commit обычным новым commit; zero-agent cutover не восстанавливается автоматически.
-- Phase 3B/3C rollback: revert соответствующий platform commit; production/App Script/Sheets/deployments не затрагиваются.
+- Phase 3B rollback: обычными новыми revert commits удалить staging build artifacts или конкретную remediation wave; zero-agent cutover и historical evidence автоматически не восстанавливаются.
+- Phase 3C rollback: деактивировать runtime profiles отдельной owner-approved операцией и revert activation-only change. Эта операция ещё не реализована.
 - Force push/history rewrite запрещены.
 
 ## Architecture Impact Check
@@ -99,16 +109,19 @@ Owner model-policy amendment от 2026-07-22 определяет проверя
 ## Acceptance gates
 
 1. Governance and Phase 3A regression suite PASS locally.
-2. Trusted verifier находится в canonical base и имеет negative/positive canary plus required-ruleset evidence.
-3. 31 owner-blocked exact selections имеют отдельные decisions или остаются негенерируемыми.
-4. Trusted execution/model/owner attestation provider реализован и tested.
-5. Upstream prompt-injection/capability/license/privacy acceptance complete для каждой генерируемой composition.
-6. Mandatory contract-compatible reviews привязаны к актуальному committed head.
-7. Draft ADR отдельно подтверждён владельцем и только затем меняет status на `ACCEPTED`.
+2. Phase 3B допускает завершение только при пустом `.codex/agents/`, clean-start negative PASS, reproducible staging build, 0 FAIL и отсутствии локальных HIGH/CRITICAL/BLOCKER findings.
+3. 26 owner-blocked exact selections имеют отдельные decisions или остаются негенерируемыми.
+4. Upstream prompt-injection/capability/license/privacy acceptance complete для каждой генерируемой composition.
+5. Mandatory contract-compatible reviews привязаны к актуальному implementation head; report-only evidence tail маркируется отдельно.
+6. Phase 3C требует trusted verifier в canonical base, GitHub positive/negative canaries, protected required ruleset, Linux symlink evidence, trusted external execution/model/owner attestation, replay store и key lifecycle.
+7. Draft ADR отдельно подтверждён владельцем и только затем меняет status на `ACCEPTED`; отдельный owner activation decision обязателен после этого.
 
 ## Открытые вопросы
 
 - Независимый provider trusted runtime/owner attestation.
 - Возможное появление exact runtime support для Luna; повторный smoke обязателен перед activation gate.
-- Owner decisions для 31 exact candidate set.
+- Owner decisions для 26 exact candidate set.
+- Linux CI execution evidence для symlink fixture.
+- Runtime dispatch observation новых generated profiles; локальная конфигурация сама по себе этого не доказывает.
 - Canonical-base canaries и protected ruleset evidence для выбранного base-checkout verifier.
+- Durable replay store и production key lifecycle для trusted attestation.
