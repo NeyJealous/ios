@@ -2,7 +2,7 @@
   "GateId": "FIRST_WAVE_PROVISIONAL_BUILD",
   "AgentPlatformVersion": "2.1-first-wave-provisional",
   "PlatformState": "PROVISIONAL_PLATFORM_BUILD",
-  "TaskType": "governance/platform",
+  "TaskType": "mixed/unknown",
   "Branch": "feature/agent-platform-v2-integration",
   "BaseSHA": "6da06f7f0a32c343f565e4f0a36354538087236a",
   "HeadSHA": "7c81e2e28f04e4bbf9e5e56744afbe600d99cfc1",
@@ -93,12 +93,14 @@
     "tools/agents/validate-upstream-integrity.mjs",
     "tools/trusted-governance/validate.mjs"
   ],
-  "ApplicableAgents": ["ARCHITECTURE_REVIEWER", "AGENT_GOVERNANCE_AUDITOR", "SECURITY_REVIEWER", "DOCUMENTATION_REVIEWER", "TEST_GENERATOR"],
-  "RequiredAgents": ["ARCHITECTURE_REVIEWER", "AGENT_GOVERNANCE_AUDITOR", "SECURITY_REVIEWER", "DOCUMENTATION_REVIEWER", "TEST_GENERATOR"],
+  "ApplicableAgents": ["agent-governance-auditor", "audit-traceability-reviewer", "ios-agent-orchestrator", "ios-codebase-auditor", "security-privacy-auditor"],
+  "RequiredAgents": ["agent-governance-auditor", "audit-traceability-reviewer", "ios-agent-orchestrator", "ios-codebase-auditor", "security-privacy-auditor"],
   "ExecutedAgents": ["ARCHITECTURE_REVIEWER", "AGENT_GOVERNANCE_AUDITOR", "SECURITY_REVIEWER", "DOCUMENTATION_REVIEWER", "TEST_GENERATOR"],
-  "MissingAgents": [],
-  "BlockedByUnavailableAgents": ["PROVISIONAL_RUNTIME_AGENTS_NOT_ACTIVATED"],
-  "BlockingFindings": [],
+  "MissingAgents": ["agent-governance-auditor", "audit-traceability-reviewer", "ios-agent-orchestrator", "ios-codebase-auditor", "security-privacy-auditor"],
+  "BlockedByUnavailableAgents": ["PLATFORM_ACTIVATION_CLOSED", "TRUSTED_EXTERNAL_ATTESTATION_MISSING"],
+  "BlockingFindings": [
+    "Mandatory PROVISIONAL platform agents were not runtime-dispatched. Five external bootstrap reviews are supplementary and do not claim those platform-agent identities."
+  ],
   "Warnings": [
     "External bootstrap reviewers are thread-backed REAL_SUBAGENT executions, but trusted external attestation remains INSUFFICIENT_EVIDENCE.",
     "Two Windows symlink fixtures are SKIP; LINUX_SYMLINK_EVIDENCE_MISSING.",
@@ -108,5 +110,5 @@
   "ArchitectureImpact": "Adds a staging-only first-wave Agent Platform v2 build; runtime discovery and IOS production architecture are unchanged.",
   "SecurityImpact": "Adds immutable supply-chain, fail-closed activation, deny-by-default capability contracts and privacy checks; runtime enforcement remains unverified.",
   "ProductionImpact": "NONE: production writes=0; clasp push=0; deployments=0; Google Sheets writes=0; Apps Script writes=0; broker/API writes=0; activation=0; push=0; merge=0.",
-  "OverallStatus": "PASS"
+  "OverallStatus": "BLOCKED"
 }

@@ -41,6 +41,13 @@ missing operation and missing trusted external verifier.
   tests all `PASS_WITH_WARNINGS`; no `HIGH`, `CRITICAL` or `BLOCKER` finding
   applies to Phase 3B.
 
+The canonical Resolver manifest remains `BLOCKED`: its five mandatory
+PROVISIONAL platform agents were not runtime-dispatched and are listed as
+missing. The five external bootstrap reviews are supplementary review
+evidence, not substituted platform-agent identities. This fail-closed
+automatic-dispatch status is compatible with local Phase 3B build completion
+and continues to prohibit Phase 3C activation.
+
 ## Acceptance boundary
 
 This is acceptance of a reproducible local provisional build only. It is not

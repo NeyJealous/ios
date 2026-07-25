@@ -1,6 +1,6 @@
 # RFC-AGENT-PLATFORM-V2
 
-- Статус: `READY_FOR_OWNER_REVIEW_PHASE_3B_PROVISIONAL_BUILD_COMPLETE`
+- Статус: `PHASE_3B_REMEDIATION_IN_REVIEW`
 - Дата: 2026-07-18
 - Область: repository-wide Agent Platform v2 migration
 - Owner authorization: `audit/agents/OWNER-DECISION-AGENT-PLATFORM-V2.md`
