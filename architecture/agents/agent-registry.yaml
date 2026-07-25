@@ -111,7 +111,10 @@
       "ActivationEligible": false,
       "OverlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml",
       "CompositionPath": "architecture/agents/compositions/ios-agent-orchestrator.yaml",
-      "GeneratedProfilePath": "architecture/agents/generated/provisional/ios-agent-orchestrator.toml"
+      "GeneratedProfilePath": "architecture/agents/generated/provisional/ios-agent-orchestrator.toml",
+      "CapabilityEnvelopePath": "architecture/agents/contracts/capabilities/ios-agent-orchestrator.json",
+      "CapabilityContractStatus": "LOCALLY_VALIDATED",
+      "CapabilityEvidenceStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED"
     },
     {
       "AgentId": "agent-governance-auditor",
@@ -214,7 +217,10 @@
       "ActivationEligible": false,
       "OverlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml",
       "CompositionPath": "architecture/agents/compositions/agent-governance-auditor.yaml",
-      "GeneratedProfilePath": "architecture/agents/generated/provisional/agent-governance-auditor.toml"
+      "GeneratedProfilePath": "architecture/agents/generated/provisional/agent-governance-auditor.toml",
+      "CapabilityEnvelopePath": "architecture/agents/contracts/capabilities/agent-governance-auditor.json",
+      "CapabilityContractStatus": "LOCALLY_VALIDATED",
+      "CapabilityEvidenceStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED"
     },
     {
       "AgentId": "security-privacy-auditor",
@@ -312,7 +318,10 @@
       "ActivationEligible": false,
       "OverlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml",
       "CompositionPath": "architecture/agents/compositions/security-privacy-auditor.yaml",
-      "GeneratedProfilePath": "architecture/agents/generated/provisional/security-privacy-auditor.toml"
+      "GeneratedProfilePath": "architecture/agents/generated/provisional/security-privacy-auditor.toml",
+      "CapabilityEnvelopePath": "architecture/agents/contracts/capabilities/security-privacy-auditor.json",
+      "CapabilityContractStatus": "LOCALLY_VALIDATED",
+      "CapabilityEvidenceStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED"
     },
     {
       "AgentId": "audit-traceability-reviewer",
@@ -407,7 +416,10 @@
       "ActivationEligible": false,
       "OverlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml",
       "CompositionPath": "architecture/agents/compositions/audit-traceability-reviewer.yaml",
-      "GeneratedProfilePath": "architecture/agents/generated/provisional/audit-traceability-reviewer.toml"
+      "GeneratedProfilePath": "architecture/agents/generated/provisional/audit-traceability-reviewer.toml",
+      "CapabilityEnvelopePath": "architecture/agents/contracts/capabilities/audit-traceability-reviewer.json",
+      "CapabilityContractStatus": "LOCALLY_VALIDATED",
+      "CapabilityEvidenceStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED"
     },
     {
       "AgentId": "ios-codebase-auditor",
@@ -506,7 +518,10 @@
       "ActivationEligible": false,
       "OverlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml",
       "CompositionPath": "architecture/agents/compositions/ios-codebase-auditor.yaml",
-      "GeneratedProfilePath": "architecture/agents/generated/provisional/ios-codebase-auditor.toml"
+      "GeneratedProfilePath": "architecture/agents/generated/provisional/ios-codebase-auditor.toml",
+      "CapabilityEnvelopePath": "architecture/agents/contracts/capabilities/ios-codebase-auditor.json",
+      "CapabilityContractStatus": "LOCALLY_VALIDATED",
+      "CapabilityEvidenceStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED"
     }
   ]
 }

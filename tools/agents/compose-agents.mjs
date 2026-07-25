@@ -36,7 +36,11 @@ function main() {
     const overlayPath = `architecture/agents/overlays/${agentId}.yaml`;
     const overlayBytes = readFileSync(resolve(root, overlayPath));
     const overlay = JSON.parse(overlayBytes.toString('utf8'));
+    const capabilityEnvelopePath = `architecture/agents/contracts/capabilities/${agentId}.json`;
+    const capabilityEnvelopeBytes = readFileSync(resolve(root, capabilityEnvelopePath));
+    const capabilityEnvelope = JSON.parse(capabilityEnvelopeBytes.toString('utf8'));
     if (overlay.agentId !== agentId || overlay.mode !== 'APPEND_ONLY' || overlay.status !== 'PROVISIONAL' || overlay.activationEligible !== false || overlay.platformActivationEligible !== false) throw new Error(`${agentId}: OVERLAY_CONTRACT_INVALID`);
+    if (capabilityEnvelope.agentId !== agentId || capabilityEnvelope.contractStatus !== 'LOCALLY_VALIDATED' || capabilityEnvelope.evidenceStatus !== 'RUNTIME_ENFORCEMENT_UNVERIFIED') throw new Error(`${agentId}: CAPABILITY_ENVELOPE_INVALID`);
     const bases = selection.selectedProfiles.map((profile) => {
       const entry = lockByKey.get(`${profile.repository}:${profile.sourcePath}`);
       if (!entry) throw new Error(`${agentId}: LOCK_ENTRY_MISSING`);
@@ -49,6 +53,7 @@ function main() {
     if (generateProfiles) {
       const sections = bases.map((base, index) => `=== IMMUTABLE UPSTREAM BASE ${index + 1}: ${base.repository}:${base.sourcePath}@${base.commit} ===\n${readFileSync(resolve(root, base.snapshotPath), 'utf8')}\n=== END IMMUTABLE UPSTREAM BASE ${index + 1} ===`);
       sections.push(`=== APPEND-ONLY IOS OVERLAY ===\n${JSON.stringify(overlay, null, 2)}\n=== END APPEND-ONLY IOS OVERLAY ===`);
+      sections.push(`=== IOS CAPABILITY ENVELOPE ===\n${JSON.stringify(capabilityEnvelope, null, 2)}\n=== END IOS CAPABILITY ENVELOPE ===`);
       const instructions = sections.join('\n\n');
       const model = overlay.modelContract.primaryModel;
       const reasoning = overlay.modelContract.primaryReasoning;
@@ -58,6 +63,7 @@ function main() {
         '# activationEligible = false',
         `# upstreamCompositionHash = ${upstreamCompositionHash}`,
         `# overlayHash = ${sha(overlayBytes)}`,
+        `# capabilityEnvelopeHash = ${sha(capabilityEnvelopeBytes)}`,
         `name = ${JSON.stringify(agentId)}`,
         `description = ${JSON.stringify(`PROVISIONAL IOS first-wave agent ${agentId}; activation is disabled.`)}`,
         `model = ${JSON.stringify(model)}`,
@@ -71,11 +77,11 @@ function main() {
       writeFileSync(output, profile, 'utf8');
     }
     const generatedHash = existsSync(resolve(root, generatedPath)) ? sha(readFileSync(resolve(root, generatedPath))) : null;
-    const composition = { agentId, compositionVersion: '1.0.0', bases, compositionOrder, conflictResolution: CONFLICTS[agentId], overlayPath, overlayHash: sha(overlayBytes), generatedPath, generatedHash, upstreamCompositionHash, status: 'PROVISIONAL', activationEligible: false, platformActivationEligible: false };
+    const composition = { agentId, compositionVersion: '1.0.0', bases, compositionOrder, conflictResolution: CONFLICTS[agentId], overlayPath, overlayHash: sha(overlayBytes), capabilityEnvelopePath, capabilityEnvelopeHash: sha(capabilityEnvelopeBytes), capabilityContractStatus: capabilityEnvelope.contractStatus, capabilityEvidenceStatus: capabilityEnvelope.evidenceStatus, generatedPath, generatedHash, upstreamCompositionHash, status: 'PROVISIONAL', activationEligible: false, platformActivationEligible: false };
     const compositionPath = resolve(root, 'architecture/agents/compositions', `${agentId}.yaml`);
     mkdirSync(dirname(compositionPath), { recursive: true });
     writeFileSync(compositionPath, `${JSON.stringify(composition, null, 2)}\n`, 'utf8');
-    compositionLock.agents.push({ agentId, compositionPath: `architecture/agents/compositions/${agentId}.yaml`, compositionHash: sha(Buffer.from(`${JSON.stringify(composition, null, 2)}\n`, 'utf8')), upstreamCompositionHash, overlayHash: composition.overlayHash, generatedPath, generatedHash, status: 'PROVISIONAL' });
+    compositionLock.agents.push({ agentId, compositionPath: `architecture/agents/compositions/${agentId}.yaml`, compositionHash: sha(Buffer.from(`${JSON.stringify(composition, null, 2)}\n`, 'utf8')), upstreamCompositionHash, overlayHash: composition.overlayHash, capabilityEnvelopeHash: composition.capabilityEnvelopeHash, generatedPath, generatedHash, status: 'PROVISIONAL' });
   }
   writeFileSync(resolve(root, 'architecture/agents/registry/composition-lock.json'), `${JSON.stringify(compositionLock, null, 2)}\n`, 'utf8');
   console.log(JSON.stringify({ agents: compositionLock.agents.length, generatedProfiles: generateProfiles, status: compositionLock.status }, null, 2));

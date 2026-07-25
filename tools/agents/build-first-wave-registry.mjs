@@ -26,10 +26,13 @@ const agents = ids.map((agentId) => {
   const compositionPath = `architecture/agents/compositions/${agentId}.yaml`;
   const overlay = readJson(resolve(root, overlayPath));
   const composition = readJson(resolve(root, compositionPath));
+  const capabilityEnvelopePath = `architecture/agents/contracts/capabilities/${agentId}.json`;
+  const capabilityEnvelope = readJson(resolve(root, capabilityEnvelopePath));
   return {
     agentId, displayName: displayNames[agentId], status: 'PROVISIONAL', purpose: purposes[agentId], priority: priorities[agentId],
     upstreamComposition: composition.bases,
     overlayPath, compositionPath, generatedProfilePath: composition.generatedPath,
+    capabilityEnvelopePath, capabilityEnvelope,
     triggers: agentId === 'ios-agent-orchestrator' ? ['significant task start', 'scope change', 'pre-commit', 'pre-push', 'pre-PR', 'post-change'] : overlay.responsibilities,
     permissions: overlay.permissionEnvelope,
     forbiddenActions: overlay.forbiddenActions,
@@ -58,6 +61,8 @@ const compatibility = {
     CanModifyCode: false, CanModifyDocs: false, CanUseNetwork: false, CanUseMCP: false, CanWriteRemote: false, CanApproveMerge: false, CanDeploy: false, CanProductionWrite: false, CanModifySecrets: false,
     Escalation: agent.modelContract, FallbackMode: 'NOT_AVAILABLE_NO_SILENT_DOWNGRADE', Version: '1.0.0', Status: 'PROVISIONAL', ActivationEligible: false,
     OverlayPath: agent.overlayPath, CompositionPath: agent.compositionPath, GeneratedProfilePath: agent.generatedProfilePath,
+    CapabilityEnvelopePath: agent.capabilityEnvelopePath, CapabilityContractStatus: agent.capabilityEnvelope.contractStatus,
+    CapabilityEvidenceStatus: agent.capabilityEnvelope.evidenceStatus,
   })),
 };
 writeFileSync(resolve(root, 'architecture/agents/agent-registry.yaml'), `${JSON.stringify(compatibility, null, 2)}\n`, 'utf8');

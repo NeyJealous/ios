@@ -6,6 +6,7 @@ const rootArg = process.argv.indexOf('--root');
 const root = resolve(rootArg >= 0 ? process.argv[rootArg + 1] : resolve(import.meta.dirname, '../..'));
 const steps = [
   ['validate locked upstream snapshots', 'tools/agents/validate-upstream-integrity.mjs', []],
+  ['validate capability envelopes', 'tools/agents/validate-capability-envelopes.mjs', [root]],
   ['compose immutable bases and overlays', 'tools/agents/compose-agents.mjs', ['--root', root, '--generate-profiles']],
   ['build provisional registry and matrix', 'tools/agents/build-first-wave-registry.mjs', [root]],
   ['validate generated profiles', 'tools/agents/validate-generated-agents.mjs', [root]],

@@ -27,10 +27,13 @@ export function validateGeneratedAgents(root) {
     for (const agentId of FIRST_WAVE) {
       const selection = register.selections.find((row) => row.agentId === agentId);
       const overlayPath = resolve(root, 'architecture/agents/overlays', `${agentId}.yaml`);
+      const capabilityEnvelopePath = resolve(root, 'architecture/agents/contracts/capabilities', `${agentId}.json`);
       const compositionPath = resolve(root, 'architecture/agents/compositions', `${agentId}.yaml`);
-      for (const path of [overlayPath, compositionPath]) if (lstatSync(path).isSymbolicLink()) errors.push(`${agentId}:SYMLINK_REJECTED`);
+      for (const path of [overlayPath, capabilityEnvelopePath, compositionPath]) if (lstatSync(path).isSymbolicLink()) errors.push(`${agentId}:SYMLINK_REJECTED`);
       const overlayBytes = readFileSync(overlayPath);
       const overlay = JSON.parse(overlayBytes.toString('utf8'));
+      const capabilityEnvelopeBytes = readFileSync(capabilityEnvelopePath);
+      const capabilityEnvelope = JSON.parse(capabilityEnvelopeBytes.toString('utf8'));
       const compositionBytes = readFileSync(compositionPath);
       const composition = JSON.parse(compositionBytes.toString('utf8'));
       if (overlay.agentId !== agentId || overlay.mode !== 'APPEND_ONLY' || overlay.status !== 'PROVISIONAL' || overlay.activationEligible !== false || overlay.platformActivationEligible !== false) errors.push(`${agentId}:OVERLAY_INVALID`);
@@ -41,6 +44,8 @@ export function validateGeneratedAgents(root) {
       const expectedGeneratedPath = `architecture/agents/generated/provisional/${agentId}.toml`;
       if (composition.generatedPath !== expectedGeneratedPath || composition.generatedPath.includes('..') || composition.generatedPath.includes('\\')) errors.push(`${agentId}:GENERATED_STAGING_PATH_INVALID`);
       if (composition.overlayHash !== sha(overlayBytes) || composition.overlayPath !== `architecture/agents/overlays/${agentId}.yaml`) errors.push(`${agentId}:OVERLAY_HASH_MISMATCH`);
+      if (composition.capabilityEnvelopeHash !== sha(capabilityEnvelopeBytes) || composition.capabilityEnvelopePath !== `architecture/agents/contracts/capabilities/${agentId}.json`) errors.push(`${agentId}:CAPABILITY_ENVELOPE_HASH_MISMATCH`);
+      if (composition.capabilityContractStatus !== 'LOCALLY_VALIDATED' || composition.capabilityEvidenceStatus !== 'RUNTIME_ENFORCEMENT_UNVERIFIED') errors.push(`${agentId}:CAPABILITY_ENFORCEMENT_STATUS_INVALID`);
       if (!Array.isArray(composition.conflictResolution) || !composition.conflictResolution.length) errors.push(`${agentId}:CONFLICT_RESOLUTION_MISSING`);
       const expectedOrder = selection.selectedProfiles.map((profile) => `${profile.repository}:${profile.sourcePath}`);
       if (JSON.stringify(composition.compositionOrder) !== JSON.stringify(expectedOrder)) errors.push(`${agentId}:COMPOSITION_ORDER_MISMATCH`);
@@ -52,7 +57,7 @@ export function validateGeneratedAgents(root) {
         if (!locked || base.inclusionMode !== 'FULL_UNMODIFIED' || base.repository !== selected.repository || base.commit !== selected.commitSha || base.profileId !== selected.profileId || base.rawHash !== selected.rawSha256 || base.normalizedHash !== selected.normalizedSha256 || base.snapshotPath !== locked.snapshotPath) errors.push(`${agentId}:BASE_BINDING_MISMATCH:${index}`);
       }
       const lockEntry = compositionLock.agents.find((item) => item.agentId === agentId);
-      if (!lockEntry || lockEntry.compositionHash !== sha(compositionBytes) || lockEntry.overlayHash !== composition.overlayHash || lockEntry.upstreamCompositionHash !== composition.upstreamCompositionHash) errors.push(`${agentId}:COMPOSITION_LOCK_MISMATCH`);
+      if (!lockEntry || lockEntry.compositionHash !== sha(compositionBytes) || lockEntry.overlayHash !== composition.overlayHash || lockEntry.capabilityEnvelopeHash !== composition.capabilityEnvelopeHash || lockEntry.upstreamCompositionHash !== composition.upstreamCompositionHash) errors.push(`${agentId}:COMPOSITION_LOCK_MISMATCH`);
       const profilePath = resolve(root, composition.generatedPath);
       if (existsSync(profilePath)) {
         const profileBytes = readFileSync(profilePath);
@@ -61,7 +66,7 @@ export function validateGeneratedAgents(root) {
         let instructions = '';
         try { instructions = JSON.parse(instructionLiteral); } catch { errors.push(`${agentId}:GENERATED_INSTRUCTIONS_INVALID`); }
         if (composition.generatedHash !== sha(profileBytes) || lockEntry.generatedHash !== composition.generatedHash) errors.push(`${agentId}:GENERATED_HASH_MISMATCH`);
-        if (!profileText.includes('# status = PROVISIONAL') || !profileText.includes('# activationEligible = false') || !instructions.includes(JSON.stringify(overlay, null, 2))) errors.push(`${agentId}:GENERATED_METADATA_MISSING`);
+        if (!profileText.includes('# status = PROVISIONAL') || !profileText.includes('# activationEligible = false') || !profileText.includes(`# capabilityEnvelopeHash = ${sha(capabilityEnvelopeBytes)}`) || !instructions.includes(JSON.stringify(overlay, null, 2)) || !instructions.includes(JSON.stringify(capabilityEnvelope, null, 2))) errors.push(`${agentId}:GENERATED_METADATA_MISSING`);
         if (!profileText.includes(`model = ${JSON.stringify(overlay.modelContract.primaryModel)}`) || !profileText.includes(`model_reasoning_effort = ${JSON.stringify(overlay.modelContract.primaryReasoning)}`) || !profileText.includes('sandbox_mode = "read-only"')) errors.push(`${agentId}:GENERATED_MODEL_OR_SANDBOX_MISMATCH`);
         for (const base of composition.bases) if (!instructions.includes(readFileSync(resolve(root, base.snapshotPath), 'utf8'))) errors.push(`${agentId}:UPSTREAM_BASE_NOT_FULLY_INCLUDED`);
       } else if (composition.generatedHash !== null || lockEntry.generatedHash !== null) errors.push(`${agentId}:GENERATED_PROFILE_MISSING`);
