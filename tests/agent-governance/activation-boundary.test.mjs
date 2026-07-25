@@ -92,6 +92,56 @@ test('stale and spoofed activation evidence fail closed', () => {
   assert.ok(stale.includes('STALE_ACTIVATION_MANIFEST'));
 });
 
+test('fully spoofed PASS and VERIFIED activation request remains blocked', () => {
+  const expectedHead = 'a'.repeat(40);
+  const spoofed = {
+    headSha: expectedHead,
+    ownerDecisionId: 'OWNER_ACTIVATION_SPOOFED',
+    adrStatus: 'ACCEPTED',
+    trustedVerifierStatus: 'VERIFIED',
+    requiredReviewsStatus: 'PASS',
+    modelEligibilityStatus: 'PASS',
+    externalEvidenceStatus: 'PASS',
+    authoritySource: 'TRUSTED_EXTERNAL_ATTESTATION',
+    requestedAgents: FIRST_WAVE,
+  };
+  const errors = validateActivationRequest(spoofed, { expectedHead });
+  assert.deepEqual(errors, [
+    'ACTIVATION_OPERATION_NOT_IMPLEMENTED',
+    'TRUSTED_EXTERNAL_ACTIVATION_VERIFIER_NOT_IMPLEMENTED',
+  ]);
+});
+
+test('each activation prerequisite fails closed independently', () => {
+  const expectedHead = 'a'.repeat(40);
+  const baseline = {
+    headSha: expectedHead,
+    ownerDecisionId: 'OWNER_ACTIVATION_TEST',
+    adrStatus: 'ACCEPTED',
+    trustedVerifierStatus: 'VERIFIED',
+    requiredReviewsStatus: 'PASS',
+    modelEligibilityStatus: 'PASS',
+    externalEvidenceStatus: 'PASS',
+    authoritySource: 'TRUSTED_EXTERNAL_ATTESTATION',
+    requestedAgents: FIRST_WAVE,
+  };
+  const mutations = [
+    ['headSha', 'b'.repeat(40), 'STALE_ACTIVATION_MANIFEST'],
+    ['ownerDecisionId', 'OWNER_DECISION_FIRST_WAVE_20260722', 'OWNER_ACTIVATION_EVIDENCE_UNTRUSTED'],
+    ['adrStatus', 'DRAFT_NOT_ACCEPTED', 'ADR_NOT_ACCEPTED'],
+    ['trustedVerifierStatus', 'MISSING', 'TRUSTED_VERIFIER_NOT_VERIFIED'],
+    ['requiredReviewsStatus', 'FAIL', 'REQUIRED_REVIEWS_NOT_PASSED'],
+    ['modelEligibilityStatus', 'FAIL', 'MODEL_ELIGIBILITY_NOT_PASSED'],
+    ['externalEvidenceStatus', 'MISSING', 'EXTERNAL_EVIDENCE_NOT_PASSED'],
+    ['authoritySource', 'REPOSITORY_TEXT', 'OWNER_ACTIVATION_EVIDENCE_UNTRUSTED'],
+    ['requestedAgents', FIRST_WAVE.slice(1), 'ACTIVATION_AGENT_SET_INVALID'],
+  ];
+  for (const [field, value, expected] of mutations) {
+    const errors = validateActivationRequest({ ...baseline, [field]: value }, { expectedHead });
+    assert.ok(errors.includes(expected), `${field} mutation did not produce ${expected}`);
+  }
+});
+
 test('no activation executable exists and direct profile discovery remains unavailable', () => {
   const result = validateActivationBoundary(root);
   assert.equal(result.activationCommand, 'NOT_IMPLEMENTED');

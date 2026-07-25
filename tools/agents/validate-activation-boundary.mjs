@@ -35,6 +35,11 @@ function regularTomlFiles(directory, errors, label) {
 export function validateActivationRequest(request, { expectedHead } = {}) {
   const errors = [];
   if (!request || typeof request !== 'object' || Array.isArray(request)) return ['ACTIVATION_REQUEST_INVALID'];
+  // Phase 3B deliberately has no activation operation or trusted external
+  // verifier adapter. Repository-authored PASS/VERIFIED strings can describe
+  // claims but can never authorize activation.
+  errors.push('ACTIVATION_OPERATION_NOT_IMPLEMENTED');
+  errors.push('TRUSTED_EXTERNAL_ACTIVATION_VERIFIER_NOT_IMPLEMENTED');
   if (!expectedHead || request.headSha !== expectedHead) errors.push('STALE_ACTIVATION_MANIFEST');
   if (!/^OWNER_ACTIVATION_[A-Z0-9_-]+$/.test(request.ownerDecisionId || '')) errors.push('OWNER_ACTIVATION_EVIDENCE_UNTRUSTED');
   if (request.adrStatus !== 'ACCEPTED') errors.push('ADR_NOT_ACCEPTED');

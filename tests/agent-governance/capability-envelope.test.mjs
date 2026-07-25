@@ -32,16 +32,29 @@ test('network, MCP and write authority are denied by default', () => {
   }
 });
 
-test('network or MCP enablement is rejected', () => {
+test('every deny-by-default authority field rejects enablement', () => {
   const value = envelope('security-privacy-auditor');
-  assert.ok(validateCapabilityEnvelope({ ...value, networkAccess: true }, schema, value.agentId).length);
-  assert.ok(validateCapabilityEnvelope({ ...value, mcpAccess: true }, schema, value.agentId).length);
+  for (const field of [
+    'filesystemWrite', 'networkAccess', 'mcpAccess', 'shellAccess', 'gitWrite',
+    'remoteWrite', 'productionWrite', 'sheetsWrite', 'appsScriptWrite',
+    'brokerApiWrite', 'deploy', 'merge', 'push',
+  ]) {
+    const errors = validateCapabilityEnvelope({ ...value, [field]: true }, schema, value.agentId);
+    assert.ok(errors.some((error) => error.includes(field)), `${field} was accepted`);
+  }
 });
 
-test('missing denied tool and asserted runtime enforcement are rejected', () => {
+test('every mandatory denied tool and asserted runtime enforcement are rejected', () => {
   const value = envelope('agent-governance-auditor');
-  const missing = { ...value, deniedTools: value.deniedTools.filter((item) => item !== 'git.write') };
-  assert.ok(validateCapabilityEnvelope(missing, schema, value.agentId).some((error) => error.includes('DENIED_TOOL_MISSING:git.write')));
+  for (const denial of [
+    'network', 'mcp', 'shell', 'filesystem.write', 'git.write', 'remote.write',
+    'production.write', 'sheets.write', 'apps-script.write', 'broker-api.write',
+    'deploy', 'merge', 'push', 'secrets.modify', 'agent.install', 'agent.remove',
+    'package.install',
+  ]) {
+    const missing = { ...value, deniedTools: value.deniedTools.filter((item) => item !== denial) };
+    assert.ok(validateCapabilityEnvelope(missing, schema, value.agentId).some((error) => error.includes(`DENIED_TOOL_MISSING:${denial}`)), `${denial} removal was accepted`);
+  }
   assert.ok(validateCapabilityEnvelope({ ...value, evidenceStatus: 'RUNTIME_ENFORCED' }, schema, value.agentId).some((error) => error.includes('RUNTIME_ENFORCEMENT')));
 });
 
