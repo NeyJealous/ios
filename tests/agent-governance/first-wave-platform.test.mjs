@@ -7,6 +7,7 @@ import { spawnSync } from 'node:child_process';
 import test from 'node:test';
 import { validateGeneratedAgents } from '../../tools/agents/validate-generated-agents.mjs';
 import { validateUpstreamIntegrity } from '../../tools/agents/validate-upstream-integrity.mjs';
+import { validateActivationBoundary } from '../../tools/agents/validate-activation-boundary.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const sha = (bytes) => createHash('sha256').update(bytes).digest('hex');
@@ -14,7 +15,6 @@ const sha = (bytes) => createHash('sha256').update(bytes).digest('hex');
 function copyPlatformFixture() {
   const fixture = mkdtempSync(join(tmpdir(), 'ios-first-wave-'));
   cpSync(resolve(root, 'architecture/agents'), resolve(fixture, 'architecture/agents'), { recursive: true });
-  cpSync(resolve(root, '.codex/agents'), resolve(fixture, '.codex/agents'), { recursive: true });
   return fixture;
 }
 
@@ -85,11 +85,11 @@ test('profile generation is deterministic and byte-reproducible', () => {
     const run = () => spawnSync(process.execPath, [script, '--root', fixture, '--generate-profiles'], { encoding: 'utf8' });
     const firstRun = run();
     assert.equal(firstRun.status, 0, firstRun.stderr || firstRun.stdout);
-    const first = treeHash(resolve(fixture, '.codex/agents'));
+    const first = treeHash(resolve(fixture, 'architecture/agents/generated/provisional'));
     const firstCompositions = treeHash(resolve(fixture, 'architecture/agents/compositions'));
     const secondRun = run();
     assert.equal(secondRun.status, 0, secondRun.stderr || secondRun.stdout);
-    assert.equal(treeHash(resolve(fixture, '.codex/agents')), first);
+    assert.equal(treeHash(resolve(fixture, 'architecture/agents/generated/provisional')), first);
     assert.equal(treeHash(resolve(fixture, 'architecture/agents/compositions')), firstCompositions);
   } finally { rmSync(fixture, { recursive: true, force: true }); }
 });
@@ -127,8 +127,15 @@ test('fresh checkout supports npm ci, offline bootstrap, checks and zero diff', 
     assert.equal(run.status, 0, run.stderr || run.stdout);
     run = runNpm(['run', 'agents:check']);
     assert.equal(run.status, 0, run.stderr || run.stdout);
+    run = spawnSync(process.execPath, [resolve(clone, 'tools/agents/validate-activation-boundary.mjs'), clone], options);
+    assert.equal(run.status, 0, run.stderr || run.stdout);
+    const boundary = JSON.parse(run.stdout);
+    assert.equal(boundary.runtimeDiscoveredPlatformAgents, 0);
+    assert.equal(boundary.provisionalStagingProfiles, 5);
+    assert.equal(boundary.runtimeDispatchStatus, 'NOT_DISPATCHED_ACTIVATION_CLOSED');
     run = spawnSync('git', ['diff', '--exit-code'], options);
     assert.equal(run.status, 0, run.stderr || run.stdout);
-    assert.equal(lstatSync(resolve(clone, '.codex/agents')).isDirectory(), true);
+    assert.equal(validateActivationBoundary(clone).ok, true);
+    assert.equal(lstatSync(resolve(clone, 'architecture/agents/generated/provisional')).isDirectory(), true);
   } finally { rmSync(parent, { recursive: true, force: true }); }
 });

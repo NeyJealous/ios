@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0.0",
+  "platformState": "PROVISIONAL_PLATFORM_BUILD",
+  "platformActivationEligible": false,
+  "activationGate": "CLOSED",
+  "provisionalStagingPath": "architecture/agents/generated/provisional",
+  "runtimeDiscoveryPath": ".codex/agents",
+  "activationCommand": "NOT_IMPLEMENTED",
+  "activationOperationStatus": "OWNER_GATED_NOT_AVAILABLE",
+  "runtimeDiscoveredPlatformAgents": 0,
+  "activeAgents": 0,
+  "provisionalAgents": [
+    {"agentId":"ios-agent-orchestrator","status":"PROVISIONAL","activationEligible":false},
+    {"agentId":"agent-governance-auditor","status":"PROVISIONAL","activationEligible":false},
+    {"agentId":"security-privacy-auditor","status":"PROVISIONAL","activationEligible":false},
+    {"agentId":"audit-traceability-reviewer","status":"PROVISIONAL","activationEligible":false},
+    {"agentId":"ios-codebase-auditor","status":"PROVISIONAL","activationEligible":false}
+  ],
+  "activationBlockers": [
+    "TRUSTED_EXTERNAL_ATTESTATION_MISSING",
+    "GITHUB_POSITIVE_NEGATIVE_CANARY_MISSING",
+    "REQUIRED_RULESET_EVIDENCE_MISSING",
+    "LINUX_SYMLINK_CI_EVIDENCE_MISSING",
+    "ADR_DRAFT_NOT_ACCEPTED"
+  ],
+  "requiredFutureGates": [
+    "ADR_ACCEPTED",
+    "OWNER_ACTIVATION_DECISION",
+    "TRUSTED_VERIFIER_VERIFIED",
+    "REQUIRED_REVIEWS_PASS",
+    "MODEL_ELIGIBILITY_PASS",
+    "LINUX_SYMLINK_EVIDENCE_PRESENT",
+    "GITHUB_CANARY_PASS",
+    "REQUIRED_RULESET_VERIFIED",
+    "TRUSTED_EXTERNAL_ATTESTATION_PRESENT"
+  ],
+  "ownerDecisionRequired": true
+}

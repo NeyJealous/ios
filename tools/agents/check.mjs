@@ -7,6 +7,7 @@ const root = resolve(rootArg >= 0 ? process.argv[rootArg + 1] : resolve(import.m
 const steps = [
   ['upstream integrity', 'tools/agents/validate-upstream-integrity.mjs', []],
   ['generated profiles', 'tools/agents/validate-generated-agents.mjs', []],
+  ['activation boundary', 'tools/agents/validate-activation-boundary.mjs', []],
   ['governance structures', 'tools/validate-agent-governance.mjs', ['--root', root, '--base', 'HEAD', '--head', 'HEAD']],
   ['governance tests', '--test', ['tests/agent-governance/*.test.mjs']],
   ['privacy', 'tools/publication-privacy-check.mjs', []],
