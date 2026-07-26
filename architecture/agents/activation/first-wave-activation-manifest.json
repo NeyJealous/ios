@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "1.0.0",
+  "ownerDecisionId": "OWNER_DECISION_ACTIVATE_FIRST_WAVE_20260727",
+  "decisionScope": "FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT",
+  "agentIds": [
+    "ios-agent-orchestrator",
+    "agent-governance-auditor",
+    "security-privacy-auditor",
+    "audit-traceability-reviewer",
+    "ios-codebase-auditor"
+  ],
+  "sourceBranch": "feature/agent-platform-v2-integration",
+  "sourceHead": "af0b389893ae605af3d65e2cbb941486f7a74cdc",
+  "sourcePath": "architecture/agents/generated/provisional",
+  "runtimeDiscoveryPath": ".codex/agents",
+  "activationStatus": "OWNER_AUTHORIZED_PENDING_EXECUTION",
+  "productionGovernanceEligible": false,
+  "dataConfidenceContract": "NOT_EXPLICITLY_DECLARED_IN_FIRST_WAVE_OVERLAY",
+  "upstreamPins": {
+    "VoltAgent/awesome-codex-subagents": "5605c9c18b3687993919d6cc467af4a34898fee2",
+    "wshobson/agents": "b6af3711058190e4b5c5274b9758498fe626ec5a"
+  },
+  "agents": [
+    {
+      "agentId": "ios-agent-orchestrator",
+      "profileHash": "ec85df02b13de9433041d1521947fbda8e01b55a3c14fd46cad9c4c9c876dd66",
+      "compositionHash": "a774ba47839dc25e1b860531c682a4939fdb40f2e04bcd66d2552f6e77f60741",
+      "overlayHash": "1478dfd701a691c1a5bff0a210ec19bf1ee749b690f8f92b6024cd531e8e44c3",
+      "capabilityHash": "0c3d657a07e279a385ac4b805533d91e2650954644821aeacd676c47ddf8bc63",
+      "modelContract": {"model":"gpt-5.6-terra","reasoning":"medium","silentDowngradeAllowed":false}
+    },
+    {
+      "agentId": "agent-governance-auditor",
+      "profileHash": "377acf7ec6c48867a536c1972169b999c6ec5f1a2cf1ffe3077ef792fec4ffd9",
+      "compositionHash": "eb122fcba1ed79a23f43ca5ffc535fe2662d475a7e23484d08d004651b148483",
+      "overlayHash": "e024df0d9028e30e8316b97795d2196c032746cd35512df3a8bb8053ca083303",
+      "capabilityHash": "45b7381453c562427748b42f2d1b6d039922531aa1ca37dbb2a34cade438c800",
+      "modelContract": {"model":"gpt-5.6-sol","reasoning":"high","silentDowngradeAllowed":false}
+    },
+    {
+      "agentId": "security-privacy-auditor",
+      "profileHash": "de7ee1a5f535c650c298f59e33c82ae92bc7ff29292b03b617fbaae551136757",
+      "compositionHash": "07130ca621c6b05f858bbfbf5ba2074852e5154ed46e9b8adb0d8627abf5aff9",
+      "overlayHash": "cd0a8c4f4a286fc82987fab32b23fa9fba9db4c7a4536877e99a528cd6acf093",
+      "capabilityHash": "edc4c8ba379a6379dacc470c900a0275e0b9fbb3471359ea05ad86762a81057b",
+      "modelContract": {"model":"gpt-5.6-sol","reasoning":"high","silentDowngradeAllowed":false}
+    },
+    {
+      "agentId": "audit-traceability-reviewer",
+      "profileHash": "7d2379bd5154499ea31a8c43e1a29529e236db1c00fae9392d0e18d66058a6e4",
+      "compositionHash": "0a4309df123f0dbbf53c41d515f7647da5c01ff41418f1407a1b09f911224c94",
+      "overlayHash": "527b27aa75a7dce2f2e8ed93df3b6257c80f6a9553b6bee46ea82c7c8a1765a2",
+      "capabilityHash": "cff941d600d9e919c801e427f5b7a44d10b6b762d9a60a8a08ab69d9cdcca247",
+      "modelContract": {"model":"gpt-5.6-terra","reasoning":"medium","silentDowngradeAllowed":false}
+    },
+    {
+      "agentId": "ios-codebase-auditor",
+      "profileHash": "31777f8aa5a04c74438c3cafa5d77c3ecffe431b216d5839a9ed5fdecd5943ac",
+      "compositionHash": "626944224e588160c794b403f13d5108c5a9fae1d7ddc4020db148597b2029d5",
+      "overlayHash": "d91b146dbbed3b0072d548764d7b1da298435c079cb2c0cab3c2d2b84fce7443",
+      "capabilityHash": "b401e7ce34e5c832ef85e7cd0cb079e855d35bcf9ec7924c0bda0d28f6e0845d",
+      "modelContract": {"model":"gpt-5.6-sol","reasoning":"high","silentDowngradeAllowed":false}
+    }
+  ],
+  "rollback": {
+    "manifest": "architecture/agents/activation/first-wave-rollback-manifest.json",
+    "command": "node tools/agents/deactivate-first-wave.mjs",
+    "targetRuntimeDiscoveredPlatformAgents": 0
+  },
+  "externalGates": [
+    "LINUX_SYMLINK_EVIDENCE_MISSING",
+    "GITHUB_CANARY_NOT_EXECUTED",
+    "REQUIRED_RULESET_NOT_VERIFIED",
+    "TRUSTED_EXTERNAL_ATTESTATION_MISSING",
+    "REPLAY_STORE_NOT_IMPLEMENTED",
+    "KEY_LIFECYCLE_NOT_VERIFIED",
+    "RUNTIME_ENFORCEMENT_UNVERIFIED",
+    "ADR_DRAFT_NOT_ACCEPTED"
+  ]
+}
