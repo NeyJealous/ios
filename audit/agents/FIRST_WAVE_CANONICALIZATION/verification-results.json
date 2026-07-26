@@ -1,5 +1,5 @@
 {
-  "stage": "PRE_COMMIT_CONFIGURED_STATE_VALIDATION",
+  "stage": "FINAL_FEATURE_VALIDATION",
   "staticFirstWaveValidation": "PASS",
   "fixtureValidation": {
     "total": 35,
@@ -12,11 +12,14 @@
   "activationBoundary": "PASS_CONFIGURED_RUNTIME_UNVERIFIED",
   "nodeGovernanceSuite": {
     "total": 121,
-    "pass": 118,
-    "fail": 1,
+    "pass": 119,
+    "fail": 0,
     "skip": 2,
-    "remainingPreCommitCondition": "FRESH_CHECKOUT_TEST_REQUIRES_CONFIGURED_STATE_COMMIT"
+    "freshCheckoutBootstrapZeroDiff": "PASS"
   },
+  "privacyScan": "PASS",
+  "nonAgentSafetyValidator": "PASS",
+  "gitDiffCheck": "PASS",
   "runtimeSmoke": "NOT_EXECUTED_BY_OWNER_DECISION",
   "productionWrites": 0
 }
