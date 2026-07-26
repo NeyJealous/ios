@@ -15,3 +15,4 @@ architecture/agents/registry/*.yaml text eol=lf
 architecture/agents/agent-registry.json text eol=lf
 architecture/agents/agent-registry.yaml text eol=lf
 architecture/agents/review-matrix.yaml text eol=lf
+audit/agents/** text eol=lf

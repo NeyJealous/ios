@@ -1,0 +1,20 @@
+{
+  "command": "npm run agents:check",
+  "canonicalMergeSha": "8d5cb22856fa66d43baf0bfdd798a0989715aef7",
+  "result": "PASS",
+  "total": 121,
+  "pass": 119,
+  "fail": 0,
+  "skip": 2,
+  "freshCheckoutBootstrapZeroDiff": "PASS",
+  "upstreamIntegrity": "PASS",
+  "overlayAppendOnly": "PASS",
+  "profileReproducibility": "PASS",
+  "registryMatrixResolver": "PASS_FAIL_CLOSED",
+  "capabilityContracts": "PASS_RUNTIME_ENFORCEMENT_UNVERIFIED",
+  "activationRollbackToolingTests": "PASS",
+  "privacy": "PASS",
+  "nonAgentSafetyValidator": "PASS",
+  "gitDiffCheck": "PASS",
+  "linuxSymlinkEvidence": "MISSING"
+}

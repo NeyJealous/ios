@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0.0",
+  "gateId": "CANONICAL_FIRST_WAVE_CONFIGURED",
+  "canonicalBranch": "integration/ios-current",
+  "canonicalPreMergeSha": "d2d60713e580fa1bcce8ba874216619598094093",
+  "configuredMergeSha": "8d5cb22856fa66d43baf0bfdd798a0989715aef7",
+  "featureSourceSha": "2899461187b9ab3d03c7e6264341737f2989f4bf",
+  "status": "FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL",
+  "agentStatus": "CONFIGURED_NOT_RUNTIME_VERIFIED",
+  "profileCount": 5,
+  "runtimeDiscoveryVerified": false,
+  "runtimeActivationComplete": false,
+  "runtimeSmokeComplete": false,
+  "productionGovernanceEligible": false,
+  "runtimeDiscoveryBlocker": "PROJECT_LOCAL_AGENT_DISCOVERY_FAILED_IN_CURRENT_CLIENT_ENVIRONMENT",
+  "rootCause": "ROOT_CAUSE_NOT_YET_ESTABLISHED",
+  "tests": { "total": 121, "pass": 119, "fail": 0, "skip": 2 },
+  "productionWrites": 0
+}
