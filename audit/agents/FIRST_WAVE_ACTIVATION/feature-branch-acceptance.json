@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "BLOCKED",
+  "initialHead": "af0b389893ae605af3d65e2cbb941486f7a74cdc",
+  "activationCommit": "b3a59fe",
+  "rollbackCommit": "5044ac2",
+  "rollbackNormalizationCommit": "b12d761",
+  "blocker": "PROFILE_NOT_INVOKABLE",
+  "runtimeSmokes": {
+    "required": 5,
+    "passed": 0,
+    "notAvailable": 1,
+    "notAttemptedAfterStop": 4,
+    "fail": 0
+  },
+  "rollback": {
+    "status": "PASS",
+    "runtimeDiscoveredPlatformAgents": 0,
+    "dispatchStatus": "NOT_DISPATCHED_ACTIVATION_CLOSED"
+  },
+  "tests": {
+    "agentsCheck": "PASS",
+    "total": 121,
+    "pass": 119,
+    "fail": 0,
+    "skip": 2,
+    "cleanCheckoutBootstrap": "PASS",
+    "privacy": "PASS"
+  },
+  "remote": {
+    "featurePush": 0,
+    "canonicalMerge": 0,
+    "canonicalPush": 0,
+    "tagPush": 0
+  },
+  "safety": {
+    "productionWrites": 0,
+    "googleSheetsWrites": 0,
+    "appsScriptWrites": 0,
+    "brokerApiWrites": 0,
+    "deploymentUpdates": 0,
+    "claspPush": 0
+  }
+}
