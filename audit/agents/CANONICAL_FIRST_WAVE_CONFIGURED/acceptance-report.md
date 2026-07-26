@@ -1,7 +1,7 @@
 # Canonical first-wave configured acceptance
 
 The non-squash merge at
-`8d5cb22856fa66d43baf0bfdd798a0989715aef7` integrated feature source
+`6ca1cb0388eda644c193e603478e69bb52dc6e0e` integrated feature source
 `2899461187b9ab3d03c7e6264341737f2989f4bf` into
 `integration/ios-current` without conflict.
 
