@@ -77,7 +77,16 @@ export function validateGeneratedAgents(root) {
     if (JSON.stringify(staged) !== JSON.stringify(expected)) errors.push('PROVISIONAL_STAGING_PROFILE_SET_INVALID');
     const agentDir = resolve(root, '.codex/agents');
     const discovered = existsSync(agentDir) ? readdirSync(agentDir).filter((name) => name.endsWith('.toml')).sort() : [];
-    if (discovered.some((name) => expected.includes(name))) errors.push('RUNTIME_DISCOVERY_CONTAINS_PROVISIONAL_PROFILE');
+    const activation = readJson(resolve(root, 'architecture/agents/registry/activation-register.json'));
+    const active = activation.activationGate === 'OPEN_FOR_PROJECT_DEVELOPMENT';
+    if (active) {
+      if (JSON.stringify(discovered) !== JSON.stringify(expected)) errors.push('RUNTIME_DISCOVERY_ACTIVE_SET_INVALID');
+      for (const name of expected) {
+        if (existsSync(resolve(agentDir, name)) && sha(readFileSync(resolve(agentDir, name))) !== sha(readFileSync(resolve(stagingDir, name)))) {
+          errors.push(`RUNTIME_PROFILE_HASH_MISMATCH:${name}`);
+        }
+      }
+    } else if (discovered.some((name) => expected.includes(name))) errors.push('RUNTIME_DISCOVERY_CONTAINS_PROVISIONAL_PROFILE');
   } catch (error) { errors.push(error.message); }
   return { ok: errors.length === 0, agents: FIRST_WAVE.length, errors };
 }

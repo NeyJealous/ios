@@ -127,7 +127,7 @@ test('trusted validator ignores a candidate that self-weakens its local validato
   }
 });
 
-test('trusted validator blocks legacy manifest evidence while provisional activation is closed', () => {
+test('trusted validator blocks legacy manifest evidence for development-only activation', () => {
   const fixture = createTrustedFixture();
   const candidate = `${fixture.root}-candidate`;
   try {
@@ -144,7 +144,7 @@ test('trusted validator blocks legacy manifest evidence while provisional activa
 
     const result = validateTrusted(trustedOptions(fixture.root, candidate, fixture.sha, candidateSha));
     assert.equal(result.OverallStatus, 'BLOCKED');
-    assert.ok(result.IntegrityErrors.includes('PROVISIONAL_PLATFORM_ACTIVATION_CLOSED'));
+    assert.ok(result.IntegrityErrors.includes('DEVELOPMENT_ACTIVATION_NOT_PRODUCTION_GOVERNANCE'));
     assert.notEqual(result.IntegrityStatus, 'PASS');
   } finally {
     rmSync(candidate, { recursive: true, force: true });
@@ -152,7 +152,7 @@ test('trusted validator blocks legacy manifest evidence while provisional activa
   }
 });
 
-test('trusted verifier is BLOCKED in provisional state even with fabricated legacy REAL_SUBAGENT evidence', () => {
+test('trusted verifier is BLOCKED in development state even with fabricated legacy REAL_SUBAGENT evidence', () => {
   const fixture = createTrustedFixture();
   const candidate = `${fixture.root}-candidate`;
   try {
@@ -172,14 +172,14 @@ test('trusted verifier is BLOCKED in provisional state even with fabricated lega
     assert.equal(result.AttestationStatus, 'INSUFFICIENT_EVIDENCE');
     assert.ok(result.AttestationErrors.includes('TRUSTED_EXECUTION_ATTESTATION_INSUFFICIENT_EVIDENCE'));
     assert.equal(result.TrustRootChanged, false);
-    assert.ok(result.IntegrityErrors.includes('PROVISIONAL_PLATFORM_ACTIVATION_CLOSED'));
+    assert.ok(result.IntegrityErrors.includes('DEVELOPMENT_ACTIVATION_NOT_PRODUCTION_GOVERNANCE'));
   } finally {
     rmSync(candidate, { recursive: true, force: true });
     rmSync(fixture.root, { recursive: true, force: true });
   }
 });
 
-test('trusted verifier remains BLOCKED in provisional state with simulated legacy reports', () => {
+test('trusted verifier remains BLOCKED in development state with simulated legacy reports', () => {
   const fixture = createTrustedFixture();
   const candidate = `${fixture.root}-candidate`;
   try {
@@ -194,7 +194,7 @@ test('trusted verifier remains BLOCKED in provisional state with simulated legac
 
     const result = validateTrusted(trustedOptions(fixture.root, candidate, fixture.sha, candidateSha));
     assert.equal(result.OverallStatus, 'BLOCKED');
-    assert.ok(result.IntegrityErrors.includes('PROVISIONAL_PLATFORM_ACTIVATION_CLOSED'));
+    assert.ok(result.IntegrityErrors.includes('DEVELOPMENT_ACTIVATION_NOT_PRODUCTION_GOVERNANCE'));
   } finally {
     rmSync(candidate, { recursive: true, force: true });
     rmSync(fixture.root, { recursive: true, force: true });

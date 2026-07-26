@@ -8,14 +8,14 @@ const root = resolve(import.meta.dirname, '../..');
 const matrix = readJsonCompatibleYaml(resolve(root, 'architecture/agents/review-matrix.yaml'));
 const platform = loadPlatform(root);
 
-test('governance plan is deterministic, parallel and activation-closed', () => {
+test('governance plan is deterministic, parallel and ready for profile-bound dispatch', () => {
   const resolution = resolveRequiredAgents({ changedPaths: ['architecture/agents/registry/agents.yaml'], matrix });
   const first = buildExecutionPlan({ phase: 'PRE_CHANGE', resolution, ...platform });
   const second = buildExecutionPlan({ phase: 'PRE_CHANGE', resolution, ...platform });
   assert.deepEqual(first, second);
-  assert.equal(first.result, 'BLOCKED');
-  assert.ok(first.blockedBy.includes('PLATFORM_ACTIVATION_CLOSED'));
-  assert.equal(first.runtimeDispatchStatus, 'NOT_DISPATCHED_ACTIVATION_CLOSED');
+  assert.equal(first.result, 'READY_FOR_RUNTIME_DISPATCH');
+  assert.equal(first.blockedBy.includes('PLATFORM_ACTIVATION_CLOSED'), false);
+  assert.equal(first.runtimeDispatchStatus, 'READY_FOR_PROFILE_BOUND_RUNTIME_DISPATCH');
   assert.ok(first.parallelGroups.some((group) => group.length >= 3));
   assert.ok(first.modelBindings.every((binding) => binding.status === 'RUNTIME_AVAILABLE'));
 });

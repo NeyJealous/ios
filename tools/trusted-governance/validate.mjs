@@ -90,6 +90,9 @@ export function validateTrusted(options) {
   if (headRegistry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD' || headRegistry.ActivationAllowed === false) {
     errors.push('PROVISIONAL_PLATFORM_ACTIVATION_CLOSED');
   }
+  if (headRegistry.PlatformState === 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT') {
+    errors.push('DEVELOPMENT_ACTIVATION_NOT_PRODUCTION_GOVERNANCE');
+  }
 
   const baseResolution = resolveRequiredAgents({ changedPaths: paths, branch, matrix: baseMatrix });
   const headResolution = resolveRequiredAgents({ changedPaths: paths, branch, matrix: headMatrix });

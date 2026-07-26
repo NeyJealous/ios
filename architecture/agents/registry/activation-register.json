@@ -1,20 +1,40 @@
 {
   "schemaVersion": "1.0.0",
-  "platformState": "PROVISIONAL_PLATFORM_BUILD",
+  "platformState": "FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT",
   "platformActivationEligible": false,
-  "activationGate": "CLOSED",
+  "activationGate": "OPEN_FOR_PROJECT_DEVELOPMENT",
   "provisionalStagingPath": "architecture/agents/generated/provisional",
   "runtimeDiscoveryPath": ".codex/agents",
-  "activationCommand": "NOT_IMPLEMENTED",
-  "activationOperationStatus": "OWNER_GATED_NOT_AVAILABLE",
-  "runtimeDiscoveredPlatformAgents": 0,
-  "activeAgents": 0,
+  "activationCommand": "node tools/agents/activate-first-wave.mjs",
+  "activationOperationStatus": "OWNER_AUTHORIZED_ACTIVE_RUNTIME_SMOKE_PENDING",
+  "runtimeDiscoveredPlatformAgents": 5,
+  "activeAgents": 5,
   "provisionalAgents": [
-    {"agentId":"ios-agent-orchestrator","status":"PROVISIONAL","activationEligible":false},
-    {"agentId":"agent-governance-auditor","status":"PROVISIONAL","activationEligible":false},
-    {"agentId":"security-privacy-auditor","status":"PROVISIONAL","activationEligible":false},
-    {"agentId":"audit-traceability-reviewer","status":"PROVISIONAL","activationEligible":false},
-    {"agentId":"ios-codebase-auditor","status":"PROVISIONAL","activationEligible":false}
+    {
+      "agentId": "ios-agent-orchestrator",
+      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
+      "activationEligible": true
+    },
+    {
+      "agentId": "agent-governance-auditor",
+      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
+      "activationEligible": true
+    },
+    {
+      "agentId": "security-privacy-auditor",
+      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
+      "activationEligible": true
+    },
+    {
+      "agentId": "audit-traceability-reviewer",
+      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
+      "activationEligible": true
+    },
+    {
+      "agentId": "ios-codebase-auditor",
+      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
+      "activationEligible": true
+    }
   ],
   "activationBlockers": [
     "TRUSTED_EXTERNAL_ATTESTATION_MISSING",
@@ -34,5 +54,6 @@
     "REQUIRED_RULESET_VERIFIED",
     "TRUSTED_EXTERNAL_ATTESTATION_PRESENT"
   ],
-  "ownerDecisionRequired": true
+  "ownerDecisionRequired": false,
+  "productionGovernanceEligible": false
 }

@@ -46,15 +46,15 @@ test('expired exception fails', () => {
   assert.equal(validateException(expired, matrix, { ownerApproved: true }).valid, false);
 });
 
-test('a valid exception cannot override the provisional activation block', () => {
+test('a valid exception preserves active-development availability', () => {
   const result = resolveRequiredAgents({
     changedPaths: ['docs/guide.md'], matrix, exceptions: [valid], ownerApproved: true,
   });
   assert.equal(result.ExceptionResults[0].valid, true);
-  assert.equal(result.MandatoryAgentAvailability, 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED');
-  assert.equal(result.OverallResult, 'BLOCKED');
-  assert.equal(result.FailClosed, true);
-  assert.ok(result.BlockedByUnavailableAgents.length > 0);
+  assert.equal(result.MandatoryAgentAvailability, 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT');
+  assert.equal(result.OverallResult, 'RESOLVED');
+  assert.equal(result.FailClosed, false);
+  assert.deepEqual(result.BlockedByUnavailableAgents, []);
 });
 
 test('empty diff is blocked', () => {
@@ -69,16 +69,16 @@ test('resolver is deterministic', () => {
   assert.deepEqual(a.ChangedPaths, b.ChangedPaths);
 });
 
-test('a mixed known and unknown path always blocks with mandatory provisional agents', () => {
+test('a mixed known and unknown path always blocks with mandatory active agents', () => {
   const result = resolveRequiredAgents({
     changedPaths: ['docs/known.md', 'unclassified/unknown.bin'], matrix,
   });
   assert.equal(result.FailClosed, true);
   assert.equal(result.TaskType, 'mixed/unknown');
   assert.deepEqual(result.RequiredAgents, matrix.FailClosed.RequiredAgents.slice().sort());
-  assert.equal(result.MandatoryAgentAvailability, 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED');
+  assert.equal(result.MandatoryAgentAvailability, 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT');
   assert.equal(result.OverallResult, 'BLOCKED');
-  assert.ok(result.BlockedByUnavailableAgents.length > 0);
+  assert.deepEqual(result.BlockedByUnavailableAgents, []);
 });
 
 function git(cwd, ...args) {
@@ -113,16 +113,16 @@ test('Git add, delete, and rename changes are classified from both affected path
     const addDiff = changedPathsFromGit(fixture, initial, afterAdd);
     assert.deepEqual(addDiff.changes, [{ status: 'A', path: 'docs/added.md' }]);
     const addResolution = resolveRequiredAgents({ changedPaths: addDiff.paths, matrix });
-    assert.equal(addResolution.OverallResult, 'BLOCKED');
-    assert.equal(addResolution.MandatoryAgentAvailability, 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED');
+    assert.equal(addResolution.OverallResult, 'RESOLVED');
+    assert.equal(addResolution.MandatoryAgentAvailability, 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT');
 
     git(fixture, 'rm', 'docs/added.md');
     const afterDelete = commit(fixture, 'delete docs');
     const deleteDiff = changedPathsFromGit(fixture, afterAdd, afterDelete);
     assert.deepEqual(deleteDiff.changes, [{ status: 'D', path: 'docs/added.md' }]);
     const deleteResolution = resolveRequiredAgents({ changedPaths: deleteDiff.paths, matrix });
-    assert.equal(deleteResolution.OverallResult, 'BLOCKED');
-    assert.equal(deleteResolution.MandatoryAgentAvailability, 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED');
+    assert.equal(deleteResolution.OverallResult, 'RESOLVED');
+    assert.equal(deleteResolution.MandatoryAgentAvailability, 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT');
 
     write(fixture, 'docs/before.md');
     const beforeRename = commit(fixture, 'rename source');
@@ -136,14 +136,14 @@ test('Git add, delete, and rename changes are classified from both affected path
     const resolved = resolveRequiredAgents({ changedPaths: renameDiff.paths, matrix });
     assert.ok(resolved.RequiredAgents.includes('ios-agent-orchestrator'));
     assert.equal(resolved.OverallResult, 'BLOCKED');
-    assert.equal(resolved.MandatoryAgentAvailability, 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED');
-    assert.ok(resolved.RequiredControls.includes('activation-closed'));
+    assert.equal(resolved.MandatoryAgentAvailability, 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT');
+    assert.ok(resolved.RequiredControls.includes('development-activation-owner-authorized'));
   } finally {
     rmSync(fixture, { recursive: true, force: true });
   }
 });
 
-test('resolver CLI resolves HEAD to an exact SHA and exits 2 for provisional activation blocking', () => {
+test('resolver CLI resolves HEAD to an exact SHA for active development', () => {
   const fixture = mkdtempSync(join(tmpdir(), 'ios-agent-resolver-cli-'));
   try {
     git(fixture, 'init', '-b', 'main');
@@ -159,13 +159,13 @@ test('resolver CLI resolves HEAD to an exact SHA and exits 2 for provisional act
       resolve(root, 'tools/resolve-required-agents.mjs'), '--root', fixture,
       '--base', base, '--head', 'HEAD', '--branch', 'feature/cli-fixture',
     ], { encoding: 'utf8' });
-    assert.equal(result.status, 2, result.stderr || result.stdout);
+    assert.equal(result.status, 0, result.stderr || result.stdout);
     const output = JSON.parse(result.stdout);
     assert.match(output.BaseSHA, /^[0-9a-f]{40}$/i);
     assert.match(output.HeadSHA, /^[0-9a-f]{40}$/i);
     assert.equal(output.HeadSHA, head);
-    assert.equal(output.OverallResult, 'BLOCKED');
-    assert.equal(output.MandatoryAgentAvailability, 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED');
+    assert.equal(output.OverallResult, 'RESOLVED');
+    assert.equal(output.MandatoryAgentAvailability, 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT');
   } finally {
     rmSync(fixture, { recursive: true, force: true });
   }

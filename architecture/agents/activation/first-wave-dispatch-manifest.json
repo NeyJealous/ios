@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0.0",
+  "state": "ACTIVE_RUNTIME_SMOKE_PENDING",
+  "agentIds": [
+    "ios-agent-orchestrator",
+    "agent-governance-auditor",
+    "security-privacy-auditor",
+    "audit-traceability-reviewer",
+    "ios-codebase-auditor"
+  ],
+  "runtimeDiscoveryPath": ".codex/agents",
+  "runtimeDiscoveredPlatformAgents": 5,
+  "productionGovernanceEligible": false,
+  "trustedExternalAttestation": "MISSING"
+}

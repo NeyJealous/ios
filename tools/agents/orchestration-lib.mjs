@@ -72,7 +72,6 @@ export function buildExecutionPlan({ phase, resolution, registry, modelRegistry,
     ...modelUnavailable.map((id) => `MODEL_NOT_AVAILABLE:${id}`),
     ...(activationClosed ? ['PLATFORM_ACTIVATION_CLOSED'] : []),
     ...(selfChange ? ['ORCHESTRATOR_SELF_REVIEW_FORBIDDEN'] : []),
-    'TRUSTED_EXTERNAL_ATTESTATION_MISSING',
   ])].sort();
   return {
     schemaVersion: '1.0.0', phase, platformState: registry.platformState,

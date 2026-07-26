@@ -156,7 +156,10 @@ export function resolveRequiredAgents({
     for (const id of exception.ExcludedAgents) required.delete(id);
   }
 
-  const activationClosed = matrix.PlatformState !== 'ACTIVE';
+  const activationClosed = !['ACTIVE', 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT'].includes(matrix.PlatformState);
+  const domainReviewerUnavailable = controls.has('mandatory-domain-reviewer-not-integrated');
+  const invalidException = exceptionResults.some((result) => !result.valid);
+  const blocked = activationClosed || domainReviewerUnavailable || unknown || invalidException;
   return {
     TaskType: unknown || taskTypes.length !== 1 ? 'mixed/unknown' : taskTypes[0],
     MatchedTaskTypes: unknown ? ['mixed/unknown'] : taskTypes,
@@ -168,11 +171,13 @@ export function resolveRequiredAgents({
     RequiredControls: [...controls].sort(),
     AdvisoryCandidateRoles: [...advisory].sort(),
     ExceptionResults: exceptionResults,
-    BlockedByUnavailableAgents: activationClosed
-      ? [matrix.PlatformState === 'ZERO_AGENT_TRANSITION' ? 'MANDATORY_AGENT_NOT_AVAILABLE' : 'PLATFORM_ACTIVATION_CLOSED'] : [],
+    BlockedByUnavailableAgents: [
+      ...(activationClosed ? [matrix.PlatformState === 'ZERO_AGENT_TRANSITION' ? 'MANDATORY_AGENT_NOT_AVAILABLE' : 'PLATFORM_ACTIVATION_CLOSED'] : []),
+      ...(domainReviewerUnavailable ? ['MANDATORY_DOMAIN_REVIEWER_NOT_INTEGRATED'] : []),
+    ],
     MandatoryAgentAvailability: matrix.FailClosed.MandatoryAvailability || 'AVAILABLE',
-    OverallResult: matrix.FailClosed.OverallResult || 'RESOLVED',
-    FailClosed: activationClosed || unknown || exceptionResults.some((result) => !result.valid),
+    OverallResult: blocked ? (matrix.FailClosed.OverallResult || 'BLOCKED') : 'RESOLVED',
+    FailClosed: blocked,
   };
 }
 
@@ -202,6 +207,12 @@ export function validateRegistry(registry) {
     if (registry.MandatoryAgentAvailability !== 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED') errors.push('registry: provisional availability mismatch');
     if (registry.ActivationAllowed !== false) errors.push('registry: activation must be disabled');
   }
+  if (registry.PlatformState === 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT') {
+    if (registry.ActiveCustomAgents !== registry.Agents.length) errors.push('registry: active agent count mismatch');
+    if (registry.ProvisionedAgents !== registry.Agents.length) errors.push('registry: provisioned agent count mismatch');
+    if (registry.MandatoryAgentAvailability !== 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT') errors.push('registry: development availability mismatch');
+    if (registry.ActivationAllowed !== true) errors.push('registry: development activation must be enabled');
+  }
   const required = [
     'AgentId', 'Name', 'SpecificationSources', 'Purpose', 'Scope', 'Triggers',
     'RequiredInputs', 'Checks', 'ForbiddenActions', 'RequiredOutputs',
@@ -218,6 +229,8 @@ export function validateRegistry(registry) {
     if (!IMPLEMENTATION_STATUSES.includes(agent.Status)) errors.push(`${agent.AgentId}: unknown status ${agent.Status}`);
     if (registry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD' && agent.Status !== 'PROVISIONAL') errors.push(`${agent.AgentId}: provisional build requires PROVISIONAL status`);
     if (registry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD' && agent.ActivationEligible !== false) errors.push(`${agent.AgentId}: activation must remain ineligible`);
+    if (registry.PlatformState === 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT' && agent.Status !== 'IMPLEMENTED') errors.push(`${agent.AgentId}: development activation requires IMPLEMENTED status`);
+    if (registry.PlatformState === 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT' && agent.ActivationEligible !== true) errors.push(`${agent.AgentId}: development activation requires eligibility`);
     for (const field of ['CanWriteRemote', 'CanApproveMerge', 'CanDeploy', 'CanProductionWrite', 'CanModifySecrets']) {
       if (agent[field] !== false) errors.push(`${agent.AgentId}: forbidden permission ${field}`);
     }
@@ -413,6 +426,7 @@ export function validateProjectAgentFiles(root, registry) {
   if (registry.PlatformState === 'ZERO_AGENT_TRANSITION' && runtimeFiles.length !== 0) errors.push(`zero-agent transition must contain 0 runtime agents; found ${runtimeFiles.length}`);
   if (registry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD' && files.length !== provisioned.length) errors.push(`provisional build must contain exactly ${provisioned.length} staged agents; found ${files.length}`);
   if (registry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD' && runtimeFiles.length !== 0) errors.push(`provisional build must contain 0 runtime-discovered agents; found ${runtimeFiles.length}`);
+  if (registry.PlatformState === 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT' && runtimeFiles.length !== provisioned.length) errors.push(`development activation must contain exactly ${provisioned.length} runtime agents; found ${runtimeFiles.length}`);
   return errors;
 }
 

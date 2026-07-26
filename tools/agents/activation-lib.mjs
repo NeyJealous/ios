@@ -19,6 +19,8 @@ export const ROLLBACK_PATH = 'architecture/agents/activation/first-wave-rollback
 export const DISPATCH_PATH = 'architecture/agents/activation/first-wave-dispatch-manifest.json';
 export const REGISTER_PATH = 'architecture/agents/registry/activation-register.json';
 export const REGISTRY_PATH = 'architecture/agents/registry/agents.yaml';
+export const MATRIX_PATH = 'architecture/agents/review-matrix.yaml';
+export const COMPAT_REGISTRY_PATH = 'architecture/agents/agent-registry.yaml';
 
 const json = (path) => JSON.parse(readFileSync(path, 'utf8'));
 const save = (path, value) => writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
@@ -82,6 +84,19 @@ function setRegistryState(root, active) {
     agent.runtimeExecutionStatus = active ? 'RUNTIME_SMOKE_PENDING' : 'NOT_DISPATCHED_ACTIVATION_CLOSED';
   }
   save(registryPath, registry);
+  const compatPath = resolve(root, COMPAT_REGISTRY_PATH);
+  const compat = json(compatPath);
+  compat.Version = active ? '2.1.0-development-active' : '2.1.0-provisional';
+  compat.PlatformState = active ? 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT' : 'PROVISIONAL_PLATFORM_BUILD';
+  compat.ActiveCustomAgents = active ? FIRST_WAVE.length : 0;
+  compat.ProvisionedAgents = FIRST_WAVE.length;
+  compat.MandatoryAgentAvailability = active ? 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT' : 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED';
+  compat.ActivationAllowed = active;
+  for (const agent of compat.Agents) {
+    agent.Status = active ? 'IMPLEMENTED' : 'PROVISIONAL';
+    agent.ActivationEligible = active;
+  }
+  save(compatPath, compat);
 
   const registerPath = resolve(root, REGISTER_PATH);
   const register = json(registerPath);
@@ -100,6 +115,21 @@ function setRegistryState(root, active) {
     activationEligible: active,
   }));
   save(registerPath, register);
+  const matrixPath = resolve(root, MATRIX_PATH);
+  const matrix = json(matrixPath);
+  const oldControl = active ? 'activation-closed' : 'development-activation-owner-authorized';
+  const newControl = active ? 'development-activation-owner-authorized' : 'activation-closed';
+  const replaceControl = (value) => Array.isArray(value) ? value.map((item) => item === oldControl ? newControl : item) : value;
+  matrix.MandatoryControls = replaceControl(matrix.MandatoryControls);
+  matrix.Version = active ? '2.1.0-development-active' : '2.1.0-provisional';
+  matrix.PlatformState = active ? 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT' : 'PROVISIONAL_PLATFORM_BUILD';
+  for (const rule of matrix.Rules) rule.RequiredControls = replaceControl(rule.RequiredControls);
+  matrix.FailClosed.MandatoryAvailability = active ? 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT' : 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED';
+  matrix.Transition.ActiveCustomAgents = active ? FIRST_WAVE.length : 0;
+  matrix.Transition.ProvisionalAgents = active ? 0 : FIRST_WAVE.length;
+  matrix.Transition.ActivationGate = active ? 'OPEN_FOR_PROJECT_DEVELOPMENT' : 'CLOSED';
+  matrix.ExceptionPolicy.CannotDisableControls = replaceControl(matrix.ExceptionPolicy.CannotDisableControls);
+  save(matrixPath, matrix);
   save(resolve(root, DISPATCH_PATH), {
     schemaVersion: '1.0.0',
     state: active ? 'ACTIVE_RUNTIME_SMOKE_PENDING' : 'NOT_DISPATCHED_ACTIVATION_CLOSED',

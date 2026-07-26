@@ -1,16 +1,16 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/NeyJealous/ios/architecture/agents/review-matrix.schema.json",
-  "title": "IOS Review Matrix — provisional first wave",
+  "title": "IOS Review Matrix — first wave active for project development",
   "type": "object",
   "additionalProperties": false,
   "required": ["Version", "PlatformState", "TaskTypes", "AlwaysRequiredAgents", "BaselineControls", "Rules", "FailClosed", "Transition"],
   "properties": {
-    "Version": { "const": "2.1.0-provisional" },
-    "PlatformState": { "const": "PROVISIONAL_PLATFORM_BUILD" },
+    "Version": { "const": "2.1.0-development-active" },
+    "PlatformState": { "const": "FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT" },
     "TaskTypes": { "type": "array", "minItems": 7, "uniqueItems": true, "items": { "type": "string" } },
     "AlwaysRequiredAgents": { "const": [] },
-    "BaselineControls": { "type": "array", "contains": { "const": "activation-closed" }, "minContains": 1 },
+    "BaselineControls": { "type": "array", "contains": { "const": "development-activation-owner-authorized" }, "minContains": 1 },
     "Rules": {
       "type": "array",
       "minItems": 7,
@@ -37,7 +37,7 @@
         "UnknownTaskType": { "const": "mixed/unknown" },
         "EmptyDiff": { "const": "BLOCK" },
         "RequiredAgents": { "type": "array", "minItems": 4, "uniqueItems": true },
-        "MandatoryAvailability": { "const": "PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED" },
+        "MandatoryAvailability": { "const": "FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT" },
         "OverallResult": { "const": "BLOCKED" }
       }
     },
@@ -46,14 +46,14 @@
       "additionalProperties": false,
       "required": ["ActiveCustomAgents", "ProvisionalAgents", "OldRegistryReferences", "OldMatrixReferences", "OldResolverReferences", "OldManifestsAccepted", "ResolverBehavior", "ActivationGate"],
       "properties": {
-        "ActiveCustomAgents": { "const": 0 },
-        "ProvisionalAgents": { "const": 5 },
+        "ActiveCustomAgents": { "const": 5 },
+        "ProvisionalAgents": { "const": 0 },
         "OldRegistryReferences": { "const": 0 },
         "OldMatrixReferences": { "const": 0 },
         "OldResolverReferences": { "const": 0 },
         "OldManifestsAccepted": { "const": false },
         "ResolverBehavior": { "const": "FAIL_CLOSED" },
-        "ActivationGate": { "const": "CLOSED" }
+        "ActivationGate": { "const": "OPEN_FOR_PROJECT_DEVELOPMENT" }
       }
     },
     "AntiTamperPaths": { "type": "array", "items": { "type": "string" } },

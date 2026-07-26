@@ -13,7 +13,7 @@ import {
 const root = resolve(import.meta.dirname, '../..');
 const firstWave = ['ios-agent-orchestrator', 'agent-governance-auditor', 'security-privacy-auditor', 'audit-traceability-reviewer', 'ios-codebase-auditor'];
 
-test('all five static contracts are valid and remain outside runtime discovery', () => {
+test('all five static contracts are valid in owner-authorized development discovery', () => {
   const result = validateFirstWaveStatic(root);
   assert.equal(result.ok, true, JSON.stringify(result));
   assert.deepEqual(result.agents.map((agent) => agent.agentId), firstWave);
@@ -69,16 +69,16 @@ test('copying a provisional profile into discovery path is blocked', () => {
     cpSync(resolve(temporary, 'architecture/agents/generated/provisional/ios-codebase-auditor.toml'), resolve(temporary, '.codex/agents/ios-codebase-auditor.toml'));
     const result = validateFirstWaveStatic(temporary);
     assert.equal(result.ok, false);
-    assert.ok(result.agents.every((agent) => agent.errors.some((error) => error.includes('RUNTIME_DISCOVERY_CONTAINS_PROVISIONAL_PROFILE'))));
+    assert.ok(result.agents.every((agent) => agent.errors.some((error) => error.includes('RUNTIME_DISCOVERY_ACTIVE_SET_INVALID'))));
   } finally {
     rmSync(temporary, { recursive: true, force: true });
   }
 });
 
-test('isolated runtime remains NOT_AVAILABLE without a trusted profile-bound invoker', () => {
+test('legacy provisional runtime harness remains explicitly NOT_AVAILABLE', () => {
   const result = validateFirstWave(root);
   assert.equal(result.ok, true, JSON.stringify(result));
-  assert.equal(result.activationBoundary.runtimeDiscoveredPlatformAgents, 0);
+  assert.equal(result.activationBoundary.runtimeDiscoveredPlatformAgents, 5);
   assert.ok(result.runtime.every((item) => item.executionMode === 'NOT_AVAILABLE'));
   assert.ok(result.runtime.every((item) => item.status === 'RUNTIME_VALIDATION_NOT_AVAILABLE'));
   assert.ok(result.runtime.every((item) => item.resolvedModel === null && item.filesModified === 0));

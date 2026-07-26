@@ -2,15 +2,15 @@
   "schemaVersion": "1.0.0",
   "sourceOfTruth": "architecture/agents/registry/agents.yaml",
   "canonicalBranch": "integration/ios-current",
-  "platformState": "PROVISIONAL_PLATFORM_BUILD",
-  "activationAllowed": false,
-  "activeAgents": 0,
-  "provisionalAgents": 5,
+  "platformState": "FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT",
+  "activationAllowed": true,
+  "activeAgents": 5,
+  "provisionalAgents": 0,
   "agents": [
     {
       "agentId": "ios-agent-orchestrator",
       "displayName": "IOS Agent Orchestrator",
-      "status": "PROVISIONAL",
+      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
       "purpose": "Deterministic supervisor for Resolver, review DAG and report collection.",
       "priority": "P0",
       "upstreamComposition": [
@@ -174,14 +174,14 @@
         "trustedExternalAttestation": "MISSING",
         "selfReportedEvidenceSufficient": false
       },
-      "runtimeExecutionStatus": "RUNTIME_PROFILE_NOT_YET_OBSERVED",
-      "activationEligible": false,
+      "runtimeExecutionStatus": "RUNTIME_SMOKE_PENDING",
+      "activationEligible": true,
       "platformActivationEligible": false
     },
     {
       "agentId": "agent-governance-auditor",
       "displayName": "Agent Governance Auditor",
-      "status": "PROVISIONAL",
+      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
       "purpose": "Independent validation of Registry, Matrix, Resolver, profiles, evidence and anti-tamper controls.",
       "priority": "P0",
       "upstreamComposition": [
@@ -348,14 +348,14 @@
         "trustedExternalAttestation": "MISSING",
         "selfReportedEvidenceSufficient": false
       },
-      "runtimeExecutionStatus": "RUNTIME_PROFILE_NOT_YET_OBSERVED",
-      "activationEligible": false,
+      "runtimeExecutionStatus": "RUNTIME_SMOKE_PENDING",
+      "activationEligible": true,
       "platformActivationEligible": false
     },
     {
       "agentId": "security-privacy-auditor",
       "displayName": "Security and Privacy Auditor",
-      "status": "PROVISIONAL",
+      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
       "purpose": "Read-only security, privacy, secret and supply-chain review across all artifact classes.",
       "priority": "P0",
       "upstreamComposition": [
@@ -510,14 +510,14 @@
         "trustedExternalAttestation": "MISSING",
         "selfReportedEvidenceSufficient": false
       },
-      "runtimeExecutionStatus": "RUNTIME_PROFILE_NOT_YET_OBSERVED",
-      "activationEligible": false,
+      "runtimeExecutionStatus": "RUNTIME_SMOKE_PENDING",
+      "activationEligible": true,
       "platformActivationEligible": false
     },
     {
       "agentId": "audit-traceability-reviewer",
       "displayName": "Audit Traceability Reviewer",
-      "status": "PROVISIONAL",
+      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
       "purpose": "Requirement-to-production traceability and evidence/status consistency review.",
       "priority": "P0",
       "upstreamComposition": [
@@ -670,14 +670,14 @@
         "trustedExternalAttestation": "MISSING",
         "selfReportedEvidenceSufficient": false
       },
-      "runtimeExecutionStatus": "RUNTIME_PROFILE_NOT_YET_OBSERVED",
-      "activationEligible": false,
+      "runtimeExecutionStatus": "RUNTIME_SMOKE_PENDING",
+      "activationEligible": true,
       "platformActivationEligible": false
     },
     {
       "agentId": "ios-codebase-auditor",
       "displayName": "IOS Codebase Auditor",
-      "status": "PROVISIONAL",
+      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
       "purpose": "Read-only repository-wide runtime, symbol, dependency and architecture audit.",
       "priority": "P0",
       "upstreamComposition": [
@@ -833,8 +833,8 @@
         "trustedExternalAttestation": "MISSING",
         "selfReportedEvidenceSufficient": false
       },
-      "runtimeExecutionStatus": "RUNTIME_PROFILE_NOT_YET_OBSERVED",
-      "activationEligible": false,
+      "runtimeExecutionStatus": "RUNTIME_SMOKE_PENDING",
+      "activationEligible": true,
       "platformActivationEligible": false
     }
   ]

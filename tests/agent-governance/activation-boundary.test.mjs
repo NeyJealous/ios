@@ -7,6 +7,7 @@ import test from 'node:test';
 import {
   FIRST_WAVE, validateActivationBoundary, validateActivationRequest,
 } from '../../tools/agents/validate-activation-boundary.mjs';
+import { deactivateFirstWave } from '../../tools/agents/activation-lib.mjs';
 import { validateGeneratedAgents } from '../../tools/agents/validate-generated-agents.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
@@ -17,18 +18,19 @@ function fixture() {
   return target;
 }
 
-test('provisional profiles exist only in staging and runtime discovery is empty', () => {
+test('owner-authorized development activation discovers exactly five profiles', () => {
   const result = validateActivationBoundary(root);
   assert.equal(result.ok, true, result.errors.join('\n'));
   assert.equal(result.provisionalStagingProfiles, 5);
-  assert.equal(result.runtimeDiscoveredPlatformAgents, 0);
-  assert.equal(result.runtimeDispatchStatus, 'NOT_DISPATCHED_ACTIVATION_CLOSED');
-  assert.equal(result.activationCommand, 'NOT_IMPLEMENTED');
+  assert.equal(result.runtimeDiscoveredPlatformAgents, 5);
+  assert.equal(result.runtimeDispatchStatus, 'ACTIVE_RUNTIME_SMOKE_PENDING');
+  assert.equal(result.activationCommand, 'node tools/agents/activate-first-wave.mjs');
 });
 
 test('manual copy into runtime discovery is blocked', () => {
   const target = fixture();
   try {
+    deactivateFirstWave(target);
     mkdirSync(resolve(target, '.codex/agents'), { recursive: true });
     cpSync(
       resolve(target, 'architecture/agents/generated/provisional/ios-agent-orchestrator.toml'),
@@ -142,8 +144,8 @@ test('each activation prerequisite fails closed independently', () => {
   }
 });
 
-test('no activation executable exists and direct profile discovery remains unavailable', () => {
+test('activation executable is owner-gated and exact discovery is available', () => {
   const result = validateActivationBoundary(root);
-  assert.equal(result.activationCommand, 'NOT_IMPLEMENTED');
-  assert.equal(result.runtimeDiscoveredPlatformAgents, 0);
+  assert.equal(result.activationCommand, 'node tools/agents/activate-first-wave.mjs');
+  assert.equal(result.runtimeDiscoveredPlatformAgents, 5);
 });
