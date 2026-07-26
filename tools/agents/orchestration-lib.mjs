@@ -66,7 +66,7 @@ export function buildExecutionPlan({ phase, resolution, registry, modelRegistry,
   assertAcyclic(nodes);
   const modelBindings = validateModelBindings(executable, registry, modelRegistry, availability);
   const modelUnavailable = modelBindings.filter((item) => item.status !== 'RUNTIME_AVAILABLE').map((item) => item.agentId);
-  const activationClosed = registry.activationAllowed === false || registry.agents.some((agent) => agent.activationEligible === false);
+  const activationClosed = registry.activationAllowed !== true || registry.agents.some((agent) => agent.activationEligible !== true);
   const blockers = [...new Set([
     ...resolution.BlockedByUnavailableAgents,
     ...modelUnavailable.map((id) => `MODEL_NOT_AVAILABLE:${id}`),
@@ -77,7 +77,7 @@ export function buildExecutionPlan({ phase, resolution, registry, modelRegistry,
   return {
     schemaVersion: '1.0.0', phase, platformState: registry.platformState,
     automaticDispatchStatus: 'AUTOMATIC_DISPATCH_CONFIGURED',
-    runtimeDispatchStatus: 'NOT_DISPATCHED_ACTIVATION_CLOSED',
+    runtimeDispatchStatus: activationClosed ? 'NOT_DISPATCHED_ACTIVATION_CLOSED' : 'READY_FOR_PROFILE_BOUND_RUNTIME_DISPATCH',
     trustedAttestationStatus: 'TRUSTED_EXTERNAL_ATTESTATION_MISSING',
     requiredAgents: required, advisoryAgents: resolution.AdvisoryCandidateRoles,
     executionDag: nodes,
@@ -91,7 +91,7 @@ export function buildExecutionPlan({ phase, resolution, registry, modelRegistry,
     blockedBy: blockers,
     result: blockers.length ? 'BLOCKED' : 'READY_FOR_RUNTIME_DISPATCH',
     productionApproval: false,
-    activationEligible: false,
+    activationEligible: !activationClosed,
   };
 }
 

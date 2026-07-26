@@ -59,30 +59,42 @@ export function validateActivationBoundary(root) {
   const staged = regularTomlFiles(stagingDirectory, errors, 'PROVISIONAL_STAGING');
   const discovered = regularTomlFiles(discoveryDirectory, errors, 'RUNTIME_DISCOVERY');
   const discoveredPlatform = discovered.filter((name) => EXPECTED_FILES.includes(name));
+  const additionalProfiles = discovered.filter((name) => !EXPECTED_FILES.includes(name));
   if (JSON.stringify(staged) !== JSON.stringify(EXPECTED_FILES)) errors.push('PROVISIONAL_STAGING_PROFILE_SET_INVALID');
-  if (discoveredPlatform.length) errors.push(`RUNTIME_DISCOVERY_CONTAINS_PROVISIONAL_PROFILE:${discoveredPlatform.join(',')}`);
 
   const registry = readJson(resolve(root, 'architecture/agents/registry/agents.yaml'));
-  if (registry.activationAllowed !== false || registry.activeAgents !== 0 || registry.agents.some((agent) => agent.activationEligible !== false)) {
-    errors.push('REGISTRY_ACTIVATION_GATE_OPEN');
+  const activation = readJson(resolve(root, 'architecture/agents/registry/activation-register.json'));
+  const active = activation.activationGate === 'OPEN_FOR_PROJECT_DEVELOPMENT';
+  if (additionalProfiles.length) errors.push(`RUNTIME_DISCOVERY_ADDITIONAL_PROFILE:${additionalProfiles.join(',')}`);
+  if (active) {
+    if (JSON.stringify(discoveredPlatform) !== JSON.stringify(EXPECTED_FILES)) errors.push('RUNTIME_DISCOVERY_ACTIVE_SET_INVALID');
+    if (registry.activationAllowed !== true || registry.activeAgents !== FIRST_WAVE.length ||
+        registry.agents.some((agent) => agent.activationEligible !== true || agent.platformActivationEligible !== false)) {
+      errors.push('REGISTRY_DEVELOPMENT_ACTIVATION_INVALID');
+    }
+  } else {
+    if (discoveredPlatform.length) errors.push(`RUNTIME_DISCOVERY_CONTAINS_PROVISIONAL_PROFILE:${discoveredPlatform.join(',')}`);
+    if (registry.activationAllowed !== false || registry.activeAgents !== 0 ||
+        registry.agents.some((agent) => agent.activationEligible !== false)) errors.push('REGISTRY_ACTIVATION_GATE_OPEN');
   }
   for (const agentId of FIRST_WAVE) {
     const composition = readJson(resolve(root, `architecture/agents/compositions/${agentId}.yaml`));
     if (composition.generatedPath !== `${STAGING_PATH}/${agentId}.toml`) errors.push(`${agentId}:GENERATED_PATH_NOT_STAGED`);
   }
 
-  const activation = readJson(resolve(root, 'architecture/agents/registry/activation-register.json'));
-  if (activation.activationGate !== 'CLOSED' || activation.activationCommand !== 'NOT_IMPLEMENTED' ||
+  if (!['CLOSED', 'OPEN_FOR_PROJECT_DEVELOPMENT'].includes(activation.activationGate) ||
       activation.runtimeDiscoveryPath !== DISCOVERY_PATH || activation.provisionalStagingPath !== STAGING_PATH ||
-      activation.platformActivationEligible !== false) errors.push('ACTIVATION_REGISTER_INVALID');
+      activation.platformActivationEligible !== false || activation.productionGovernanceEligible === true) {
+    errors.push('ACTIVATION_REGISTER_INVALID');
+  }
 
   return {
     ok: errors.length === 0,
     platformState: registry.platformState,
     provisionalStagingProfiles: staged.length,
     runtimeDiscoveredPlatformAgents: discoveredPlatform.length,
-    runtimeDispatchStatus: 'NOT_DISPATCHED_ACTIVATION_CLOSED',
-    activationCommand: 'NOT_IMPLEMENTED',
+    runtimeDispatchStatus: active ? 'ACTIVE_RUNTIME_SMOKE_PENDING' : 'NOT_DISPATCHED_ACTIVATION_CLOSED',
+    activationCommand: activation.activationCommand,
     errors,
   };
 }
