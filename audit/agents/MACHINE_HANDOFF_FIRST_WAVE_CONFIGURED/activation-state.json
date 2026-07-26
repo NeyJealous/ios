@@ -1,0 +1,12 @@
+{
+  "platformState": "FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL",
+  "profileFilesystemState": "EXACT_FIVE_TRACKED",
+  "runtimeDiscoveryVerified": false,
+  "runtimeActivationComplete": false,
+  "runtimeSmokeComplete": false,
+  "runtimeDispatchStatus": "NOT_DISPATCHED_RUNTIME_DISCOVERY_UNVERIFIED",
+  "configuredAgents": 5,
+  "activeAgents": 0,
+  "productionGovernanceEligible": false,
+  "activationEligible": false
+}

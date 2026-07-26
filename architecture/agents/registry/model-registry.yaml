@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.0.0",
+  "platformState": "PROVISIONAL_PLATFORM_BUILD",
+  "silentDowngradeAllowed": false,
+  "lunaPolicy": {
+    "displayName": "Luna",
+    "requestedModel": "gpt-5.6-luna",
+    "uiAvailability": "AVAILABLE",
+    "spawnAgentAvailability": "MODEL_NOT_AVAILABLE",
+    "automaticDispatchEligible": false,
+    "substitutionAllowed": false
+  },
+  "agents": [
+    {"agentId":"ios-agent-orchestrator","primaryModel":"gpt-5.6-terra","primaryReasoning":"medium","preflightModel":"gpt-5.6-terra","preflightReasoning":"medium","escalationModel":"gpt-5.6-sol","escalationReasoning":"high","finalVerdictMinimumModel":"gpt-5.6-terra","silentDowngradeAllowed":false,"budgetClass":"BALANCED"},
+    {"agentId":"agent-governance-auditor","primaryModel":"gpt-5.6-sol","primaryReasoning":"high","preflightModel":null,"preflightReasoning":null,"escalationModel":"gpt-5.6-sol","escalationReasoning":"ultra","escalationReasonRequired":true,"finalVerdictMinimumModel":"gpt-5.6-sol/high","silentDowngradeAllowed":false,"budgetClass":"CRITICAL_GATE"},
+    {"agentId":"security-privacy-auditor","primaryModel":"gpt-5.6-sol","primaryReasoning":"high","preflightModel":null,"preflightReasoning":null,"escalationModel":"gpt-5.6-sol","escalationReasoning":"ultra","escalationReasonRequired":true,"finalVerdictMinimumModel":"gpt-5.6-sol/high","silentDowngradeAllowed":false,"budgetClass":"CRITICAL_GATE"},
+    {"agentId":"audit-traceability-reviewer","primaryModel":"gpt-5.6-terra","primaryReasoning":"medium","preflightModel":"gpt-5.6-terra","preflightReasoning":"medium","escalationModel":"gpt-5.6-sol","escalationReasoning":"high","finalVerdictMinimumModel":"gpt-5.6-terra","silentDowngradeAllowed":false,"budgetClass":"BALANCED"},
+    {"agentId":"ios-codebase-auditor","primaryModel":"gpt-5.6-sol","primaryReasoning":"high","preflightModel":null,"preflightReasoning":null,"escalationModel":"gpt-5.6-sol","escalationReasoning":"ultra","escalationReasonRequired":true,"finalVerdictMinimumModel":"gpt-5.6-sol/high","silentDowngradeAllowed":false,"budgetClass":"CRITICAL_GATE"}
+  ]
+}

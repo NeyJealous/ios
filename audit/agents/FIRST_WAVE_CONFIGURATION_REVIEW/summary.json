@@ -1,0 +1,144 @@
+{
+  "schemaVersion": "1.0.0",
+  "gate": "FIRST_WAVE_CONFIGURATION_REVIEW",
+  "validatedHeadSha": "bf0238540fae1a73a7d254937b19a9809d8a4dd2",
+  "result": "READY_FOR_OWNER_ACTIVATION_REVIEW",
+  "agents": [
+    {
+      "agentId": "ios-agent-orchestrator",
+      "status": "PROVISIONAL",
+      "upstreamIntegrityStatus": "UPSTREAM_UNCHANGED_BYTE_IDENTICAL",
+      "upstreamBases": 4,
+      "profileSha256": "ec85df02b13de9433041d1521947fbda8e01b55a3c14fd46cad9c4c9c876dd66",
+      "model": "gpt-5.6-terra",
+      "reasoning": "medium",
+      "capabilityStatus": [
+        "CONTRACT_DECLARED",
+        "LOCALLY_VALIDATED",
+        "RUNTIME_ENFORCEMENT_UNVERIFIED"
+      ],
+      "activationEligible": false,
+      "runtimeDiscovered": false
+    },
+    {
+      "agentId": "agent-governance-auditor",
+      "status": "PROVISIONAL",
+      "upstreamIntegrityStatus": "UPSTREAM_UNCHANGED_BYTE_IDENTICAL",
+      "upstreamBases": 5,
+      "profileSha256": "377acf7ec6c48867a536c1972169b999c6ec5f1a2cf1ffe3077ef792fec4ffd9",
+      "model": "gpt-5.6-sol",
+      "reasoning": "high",
+      "capabilityStatus": [
+        "CONTRACT_DECLARED",
+        "LOCALLY_VALIDATED",
+        "RUNTIME_ENFORCEMENT_UNVERIFIED"
+      ],
+      "activationEligible": false,
+      "runtimeDiscovered": false
+    },
+    {
+      "agentId": "security-privacy-auditor",
+      "status": "PROVISIONAL",
+      "upstreamIntegrityStatus": "UPSTREAM_UNCHANGED_BYTE_IDENTICAL",
+      "upstreamBases": 4,
+      "profileSha256": "de7ee1a5f535c650c298f59e33c82ae92bc7ff29292b03b617fbaae551136757",
+      "model": "gpt-5.6-sol",
+      "reasoning": "high",
+      "capabilityStatus": [
+        "CONTRACT_DECLARED",
+        "LOCALLY_VALIDATED",
+        "RUNTIME_ENFORCEMENT_UNVERIFIED"
+      ],
+      "activationEligible": false,
+      "runtimeDiscovered": false
+    },
+    {
+      "agentId": "audit-traceability-reviewer",
+      "status": "PROVISIONAL",
+      "upstreamIntegrityStatus": "UPSTREAM_UNCHANGED_BYTE_IDENTICAL",
+      "upstreamBases": 4,
+      "profileSha256": "7d2379bd5154499ea31a8c43e1a29529e236db1c00fae9392d0e18d66058a6e4",
+      "model": "gpt-5.6-terra",
+      "reasoning": "medium",
+      "capabilityStatus": [
+        "CONTRACT_DECLARED",
+        "LOCALLY_VALIDATED",
+        "RUNTIME_ENFORCEMENT_UNVERIFIED"
+      ],
+      "activationEligible": false,
+      "runtimeDiscovered": false
+    },
+    {
+      "agentId": "ios-codebase-auditor",
+      "status": "PROVISIONAL",
+      "upstreamIntegrityStatus": "UPSTREAM_UNCHANGED_BYTE_IDENTICAL",
+      "upstreamBases": 4,
+      "profileSha256": "31777f8aa5a04c74438c3cafa5d77c3ecffe431b216d5839a9ed5fdecd5943ac",
+      "model": "gpt-5.6-sol",
+      "reasoning": "high",
+      "capabilityStatus": [
+        "CONTRACT_DECLARED",
+        "LOCALLY_VALIDATED",
+        "RUNTIME_ENFORCEMENT_UNVERIFIED"
+      ],
+      "activationEligible": false,
+      "runtimeDiscovered": false
+    }
+  ],
+  "counts": {
+    "agents": 5,
+    "upstreamBases": 21,
+    "originalToSnapshotByteIdentical": 21,
+    "snapshotToGeneratedByteIdentical": 21,
+    "mutationDetected": 0,
+    "unprovenancedInstructions": 0
+  },
+  "tests": {
+    "fullGovernanceSuite": {
+      "total": 116,
+      "pass": 114,
+      "fail": 0,
+      "skip": 2
+    },
+    "byteIdentity": "PASS",
+    "rawHashes": "PASS",
+    "normalizedHashes": "PASS",
+    "appendOnly": "PASS",
+    "noDeletion": "PASS",
+    "noReplacement": "PASS",
+    "deterministicComposition": "PASS",
+    "provenanceCompleteness": "PASS",
+    "registryProfileAlignment": "PASS",
+    "modelContracts": "PASS",
+    "capabilityEnvelopes": "PASS",
+    "exactPinnedSourceVerification": {
+      "verifiedProfiles": 103,
+      "errors": 0,
+      "status": "PASS"
+    },
+    "privacyScan": {
+      "scannedFiles": 980,
+      "findings": 0,
+      "status": "PASS"
+    },
+    "gitDiffCheck": "PASS"
+  },
+  "trust": {
+    "contractDeclared": true,
+    "locallyValidated": true,
+    "runtimeEnforcement": "UNVERIFIED",
+    "trustedExternalAttestation": "MISSING"
+  },
+  "safety": {
+    "productionWrites": 0,
+    "googleSheetsWrites": 0,
+    "appsScriptWrites": 0,
+    "brokerApiWrites": 0,
+    "deploymentUpdates": 0,
+    "claspPush": 0,
+    "agentActivation": 0,
+    "runtimeDiscoveredAgents": 0,
+    "push": 0,
+    "merge": 0
+  }
+}

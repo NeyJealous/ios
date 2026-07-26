@@ -1,0 +1,14 @@
+{
+  "agentId": "ios-codebase-auditor",
+  "result": "NO_CONTENT_MUTATION",
+  "order": [
+    "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/09-meta-orchestration/codebase-orchestrator.toml",
+    "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/01-core-development/code-mapper.toml",
+    "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/comprehensive-review/agents/code-reviewer.md",
+    "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/c4-architecture/agents/c4-code.md"
+  ],
+  "deterministicMarkersOnly": true,
+  "allEmbeddedBlocksByteIdentical": true,
+  "deletionDetected": false,
+  "replacementDetected": false
+}

@@ -1,0 +1,21 @@
+{
+  "AgentId": "TEST_GENERATOR",
+  "AgentVersion": "external-bootstrap-1.0.0",
+  "GateId": "FIRST_WAVE_PROVISIONAL_BUILD",
+  "Branch": "feature/agent-platform-v2-integration",
+  "CommitSHA": "7c81e2e28f04e4bbf9e5e56744afbe600d99cfc1",
+  "ReviewScope": "Phase 3B governance, activation, capability, bootstrap and reproducibility tests",
+  "FilesReviewed": ["tests/agent-governance/", "tools/agents/bootstrap.mjs", "tools/agents/check.mjs", "tools/non-agent-safety-validator.mjs", "tools/publication-privacy-check.mjs"],
+  "SpecificationReferences": ["IOS Agent Platform Specification v2.1 testing requirements", "OWNER_DECISION_FIRST_WAVE_20260722"],
+  "ChecksPerformed": ["109-test suite", "fresh checkout", "bootstrap zero diff", "activation spoofing", "all capability deny fields/tools", "privacy", "non-agent safety", "git diff check"],
+  "Findings": [
+    {"Severity": "LOW", "Description": "Two Windows filesystem-symlink fixtures are SKIP and require Linux CI execution."}
+  ],
+  "Severity": "LOW",
+  "Evidence": ["AgentThreadId=/root/phase3a_test_review", "ExecutionMode=EXTERNAL_BOOTSTRAP_REAL_SUBAGENT", "modelRequested/modelResolved=UNVERIFIED", "109 total: 107 PASS, 0 FAIL, 2 SKIP", "Fresh checkout and zero diff PASS", "TrustedAttestation=INSUFFICIENT_EVIDENCE"],
+  "RequiredFixes": [],
+  "ResidualRisk": "Linux symlink behavior and external CI enforcement are not locally evidenced.",
+  "Status": "PASS_WITH_WARNINGS",
+  "Timestamp": "2026-07-25T23:46:14Z",
+  "ExecutionMode": "REAL_SUBAGENT"
+}

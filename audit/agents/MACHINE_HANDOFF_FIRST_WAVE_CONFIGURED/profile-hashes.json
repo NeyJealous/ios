@@ -1,0 +1,7 @@
+{
+  "ios-agent-orchestrator.toml": "ec85df02b13de9433041d1521947fbda8e01b55a3c14fd46cad9c4c9c876dd66",
+  "agent-governance-auditor.toml": "377acf7ec6c48867a536c1972169b999c6ec5f1a2cf1ffe3077ef792fec4ffd9",
+  "security-privacy-auditor.toml": "de7ee1a5f535c650c298f59e33c82ae92bc7ff29292b03b617fbaae551136757",
+  "audit-traceability-reviewer.toml": "7d2379bd5154499ea31a8c43e1a29529e236db1c00fae9392d0e18d66058a6e4",
+  "ios-codebase-auditor.toml": "31777f8aa5a04c74438c3cafa5d77c3ecffe431b216d5839a9ed5fdecd5943ac"
+}

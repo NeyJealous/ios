@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "agentId": "ios-agent-orchestrator",
+  "fixtureId": "IOS-ACT-ORCH-20260727-01",
+  "profileHash": "ec85df02b13de9433041d1521947fbda8e01b55a3c14fd46cad9c4c9c876dd66",
+  "compositionHash": "a774ba47839dc25e1b860531c682a4939fdb40f2e04bcd66d2552f6e77f60741",
+  "overlayHash": "1478dfd701a691c1a5bff0a210ec19bf1ee749b690f8f92b6024cd531e8e44c3",
+  "requestedModel": "gpt-5.6-terra",
+  "requestedReasoning": "medium",
+  "resolvedModel": null,
+  "resolvedReasoning": null,
+  "executionMode": "NOT_AVAILABLE",
+  "executionThreadId": null,
+  "latencyMs": null,
+  "status": "PROFILE_NOT_INVOKABLE",
+  "providerResponse": "unknown agent_type 'ios-agent-orchestrator'",
+  "externalCliAttempt": "REJECTED_BEFORE_EXECUTION_BY_SECURITY_BOUNDARY",
+  "verdict": "NOT_AVAILABLE",
+  "findings": ["CURRENT_CODEX_SESSION_DID_NOT_RELOAD_PROJECT_CUSTOM_AGENT_CATALOG"],
+  "filesModifiedByAgent": 0,
+  "forbiddenActionAttempts": [],
+  "silentDowngradeUsed": false,
+  "limitations": [
+    "No exact custom profile was bound to a spawned session.",
+    "No role simulation was accepted as runtime evidence.",
+    "Remaining four smokes were not attempted because the owner stop condition requires wave rollback after the first invocation failure."
+  ]
+}

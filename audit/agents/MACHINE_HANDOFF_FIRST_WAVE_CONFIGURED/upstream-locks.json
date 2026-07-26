@@ -1,0 +1,20 @@
+{
+  "pins": {
+    "VoltAgent/awesome-codex-subagents": "5605c9c18b3687993919d6cc467af4a34898fee2",
+    "wshobson/agents": "b6af3711058190e4b5c5274b9758498fe626ec5a"
+  },
+  "upstreamLock": {
+    "path": "architecture/agents/registry/upstream-lock.json",
+    "sha256": "dc84a6ffff6b15b407d17b7c4d77f240ed68f2236868e2bb4e5ed13ee0c49999"
+  },
+  "selectionRegister": {
+    "path": "architecture/agents/registry/upstream-selection-register.yaml",
+    "sha256": "7ec84fbbc7482069cc04d5d40a7ec1047f2b0a276ce3b772ac54f5c55a4c8999"
+  },
+  "exactSourcePathsAndLicenses": "LOCKED_IN_REFERENCED_FILES",
+  "firstWaveByteIdentity": {
+    "total": 21,
+    "passed": 21,
+    "failed": 0
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "AgentId": "TEST_GENERATOR",
+  "AgentVersion": "2.1",
+  "GateId": "MODEL_RUNTIME_SMOKE_20260722",
+  "Branch": "feature/agent-platform-v2-integration",
+  "CommitSHA": "62129358f48b7cc98a3c2b61feef17626cf11324",
+  "ReviewScope": "Model report determinism, historical hashes, Resolver fail-closed behavior, non-agent safety, privacy and whitespace",
+  "FilesReviewed": ["tests/agent-governance/", "tests/connection-recovery/", "tools/non-agent-safety-validator.mjs", "tools/publication-privacy-check.mjs", "audit/agents/MODEL_RUNTIME_SMOKE_20260722/"],
+  "SpecificationReferences": ["IOS Agent Platform Specification v2.1 testing", "AGENT-REVIEW-CONTRACT", "Connection Recovery Protocol"],
+  "ChecksPerformed": ["targeted model tests", "full governance and connection-recovery suite", "non-agent safety validator", "privacy scan", "git diff check"],
+  "Findings": [
+    {"Severity": "LOW", "Description": "Filesystem-symlink privacy fixture is skipped on Windows; Git-index symlink/submodule protections pass and Linux CI evidence remains required."}
+  ],
+  "Severity": "LOW",
+  "Evidence": ["AgentThreadId=/root/phase3a_test_review", "7 targeted tests PASS", "139 total tests: 138 PASS, 0 FAIL, 1 SKIP", "IOS_NON_AGENT_SAFETY PASS with ActiveAgentDependency=false and ProductionWrites=0", "Privacy scan PASS for 788 tracked files", "git diff --check PASS"],
+  "RequiredFixes": [],
+  "ResidualRisk": "External signed attestation, protected ruleset and hosted canary evidence are outside local test evidence.",
+  "Status": "PASS_WITH_WARNINGS",
+  "Timestamp": "2026-07-22T19:48:46Z",
+  "ExecutionMode": "REAL_SUBAGENT"
+}

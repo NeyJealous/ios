@@ -1,0 +1,14 @@
+{
+  "agentId": "ios-agent-orchestrator",
+  "result": "NO_CONTENT_MUTATION",
+  "order": [
+    "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/09-meta-orchestration/agent-organizer.toml",
+    "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/09-meta-orchestration/agent-installer.toml",
+    "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/conductor/agents/conductor-validator.md",
+    "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/agent-teams/agents/team-lead.md"
+  ],
+  "deterministicMarkersOnly": true,
+  "allEmbeddedBlocksByteIdentical": true,
+  "deletionDetected": false,
+  "replacementDetected": false
+}

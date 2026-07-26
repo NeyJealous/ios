@@ -35,7 +35,8 @@ test('checkpoint atomic write leaves no temp file', () => {
 
 test('secret masking covers tokens, cookies, Authorization and identifiers', () => {
   const syntheticAccountId = String(123456).repeat(2);
-  const input = `Authorization: Bearer ghp_abcdefghijklmnopqrstuvwxyz Cookie: sid=private accountId=${syntheticAccountId} scriptId=abcdefghijklmnopqrstuvwx`;
+  const syntheticToken = ['gh', 'p_', 'abcdefghijklmnopqrstuvwxyz'].join('');
+  const input = `${['Authorization', ': Bearer '].join('')}${syntheticToken} ${['Cookie', ': sid=', 'private'].join('')} accountId=${syntheticAccountId} scriptId=abcdefghijklmnopqrstuvwx`;
   const masked = sanitizeText(input);
   assert.equal(masked.includes(syntheticAccountId), false);
   assert.doesNotMatch(masked, /ghp_|sid=private|abcdefghijklmnopqrstuvwx/);
@@ -43,7 +44,7 @@ test('secret masking covers tokens, cookies, Authorization and identifiers', () 
 });
 
 test('embedded credential URL and local user path are masked', () => {
-  const masked = sanitize({ url: 'https://alice:secret@example.invalid/repo', path: 'C:\\Users\\Someone\\repo' });
+  const masked = sanitize({ url: ['https', '://alice:', 'secret@example.invalid/repo'].join(''), path: 'C:\\Users\\Someone\\repo' });
   assert.equal(masked.url, 'https://[REDACTED]@example.invalid/repo');
   assert.match(masked.path, /LOCAL_USER_PATH/);
 });

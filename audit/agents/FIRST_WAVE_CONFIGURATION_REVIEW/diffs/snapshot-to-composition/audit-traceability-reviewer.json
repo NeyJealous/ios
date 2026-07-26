@@ -1,0 +1,14 @@
+{
+  "agentId": "audit-traceability-reviewer",
+  "result": "NO_CONTENT_MUTATION",
+  "order": [
+    "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/04-quality-security/compliance-auditor.toml",
+    "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/06-developer-experience/documentation-engineer.toml",
+    "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/code-documentation/agents/docs-architect.md",
+    "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/business-analytics/agents/business-analyst.md"
+  ],
+  "deterministicMarkersOnly": true,
+  "allEmbeddedBlocksByteIdentical": true,
+  "deletionDetected": false,
+  "replacementDetected": false
+}

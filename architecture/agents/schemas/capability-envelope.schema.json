@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/NeyJealous/ios/architecture/agents/schemas/capability-envelope.schema.json",
+  "title": "IOS provisional agent capability envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "agentId", "filesystemRead", "filesystemWrite",
+    "networkAccess", "mcpAccess", "shellAccess", "gitWrite", "remoteWrite",
+    "productionWrite", "sheetsWrite", "appsScriptWrite", "brokerApiWrite",
+    "deploy", "merge", "push", "secretsAccess", "allowedTools",
+    "deniedTools", "enforcementLayer", "contractStatus", "evidenceStatus"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "1.0.0"},
+    "agentId": {
+      "enum": [
+        "ios-agent-orchestrator",
+        "agent-governance-auditor",
+        "security-privacy-auditor",
+        "audit-traceability-reviewer",
+        "ios-codebase-auditor"
+      ]
+    },
+    "filesystemRead": {"const": true},
+    "filesystemWrite": {"const": false},
+    "networkAccess": {"const": false},
+    "mcpAccess": {"const": false},
+    "shellAccess": {"const": false},
+    "gitWrite": {"const": false},
+    "remoteWrite": {"const": false},
+    "productionWrite": {"const": false},
+    "sheetsWrite": {"const": false},
+    "appsScriptWrite": {"const": false},
+    "brokerApiWrite": {"const": false},
+    "deploy": {"const": false},
+    "merge": {"const": false},
+    "push": {"const": false},
+    "secretsAccess": {"enum": ["NONE", "MASKED_EVIDENCE_ONLY"]},
+    "allowedTools": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"enum": ["repository.read", "repository.search"]}
+    },
+    "deniedTools": {
+      "type": "array",
+      "minItems": 15,
+      "uniqueItems": true,
+      "items": {"type": "string"}
+    },
+    "enforcementLayer": {
+      "type": "array",
+      "minItems": 3,
+      "uniqueItems": true,
+      "items": {"type": "string"}
+    },
+    "contractStatus": {"const": "LOCALLY_VALIDATED"},
+    "evidenceStatus": {"const": "RUNTIME_ENFORCEMENT_UNVERIFIED"}
+  }
+}

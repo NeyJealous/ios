@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0.0",
+  "implementationHead": "7c81e2e28f04e4bbf9e5e56744afbe600d99cfc1",
+  "command": "node --test tests/agent-governance/*.test.mjs",
+  "total": 109,
+  "pass": 107,
+  "fail": 0,
+  "skip": 2,
+  "skips": [
+    "upstream filesystem-symlink fixture on Windows; LINUX_SYMLINK_EVIDENCE_MISSING",
+    "publication privacy filesystem-symlink fixture on Windows; LINUX_SYMLINK_EVIDENCE_MISSING"
+  ],
+  "freshCheckout": {
+    "npmCi": "PASS",
+    "bootstrap": "PASS",
+    "check": "PASS",
+    "runtimeDiscoveredPlatformAgents": 0,
+    "gitDiffExitCode": "PASS"
+  },
+  "activationBoundary": {
+    "provisionalStagingProfiles": 5,
+    "runtimeDiscoveredPlatformAgents": 0,
+    "activationCommand": "NOT_IMPLEMENTED",
+    "runtimeDispatchStatus": "NOT_DISPATCHED_ACTIVATION_CLOSED",
+    "fullySpoofedPassRequest": "BLOCKED"
+  },
+  "capabilityEnvelopes": {
+    "agents": 5,
+    "contractStatus": "LOCALLY_VALIDATED",
+    "evidenceStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED",
+    "allDenyFieldsMutated": "PASS",
+    "allRequiredDeniedToolsRemovedIndividually": "PASS"
+  },
+  "upstreamIntegrity": {"status": "PASS", "entries": 17, "files": 19},
+  "nonAgentSafetyValidator": "PASS",
+  "privacyScan": {"status": "PASS", "trackedFiles": 869, "untrackedFiles": 4, "scannedFiles": 873, "findings": 0},
+  "gitDiffCheck": "PASS",
+  "productionWrites": 0
+}

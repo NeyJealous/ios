@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "FIRST_WAVE_CONFIGURED_HANDOFF_PREPARED",
+  "repositoryUrl": "https://github.com/NeyJealous/ios.git",
+  "featureBranch": "feature/agent-platform-v2-integration",
+  "canonicalBranch": "integration/ios-current",
+  "featureHead": "PENDING_FINAL_FEATURE_ACCEPTANCE_COMMIT",
+  "canonicalPreMergeHead": "d2d60713e580fa1bcce8ba874216619598094093",
+  "finalCanonicalSha": "PENDING_CANONICAL_MERGE",
+  "tag": "agent-platform-v2-first-wave-configured-v1",
+  "environment": {
+    "node": "v24.18.0",
+    "npm": "11.16.0",
+    "codexCli": "0.144.1",
+    "operatingSystem": "Microsoft Windows NT 10.0.26100.0"
+  },
+  "packageLockSha256": "a04dbc180f343aebe2f82f118fe833e4729d7ea094d7deeceba07df7c7318cb7",
+  "expectedAgentIds": [
+    "ios-agent-orchestrator",
+    "agent-governance-auditor",
+    "security-privacy-auditor",
+    "audit-traceability-reviewer",
+    "ios-codebase-auditor"
+  ],
+  "activeConfigPaths": {
+    "profiles": ".codex/agents",
+    "staging": "architecture/agents/generated/provisional",
+    "registry": "architecture/agents/registry/agents.yaml",
+    "matrix": "architecture/agents/review-matrix.yaml",
+    "resolver": "tools/agents/resolve.mjs"
+  },
+  "expectedState": "FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL",
+  "runtimeDiscoveryVerified": false,
+  "runtimeActivationComplete": false,
+  "productionGovernanceEligible": false,
+  "runtimeDiscoveryBlocker": "PROJECT_LOCAL_AGENT_DISCOVERY_FAILED_IN_CURRENT_CLIENT_ENVIRONMENT",
+  "cleanMachineDiagnosisRequired": true,
+  "dataConfidenceContract": "NOT_EXPLICITLY_DECLARED_IN_FIRST_WAVE_OVERLAY"
+}

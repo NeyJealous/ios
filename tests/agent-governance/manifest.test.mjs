@@ -18,7 +18,7 @@ function commit(cwd, message) {
   return run(cwd, 'rev-parse', 'HEAD');
 }
 
-test('manifest accepts report-only attestation tail and rejects stale code tail', () => {
+test('old agent manifest cannot pass in zero-agent transition and still rejects stale code tail', () => {
   const root = mkdtempSync(join(tmpdir(), 'ios-agent-manifest-'));
   try {
     run(root, 'init', '-b', 'main');
@@ -66,7 +66,9 @@ test('manifest accepts report-only attestation tail and rejects stale code tail'
     writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
     const attestedHead = commit(root, 'attestation');
     const required = { TaskType: 'documentation only', RequiredAgents: [agent], ApplicableAgents: [agent] };
-    assert.deepEqual(validateManifest({ manifestPath, required, root, branch, base, actualHead: attestedHead }).errors, []);
+    const oldManifestErrors = validateManifest({ manifestPath, required, root, branch, base, actualHead: attestedHead }).errors;
+    assert.ok(oldManifestErrors.length > 0);
+    assert.match(oldManifestErrors.join('\n'), /RequiredAgents|ApplicableAgents|ExecutedAgents|NOT_AVAILABLE|BLOCKED/i);
 
     manifest.OwnerBypass.ProductionDeploymentAuthorized = true;
     writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);

@@ -1,0 +1,2846 @@
+{
+  "schemaVersion": "1.0.0",
+  "gateId": "FIRST_WAVE_EXACT_SELECTION",
+  "status": "AWAITING_OWNER_DECISION",
+  "activationAllowed": false,
+  "pinnedRepositories": [
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "license": "MIT",
+      "licensePath": "LICENSE"
+    },
+    {
+      "repository": "wshobson/agents",
+      "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "license": "MIT",
+      "licensePath": "LICENSE"
+    }
+  ],
+  "candidateCount": 44,
+  "uniqueCandidatePathCount": 28,
+  "agents": [
+    {
+      "agentId": "ios-agent-orchestrator",
+      "status": "REQUIRES_OWNER_DECISION",
+      "confidence": "MEDIUM",
+      "candidates": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/09-meta-orchestration/agent-installer.toml",
+          "profileId": "agent-installer",
+          "rawSha256": "e1a7b8c709791e973cd8be5d32c548d8f49c3ef655a492de56aedb894dc77d82",
+          "normalizedSha256": "e1a7b8c709791e973cd8be5d32c548d8f49c3ef655a492de56aedb894dc77d82",
+          "license": "MIT",
+          "filename": "agent-installer.toml",
+          "sourceRoleDescription": "Use when a task needs help selecting, copying, or organizing custom agent files from this repository into Codex agent directories.",
+          "covers": [
+            "agent discovery",
+            "profile installation lifecycle",
+            "version and configuration checks"
+          ],
+          "doesNotCover": [
+            "review DAG execution",
+            "IOS production safety"
+          ],
+          "conflicts": [
+            "upstream installation/write behavior conflicts with provisional no-network/no-write bootstrap"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/09-meta-orchestration/agent-organizer.toml",
+          "profileId": "agent-organizer",
+          "rawSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+          "normalizedSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+          "license": "MIT",
+          "filename": "agent-organizer.toml",
+          "sourceRoleDescription": "Use when the parent agent needs help choosing subagents and dividing a larger task into clean delegated threads.",
+          "covers": [
+            "agent catalog organization",
+            "team composition",
+            "specialist routing concepts"
+          ],
+          "doesNotCover": [
+            "IOS Resolver contract",
+            "PRE_CHANGE/POST_CHANGE",
+            "commit-bound evidence"
+          ],
+          "conflicts": [
+            "overlaps team-lead decomposition"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/agent-teams/agents/team-lead.md",
+          "profileId": "team-lead",
+          "rawSha256": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+          "normalizedSha256": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+          "license": "MIT",
+          "filename": "team-lead.md",
+          "sourceRoleDescription": "Team orchestrator that decomposes work into parallel tasks with file ownership boundaries, manages team lifecycle, and synthesizes results. Use when coordinating multi-agent teams, decomposing complex tasks, or managing parallel workstreams.",
+          "covers": [
+            "multi-agent decomposition",
+            "parallel task coordination",
+            "team lifecycle and synthesis"
+          ],
+          "doesNotCover": [
+            "IOS Resolver bindings",
+            "trusted attestation",
+            "production gates"
+          ],
+          "conflicts": [
+            "implementation coordination exceeds IOS orchestrator supervisor-only authority"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/conductor/agents/conductor-validator.md",
+          "profileId": "conductor-validator",
+          "rawSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+          "normalizedSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+          "license": "MIT",
+          "filename": "conductor-validator.md",
+          "sourceRoleDescription": "Validates Conductor project artifacts for completeness, consistency, and correctness. Use after setup, when diagnosing issues, or before implementation to verify project context.",
+          "covers": [
+            "artifact consistency validation",
+            "setup completeness",
+            "pre-implementation validation"
+          ],
+          "doesNotCover": [
+            "general task orchestration",
+            "IOS governance schemas"
+          ],
+          "conflicts": [
+            "validation scope overlaps governance auditor"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        }
+      ],
+      "recommendedSelection": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/09-meta-orchestration/agent-organizer.toml",
+          "profileId": "agent-organizer",
+          "rawSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+          "normalizedSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+          "license": "MIT",
+          "filename": "agent-organizer.toml",
+          "sourceRoleDescription": "Use when the parent agent needs help choosing subagents and dividing a larger task into clean delegated threads.",
+          "covers": [
+            "agent catalog organization",
+            "team composition",
+            "specialist routing concepts"
+          ],
+          "doesNotCover": [
+            "IOS Resolver contract",
+            "PRE_CHANGE/POST_CHANGE",
+            "commit-bound evidence"
+          ],
+          "conflicts": [
+            "overlaps team-lead decomposition"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/09-meta-orchestration/agent-installer.toml",
+          "profileId": "agent-installer",
+          "rawSha256": "e1a7b8c709791e973cd8be5d32c548d8f49c3ef655a492de56aedb894dc77d82",
+          "normalizedSha256": "e1a7b8c709791e973cd8be5d32c548d8f49c3ef655a492de56aedb894dc77d82",
+          "license": "MIT",
+          "filename": "agent-installer.toml",
+          "sourceRoleDescription": "Use when a task needs help selecting, copying, or organizing custom agent files from this repository into Codex agent directories.",
+          "covers": [
+            "agent discovery",
+            "profile installation lifecycle",
+            "version and configuration checks"
+          ],
+          "doesNotCover": [
+            "review DAG execution",
+            "IOS production safety"
+          ],
+          "conflicts": [
+            "upstream installation/write behavior conflicts with provisional no-network/no-write bootstrap"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/conductor/agents/conductor-validator.md",
+          "profileId": "conductor-validator",
+          "rawSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+          "normalizedSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+          "license": "MIT",
+          "filename": "conductor-validator.md",
+          "sourceRoleDescription": "Validates Conductor project artifacts for completeness, consistency, and correctness. Use after setup, when diagnosing issues, or before implementation to verify project context.",
+          "covers": [
+            "artifact consistency validation",
+            "setup completeness",
+            "pre-implementation validation"
+          ],
+          "doesNotCover": [
+            "general task orchestration",
+            "IOS governance schemas"
+          ],
+          "conflicts": [
+            "validation scope overlaps governance auditor"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/agent-teams/agents/team-lead.md",
+          "profileId": "team-lead",
+          "rawSha256": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+          "normalizedSha256": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+          "license": "MIT",
+          "filename": "team-lead.md",
+          "sourceRoleDescription": "Team orchestrator that decomposes work into parallel tasks with file ownership boundaries, manages team lifecycle, and synthesizes results. Use when coordinating multi-agent teams, decomposing complex tasks, or managing parallel workstreams.",
+          "covers": [
+            "multi-agent decomposition",
+            "parallel task coordination",
+            "team lifecycle and synthesis"
+          ],
+          "doesNotCover": [
+            "IOS Resolver bindings",
+            "trusted attestation",
+            "production gates"
+          ],
+          "conflicts": [
+            "implementation coordination exceeds IOS orchestrator supervisor-only authority"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        }
+      ],
+      "alternativeSelections": [
+        {
+          "id": "NO_INSTALLER",
+          "profiles": [
+            {
+              "repository": "VoltAgent/awesome-codex-subagents",
+              "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+              "sourcePath": "categories/09-meta-orchestration/agent-organizer.toml",
+              "profileId": "agent-organizer",
+              "rawSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+              "normalizedSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+              "license": "MIT",
+              "filename": "agent-organizer.toml",
+              "sourceRoleDescription": "Use when the parent agent needs help choosing subagents and dividing a larger task into clean delegated threads.",
+              "covers": [
+                "agent catalog organization",
+                "team composition",
+                "specialist routing concepts"
+              ],
+              "doesNotCover": [
+                "IOS Resolver contract",
+                "PRE_CHANGE/POST_CHANGE",
+                "commit-bound evidence"
+              ],
+              "conflicts": [
+                "overlaps team-lead decomposition"
+              ],
+              "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "wshobson/agents",
+              "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+              "sourcePath": "plugins/conductor/agents/conductor-validator.md",
+              "profileId": "conductor-validator",
+              "rawSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+              "normalizedSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+              "license": "MIT",
+              "filename": "conductor-validator.md",
+              "sourceRoleDescription": "Validates Conductor project artifacts for completeness, consistency, and correctness. Use after setup, when diagnosing issues, or before implementation to verify project context.",
+              "covers": [
+                "artifact consistency validation",
+                "setup completeness",
+                "pre-implementation validation"
+              ],
+              "doesNotCover": [
+                "general task orchestration",
+                "IOS governance schemas"
+              ],
+              "conflicts": [
+                "validation scope overlaps governance auditor"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "wshobson/agents",
+              "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+              "sourcePath": "plugins/agent-teams/agents/team-lead.md",
+              "profileId": "team-lead",
+              "rawSha256": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+              "normalizedSha256": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+              "license": "MIT",
+              "filename": "team-lead.md",
+              "sourceRoleDescription": "Team orchestrator that decomposes work into parallel tasks with file ownership boundaries, manages team lifecycle, and synthesizes results. Use when coordinating multi-agent teams, decomposing complex tasks, or managing parallel workstreams.",
+              "covers": [
+                "multi-agent decomposition",
+                "parallel task coordination",
+                "team lifecycle and synthesis"
+              ],
+              "doesNotCover": [
+                "IOS Resolver bindings",
+                "trusted attestation",
+                "production gates"
+              ],
+              "conflicts": [
+                "implementation coordination exceeds IOS orchestrator supervisor-only authority"
+              ],
+              "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+              "multiProfileCompositionRequired": true
+            }
+          ],
+          "tradeoff": "Removes upstream installation authority but no longer includes every explicitly named VoltAgent component."
+        },
+        {
+          "id": "CONDUCTOR_ONLY_WSHOBSON",
+          "profiles": [
+            {
+              "repository": "VoltAgent/awesome-codex-subagents",
+              "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+              "sourcePath": "categories/09-meta-orchestration/agent-organizer.toml",
+              "profileId": "agent-organizer",
+              "rawSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+              "normalizedSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+              "license": "MIT",
+              "filename": "agent-organizer.toml",
+              "sourceRoleDescription": "Use when the parent agent needs help choosing subagents and dividing a larger task into clean delegated threads.",
+              "covers": [
+                "agent catalog organization",
+                "team composition",
+                "specialist routing concepts"
+              ],
+              "doesNotCover": [
+                "IOS Resolver contract",
+                "PRE_CHANGE/POST_CHANGE",
+                "commit-bound evidence"
+              ],
+              "conflicts": [
+                "overlaps team-lead decomposition"
+              ],
+              "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "VoltAgent/awesome-codex-subagents",
+              "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+              "sourcePath": "categories/09-meta-orchestration/agent-installer.toml",
+              "profileId": "agent-installer",
+              "rawSha256": "e1a7b8c709791e973cd8be5d32c548d8f49c3ef655a492de56aedb894dc77d82",
+              "normalizedSha256": "e1a7b8c709791e973cd8be5d32c548d8f49c3ef655a492de56aedb894dc77d82",
+              "license": "MIT",
+              "filename": "agent-installer.toml",
+              "sourceRoleDescription": "Use when a task needs help selecting, copying, or organizing custom agent files from this repository into Codex agent directories.",
+              "covers": [
+                "agent discovery",
+                "profile installation lifecycle",
+                "version and configuration checks"
+              ],
+              "doesNotCover": [
+                "review DAG execution",
+                "IOS production safety"
+              ],
+              "conflicts": [
+                "upstream installation/write behavior conflicts with provisional no-network/no-write bootstrap"
+              ],
+              "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "wshobson/agents",
+              "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+              "sourcePath": "plugins/conductor/agents/conductor-validator.md",
+              "profileId": "conductor-validator",
+              "rawSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+              "normalizedSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+              "license": "MIT",
+              "filename": "conductor-validator.md",
+              "sourceRoleDescription": "Validates Conductor project artifacts for completeness, consistency, and correctness. Use after setup, when diagnosing issues, or before implementation to verify project context.",
+              "covers": [
+                "artifact consistency validation",
+                "setup completeness",
+                "pre-implementation validation"
+              ],
+              "doesNotCover": [
+                "general task orchestration",
+                "IOS governance schemas"
+              ],
+              "conflicts": [
+                "validation scope overlaps governance auditor"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            }
+          ],
+          "tradeoff": "Omits the exact team orchestration profile and leaves parallel lifecycle coverage to the IOS overlay."
+        }
+      ],
+      "rejectionReasons": [
+        "Non-agent command and skill artifacts are excluded because the target requires upstream profiles.",
+        "TDD and deployment orchestrators are domain-specific and do not satisfy general multi-agent supervision."
+      ],
+      "compositionOrder": [
+        "VoltAgent/awesome-codex-subagents:categories/09-meta-orchestration/agent-organizer.toml",
+        "VoltAgent/awesome-codex-subagents:categories/09-meta-orchestration/agent-installer.toml",
+        "wshobson/agents:plugins/conductor/agents/conductor-validator.md",
+        "wshobson/agents:plugins/agent-teams/agents/team-lead.md"
+      ],
+      "conflictResolution": [
+        "Preserve all bases byte-for-byte in the listed order.",
+        "IOS overlay prohibits install, download, implementation, self-review and production authority.",
+        "IOS Resolver and evidence contracts override routing behavior without rewriting upstream text."
+      ],
+      "iosOverlayGaps": [
+        "IOS Resolver invocation",
+        "PRE_CHANGE and POST_CHANGE",
+        "mandatory/advisory DAG",
+        "model availability gate",
+        "BLOCKER/CRITICAL/UNKNOWN/NOT_AVAILABLE stop",
+        "commit-bound report collection"
+      ],
+      "whyRecommended": "Combines exact agent organization, installation lifecycle awareness, validation and the pinned team-lead profile that explicitly coordinates multi-agent work.",
+      "ownerChoices": [
+        "ACCEPT_RECOMMENDED",
+        "ACCEPT_ALTERNATIVE_NO_INSTALLER",
+        "ACCEPT_ALTERNATIVE_CONDUCTOR_ONLY_WSHOBSON",
+        "REJECT_AND_RESEARCH_FURTHER"
+      ]
+    },
+    {
+      "agentId": "agent-governance-auditor",
+      "status": "REQUIRES_OWNER_DECISION",
+      "confidence": "MEDIUM",
+      "candidates": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/11-ai-governance-safety/ai-governance-auditor.toml",
+          "profileId": "ai-governance-auditor",
+          "rawSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+          "normalizedSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+          "license": "MIT",
+          "filename": "ai-governance-auditor.toml",
+          "sourceRoleDescription": "Use when a task needs an AI governance review covering controls, accountability, risk ownership, and deployment readiness.",
+          "covers": [
+            "AI governance audit",
+            "policy compliance",
+            "risk and accountability controls"
+          ],
+          "doesNotCover": [
+            "IOS Registry/Matrix/Resolver specifics",
+            "Git SHA freshness"
+          ],
+          "conflicts": [
+            "overlaps compliance-auditor policy review"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+          "profileId": "policy-guardrail-designer",
+          "rawSha256": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+          "normalizedSha256": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+          "license": "MIT",
+          "filename": "policy-guardrail-designer.toml",
+          "sourceRoleDescription": "Use when a task needs enforceable prompt, tool, workflow, or approval guardrails for AI systems.",
+          "covers": [
+            "guardrail design",
+            "policy enforcement",
+            "failure and escalation boundaries"
+          ],
+          "doesNotCover": [
+            "execution evidence validation",
+            "repository-specific anti-tamper"
+          ],
+          "conflicts": [
+            "design role can exceed audit-only remit"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/13-llmops-evals-observability/eval-engineer.toml",
+          "profileId": "eval-engineer",
+          "rawSha256": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+          "normalizedSha256": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+          "license": "MIT",
+          "filename": "eval-engineer.toml",
+          "sourceRoleDescription": "Use when a task needs evaluation design for prompts, retrieval, tools, or multi-step agent workflows.",
+          "covers": [
+            "evaluation design",
+            "regression metrics",
+            "quality gates"
+          ],
+          "doesNotCover": [
+            "registry governance",
+            "owner bypass review"
+          ],
+          "conflicts": [
+            "evaluation implementation duties overlap test tooling"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-documentation/agents/code-reviewer.md",
+          "profileId": "code-documentation-code-reviewer",
+          "rawSha256": "7d3eb3cf36f5dc156bf4d39e59b8869af5ae506f16c75d87b79420ad82e01064",
+          "normalizedSha256": "7d3eb3cf36f5dc156bf4d39e59b8869af5ae506f16c75d87b79420ad82e01064",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-refactoring/agents/code-reviewer.md",
+          "profileId": "code-refactoring-code-reviewer",
+          "rawSha256": "d73ca30b44a0355a270ba2a9008826b00b9b3a18ad180def0633900e7192d0dd",
+          "normalizedSha256": "d73ca30b44a0355a270ba2a9008826b00b9b3a18ad180def0633900e7192d0dd",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/codebase-cleanup/agents/code-reviewer.md",
+          "profileId": "codebase-cleanup-code-reviewer",
+          "rawSha256": "8a409a081b1d9a1ef5e4578f9a1d9058af44b294d5a99907cad715f5cc9f76c3",
+          "normalizedSha256": "8a409a081b1d9a1ef5e4578f9a1d9058af44b294d5a99907cad715f5cc9f76c3",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+          "profileId": "comprehensive-review-code-reviewer",
+          "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/conductor/agents/conductor-validator.md",
+          "profileId": "conductor-validator",
+          "rawSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+          "normalizedSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+          "license": "MIT",
+          "filename": "conductor-validator.md",
+          "sourceRoleDescription": "Validates Conductor project artifacts for completeness, consistency, and correctness. Use after setup, when diagnosing issues, or before implementation to verify project context.",
+          "covers": [
+            "artifact consistency validation",
+            "setup completeness",
+            "pre-implementation validation"
+          ],
+          "doesNotCover": [
+            "general task orchestration",
+            "IOS governance schemas"
+          ],
+          "conflicts": [
+            "validation scope overlaps governance auditor"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/git-pr-workflows/agents/code-reviewer.md",
+          "profileId": "git-pr-workflows-code-reviewer",
+          "rawSha256": "0c96c9d4433f4a380ac613c1185573fc6d2097e6d01d1e43a9617042560deb94",
+          "normalizedSha256": "0c96c9d4433f4a380ac613c1185573fc6d2097e6d01d1e43a9617042560deb94",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/incident-response/agents/code-reviewer.md",
+          "profileId": "incident-response-code-reviewer",
+          "rawSha256": "803e71dbe4a049cbdeb794e56bc958dcd2b7c0b3acccdd7b37c48c4e6dcb2c6a",
+          "normalizedSha256": "803e71dbe4a049cbdeb794e56bc958dcd2b7c0b3acccdd7b37c48c4e6dcb2c6a",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Reviews code for logic flaws, type safety gaps, error handling issues, architectural concerns, and similar vulnerability patterns. Provides fix design recommendations.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/tdd-workflows/agents/code-reviewer.md",
+          "profileId": "tdd-workflows-code-reviewer",
+          "rawSha256": "25796f2ec8deb698691681b51d1d94a0978c84a89a6af8c2d276d126b460e634",
+          "normalizedSha256": "25796f2ec8deb698691681b51d1d94a0978c84a89a6af8c2d276d126b460e634",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        }
+      ],
+      "recommendedSelection": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/11-ai-governance-safety/ai-governance-auditor.toml",
+          "profileId": "ai-governance-auditor",
+          "rawSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+          "normalizedSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+          "license": "MIT",
+          "filename": "ai-governance-auditor.toml",
+          "sourceRoleDescription": "Use when a task needs an AI governance review covering controls, accountability, risk ownership, and deployment readiness.",
+          "covers": [
+            "AI governance audit",
+            "policy compliance",
+            "risk and accountability controls"
+          ],
+          "doesNotCover": [
+            "IOS Registry/Matrix/Resolver specifics",
+            "Git SHA freshness"
+          ],
+          "conflicts": [
+            "overlaps compliance-auditor policy review"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+          "profileId": "policy-guardrail-designer",
+          "rawSha256": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+          "normalizedSha256": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+          "license": "MIT",
+          "filename": "policy-guardrail-designer.toml",
+          "sourceRoleDescription": "Use when a task needs enforceable prompt, tool, workflow, or approval guardrails for AI systems.",
+          "covers": [
+            "guardrail design",
+            "policy enforcement",
+            "failure and escalation boundaries"
+          ],
+          "doesNotCover": [
+            "execution evidence validation",
+            "repository-specific anti-tamper"
+          ],
+          "conflicts": [
+            "design role can exceed audit-only remit"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/13-llmops-evals-observability/eval-engineer.toml",
+          "profileId": "eval-engineer",
+          "rawSha256": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+          "normalizedSha256": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+          "license": "MIT",
+          "filename": "eval-engineer.toml",
+          "sourceRoleDescription": "Use when a task needs evaluation design for prompts, retrieval, tools, or multi-step agent workflows.",
+          "covers": [
+            "evaluation design",
+            "regression metrics",
+            "quality gates"
+          ],
+          "doesNotCover": [
+            "registry governance",
+            "owner bypass review"
+          ],
+          "conflicts": [
+            "evaluation implementation duties overlap test tooling"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/conductor/agents/conductor-validator.md",
+          "profileId": "conductor-validator",
+          "rawSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+          "normalizedSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+          "license": "MIT",
+          "filename": "conductor-validator.md",
+          "sourceRoleDescription": "Validates Conductor project artifacts for completeness, consistency, and correctness. Use after setup, when diagnosing issues, or before implementation to verify project context.",
+          "covers": [
+            "artifact consistency validation",
+            "setup completeness",
+            "pre-implementation validation"
+          ],
+          "doesNotCover": [
+            "general task orchestration",
+            "IOS governance schemas"
+          ],
+          "conflicts": [
+            "validation scope overlaps governance auditor"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+          "profileId": "comprehensive-review-code-reviewer",
+          "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        }
+      ],
+      "alternativeSelections": [
+        {
+          "id": "POLICY_ONLY",
+          "profiles": [
+            {
+              "repository": "VoltAgent/awesome-codex-subagents",
+              "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+              "sourcePath": "categories/11-ai-governance-safety/ai-governance-auditor.toml",
+              "profileId": "ai-governance-auditor",
+              "rawSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+              "normalizedSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+              "license": "MIT",
+              "filename": "ai-governance-auditor.toml",
+              "sourceRoleDescription": "Use when a task needs an AI governance review covering controls, accountability, risk ownership, and deployment readiness.",
+              "covers": [
+                "AI governance audit",
+                "policy compliance",
+                "risk and accountability controls"
+              ],
+              "doesNotCover": [
+                "IOS Registry/Matrix/Resolver specifics",
+                "Git SHA freshness"
+              ],
+              "conflicts": [
+                "overlaps compliance-auditor policy review"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "VoltAgent/awesome-codex-subagents",
+              "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+              "sourcePath": "categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+              "profileId": "policy-guardrail-designer",
+              "rawSha256": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+              "normalizedSha256": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+              "license": "MIT",
+              "filename": "policy-guardrail-designer.toml",
+              "sourceRoleDescription": "Use when a task needs enforceable prompt, tool, workflow, or approval guardrails for AI systems.",
+              "covers": [
+                "guardrail design",
+                "policy enforcement",
+                "failure and escalation boundaries"
+              ],
+              "doesNotCover": [
+                "execution evidence validation",
+                "repository-specific anti-tamper"
+              ],
+              "conflicts": [
+                "design role can exceed audit-only remit"
+              ],
+              "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "wshobson/agents",
+              "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+              "sourcePath": "plugins/conductor/agents/conductor-validator.md",
+              "profileId": "conductor-validator",
+              "rawSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+              "normalizedSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+              "license": "MIT",
+              "filename": "conductor-validator.md",
+              "sourceRoleDescription": "Validates Conductor project artifacts for completeness, consistency, and correctness. Use after setup, when diagnosing issues, or before implementation to verify project context.",
+              "covers": [
+                "artifact consistency validation",
+                "setup completeness",
+                "pre-implementation validation"
+              ],
+              "doesNotCover": [
+                "general task orchestration",
+                "IOS governance schemas"
+              ],
+              "conflicts": [
+                "validation scope overlaps governance auditor"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "wshobson/agents",
+              "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+              "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+              "profileId": "comprehensive-review-code-reviewer",
+              "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+              "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+              "license": "MIT",
+              "filename": "code-reviewer.md",
+              "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+              "covers": [
+                "code quality review",
+                "logic and security findings",
+                "architecture and reliability review"
+              ],
+              "doesNotCover": [
+                "IOS traceability chain",
+                "immutable upstream governance"
+              ],
+              "conflicts": [
+                "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+              ],
+              "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+              "multiProfileCompositionRequired": true
+            }
+          ],
+          "tradeoff": "Omits dedicated evaluation methodology."
+        },
+        {
+          "id": "EVAL_ONLY",
+          "profiles": [
+            {
+              "repository": "VoltAgent/awesome-codex-subagents",
+              "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+              "sourcePath": "categories/11-ai-governance-safety/ai-governance-auditor.toml",
+              "profileId": "ai-governance-auditor",
+              "rawSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+              "normalizedSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+              "license": "MIT",
+              "filename": "ai-governance-auditor.toml",
+              "sourceRoleDescription": "Use when a task needs an AI governance review covering controls, accountability, risk ownership, and deployment readiness.",
+              "covers": [
+                "AI governance audit",
+                "policy compliance",
+                "risk and accountability controls"
+              ],
+              "doesNotCover": [
+                "IOS Registry/Matrix/Resolver specifics",
+                "Git SHA freshness"
+              ],
+              "conflicts": [
+                "overlaps compliance-auditor policy review"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "VoltAgent/awesome-codex-subagents",
+              "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+              "sourcePath": "categories/13-llmops-evals-observability/eval-engineer.toml",
+              "profileId": "eval-engineer",
+              "rawSha256": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+              "normalizedSha256": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+              "license": "MIT",
+              "filename": "eval-engineer.toml",
+              "sourceRoleDescription": "Use when a task needs evaluation design for prompts, retrieval, tools, or multi-step agent workflows.",
+              "covers": [
+                "evaluation design",
+                "regression metrics",
+                "quality gates"
+              ],
+              "doesNotCover": [
+                "registry governance",
+                "owner bypass review"
+              ],
+              "conflicts": [
+                "evaluation implementation duties overlap test tooling"
+              ],
+              "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "wshobson/agents",
+              "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+              "sourcePath": "plugins/conductor/agents/conductor-validator.md",
+              "profileId": "conductor-validator",
+              "rawSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+              "normalizedSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+              "license": "MIT",
+              "filename": "conductor-validator.md",
+              "sourceRoleDescription": "Validates Conductor project artifacts for completeness, consistency, and correctness. Use after setup, when diagnosing issues, or before implementation to verify project context.",
+              "covers": [
+                "artifact consistency validation",
+                "setup completeness",
+                "pre-implementation validation"
+              ],
+              "doesNotCover": [
+                "general task orchestration",
+                "IOS governance schemas"
+              ],
+              "conflicts": [
+                "validation scope overlaps governance auditor"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "wshobson/agents",
+              "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+              "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+              "profileId": "comprehensive-review-code-reviewer",
+              "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+              "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+              "license": "MIT",
+              "filename": "code-reviewer.md",
+              "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+              "covers": [
+                "code quality review",
+                "logic and security findings",
+                "architecture and reliability review"
+              ],
+              "doesNotCover": [
+                "IOS traceability chain",
+                "immutable upstream governance"
+              ],
+              "conflicts": [
+                "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+              ],
+              "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+              "multiProfileCompositionRequired": true
+            }
+          ],
+          "tradeoff": "Omits dedicated guardrail-design methodology."
+        }
+      ],
+      "rejectionReasons": [
+        "Plugin-specific duplicate code-reviewer profiles add no distinct governance methodology.",
+        "Incident-response code-reviewer is narrower than the repository-wide comprehensive reviewer."
+      ],
+      "compositionOrder": [
+        "VoltAgent/awesome-codex-subagents:categories/11-ai-governance-safety/ai-governance-auditor.toml",
+        "VoltAgent/awesome-codex-subagents:categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+        "VoltAgent/awesome-codex-subagents:categories/13-llmops-evals-observability/eval-engineer.toml",
+        "wshobson/agents:plugins/conductor/agents/conductor-validator.md",
+        "wshobson/agents:plugins/comprehensive-review/agents/code-reviewer.md"
+      ],
+      "conflictResolution": [
+        "Preserve governance, guardrail, evaluation, validation and code-review bases in that order.",
+        "Treat design and implementation duties as analysis-only under the IOS overlay.",
+        "Fail closed when base instructions imply self-approval or policy mutation."
+      ],
+      "iosOverlayGaps": [
+        "Registry/Matrix consistency",
+        "Resolver determinism",
+        "stale SHA",
+        "anti-tamper and anti-self-review",
+        "fake REAL_SUBAGENT detection",
+        "owner bypass scope"
+      ],
+      "whyRecommended": "Retains both named VoltAgent governance specializations and adds exact validation plus broad repository review coverage.",
+      "ownerChoices": [
+        "ACCEPT_RECOMMENDED",
+        "ACCEPT_ALTERNATIVE_POLICY_ONLY",
+        "ACCEPT_ALTERNATIVE_EVAL_ONLY",
+        "REJECT_AND_RESEARCH_FURTHER"
+      ]
+    },
+    {
+      "agentId": "security-privacy-auditor",
+      "status": "REQUIRES_OWNER_DECISION",
+      "confidence": "HIGH",
+      "candidates": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/compliance-auditor.toml",
+          "profileId": "compliance-auditor",
+          "rawSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+          "normalizedSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+          "license": "MIT",
+          "filename": "compliance-auditor.toml",
+          "sourceRoleDescription": "Use when a task needs compliance-oriented review of controls, auditability, policy alignment, or evidence gaps in a regulated workflow.",
+          "covers": [
+            "regulatory compliance",
+            "control evidence",
+            "audit findings"
+          ],
+          "doesNotCover": [
+            "IOS-specific privacy scanning",
+            "runtime path tracing"
+          ],
+          "conflicts": [
+            "overlaps ai-governance-auditor and security-auditor"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/security-auditor.toml",
+          "profileId": "security-auditor",
+          "rawSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+          "normalizedSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+          "license": "MIT",
+          "filename": "security-auditor.toml",
+          "sourceRoleDescription": "Use when a task needs focused security review of code, auth flows, secrets handling, input validation, or infrastructure configuration.",
+          "covers": [
+            "application security",
+            "vulnerability assessment",
+            "secrets and compliance controls"
+          ],
+          "doesNotCover": [
+            "IOS Account ID and Script ID taxonomy",
+            "historical Git privacy contract"
+          ],
+          "conflicts": [
+            "multiple security-auditor candidates have substantially overlapping bodies"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/backend-development/agents/security-auditor.md",
+          "profileId": "backend-development-security-auditor",
+          "rawSha256": "2f99b7bc863b221d0b38e4dd6976be854bf843fbddcc88145e97573e10e70e32",
+          "normalizedSha256": "2f99b7bc863b221d0b38e4dd6976be854bf843fbddcc88145e97573e10e70e32",
+          "license": "MIT",
+          "filename": "security-auditor.md",
+          "sourceRoleDescription": "Review code and architecture for security vulnerabilities, OWASP Top 10, auth flaws, and compliance issues. Use for security review during feature development.",
+          "covers": [
+            "application security",
+            "vulnerability assessment",
+            "secrets and compliance controls"
+          ],
+          "doesNotCover": [
+            "IOS Account ID and Script ID taxonomy",
+            "historical Git privacy contract"
+          ],
+          "conflicts": [
+            "multiple security-auditor candidates have substantially overlapping bodies"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-documentation/agents/code-reviewer.md",
+          "profileId": "code-documentation-code-reviewer",
+          "rawSha256": "7d3eb3cf36f5dc156bf4d39e59b8869af5ae506f16c75d87b79420ad82e01064",
+          "normalizedSha256": "7d3eb3cf36f5dc156bf4d39e59b8869af5ae506f16c75d87b79420ad82e01064",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-refactoring/agents/code-reviewer.md",
+          "profileId": "code-refactoring-code-reviewer",
+          "rawSha256": "d73ca30b44a0355a270ba2a9008826b00b9b3a18ad180def0633900e7192d0dd",
+          "normalizedSha256": "d73ca30b44a0355a270ba2a9008826b00b9b3a18ad180def0633900e7192d0dd",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/codebase-cleanup/agents/code-reviewer.md",
+          "profileId": "codebase-cleanup-code-reviewer",
+          "rawSha256": "8a409a081b1d9a1ef5e4578f9a1d9058af44b294d5a99907cad715f5cc9f76c3",
+          "normalizedSha256": "8a409a081b1d9a1ef5e4578f9a1d9058af44b294d5a99907cad715f5cc9f76c3",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+          "profileId": "comprehensive-review-code-reviewer",
+          "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/comprehensive-review/agents/security-auditor.md",
+          "profileId": "comprehensive-review-security-auditor",
+          "rawSha256": "60cc935ebc0f3e651a88fbbf688202301cb3003be14a2e7dda58d6cb5bd38c56",
+          "normalizedSha256": "60cc935ebc0f3e651a88fbbf688202301cb3003be14a2e7dda58d6cb5bd38c56",
+          "license": "MIT",
+          "filename": "security-auditor.md",
+          "sourceRoleDescription": "Expert security auditor specializing in DevSecOps, comprehensive cybersecurity, and compliance frameworks. Masters vulnerability assessment, threat modeling, secure authentication (OAuth2/OIDC), OWASP standards, cloud security, and security automation. Handles DevSecOps integration, compliance (GDPR/HIPAA/SOC2), and incident response. Use PROACTIVELY for security audits, DevSecOps, or compliance implementation.",
+          "covers": [
+            "application security",
+            "vulnerability assessment",
+            "secrets and compliance controls"
+          ],
+          "doesNotCover": [
+            "IOS Account ID and Script ID taxonomy",
+            "historical Git privacy contract"
+          ],
+          "conflicts": [
+            "multiple security-auditor candidates have substantially overlapping bodies"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/full-stack-orchestration/agents/security-auditor.md",
+          "profileId": "full-stack-orchestration-security-auditor",
+          "rawSha256": "13a353ae95f3c1f3ae3adf3ee8c884812c7028b3329a91a146531ac48ea9d1fd",
+          "normalizedSha256": "13a353ae95f3c1f3ae3adf3ee8c884812c7028b3329a91a146531ac48ea9d1fd",
+          "license": "MIT",
+          "filename": "security-auditor.md",
+          "sourceRoleDescription": "Expert security auditor specializing in DevSecOps, comprehensive cybersecurity, and compliance frameworks. Masters vulnerability assessment, threat modeling, secure authentication (OAuth2/OIDC), OWASP standards, cloud security, and security automation. Handles DevSecOps integration, compliance (GDPR/HIPAA/SOC2), and incident response. Use PROACTIVELY for security audits, DevSecOps, or compliance implementation.",
+          "covers": [
+            "application security",
+            "vulnerability assessment",
+            "secrets and compliance controls"
+          ],
+          "doesNotCover": [
+            "IOS Account ID and Script ID taxonomy",
+            "historical Git privacy contract"
+          ],
+          "conflicts": [
+            "multiple security-auditor candidates have substantially overlapping bodies"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/git-pr-workflows/agents/code-reviewer.md",
+          "profileId": "git-pr-workflows-code-reviewer",
+          "rawSha256": "0c96c9d4433f4a380ac613c1185573fc6d2097e6d01d1e43a9617042560deb94",
+          "normalizedSha256": "0c96c9d4433f4a380ac613c1185573fc6d2097e6d01d1e43a9617042560deb94",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/incident-response/agents/code-reviewer.md",
+          "profileId": "incident-response-code-reviewer",
+          "rawSha256": "803e71dbe4a049cbdeb794e56bc958dcd2b7c0b3acccdd7b37c48c4e6dcb2c6a",
+          "normalizedSha256": "803e71dbe4a049cbdeb794e56bc958dcd2b7c0b3acccdd7b37c48c4e6dcb2c6a",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Reviews code for logic flaws, type safety gaps, error handling issues, architectural concerns, and similar vulnerability patterns. Provides fix design recommendations.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/security-compliance/agents/security-auditor.md",
+          "profileId": "security-compliance-security-auditor",
+          "rawSha256": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+          "normalizedSha256": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+          "license": "MIT",
+          "filename": "security-auditor.md",
+          "sourceRoleDescription": "Expert security auditor specializing in DevSecOps, comprehensive cybersecurity, and compliance frameworks. Masters vulnerability assessment, threat modeling, secure authentication (OAuth2/OIDC), OWASP standards, cloud security, and security automation. Handles DevSecOps integration, compliance (GDPR/HIPAA/SOC2), and incident response. Use PROACTIVELY for security audits, DevSecOps, or compliance implementation.",
+          "covers": [
+            "application security",
+            "vulnerability assessment",
+            "secrets and compliance controls"
+          ],
+          "doesNotCover": [
+            "IOS Account ID and Script ID taxonomy",
+            "historical Git privacy contract"
+          ],
+          "conflicts": [
+            "multiple security-auditor candidates have substantially overlapping bodies"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/security-scanning/agents/security-auditor.md",
+          "profileId": "security-scanning-security-auditor",
+          "rawSha256": "8c01b76d526c83a5646b77ee70a4cf33aaf0a5eee826ab949ea6ed97f1319cfa",
+          "normalizedSha256": "8c01b76d526c83a5646b77ee70a4cf33aaf0a5eee826ab949ea6ed97f1319cfa",
+          "license": "MIT",
+          "filename": "security-auditor.md",
+          "sourceRoleDescription": "Expert security auditor specializing in DevSecOps, comprehensive cybersecurity, and compliance frameworks. Masters vulnerability assessment, threat modeling, secure authentication (OAuth2/OIDC), OWASP standards, cloud security, and security automation. Handles DevSecOps integration, compliance (GDPR/HIPAA/SOC2), and incident response. Use PROACTIVELY for security audits, DevSecOps, or compliance implementation.",
+          "covers": [
+            "application security",
+            "vulnerability assessment",
+            "secrets and compliance controls"
+          ],
+          "doesNotCover": [
+            "IOS Account ID and Script ID taxonomy",
+            "historical Git privacy contract"
+          ],
+          "conflicts": [
+            "multiple security-auditor candidates have substantially overlapping bodies"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/tdd-workflows/agents/code-reviewer.md",
+          "profileId": "tdd-workflows-code-reviewer",
+          "rawSha256": "25796f2ec8deb698691681b51d1d94a0978c84a89a6af8c2d276d126b460e634",
+          "normalizedSha256": "25796f2ec8deb698691681b51d1d94a0978c84a89a6af8c2d276d126b460e634",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        }
+      ],
+      "recommendedSelection": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/security-auditor.toml",
+          "profileId": "security-auditor",
+          "rawSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+          "normalizedSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+          "license": "MIT",
+          "filename": "security-auditor.toml",
+          "sourceRoleDescription": "Use when a task needs focused security review of code, auth flows, secrets handling, input validation, or infrastructure configuration.",
+          "covers": [
+            "application security",
+            "vulnerability assessment",
+            "secrets and compliance controls"
+          ],
+          "doesNotCover": [
+            "IOS Account ID and Script ID taxonomy",
+            "historical Git privacy contract"
+          ],
+          "conflicts": [
+            "multiple security-auditor candidates have substantially overlapping bodies"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/compliance-auditor.toml",
+          "profileId": "compliance-auditor",
+          "rawSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+          "normalizedSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+          "license": "MIT",
+          "filename": "compliance-auditor.toml",
+          "sourceRoleDescription": "Use when a task needs compliance-oriented review of controls, auditability, policy alignment, or evidence gaps in a regulated workflow.",
+          "covers": [
+            "regulatory compliance",
+            "control evidence",
+            "audit findings"
+          ],
+          "doesNotCover": [
+            "IOS-specific privacy scanning",
+            "runtime path tracing"
+          ],
+          "conflicts": [
+            "overlaps ai-governance-auditor and security-auditor"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/security-compliance/agents/security-auditor.md",
+          "profileId": "security-compliance-security-auditor",
+          "rawSha256": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+          "normalizedSha256": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+          "license": "MIT",
+          "filename": "security-auditor.md",
+          "sourceRoleDescription": "Expert security auditor specializing in DevSecOps, comprehensive cybersecurity, and compliance frameworks. Masters vulnerability assessment, threat modeling, secure authentication (OAuth2/OIDC), OWASP standards, cloud security, and security automation. Handles DevSecOps integration, compliance (GDPR/HIPAA/SOC2), and incident response. Use PROACTIVELY for security audits, DevSecOps, or compliance implementation.",
+          "covers": [
+            "application security",
+            "vulnerability assessment",
+            "secrets and compliance controls"
+          ],
+          "doesNotCover": [
+            "IOS Account ID and Script ID taxonomy",
+            "historical Git privacy contract"
+          ],
+          "conflicts": [
+            "multiple security-auditor candidates have substantially overlapping bodies"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+          "profileId": "comprehensive-review-code-reviewer",
+          "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        }
+      ],
+      "alternativeSelections": [
+        {
+          "id": "BACKEND_FOCUSED",
+          "profiles": [
+            {
+              "repository": "VoltAgent/awesome-codex-subagents",
+              "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+              "sourcePath": "categories/04-quality-security/security-auditor.toml",
+              "profileId": "security-auditor",
+              "rawSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+              "normalizedSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+              "license": "MIT",
+              "filename": "security-auditor.toml",
+              "sourceRoleDescription": "Use when a task needs focused security review of code, auth flows, secrets handling, input validation, or infrastructure configuration.",
+              "covers": [
+                "application security",
+                "vulnerability assessment",
+                "secrets and compliance controls"
+              ],
+              "doesNotCover": [
+                "IOS Account ID and Script ID taxonomy",
+                "historical Git privacy contract"
+              ],
+              "conflicts": [
+                "multiple security-auditor candidates have substantially overlapping bodies"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "VoltAgent/awesome-codex-subagents",
+              "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+              "sourcePath": "categories/04-quality-security/compliance-auditor.toml",
+              "profileId": "compliance-auditor",
+              "rawSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+              "normalizedSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+              "license": "MIT",
+              "filename": "compliance-auditor.toml",
+              "sourceRoleDescription": "Use when a task needs compliance-oriented review of controls, auditability, policy alignment, or evidence gaps in a regulated workflow.",
+              "covers": [
+                "regulatory compliance",
+                "control evidence",
+                "audit findings"
+              ],
+              "doesNotCover": [
+                "IOS-specific privacy scanning",
+                "runtime path tracing"
+              ],
+              "conflicts": [
+                "overlaps ai-governance-auditor and security-auditor"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "wshobson/agents",
+              "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+              "sourcePath": "plugins/backend-development/agents/security-auditor.md",
+              "profileId": "backend-development-security-auditor",
+              "rawSha256": "2f99b7bc863b221d0b38e4dd6976be854bf843fbddcc88145e97573e10e70e32",
+              "normalizedSha256": "2f99b7bc863b221d0b38e4dd6976be854bf843fbddcc88145e97573e10e70e32",
+              "license": "MIT",
+              "filename": "security-auditor.md",
+              "sourceRoleDescription": "Review code and architecture for security vulnerabilities, OWASP Top 10, auth flaws, and compliance issues. Use for security review during feature development.",
+              "covers": [
+                "application security",
+                "vulnerability assessment",
+                "secrets and compliance controls"
+              ],
+              "doesNotCover": [
+                "IOS Account ID and Script ID taxonomy",
+                "historical Git privacy contract"
+              ],
+              "conflicts": [
+                "multiple security-auditor candidates have substantially overlapping bodies"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "wshobson/agents",
+              "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+              "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+              "profileId": "comprehensive-review-code-reviewer",
+              "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+              "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+              "license": "MIT",
+              "filename": "code-reviewer.md",
+              "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+              "covers": [
+                "code quality review",
+                "logic and security findings",
+                "architecture and reliability review"
+              ],
+              "doesNotCover": [
+                "IOS traceability chain",
+                "immutable upstream governance"
+              ],
+              "conflicts": [
+                "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+              ],
+              "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+              "multiProfileCompositionRequired": true
+            }
+          ],
+          "tradeoff": "Narrows security review toward application/backend feature development."
+        },
+        {
+          "id": "COMPREHENSIVE_SECURITY",
+          "profiles": [
+            {
+              "repository": "VoltAgent/awesome-codex-subagents",
+              "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+              "sourcePath": "categories/04-quality-security/security-auditor.toml",
+              "profileId": "security-auditor",
+              "rawSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+              "normalizedSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+              "license": "MIT",
+              "filename": "security-auditor.toml",
+              "sourceRoleDescription": "Use when a task needs focused security review of code, auth flows, secrets handling, input validation, or infrastructure configuration.",
+              "covers": [
+                "application security",
+                "vulnerability assessment",
+                "secrets and compliance controls"
+              ],
+              "doesNotCover": [
+                "IOS Account ID and Script ID taxonomy",
+                "historical Git privacy contract"
+              ],
+              "conflicts": [
+                "multiple security-auditor candidates have substantially overlapping bodies"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "VoltAgent/awesome-codex-subagents",
+              "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+              "sourcePath": "categories/04-quality-security/compliance-auditor.toml",
+              "profileId": "compliance-auditor",
+              "rawSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+              "normalizedSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+              "license": "MIT",
+              "filename": "compliance-auditor.toml",
+              "sourceRoleDescription": "Use when a task needs compliance-oriented review of controls, auditability, policy alignment, or evidence gaps in a regulated workflow.",
+              "covers": [
+                "regulatory compliance",
+                "control evidence",
+                "audit findings"
+              ],
+              "doesNotCover": [
+                "IOS-specific privacy scanning",
+                "runtime path tracing"
+              ],
+              "conflicts": [
+                "overlaps ai-governance-auditor and security-auditor"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "wshobson/agents",
+              "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+              "sourcePath": "plugins/comprehensive-review/agents/security-auditor.md",
+              "profileId": "comprehensive-review-security-auditor",
+              "rawSha256": "60cc935ebc0f3e651a88fbbf688202301cb3003be14a2e7dda58d6cb5bd38c56",
+              "normalizedSha256": "60cc935ebc0f3e651a88fbbf688202301cb3003be14a2e7dda58d6cb5bd38c56",
+              "license": "MIT",
+              "filename": "security-auditor.md",
+              "sourceRoleDescription": "Expert security auditor specializing in DevSecOps, comprehensive cybersecurity, and compliance frameworks. Masters vulnerability assessment, threat modeling, secure authentication (OAuth2/OIDC), OWASP standards, cloud security, and security automation. Handles DevSecOps integration, compliance (GDPR/HIPAA/SOC2), and incident response. Use PROACTIVELY for security audits, DevSecOps, or compliance implementation.",
+              "covers": [
+                "application security",
+                "vulnerability assessment",
+                "secrets and compliance controls"
+              ],
+              "doesNotCover": [
+                "IOS Account ID and Script ID taxonomy",
+                "historical Git privacy contract"
+              ],
+              "conflicts": [
+                "multiple security-auditor candidates have substantially overlapping bodies"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "wshobson/agents",
+              "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+              "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+              "profileId": "comprehensive-review-code-reviewer",
+              "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+              "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+              "license": "MIT",
+              "filename": "code-reviewer.md",
+              "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+              "covers": [
+                "code quality review",
+                "logic and security findings",
+                "architecture and reliability review"
+              ],
+              "doesNotCover": [
+                "IOS traceability chain",
+                "immutable upstream governance"
+              ],
+              "conflicts": [
+                "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+              ],
+              "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+              "multiProfileCompositionRequired": true
+            }
+          ],
+          "tradeoff": "Uses the broad DevSecOps security variant instead of the security-compliance package context."
+        }
+      ],
+      "rejectionReasons": [
+        "Full-stack and security-scanning copies overlap the selected security-compliance body.",
+        "Plugin-specific code-reviewer duplicates do not add privacy-specific coverage."
+      ],
+      "compositionOrder": [
+        "VoltAgent/awesome-codex-subagents:categories/04-quality-security/security-auditor.toml",
+        "VoltAgent/awesome-codex-subagents:categories/04-quality-security/compliance-auditor.toml",
+        "wshobson/agents:plugins/security-compliance/agents/security-auditor.md",
+        "wshobson/agents:plugins/comprehensive-review/agents/code-reviewer.md"
+      ],
+      "conflictResolution": [
+        "Preserve security, compliance, wshobson security and code-review bases in that order.",
+        "Apply the strictest prohibition when security and code-review duties differ.",
+        "IOS overlay removes write, credential-use and self-approval authority."
+      ],
+      "iosOverlayGaps": [
+        "current and historical tree privacy",
+        "Account ID and Script ID masking",
+        "generated/downloaded/diff artifacts",
+        "bootstrap allowlist",
+        "prompt-injection review",
+        "symlink/path traversal"
+      ],
+      "whyRecommended": "The security-compliance package gives the clearest exact security/compliance context, complemented by dedicated VoltAgent security and compliance profiles.",
+      "ownerChoices": [
+        "ACCEPT_RECOMMENDED",
+        "ACCEPT_ALTERNATIVE_BACKEND_FOCUSED",
+        "ACCEPT_ALTERNATIVE_COMPREHENSIVE_SECURITY",
+        "REJECT_AND_RESEARCH_FURTHER"
+      ]
+    },
+    {
+      "agentId": "audit-traceability-reviewer",
+      "status": "REQUIRES_OWNER_DECISION",
+      "confidence": "MEDIUM",
+      "candidates": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/compliance-auditor.toml",
+          "profileId": "compliance-auditor",
+          "rawSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+          "normalizedSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+          "license": "MIT",
+          "filename": "compliance-auditor.toml",
+          "sourceRoleDescription": "Use when a task needs compliance-oriented review of controls, auditability, policy alignment, or evidence gaps in a regulated workflow.",
+          "covers": [
+            "regulatory compliance",
+            "control evidence",
+            "audit findings"
+          ],
+          "doesNotCover": [
+            "IOS-specific privacy scanning",
+            "runtime path tracing"
+          ],
+          "conflicts": [
+            "overlaps ai-governance-auditor and security-auditor"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/06-developer-experience/documentation-engineer.toml",
+          "profileId": "documentation-engineer",
+          "rawSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+          "normalizedSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+          "license": "MIT",
+          "filename": "documentation-engineer.toml",
+          "sourceRoleDescription": "Use when a task needs technical documentation that must stay faithful to current code, tooling, and operator workflows.",
+          "covers": [
+            "technical documentation",
+            "documentation lifecycle",
+            "structured technical communication"
+          ],
+          "doesNotCover": [
+            "formal requirement-to-production trace",
+            "owner decision lifecycle"
+          ],
+          "conflicts": [
+            "overlaps docs-architect documentation generation"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/business-analytics/agents/business-analyst.md",
+          "profileId": "business-analyst",
+          "rawSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+          "normalizedSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+          "license": "MIT",
+          "filename": "business-analyst.md",
+          "sourceRoleDescription": "Master modern business analysis with AI-powered analytics, real-time dashboards, and data-driven insights. Build comprehensive KPI frameworks, predictive models, and strategic recommendations. Use PROACTIVELY for business intelligence or strategic analysis.",
+          "covers": [
+            "requirements analysis",
+            "business-to-implementation interpretation",
+            "status communication"
+          ],
+          "doesNotCover": [
+            "Git evidence and stale SHA checks",
+            "technical runtime inventory"
+          ],
+          "conflicts": [
+            "recommendation-oriented business scope exceeds traceability-only remit"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-documentation/agents/docs-architect.md",
+          "profileId": "code-documentation-docs-architect",
+          "rawSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+          "normalizedSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+          "license": "MIT",
+          "filename": "docs-architect.md",
+          "sourceRoleDescription": "Creates comprehensive technical documentation from existing codebases. Analyzes architecture, design patterns, and implementation details to produce long-form technical manuals and ebooks. Use PROACTIVELY for system documentation, architecture guides, or technical deep-dives.",
+          "covers": [
+            "codebase-derived documentation",
+            "architecture documentation",
+            "documentation structure"
+          ],
+          "doesNotCover": [
+            "formal audit status model",
+            "production-status evidence"
+          ],
+          "conflicts": [
+            "two path-distinct docs-architect profiles share the same role body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/documentation-generation/agents/docs-architect.md",
+          "profileId": "documentation-generation-docs-architect",
+          "rawSha256": "435520e293fa4b997a39b7455d7131351598f4cbaf4813135ab5182e6554005b",
+          "normalizedSha256": "435520e293fa4b997a39b7455d7131351598f4cbaf4813135ab5182e6554005b",
+          "license": "MIT",
+          "filename": "docs-architect.md",
+          "sourceRoleDescription": "Creates comprehensive technical documentation from existing codebases. Analyzes architecture, design patterns, and implementation details to produce long-form technical manuals and ebooks. Use PROACTIVELY for system documentation, architecture guides, or technical deep-dives.",
+          "covers": [
+            "codebase-derived documentation",
+            "architecture documentation",
+            "documentation structure"
+          ],
+          "doesNotCover": [
+            "formal audit status model",
+            "production-status evidence"
+          ],
+          "conflicts": [
+            "two path-distinct docs-architect profiles share the same role body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        }
+      ],
+      "recommendedSelection": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/compliance-auditor.toml",
+          "profileId": "compliance-auditor",
+          "rawSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+          "normalizedSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+          "license": "MIT",
+          "filename": "compliance-auditor.toml",
+          "sourceRoleDescription": "Use when a task needs compliance-oriented review of controls, auditability, policy alignment, or evidence gaps in a regulated workflow.",
+          "covers": [
+            "regulatory compliance",
+            "control evidence",
+            "audit findings"
+          ],
+          "doesNotCover": [
+            "IOS-specific privacy scanning",
+            "runtime path tracing"
+          ],
+          "conflicts": [
+            "overlaps ai-governance-auditor and security-auditor"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/06-developer-experience/documentation-engineer.toml",
+          "profileId": "documentation-engineer",
+          "rawSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+          "normalizedSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+          "license": "MIT",
+          "filename": "documentation-engineer.toml",
+          "sourceRoleDescription": "Use when a task needs technical documentation that must stay faithful to current code, tooling, and operator workflows.",
+          "covers": [
+            "technical documentation",
+            "documentation lifecycle",
+            "structured technical communication"
+          ],
+          "doesNotCover": [
+            "formal requirement-to-production trace",
+            "owner decision lifecycle"
+          ],
+          "conflicts": [
+            "overlaps docs-architect documentation generation"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-documentation/agents/docs-architect.md",
+          "profileId": "code-documentation-docs-architect",
+          "rawSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+          "normalizedSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+          "license": "MIT",
+          "filename": "docs-architect.md",
+          "sourceRoleDescription": "Creates comprehensive technical documentation from existing codebases. Analyzes architecture, design patterns, and implementation details to produce long-form technical manuals and ebooks. Use PROACTIVELY for system documentation, architecture guides, or technical deep-dives.",
+          "covers": [
+            "codebase-derived documentation",
+            "architecture documentation",
+            "documentation structure"
+          ],
+          "doesNotCover": [
+            "formal audit status model",
+            "production-status evidence"
+          ],
+          "conflicts": [
+            "two path-distinct docs-architect profiles share the same role body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/business-analytics/agents/business-analyst.md",
+          "profileId": "business-analyst",
+          "rawSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+          "normalizedSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+          "license": "MIT",
+          "filename": "business-analyst.md",
+          "sourceRoleDescription": "Master modern business analysis with AI-powered analytics, real-time dashboards, and data-driven insights. Build comprehensive KPI frameworks, predictive models, and strategic recommendations. Use PROACTIVELY for business intelligence or strategic analysis.",
+          "covers": [
+            "requirements analysis",
+            "business-to-implementation interpretation",
+            "status communication"
+          ],
+          "doesNotCover": [
+            "Git evidence and stale SHA checks",
+            "technical runtime inventory"
+          ],
+          "conflicts": [
+            "recommendation-oriented business scope exceeds traceability-only remit"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        }
+      ],
+      "alternativeSelections": [
+        {
+          "id": "DOCUMENTATION_GENERATION",
+          "profiles": [
+            {
+              "repository": "VoltAgent/awesome-codex-subagents",
+              "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+              "sourcePath": "categories/04-quality-security/compliance-auditor.toml",
+              "profileId": "compliance-auditor",
+              "rawSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+              "normalizedSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+              "license": "MIT",
+              "filename": "compliance-auditor.toml",
+              "sourceRoleDescription": "Use when a task needs compliance-oriented review of controls, auditability, policy alignment, or evidence gaps in a regulated workflow.",
+              "covers": [
+                "regulatory compliance",
+                "control evidence",
+                "audit findings"
+              ],
+              "doesNotCover": [
+                "IOS-specific privacy scanning",
+                "runtime path tracing"
+              ],
+              "conflicts": [
+                "overlaps ai-governance-auditor and security-auditor"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "VoltAgent/awesome-codex-subagents",
+              "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+              "sourcePath": "categories/06-developer-experience/documentation-engineer.toml",
+              "profileId": "documentation-engineer",
+              "rawSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+              "normalizedSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+              "license": "MIT",
+              "filename": "documentation-engineer.toml",
+              "sourceRoleDescription": "Use when a task needs technical documentation that must stay faithful to current code, tooling, and operator workflows.",
+              "covers": [
+                "technical documentation",
+                "documentation lifecycle",
+                "structured technical communication"
+              ],
+              "doesNotCover": [
+                "formal requirement-to-production trace",
+                "owner decision lifecycle"
+              ],
+              "conflicts": [
+                "overlaps docs-architect documentation generation"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "wshobson/agents",
+              "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+              "sourcePath": "plugins/documentation-generation/agents/docs-architect.md",
+              "profileId": "documentation-generation-docs-architect",
+              "rawSha256": "435520e293fa4b997a39b7455d7131351598f4cbaf4813135ab5182e6554005b",
+              "normalizedSha256": "435520e293fa4b997a39b7455d7131351598f4cbaf4813135ab5182e6554005b",
+              "license": "MIT",
+              "filename": "docs-architect.md",
+              "sourceRoleDescription": "Creates comprehensive technical documentation from existing codebases. Analyzes architecture, design patterns, and implementation details to produce long-form technical manuals and ebooks. Use PROACTIVELY for system documentation, architecture guides, or technical deep-dives.",
+              "covers": [
+                "codebase-derived documentation",
+                "architecture documentation",
+                "documentation structure"
+              ],
+              "doesNotCover": [
+                "formal audit status model",
+                "production-status evidence"
+              ],
+              "conflicts": [
+                "two path-distinct docs-architect profiles share the same role body except metadata"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "wshobson/agents",
+              "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+              "sourcePath": "plugins/business-analytics/agents/business-analyst.md",
+              "profileId": "business-analyst",
+              "rawSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+              "normalizedSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+              "license": "MIT",
+              "filename": "business-analyst.md",
+              "sourceRoleDescription": "Master modern business analysis with AI-powered analytics, real-time dashboards, and data-driven insights. Build comprehensive KPI frameworks, predictive models, and strategic recommendations. Use PROACTIVELY for business intelligence or strategic analysis.",
+              "covers": [
+                "requirements analysis",
+                "business-to-implementation interpretation",
+                "status communication"
+              ],
+              "doesNotCover": [
+                "Git evidence and stale SHA checks",
+                "technical runtime inventory"
+              ],
+              "conflicts": [
+                "recommendation-oriented business scope exceeds traceability-only remit"
+              ],
+              "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+              "multiProfileCompositionRequired": true
+            }
+          ],
+          "tradeoff": "Uses the path-distinct documentation-generation copy of docs-architect."
+        },
+        {
+          "id": "NO_BUSINESS_ANALYST",
+          "profiles": [
+            {
+              "repository": "VoltAgent/awesome-codex-subagents",
+              "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+              "sourcePath": "categories/04-quality-security/compliance-auditor.toml",
+              "profileId": "compliance-auditor",
+              "rawSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+              "normalizedSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+              "license": "MIT",
+              "filename": "compliance-auditor.toml",
+              "sourceRoleDescription": "Use when a task needs compliance-oriented review of controls, auditability, policy alignment, or evidence gaps in a regulated workflow.",
+              "covers": [
+                "regulatory compliance",
+                "control evidence",
+                "audit findings"
+              ],
+              "doesNotCover": [
+                "IOS-specific privacy scanning",
+                "runtime path tracing"
+              ],
+              "conflicts": [
+                "overlaps ai-governance-auditor and security-auditor"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "VoltAgent/awesome-codex-subagents",
+              "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+              "sourcePath": "categories/06-developer-experience/documentation-engineer.toml",
+              "profileId": "documentation-engineer",
+              "rawSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+              "normalizedSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+              "license": "MIT",
+              "filename": "documentation-engineer.toml",
+              "sourceRoleDescription": "Use when a task needs technical documentation that must stay faithful to current code, tooling, and operator workflows.",
+              "covers": [
+                "technical documentation",
+                "documentation lifecycle",
+                "structured technical communication"
+              ],
+              "doesNotCover": [
+                "formal requirement-to-production trace",
+                "owner decision lifecycle"
+              ],
+              "conflicts": [
+                "overlaps docs-architect documentation generation"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "wshobson/agents",
+              "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+              "sourcePath": "plugins/code-documentation/agents/docs-architect.md",
+              "profileId": "code-documentation-docs-architect",
+              "rawSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+              "normalizedSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+              "license": "MIT",
+              "filename": "docs-architect.md",
+              "sourceRoleDescription": "Creates comprehensive technical documentation from existing codebases. Analyzes architecture, design patterns, and implementation details to produce long-form technical manuals and ebooks. Use PROACTIVELY for system documentation, architecture guides, or technical deep-dives.",
+              "covers": [
+                "codebase-derived documentation",
+                "architecture documentation",
+                "documentation structure"
+              ],
+              "doesNotCover": [
+                "formal audit status model",
+                "production-status evidence"
+              ],
+              "conflicts": [
+                "two path-distinct docs-architect profiles share the same role body except metadata"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            }
+          ],
+          "tradeoff": "Removes business-requirement interpretation coverage."
+        }
+      ],
+      "rejectionReasons": [
+        "The documentation-generation docs-architect body overlaps the selected code-documentation profile.",
+        "No other exact candidate provides the full requirement-to-production evidence chain."
+      ],
+      "compositionOrder": [
+        "VoltAgent/awesome-codex-subagents:categories/04-quality-security/compliance-auditor.toml",
+        "VoltAgent/awesome-codex-subagents:categories/06-developer-experience/documentation-engineer.toml",
+        "wshobson/agents:plugins/code-documentation/agents/docs-architect.md",
+        "wshobson/agents:plugins/business-analytics/agents/business-analyst.md"
+      ],
+      "conflictResolution": [
+        "Preserve compliance, documentation, docs architecture and business analysis bases in that order.",
+        "IOS overlay constrains recommendations to traceability findings.",
+        "Status conflicts resolve to the least advanced evidenced state."
+      ],
+      "iosOverlayGaps": [
+        "Requirement-to-production chain",
+        "orphan requirements",
+        "documented-only features",
+        "stale evidence",
+        "superseded decisions",
+        "missing owner and next gate"
+      ],
+      "whyRecommended": "Combines audit controls, technical documentation, codebase-derived documentation architecture and requirements interpretation.",
+      "ownerChoices": [
+        "ACCEPT_RECOMMENDED",
+        "ACCEPT_ALTERNATIVE_DOCUMENTATION_GENERATION",
+        "ACCEPT_ALTERNATIVE_NO_BUSINESS_ANALYST",
+        "REJECT_AND_RESEARCH_FURTHER"
+      ]
+    },
+    {
+      "agentId": "ios-codebase-auditor",
+      "status": "REQUIRES_OWNER_DECISION",
+      "confidence": "MEDIUM",
+      "candidates": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/01-core-development/code-mapper.toml",
+          "profileId": "code-mapper",
+          "rawSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+          "normalizedSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+          "license": "MIT",
+          "filename": "code-mapper.toml",
+          "sourceRoleDescription": "Use when the parent agent needs a high-confidence map of code paths, ownership boundaries, and execution flow before changes are made.",
+          "covers": [
+            "symbol mapping",
+            "dependency mapping",
+            "repository structure"
+          ],
+          "doesNotCover": [
+            "IOS production influence gates",
+            "specification reconciliation"
+          ],
+          "conflicts": [
+            "may generate documentation beyond audit evidence"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/09-meta-orchestration/codebase-orchestrator.toml",
+          "profileId": "codebase-orchestrator",
+          "rawSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+          "normalizedSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+          "license": "MIT",
+          "filename": "codebase-orchestrator.toml",
+          "sourceRoleDescription": "Use when a task needs repository-wide refactor governance with weighted risk prioritization, diff previews, and explicit approval gates before execution.",
+          "covers": [
+            "repository exploration",
+            "codebase decomposition",
+            "analysis coordination"
+          ],
+          "doesNotCover": [
+            "IOS runtime/spec conflict taxonomy",
+            "read-only evidence contract"
+          ],
+          "conflicts": [
+            "orchestration behavior overlaps ios-agent-orchestrator"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/c4-architecture/agents/c4-code.md",
+          "profileId": "c4-code",
+          "rawSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+          "normalizedSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+          "license": "MIT",
+          "filename": "c4-code.md",
+          "sourceRoleDescription": "Expert C4 Code-level documentation specialist. Analyzes code directories to create comprehensive C4 code-level documentation including function signatures, arguments, dependencies, and code structure. Use when documenting code at the lowest C4 level for individual directories and code modules.",
+          "covers": [
+            "function and module inventory",
+            "dependency documentation",
+            "code-level C4 evidence"
+          ],
+          "doesNotCover": [
+            "active/dead/legacy classification",
+            "IOS domain boundaries"
+          ],
+          "conflicts": [
+            "documentation output overlaps code-mapper"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-documentation/agents/code-reviewer.md",
+          "profileId": "code-documentation-code-reviewer",
+          "rawSha256": "7d3eb3cf36f5dc156bf4d39e59b8869af5ae506f16c75d87b79420ad82e01064",
+          "normalizedSha256": "7d3eb3cf36f5dc156bf4d39e59b8869af5ae506f16c75d87b79420ad82e01064",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-refactoring/agents/code-reviewer.md",
+          "profileId": "code-refactoring-code-reviewer",
+          "rawSha256": "d73ca30b44a0355a270ba2a9008826b00b9b3a18ad180def0633900e7192d0dd",
+          "normalizedSha256": "d73ca30b44a0355a270ba2a9008826b00b9b3a18ad180def0633900e7192d0dd",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/codebase-cleanup/agents/code-reviewer.md",
+          "profileId": "codebase-cleanup-code-reviewer",
+          "rawSha256": "8a409a081b1d9a1ef5e4578f9a1d9058af44b294d5a99907cad715f5cc9f76c3",
+          "normalizedSha256": "8a409a081b1d9a1ef5e4578f9a1d9058af44b294d5a99907cad715f5cc9f76c3",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+          "profileId": "comprehensive-review-code-reviewer",
+          "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/git-pr-workflows/agents/code-reviewer.md",
+          "profileId": "git-pr-workflows-code-reviewer",
+          "rawSha256": "0c96c9d4433f4a380ac613c1185573fc6d2097e6d01d1e43a9617042560deb94",
+          "normalizedSha256": "0c96c9d4433f4a380ac613c1185573fc6d2097e6d01d1e43a9617042560deb94",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/incident-response/agents/code-reviewer.md",
+          "profileId": "incident-response-code-reviewer",
+          "rawSha256": "803e71dbe4a049cbdeb794e56bc958dcd2b7c0b3acccdd7b37c48c4e6dcb2c6a",
+          "normalizedSha256": "803e71dbe4a049cbdeb794e56bc958dcd2b7c0b3acccdd7b37c48c4e6dcb2c6a",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Reviews code for logic flaws, type safety gaps, error handling issues, architectural concerns, and similar vulnerability patterns. Provides fix design recommendations.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/tdd-workflows/agents/code-reviewer.md",
+          "profileId": "tdd-workflows-code-reviewer",
+          "rawSha256": "25796f2ec8deb698691681b51d1d94a0978c84a89a6af8c2d276d126b460e634",
+          "normalizedSha256": "25796f2ec8deb698691681b51d1d94a0978c84a89a6af8c2d276d126b460e634",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        }
+      ],
+      "recommendedSelection": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/09-meta-orchestration/codebase-orchestrator.toml",
+          "profileId": "codebase-orchestrator",
+          "rawSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+          "normalizedSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+          "license": "MIT",
+          "filename": "codebase-orchestrator.toml",
+          "sourceRoleDescription": "Use when a task needs repository-wide refactor governance with weighted risk prioritization, diff previews, and explicit approval gates before execution.",
+          "covers": [
+            "repository exploration",
+            "codebase decomposition",
+            "analysis coordination"
+          ],
+          "doesNotCover": [
+            "IOS runtime/spec conflict taxonomy",
+            "read-only evidence contract"
+          ],
+          "conflicts": [
+            "orchestration behavior overlaps ios-agent-orchestrator"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/01-core-development/code-mapper.toml",
+          "profileId": "code-mapper",
+          "rawSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+          "normalizedSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+          "license": "MIT",
+          "filename": "code-mapper.toml",
+          "sourceRoleDescription": "Use when the parent agent needs a high-confidence map of code paths, ownership boundaries, and execution flow before changes are made.",
+          "covers": [
+            "symbol mapping",
+            "dependency mapping",
+            "repository structure"
+          ],
+          "doesNotCover": [
+            "IOS production influence gates",
+            "specification reconciliation"
+          ],
+          "conflicts": [
+            "may generate documentation beyond audit evidence"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+          "profileId": "comprehensive-review-code-reviewer",
+          "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "license": "MIT",
+          "filename": "code-reviewer.md",
+          "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+          "covers": [
+            "code quality review",
+            "logic and security findings",
+            "architecture and reliability review"
+          ],
+          "doesNotCover": [
+            "IOS traceability chain",
+            "immutable upstream governance"
+          ],
+          "conflicts": [
+            "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+          ],
+          "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+          "multiProfileCompositionRequired": true
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/c4-architecture/agents/c4-code.md",
+          "profileId": "c4-code",
+          "rawSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+          "normalizedSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+          "license": "MIT",
+          "filename": "c4-code.md",
+          "sourceRoleDescription": "Expert C4 Code-level documentation specialist. Analyzes code directories to create comprehensive C4 code-level documentation including function signatures, arguments, dependencies, and code structure. Use when documenting code at the lowest C4 level for individual directories and code modules.",
+          "covers": [
+            "function and module inventory",
+            "dependency documentation",
+            "code-level C4 evidence"
+          ],
+          "doesNotCover": [
+            "active/dead/legacy classification",
+            "IOS domain boundaries"
+          ],
+          "conflicts": [
+            "documentation output overlaps code-mapper"
+          ],
+          "immutableFullInclusionSuitability": "SUITABLE",
+          "multiProfileCompositionRequired": true
+        }
+      ],
+      "alternativeSelections": [
+        {
+          "id": "CODE_DOCUMENTATION_REVIEWER",
+          "profiles": [
+            {
+              "repository": "VoltAgent/awesome-codex-subagents",
+              "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+              "sourcePath": "categories/09-meta-orchestration/codebase-orchestrator.toml",
+              "profileId": "codebase-orchestrator",
+              "rawSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+              "normalizedSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+              "license": "MIT",
+              "filename": "codebase-orchestrator.toml",
+              "sourceRoleDescription": "Use when a task needs repository-wide refactor governance with weighted risk prioritization, diff previews, and explicit approval gates before execution.",
+              "covers": [
+                "repository exploration",
+                "codebase decomposition",
+                "analysis coordination"
+              ],
+              "doesNotCover": [
+                "IOS runtime/spec conflict taxonomy",
+                "read-only evidence contract"
+              ],
+              "conflicts": [
+                "orchestration behavior overlaps ios-agent-orchestrator"
+              ],
+              "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "VoltAgent/awesome-codex-subagents",
+              "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+              "sourcePath": "categories/01-core-development/code-mapper.toml",
+              "profileId": "code-mapper",
+              "rawSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+              "normalizedSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+              "license": "MIT",
+              "filename": "code-mapper.toml",
+              "sourceRoleDescription": "Use when the parent agent needs a high-confidence map of code paths, ownership boundaries, and execution flow before changes are made.",
+              "covers": [
+                "symbol mapping",
+                "dependency mapping",
+                "repository structure"
+              ],
+              "doesNotCover": [
+                "IOS production influence gates",
+                "specification reconciliation"
+              ],
+              "conflicts": [
+                "may generate documentation beyond audit evidence"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "wshobson/agents",
+              "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+              "sourcePath": "plugins/code-documentation/agents/code-reviewer.md",
+              "profileId": "code-documentation-code-reviewer",
+              "rawSha256": "7d3eb3cf36f5dc156bf4d39e59b8869af5ae506f16c75d87b79420ad82e01064",
+              "normalizedSha256": "7d3eb3cf36f5dc156bf4d39e59b8869af5ae506f16c75d87b79420ad82e01064",
+              "license": "MIT",
+              "filename": "code-reviewer.md",
+              "sourceRoleDescription": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance.",
+              "covers": [
+                "code quality review",
+                "logic and security findings",
+                "architecture and reliability review"
+              ],
+              "doesNotCover": [
+                "IOS traceability chain",
+                "immutable upstream governance"
+              ],
+              "conflicts": [
+                "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+              ],
+              "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "wshobson/agents",
+              "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+              "sourcePath": "plugins/c4-architecture/agents/c4-code.md",
+              "profileId": "c4-code",
+              "rawSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+              "normalizedSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+              "license": "MIT",
+              "filename": "c4-code.md",
+              "sourceRoleDescription": "Expert C4 Code-level documentation specialist. Analyzes code directories to create comprehensive C4 code-level documentation including function signatures, arguments, dependencies, and code structure. Use when documenting code at the lowest C4 level for individual directories and code modules.",
+              "covers": [
+                "function and module inventory",
+                "dependency documentation",
+                "code-level C4 evidence"
+              ],
+              "doesNotCover": [
+                "active/dead/legacy classification",
+                "IOS domain boundaries"
+              ],
+              "conflicts": [
+                "documentation output overlaps code-mapper"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            }
+          ],
+          "tradeoff": "Uses the code-documentation package copy of the broad reviewer."
+        },
+        {
+          "id": "INCIDENT_REVIEWER",
+          "profiles": [
+            {
+              "repository": "VoltAgent/awesome-codex-subagents",
+              "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+              "sourcePath": "categories/09-meta-orchestration/codebase-orchestrator.toml",
+              "profileId": "codebase-orchestrator",
+              "rawSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+              "normalizedSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+              "license": "MIT",
+              "filename": "codebase-orchestrator.toml",
+              "sourceRoleDescription": "Use when a task needs repository-wide refactor governance with weighted risk prioritization, diff previews, and explicit approval gates before execution.",
+              "covers": [
+                "repository exploration",
+                "codebase decomposition",
+                "analysis coordination"
+              ],
+              "doesNotCover": [
+                "IOS runtime/spec conflict taxonomy",
+                "read-only evidence contract"
+              ],
+              "conflicts": [
+                "orchestration behavior overlaps ios-agent-orchestrator"
+              ],
+              "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "VoltAgent/awesome-codex-subagents",
+              "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+              "sourcePath": "categories/01-core-development/code-mapper.toml",
+              "profileId": "code-mapper",
+              "rawSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+              "normalizedSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+              "license": "MIT",
+              "filename": "code-mapper.toml",
+              "sourceRoleDescription": "Use when the parent agent needs a high-confidence map of code paths, ownership boundaries, and execution flow before changes are made.",
+              "covers": [
+                "symbol mapping",
+                "dependency mapping",
+                "repository structure"
+              ],
+              "doesNotCover": [
+                "IOS production influence gates",
+                "specification reconciliation"
+              ],
+              "conflicts": [
+                "may generate documentation beyond audit evidence"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "wshobson/agents",
+              "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+              "sourcePath": "plugins/incident-response/agents/code-reviewer.md",
+              "profileId": "incident-response-code-reviewer",
+              "rawSha256": "803e71dbe4a049cbdeb794e56bc958dcd2b7c0b3acccdd7b37c48c4e6dcb2c6a",
+              "normalizedSha256": "803e71dbe4a049cbdeb794e56bc958dcd2b7c0b3acccdd7b37c48c4e6dcb2c6a",
+              "license": "MIT",
+              "filename": "code-reviewer.md",
+              "sourceRoleDescription": "Reviews code for logic flaws, type safety gaps, error handling issues, architectural concerns, and similar vulnerability patterns. Provides fix design recommendations.",
+              "covers": [
+                "code quality review",
+                "logic and security findings",
+                "architecture and reliability review"
+              ],
+              "doesNotCover": [
+                "IOS traceability chain",
+                "immutable upstream governance"
+              ],
+              "conflicts": [
+                "seven path-distinct code-reviewer candidates overlap; several share the same prompt body except metadata"
+              ],
+              "immutableFullInclusionSuitability": "CONDITIONAL_STRICT_OVERLAY",
+              "multiProfileCompositionRequired": true
+            },
+            {
+              "repository": "wshobson/agents",
+              "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+              "sourcePath": "plugins/c4-architecture/agents/c4-code.md",
+              "profileId": "c4-code",
+              "rawSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+              "normalizedSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+              "license": "MIT",
+              "filename": "c4-code.md",
+              "sourceRoleDescription": "Expert C4 Code-level documentation specialist. Analyzes code directories to create comprehensive C4 code-level documentation including function signatures, arguments, dependencies, and code structure. Use when documenting code at the lowest C4 level for individual directories and code modules.",
+              "covers": [
+                "function and module inventory",
+                "dependency documentation",
+                "code-level C4 evidence"
+              ],
+              "doesNotCover": [
+                "active/dead/legacy classification",
+                "IOS domain boundaries"
+              ],
+              "conflicts": [
+                "documentation output overlaps code-mapper"
+              ],
+              "immutableFullInclusionSuitability": "SUITABLE",
+              "multiProfileCompositionRequired": true
+            }
+          ],
+          "tradeoff": "Narrows review toward logic flaws and error handling."
+        }
+      ],
+      "rejectionReasons": [
+        "Path-distinct broad code-reviewer copies overlap the selected comprehensive-review candidate.",
+        "No profile alone covers IOS runtime/spec and production-influence tracing."
+      ],
+      "compositionOrder": [
+        "VoltAgent/awesome-codex-subagents:categories/09-meta-orchestration/codebase-orchestrator.toml",
+        "VoltAgent/awesome-codex-subagents:categories/01-core-development/code-mapper.toml",
+        "wshobson/agents:plugins/comprehensive-review/agents/code-reviewer.md",
+        "wshobson/agents:plugins/c4-architecture/agents/c4-code.md"
+      ],
+      "conflictResolution": [
+        "Preserve orchestrator, mapper, reviewer and C4 bases in that order.",
+        "IOS overlay enforces read-only inventory and forbids automatic corrections.",
+        "Conflicting runtime/spec claims remain findings with symbol-level evidence."
+      ],
+      "iosOverlayGaps": [
+        "active/dead/legacy classification",
+        "runtime/spec conflicts",
+        "Market Regime to R030 to Decision Engine trace",
+        "AccountScope and Reserve boundaries",
+        "provider boundaries"
+      ],
+      "whyRecommended": "Combines repository decomposition, symbol mapping, comprehensive review and code-level dependency documentation.",
+      "ownerChoices": [
+        "ACCEPT_RECOMMENDED",
+        "ACCEPT_ALTERNATIVE_CODE_DOCUMENTATION_REVIEWER",
+        "ACCEPT_ALTERNATIVE_INCIDENT_REVIEWER",
+        "REJECT_AND_RESEARCH_FURTHER"
+      ]
+    }
+  ]
+}

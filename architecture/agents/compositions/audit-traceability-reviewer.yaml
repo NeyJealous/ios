@@ -1,0 +1,70 @@
+{
+  "agentId": "audit-traceability-reviewer",
+  "compositionVersion": "1.0.0",
+  "bases": [
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/04-quality-security/compliance-auditor.toml",
+      "profileId": "compliance-auditor",
+      "rawHash": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+      "normalizedHash": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/04-quality-security/compliance-auditor.toml",
+      "inclusionMode": "FULL_UNMODIFIED"
+    },
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/06-developer-experience/documentation-engineer.toml",
+      "profileId": "documentation-engineer",
+      "rawHash": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+      "normalizedHash": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/06-developer-experience/documentation-engineer.toml",
+      "inclusionMode": "FULL_UNMODIFIED"
+    },
+    {
+      "repository": "wshobson/agents",
+      "commit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/code-documentation/agents/docs-architect.md",
+      "profileId": "code-documentation-docs-architect",
+      "rawHash": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+      "normalizedHash": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/code-documentation/agents/docs-architect.md",
+      "inclusionMode": "FULL_UNMODIFIED"
+    },
+    {
+      "repository": "wshobson/agents",
+      "commit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/business-analytics/agents/business-analyst.md",
+      "profileId": "business-analyst",
+      "rawHash": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+      "normalizedHash": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/business-analytics/agents/business-analyst.md",
+      "inclusionMode": "FULL_UNMODIFIED"
+    }
+  ],
+  "compositionOrder": [
+    "VoltAgent/awesome-codex-subagents:categories/04-quality-security/compliance-auditor.toml",
+    "VoltAgent/awesome-codex-subagents:categories/06-developer-experience/documentation-engineer.toml",
+    "wshobson/agents:plugins/code-documentation/agents/docs-architect.md",
+    "wshobson/agents:plugins/business-analytics/agents/business-analyst.md"
+  ],
+  "conflictResolution": [
+    "preserve every base byte-for-byte",
+    "documentation accuracy and documentation architecture remain distinct",
+    "business analysis cannot create owner requirements",
+    "least-advanced evidenced status wins"
+  ],
+  "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml",
+  "overlayHash": "527b27aa75a7dce2f2e8ed93df3b6257c80f6a9553b6bee46ea82c7c8a1765a2",
+  "capabilityEnvelopePath": "architecture/agents/contracts/capabilities/audit-traceability-reviewer.json",
+  "capabilityEnvelopeHash": "cff941d600d9e919c801e427f5b7a44d10b6b762d9a60a8a08ab69d9cdcca247",
+  "capabilityContractStatus": "LOCALLY_VALIDATED",
+  "capabilityEvidenceStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED",
+  "generatedPath": "architecture/agents/generated/provisional/audit-traceability-reviewer.toml",
+  "generatedHash": "7d2379bd5154499ea31a8c43e1a29529e236db1c00fae9392d0e18d66058a6e4",
+  "upstreamCompositionHash": "0a4309df123f0dbbf53c41d515f7647da5c01ff41418f1407a1b09f911224c94",
+  "status": "PROVISIONAL",
+  "activationEligible": false,
+  "platformActivationEligible": false
+}

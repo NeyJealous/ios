@@ -1,0 +1,31 @@
+{
+  "decisionId": "OWNER-DECISION-AGENT-PLATFORM-V2",
+  "date": "2026-07-18",
+  "authorizationSource": "Explicit repository-owner instruction in the current Codex task",
+  "baselineSha": "d2d60713e580fa1bcce8ba874216619598094093",
+  "branch": "feature/agent-platform-v2-integration",
+  "status": "AUTHORIZED_FOR_SAFETY_REMEDIATION",
+  "trustedOwnerAttestationStatus": "INSUFFICIENT_EVIDENCE",
+  "decisions": {
+    "authoritativeBaseline": "IOS Master Specification v4.0 — Audit Baseline",
+    "historicalBaseline": "IOS Master Specification v3.0",
+    "correctionMemo": "HISTORICAL_EVIDENCE_PARTIALLY_SUPERSEDED_ONLY_WHERE_EXPLICIT_IN_V4",
+    "targetArchitecture": "IOS Agent Platform Specification v2.1",
+    "newAgentInitialStatus": "PROVISIONAL",
+    "oldAdrSupersession": "DEFERRED_UNTIL_NEW_ADR_ACCEPTED",
+    "zeroAgentTransition": "AUTHORIZED_AFTER_PRE_REMOVAL_PASS",
+    "silentModelSubstitution": false
+  },
+  "candidateUpstreamPins": [
+    {"repository": "https://github.com/VoltAgent/awesome-codex-subagents", "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2", "profileAcceptance": "NOT_IMPLIED"},
+    {"repository": "https://github.com/wshobson/agents", "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a", "profileAcceptance": "NOT_IMPLIED"}
+  ],
+  "modelPolicy": {
+    "gpt-5.6-terra": "AVAILABLE_CANDIDATE_PENDING_SMOKE_TEST",
+    "gpt-5.6-sol": "AVAILABLE_CANDIDATE_PENDING_SMOKE_TEST",
+    "gpt-5.6-luna": "UNVERIFIED",
+    "gpt-5.6-sol-pro": "UNVERIFIED"
+  },
+  "authorizedNow": ["prepare RFC", "prepare draft ADR", "perform safety remediation", "add regression tests", "design and implement trusted anti-tamper boundary", "run PRE_REMOVAL gate"],
+  "notAuthorizedYet": ["accept draft ADR", "remove old agents before PRE_REMOVAL PASS", "activate new agents", "merge", "deployment", "production writes", "Google Sheets writes", "broker/API writes"]
+}

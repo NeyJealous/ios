@@ -1,0 +1,21 @@
+{
+  "source": "architecture/agents/registry/model-registry.yaml",
+  "sourceSha256": "0fe4d6ccaf329049bba184a0a4a11101800f48faca4a62c76536715ea42255fc",
+  "contracts": {
+    "ios-agent-orchestrator": { "model": "gpt-5.6-terra", "reasoning": "medium", "silentDowngradeAllowed": false },
+    "agent-governance-auditor": { "model": "gpt-5.6-sol", "reasoning": "high", "silentDowngradeAllowed": false },
+    "security-privacy-auditor": { "model": "gpt-5.6-sol", "reasoning": "high", "silentDowngradeAllowed": false },
+    "audit-traceability-reviewer": { "model": "gpt-5.6-terra", "reasoning": "medium", "silentDowngradeAllowed": false },
+    "ios-codebase-auditor": { "model": "gpt-5.6-sol", "reasoning": "high", "silentDowngradeAllowed": false }
+  },
+  "luna": {
+    "model": "gpt-5.6-luna",
+    "spawnAgentAvailability": "MODEL_NOT_AVAILABLE",
+    "automaticDispatchEligible": false
+  },
+  "solUltra": {
+    "model": "gpt-5.6-sol",
+    "reasoning": "ultra",
+    "use": "EXCEPTIONAL_ESCALATION_WITH_REASON"
+  }
+}

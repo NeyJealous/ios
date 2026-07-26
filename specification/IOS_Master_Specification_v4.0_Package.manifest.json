@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "1.0.0",
+  "sourceTitle": "IOS Master Specification v4.0 — Audit Baseline",
+  "packageRoot": "specification/IOS_Master_Specification_v4.0_Package",
+  "ownerProvidedArchiveSha256": "a8e941965c140c88434dc14804c256b83a87da40ca896c0674be319863ace889",
+  "archiveEvidenceStatus": "ACQUISITION_VERIFIED_ARCHIVE_NOT_TRACKED",
+  "treeAlgorithm": "Sort sourcePath ordinal; SHA-256 of UTF-8 sourcePath + NUL + rawSha256 + LF records",
+  "fileCount": 40,
+  "treeSha256": "840a85efd1f7e4dbb456f6e1cac99c238a789466386c2b8013f0803570c24e8c",
+  "files": [
+    {
+      "sourcePath": "audit/master-spec-v4/branch-governance-coverage.json",
+      "rawSha256": "ddd87891465224e22ddbb13f23644615219b59f3ad00d5ec11de2d39f5a25457"
+    },
+    {
+      "sourcePath": "audit/master-spec-v4/decision-register.json",
+      "rawSha256": "d1df6b7da90b6ba434a9dfecbd5c0aef1a7dfc0549343cd735420416fb87ae0f"
+    },
+    {
+      "sourcePath": "audit/master-spec-v4/implementation-gap-register.json",
+      "rawSha256": "19831f84308da992f82ea3561ee4d3c3f6f528bc9b5d8188aa400cc1803bddb2"
+    },
+    {
+      "sourcePath": "audit/master-spec-v4/master-spec-v4-audit-report.md",
+      "rawSha256": "2258458a637f142ea83262337eadfafc945a56138c5608274b8fe7c289b7dc6d"
+    },
+    {
+      "sourcePath": "audit/master-spec-v4/production-influence-register.json",
+      "rawSha256": "f6dd071e92ec74b0fb875d7feb921f888a86af5a0320ea7fbbb3d7f41f6f5dbd"
+    },
+    {
+      "sourcePath": "audit/master-spec-v4/requirement-traceability-matrix.json",
+      "rawSha256": "05ce5c3d600859da46a39b9335a1416fdf053e65b49ebd9ed7002c5ab6a0df54"
+    },
+    {
+      "sourcePath": "audit/master-spec-v4/superseded-documents.json",
+      "rawSha256": "4ec85aa38b5b00c9bc6442a93fde7664071e513dc184c7add1b1fc2f7523a0b2"
+    },
+    {
+      "sourcePath": "audit/master-spec-v4/unresolved-decisions.json",
+      "rawSha256": "54c2ea696de5b35a7392b1e42c97a6d787172c99d28a03021e8f97e219e84243"
+    },
+    {
+      "sourcePath": "IOS_Master_Specification_v4.0_Audit_Baseline.md",
+      "rawSha256": "e1e38fa771527c8d6e375ef1c624399e170eb89085c5a0777bdad65bba6a640a"
+    },
+    {
+      "sourcePath": "README.md",
+      "rawSha256": "238a5aaf93c9776acbf15ef99af2929af5ecf9aea8d2b9eb8a4e7f3bdbf5b139"
+    },
+    {
+      "sourcePath": "specification/v4.0/00_MASTER_INDEX.md",
+      "rawSha256": "79ac0777241256ba0284e00b0fc680944e976831b2c9760425552f15c4328b46"
+    },
+    {
+      "sourcePath": "specification/v4.0/01_EXECUTIVE_AUDIT_BASELINE.md",
+      "rawSha256": "ec0c827d0ca9c6e71583c3147caa24f871414a1283e598d42cfdbb4c2ba4a8a2"
+    },
+    {
+      "sourcePath": "specification/v4.0/02_SYSTEM_CONSTITUTION.md",
+      "rawSha256": "c7eb787246486fe73c0dc54ffc3025fecefc5d31d07a3dc8ae3b846a62a7f113"
+    },
+    {
+      "sourcePath": "specification/v4.0/03_ARCHITECTURE.md",
+      "rawSha256": "c95fdc7535fec81a93450f80d969cead069aaffb2b3c80473abfdc8581d8b843"
+    },
+    {
+      "sourcePath": "specification/v4.0/04_DATA_ARCHITECTURE.md",
+      "rawSha256": "90fef3dbd3d2a76a1bf2c77263b0b1f7f624e940836c71298ca70712f7921c41"
+    },
+    {
+      "sourcePath": "specification/v4.0/05_PROJECT_HISTORY.md",
+      "rawSha256": "5d656879ae4d3a5241d3597ae261d0ef24935c2d2bfa7c7be8719fdcaad33bd6"
+    },
+    {
+      "sourcePath": "specification/v4.0/06_TRACEABILITY_MODEL.md",
+      "rawSha256": "b0d0e3bad9577c866c167fabd60fe5d8ea3a12f39fcf1c42d1425b3e2a2d8f8d"
+    },
+    {
+      "sourcePath": "specification/v4.0/07_ACCOUNT_SCOPE.md",
+      "rawSha256": "2f1408c6529555e6b9ee2a42a446abef0ce7737e42781afeccfcece1daf79b0e"
+    },
+    {
+      "sourcePath": "specification/v4.0/08_GOOGLE_SHEETS_ARCHITECTURE.md",
+      "rawSha256": "f7105c86ac4b1ea80f06b133bfb9a0d53d7108fdaaa83e4bbb766d1fcdfd54e1"
+    },
+    {
+      "sourcePath": "specification/v4.0/09_APPS_SCRIPT_ARCHITECTURE.md",
+      "rawSha256": "4f7a6d6eda3395c36cd71a357c96dc3c55de60b19ac15906d0bfce96aade0a60"
+    },
+    {
+      "sourcePath": "specification/v4.0/10_PROVIDER_ARCHITECTURE.md",
+      "rawSha256": "3f66e4a467e9f7b24dda297fc100c8698c42923465d91ddfdd3ff7c98b888c50"
+    },
+    {
+      "sourcePath": "specification/v4.0/11_DATA_CONFIDENCE.md",
+      "rawSha256": "58ef14cc6852851a43616bbbfcd5f4cba2805ed3666de5be99b66b606f7c6f97"
+    },
+    {
+      "sourcePath": "specification/v4.0/12_PORTFOLIO_AND_RESERVE.md",
+      "rawSha256": "7131640d586eee854cb8abe9524187c49441ee5635ac2b14ce0fb15f53243419"
+    },
+    {
+      "sourcePath": "specification/v4.0/13_BOND_AND_COUPON_ENGINE.md",
+      "rawSha256": "5b98c8b631b3a4cf03b72371e86afcdc61a256689b058e185b54db515e81e208"
+    },
+    {
+      "sourcePath": "specification/v4.0/14_COMPANY_RATING.md",
+      "rawSha256": "32e5849ad0bbc6653a5d08bf77b76f520b70a7455f449e4c4853d1f5e1f0dbc4"
+    },
+    {
+      "sourcePath": "specification/v4.0/15_INVESTMENT_STRATEGY.md",
+      "rawSha256": "07ac93d77d7e9e81df9812ad47be31baa3e3b1fe15ef02789fe64664bf8fdc69"
+    },
+    {
+      "sourcePath": "specification/v4.0/16_MARKET_REGIME.md",
+      "rawSha256": "7f4de377438f2954c9699cb7714e66c7d313041d5cd5a24a96fdcb6b9b18ea81"
+    },
+    {
+      "sourcePath": "specification/v4.0/17_DECISION_ENGINE_AND_R030.md",
+      "rawSha256": "23864470c546b4ec5ac8eaa4f339a6501fe914933ab5b4178c73b8c6adf446e7"
+    },
+    {
+      "sourcePath": "specification/v4.0/18_TRADE_PLAN.md",
+      "rawSha256": "495bd6bbbb3c4be6abbd816005bdd3776814224c5c548bb1288a3c39d888b8f9"
+    },
+    {
+      "sourcePath": "specification/v4.0/19_PRODUCTION_INFLUENCE_GATES.md",
+      "rawSha256": "22e784bed4d351fc5892db8c23a136cb7f4d79e8fcf68875d1a44242451441dd"
+    },
+    {
+      "sourcePath": "specification/v4.0/20_AGENT_GOVERNANCE.md",
+      "rawSha256": "66b725d3c8be179fe74b60edf1b21dc2c7fd3f0c84c9cb1d3b621b73f1577914"
+    },
+    {
+      "sourcePath": "specification/v4.0/21_DEVELOPMENT_PLATFORM.md",
+      "rawSha256": "9feff4be81cbb28f8154d46bf937ff77ba88ed0301b8d9222fcce4a448e89bb1"
+    },
+    {
+      "sourcePath": "specification/v4.0/22_GIT_BRANCH_WORKTREE_POLICY.md",
+      "rawSha256": "d09ba5aaae182c0ce3003b4878aa854e5dffc513a7875a78879271ccb3b0ec42"
+    },
+    {
+      "sourcePath": "specification/v4.0/23_CONNECTION_RECOVERY_PROTOCOL.md",
+      "rawSha256": "4e9c4931ff367f9bdb9c779eaafe916667287017e627f0d706304dcbcc7a89bc"
+    },
+    {
+      "sourcePath": "specification/v4.0/24_SECURITY_PRIVACY.md",
+      "rawSha256": "7e19825bd09bfbfd5b1b81f6c6b20f77cc6539c240cbbd1ee12b7756c94580d3"
+    },
+    {
+      "sourcePath": "specification/v4.0/25_TESTING_VALIDATION.md",
+      "rawSha256": "5d242a39c0b6e5e6a45c1a9032bce197f48b6d3dc8eebbd64dc6148c5db0829d"
+    },
+    {
+      "sourcePath": "specification/v4.0/26_RFC_ADR_GOVERNANCE.md",
+      "rawSha256": "5ef2cc1c072af3c4d710ceb4dd93ac6debbdc220c21c843468444b401bc1145b"
+    },
+    {
+      "sourcePath": "specification/v4.0/27_ROADMAP.md",
+      "rawSha256": "e58dab695e64ac235a78002c81e8a7427295a84d1bd44f55811ec2ba9031a25f"
+    },
+    {
+      "sourcePath": "specification/v4.0/28_ROLLBACK_AND_RECOVERY.md",
+      "rawSha256": "af3cdb020774cbcdb47c3325be42f60cd4199b4ce9c39f1db7ba9316c1882dc7"
+    },
+    {
+      "sourcePath": "specification/v4.0/29_AUDIT_FINDINGS_AND_GAPS.md",
+      "rawSha256": "a5d3811dde6edaa39692ed9a1f35092cef8fd7563cd9b90ce33ba64f8c4ccb49"
+    }
+  ]
+}

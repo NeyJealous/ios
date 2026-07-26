@@ -1,0 +1,23 @@
+{
+  "agentId": "agent-governance-auditor",
+  "order": 4,
+  "repository": "wshobson/agents",
+  "pinnedCommit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+  "sourcePath": "plugins/conductor/agents/conductor-validator.md",
+  "profileId": "conductor-validator",
+  "filename": "conductor-validator.md",
+  "license": "MIT",
+  "rawSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+  "normalizedSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+  "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/conductor/agents/conductor-validator.md",
+  "inclusionMode": "FULL_UNMODIFIED",
+  "originalBlobSha": "f314781b513fe93a1fee8a590ea25fdba3c255bd",
+  "originalBlobSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+  "snapshotSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+  "generatedBlockSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+  "byteIdenticalOriginalToSnapshot": true,
+  "byteIdenticalSnapshotToGeneratedBlock": true,
+  "sourcePointer": "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/conductor/agents/conductor-validator.md",
+  "diffResult": "ZERO_BYTE_DIFF",
+  "mutationDetected": false
+}

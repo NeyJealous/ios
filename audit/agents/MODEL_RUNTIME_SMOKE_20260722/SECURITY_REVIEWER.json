@@ -1,0 +1,21 @@
+{
+  "AgentId": "SECURITY_REVIEWER",
+  "AgentVersion": "2.1",
+  "GateId": "MODEL_RUNTIME_SMOKE_20260722",
+  "Branch": "feature/agent-platform-v2-integration",
+  "CommitSHA": "62129358f48b7cc98a3c2b61feef17626cf11324",
+  "ReviewScope": "Runtime model evidence, downgrade prevention, spoofing boundary, historical immutability and privacy",
+  "FilesReviewed": ["architecture/agents/registry/model-availability.yaml", "audit/agents/MODEL_RUNTIME_SMOKE_20260722/", "tests/agent-governance/model-availability.test.mjs", "tools/agents/render-model-availability-report.mjs"],
+  "SpecificationReferences": ["IOS Master Specification v4.0 security/privacy", "IOS Agent Platform Specification v2.1 model policy", "TRUSTED-EXECUTION-ATTESTATION"],
+  "ChecksPerformed": ["exact requested/resolved binding", "no silent downgrade", "provider rejection handling", "historical artifact preservation", "privacy and secret scan", "trusted-attestation separation"],
+  "Findings": [
+    {"Severity": "HIGH", "Description": "Repository-recorded runtime observations remain spoofable without an external signed provider/model attestation boundary."}
+  ],
+  "Severity": "HIGH",
+  "Evidence": ["AgentThreadId=/root/phase3a_security_review", "Terra, Sol and Sol Ultra exact requests executed; Luna exact request rejected", "substitutionUsed=false for every record", "platformActivationEligible=false and attestationStatus=INSUFFICIENT_EVIDENCE for every record", "Privacy scan PASS for 788 files with zero findings"],
+  "RequiredFixes": ["Provide signed provider/model attestation, trusted transport, key lifecycle and durable replay protection before activation"],
+  "ResidualRisk": "External activation remains blocked; local security/privacy implementation passed with warnings.",
+  "Status": "PASS_WITH_WARNINGS",
+  "Timestamp": "2026-07-22T19:48:46Z",
+  "ExecutionMode": "REAL_SUBAGENT"
+}

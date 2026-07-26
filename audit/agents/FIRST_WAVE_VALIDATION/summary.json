@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "FIRST_WAVE_PROVISIONAL_VALIDATION_COMPLETE",
+  "validatedHeadSha": "0ce3b2844c5b8cf998b6814ee7a9cfcb4d797c44",
+  "staticValidation": {"agents": 5, "pass": 5, "fail": 0},
+  "fixtureValidation": {
+    "total": 35,
+    "pass": 34,
+    "fail": 0,
+    "skip": 1,
+    "skipReason": "WINDOWS_SYMLINK_FIXTURE_REQUIRES_LINUX_EVIDENCE"
+  },
+  "runtimeValidation": {
+    "available": 0,
+    "notAvailable": 5,
+    "executionMode": "NOT_AVAILABLE",
+    "reason": "NO_TRUSTED_ISOLATED_PROFILE_INVOKER"
+  },
+  "agents": {
+    "ios-agent-orchestrator": "PROVISIONAL_VALIDATION_PASS_WITH_WARNINGS",
+    "agent-governance-auditor": "PROVISIONAL_VALIDATION_PASS_WITH_WARNINGS",
+    "security-privacy-auditor": "PROVISIONAL_VALIDATION_PASS_WITH_WARNINGS",
+    "audit-traceability-reviewer": "PROVISIONAL_VALIDATION_PASS_WITH_WARNINGS",
+    "ios-codebase-auditor": "PROVISIONAL_VALIDATION_PASS_WITH_WARNINGS"
+  },
+  "activationBoundary": {
+    "provisionalStagingProfiles": 5,
+    "runtimeDiscoveredPlatformAgents": 0,
+    "activationStatus": "NOT_DISPATCHED_ACTIVATION_CLOSED"
+  },
+  "limitations": ["RUNTIME_ENFORCEMENT_UNVERIFIED", "TRUSTED_EXTERNAL_ATTESTATION_MISSING", "LINUX_SYMLINK_EVIDENCE_MISSING"],
+  "safety": {
+    "productionWrites": 0,
+    "googleSheetsWrites": 0,
+    "appsScriptWrites": 0,
+    "brokerApiWrites": 0,
+    "deploymentUpdates": 0,
+    "claspPush": 0,
+    "canonicalAgentActivation": 0,
+    "push": 0,
+    "merge": 0
+  }
+}

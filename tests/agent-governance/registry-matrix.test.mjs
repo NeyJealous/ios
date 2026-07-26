@@ -27,52 +27,52 @@ test('all governance JSON schemas are syntactically valid draft 2020-12 document
   }
 });
 
-test('registry rejects duplicate, unknown status, remote permission, source and output omissions', () => {
-  const copy = structuredClone(registry);
-  copy.Agents.push(structuredClone(copy.Agents[0]));
-  copy.Agents[0].Status = 'MAGIC';
-  copy.Agents[1].CanWriteRemote = true;
-  copy.Agents[2].SpecificationSources = [];
-  copy.Agents[3].RequiredOutputs = [];
-  const errors = validateRegistry(copy).join('\n');
-  for (const expected of ['duplicate AgentId', 'unknown status', 'forbidden permission', 'missing source', 'missing output contract']) {
-    assert.match(errors, new RegExp(expected));
+test('first wave is configured but fail-closed until runtime discovery is verified', () => {
+  assert.equal(registry.PlatformState, 'FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL');
+  assert.equal(registry.ActiveCustomAgents, 0);
+  assert.equal(registry.ProvisionedAgents, 5);
+  assert.equal(registry.Agents.length, 5);
+  assert.ok(registry.Agents.every((agent) => agent.Status === 'CONFIGURED_NOT_RUNTIME_VERIFIED' && agent.ActivationEligible === false));
+  assert.equal(matrix.PlatformState, 'FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL');
+  assert.deepEqual(matrix.AlwaysRequiredAgents, []);
+  assert.equal(matrix.FailClosed.RequiredAgents.length, 4);
+  assert.equal(matrix.Transition.ActivationGate, 'CONFIGURED_RUNTIME_UNVERIFIED');
+  const serialized = JSON.stringify({ registry, matrix });
+  for (const oldId of ['APPS_SCRIPT_REVIEWER', 'ARCHITECTURE_REVIEWER', 'BOND_SPECIALIST', 'COMPANY_RATING_REVIEWER', 'DOCUMENTATION_REVIEWER', 'GOOGLE_SHEETS_REVIEWER', 'INVESTMENT_LOGIC_REVIEWER', 'PERFORMANCE_AUDITOR', 'TEST_GENERATOR', 'UX_REVIEWER']) {
+    assert.equal(serialized.includes(oldId), false, `stale agent identifier: ${oldId}`);
   }
 });
 
 const cases = [
-  ['Apps Script', 'IOS_SOURCE_SNAPSHOT/work/apps-script/Core.gs', ['APPS_SCRIPT_REVIEWER', 'PERFORMANCE_AUDITOR']],
-  ['investment', 'IOS_SOURCE_SNAPSHOT/work/apps-script/StrategyEngine.gs', ['INVESTMENT_LOGIC_REVIEWER', 'ARCHITECTURE_REVIEWER']],
-  ['bonds', 'IOS_SOURCE_SNAPSHOT/work/apps-script/BondEngine.gs', ['BOND_SPECIALIST', 'INVESTMENT_LOGIC_REVIEWER']],
-  ['Sheets', 'IOS_SOURCE_SNAPSHOT/work/schema-parts/Schema_part1.gs', ['GOOGLE_SHEETS_REVIEWER', 'UX_REVIEWER', 'PERFORMANCE_AUDITOR']],
-  ['Market Regime', 'IOS_SOURCE_SNAPSHOT/work/apps-script/MarketRegime.gs', ['INVESTMENT_LOGIC_REVIEWER', 'ARCHITECTURE_REVIEWER']],
-  ['docs only', 'docs/guide.md', ['DOCUMENTATION_REVIEWER', 'TEST_GENERATOR']],
-  ['security', 'docs/security/policy.md', ['SECURITY_REVIEWER']],
-  ['workflow', '.github/workflows/check.yml', ['ARCHITECTURE_REVIEWER', 'SECURITY_REVIEWER']],
-  ['governance', 'architecture/agents/review-matrix.yaml', ['ARCHITECTURE_REVIEWER', 'SECURITY_REVIEWER']],
+  ['production domain', 'IOS_SOURCE_SNAPSHOT/work/apps-script/Core.gs', 'no-production-write'],
+  ['docs only', 'docs/guide.md', 'traceability'],
+  ['governance', 'architecture/agents/review-matrix.yaml', 'governance-tamper-check'],
+  ['profiles', '.codex/agents/ios-agent-orchestrator.toml', 'upstream-integrity'],
+  ['tests', 'tests/agent-governance/resolver.test.mjs', 'determinism'],
 ];
 
-for (const [label, path, expected] of cases) {
-  test(`matrix resolves ${label}`, () => {
+for (const [label, path, requiredControl] of cases) {
+  test(`configured resolver routes ${label} but blocks dispatch`, () => {
     const result = resolveRequiredAgents({ changedPaths: [path], matrix });
-    for (const id of expected) assert.ok(result.RequiredAgents.includes(id), `${label} missing ${id}`);
-    assert.ok(result.RequiredAgents.includes('DOCUMENTATION_REVIEWER'));
-    assert.ok(result.RequiredAgents.includes('TEST_GENERATOR'));
-    assert.ok(result.RequiredControls.includes('privacy'));
+    assert.ok(result.RequiredAgents.length > 0);
+    assert.equal(result.MandatoryAgentAvailability, 'CONFIGURED_RUNTIME_NOT_AVAILABLE');
+    assert.equal(result.OverallResult, 'BLOCKED');
+    assert.equal(result.FailClosed, true);
+    assert.ok(result.BlockedByUnavailableAgents.length > 0);
+    assert.ok(result.RequiredControls.includes(requiredControl));
+    assert.ok(result.RequiredControls.includes('runtime-discovery-unverified'));
   });
 }
 
-test('mixed changes union every matching rule', () => {
+test('mixed and unknown changes require governance wave and remain fail-closed', () => {
   const result = resolveRequiredAgents({
-    changedPaths: ['docs/guide.md', 'IOS_SOURCE_SNAPSHOT/work/apps-script/BondEngine.gs'], matrix,
+    changedPaths: ['docs/guide.md', 'IOS_SOURCE_SNAPSHOT/work/apps-script/BondEngine.gs', 'unclassified/file.weird'], matrix,
   });
   assert.equal(result.TaskType, 'mixed/unknown');
-  assert.ok(result.RequiredAgents.includes('BOND_SPECIALIST'));
-  assert.ok(result.RequiredAgents.includes('APPS_SCRIPT_REVIEWER'));
-});
-
-test('unknown paths fail closed with broad agent set', () => {
-  const result = resolveRequiredAgents({ changedPaths: ['unclassified/file.weird'], matrix });
-  assert.equal(result.FailClosed, true);
-  assert.ok(result.RequiredAgents.length >= 9);
+  for (const agentId of matrix.FailClosed.RequiredAgents) assert.ok(result.RequiredAgents.includes(agentId));
+  assert.ok(result.RequiredAgents.includes('ios-codebase-auditor'));
+  assert.deepEqual(result.UnknownPaths, ['unclassified/file.weird']);
+  assert.equal(result.MandatoryAgentAvailability, 'CONFIGURED_RUNTIME_NOT_AVAILABLE');
+  assert.equal(result.OverallResult, 'BLOCKED');
+  assert.ok(result.BlockedByUnavailableAgents.length > 0);
 });

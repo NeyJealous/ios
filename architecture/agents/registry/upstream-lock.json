@@ -1,0 +1,231 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "PROVISIONAL",
+  "activationAllowed": false,
+  "repositories": [
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "snapshotRoot": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2",
+      "license": "MIT",
+      "licensePath": "LICENSE",
+      "licenseRawSha256": "6d4bdc9a9cf30e7beb593475fdcdbf29f981ea6bd7923f202866145409f87b44",
+      "licenseNormalizedSha256": "6d4bdc9a9cf30e7beb593475fdcdbf29f981ea6bd7923f202866145409f87b44"
+    },
+    {
+      "repository": "wshobson/agents",
+      "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "snapshotRoot": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "license": "MIT",
+      "licensePath": "LICENSE",
+      "licenseRawSha256": "f89abb55d9f073f38f1703e4518f0613c788c6174be7f13b8dfe48a1c076c746",
+      "licenseNormalizedSha256": "f89abb55d9f073f38f1703e4518f0613c788c6174be7f13b8dfe48a1c076c746"
+    }
+  ],
+  "entries": [
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/01-core-development/code-mapper.toml",
+      "profileId": "code-mapper",
+      "rawSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+      "normalizedSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+      "license": "MIT",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/01-core-development/code-mapper.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "retrievedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/04-quality-security/compliance-auditor.toml",
+      "profileId": "compliance-auditor",
+      "rawSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+      "normalizedSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+      "license": "MIT",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/04-quality-security/compliance-auditor.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "retrievedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/04-quality-security/security-auditor.toml",
+      "profileId": "security-auditor",
+      "rawSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+      "normalizedSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+      "license": "MIT",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/04-quality-security/security-auditor.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "retrievedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/06-developer-experience/documentation-engineer.toml",
+      "profileId": "documentation-engineer",
+      "rawSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+      "normalizedSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+      "license": "MIT",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/06-developer-experience/documentation-engineer.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "retrievedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/09-meta-orchestration/agent-installer.toml",
+      "profileId": "agent-installer",
+      "rawSha256": "e1a7b8c709791e973cd8be5d32c548d8f49c3ef655a492de56aedb894dc77d82",
+      "normalizedSha256": "e1a7b8c709791e973cd8be5d32c548d8f49c3ef655a492de56aedb894dc77d82",
+      "license": "MIT",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/09-meta-orchestration/agent-installer.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "retrievedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/09-meta-orchestration/agent-organizer.toml",
+      "profileId": "agent-organizer",
+      "rawSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+      "normalizedSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+      "license": "MIT",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/09-meta-orchestration/agent-organizer.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "retrievedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/09-meta-orchestration/codebase-orchestrator.toml",
+      "profileId": "codebase-orchestrator",
+      "rawSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+      "normalizedSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+      "license": "MIT",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/09-meta-orchestration/codebase-orchestrator.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "retrievedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/11-ai-governance-safety/ai-governance-auditor.toml",
+      "profileId": "ai-governance-auditor",
+      "rawSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+      "normalizedSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+      "license": "MIT",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/11-ai-governance-safety/ai-governance-auditor.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "retrievedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+      "profileId": "policy-guardrail-designer",
+      "rawSha256": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+      "normalizedSha256": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+      "license": "MIT",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "retrievedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/13-llmops-evals-observability/eval-engineer.toml",
+      "profileId": "eval-engineer",
+      "rawSha256": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+      "normalizedSha256": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+      "license": "MIT",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/13-llmops-evals-observability/eval-engineer.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "retrievedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "repository": "wshobson/agents",
+      "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/agent-teams/agents/team-lead.md",
+      "profileId": "team-lead",
+      "rawSha256": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+      "normalizedSha256": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+      "license": "MIT",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/agent-teams/agents/team-lead.md",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "retrievedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "repository": "wshobson/agents",
+      "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/business-analytics/agents/business-analyst.md",
+      "profileId": "business-analyst",
+      "rawSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+      "normalizedSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+      "license": "MIT",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/business-analytics/agents/business-analyst.md",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "retrievedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "repository": "wshobson/agents",
+      "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/c4-architecture/agents/c4-code.md",
+      "profileId": "c4-code",
+      "rawSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+      "normalizedSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+      "license": "MIT",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/c4-architecture/agents/c4-code.md",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "retrievedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "repository": "wshobson/agents",
+      "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/code-documentation/agents/docs-architect.md",
+      "profileId": "code-documentation-docs-architect",
+      "rawSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+      "normalizedSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+      "license": "MIT",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/code-documentation/agents/docs-architect.md",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "retrievedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "repository": "wshobson/agents",
+      "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+      "profileId": "comprehensive-review-code-reviewer",
+      "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "license": "MIT",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/comprehensive-review/agents/code-reviewer.md",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "retrievedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "repository": "wshobson/agents",
+      "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/conductor/agents/conductor-validator.md",
+      "profileId": "conductor-validator",
+      "rawSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+      "normalizedSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+      "license": "MIT",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/conductor/agents/conductor-validator.md",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "retrievedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "repository": "wshobson/agents",
+      "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/security-compliance/agents/security-auditor.md",
+      "profileId": "security-compliance-security-auditor",
+      "rawSha256": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+      "normalizedSha256": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+      "license": "MIT",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/security-compliance/agents/security-auditor.md",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "retrievedAt": "2026-07-22T00:00:00Z"
+    }
+  ]
+}

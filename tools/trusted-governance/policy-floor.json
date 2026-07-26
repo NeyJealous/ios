@@ -1,0 +1,11 @@
+{
+  "Version": "1.0.0",
+  "CanonicalBranch": "integration/ios-current",
+  "MandatoryAgents": [],
+  "MandatoryControls": ["security", "privacy", "secret-scan", "architecture-impact", "governance-tamper-check"],
+  "ForbiddenPassingExecutionModes": ["NOT_AVAILABLE", "CODEX_ROLE_SIMULATION", "REAL_SUBAGENT", "MANUAL_REVIEW", "CI_VALIDATOR"],
+  "TrustedExecutionAttestation": "REQUIRED_EXTERNAL",
+  "ZeroAgentTransition": "BLOCK",
+  "MaximumInputBytes": 2000000,
+  "ProductionWritesAllowed": false
+}

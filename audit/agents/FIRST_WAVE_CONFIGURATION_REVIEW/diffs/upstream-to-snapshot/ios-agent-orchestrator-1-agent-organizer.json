@@ -1,0 +1,23 @@
+{
+  "agentId": "ios-agent-orchestrator",
+  "order": 1,
+  "repository": "VoltAgent/awesome-codex-subagents",
+  "pinnedCommit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+  "sourcePath": "categories/09-meta-orchestration/agent-organizer.toml",
+  "profileId": "agent-organizer",
+  "filename": "agent-organizer.toml",
+  "license": "MIT",
+  "rawSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+  "normalizedSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+  "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/09-meta-orchestration/agent-organizer.toml",
+  "inclusionMode": "FULL_UNMODIFIED",
+  "originalBlobSha": "349416d67efe17db0a6e8feda96c369c63376097",
+  "originalBlobSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+  "snapshotSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+  "generatedBlockSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+  "byteIdenticalOriginalToSnapshot": true,
+  "byteIdenticalSnapshotToGeneratedBlock": true,
+  "sourcePointer": "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/09-meta-orchestration/agent-organizer.toml",
+  "diffResult": "ZERO_BYTE_DIFF",
+  "mutationDetected": false
+}

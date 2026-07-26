@@ -1,0 +1,22 @@
+{
+  "AgentId": "ARCHITECTURE_REVIEWER",
+  "AgentVersion": "2.1",
+  "GateId": "MODEL_RUNTIME_SMOKE_20260722",
+  "Branch": "feature/agent-platform-v2-integration",
+  "CommitSHA": "62129358f48b7cc98a3c2b61feef17626cf11324",
+  "ReviewScope": "Runtime smoke records, versioned evidence, historical immutability, deterministic rendering and activation boundary",
+  "FilesReviewed": ["architecture/agents/registry/model-availability.yaml", "audit/agents/MODEL_RUNTIME_SMOKE_20260722/", "tools/agents/render-model-availability-report.mjs", "tests/agent-governance/model-availability.test.mjs", "rfc/RFC-AGENT-PLATFORM-V2.md", "adr/ADR-AGENT-PLATFORM-V2.md"],
+  "SpecificationReferences": ["IOS Master Specification v4.0", "IOS Agent Platform Specification v2.1", "RFC-AGENT-PLATFORM-V2", "ADR-AGENT-PLATFORM-V2"],
+  "ChecksPerformed": ["exact HEAD and clean tree", "deterministic JSON and Markdown projection", "historical artifact hash preservation", "governance suite", "privacy scan", "activation boundary"],
+  "Findings": [
+    {"Severity": "BLOCKER", "Description": "External cryptographic execution/model/owner attester and durable replay store are absent."},
+    {"Severity": "BLOCKER", "Description": "GitHub positive/negative canary and protected required-ruleset evidence are absent."}
+  ],
+  "Severity": "BLOCKER",
+  "Evidence": ["AgentThreadId=/root/phase3a_architecture_review", "Local implementation status PASS at exact reviewed SHA", "7 targeted tests PASS; 87 governance tests PASS; 1 Windows symlink fixture SKIP", "Privacy scan PASS for 788 files", "Runtime observations remain unsigned and are not trusted attestation"],
+  "RequiredFixes": ["Implement and validate external signed attestation and replay boundary", "Obtain GitHub canary and protected required-ruleset evidence before activation"],
+  "ResidualRisk": "Local design is fail-closed; external model identity, owner provenance and protected enforcement remain unproven.",
+  "Status": "BLOCKED",
+  "Timestamp": "2026-07-22T19:47:55Z",
+  "ExecutionMode": "REAL_SUBAGENT"
+}

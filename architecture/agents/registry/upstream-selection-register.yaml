@@ -1,0 +1,2964 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedFrom": "IOS Agent Platform Specification v2.1 section 19.2",
+  "normalization": "UTF-8; CRLF converted to LF; Unicode NFC",
+  "activationAllowed": false,
+  "repositories": [
+    {
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "license": "MIT",
+      "licensePath": "LICENSE",
+      "licenseRawSha256": "6d4bdc9a9cf30e7beb593475fdcdbf29f981ea6bd7923f202866145409f87b44",
+      "licenseNormalizedSha256": "6d4bdc9a9cf30e7beb593475fdcdbf29f981ea6bd7923f202866145409f87b44"
+    },
+    {
+      "repository": "wshobson/agents",
+      "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "license": "MIT",
+      "licensePath": "LICENSE",
+      "licenseRawSha256": "f89abb55d9f073f38f1703e4518f0613c788c6174be7f13b8dfe48a1c076c746",
+      "licenseNormalizedSha256": "f89abb55d9f073f38f1703e4518f0613c788c6174be7f13b8dfe48a1c076c746"
+    }
+  ],
+  "counts": {
+    "SELECTED": 18,
+    "REQUIRES_OWNER_DECISION": 26,
+    "UPSTREAM_PROFILE_NOT_FOUND": 0
+  },
+  "selections": [
+    {
+      "agentId": "agent-governance-auditor",
+      "status": "SELECTED",
+      "decisionReason": "Owner accepted the exact first-wave recommendation with explicit restrictions",
+      "selectedProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/11-ai-governance-safety/ai-governance-auditor.toml",
+          "profileId": "ai-governance-auditor",
+          "rawSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+          "normalizedSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+          "profileId": "policy-guardrail-designer",
+          "rawSha256": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+          "normalizedSha256": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/13-llmops-evals-observability/eval-engineer.toml",
+          "profileId": "eval-engineer",
+          "rawSha256": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+          "normalizedSha256": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/conductor/agents/conductor-validator.md",
+          "profileId": "conductor-validator",
+          "rawSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+          "normalizedSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+          "profileId": "comprehensive-review-code-reviewer",
+          "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "license": "MIT"
+        }
+      ],
+      "candidateProfiles": [],
+      "compositionOrder": [
+        "VoltAgent/awesome-codex-subagents:categories/11-ai-governance-safety/ai-governance-auditor.toml",
+        "VoltAgent/awesome-codex-subagents:categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+        "VoltAgent/awesome-codex-subagents:categories/13-llmops-evals-observability/eval-engineer.toml",
+        "wshobson/agents:plugins/conductor/agents/conductor-validator.md",
+        "wshobson/agents:plugins/comprehensive-review/agents/code-reviewer.md"
+      ],
+      "decisionReference": "OWNER_DECISION_FIRST_WAVE_20260722",
+      "ownerDecisionCommit": "6da06f7f0a32c343f565e4f0a36354538087236a",
+      "restrictions": [
+        "IOS constraints do not rewrite upstream text",
+        "security floor cannot be weakened by evaluation",
+        "successful evaluation cannot cancel a governance blocker",
+        "code review limited to governance/platform paths",
+        "no self-review of generated profile",
+        "self-reported evidence is not trusted attestation"
+      ],
+      "selectedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "agentId": "api-contract-documenter",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/api-documenter.toml",
+          "profileId": "api-documenter",
+          "rawSha256": "9d137528dabe4acf7b084222621eb675812546aadb744f4d66d21e908b0a22a6",
+          "normalizedSha256": "9d137528dabe4acf7b084222621eb675812546aadb744f4d66d21e908b0a22a6",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/10-research-analysis/docs-researcher.toml",
+          "profileId": "docs-researcher",
+          "rawSha256": "3ca544e0b77bd88d44ab00c5beeedb50659a168f9b484c6c6d0fd2e938009f07",
+          "normalizedSha256": "3ca544e0b77bd88d44ab00c5beeedb50659a168f9b484c6c6d0fd2e938009f07",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/api-testing-observability/agents/api-documenter.md",
+          "profileId": "api-testing-observability-api-documenter",
+          "rawSha256": "e54868d57a8ea8252920aecaf07c760ba4ff743e7e01d3ee60abdd38b73a56cb",
+          "normalizedSha256": "e54868d57a8ea8252920aecaf07c760ba4ff743e7e01d3ee60abdd38b73a56cb",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/documentation-generation/agents/api-documenter.md",
+          "profileId": "documentation-generation-api-documenter",
+          "rawSha256": "2024e996680fd8f3347f5f052cb0d031b1c142f89308f93314ce6ba186683bd7",
+          "normalizedSha256": "2024e996680fd8f3347f5f052cb0d031b1c142f89308f93314ce6ba186683bd7",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/documentation-generation/agents/reference-builder.md",
+          "profileId": "reference-builder",
+          "rawSha256": "666031b1453bfca265c39191f96d25911ebde0b9170659d67215e315ca81965e",
+          "normalizedSha256": "666031b1453bfca265c39191f96d25911ebde0b9170659d67215e315ca81965e",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "apps-script-specialist",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/01-core-development/backend-developer.toml",
+          "profileId": "backend-developer",
+          "rawSha256": "e80347b92612f6132a3591746a244bbf38d5002666e15d4972f302a1c963a781",
+          "normalizedSha256": "e80347b92612f6132a3591746a244bbf38d5002666e15d4972f302a1c963a781",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/02-language-specialists/typescript-pro.toml",
+          "profileId": "typescript-pro",
+          "rawSha256": "34c2a5cdd4d8113cd60f67f62261dec4bad03ce8f917b192b4c547a3c8b3b9d6",
+          "normalizedSha256": "34c2a5cdd4d8113cd60f67f62261dec4bad03ce8f917b192b4c547a3c8b3b9d6",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/06-developer-experience/tooling-engineer.toml",
+          "profileId": "tooling-engineer",
+          "rawSha256": "2833167f79689b7fa105fae7e917c593e1c4dabd1d087ad81be08e5760705754",
+          "normalizedSha256": "2833167f79689b7fa105fae7e917c593e1c4dabd1d087ad81be08e5760705754",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/cicd-automation/agents/deployment-engineer.md",
+          "profileId": "cicd-automation-deployment-engineer",
+          "rawSha256": "7478ffdaa8d970c375f9805d80072f09c9803059d8803bddf49ab9e3ed10ea0c",
+          "normalizedSha256": "7478ffdaa8d970c375f9805d80072f09c9803059d8803bddf49ab9e3ed10ea0c",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/cloud-infrastructure/agents/deployment-engineer.md",
+          "profileId": "cloud-infrastructure-deployment-engineer",
+          "rawSha256": "8bd35b694ac179a3a4b9198f7d35f95534aaaeab271f1297cafa8e37003f2bfe",
+          "normalizedSha256": "8bd35b694ac179a3a4b9198f7d35f95534aaaeab271f1297cafa8e37003f2bfe",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-documentation/agents/code-reviewer.md",
+          "profileId": "code-documentation-code-reviewer",
+          "rawSha256": "7d3eb3cf36f5dc156bf4d39e59b8869af5ae506f16c75d87b79420ad82e01064",
+          "normalizedSha256": "7d3eb3cf36f5dc156bf4d39e59b8869af5ae506f16c75d87b79420ad82e01064",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-refactoring/agents/code-reviewer.md",
+          "profileId": "code-refactoring-code-reviewer",
+          "rawSha256": "d73ca30b44a0355a270ba2a9008826b00b9b3a18ad180def0633900e7192d0dd",
+          "normalizedSha256": "d73ca30b44a0355a270ba2a9008826b00b9b3a18ad180def0633900e7192d0dd",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/codebase-cleanup/agents/code-reviewer.md",
+          "profileId": "codebase-cleanup-code-reviewer",
+          "rawSha256": "8a409a081b1d9a1ef5e4578f9a1d9058af44b294d5a99907cad715f5cc9f76c3",
+          "normalizedSha256": "8a409a081b1d9a1ef5e4578f9a1d9058af44b294d5a99907cad715f5cc9f76c3",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+          "profileId": "comprehensive-review-code-reviewer",
+          "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/deployment-strategies/agents/deployment-engineer.md",
+          "profileId": "deployment-strategies-deployment-engineer",
+          "rawSha256": "88899c02c747a218d215b76efb7bbab7163ca7bf32a385d2cb689917220758d4",
+          "normalizedSha256": "88899c02c747a218d215b76efb7bbab7163ca7bf32a385d2cb689917220758d4",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/full-stack-orchestration/agents/deployment-engineer.md",
+          "profileId": "full-stack-orchestration-deployment-engineer",
+          "rawSha256": "5ebd904ccea45725fd9887fcf113658ff0e8a2c553215a0ab3297ef83264b905",
+          "normalizedSha256": "5ebd904ccea45725fd9887fcf113658ff0e8a2c553215a0ab3297ef83264b905",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/git-pr-workflows/agents/code-reviewer.md",
+          "profileId": "git-pr-workflows-code-reviewer",
+          "rawSha256": "0c96c9d4433f4a380ac613c1185573fc6d2097e6d01d1e43a9617042560deb94",
+          "normalizedSha256": "0c96c9d4433f4a380ac613c1185573fc6d2097e6d01d1e43a9617042560deb94",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/incident-response/agents/code-reviewer.md",
+          "profileId": "incident-response-code-reviewer",
+          "rawSha256": "803e71dbe4a049cbdeb794e56bc958dcd2b7c0b3acccdd7b37c48c4e6dcb2c6a",
+          "normalizedSha256": "803e71dbe4a049cbdeb794e56bc958dcd2b7c0b3acccdd7b37c48c4e6dcb2c6a",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/tdd-workflows/agents/code-reviewer.md",
+          "profileId": "tdd-workflows-code-reviewer",
+          "rawSha256": "25796f2ec8deb698691681b51d1d94a0978c84a89a6af8c2d276d126b460e634",
+          "normalizedSha256": "25796f2ec8deb698691681b51d1d94a0978c84a89a6af8c2d276d126b460e634",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "architect-reviewer",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/architect-reviewer.toml",
+          "profileId": "architect-reviewer",
+          "rawSha256": "e2505342b3d0418ed59c00632a4e694f460a0d064369f14878121866f43812dd",
+          "normalizedSha256": "e2505342b3d0418ed59c00632a4e694f460a0d064369f14878121866f43812dd",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/09-meta-orchestration/codebase-orchestrator.toml",
+          "profileId": "codebase-orchestrator",
+          "rawSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+          "normalizedSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-documentation/agents/code-reviewer.md",
+          "profileId": "code-documentation-code-reviewer",
+          "rawSha256": "7d3eb3cf36f5dc156bf4d39e59b8869af5ae506f16c75d87b79420ad82e01064",
+          "normalizedSha256": "7d3eb3cf36f5dc156bf4d39e59b8869af5ae506f16c75d87b79420ad82e01064",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-refactoring/agents/code-reviewer.md",
+          "profileId": "code-refactoring-code-reviewer",
+          "rawSha256": "d73ca30b44a0355a270ba2a9008826b00b9b3a18ad180def0633900e7192d0dd",
+          "normalizedSha256": "d73ca30b44a0355a270ba2a9008826b00b9b3a18ad180def0633900e7192d0dd",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/codebase-cleanup/agents/code-reviewer.md",
+          "profileId": "codebase-cleanup-code-reviewer",
+          "rawSha256": "8a409a081b1d9a1ef5e4578f9a1d9058af44b294d5a99907cad715f5cc9f76c3",
+          "normalizedSha256": "8a409a081b1d9a1ef5e4578f9a1d9058af44b294d5a99907cad715f5cc9f76c3",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+          "profileId": "comprehensive-review-code-reviewer",
+          "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/database-cloud-optimization/agents/database-architect.md",
+          "profileId": "database-cloud-optimization-database-architect",
+          "rawSha256": "8918aa93c34473f906251497ee5907a4ef81abe1a1fb2bbd87637906936af3b7",
+          "normalizedSha256": "8918aa93c34473f906251497ee5907a4ef81abe1a1fb2bbd87637906936af3b7",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/database-design/agents/database-architect.md",
+          "profileId": "database-design-database-architect",
+          "rawSha256": "cada2f67ad4c0e6788007a8d0cef92ba333d88820cb0845e415c7a5d03151f4b",
+          "normalizedSha256": "cada2f67ad4c0e6788007a8d0cef92ba333d88820cb0845e415c7a5d03151f4b",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/git-pr-workflows/agents/code-reviewer.md",
+          "profileId": "git-pr-workflows-code-reviewer",
+          "rawSha256": "0c96c9d4433f4a380ac613c1185573fc6d2097e6d01d1e43a9617042560deb94",
+          "normalizedSha256": "0c96c9d4433f4a380ac613c1185573fc6d2097e6d01d1e43a9617042560deb94",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/incident-response/agents/code-reviewer.md",
+          "profileId": "incident-response-code-reviewer",
+          "rawSha256": "803e71dbe4a049cbdeb794e56bc958dcd2b7c0b3acccdd7b37c48c4e6dcb2c6a",
+          "normalizedSha256": "803e71dbe4a049cbdeb794e56bc958dcd2b7c0b3acccdd7b37c48c4e6dcb2c6a",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/tdd-workflows/agents/code-reviewer.md",
+          "profileId": "tdd-workflows-code-reviewer",
+          "rawSha256": "25796f2ec8deb698691681b51d1d94a0978c84a89a6af8c2d276d126b460e634",
+          "normalizedSha256": "25796f2ec8deb698691681b51d1d94a0978c84a89a6af8c2d276d126b460e634",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "audit-traceability-reviewer",
+      "status": "SELECTED",
+      "decisionReason": "Owner accepted the exact first-wave recommendation with explicit restrictions",
+      "selectedProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/compliance-auditor.toml",
+          "profileId": "compliance-auditor",
+          "rawSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+          "normalizedSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/06-developer-experience/documentation-engineer.toml",
+          "profileId": "documentation-engineer",
+          "rawSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+          "normalizedSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-documentation/agents/docs-architect.md",
+          "profileId": "code-documentation-docs-architect",
+          "rawSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+          "normalizedSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/business-analytics/agents/business-analyst.md",
+          "profileId": "business-analyst",
+          "rawSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+          "normalizedSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+          "license": "MIT"
+        }
+      ],
+      "candidateProfiles": [],
+      "compositionOrder": [
+        "VoltAgent/awesome-codex-subagents:categories/04-quality-security/compliance-auditor.toml",
+        "VoltAgent/awesome-codex-subagents:categories/06-developer-experience/documentation-engineer.toml",
+        "wshobson/agents:plugins/code-documentation/agents/docs-architect.md",
+        "wshobson/agents:plugins/business-analytics/agents/business-analyst.md"
+      ],
+      "decisionReference": "OWNER_DECISION_FIRST_WAVE_20260722",
+      "ownerDecisionCommit": "6da06f7f0a32c343f565e4f0a36354538087236a",
+      "restrictions": [
+        "no owner requirement creation",
+        "ambiguity is not an owner decision",
+        "no autonomous RFC or ADR status change",
+        "documentation is not runtime evidence",
+        "runtime is not normative acceptance evidence",
+        "missing owner or evidence returns INSUFFICIENT_EVIDENCE or BLOCKED"
+      ],
+      "selectedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "agentId": "credit-risk-reviewer",
+      "status": "SELECTED",
+      "decisionReason": "Specification provides deterministic exact components and order",
+      "selectedProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/risk-manager.toml",
+          "profileId": "risk-manager",
+          "rawSha256": "3af983e3711546723bdce49af016b1ce67e9043bb3a360ffb69495c326e72ad6",
+          "normalizedSha256": "3af983e3711546723bdce49af016b1ce67e9043bb3a360ffb69495c326e72ad6",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/10-research-analysis/research-analyst.toml",
+          "profileId": "research-analyst",
+          "rawSha256": "c9438da69e17cf332d27ff8d8f12e78951cd15bf15e2692be01230c2a7b06f91",
+          "normalizedSha256": "c9438da69e17cf332d27ff8d8f12e78951cd15bf15e2692be01230c2a7b06f91",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/quantitative-trading/agents/risk-manager.md",
+          "profileId": "risk-manager",
+          "rawSha256": "d49de27acde3d03bb350d1c2b6795829172b0954a29d46bc69b466d9c586dd1c",
+          "normalizedSha256": "d49de27acde3d03bb350d1c2b6795829172b0954a29d46bc69b466d9c586dd1c",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/business-analytics/agents/business-analyst.md",
+          "profileId": "business-analyst",
+          "rawSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+          "normalizedSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+          "license": "MIT"
+        }
+      ],
+      "candidateProfiles": []
+    },
+    {
+      "agentId": "data-engineer",
+      "status": "SELECTED",
+      "decisionReason": "Specification provides deterministic exact components and order",
+      "selectedProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/05-data-ai/data-engineer.toml",
+          "profileId": "data-engineer",
+          "rawSha256": "27c0b33da2fd9f8e77c3aa2c4c2d008ffead08fd3e1ef29eb4afb28e6afbf8c0",
+          "normalizedSha256": "27c0b33da2fd9f8e77c3aa2c4c2d008ffead08fd3e1ef29eb4afb28e6afbf8c0",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/data-engineering/agents/data-engineer.md",
+          "profileId": "data-engineer",
+          "rawSha256": "c88021cb4b2e2e432cb5df36d90db46e872fa7d28c64d10aad7b4c4334683ab6",
+          "normalizedSha256": "c88021cb4b2e2e432cb5df36d90db46e872fa7d28c64d10aad7b4c4334683ab6",
+          "license": "MIT"
+        }
+      ],
+      "candidateProfiles": []
+    },
+    {
+      "agentId": "data-researcher",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative workflow phrase has no exact profile ID",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/10-research-analysis/docs-researcher.toml",
+          "profileId": "docs-researcher",
+          "rawSha256": "3ca544e0b77bd88d44ab00c5beeedb50659a168f9b484c6c6d0fd2e938009f07",
+          "normalizedSha256": "3ca544e0b77bd88d44ab00c5beeedb50659a168f9b484c6c6d0fd2e938009f07",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/content-marketing/agents/search-specialist.md",
+          "profileId": "search-specialist",
+          "rawSha256": "d74f9e7d3368d74672a24968e6e0e11e7ef050c88214554ef9fefec7cb3a999c",
+          "normalizedSha256": "d74f9e7d3368d74672a24968e6e0e11e7ef050c88214554ef9fefec7cb3a999c",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "data-schema-migration-reviewer",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/03-infrastructure/database-administrator.toml",
+          "profileId": "database-administrator",
+          "rawSha256": "e86387f3e0e026cdbcbbcd6a64d4398c3214f3de4f2e852f401b67375ac1b27d",
+          "normalizedSha256": "e86387f3e0e026cdbcbbcd6a64d4398c3214f3de4f2e852f401b67375ac1b27d",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/05-data-ai/data-engineer.toml",
+          "profileId": "data-engineer",
+          "rawSha256": "27c0b33da2fd9f8e77c3aa2c4c2d008ffead08fd3e1ef29eb4afb28e6afbf8c0",
+          "normalizedSha256": "27c0b33da2fd9f8e77c3aa2c4c2d008ffead08fd3e1ef29eb4afb28e6afbf8c0",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/05-data-ai/database-optimizer.toml",
+          "profileId": "database-optimizer",
+          "rawSha256": "6f2ed9002517b3d24a21100d2028354b8ff3bb149f93e97bfa1116f72bb6e97a",
+          "normalizedSha256": "6f2ed9002517b3d24a21100d2028354b8ff3bb149f93e97bfa1116f72bb6e97a",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/data-engineering/agents/data-engineer.md",
+          "profileId": "data-engineer",
+          "rawSha256": "c88021cb4b2e2e432cb5df36d90db46e872fa7d28c64d10aad7b4c4334683ab6",
+          "normalizedSha256": "c88021cb4b2e2e432cb5df36d90db46e872fa7d28c64d10aad7b4c4334683ab6",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/database-cloud-optimization/agents/database-optimizer.md",
+          "profileId": "database-cloud-optimization-database-optimizer",
+          "rawSha256": "4be26ef22f389a267b6b61bdc0d661101b602aa2fed162ade7110df3fe124488",
+          "normalizedSha256": "4be26ef22f389a267b6b61bdc0d661101b602aa2fed162ade7110df3fe124488",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/database-migrations/agents/database-admin.md",
+          "profileId": "database-admin",
+          "rawSha256": "b376aa6ce872d9e63d9b75668916a00b8488c7ad5cbe0af2cbb63cf59e690860",
+          "normalizedSha256": "b376aa6ce872d9e63d9b75668916a00b8488c7ad5cbe0af2cbb63cf59e690860",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/database-migrations/agents/database-optimizer.md",
+          "profileId": "database-migrations-database-optimizer",
+          "rawSha256": "fc3afa4b622ec767278e31ebd8fc2dfed4ba87cf3226683813ca52666d9f1855",
+          "normalizedSha256": "fc3afa4b622ec767278e31ebd8fc2dfed4ba87cf3226683813ca52666d9f1855",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/observability-monitoring/agents/database-optimizer.md",
+          "profileId": "observability-monitoring-database-optimizer",
+          "rawSha256": "5f9b1c8e1073a58b2198ab5e406ad59c87513d57f67d810dbce02693d80ded99",
+          "normalizedSha256": "5f9b1c8e1073a58b2198ab5e406ad59c87513d57f67d810dbce02693d80ded99",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "data-scientist",
+      "status": "SELECTED",
+      "decisionReason": "Specification provides deterministic exact components and order",
+      "selectedProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/05-data-ai/data-scientist.toml",
+          "profileId": "data-scientist",
+          "rawSha256": "ceba8501918192a6d1fe9999fb76396f7ed0f7f83c1e797e75ad96a3011e378b",
+          "normalizedSha256": "ceba8501918192a6d1fe9999fb76396f7ed0f7f83c1e797e75ad96a3011e378b",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/machine-learning-ops/agents/data-scientist.md",
+          "profileId": "data-scientist",
+          "rawSha256": "ded3aca731f61a47d2bfc95ae3033abf364d1e30a142736b99e993e65817bf3d",
+          "normalizedSha256": "ded3aca731f61a47d2bfc95ae3033abf364d1e30a142736b99e993e65817bf3d",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/machine-learning-ops/agents/ml-engineer.md",
+          "profileId": "ml-engineer",
+          "rawSha256": "604a856602fe59fb3656db554ff0ba6d097c91e22f16fdd70b3e3c1226487285",
+          "normalizedSha256": "604a856602fe59fb3656db554ff0ba6d097c91e22f16fdd70b3e3c1226487285",
+          "license": "MIT"
+        }
+      ],
+      "candidateProfiles": []
+    },
+    {
+      "agentId": "dependency-supply-chain-reviewer",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/security-auditor.toml",
+          "profileId": "security-auditor",
+          "rawSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+          "normalizedSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/06-developer-experience/dependency-manager.toml",
+          "profileId": "dependency-manager",
+          "rawSha256": "b8665ee9b3938e1892d95898336aba18b428f8c6e50e33b1f41c8b01e1ad5832",
+          "normalizedSha256": "b8665ee9b3938e1892d95898336aba18b428f8c6e50e33b1f41c8b01e1ad5832",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/08-business-product/license-engineer.toml",
+          "profileId": "license-engineer",
+          "rawSha256": "b6b349afb0bfdc5105bcc22bcb52a08ff0ca913297f211ceed04abc18a54bb21",
+          "normalizedSha256": "b6b349afb0bfdc5105bcc22bcb52a08ff0ca913297f211ceed04abc18a54bb21",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/backend-development/agents/security-auditor.md",
+          "profileId": "backend-development-security-auditor",
+          "rawSha256": "2f99b7bc863b221d0b38e4dd6976be854bf843fbddcc88145e97573e10e70e32",
+          "normalizedSha256": "2f99b7bc863b221d0b38e4dd6976be854bf843fbddcc88145e97573e10e70e32",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/cicd-automation/agents/deployment-engineer.md",
+          "profileId": "cicd-automation-deployment-engineer",
+          "rawSha256": "7478ffdaa8d970c375f9805d80072f09c9803059d8803bddf49ab9e3ed10ea0c",
+          "normalizedSha256": "7478ffdaa8d970c375f9805d80072f09c9803059d8803bddf49ab9e3ed10ea0c",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/cloud-infrastructure/agents/deployment-engineer.md",
+          "profileId": "cloud-infrastructure-deployment-engineer",
+          "rawSha256": "8bd35b694ac179a3a4b9198f7d35f95534aaaeab271f1297cafa8e37003f2bfe",
+          "normalizedSha256": "8bd35b694ac179a3a4b9198f7d35f95534aaaeab271f1297cafa8e37003f2bfe",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/comprehensive-review/agents/security-auditor.md",
+          "profileId": "comprehensive-review-security-auditor",
+          "rawSha256": "60cc935ebc0f3e651a88fbbf688202301cb3003be14a2e7dda58d6cb5bd38c56",
+          "normalizedSha256": "60cc935ebc0f3e651a88fbbf688202301cb3003be14a2e7dda58d6cb5bd38c56",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/deployment-strategies/agents/deployment-engineer.md",
+          "profileId": "deployment-strategies-deployment-engineer",
+          "rawSha256": "88899c02c747a218d215b76efb7bbab7163ca7bf32a385d2cb689917220758d4",
+          "normalizedSha256": "88899c02c747a218d215b76efb7bbab7163ca7bf32a385d2cb689917220758d4",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/full-stack-orchestration/agents/deployment-engineer.md",
+          "profileId": "full-stack-orchestration-deployment-engineer",
+          "rawSha256": "5ebd904ccea45725fd9887fcf113658ff0e8a2c553215a0ab3297ef83264b905",
+          "normalizedSha256": "5ebd904ccea45725fd9887fcf113658ff0e8a2c553215a0ab3297ef83264b905",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/full-stack-orchestration/agents/security-auditor.md",
+          "profileId": "full-stack-orchestration-security-auditor",
+          "rawSha256": "13a353ae95f3c1f3ae3adf3ee8c884812c7028b3329a91a146531ac48ea9d1fd",
+          "normalizedSha256": "13a353ae95f3c1f3ae3adf3ee8c884812c7028b3329a91a146531ac48ea9d1fd",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/security-compliance/agents/security-auditor.md",
+          "profileId": "security-compliance-security-auditor",
+          "rawSha256": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+          "normalizedSha256": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/security-scanning/agents/security-auditor.md",
+          "profileId": "security-scanning-security-auditor",
+          "rawSha256": "8c01b76d526c83a5646b77ee70a4cf33aaf0a5eee826ab949ea6ed97f1319cfa",
+          "normalizedSha256": "8c01b76d526c83a5646b77ee70a4cf33aaf0a5eee826ab949ea6ed97f1319cfa",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "documentation-engineer",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/06-developer-experience/documentation-engineer.toml",
+          "profileId": "documentation-engineer",
+          "rawSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+          "normalizedSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/10-research-analysis/docs-researcher.toml",
+          "profileId": "docs-researcher",
+          "rawSha256": "3ca544e0b77bd88d44ab00c5beeedb50659a168f9b484c6c6d0fd2e938009f07",
+          "normalizedSha256": "3ca544e0b77bd88d44ab00c5beeedb50659a168f9b484c6c6d0fd2e938009f07",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-documentation/agents/docs-architect.md",
+          "profileId": "code-documentation-docs-architect",
+          "rawSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+          "normalizedSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/documentation-generation/agents/docs-architect.md",
+          "profileId": "documentation-generation-docs-architect",
+          "rawSha256": "435520e293fa4b997a39b7455d7131351598f4cbaf4813135ab5182e6554005b",
+          "normalizedSha256": "435520e293fa4b997a39b7455d7131351598f4cbaf4813135ab5182e6554005b",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "fixed-income-bond-reviewer",
+      "status": "SELECTED",
+      "decisionReason": "Specification provides deterministic exact components and order",
+      "selectedProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/quant-analyst.toml",
+          "profileId": "quant-analyst",
+          "rawSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "normalizedSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/fintech-engineer.toml",
+          "profileId": "fintech-engineer",
+          "rawSha256": "7f5226e4279e0235a29524375edf2623c945113fd4239cbeeb874eb2c2639f9f",
+          "normalizedSha256": "7f5226e4279e0235a29524375edf2623c945113fd4239cbeeb874eb2c2639f9f",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/quantitative-trading/agents/quant-analyst.md",
+          "profileId": "quant-analyst",
+          "rawSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "normalizedSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/machine-learning-ops/agents/data-scientist.md",
+          "profileId": "data-scientist",
+          "rawSha256": "ded3aca731f61a47d2bfc95ae3033abf364d1e30a142736b99e993e65817bf3d",
+          "normalizedSha256": "ded3aca731f61a47d2bfc95ae3033abf364d1e30a142736b99e993e65817bf3d",
+          "license": "MIT"
+        }
+      ],
+      "candidateProfiles": []
+    },
+    {
+      "agentId": "git-workflow-manager",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/06-developer-experience/git-workflow-manager.toml",
+          "profileId": "git-workflow-manager",
+          "rawSha256": "852f4ada95467eac2df6d3ae2d47b4a039fdb0384b74cdb3066f6316e490b435",
+          "normalizedSha256": "852f4ada95467eac2df6d3ae2d47b4a039fdb0384b74cdb3066f6316e490b435",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/cicd-automation/agents/deployment-engineer.md",
+          "profileId": "cicd-automation-deployment-engineer",
+          "rawSha256": "7478ffdaa8d970c375f9805d80072f09c9803059d8803bddf49ab9e3ed10ea0c",
+          "normalizedSha256": "7478ffdaa8d970c375f9805d80072f09c9803059d8803bddf49ab9e3ed10ea0c",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/cicd-automation/agents/devops-troubleshooter.md",
+          "profileId": "cicd-automation-devops-troubleshooter",
+          "rawSha256": "7dded0f01b0cf7290a7ee2885750b440c984c79782e80a6193a918b4a808cf85",
+          "normalizedSha256": "7dded0f01b0cf7290a7ee2885750b440c984c79782e80a6193a918b4a808cf85",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/cloud-infrastructure/agents/deployment-engineer.md",
+          "profileId": "cloud-infrastructure-deployment-engineer",
+          "rawSha256": "8bd35b694ac179a3a4b9198f7d35f95534aaaeab271f1297cafa8e37003f2bfe",
+          "normalizedSha256": "8bd35b694ac179a3a4b9198f7d35f95534aaaeab271f1297cafa8e37003f2bfe",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/deployment-strategies/agents/deployment-engineer.md",
+          "profileId": "deployment-strategies-deployment-engineer",
+          "rawSha256": "88899c02c747a218d215b76efb7bbab7163ca7bf32a385d2cb689917220758d4",
+          "normalizedSha256": "88899c02c747a218d215b76efb7bbab7163ca7bf32a385d2cb689917220758d4",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/distributed-debugging/agents/devops-troubleshooter.md",
+          "profileId": "distributed-debugging-devops-troubleshooter",
+          "rawSha256": "d83fb0bcc7ecea8e262e2174d2241c9724f99a0cfc25a963e4d9491b2d0e7b31",
+          "normalizedSha256": "d83fb0bcc7ecea8e262e2174d2241c9724f99a0cfc25a963e4d9491b2d0e7b31",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/full-stack-orchestration/agents/deployment-engineer.md",
+          "profileId": "full-stack-orchestration-deployment-engineer",
+          "rawSha256": "5ebd904ccea45725fd9887fcf113658ff0e8a2c553215a0ab3297ef83264b905",
+          "normalizedSha256": "5ebd904ccea45725fd9887fcf113658ff0e8a2c553215a0ab3297ef83264b905",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/incident-response/agents/devops-troubleshooter.md",
+          "profileId": "incident-response-devops-troubleshooter",
+          "rawSha256": "da261020ffc7f87e9d6a61111197f7b93431886471493a49de4d7be511d22594",
+          "normalizedSha256": "da261020ffc7f87e9d6a61111197f7b93431886471493a49de4d7be511d22594",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "google-sheets-systems-reviewer",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/qa-expert.toml",
+          "profileId": "qa-expert",
+          "rawSha256": "4cccb92ef18cbabe17b04495bd89a8258de6b3a1af705b3b88aa65f94e8dd916",
+          "normalizedSha256": "4cccb92ef18cbabe17b04495bd89a8258de6b3a1af705b3b88aa65f94e8dd916",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/05-data-ai/data-analyst.toml",
+          "profileId": "data-analyst",
+          "rawSha256": "e96533d77f52dc972f2b9242c6f98618af15d603c4004d55aa5b623ebaaa68e7",
+          "normalizedSha256": "e96533d77f52dc972f2b9242c6f98618af15d603c4004d55aa5b623ebaaa68e7",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/backend-development/agents/test-automator.md",
+          "profileId": "backend-development-test-automator",
+          "rawSha256": "317e434b4164805dae27bdfca4ab20cd75cc167e5c1a163dd31d127561a72077",
+          "normalizedSha256": "317e434b4164805dae27bdfca4ab20cd75cc167e5c1a163dd31d127561a72077",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/business-analytics/agents/business-analyst.md",
+          "profileId": "business-analyst",
+          "rawSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+          "normalizedSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/codebase-cleanup/agents/test-automator.md",
+          "profileId": "codebase-cleanup-test-automator",
+          "rawSha256": "7831008f59f72bae364a995487f801dc5cbc35cc05c668053affb1810e5a1034",
+          "normalizedSha256": "7831008f59f72bae364a995487f801dc5cbc35cc05c668053affb1810e5a1034",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/full-stack-orchestration/agents/test-automator.md",
+          "profileId": "full-stack-orchestration-test-automator",
+          "rawSha256": "2c01590fc3ef4f4f730fa61fff66c3f76f353017c424d264728f9e7f8170398e",
+          "normalizedSha256": "2c01590fc3ef4f4f730fa61fff66c3f76f353017c424d264728f9e7f8170398e",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/incident-response/agents/test-automator.md",
+          "profileId": "incident-response-test-automator",
+          "rawSha256": "6f832e5cf3ccfe7e4edd8ef2ebdc7b71515b66ab359b90b4d842edf3f40d569c",
+          "normalizedSha256": "6f832e5cf3ccfe7e4edd8ef2ebdc7b71515b66ab359b90b4d842edf3f40d569c",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/performance-testing-review/agents/test-automator.md",
+          "profileId": "performance-testing-review-test-automator",
+          "rawSha256": "b204dd7bf9e6c6855e7684170b198232f69d56b978969375948a6e9825777125",
+          "normalizedSha256": "b204dd7bf9e6c6855e7684170b198232f69d56b978969375948a6e9825777125",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/unit-testing/agents/test-automator.md",
+          "profileId": "unit-testing-test-automator",
+          "rawSha256": "439a44edf224638acaefd241258b6dc189b4f7ade5427ebc9d29b04e7f532017",
+          "normalizedSha256": "439a44edf224638acaefd241258b6dc189b4f7ade5427ebc9d29b04e7f532017",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "historical-execution-simulator-reviewer",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/performance-engineer.toml",
+          "profileId": "performance-engineer",
+          "rawSha256": "0f78120f42b39f8b872eb1fbeeabb399e4c1b82e47b58c7e15178dfcf4f433fc",
+          "normalizedSha256": "0f78120f42b39f8b872eb1fbeeabb399e4c1b82e47b58c7e15178dfcf4f433fc",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/quant-analyst.toml",
+          "profileId": "quant-analyst",
+          "rawSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "normalizedSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/application-performance/agents/performance-engineer.md",
+          "profileId": "application-performance-performance-engineer",
+          "rawSha256": "893d6d2804013450d0c590a9b2f497406a89a4fcbf4d0f3880b5abc97cad77eb",
+          "normalizedSha256": "893d6d2804013450d0c590a9b2f497406a89a4fcbf4d0f3880b5abc97cad77eb",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/backend-development/agents/performance-engineer.md",
+          "profileId": "backend-development-performance-engineer",
+          "rawSha256": "9e8d94ef79d66d3c74d810c55206af7ec92d26f6c63c90298f006a107c2d6870",
+          "normalizedSha256": "9e8d94ef79d66d3c74d810c55206af7ec92d26f6c63c90298f006a107c2d6870",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/full-stack-orchestration/agents/performance-engineer.md",
+          "profileId": "full-stack-orchestration-performance-engineer",
+          "rawSha256": "d7f67ec4521413ef6583040f2bcfac8395b23d38ed8ae6e70391ededfab3415f",
+          "normalizedSha256": "d7f67ec4521413ef6583040f2bcfac8395b23d38ed8ae6e70391ededfab3415f",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/observability-monitoring/agents/performance-engineer.md",
+          "profileId": "observability-monitoring-performance-engineer",
+          "rawSha256": "f12ed994c01dc345a7d7652e1e8a236358db121c1bb4b49a5049e2baf3e951ee",
+          "normalizedSha256": "f12ed994c01dc345a7d7652e1e8a236358db121c1bb4b49a5049e2baf3e951ee",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/performance-testing-review/agents/performance-engineer.md",
+          "profileId": "performance-testing-review-performance-engineer",
+          "rawSha256": "4a1b6c49c668cbe7a9e54699203e08f47b592d3fbceca0a2e48f948aed7784fe",
+          "normalizedSha256": "4a1b6c49c668cbe7a9e54699203e08f47b592d3fbceca0a2e48f948aed7784fe",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/quantitative-trading/agents/quant-analyst.md",
+          "profileId": "quant-analyst",
+          "rawSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "normalizedSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "investment-universe-reviewer",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/fintech-engineer.toml",
+          "profileId": "fintech-engineer",
+          "rawSha256": "7f5226e4279e0235a29524375edf2623c945113fd4239cbeeb874eb2c2639f9f",
+          "normalizedSha256": "7f5226e4279e0235a29524375edf2623c945113fd4239cbeeb874eb2c2639f9f",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/risk-manager.toml",
+          "profileId": "risk-manager",
+          "rawSha256": "3af983e3711546723bdce49af016b1ce67e9043bb3a360ffb69495c326e72ad6",
+          "normalizedSha256": "3af983e3711546723bdce49af016b1ce67e9043bb3a360ffb69495c326e72ad6",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/10-research-analysis/data-researcher.toml",
+          "profileId": "data-researcher",
+          "rawSha256": "b078baed064189d7f48671f2e246dcd1c6082fb1e2cf00ae3ab9c0e23a1b2e8f",
+          "normalizedSha256": "b078baed064189d7f48671f2e246dcd1c6082fb1e2cf00ae3ab9c0e23a1b2e8f",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/10-research-analysis/docs-researcher.toml",
+          "profileId": "docs-researcher",
+          "rawSha256": "3ca544e0b77bd88d44ab00c5beeedb50659a168f9b484c6c6d0fd2e938009f07",
+          "normalizedSha256": "3ca544e0b77bd88d44ab00c5beeedb50659a168f9b484c6c6d0fd2e938009f07",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/content-marketing/agents/search-specialist.md",
+          "profileId": "search-specialist",
+          "rawSha256": "d74f9e7d3368d74672a24968e6e0e11e7ef050c88214554ef9fefec7cb3a999c",
+          "normalizedSha256": "d74f9e7d3368d74672a24968e6e0e11e7ef050c88214554ef9fefec7cb3a999c",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/quantitative-trading/agents/risk-manager.md",
+          "profileId": "risk-manager",
+          "rawSha256": "d49de27acde3d03bb350d1c2b6795829172b0954a29d46bc69b466d9c586dd1c",
+          "normalizedSha256": "d49de27acde3d03bb350d1c2b6795829172b0954a29d46bc69b466d9c586dd1c",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "ios-agent-orchestrator",
+      "status": "SELECTED",
+      "decisionReason": "Owner accepted the exact first-wave recommendation with explicit restrictions",
+      "selectedProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/09-meta-orchestration/agent-organizer.toml",
+          "profileId": "agent-organizer",
+          "rawSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+          "normalizedSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/09-meta-orchestration/agent-installer.toml",
+          "profileId": "agent-installer",
+          "rawSha256": "e1a7b8c709791e973cd8be5d32c548d8f49c3ef655a492de56aedb894dc77d82",
+          "normalizedSha256": "e1a7b8c709791e973cd8be5d32c548d8f49c3ef655a492de56aedb894dc77d82",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/conductor/agents/conductor-validator.md",
+          "profileId": "conductor-validator",
+          "rawSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+          "normalizedSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/agent-teams/agents/team-lead.md",
+          "profileId": "team-lead",
+          "rawSha256": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+          "normalizedSha256": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+          "license": "MIT"
+        }
+      ],
+      "candidateProfiles": [],
+      "compositionOrder": [
+        "VoltAgent/awesome-codex-subagents:categories/09-meta-orchestration/agent-organizer.toml",
+        "VoltAgent/awesome-codex-subagents:categories/09-meta-orchestration/agent-installer.toml",
+        "wshobson/agents:plugins/conductor/agents/conductor-validator.md",
+        "wshobson/agents:plugins/agent-teams/agents/team-lead.md"
+      ],
+      "decisionReference": "OWNER_DECISION_FIRST_WAVE_20260722",
+      "ownerDecisionCommit": "6da06f7f0a32c343f565e4f0a36354538087236a",
+      "restrictions": [
+        "no agent installation or removal",
+        "no global Codex or user-environment mutation",
+        "no autonomous .codex/agents changes",
+        "no floating upstream download or install scripts",
+        "no package installation",
+        "no autonomous Registry or Model Registry mutation",
+        "no activation, merge, deployment or production approval",
+        "supervisor-only; no subject-matter verdict or self-review"
+      ],
+      "selectedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "agentId": "ios-codebase-auditor",
+      "status": "SELECTED",
+      "decisionReason": "Owner accepted the exact first-wave recommendation with explicit restrictions",
+      "selectedProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/09-meta-orchestration/codebase-orchestrator.toml",
+          "profileId": "codebase-orchestrator",
+          "rawSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+          "normalizedSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/01-core-development/code-mapper.toml",
+          "profileId": "code-mapper",
+          "rawSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+          "normalizedSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+          "profileId": "comprehensive-review-code-reviewer",
+          "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/c4-architecture/agents/c4-code.md",
+          "profileId": "c4-code",
+          "rawSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+          "normalizedSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+          "license": "MIT"
+        }
+      ],
+      "candidateProfiles": [],
+      "compositionOrder": [
+        "VoltAgent/awesome-codex-subagents:categories/09-meta-orchestration/codebase-orchestrator.toml",
+        "VoltAgent/awesome-codex-subagents:categories/01-core-development/code-mapper.toml",
+        "wshobson/agents:plugins/comprehensive-review/agents/code-reviewer.md",
+        "wshobson/agents:plugins/c4-architecture/agents/c4-code.md"
+      ],
+      "decisionReference": "OWNER_DECISION_FIRST_WAVE_20260722",
+      "ownerDecisionCommit": "6da06f7f0a32c343f565e4f0a36354538087236a",
+      "restrictions": [
+        "repository read-only",
+        "no file modification, refactoring, deletion or dependency update",
+        "no production, Apps Script, Sheets, provider or broker access",
+        "no deployment, commit, push or merge",
+        "only the exact recommended code-reviewer path is included"
+      ],
+      "selectedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "agentId": "ios-quant-backtest-auditor",
+      "status": "SELECTED",
+      "decisionReason": "Specification provides deterministic exact components and order",
+      "selectedProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/quant-analyst.toml",
+          "profileId": "quant-analyst",
+          "rawSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "normalizedSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/05-data-ai/data-scientist.toml",
+          "profileId": "data-scientist",
+          "rawSha256": "ceba8501918192a6d1fe9999fb76396f7ed0f7f83c1e797e75ad96a3011e378b",
+          "normalizedSha256": "ceba8501918192a6d1fe9999fb76396f7ed0f7f83c1e797e75ad96a3011e378b",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/quantitative-trading/agents/quant-analyst.md",
+          "profileId": "quant-analyst",
+          "rawSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "normalizedSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/machine-learning-ops/agents/data-scientist.md",
+          "profileId": "data-scientist",
+          "rawSha256": "ded3aca731f61a47d2bfc95ae3033abf364d1e30a142736b99e993e65817bf3d",
+          "normalizedSha256": "ded3aca731f61a47d2bfc95ae3033abf364d1e30a142736b99e993e65817bf3d",
+          "license": "MIT"
+        }
+      ],
+      "candidateProfiles": []
+    },
+    {
+      "agentId": "liquidity-transaction-cost-reviewer",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/performance-engineer.toml",
+          "profileId": "performance-engineer",
+          "rawSha256": "0f78120f42b39f8b872eb1fbeeabb399e4c1b82e47b58c7e15178dfcf4f433fc",
+          "normalizedSha256": "0f78120f42b39f8b872eb1fbeeabb399e4c1b82e47b58c7e15178dfcf4f433fc",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/quant-analyst.toml",
+          "profileId": "quant-analyst",
+          "rawSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "normalizedSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/application-performance/agents/performance-engineer.md",
+          "profileId": "application-performance-performance-engineer",
+          "rawSha256": "893d6d2804013450d0c590a9b2f497406a89a4fcbf4d0f3880b5abc97cad77eb",
+          "normalizedSha256": "893d6d2804013450d0c590a9b2f497406a89a4fcbf4d0f3880b5abc97cad77eb",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/backend-development/agents/performance-engineer.md",
+          "profileId": "backend-development-performance-engineer",
+          "rawSha256": "9e8d94ef79d66d3c74d810c55206af7ec92d26f6c63c90298f006a107c2d6870",
+          "normalizedSha256": "9e8d94ef79d66d3c74d810c55206af7ec92d26f6c63c90298f006a107c2d6870",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/full-stack-orchestration/agents/performance-engineer.md",
+          "profileId": "full-stack-orchestration-performance-engineer",
+          "rawSha256": "d7f67ec4521413ef6583040f2bcfac8395b23d38ed8ae6e70391ededfab3415f",
+          "normalizedSha256": "d7f67ec4521413ef6583040f2bcfac8395b23d38ed8ae6e70391ededfab3415f",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/observability-monitoring/agents/performance-engineer.md",
+          "profileId": "observability-monitoring-performance-engineer",
+          "rawSha256": "f12ed994c01dc345a7d7652e1e8a236358db121c1bb4b49a5049e2baf3e951ee",
+          "normalizedSha256": "f12ed994c01dc345a7d7652e1e8a236358db121c1bb4b49a5049e2baf3e951ee",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/performance-testing-review/agents/performance-engineer.md",
+          "profileId": "performance-testing-review-performance-engineer",
+          "rawSha256": "4a1b6c49c668cbe7a9e54699203e08f47b592d3fbceca0a2e48f948aed7784fe",
+          "normalizedSha256": "4a1b6c49c668cbe7a9e54699203e08f47b592d3fbceca0a2e48f948aed7784fe",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/quantitative-trading/agents/quant-analyst.md",
+          "profileId": "quant-analyst",
+          "rawSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "normalizedSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "market-regime-model-risk-reviewer",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/quant-analyst.toml",
+          "profileId": "quant-analyst",
+          "rawSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "normalizedSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/risk-manager.toml",
+          "profileId": "risk-manager",
+          "rawSha256": "3af983e3711546723bdce49af016b1ce67e9043bb3a360ffb69495c326e72ad6",
+          "normalizedSha256": "3af983e3711546723bdce49af016b1ce67e9043bb3a360ffb69495c326e72ad6",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/11-ai-governance-safety/model-risk-manager.toml",
+          "profileId": "model-risk-manager",
+          "rawSha256": "452a0bd88689f4ffa27dce132951632202467297a57dbf4ddf47c9ae0d291528",
+          "normalizedSha256": "452a0bd88689f4ffa27dce132951632202467297a57dbf4ddf47c9ae0d291528",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/quantitative-trading/agents/quant-analyst.md",
+          "profileId": "quant-analyst",
+          "rawSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "normalizedSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/quantitative-trading/agents/risk-manager.md",
+          "profileId": "risk-manager",
+          "rawSha256": "d49de27acde3d03bb350d1c2b6795829172b0954a29d46bc69b466d9c586dd1c",
+          "normalizedSha256": "d49de27acde3d03bb350d1c2b6795829172b0954a29d46bc69b466d9c586dd1c",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "observability-diagnostics-reviewer",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/09-meta-orchestration/performance-monitor.toml",
+          "profileId": "performance-monitor",
+          "rawSha256": "d9e9ad29ffc5decb59c526f833ff2d30965ed257d3176774a8ab7d5284be477f",
+          "normalizedSha256": "d9e9ad29ffc5decb59c526f833ff2d30965ed257d3176774a8ab7d5284be477f",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/13-llmops-evals-observability/ai-observability-engineer.toml",
+          "profileId": "ai-observability-engineer",
+          "rawSha256": "5445906dd2beac45a1f67457263a65a96c0d75e7d4ca724ddd4e99b9da09bbe8",
+          "normalizedSha256": "5445906dd2beac45a1f67457263a65a96c0d75e7d4ca724ddd4e99b9da09bbe8",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/application-performance/agents/observability-engineer.md",
+          "profileId": "application-performance-observability-engineer",
+          "rawSha256": "4f6dd62ba3d3e3a00b16d8059e6460e13fb0944781f620d8e986890914b08816",
+          "normalizedSha256": "4f6dd62ba3d3e3a00b16d8059e6460e13fb0944781f620d8e986890914b08816",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/incident-response/agents/incident-responder.md",
+          "profileId": "incident-responder",
+          "rawSha256": "756a20cea3657dc119c1616073d223a8aa102f591479151419228f6d54f101cc",
+          "normalizedSha256": "756a20cea3657dc119c1616073d223a8aa102f591479151419228f6d54f101cc",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/observability-monitoring/agents/observability-engineer.md",
+          "profileId": "observability-monitoring-observability-engineer",
+          "rawSha256": "622eaa4f91ed40992fbcaf8d54b7ecf2705e93ccb3877b82af9f315449326de6",
+          "normalizedSha256": "622eaa4f91ed40992fbcaf8d54b7ecf2705e93ccb3877b82af9f315449326de6",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "performance-attribution-reviewer",
+      "status": "SELECTED",
+      "decisionReason": "Specification provides deterministic exact components and order",
+      "selectedProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/quant-analyst.toml",
+          "profileId": "quant-analyst",
+          "rawSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "normalizedSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/05-data-ai/data-scientist.toml",
+          "profileId": "data-scientist",
+          "rawSha256": "ceba8501918192a6d1fe9999fb76396f7ed0f7f83c1e797e75ad96a3011e378b",
+          "normalizedSha256": "ceba8501918192a6d1fe9999fb76396f7ed0f7f83c1e797e75ad96a3011e378b",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/quantitative-trading/agents/quant-analyst.md",
+          "profileId": "quant-analyst",
+          "rawSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "normalizedSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/machine-learning-ops/agents/data-scientist.md",
+          "profileId": "data-scientist",
+          "rawSha256": "ded3aca731f61a47d2bfc95ae3033abf364d1e30a142736b99e993e65817bf3d",
+          "normalizedSha256": "ded3aca731f61a47d2bfc95ae3033abf364d1e30a142736b99e993e65817bf3d",
+          "license": "MIT"
+        }
+      ],
+      "candidateProfiles": []
+    },
+    {
+      "agentId": "performance-quota-reviewer",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/performance-engineer.toml",
+          "profileId": "performance-engineer",
+          "rawSha256": "0f78120f42b39f8b872eb1fbeeabb399e4c1b82e47b58c7e15178dfcf4f433fc",
+          "normalizedSha256": "0f78120f42b39f8b872eb1fbeeabb399e4c1b82e47b58c7e15178dfcf4f433fc",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/09-meta-orchestration/performance-monitor.toml",
+          "profileId": "performance-monitor",
+          "rawSha256": "d9e9ad29ffc5decb59c526f833ff2d30965ed257d3176774a8ab7d5284be477f",
+          "normalizedSha256": "d9e9ad29ffc5decb59c526f833ff2d30965ed257d3176774a8ab7d5284be477f",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/application-performance/agents/observability-engineer.md",
+          "profileId": "application-performance-observability-engineer",
+          "rawSha256": "4f6dd62ba3d3e3a00b16d8059e6460e13fb0944781f620d8e986890914b08816",
+          "normalizedSha256": "4f6dd62ba3d3e3a00b16d8059e6460e13fb0944781f620d8e986890914b08816",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/application-performance/agents/performance-engineer.md",
+          "profileId": "application-performance-performance-engineer",
+          "rawSha256": "893d6d2804013450d0c590a9b2f497406a89a4fcbf4d0f3880b5abc97cad77eb",
+          "normalizedSha256": "893d6d2804013450d0c590a9b2f497406a89a4fcbf4d0f3880b5abc97cad77eb",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/backend-development/agents/performance-engineer.md",
+          "profileId": "backend-development-performance-engineer",
+          "rawSha256": "9e8d94ef79d66d3c74d810c55206af7ec92d26f6c63c90298f006a107c2d6870",
+          "normalizedSha256": "9e8d94ef79d66d3c74d810c55206af7ec92d26f6c63c90298f006a107c2d6870",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/full-stack-orchestration/agents/performance-engineer.md",
+          "profileId": "full-stack-orchestration-performance-engineer",
+          "rawSha256": "d7f67ec4521413ef6583040f2bcfac8395b23d38ed8ae6e70391ededfab3415f",
+          "normalizedSha256": "d7f67ec4521413ef6583040f2bcfac8395b23d38ed8ae6e70391ededfab3415f",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/observability-monitoring/agents/observability-engineer.md",
+          "profileId": "observability-monitoring-observability-engineer",
+          "rawSha256": "622eaa4f91ed40992fbcaf8d54b7ecf2705e93ccb3877b82af9f315449326de6",
+          "normalizedSha256": "622eaa4f91ed40992fbcaf8d54b7ecf2705e93ccb3877b82af9f315449326de6",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/observability-monitoring/agents/performance-engineer.md",
+          "profileId": "observability-monitoring-performance-engineer",
+          "rawSha256": "f12ed994c01dc345a7d7652e1e8a236358db121c1bb4b49a5049e2baf3e951ee",
+          "normalizedSha256": "f12ed994c01dc345a7d7652e1e8a236358db121c1bb4b49a5049e2baf3e951ee",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/performance-testing-review/agents/performance-engineer.md",
+          "profileId": "performance-testing-review-performance-engineer",
+          "rawSha256": "4a1b6c49c668cbe7a9e54699203e08f47b592d3fbceca0a2e48f948aed7784fe",
+          "normalizedSha256": "4a1b6c49c668cbe7a9e54699203e08f47b592d3fbceca0a2e48f948aed7784fe",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "pit-data-quality-reviewer",
+      "status": "SELECTED",
+      "decisionReason": "Specification provides deterministic exact components and order",
+      "selectedProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/05-data-ai/data-scientist.toml",
+          "profileId": "data-scientist",
+          "rawSha256": "ceba8501918192a6d1fe9999fb76396f7ed0f7f83c1e797e75ad96a3011e378b",
+          "normalizedSha256": "ceba8501918192a6d1fe9999fb76396f7ed0f7f83c1e797e75ad96a3011e378b",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/05-data-ai/data-engineer.toml",
+          "profileId": "data-engineer",
+          "rawSha256": "27c0b33da2fd9f8e77c3aa2c4c2d008ffead08fd3e1ef29eb4afb28e6afbf8c0",
+          "normalizedSha256": "27c0b33da2fd9f8e77c3aa2c4c2d008ffead08fd3e1ef29eb4afb28e6afbf8c0",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/machine-learning-ops/agents/data-scientist.md",
+          "profileId": "data-scientist",
+          "rawSha256": "ded3aca731f61a47d2bfc95ae3033abf364d1e30a142736b99e993e65817bf3d",
+          "normalizedSha256": "ded3aca731f61a47d2bfc95ae3033abf364d1e30a142736b99e993e65817bf3d",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/data-engineering/agents/data-engineer.md",
+          "profileId": "data-engineer",
+          "rawSha256": "c88021cb4b2e2e432cb5df36d90db46e872fa7d28c64d10aad7b4c4334683ab6",
+          "normalizedSha256": "c88021cb4b2e2e432cb5df36d90db46e872fa7d28c64d10aad7b4c4334683ab6",
+          "license": "MIT"
+        }
+      ],
+      "candidateProfiles": []
+    },
+    {
+      "agentId": "portfolio-construction-reviewer",
+      "status": "SELECTED",
+      "decisionReason": "Specification provides deterministic exact components and order",
+      "selectedProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/quant-analyst.toml",
+          "profileId": "quant-analyst",
+          "rawSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "normalizedSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/risk-manager.toml",
+          "profileId": "risk-manager",
+          "rawSha256": "3af983e3711546723bdce49af016b1ce67e9043bb3a360ffb69495c326e72ad6",
+          "normalizedSha256": "3af983e3711546723bdce49af016b1ce67e9043bb3a360ffb69495c326e72ad6",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/quantitative-trading/agents/quant-analyst.md",
+          "profileId": "quant-analyst",
+          "rawSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "normalizedSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/quantitative-trading/agents/risk-manager.md",
+          "profileId": "risk-manager",
+          "rawSha256": "d49de27acde3d03bb350d1c2b6795829172b0954a29d46bc69b466d9c586dd1c",
+          "normalizedSha256": "d49de27acde3d03bb350d1c2b6795829172b0954a29d46bc69b466d9c586dd1c",
+          "license": "MIT"
+        }
+      ],
+      "candidateProfiles": []
+    },
+    {
+      "agentId": "production-influence-gate-reviewer",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/01-core-development/code-mapper.toml",
+          "profileId": "code-mapper",
+          "rawSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+          "normalizedSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/compliance-auditor.toml",
+          "profileId": "compliance-auditor",
+          "rawSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+          "normalizedSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/11-ai-governance-safety/model-risk-manager.toml",
+          "profileId": "model-risk-manager",
+          "rawSha256": "452a0bd88689f4ffa27dce132951632202467297a57dbf4ddf47c9ae0d291528",
+          "normalizedSha256": "452a0bd88689f4ffa27dce132951632202467297a57dbf4ddf47c9ae0d291528",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-documentation/agents/code-reviewer.md",
+          "profileId": "code-documentation-code-reviewer",
+          "rawSha256": "7d3eb3cf36f5dc156bf4d39e59b8869af5ae506f16c75d87b79420ad82e01064",
+          "normalizedSha256": "7d3eb3cf36f5dc156bf4d39e59b8869af5ae506f16c75d87b79420ad82e01064",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-refactoring/agents/code-reviewer.md",
+          "profileId": "code-refactoring-code-reviewer",
+          "rawSha256": "d73ca30b44a0355a270ba2a9008826b00b9b3a18ad180def0633900e7192d0dd",
+          "normalizedSha256": "d73ca30b44a0355a270ba2a9008826b00b9b3a18ad180def0633900e7192d0dd",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/codebase-cleanup/agents/code-reviewer.md",
+          "profileId": "codebase-cleanup-code-reviewer",
+          "rawSha256": "8a409a081b1d9a1ef5e4578f9a1d9058af44b294d5a99907cad715f5cc9f76c3",
+          "normalizedSha256": "8a409a081b1d9a1ef5e4578f9a1d9058af44b294d5a99907cad715f5cc9f76c3",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+          "profileId": "comprehensive-review-code-reviewer",
+          "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/git-pr-workflows/agents/code-reviewer.md",
+          "profileId": "git-pr-workflows-code-reviewer",
+          "rawSha256": "0c96c9d4433f4a380ac613c1185573fc6d2097e6d01d1e43a9617042560deb94",
+          "normalizedSha256": "0c96c9d4433f4a380ac613c1185573fc6d2097e6d01d1e43a9617042560deb94",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/incident-response/agents/code-reviewer.md",
+          "profileId": "incident-response-code-reviewer",
+          "rawSha256": "803e71dbe4a049cbdeb794e56bc958dcd2b7c0b3acccdd7b37c48c4e6dcb2c6a",
+          "normalizedSha256": "803e71dbe4a049cbdeb794e56bc958dcd2b7c0b3acccdd7b37c48c4e6dcb2c6a",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/quantitative-trading/agents/quant-analyst.md",
+          "profileId": "quant-analyst",
+          "rawSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "normalizedSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/quantitative-trading/agents/risk-manager.md",
+          "profileId": "risk-manager",
+          "rawSha256": "d49de27acde3d03bb350d1c2b6795829172b0954a29d46bc69b466d9c586dd1c",
+          "normalizedSha256": "d49de27acde3d03bb350d1c2b6795829172b0954a29d46bc69b466d9c586dd1c",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/tdd-workflows/agents/code-reviewer.md",
+          "profileId": "tdd-workflows-code-reviewer",
+          "rawSha256": "25796f2ec8deb698691681b51d1d94a0978c84a89a6af8c2d276d126b460e634",
+          "normalizedSha256": "25796f2ec8deb698691681b51d1d94a0978c84a89a6af8c2d276d126b460e634",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "provider-integration-reviewer",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/01-core-development/api-designer.toml",
+          "profileId": "api-designer",
+          "rawSha256": "753de040b6ccfd6d1ef9078a5d74184f05f2095d13da2b308f86b5c7fb70c59b",
+          "normalizedSha256": "753de040b6ccfd6d1ef9078a5d74184f05f2095d13da2b308f86b5c7fb70c59b",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/fintech-engineer.toml",
+          "profileId": "fintech-engineer",
+          "rawSha256": "7f5226e4279e0235a29524375edf2623c945113fd4239cbeeb874eb2c2639f9f",
+          "normalizedSha256": "7f5226e4279e0235a29524375edf2623c945113fd4239cbeeb874eb2c2639f9f",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/api-testing-observability/agents/api-documenter.md",
+          "profileId": "api-testing-observability-api-documenter",
+          "rawSha256": "e54868d57a8ea8252920aecaf07c760ba4ff743e7e01d3ee60abdd38b73a56cb",
+          "normalizedSha256": "e54868d57a8ea8252920aecaf07c760ba4ff743e7e01d3ee60abdd38b73a56cb",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/cicd-automation/agents/deployment-engineer.md",
+          "profileId": "cicd-automation-deployment-engineer",
+          "rawSha256": "7478ffdaa8d970c375f9805d80072f09c9803059d8803bddf49ab9e3ed10ea0c",
+          "normalizedSha256": "7478ffdaa8d970c375f9805d80072f09c9803059d8803bddf49ab9e3ed10ea0c",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/cloud-infrastructure/agents/deployment-engineer.md",
+          "profileId": "cloud-infrastructure-deployment-engineer",
+          "rawSha256": "8bd35b694ac179a3a4b9198f7d35f95534aaaeab271f1297cafa8e37003f2bfe",
+          "normalizedSha256": "8bd35b694ac179a3a4b9198f7d35f95534aaaeab271f1297cafa8e37003f2bfe",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/data-engineering/agents/data-engineer.md",
+          "profileId": "data-engineer",
+          "rawSha256": "c88021cb4b2e2e432cb5df36d90db46e872fa7d28c64d10aad7b4c4334683ab6",
+          "normalizedSha256": "c88021cb4b2e2e432cb5df36d90db46e872fa7d28c64d10aad7b4c4334683ab6",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/deployment-strategies/agents/deployment-engineer.md",
+          "profileId": "deployment-strategies-deployment-engineer",
+          "rawSha256": "88899c02c747a218d215b76efb7bbab7163ca7bf32a385d2cb689917220758d4",
+          "normalizedSha256": "88899c02c747a218d215b76efb7bbab7163ca7bf32a385d2cb689917220758d4",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/documentation-generation/agents/api-documenter.md",
+          "profileId": "documentation-generation-api-documenter",
+          "rawSha256": "2024e996680fd8f3347f5f052cb0d031b1c142f89308f93314ce6ba186683bd7",
+          "normalizedSha256": "2024e996680fd8f3347f5f052cb0d031b1c142f89308f93314ce6ba186683bd7",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/full-stack-orchestration/agents/deployment-engineer.md",
+          "profileId": "full-stack-orchestration-deployment-engineer",
+          "rawSha256": "5ebd904ccea45725fd9887fcf113658ff0e8a2c553215a0ab3297ef83264b905",
+          "normalizedSha256": "5ebd904ccea45725fd9887fcf113658ff0e8a2c553215a0ab3297ef83264b905",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "qa-expert",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/qa-expert.toml",
+          "profileId": "qa-expert",
+          "rawSha256": "4cccb92ef18cbabe17b04495bd89a8258de6b3a1af705b3b88aa65f94e8dd916",
+          "normalizedSha256": "4cccb92ef18cbabe17b04495bd89a8258de6b3a1af705b3b88aa65f94e8dd916",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/backend-development/agents/test-automator.md",
+          "profileId": "backend-development-test-automator",
+          "rawSha256": "317e434b4164805dae27bdfca4ab20cd75cc167e5c1a163dd31d127561a72077",
+          "normalizedSha256": "317e434b4164805dae27bdfca4ab20cd75cc167e5c1a163dd31d127561a72077",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-documentation/agents/code-reviewer.md",
+          "profileId": "code-documentation-code-reviewer",
+          "rawSha256": "7d3eb3cf36f5dc156bf4d39e59b8869af5ae506f16c75d87b79420ad82e01064",
+          "normalizedSha256": "7d3eb3cf36f5dc156bf4d39e59b8869af5ae506f16c75d87b79420ad82e01064",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-refactoring/agents/code-reviewer.md",
+          "profileId": "code-refactoring-code-reviewer",
+          "rawSha256": "d73ca30b44a0355a270ba2a9008826b00b9b3a18ad180def0633900e7192d0dd",
+          "normalizedSha256": "d73ca30b44a0355a270ba2a9008826b00b9b3a18ad180def0633900e7192d0dd",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/codebase-cleanup/agents/code-reviewer.md",
+          "profileId": "codebase-cleanup-code-reviewer",
+          "rawSha256": "8a409a081b1d9a1ef5e4578f9a1d9058af44b294d5a99907cad715f5cc9f76c3",
+          "normalizedSha256": "8a409a081b1d9a1ef5e4578f9a1d9058af44b294d5a99907cad715f5cc9f76c3",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/codebase-cleanup/agents/test-automator.md",
+          "profileId": "codebase-cleanup-test-automator",
+          "rawSha256": "7831008f59f72bae364a995487f801dc5cbc35cc05c668053affb1810e5a1034",
+          "normalizedSha256": "7831008f59f72bae364a995487f801dc5cbc35cc05c668053affb1810e5a1034",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+          "profileId": "comprehensive-review-code-reviewer",
+          "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/full-stack-orchestration/agents/test-automator.md",
+          "profileId": "full-stack-orchestration-test-automator",
+          "rawSha256": "2c01590fc3ef4f4f730fa61fff66c3f76f353017c424d264728f9e7f8170398e",
+          "normalizedSha256": "2c01590fc3ef4f4f730fa61fff66c3f76f353017c424d264728f9e7f8170398e",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/git-pr-workflows/agents/code-reviewer.md",
+          "profileId": "git-pr-workflows-code-reviewer",
+          "rawSha256": "0c96c9d4433f4a380ac613c1185573fc6d2097e6d01d1e43a9617042560deb94",
+          "normalizedSha256": "0c96c9d4433f4a380ac613c1185573fc6d2097e6d01d1e43a9617042560deb94",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/incident-response/agents/code-reviewer.md",
+          "profileId": "incident-response-code-reviewer",
+          "rawSha256": "803e71dbe4a049cbdeb794e56bc958dcd2b7c0b3acccdd7b37c48c4e6dcb2c6a",
+          "normalizedSha256": "803e71dbe4a049cbdeb794e56bc958dcd2b7c0b3acccdd7b37c48c4e6dcb2c6a",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/incident-response/agents/test-automator.md",
+          "profileId": "incident-response-test-automator",
+          "rawSha256": "6f832e5cf3ccfe7e4edd8ef2ebdc7b71515b66ab359b90b4d842edf3f40d569c",
+          "normalizedSha256": "6f832e5cf3ccfe7e4edd8ef2ebdc7b71515b66ab359b90b4d842edf3f40d569c",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/performance-testing-review/agents/test-automator.md",
+          "profileId": "performance-testing-review-test-automator",
+          "rawSha256": "b204dd7bf9e6c6855e7684170b198232f69d56b978969375948a6e9825777125",
+          "normalizedSha256": "b204dd7bf9e6c6855e7684170b198232f69d56b978969375948a6e9825777125",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/tdd-workflows/agents/code-reviewer.md",
+          "profileId": "tdd-workflows-code-reviewer",
+          "rawSha256": "25796f2ec8deb698691681b51d1d94a0978c84a89a6af8c2d276d126b460e634",
+          "normalizedSha256": "25796f2ec8deb698691681b51d1d94a0978c84a89a6af8c2d276d126b460e634",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/unit-testing/agents/test-automator.md",
+          "profileId": "unit-testing-test-automator",
+          "rawSha256": "439a44edf224638acaefd241258b6dc189b4f7ade5427ebc9d29b04e7f532017",
+          "normalizedSha256": "439a44edf224638acaefd241258b6dc189b4f7ade5427ebc9d29b04e7f532017",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "quant-analyst",
+      "status": "SELECTED",
+      "decisionReason": "Specification provides deterministic exact components and order",
+      "selectedProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/quant-analyst.toml",
+          "profileId": "quant-analyst",
+          "rawSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "normalizedSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/quantitative-trading/agents/quant-analyst.md",
+          "profileId": "quant-analyst",
+          "rawSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "normalizedSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "license": "MIT"
+        }
+      ],
+      "candidateProfiles": []
+    },
+    {
+      "agentId": "recovery-idempotency-reviewer",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/03-infrastructure/incident-responder.toml",
+          "profileId": "incident-responder",
+          "rawSha256": "c37daf3682f3e7c84c085d9c7ef911fb9f73a8f991ff335078d369ce34e0dc28",
+          "normalizedSha256": "c37daf3682f3e7c84c085d9c7ef911fb9f73a8f991ff335078d369ce34e0dc28",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/chaos-engineer.toml",
+          "profileId": "chaos-engineer",
+          "rawSha256": "d2e117d45d15a0b0243a03dba11b7430fc142d7151c48272a3267c9797957047",
+          "normalizedSha256": "d2e117d45d15a0b0243a03dba11b7430fc142d7151c48272a3267c9797957047",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/09-meta-orchestration/error-coordinator.toml",
+          "profileId": "error-coordinator",
+          "rawSha256": "5efdf08ac6d378260398e6cce83ea6eb8a07c6b0ebb78571145bff4d9af3936c",
+          "normalizedSha256": "5efdf08ac6d378260398e6cce83ea6eb8a07c6b0ebb78571145bff4d9af3936c",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/cicd-automation/agents/devops-troubleshooter.md",
+          "profileId": "cicd-automation-devops-troubleshooter",
+          "rawSha256": "7dded0f01b0cf7290a7ee2885750b440c984c79782e80a6193a918b4a808cf85",
+          "normalizedSha256": "7dded0f01b0cf7290a7ee2885750b440c984c79782e80a6193a918b4a808cf85",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/distributed-debugging/agents/devops-troubleshooter.md",
+          "profileId": "distributed-debugging-devops-troubleshooter",
+          "rawSha256": "d83fb0bcc7ecea8e262e2174d2241c9724f99a0cfc25a963e4d9491b2d0e7b31",
+          "normalizedSha256": "d83fb0bcc7ecea8e262e2174d2241c9724f99a0cfc25a963e4d9491b2d0e7b31",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/incident-response/agents/devops-troubleshooter.md",
+          "profileId": "incident-response-devops-troubleshooter",
+          "rawSha256": "da261020ffc7f87e9d6a61111197f7b93431886471493a49de4d7be511d22594",
+          "normalizedSha256": "da261020ffc7f87e9d6a61111197f7b93431886471493a49de4d7be511d22594",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/incident-response/agents/incident-responder.md",
+          "profileId": "incident-responder",
+          "rawSha256": "756a20cea3657dc119c1616073d223a8aa102f591479151419228f6d54f101cc",
+          "normalizedSha256": "756a20cea3657dc119c1616073d223a8aa102f591479151419228f6d54f101cc",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "release-deployment-gatekeeper",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/03-infrastructure/deployment-engineer.toml",
+          "profileId": "deployment-engineer",
+          "rawSha256": "fd13d6354be065b6a306d9ebabaab12900c9dbdce736d726ada3b8f0be139405",
+          "normalizedSha256": "fd13d6354be065b6a306d9ebabaab12900c9dbdce736d726ada3b8f0be139405",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/03-infrastructure/devops-engineer.toml",
+          "profileId": "devops-engineer",
+          "rawSha256": "8bb90ab841598434a6c23b51f66bb72cd55175c1eadba93acf6cf9cac65d83cb",
+          "normalizedSha256": "8bb90ab841598434a6c23b51f66bb72cd55175c1eadba93acf6cf9cac65d83cb",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/03-infrastructure/platform-engineer.toml",
+          "profileId": "platform-engineer",
+          "rawSha256": "aa173f12344e845d91ab6dd834f62873b4afb076a7eb2f5807cb4e2352bdeb36",
+          "normalizedSha256": "aa173f12344e845d91ab6dd834f62873b4afb076a7eb2f5807cb4e2352bdeb36",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/cicd-automation/agents/deployment-engineer.md",
+          "profileId": "cicd-automation-deployment-engineer",
+          "rawSha256": "7478ffdaa8d970c375f9805d80072f09c9803059d8803bddf49ab9e3ed10ea0c",
+          "normalizedSha256": "7478ffdaa8d970c375f9805d80072f09c9803059d8803bddf49ab9e3ed10ea0c",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/cicd-automation/agents/devops-troubleshooter.md",
+          "profileId": "cicd-automation-devops-troubleshooter",
+          "rawSha256": "7dded0f01b0cf7290a7ee2885750b440c984c79782e80a6193a918b4a808cf85",
+          "normalizedSha256": "7dded0f01b0cf7290a7ee2885750b440c984c79782e80a6193a918b4a808cf85",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/cloud-infrastructure/agents/deployment-engineer.md",
+          "profileId": "cloud-infrastructure-deployment-engineer",
+          "rawSha256": "8bd35b694ac179a3a4b9198f7d35f95534aaaeab271f1297cafa8e37003f2bfe",
+          "normalizedSha256": "8bd35b694ac179a3a4b9198f7d35f95534aaaeab271f1297cafa8e37003f2bfe",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/deployment-strategies/agents/deployment-engineer.md",
+          "profileId": "deployment-strategies-deployment-engineer",
+          "rawSha256": "88899c02c747a218d215b76efb7bbab7163ca7bf32a385d2cb689917220758d4",
+          "normalizedSha256": "88899c02c747a218d215b76efb7bbab7163ca7bf32a385d2cb689917220758d4",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/distributed-debugging/agents/devops-troubleshooter.md",
+          "profileId": "distributed-debugging-devops-troubleshooter",
+          "rawSha256": "d83fb0bcc7ecea8e262e2174d2241c9724f99a0cfc25a963e4d9491b2d0e7b31",
+          "normalizedSha256": "d83fb0bcc7ecea8e262e2174d2241c9724f99a0cfc25a963e4d9491b2d0e7b31",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/full-stack-orchestration/agents/deployment-engineer.md",
+          "profileId": "full-stack-orchestration-deployment-engineer",
+          "rawSha256": "5ebd904ccea45725fd9887fcf113658ff0e8a2c553215a0ab3297ef83264b905",
+          "normalizedSha256": "5ebd904ccea45725fd9887fcf113658ff0e8a2c553215a0ab3297ef83264b905",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/incident-response/agents/devops-troubleshooter.md",
+          "profileId": "incident-response-devops-troubleshooter",
+          "rawSha256": "da261020ffc7f87e9d6a61111197f7b93431886471493a49de4d7be511d22594",
+          "normalizedSha256": "da261020ffc7f87e9d6a61111197f7b93431886471493a49de4d7be511d22594",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "research-analyst",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/10-research-analysis/docs-researcher.toml",
+          "profileId": "docs-researcher",
+          "rawSha256": "3ca544e0b77bd88d44ab00c5beeedb50659a168f9b484c6c6d0fd2e938009f07",
+          "normalizedSha256": "3ca544e0b77bd88d44ab00c5beeedb50659a168f9b484c6c6d0fd2e938009f07",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/10-research-analysis/research-analyst.toml",
+          "profileId": "research-analyst",
+          "rawSha256": "c9438da69e17cf332d27ff8d8f12e78951cd15bf15e2692be01230c2a7b06f91",
+          "normalizedSha256": "c9438da69e17cf332d27ff8d8f12e78951cd15bf15e2692be01230c2a7b06f91",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/business-analytics/agents/business-analyst.md",
+          "profileId": "business-analyst",
+          "rawSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+          "normalizedSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-documentation/agents/docs-architect.md",
+          "profileId": "code-documentation-docs-architect",
+          "rawSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+          "normalizedSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/documentation-generation/agents/docs-architect.md",
+          "profileId": "documentation-generation-docs-architect",
+          "rawSha256": "435520e293fa4b997a39b7455d7131351598f4cbaf4813135ab5182e6554005b",
+          "normalizedSha256": "435520e293fa4b997a39b7455d7131351598f4cbaf4813135ab5182e6554005b",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "reserve-cash-management-reviewer",
+      "status": "SELECTED",
+      "decisionReason": "Specification provides deterministic exact components and order",
+      "selectedProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/risk-manager.toml",
+          "profileId": "risk-manager",
+          "rawSha256": "3af983e3711546723bdce49af016b1ce67e9043bb3a360ffb69495c326e72ad6",
+          "normalizedSha256": "3af983e3711546723bdce49af016b1ce67e9043bb3a360ffb69495c326e72ad6",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/quant-analyst.toml",
+          "profileId": "quant-analyst",
+          "rawSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "normalizedSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/fintech-engineer.toml",
+          "profileId": "fintech-engineer",
+          "rawSha256": "7f5226e4279e0235a29524375edf2623c945113fd4239cbeeb874eb2c2639f9f",
+          "normalizedSha256": "7f5226e4279e0235a29524375edf2623c945113fd4239cbeeb874eb2c2639f9f",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/quantitative-trading/agents/risk-manager.md",
+          "profileId": "risk-manager",
+          "rawSha256": "d49de27acde3d03bb350d1c2b6795829172b0954a29d46bc69b466d9c586dd1c",
+          "normalizedSha256": "d49de27acde3d03bb350d1c2b6795829172b0954a29d46bc69b466d9c586dd1c",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/quantitative-trading/agents/quant-analyst.md",
+          "profileId": "quant-analyst",
+          "rawSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "normalizedSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "license": "MIT"
+        }
+      ],
+      "candidateProfiles": []
+    },
+    {
+      "agentId": "risk-manager",
+      "status": "SELECTED",
+      "decisionReason": "Specification provides deterministic exact components and order",
+      "selectedProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/risk-manager.toml",
+          "profileId": "risk-manager",
+          "rawSha256": "3af983e3711546723bdce49af016b1ce67e9043bb3a360ffb69495c326e72ad6",
+          "normalizedSha256": "3af983e3711546723bdce49af016b1ce67e9043bb3a360ffb69495c326e72ad6",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/quantitative-trading/agents/risk-manager.md",
+          "profileId": "risk-manager",
+          "rawSha256": "d49de27acde3d03bb350d1c2b6795829172b0954a29d46bc69b466d9c586dd1c",
+          "normalizedSha256": "d49de27acde3d03bb350d1c2b6795829172b0954a29d46bc69b466d9c586dd1c",
+          "license": "MIT"
+        }
+      ],
+      "candidateProfiles": []
+    },
+    {
+      "agentId": "russia-investment-regulatory-tax-reviewer",
+      "status": "SELECTED",
+      "decisionReason": "Specification provides deterministic exact components and order",
+      "selectedProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/08-business-product/legal-advisor.toml",
+          "profileId": "legal-advisor",
+          "rawSha256": "4152a67c3accb779ae2a8a2fbf24dadd9f445eacfc0a8073c905f4a10a2420b4",
+          "normalizedSha256": "4152a67c3accb779ae2a8a2fbf24dadd9f445eacfc0a8073c905f4a10a2420b4",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/compliance-auditor.toml",
+          "profileId": "compliance-auditor",
+          "rawSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+          "normalizedSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/10-research-analysis/research-analyst.toml",
+          "profileId": "research-analyst",
+          "rawSha256": "c9438da69e17cf332d27ff8d8f12e78951cd15bf15e2692be01230c2a7b06f91",
+          "normalizedSha256": "c9438da69e17cf332d27ff8d8f12e78951cd15bf15e2692be01230c2a7b06f91",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/hr-legal-compliance/agents/legal-advisor.md",
+          "profileId": "legal-advisor",
+          "rawSha256": "20082d2cd2b80fd761f48c8cb1629f553463758e33f1d7c689db30ef909a1ab6",
+          "normalizedSha256": "20082d2cd2b80fd761f48c8cb1629f553463758e33f1d7c689db30ef909a1ab6",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/content-marketing/agents/search-specialist.md",
+          "profileId": "search-specialist",
+          "rawSha256": "d74f9e7d3368d74672a24968e6e0e11e7ef050c88214554ef9fefec7cb3a999c",
+          "normalizedSha256": "d74f9e7d3368d74672a24968e6e0e11e7ef050c88214554ef9fefec7cb3a999c",
+          "license": "MIT"
+        }
+      ],
+      "candidateProfiles": []
+    },
+    {
+      "agentId": "russia-market-regime-economist",
+      "status": "SELECTED",
+      "decisionReason": "Specification provides deterministic exact components and order",
+      "selectedProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/10-research-analysis/research-analyst.toml",
+          "profileId": "research-analyst",
+          "rawSha256": "c9438da69e17cf332d27ff8d8f12e78951cd15bf15e2692be01230c2a7b06f91",
+          "normalizedSha256": "c9438da69e17cf332d27ff8d8f12e78951cd15bf15e2692be01230c2a7b06f91",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/quant-analyst.toml",
+          "profileId": "quant-analyst",
+          "rawSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "normalizedSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/quantitative-trading/agents/quant-analyst.md",
+          "profileId": "quant-analyst",
+          "rawSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "normalizedSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/business-analytics/agents/business-analyst.md",
+          "profileId": "business-analyst",
+          "rawSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+          "normalizedSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+          "license": "MIT"
+        }
+      ],
+      "candidateProfiles": []
+    },
+    {
+      "agentId": "russia-ofz-rates-specialist",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/07-specialized-domains/quant-analyst.toml",
+          "profileId": "quant-analyst",
+          "rawSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "normalizedSha256": "142fe7804d76b1660581f17321298d435366181e1624f1af061e801787755c01",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/10-research-analysis/data-researcher.toml",
+          "profileId": "data-researcher",
+          "rawSha256": "b078baed064189d7f48671f2e246dcd1c6082fb1e2cf00ae3ab9c0e23a1b2e8f",
+          "normalizedSha256": "b078baed064189d7f48671f2e246dcd1c6082fb1e2cf00ae3ab9c0e23a1b2e8f",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/content-marketing/agents/search-specialist.md",
+          "profileId": "search-specialist",
+          "rawSha256": "d74f9e7d3368d74672a24968e6e0e11e7ef050c88214554ef9fefec7cb3a999c",
+          "normalizedSha256": "d74f9e7d3368d74672a24968e6e0e11e7ef050c88214554ef9fefec7cb3a999c",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/quantitative-trading/agents/quant-analyst.md",
+          "profileId": "quant-analyst",
+          "rawSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "normalizedSha256": "0ebcad2d24557e93e75e63fb980ca553382b6ee3f9bb8d1bf263ab5f98f5e766",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "russian-technical-editor",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/06-developer-experience/documentation-engineer.toml",
+          "profileId": "documentation-engineer",
+          "rawSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+          "normalizedSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-documentation/agents/docs-architect.md",
+          "profileId": "code-documentation-docs-architect",
+          "rawSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+          "normalizedSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/documentation-generation/agents/docs-architect.md",
+          "profileId": "documentation-generation-docs-architect",
+          "rawSha256": "435520e293fa4b997a39b7455d7131351598f4cbaf4813135ab5182e6554005b",
+          "normalizedSha256": "435520e293fa4b997a39b7455d7131351598f4cbaf4813135ab5182e6554005b",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/documentation-generation/agents/reference-builder.md",
+          "profileId": "reference-builder",
+          "rawSha256": "666031b1453bfca265c39191f96d25911ebde0b9170659d67215e315ca81965e",
+          "normalizedSha256": "666031b1453bfca265c39191f96d25911ebde0b9170659d67215e315ca81965e",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "search-specialist",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/10-research-analysis/docs-researcher.toml",
+          "profileId": "docs-researcher",
+          "rawSha256": "3ca544e0b77bd88d44ab00c5beeedb50659a168f9b484c6c6d0fd2e938009f07",
+          "normalizedSha256": "3ca544e0b77bd88d44ab00c5beeedb50659a168f9b484c6c6d0fd2e938009f07",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/10-research-analysis/search-specialist.toml",
+          "profileId": "search-specialist",
+          "rawSha256": "0a0a4da4986ae880293aff96d392d776a81f2cee2418578fa8074ab54459ec8c",
+          "normalizedSha256": "0a0a4da4986ae880293aff96d392d776a81f2cee2418578fa8074ab54459ec8c",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/content-marketing/agents/search-specialist.md",
+          "profileId": "search-specialist",
+          "rawSha256": "d74f9e7d3368d74672a24968e6e0e11e7ef050c88214554ef9fefec7cb3a999c",
+          "normalizedSha256": "d74f9e7d3368d74672a24968e6e0e11e7ef050c88214554ef9fefec7cb3a999c",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "security-privacy-auditor",
+      "status": "SELECTED",
+      "decisionReason": "Owner accepted the exact first-wave recommendation with explicit restrictions",
+      "selectedProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/security-auditor.toml",
+          "profileId": "security-auditor",
+          "rawSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+          "normalizedSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/compliance-auditor.toml",
+          "profileId": "compliance-auditor",
+          "rawSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+          "normalizedSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/security-compliance/agents/security-auditor.md",
+          "profileId": "security-compliance-security-auditor",
+          "rawSha256": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+          "normalizedSha256": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+          "profileId": "comprehensive-review-code-reviewer",
+          "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "license": "MIT"
+        }
+      ],
+      "candidateProfiles": [],
+      "compositionOrder": [
+        "VoltAgent/awesome-codex-subagents:categories/04-quality-security/security-auditor.toml",
+        "VoltAgent/awesome-codex-subagents:categories/04-quality-security/compliance-auditor.toml",
+        "wshobson/agents:plugins/security-compliance/agents/security-auditor.md",
+        "wshobson/agents:plugins/comprehensive-review/agents/code-reviewer.md"
+      ],
+      "decisionReference": "OWNER_DECISION_FIRST_WAVE_20260722",
+      "ownerDecisionCommit": "6da06f7f0a32c343f565e4f0a36354538087236a",
+      "restrictions": [
+        "read-only by default",
+        "masked evidence only; no credential use",
+        "no deployment or production write authority",
+        "no automatic remediation or self-approval",
+        "privacy scanner cannot be weakened",
+        "tracked, untracked, generated, downloaded and diff artifacts remain in scope",
+        "HIGH or CRITICAL finding blocks the gate",
+        "Windows symlink SKIP requires Linux CI evidence"
+      ],
+      "selectedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "agentId": "test-automator",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/test-automator.toml",
+          "profileId": "test-automator",
+          "rawSha256": "a21903ed3b50361917030cd01b86efdd5cbfb24358bec5dedacfdd11f3f8ab55",
+          "normalizedSha256": "a21903ed3b50361917030cd01b86efdd5cbfb24358bec5dedacfdd11f3f8ab55",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/backend-development/agents/tdd-orchestrator.md",
+          "profileId": "backend-development-tdd-orchestrator",
+          "rawSha256": "bb380ef9f2d9e22972ba8c82283ca42108257401138fc43d92e911aef3c65595",
+          "normalizedSha256": "bb380ef9f2d9e22972ba8c82283ca42108257401138fc43d92e911aef3c65595",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/backend-development/agents/test-automator.md",
+          "profileId": "backend-development-test-automator",
+          "rawSha256": "317e434b4164805dae27bdfca4ab20cd75cc167e5c1a163dd31d127561a72077",
+          "normalizedSha256": "317e434b4164805dae27bdfca4ab20cd75cc167e5c1a163dd31d127561a72077",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/codebase-cleanup/agents/test-automator.md",
+          "profileId": "codebase-cleanup-test-automator",
+          "rawSha256": "7831008f59f72bae364a995487f801dc5cbc35cc05c668053affb1810e5a1034",
+          "normalizedSha256": "7831008f59f72bae364a995487f801dc5cbc35cc05c668053affb1810e5a1034",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/full-stack-orchestration/agents/test-automator.md",
+          "profileId": "full-stack-orchestration-test-automator",
+          "rawSha256": "2c01590fc3ef4f4f730fa61fff66c3f76f353017c424d264728f9e7f8170398e",
+          "normalizedSha256": "2c01590fc3ef4f4f730fa61fff66c3f76f353017c424d264728f9e7f8170398e",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/incident-response/agents/test-automator.md",
+          "profileId": "incident-response-test-automator",
+          "rawSha256": "6f832e5cf3ccfe7e4edd8ef2ebdc7b71515b66ab359b90b4d842edf3f40d569c",
+          "normalizedSha256": "6f832e5cf3ccfe7e4edd8ef2ebdc7b71515b66ab359b90b4d842edf3f40d569c",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/performance-testing-review/agents/test-automator.md",
+          "profileId": "performance-testing-review-test-automator",
+          "rawSha256": "b204dd7bf9e6c6855e7684170b198232f69d56b978969375948a6e9825777125",
+          "normalizedSha256": "b204dd7bf9e6c6855e7684170b198232f69d56b978969375948a6e9825777125",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/tdd-workflows/agents/tdd-orchestrator.md",
+          "profileId": "tdd-workflows-tdd-orchestrator",
+          "rawSha256": "a670b704b4b2625db0624a4263721f60feb698fb407b5a298624282d0bc6b49d",
+          "normalizedSha256": "a670b704b4b2625db0624a4263721f60feb698fb407b5a298624282d0bc6b49d",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/unit-testing/agents/test-automator.md",
+          "profileId": "unit-testing-test-automator",
+          "rawSha256": "439a44edf224638acaefd241258b6dc189b4f7ade5427ebc9d29b04e7f532017",
+          "normalizedSha256": "439a44edf224638acaefd241258b6dc189b4f7ade5427ebc9d29b04e7f532017",
+          "license": "MIT"
+        }
+      ]
+    },
+    {
+      "agentId": "ui-ux-accessibility-reviewer",
+      "status": "REQUIRES_OWNER_DECISION",
+      "decisionReason": "Exact candidate paths exist but the normative component choice is not owner-approved",
+      "selectionGap": "Normative composition requires an explicit exact component decision",
+      "selectedProfiles": [],
+      "candidateProfiles": [
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/accessibility-tester.toml",
+          "profileId": "accessibility-tester",
+          "rawSha256": "54d52df6767d6b6f15479364176d683f6125e57134322b3f78a376652c75980f",
+          "normalizedSha256": "54d52df6767d6b6f15479364176d683f6125e57134322b3f78a376652c75980f",
+          "license": "MIT"
+        },
+        {
+          "repository": "VoltAgent/awesome-codex-subagents",
+          "commitSha": "5605c9c18b3687993919d6cc467af4a34898fee2",
+          "sourcePath": "categories/04-quality-security/ui-ux-tester.toml",
+          "profileId": "ui-ux-tester",
+          "rawSha256": "c936cb0a3cd72474eed3954b22f59736fb35f9264dab9a77f1304a9c89480150",
+          "normalizedSha256": "c936cb0a3cd72474eed3954b22f59736fb35f9264dab9a77f1304a9c89480150",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/backend-development/agents/test-automator.md",
+          "profileId": "backend-development-test-automator",
+          "rawSha256": "317e434b4164805dae27bdfca4ab20cd75cc167e5c1a163dd31d127561a72077",
+          "normalizedSha256": "317e434b4164805dae27bdfca4ab20cd75cc167e5c1a163dd31d127561a72077",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-documentation/agents/code-reviewer.md",
+          "profileId": "code-documentation-code-reviewer",
+          "rawSha256": "7d3eb3cf36f5dc156bf4d39e59b8869af5ae506f16c75d87b79420ad82e01064",
+          "normalizedSha256": "7d3eb3cf36f5dc156bf4d39e59b8869af5ae506f16c75d87b79420ad82e01064",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/code-refactoring/agents/code-reviewer.md",
+          "profileId": "code-refactoring-code-reviewer",
+          "rawSha256": "d73ca30b44a0355a270ba2a9008826b00b9b3a18ad180def0633900e7192d0dd",
+          "normalizedSha256": "d73ca30b44a0355a270ba2a9008826b00b9b3a18ad180def0633900e7192d0dd",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/codebase-cleanup/agents/code-reviewer.md",
+          "profileId": "codebase-cleanup-code-reviewer",
+          "rawSha256": "8a409a081b1d9a1ef5e4578f9a1d9058af44b294d5a99907cad715f5cc9f76c3",
+          "normalizedSha256": "8a409a081b1d9a1ef5e4578f9a1d9058af44b294d5a99907cad715f5cc9f76c3",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/codebase-cleanup/agents/test-automator.md",
+          "profileId": "codebase-cleanup-test-automator",
+          "rawSha256": "7831008f59f72bae364a995487f801dc5cbc35cc05c668053affb1810e5a1034",
+          "normalizedSha256": "7831008f59f72bae364a995487f801dc5cbc35cc05c668053affb1810e5a1034",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+          "profileId": "comprehensive-review-code-reviewer",
+          "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/full-stack-orchestration/agents/test-automator.md",
+          "profileId": "full-stack-orchestration-test-automator",
+          "rawSha256": "2c01590fc3ef4f4f730fa61fff66c3f76f353017c424d264728f9e7f8170398e",
+          "normalizedSha256": "2c01590fc3ef4f4f730fa61fff66c3f76f353017c424d264728f9e7f8170398e",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/git-pr-workflows/agents/code-reviewer.md",
+          "profileId": "git-pr-workflows-code-reviewer",
+          "rawSha256": "0c96c9d4433f4a380ac613c1185573fc6d2097e6d01d1e43a9617042560deb94",
+          "normalizedSha256": "0c96c9d4433f4a380ac613c1185573fc6d2097e6d01d1e43a9617042560deb94",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/incident-response/agents/code-reviewer.md",
+          "profileId": "incident-response-code-reviewer",
+          "rawSha256": "803e71dbe4a049cbdeb794e56bc958dcd2b7c0b3acccdd7b37c48c4e6dcb2c6a",
+          "normalizedSha256": "803e71dbe4a049cbdeb794e56bc958dcd2b7c0b3acccdd7b37c48c4e6dcb2c6a",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/incident-response/agents/test-automator.md",
+          "profileId": "incident-response-test-automator",
+          "rawSha256": "6f832e5cf3ccfe7e4edd8ef2ebdc7b71515b66ab359b90b4d842edf3f40d569c",
+          "normalizedSha256": "6f832e5cf3ccfe7e4edd8ef2ebdc7b71515b66ab359b90b4d842edf3f40d569c",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/performance-testing-review/agents/test-automator.md",
+          "profileId": "performance-testing-review-test-automator",
+          "rawSha256": "b204dd7bf9e6c6855e7684170b198232f69d56b978969375948a6e9825777125",
+          "normalizedSha256": "b204dd7bf9e6c6855e7684170b198232f69d56b978969375948a6e9825777125",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/tdd-workflows/agents/code-reviewer.md",
+          "profileId": "tdd-workflows-code-reviewer",
+          "rawSha256": "25796f2ec8deb698691681b51d1d94a0978c84a89a6af8c2d276d126b460e634",
+          "normalizedSha256": "25796f2ec8deb698691681b51d1d94a0978c84a89a6af8c2d276d126b460e634",
+          "license": "MIT"
+        },
+        {
+          "repository": "wshobson/agents",
+          "commitSha": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+          "sourcePath": "plugins/unit-testing/agents/test-automator.md",
+          "profileId": "unit-testing-test-automator",
+          "rawSha256": "439a44edf224638acaefd241258b6dc189b4f7ade5427ebc9d29b04e7f532017",
+          "normalizedSha256": "439a44edf224638acaefd241258b6dc189b4f7ade5427ebc9d29b04e7f532017",
+          "license": "MIT"
+        }
+      ]
+    }
+  ]
+}

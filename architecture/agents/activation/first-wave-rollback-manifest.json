@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0.0",
+  "rollbackId": "FIRST_WAVE_ROLLBACK_20260727",
+  "ownerDecisionId": "OWNER_DECISION_ACTIVATE_FIRST_WAVE_20260727",
+  "removableAgentIds": [
+    "ios-agent-orchestrator",
+    "agent-governance-auditor",
+    "security-privacy-auditor",
+    "audit-traceability-reviewer",
+    "ios-codebase-auditor"
+  ],
+  "removeOnlyExactApprovedProfiles": true,
+  "rejectAdditionalProfiles": true,
+  "runtimeDiscoveryAfterRollback": 0,
+  "registryStateAfterRollback": "FIRST_WAVE_DEACTIVATED_FAIL_CLOSED",
+  "dispatchStateAfterRollback": "NOT_DISPATCHED_ACTIVATION_CLOSED",
+  "productionGovernanceEligible": false,
+  "preserve": [
+    "architecture/agents/generated/provisional",
+    "architecture/agents/upstream",
+    "architecture/agents/overlays",
+    "architecture/agents/compositions",
+    "audit history"
+  ]
+}

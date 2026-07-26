@@ -1,0 +1,14 @@
+[
+  {
+    "id": "UNRES-001",
+    "decision": "Approve production Market Regime influence",
+    "status": "UNRESOLVED",
+    "gate": "Production Influence Gate"
+  },
+  {
+    "id": "UNRES-002",
+    "decision": "Confirm exact R030 remediation in canonical branch",
+    "status": "UNRESOLVED",
+    "gate": "Canonical audit"
+  }
+]

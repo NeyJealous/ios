@@ -1,27 +1,9 @@
 {
-  "Version": "1.0.0",
-  "CanonicalSource": "IOS_HANDOFF_v4/master_specification/21_Development_Platform_IOS_Master_Specification_v3.0.md:69-84",
-  "StatusTaxonomy": ["SPECIFIED", "IMPLEMENTED", "PARTIAL", "MISSING", "CONFLICTING", "DEPRECATED"],
-  "RequiredRoles": {
-    "ARCHITECTURE_REVIEWER": {"Source":["21:73","22:26-36","03:111-127"],"Triggers":["architecture","investment logic","governance"],"ApprovalAuthority":"none","RemoteWrite":false},
-    "APPS_SCRIPT_REVIEWER": {"Source":["21:74","09","22:38-50"],"Triggers":["Apps Script"],"ApprovalAuthority":"none","RemoteWrite":false},
-    "PERFORMANCE_AUDITOR": {"Source":["21:75","20","22:38-50"],"Triggers":["Apps Script","Sheets","API","performance"],"ApprovalAuthority":"none","RemoteWrite":false},
-    "INVESTMENT_LOGIC_REVIEWER": {"Source":["21:76","12","15.1-15.8","22:52-63"],"Triggers":["investment logic","Decision Engine","Market Regime"],"ApprovalAuthority":"none","RemoteWrite":false},
-    "BOND_SPECIALIST": {"Source":["21:77","17","15.4"],"Triggers":["bonds","coupon ladder"],"ApprovalAuthority":"none","RemoteWrite":false},
-    "COMPANY_RATING_REVIEWER": {"Source":["21:78","16"],"Triggers":["company rating"],"ApprovalAuthority":"none","RemoteWrite":false},
-    "GOOGLE_SHEETS_REVIEWER": {"Source":["21:79","08","28"],"Triggers":["sheet schema/formulas/migration"],"ApprovalAuthority":"none","RemoteWrite":false},
-    "DOCUMENTATION_REVIEWER": {"Source":["21:80","22:78-88","23"],"Triggers":["any task"],"ApprovalAuthority":"none","RemoteWrite":false},
-    "UX_REVIEWER": {"Source":["21:81","22:65-76","28"],"Triggers":["UI/UX","Sheets"],"ApprovalAuthority":"none","RemoteWrite":false},
-    "TEST_GENERATOR": {"Source":["21:82","22:90-102","24"],"Triggers":["any task"],"ApprovalAuthority":"none","RemoteWrite":false}
-  },
-  "CandidateRoles": {
-    "SECURITY_REVIEWER": {"NamedSourceFound":false,"RelatedRequirements":["26 Security & Secrets"],"Decision":"PARTIAL profile proposed by RFC; required for governance self-change"},
-    "PRIVACY_REVIEWER": {"NamedSourceFound":false,"RelatedRequirements":["26 Security & Secrets","existing privacy gate"],"Decision":"PARTIAL CI validator; baseline privacy scan required"},
-    "DATA_QUALITY_REVIEWER": {"NamedSourceFound":false,"RelatedRequirements":["07 Data Dictionary","27:69-80"],"Decision":"MISSING; do not require before RFC/ADR"},
-    "QUANTITATIVE_VALIDATION_REVIEWER": {"NamedSourceFound":false,"RelatedRequirements":["15.1-15.8","24"],"Decision":"MISSING; do not require before RFC/ADR"},
-    "RELEASE_REVIEWER": {"NamedSourceFound":false,"RelatedRequirements":["25 Release Management"],"Decision":"MISSING named role; enforce release checklist instead"},
-    "OBSERVABILITY_REVIEWER": {"NamedSourceFound":false,"RelatedRequirements":["27 Observability & Diagnostics"],"Decision":"MISSING named role; enforce applicable checks instead"},
-    "GIT_INTEGRATION_REVIEWER": {"NamedSourceFound":false,"RelatedRequirements":["repository governance documents"],"Decision":"MISSING; do not require before RFC/ADR"},
-    "MARKET_REGIME_REVIEWER": {"NamedSourceFound":false,"RelatedRequirements":["15.2 v3.0 only"],"Decision":"CONFLICTING: requested v3.2 is absent from canonical baseline"}
-  }
+  "Version": "2.0.0-transition",
+  "CanonicalSource": "IOS Agent Platform Specification v2.1",
+  "PlatformState": "ZERO_AGENT_TRANSITION",
+  "RequiredRoles": {},
+  "CandidateRoles": {},
+  "Resolution": "MANDATORY_AGENT_NOT_AVAILABLE",
+  "ActivationAllowed": false
 }

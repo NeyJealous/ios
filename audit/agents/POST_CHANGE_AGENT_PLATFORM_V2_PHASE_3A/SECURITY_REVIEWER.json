@@ -1,0 +1,22 @@
+{
+  "AgentId": "SECURITY_REVIEWER",
+  "AgentVersion": "1.0.0",
+  "GateId": "POST_CHANGE_AGENT_PLATFORM_V2_PHASE_3A",
+  "Branch": "feature/agent-platform-v2-integration",
+  "CommitSHA": "54fe944138d304e47d693dd508a507a92e7dc2ac",
+  "ReviewScope": "Final security/privacy, trusted verifier, attestation and upstream supply-chain review",
+  "FilesReviewed": ["tools/publication-privacy-check.mjs", "tools/trusted-governance/", "tools/agents/", "architecture/agents/", "tests/agent-governance/", ".github/workflows/trusted-agent-governance.yml"],
+  "SpecificationReferences": ["IOS Master Specification v4.0 sections 20 and 24", "IOS Agent Platform Specification v2.1", "TRUSTED-GOVERNANCE-VERIFIER", "TRUSTED-EXECUTION-ATTESTATION"],
+  "ChecksPerformed": ["short Authorization/Cookie/credential URL probes", "complete expected-plan shape and binding probes", "transport/issuer and signature boundary", "exact pinned Git-blob provenance", "privacy scan", "non-agent safety validator"],
+  "Findings": [
+    {"Severity": "HIGH", "Description": "External attester, protected ruleset/canaries, cryptographic key lifecycle and durable replay evidence are not available."},
+    {"Severity": "LOW", "Description": "Filesystem-symlink privacy test did not execute on Windows; Git object-mode tests pass."}
+  ],
+  "Severity": "HIGH",
+  "Evidence": ["AgentThreadId=/root/phase3a_security_review", "Local security implementation has no HIGH/CRITICAL/BLOCKER defect at 54fe944138d304e47d693dd508a507a92e7dc2ac", "Privacy scan: 769 files, 0 findings", "Governance and non-agent validators PASS", "Requested/resolved runtime role model gpt-5.6-sol; cryptographic model attestation=INSUFFICIENT_EVIDENCE"],
+  "RequiredFixes": ["Provide protected GitHub canary/ruleset evidence", "Provide externally signed execution/model/owner attestations and durable replay evidence"],
+  "ResidualRisk": "External trust chain is absent; local structural validation cannot authorize activation or PR acceptance.",
+  "Status": "BLOCKED",
+  "Timestamp": "2026-07-22T19:05:00Z",
+  "ExecutionMode": "REAL_SUBAGENT"
+}

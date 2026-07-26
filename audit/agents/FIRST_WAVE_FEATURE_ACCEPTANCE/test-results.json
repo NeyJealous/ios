@@ -1,0 +1,20 @@
+{
+  "command": "npm run agents:check",
+  "testedHead": "4abd611f70322cb51cb24325e29b6d1696a4d03e",
+  "result": "PASS",
+  "total": 121,
+  "pass": 119,
+  "fail": 0,
+  "skip": 2,
+  "freshCheckout": "PASS",
+  "offlineBootstrap": "PASS",
+  "bootstrapZeroDiff": "PASS",
+  "upstreamIntegrity": "PASS",
+  "generatedProfiles": "PASS",
+  "activationBoundary": "PASS_CONFIGURED_RUNTIME_UNVERIFIED",
+  "fixtures": { "total": 35, "pass": 34, "fail": 0, "skip": 1 },
+  "privacy": "PASS",
+  "nonAgentSafetyValidator": "PASS",
+  "runtimeSmoke": "NOT_EXECUTED_BY_OWNER_DECISION",
+  "linuxSymlinkEvidence": "MISSING"
+}
