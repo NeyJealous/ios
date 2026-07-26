@@ -13,7 +13,9 @@
   "sourceHead": "af0b389893ae605af3d65e2cbb941486f7a74cdc",
   "sourcePath": "architecture/agents/generated/provisional",
   "runtimeDiscoveryPath": ".codex/agents",
-  "activationStatus": "OWNER_AUTHORIZED_PENDING_EXECUTION",
+  "activationStatus": "CATALOG_READY_FOR_SESSION_RELOAD",
+  "runtimeReloadRequirement": "CODEX_AGENT_CATALOG_REQUIRES_SESSION_RELOAD",
+  "runtimeSmokeAttemptedInCurrentSession": false,
   "productionGovernanceEligible": false,
   "dataConfidenceContract": "NOT_EXPLICITLY_DECLARED_IN_FIRST_WAVE_OVERLAY",
   "upstreamPins": {

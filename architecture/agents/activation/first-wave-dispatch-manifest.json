@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "state": "NOT_DISPATCHED_ACTIVATION_CLOSED",
+  "state": "CATALOG_READY_FOR_SESSION_RELOAD",
   "agentIds": [
     "ios-agent-orchestrator",
     "agent-governance-auditor",
@@ -9,7 +9,9 @@
     "ios-codebase-auditor"
   ],
   "runtimeDiscoveryPath": ".codex/agents",
-  "runtimeDiscoveredPlatformAgents": 0,
+  "runtimeDiscoveredPlatformAgents": 5,
   "productionGovernanceEligible": false,
-  "trustedExternalAttestation": "MISSING"
+  "trustedExternalAttestation": "MISSING",
+  "runtimeReloadRequirement": "CODEX_AGENT_CATALOG_REQUIRES_SESSION_RELOAD",
+  "runtimeSmokeAttemptedInCurrentSession": false
 }

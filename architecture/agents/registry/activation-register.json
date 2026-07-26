@@ -1,39 +1,39 @@
 {
   "schemaVersion": "1.0.0",
-  "platformState": "PROVISIONAL_PLATFORM_BUILD",
+  "platformState": "FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT",
   "platformActivationEligible": false,
-  "activationGate": "CLOSED",
+  "activationGate": "OPEN_FOR_PROJECT_DEVELOPMENT",
   "provisionalStagingPath": "architecture/agents/generated/provisional",
   "runtimeDiscoveryPath": ".codex/agents",
   "activationCommand": "node tools/agents/activate-first-wave.mjs",
-  "activationOperationStatus": "OWNER_AUTHORIZED_DEACTIVATED",
-  "runtimeDiscoveredPlatformAgents": 0,
-  "activeAgents": 0,
+  "activationOperationStatus": "CATALOG_READY_FOR_SESSION_RELOAD",
+  "runtimeDiscoveredPlatformAgents": 5,
+  "activeAgents": 5,
   "provisionalAgents": [
     {
       "agentId": "ios-agent-orchestrator",
-      "status": "PROVISIONAL",
-      "activationEligible": false
+      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
+      "activationEligible": true
     },
     {
       "agentId": "agent-governance-auditor",
-      "status": "PROVISIONAL",
-      "activationEligible": false
+      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
+      "activationEligible": true
     },
     {
       "agentId": "security-privacy-auditor",
-      "status": "PROVISIONAL",
-      "activationEligible": false
+      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
+      "activationEligible": true
     },
     {
       "agentId": "audit-traceability-reviewer",
-      "status": "PROVISIONAL",
-      "activationEligible": false
+      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
+      "activationEligible": true
     },
     {
       "agentId": "ios-codebase-auditor",
-      "status": "PROVISIONAL",
-      "activationEligible": false
+      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
+      "activationEligible": true
     }
   ],
   "activationBlockers": [
@@ -55,5 +55,7 @@
     "TRUSTED_EXTERNAL_ATTESTATION_PRESENT"
   ],
   "ownerDecisionRequired": false,
-  "productionGovernanceEligible": false
+  "productionGovernanceEligible": false,
+  "runtimeReloadRequirement": "CODEX_AGENT_CATALOG_REQUIRES_SESSION_RELOAD",
+  "runtimeSmokeAttemptedInCurrentSession": false
 }
