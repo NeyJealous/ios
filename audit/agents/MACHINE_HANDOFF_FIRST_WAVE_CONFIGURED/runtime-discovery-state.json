@@ -1,0 +1,10 @@
+{
+  "status": "PROJECT_LOCAL_AGENT_DISCOVERY_FAILED_IN_CURRENT_CLIENT_ENVIRONMENT",
+  "blocker": "PROJECT_LOCAL_AGENT_DISCOVERY_FAILED",
+  "rootCause": "ROOT_CAUSE_NOT_YET_ESTABLISHED",
+  "observedResult": "unknown agent_type 'ios-agent-orchestrator'",
+  "runtimeSmokePerformed": false,
+  "customAgentDispatchCount": 0,
+  "diagnosisDeferredTo": "CLEAN_MACHINE_FRESH_CLONE_AND_SESSION",
+  "globallyUnsupportedClaim": false
+}

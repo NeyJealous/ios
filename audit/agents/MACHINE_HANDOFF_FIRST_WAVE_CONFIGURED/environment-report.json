@@ -1,0 +1,9 @@
+{
+  "operatingSystem": "Microsoft Windows NT 10.0.26100.0",
+  "node": "v24.18.0",
+  "npm": "11.16.0",
+  "codexCli": "0.144.1",
+  "packageLockSha256": "a04dbc180f343aebe2f82f118fe833e4729d7ea094d7deeceba07df7c7318cb7",
+  "machineSpecificValuesIncluded": false,
+  "secretsIncluded": false
+}
