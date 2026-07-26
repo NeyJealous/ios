@@ -9,6 +9,7 @@ const steps = [
   ['capability envelopes', 'tools/agents/validate-capability-envelopes.mjs', []],
   ['generated profiles', 'tools/agents/validate-generated-agents.mjs', []],
   ['activation boundary', 'tools/agents/validate-activation-boundary.mjs', []],
+  ['first-wave validation', 'tools/agents/validate-first-wave-agents.mjs', []],
   ['governance structures', 'tools/validate-agent-governance.mjs', ['--root', root, '--base', 'HEAD', '--head', 'HEAD']],
   ['governance tests', '--test', ['tests/agent-governance/*.test.mjs']],
   ['privacy', 'tools/publication-privacy-check.mjs', []],

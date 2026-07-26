@@ -9,6 +9,7 @@
     "agents:preflight": "node tools/agents/preflight.mjs",
     "agents:postflight": "node tools/agents/postflight.mjs",
     "agents:bootstrap": "node tools/agents/bootstrap.mjs",
+    "agents:validate-first-wave": "node tools/agents/validate-first-wave-agents.mjs",
     "agents:check": "node tools/agents/check.mjs"
   },
   "license": "UNLICENSED"
