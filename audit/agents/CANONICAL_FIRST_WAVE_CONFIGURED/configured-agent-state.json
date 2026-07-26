@@ -1,0 +1,17 @@
+{
+  "state": "FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL",
+  "agents": [
+    "ios-agent-orchestrator",
+    "agent-governance-auditor",
+    "security-privacy-auditor",
+    "audit-traceability-reviewer",
+    "ios-codebase-auditor"
+  ],
+  "trackedProfileCount": 5,
+  "stagingProfileCount": 5,
+  "activeAgentCount": 0,
+  "runtimeDiscoveryVerified": false,
+  "runtimeActivationComplete": false,
+  "productionGovernanceEligible": false,
+  "adrStatus": "DRAFT_NOT_ACCEPTED"
+}

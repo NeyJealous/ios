@@ -60,7 +60,7 @@ test('runtime success does not fabricate trusted activation evidence', () => {
 test('JSON and Markdown reports are deterministic full projections of registry evidence', () => {
   assert.deepEqual(report, buildModelAvailabilityJson(registry));
   assert.equal(report.overallStatus, 'RUNTIME_SMOKE_COMPLETE_WITH_UNAVAILABLE_MODELS');
-  assert.equal(readFileSync(markdownPath, 'utf8'), buildModelAvailabilityMarkdown(registry));
+  assert.equal(readFileSync(markdownPath, 'utf8').replaceAll('\r\n', '\n'), buildModelAvailabilityMarkdown(registry));
 });
 
 test('current policy uses Sol Ultra while historical Phase 3A evidence remains byte-preserved', () => {
@@ -75,7 +75,9 @@ test('current policy uses Sol Ultra while historical Phase 3A evidence remains b
     ['audit/agents/phase-3a-acceptance-report.md', '107bc414de1786be504cc386b08b57865c7fdd326e0d92fdbf3ef1f9bffdfe1a'],
   ]);
   for (const [path, expectedHash] of historical) {
-    const actualHash = createHash('sha256').update(readFileSync(resolve(root, path))).digest('hex');
+    const bytes = readFileSync(resolve(root, path));
+    const normalized = Buffer.from(bytes.toString('utf8').replaceAll('\r\n', '\n'), 'utf8');
+    const actualHash = createHash('sha256').update(normalized).digest('hex');
     assert.equal(actualHash, expectedHash, path);
   }
 });

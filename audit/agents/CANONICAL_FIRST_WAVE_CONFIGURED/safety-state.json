@@ -1,0 +1,12 @@
+{
+  "productionWrites": 0,
+  "googleSheetsWrites": 0,
+  "appsScriptWrites": 0,
+  "brokerApiWrites": 0,
+  "deploymentUpdates": 0,
+  "claspPush": 0,
+  "runtimeCustomAgentDispatch": 0,
+  "agentRuntimeActivationVerified": false,
+  "marketRegimeProductionInfluence": "CLOSED",
+  "appliedMultiplier": 1.0
+}
