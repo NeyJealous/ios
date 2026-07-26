@@ -1,39 +1,39 @@
 {
   "schemaVersion": "1.0.0",
-  "platformState": "FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT",
+  "platformState": "FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL",
   "platformActivationEligible": false,
-  "activationGate": "OPEN_FOR_PROJECT_DEVELOPMENT",
+  "activationGate": "CONFIGURED_RUNTIME_UNVERIFIED",
   "provisionalStagingPath": "architecture/agents/generated/provisional",
   "runtimeDiscoveryPath": ".codex/agents",
   "activationCommand": "node tools/agents/activate-first-wave.mjs",
-  "activationOperationStatus": "CATALOG_READY_FOR_SESSION_RELOAD",
+  "activationOperationStatus": "PROJECT_LOCAL_AGENT_DISCOVERY_FAILED_IN_CURRENT_CLIENT_ENVIRONMENT",
   "runtimeDiscoveredPlatformAgents": 5,
-  "activeAgents": 5,
+  "activeAgents": 0,
   "provisionalAgents": [
     {
       "agentId": "ios-agent-orchestrator",
-      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
-      "activationEligible": true
+      "status": "CONFIGURED_NOT_RUNTIME_VERIFIED",
+      "activationEligible": false
     },
     {
       "agentId": "agent-governance-auditor",
-      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
-      "activationEligible": true
+      "status": "CONFIGURED_NOT_RUNTIME_VERIFIED",
+      "activationEligible": false
     },
     {
       "agentId": "security-privacy-auditor",
-      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
-      "activationEligible": true
+      "status": "CONFIGURED_NOT_RUNTIME_VERIFIED",
+      "activationEligible": false
     },
     {
       "agentId": "audit-traceability-reviewer",
-      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
-      "activationEligible": true
+      "status": "CONFIGURED_NOT_RUNTIME_VERIFIED",
+      "activationEligible": false
     },
     {
       "agentId": "ios-codebase-auditor",
-      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
-      "activationEligible": true
+      "status": "CONFIGURED_NOT_RUNTIME_VERIFIED",
+      "activationEligible": false
     }
   ],
   "activationBlockers": [
@@ -56,6 +56,10 @@
   ],
   "ownerDecisionRequired": false,
   "productionGovernanceEligible": false,
-  "runtimeReloadRequirement": "CODEX_AGENT_CATALOG_REQUIRES_SESSION_RELOAD",
-  "runtimeSmokeAttemptedInCurrentSession": false
+  "runtimeReloadRequirement": "DIAGNOSIS_DEFERRED_TO_CLEAN_MACHINE",
+  "runtimeSmokeAttemptedInCurrentSession": false,
+  "runtimeDiscoveryVerified": false,
+  "runtimeActivationComplete": false,
+  "runtimeSmokeComplete": false,
+  "rootCause": "ROOT_CAUSE_NOT_YET_ESTABLISHED"
 }

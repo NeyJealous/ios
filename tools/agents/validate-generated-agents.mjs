@@ -79,7 +79,8 @@ export function validateGeneratedAgents(root) {
     const discovered = existsSync(agentDir) ? readdirSync(agentDir).filter((name) => name.endsWith('.toml')).sort() : [];
     const activation = readJson(resolve(root, 'architecture/agents/registry/activation-register.json'));
     const active = activation.activationGate === 'OPEN_FOR_PROJECT_DEVELOPMENT';
-    if (active) {
+    const configured = activation.activationGate === 'CONFIGURED_RUNTIME_UNVERIFIED';
+    if (active || configured) {
       if (JSON.stringify(discovered) !== JSON.stringify(expected)) errors.push('RUNTIME_DISCOVERY_ACTIVE_SET_INVALID');
       for (const name of expected) {
         if (existsSync(resolve(agentDir, name)) && sha(readFileSync(resolve(agentDir, name))) !== sha(readFileSync(resolve(stagingDir, name)))) {

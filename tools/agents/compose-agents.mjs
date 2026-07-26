@@ -22,7 +22,14 @@ function main() {
   const discoveredPlatformProfiles = existsSync(runtimeDiscoveryDir)
     ? readdirSync(runtimeDiscoveryDir).filter((name) => FIRST_WAVE.includes(name.replace(/\.toml$/i, '')))
     : [];
-  if (discoveredPlatformProfiles.length) {
+  const activation = readJson(resolve(root, 'architecture/agents/registry/activation-register.json'));
+  const configured = activation.activationGate === 'CONFIGURED_RUNTIME_UNVERIFIED';
+  const expectedProfiles = FIRST_WAVE.map((agentId) => `${agentId}.toml`).sort();
+  if (configured && existsSync(runtimeDiscoveryDir) &&
+      JSON.stringify(discoveredPlatformProfiles.sort()) !== JSON.stringify(expectedProfiles)) {
+    throw new Error(`RUNTIME_DISCOVERY_CONFIGURED_SET_INVALID:${discoveredPlatformProfiles.sort().join(',')}`);
+  }
+  if (!configured && discoveredPlatformProfiles.length) {
     throw new Error(`RUNTIME_DISCOVERY_PATH_NOT_EMPTY:${discoveredPlatformProfiles.sort().join(',')}`);
   }
   const register = readJson(resolve(root, 'architecture/agents/registry/upstream-selection-register.yaml'));

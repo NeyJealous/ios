@@ -27,16 +27,16 @@ test('all governance JSON schemas are syntactically valid draft 2020-12 document
   }
 });
 
-test('first wave is fail-closed after runtime activation rollback', () => {
-  assert.equal(registry.PlatformState, 'PROVISIONAL_PLATFORM_BUILD');
+test('first wave is configured but fail-closed until runtime discovery is verified', () => {
+  assert.equal(registry.PlatformState, 'FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL');
   assert.equal(registry.ActiveCustomAgents, 0);
   assert.equal(registry.ProvisionedAgents, 5);
   assert.equal(registry.Agents.length, 5);
-  assert.ok(registry.Agents.every((agent) => agent.Status === 'PROVISIONAL' && agent.ActivationEligible === false));
-  assert.equal(matrix.PlatformState, 'PROVISIONAL_PLATFORM_BUILD');
+  assert.ok(registry.Agents.every((agent) => agent.Status === 'CONFIGURED_NOT_RUNTIME_VERIFIED' && agent.ActivationEligible === false));
+  assert.equal(matrix.PlatformState, 'FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL');
   assert.deepEqual(matrix.AlwaysRequiredAgents, []);
   assert.equal(matrix.FailClosed.RequiredAgents.length, 4);
-  assert.equal(matrix.Transition.ActivationGate, 'CLOSED');
+  assert.equal(matrix.Transition.ActivationGate, 'CONFIGURED_RUNTIME_UNVERIFIED');
   const serialized = JSON.stringify({ registry, matrix });
   for (const oldId of ['APPS_SCRIPT_REVIEWER', 'ARCHITECTURE_REVIEWER', 'BOND_SPECIALIST', 'COMPANY_RATING_REVIEWER', 'DOCUMENTATION_REVIEWER', 'GOOGLE_SHEETS_REVIEWER', 'INVESTMENT_LOGIC_REVIEWER', 'PERFORMANCE_AUDITOR', 'TEST_GENERATOR', 'UX_REVIEWER']) {
     assert.equal(serialized.includes(oldId), false, `stale agent identifier: ${oldId}`);
@@ -52,15 +52,15 @@ const cases = [
 ];
 
 for (const [label, path, requiredControl] of cases) {
-  test(`rollback resolver routes ${label} but blocks dispatch`, () => {
+  test(`configured resolver routes ${label} but blocks dispatch`, () => {
     const result = resolveRequiredAgents({ changedPaths: [path], matrix });
     assert.ok(result.RequiredAgents.length > 0);
-    assert.equal(result.MandatoryAgentAvailability, 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED');
+    assert.equal(result.MandatoryAgentAvailability, 'CONFIGURED_RUNTIME_NOT_AVAILABLE');
     assert.equal(result.OverallResult, 'BLOCKED');
     assert.equal(result.FailClosed, true);
     assert.ok(result.BlockedByUnavailableAgents.length > 0);
     assert.ok(result.RequiredControls.includes(requiredControl));
-    assert.ok(result.RequiredControls.includes('activation-closed'));
+    assert.ok(result.RequiredControls.includes('runtime-discovery-unverified'));
   });
 }
 
@@ -72,7 +72,7 @@ test('mixed and unknown changes require governance wave and remain fail-closed',
   for (const agentId of matrix.FailClosed.RequiredAgents) assert.ok(result.RequiredAgents.includes(agentId));
   assert.ok(result.RequiredAgents.includes('ios-codebase-auditor'));
   assert.deepEqual(result.UnknownPaths, ['unclassified/file.weird']);
-  assert.equal(result.MandatoryAgentAvailability, 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED');
+  assert.equal(result.MandatoryAgentAvailability, 'CONFIGURED_RUNTIME_NOT_AVAILABLE');
   assert.equal(result.OverallResult, 'BLOCKED');
   assert.ok(result.BlockedByUnavailableAgents.length > 0);
 });

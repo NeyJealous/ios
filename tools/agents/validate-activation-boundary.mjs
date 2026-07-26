@@ -65,12 +65,28 @@ export function validateActivationBoundary(root) {
   const registry = readJson(resolve(root, 'architecture/agents/registry/agents.yaml'));
   const activation = readJson(resolve(root, 'architecture/agents/registry/activation-register.json'));
   const active = activation.activationGate === 'OPEN_FOR_PROJECT_DEVELOPMENT';
+  const configured = activation.activationGate === 'CONFIGURED_RUNTIME_UNVERIFIED';
   if (additionalProfiles.length) errors.push(`RUNTIME_DISCOVERY_ADDITIONAL_PROFILE:${additionalProfiles.join(',')}`);
   if (active) {
     if (JSON.stringify(discoveredPlatform) !== JSON.stringify(EXPECTED_FILES)) errors.push('RUNTIME_DISCOVERY_ACTIVE_SET_INVALID');
     if (registry.activationAllowed !== true || registry.activeAgents !== FIRST_WAVE.length ||
         registry.agents.some((agent) => agent.activationEligible !== true || agent.platformActivationEligible !== false)) {
       errors.push('REGISTRY_DEVELOPMENT_ACTIVATION_INVALID');
+    }
+  } else if (configured) {
+    if (JSON.stringify(discoveredPlatform) !== JSON.stringify(EXPECTED_FILES)) errors.push('RUNTIME_DISCOVERY_CONFIGURED_SET_INVALID');
+    if (registry.activationAllowed !== false || registry.activeAgents !== 0 ||
+        registry.agents.some((agent) =>
+          agent.status !== 'CONFIGURED_NOT_RUNTIME_VERIFIED' ||
+          agent.activationEligible !== false ||
+          agent.platformActivationEligible !== false)) {
+      errors.push('REGISTRY_CONFIGURED_RUNTIME_STATE_INVALID');
+    }
+    for (const name of EXPECTED_FILES) {
+      if (existsSync(resolve(discoveryDirectory, name)) &&
+          readFileSync(resolve(discoveryDirectory, name)).compare(readFileSync(resolve(stagingDirectory, name))) !== 0) {
+        errors.push(`RUNTIME_PROFILE_HASH_MISMATCH:${name}`);
+      }
     }
   } else {
     if (discoveredPlatform.length) errors.push(`RUNTIME_DISCOVERY_CONTAINS_PROVISIONAL_PROFILE:${discoveredPlatform.join(',')}`);
@@ -82,7 +98,7 @@ export function validateActivationBoundary(root) {
     if (composition.generatedPath !== `${STAGING_PATH}/${agentId}.toml`) errors.push(`${agentId}:GENERATED_PATH_NOT_STAGED`);
   }
 
-  if (!['CLOSED', 'OPEN_FOR_PROJECT_DEVELOPMENT'].includes(activation.activationGate) ||
+  if (!['CLOSED', 'CONFIGURED_RUNTIME_UNVERIFIED', 'OPEN_FOR_PROJECT_DEVELOPMENT'].includes(activation.activationGate) ||
       activation.runtimeDiscoveryPath !== DISCOVERY_PATH || activation.provisionalStagingPath !== STAGING_PATH ||
       activation.platformActivationEligible !== false || activation.productionGovernanceEligible === true) {
     errors.push('ACTIVATION_REGISTER_INVALID');
@@ -93,7 +109,11 @@ export function validateActivationBoundary(root) {
     platformState: registry.platformState,
     provisionalStagingProfiles: staged.length,
     runtimeDiscoveredPlatformAgents: discoveredPlatform.length,
-    runtimeDispatchStatus: active ? 'ACTIVE_RUNTIME_SMOKE_PENDING' : 'NOT_DISPATCHED_ACTIVATION_CLOSED',
+    runtimeDispatchStatus: active
+      ? 'ACTIVE_RUNTIME_SMOKE_PENDING'
+      : configured
+        ? 'NOT_DISPATCHED_RUNTIME_DISCOVERY_UNVERIFIED'
+        : 'NOT_DISPATCHED_ACTIVATION_CLOSED',
     activationCommand: activation.activationCommand,
     errors,
   };

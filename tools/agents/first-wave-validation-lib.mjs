@@ -31,6 +31,7 @@ export function validateFirstWaveStatic(root) {
   ];
   const registry = json(resolve(root, 'architecture/agents/registry/agents.yaml'));
   const active = registry.activationAllowed === true;
+  const configured = registry.platformState === 'FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL';
   const models = json(resolve(root, 'architecture/agents/registry/model-registry.yaml'));
   const matrix = json(resolve(root, 'architecture/agents/review-matrix.yaml'));
   const selections = json(resolve(root, 'architecture/agents/registry/upstream-selection-register.yaml'));
@@ -64,7 +65,11 @@ export function validateFirstWaveStatic(root) {
       if (JSON.stringify(composition.compositionOrder) !== JSON.stringify(selection.compositionOrder)) errors.push('COMPOSITION_ORDER_INVALID');
       if (composition.bases.some((base) => base.inclusionMode !== 'FULL_UNMODIFIED')) errors.push('IMMUTABLE_INCLUSION_INVALID');
       if (overlay.mode !== 'APPEND_ONLY') errors.push('OVERLAY_NOT_APPEND_ONLY');
-      const expectedStatus = active ? 'ACTIVE_FOR_PROJECT_DEVELOPMENT' : 'PROVISIONAL';
+      const expectedStatus = active
+        ? 'ACTIVE_FOR_PROJECT_DEVELOPMENT'
+        : configured
+          ? 'CONFIGURED_NOT_RUNTIME_VERIFIED'
+          : 'PROVISIONAL';
       if (!entry || entry.status !== expectedStatus || entry.activationEligible !== active || entry.platformActivationEligible !== false || entry.generatedProfilePath !== composition.generatedPath) errors.push('REGISTRY_CONTRACT_INVALID');
       if (!serializedMatrix.includes(agentId)) errors.push('MATRIX_ROUTE_MISSING');
       if (!model || model.silentDowngradeAllowed !== false || entry.modelContract?.primaryModel !== model.primaryModel || entry.modelContract?.primaryReasoning !== model.primaryReasoning) errors.push('MODEL_CONTRACT_INVALID');
@@ -173,11 +178,20 @@ export function validateFirstWave(root) {
   const fixtures = staticValidation.ok ? runFixtureValidation(root) : { ok: false, total: 0, pass: 0, fail: 0, skip: 0, results: [] };
   const runtime = staticValidation.ok && fixtures.ok ? runtimeSmokeNotAvailable(root, staticValidation) : [];
   const activation = validateActivationBoundary(root);
-  const expectedDiscovered = activation.platformState === 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT' ? FIRST_WAVE.length : 0;
+  const expectedDiscovered = [
+    'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT',
+    'FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL',
+  ].includes(activation.platformState) ? FIRST_WAVE.length : 0;
   const ok = staticValidation.ok && fixtures.ok && activation.ok && activation.runtimeDiscoveredPlatformAgents === expectedDiscovered;
   return {
     schemaVersion: '1.0.0',
-    status: ok ? (expectedDiscovered ? 'FIRST_WAVE_ACTIVE_STATIC_VALIDATION_COMPLETE' : 'FIRST_WAVE_PROVISIONAL_VALIDATION_COMPLETE') : 'PROVISIONAL_VALIDATION_FAIL',
+    status: ok
+      ? activation.platformState === 'FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL'
+        ? 'FIRST_WAVE_CONFIGURED_STATIC_VALIDATION_COMPLETE'
+        : expectedDiscovered
+          ? 'FIRST_WAVE_ACTIVE_STATIC_VALIDATION_COMPLETE'
+          : 'FIRST_WAVE_PROVISIONAL_VALIDATION_COMPLETE'
+      : 'PROVISIONAL_VALIDATION_FAIL',
     ok,
     staticValidation,
     fixtures,

@@ -93,6 +93,9 @@ export function validateTrusted(options) {
   if (headRegistry.PlatformState === 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT') {
     errors.push('DEVELOPMENT_ACTIVATION_NOT_PRODUCTION_GOVERNANCE');
   }
+  if (headRegistry.PlatformState === 'FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL') {
+    errors.push('CONFIGURED_RUNTIME_DISCOVERY_NOT_VERIFIED');
+  }
 
   const baseResolution = resolveRequiredAgents({ changedPaths: paths, branch, matrix: baseMatrix });
   const headResolution = resolveRequiredAgents({ changedPaths: paths, branch, matrix: headMatrix });

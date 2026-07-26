@@ -1,0 +1,22 @@
+{
+  "stage": "PRE_COMMIT_CONFIGURED_STATE_VALIDATION",
+  "staticFirstWaveValidation": "PASS",
+  "fixtureValidation": {
+    "total": 35,
+    "pass": 34,
+    "fail": 0,
+    "skip": 1
+  },
+  "upstreamIntegrity": "PASS",
+  "capabilityContracts": "PASS",
+  "activationBoundary": "PASS_CONFIGURED_RUNTIME_UNVERIFIED",
+  "nodeGovernanceSuite": {
+    "total": 121,
+    "pass": 118,
+    "fail": 1,
+    "skip": 2,
+    "remainingPreCommitCondition": "FRESH_CHECKOUT_TEST_REQUIRES_CONFIGURED_STATE_COMMIT"
+  },
+  "runtimeSmoke": "NOT_EXECUTED_BY_OWNER_DECISION",
+  "productionWrites": 0
+}

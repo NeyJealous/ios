@@ -1,0 +1,16 @@
+{
+  "status": "PROJECT_LOCAL_AGENT_DISCOVERY_FAILED",
+  "environmentQualifiedStatus": "PROJECT_LOCAL_AGENT_DISCOVERY_FAILED_IN_CURRENT_CLIENT_ENVIRONMENT",
+  "rootCause": "ROOT_CAUSE_NOT_YET_ESTABLISHED",
+  "observedProbe": {
+    "requestedAgentType": "ios-agent-orchestrator",
+    "result": "unknown agent_type 'ios-agent-orchestrator'",
+    "executionMode": "NOT_AVAILABLE",
+    "runtimeSmokePerformed": false
+  },
+  "trackedProfileCount": 5,
+  "runtimeDiscoveryVerified": false,
+  "runtimeActivationComplete": false,
+  "diagnosisDisposition": "DEFERRED_TO_CLEAN_MACHINE",
+  "prohibitedInference": "PROJECT_LOCAL_AGENT_DISCOVERY_NOT_SUPPORTED_GLOBALLY"
+}

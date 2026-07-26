@@ -7,11 +7,12 @@ const rootArg = process.argv.indexOf('--root');
 const root = resolve(rootArg >= 0 ? process.argv[rootArg + 1] : resolve(import.meta.dirname, '../..'));
 const activation = JSON.parse(readFileSync(resolve(root, 'architecture/agents/registry/activation-register.json'), 'utf8'));
 const active = activation.activationGate === 'OPEN_FOR_PROJECT_DEVELOPMENT';
+const configured = activation.activationGate === 'CONFIGURED_RUNTIME_UNVERIFIED';
 const steps = [
   ['validate locked upstream snapshots', 'tools/agents/validate-upstream-integrity.mjs', []],
   ['validate capability envelopes', 'tools/agents/validate-capability-envelopes.mjs', [root]],
   ['compose immutable bases and overlays', 'tools/agents/compose-agents.mjs', ['--root', root, '--generate-profiles']],
-  ...(!active ? [['build provisional registry and matrix', 'tools/agents/build-first-wave-registry.mjs', [root]]] : []),
+  ...(!active && !configured ? [['build provisional registry and matrix', 'tools/agents/build-first-wave-registry.mjs', [root]]] : []),
   ['validate generated profiles', 'tools/agents/validate-generated-agents.mjs', [root]],
   ['validate runtime activation boundary', 'tools/agents/validate-activation-boundary.mjs', [root]],
 ];

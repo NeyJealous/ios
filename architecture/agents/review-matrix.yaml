@@ -1,6 +1,6 @@
 {
-  "Version": "2.1.0-development-active",
-  "PlatformState": "FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT",
+  "Version": "2.1.0-configured-runtime-unverified",
+  "PlatformState": "FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL",
   "TaskTypes": [
     "orchestrator self-change",
     "upstream/profile/model",
@@ -17,7 +17,7 @@
     "privacy",
     "secret-scan",
     "architecture-impact",
-    "development-activation-owner-authorized"
+    "runtime-discovery-unverified"
   ],
   "Rules": [
     {
@@ -60,7 +60,7 @@
         "upstream-integrity",
         "append-only-overlay",
         "no-silent-downgrade",
-        "runtime-discovery-empty"
+        "runtime-discovery-unverified"
       ]
     },
     {
@@ -89,7 +89,7 @@
         "privacy",
         "secret-scan",
         "governance-tamper-check",
-        "development-activation-owner-authorized"
+        "runtime-discovery-unverified"
       ]
     },
     {
@@ -109,7 +109,7 @@
       "RequiredControls": [
         "architecture-impact",
         "traceability",
-        "development-activation-owner-authorized"
+        "runtime-discovery-unverified"
       ]
     },
     {
@@ -124,7 +124,7 @@
       ],
       "RequiredControls": [
         "traceability",
-        "development-activation-owner-authorized"
+        "runtime-discovery-unverified"
       ]
     },
     {
@@ -141,7 +141,7 @@
       "RequiredControls": [
         "determinism",
         "no-production-access",
-        "development-activation-owner-authorized"
+        "runtime-discovery-unverified"
       ]
     },
     {
@@ -166,7 +166,7 @@
       "RequiredControls": [
         "mandatory-domain-reviewer-not-integrated",
         "no-production-write",
-        "development-activation-owner-authorized"
+        "runtime-discovery-unverified"
       ]
     }
   ],
@@ -179,18 +179,18 @@
       "security-privacy-auditor",
       "audit-traceability-reviewer"
     ],
-    "MandatoryAvailability": "FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT",
+    "MandatoryAvailability": "CONFIGURED_RUNTIME_NOT_AVAILABLE",
     "OverallResult": "BLOCKED"
   },
   "Transition": {
-    "ActiveCustomAgents": 5,
-    "ProvisionalAgents": 0,
+    "ActiveCustomAgents": 0,
+    "ProvisionalAgents": 5,
     "OldRegistryReferences": 0,
     "OldMatrixReferences": 0,
     "OldResolverReferences": 0,
     "OldManifestsAccepted": false,
     "ResolverBehavior": "FAIL_CLOSED",
-    "ActivationGate": "OPEN_FOR_PROJECT_DEVELOPMENT"
+    "ActivationGate": "CONFIGURED_RUNTIME_UNVERIFIED"
   },
   "AntiTamperPaths": [
     "AGENTS.md",

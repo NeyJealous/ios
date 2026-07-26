@@ -130,9 +130,9 @@ test('fresh checkout supports npm ci, offline bootstrap, checks and zero diff', 
     run = spawnSync(process.execPath, [resolve(clone, 'tools/agents/validate-activation-boundary.mjs'), clone], options);
     assert.equal(run.status, 0, run.stderr || run.stdout);
     const boundary = JSON.parse(run.stdout);
-    assert.equal(boundary.runtimeDiscoveredPlatformAgents, 0);
+    assert.equal(boundary.runtimeDiscoveredPlatformAgents, 5);
     assert.equal(boundary.provisionalStagingProfiles, 5);
-    assert.equal(boundary.runtimeDispatchStatus, 'NOT_DISPATCHED_ACTIVATION_CLOSED');
+    assert.equal(boundary.runtimeDispatchStatus, 'NOT_DISPATCHED_RUNTIME_DISCOVERY_UNVERIFIED');
     run = spawnSync('git', ['diff', '--exit-code'], options);
     assert.equal(run.status, 0, run.stderr || run.stdout);
     assert.equal(validateActivationBoundary(clone).ok, true);

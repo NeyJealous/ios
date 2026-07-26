@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "state": "CATALOG_READY_FOR_SESSION_RELOAD",
+  "state": "NOT_DISPATCHED_RUNTIME_DISCOVERY_UNVERIFIED",
   "agentIds": [
     "ios-agent-orchestrator",
     "agent-governance-auditor",
@@ -12,6 +12,11 @@
   "runtimeDiscoveredPlatformAgents": 5,
   "productionGovernanceEligible": false,
   "trustedExternalAttestation": "MISSING",
-  "runtimeReloadRequirement": "CODEX_AGENT_CATALOG_REQUIRES_SESSION_RELOAD",
-  "runtimeSmokeAttemptedInCurrentSession": false
+  "runtimeReloadRequirement": "DIAGNOSIS_DEFERRED_TO_CLEAN_MACHINE",
+  "runtimeSmokeAttemptedInCurrentSession": false,
+  "runtimeDiscoveryVerified": false,
+  "runtimeActivationComplete": false,
+  "runtimeSmokeComplete": false,
+  "blocker": "PROJECT_LOCAL_AGENT_DISCOVERY_FAILED",
+  "rootCause": "ROOT_CAUSE_NOT_YET_ESTABLISHED"
 }

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "gateId": "FIRST_WAVE_CANONICALIZATION",
+  "ownerDecisionId": "OWNER_DECISION_CANONICALIZE_FIRST_WAVE_20260727",
+  "sourceBranch": "feature/agent-platform-v2-integration",
+  "sourceHead": "1d5f12d506f2b0354469f016adb567d3b1d14648",
+  "canonicalPreMergeHead": "d2d60713e580fa1bcce8ba874216619598094093",
+  "targetState": "FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL",
+  "agentState": "CONFIGURED_NOT_RUNTIME_VERIFIED",
+  "firstWaveProfilesPresent": true,
+  "firstWaveProfileCount": 5,
+  "runtimeDiscoveryVerified": false,
+  "runtimeActivationComplete": false,
+  "runtimeSmokeComplete": false,
+  "productionGovernanceEligible": false,
+  "blocker": "PROJECT_LOCAL_AGENT_DISCOVERY_FAILED",
+  "rootCause": "ROOT_CAUSE_NOT_YET_ESTABLISHED",
+  "runtimeEnvironmentFinding": "PROJECT_LOCAL_AGENT_DISCOVERY_FAILED_IN_CURRENT_CLIENT_ENVIRONMENT",
+  "executionMode": "CI_VALIDATOR",
+  "runtimeCustomAgentDispatches": 0,
+  "productionWrites": 0,
+  "evidence": [
+    "audit/agents/FIRST_WAVE_CANONICALIZATION/implemented-agent-state.json",
+    "audit/agents/FIRST_WAVE_CANONICALIZATION/runtime-discovery-blocker.json",
+    "architecture/agents/registry/upstream-selection-register.yaml",
+    "architecture/agents/registry/upstream-lock.json",
+    "audit/agents/FIRST_WAVE_CONFIGURATION_REVIEW/summary.json",
+    "audit/agents/FIRST_WAVE_VALIDATION/summary.json"
+  ]
+}

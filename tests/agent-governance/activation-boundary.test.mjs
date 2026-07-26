@@ -18,12 +18,12 @@ function fixture() {
   return target;
 }
 
-test('owner-gated rollback state has no runtime-discovered profiles', () => {
+test('configured state has exact tracked profiles but remains runtime-unverified', () => {
   const result = validateActivationBoundary(root);
   assert.equal(result.ok, true, result.errors.join('\n'));
   assert.equal(result.provisionalStagingProfiles, 5);
-  assert.equal(result.runtimeDiscoveredPlatformAgents, 0);
-  assert.equal(result.runtimeDispatchStatus, 'NOT_DISPATCHED_ACTIVATION_CLOSED');
+  assert.equal(result.runtimeDiscoveredPlatformAgents, 5);
+  assert.equal(result.runtimeDispatchStatus, 'NOT_DISPATCHED_RUNTIME_DISCOVERY_UNVERIFIED');
   assert.equal(result.activationCommand, 'node tools/agents/activate-first-wave.mjs');
 });
 
@@ -67,7 +67,7 @@ test('bootstrap refuses an already discovered provisional profile', () => {
       resolve(root, 'tools/agents/compose-agents.mjs'), '--root', target, '--generate-profiles',
     ], { encoding: 'utf8' });
     assert.notEqual(run.status, 0);
-    assert.match(run.stderr, /RUNTIME_DISCOVERY_PATH_NOT_EMPTY/);
+    assert.match(run.stderr, /RUNTIME_DISCOVERY_CONFIGURED_SET_INVALID/);
   } finally { rmSync(target, { recursive: true, force: true }); }
 });
 
@@ -144,8 +144,8 @@ test('each activation prerequisite fails closed independently', () => {
   }
 });
 
-test('activation executable remains owner-gated after rollback', () => {
+test('activation executable remains owner-gated while runtime discovery is unverified', () => {
   const result = validateActivationBoundary(root);
   assert.equal(result.activationCommand, 'node tools/agents/activate-first-wave.mjs');
-  assert.equal(result.runtimeDiscoveredPlatformAgents, 0);
+  assert.equal(result.runtimeDiscoveredPlatformAgents, 5);
 });

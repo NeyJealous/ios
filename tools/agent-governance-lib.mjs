@@ -13,7 +13,8 @@ export const EXECUTION_MODES = [
   'MANUAL_REVIEW', 'NOT_AVAILABLE',
 ];
 export const IMPLEMENTATION_STATUSES = [
-  'SPECIFIED', 'PROVISIONAL', 'IMPLEMENTED', 'PARTIAL', 'MISSING', 'CONFLICTING', 'DEPRECATED',
+  'SPECIFIED', 'PROVISIONAL', 'IMPLEMENTED', 'CONFIGURED_NOT_RUNTIME_VERIFIED',
+  'PARTIAL', 'MISSING', 'CONFLICTING', 'DEPRECATED',
 ];
 export const CANONICAL_AGENT_IDS = [];
 
@@ -213,6 +214,12 @@ export function validateRegistry(registry) {
     if (registry.MandatoryAgentAvailability !== 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT') errors.push('registry: development availability mismatch');
     if (registry.ActivationAllowed !== true) errors.push('registry: development activation must be enabled');
   }
+  if (registry.PlatformState === 'FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL') {
+    if (registry.ActiveCustomAgents !== 0) errors.push('registry: configured runtime-unverified state must contain 0 active agents');
+    if (registry.ProvisionedAgents !== registry.Agents.length) errors.push('registry: configured agent count mismatch');
+    if (registry.MandatoryAgentAvailability !== 'CONFIGURED_RUNTIME_NOT_AVAILABLE') errors.push('registry: configured availability mismatch');
+    if (registry.ActivationAllowed !== false) errors.push('registry: runtime-unverified activation must be disabled');
+  }
   const required = [
     'AgentId', 'Name', 'SpecificationSources', 'Purpose', 'Scope', 'Triggers',
     'RequiredInputs', 'Checks', 'ForbiddenActions', 'RequiredOutputs',
@@ -231,6 +238,8 @@ export function validateRegistry(registry) {
     if (registry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD' && agent.ActivationEligible !== false) errors.push(`${agent.AgentId}: activation must remain ineligible`);
     if (registry.PlatformState === 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT' && agent.Status !== 'IMPLEMENTED') errors.push(`${agent.AgentId}: development activation requires IMPLEMENTED status`);
     if (registry.PlatformState === 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT' && agent.ActivationEligible !== true) errors.push(`${agent.AgentId}: development activation requires eligibility`);
+    if (registry.PlatformState === 'FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL' && agent.Status !== 'CONFIGURED_NOT_RUNTIME_VERIFIED') errors.push(`${agent.AgentId}: configured runtime-unverified state requires CONFIGURED_NOT_RUNTIME_VERIFIED`);
+    if (registry.PlatformState === 'FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL' && agent.ActivationEligible !== false) errors.push(`${agent.AgentId}: configured runtime-unverified state requires ineligible activation`);
     for (const field of ['CanWriteRemote', 'CanApproveMerge', 'CanDeploy', 'CanProductionWrite', 'CanModifySecrets']) {
       if (agent[field] !== false) errors.push(`${agent.AgentId}: forbidden permission ${field}`);
     }
@@ -412,7 +421,8 @@ export function validateInstructionHierarchy(root) {
 
 export function validateProjectAgentFiles(root, registry) {
   const errors = [];
-  const provisioned = registry.Agents.filter((agent) => ['PROVISIONAL', 'IMPLEMENTED'].includes(agent.Status));
+  const provisioned = registry.Agents.filter((agent) =>
+    ['PROVISIONAL', 'IMPLEMENTED', 'CONFIGURED_NOT_RUNTIME_VERIFIED'].includes(agent.Status));
   const dir = join(root, 'architecture', 'agents', 'generated', 'provisional');
   const files = existsSync(dir) ? readdirSync(dir).filter((file) => file.endsWith('.toml')) : [];
   if (files.length < provisioned.length) errors.push(`expected at least ${provisioned.length} project agents; found ${files.length}`);
@@ -427,6 +437,7 @@ export function validateProjectAgentFiles(root, registry) {
   if (registry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD' && files.length !== provisioned.length) errors.push(`provisional build must contain exactly ${provisioned.length} staged agents; found ${files.length}`);
   if (registry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD' && runtimeFiles.length !== 0) errors.push(`provisional build must contain 0 runtime-discovered agents; found ${runtimeFiles.length}`);
   if (registry.PlatformState === 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT' && runtimeFiles.length !== provisioned.length) errors.push(`development activation must contain exactly ${provisioned.length} runtime agents; found ${runtimeFiles.length}`);
+  if (registry.PlatformState === 'FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL' && runtimeFiles.length !== provisioned.length) errors.push(`configured runtime-unverified state must contain exactly ${provisioned.length} tracked profiles; found ${runtimeFiles.length}`);
   return errors;
 }
 

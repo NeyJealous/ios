@@ -1,0 +1,72 @@
+{
+  "state": "FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL",
+  "agents": [
+    {
+      "agentId": "ios-agent-orchestrator",
+      "profilePath": ".codex/agents/ios-agent-orchestrator.toml",
+      "profileSha256": "ec85df02b13de9433041d1521947fbda8e01b55a3c14fd46cad9c4c9c876dd66",
+      "compositionSha256": "5d42474ab6e597ffbea03f83b1373e2c92bf66ee74b78e2f9a46ccc89771efe4",
+      "upstreamCompositionSha256": "a774ba47839dc25e1b860531c682a4939fdb40f2e04bcd66d2552f6e77f60741",
+      "overlaySha256": "1478dfd701a691c1a5bff0a210ec19bf1ee749b690f8f92b6024cd531e8e44c3",
+      "model": "gpt-5.6-terra",
+      "reasoning": "medium"
+    },
+    {
+      "agentId": "agent-governance-auditor",
+      "profilePath": ".codex/agents/agent-governance-auditor.toml",
+      "profileSha256": "377acf7ec6c48867a536c1972169b999c6ec5f1a2cf1ffe3077ef792fec4ffd9",
+      "compositionSha256": "0f8279bf9d6083c2222e4c31ba90001eaa4e317dfd39b30a89f49a64dca99309",
+      "upstreamCompositionSha256": "eb122fcba1ed79a23f43ca5ffc535fe2662d475a7e23484d08d004651b148483",
+      "overlaySha256": "e024df0d9028e30e8316b97795d2196c032746cd35512df3a8bb8053ca083303",
+      "model": "gpt-5.6-sol",
+      "reasoning": "high"
+    },
+    {
+      "agentId": "security-privacy-auditor",
+      "profilePath": ".codex/agents/security-privacy-auditor.toml",
+      "profileSha256": "de7ee1a5f535c650c298f59e33c82ae92bc7ff29292b03b617fbaae551136757",
+      "compositionSha256": "083232a42445169e0a5d079749664b325b054c8090ffec458baa8a628207695e",
+      "upstreamCompositionSha256": "07130ca621c6b05f858bbfbf5ba2074852e5154ed46e9b8adb0d8627abf5aff9",
+      "overlaySha256": "cd0a8c4f4a286fc82987fab32b23fa9fba9db4c7a4536877e99a528cd6acf093",
+      "model": "gpt-5.6-sol",
+      "reasoning": "high"
+    },
+    {
+      "agentId": "audit-traceability-reviewer",
+      "profilePath": ".codex/agents/audit-traceability-reviewer.toml",
+      "profileSha256": "7d2379bd5154499ea31a8c43e1a29529e236db1c00fae9392d0e18d66058a6e4",
+      "compositionSha256": "91ace4a59cbf9df2fb963abdc117f354c770f940f27385ab2604cd0139aef5db",
+      "upstreamCompositionSha256": "0a4309df123f0dbbf53c41d515f7647da5c01ff41418f1407a1b09f911224c94",
+      "overlaySha256": "527b27aa75a7dce2f2e8ed93df3b6257c80f6a9553b6bee46ea82c7c8a1765a2",
+      "model": "gpt-5.6-terra",
+      "reasoning": "medium"
+    },
+    {
+      "agentId": "ios-codebase-auditor",
+      "profilePath": ".codex/agents/ios-codebase-auditor.toml",
+      "profileSha256": "31777f8aa5a04c74438c3cafa5d77c3ecffe431b216d5839a9ed5fdecd5943ac",
+      "compositionSha256": "034cf8cbbeefec6c6944199a6dc5dff38452a9660e2707c9caf0a1948127c95b",
+      "upstreamCompositionSha256": "626944224e588160c794b403f13d5108c5a9fae1d7ddc4020db148597b2029d5",
+      "overlaySha256": "d91b146dbbed3b0072d548764d7b1da298435c079cb2c0cab3c2d2b84fce7443",
+      "model": "gpt-5.6-sol",
+      "reasoning": "high"
+    }
+  ],
+  "upstreamPins": {
+    "VoltAgent/awesome-codex-subagents": "5605c9c18b3687993919d6cc467af4a34898fee2",
+    "wshobson/agents": "b6af3711058190e4b5c5274b9758498fe626ec5a"
+  },
+  "upstreamSelectionPath": "architecture/agents/registry/upstream-selection-register.yaml",
+  "upstreamLockPath": "architecture/agents/registry/upstream-lock.json",
+  "byteIdentity": {
+    "inclusions": 21,
+    "passed": 21,
+    "mutations": 0,
+    "deletions": 0,
+    "replacements": 0,
+    "semanticRewrites": 0
+  },
+  "runtimeDiscoveryVerified": false,
+  "runtimeActivationComplete": false,
+  "productionGovernanceEligible": false
+}
