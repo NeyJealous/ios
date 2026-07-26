@@ -1,39 +1,39 @@
 {
   "schemaVersion": "1.0.0",
-  "platformState": "FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT",
+  "platformState": "FIRST_WAVE_DEACTIVATED_FAIL_CLOSED",
   "platformActivationEligible": false,
-  "activationGate": "OPEN_FOR_PROJECT_DEVELOPMENT",
+  "activationGate": "CLOSED",
   "provisionalStagingPath": "architecture/agents/generated/provisional",
   "runtimeDiscoveryPath": ".codex/agents",
   "activationCommand": "node tools/agents/activate-first-wave.mjs",
-  "activationOperationStatus": "OWNER_AUTHORIZED_ACTIVE_RUNTIME_SMOKE_PENDING",
-  "runtimeDiscoveredPlatformAgents": 5,
-  "activeAgents": 5,
+  "activationOperationStatus": "OWNER_AUTHORIZED_DEACTIVATED",
+  "runtimeDiscoveredPlatformAgents": 0,
+  "activeAgents": 0,
   "provisionalAgents": [
     {
       "agentId": "ios-agent-orchestrator",
-      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
-      "activationEligible": true
+      "status": "PROVISIONAL",
+      "activationEligible": false
     },
     {
       "agentId": "agent-governance-auditor",
-      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
-      "activationEligible": true
+      "status": "PROVISIONAL",
+      "activationEligible": false
     },
     {
       "agentId": "security-privacy-auditor",
-      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
-      "activationEligible": true
+      "status": "PROVISIONAL",
+      "activationEligible": false
     },
     {
       "agentId": "audit-traceability-reviewer",
-      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
-      "activationEligible": true
+      "status": "PROVISIONAL",
+      "activationEligible": false
     },
     {
       "agentId": "ios-codebase-auditor",
-      "status": "ACTIVE_FOR_PROJECT_DEVELOPMENT",
-      "activationEligible": true
+      "status": "PROVISIONAL",
+      "activationEligible": false
     }
   ],
   "activationBlockers": [

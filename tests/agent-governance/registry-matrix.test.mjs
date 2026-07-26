@@ -27,16 +27,16 @@ test('all governance JSON schemas are syntactically valid draft 2020-12 document
   }
 });
 
-test('first wave is active for project development with production gates open', () => {
-  assert.equal(registry.PlatformState, 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT');
-  assert.equal(registry.ActiveCustomAgents, 5);
+test('first wave is fail-closed after runtime activation rollback', () => {
+  assert.equal(registry.PlatformState, 'PROVISIONAL_PLATFORM_BUILD');
+  assert.equal(registry.ActiveCustomAgents, 0);
   assert.equal(registry.ProvisionedAgents, 5);
   assert.equal(registry.Agents.length, 5);
-  assert.ok(registry.Agents.every((agent) => agent.Status === 'IMPLEMENTED' && agent.ActivationEligible === true));
-  assert.equal(matrix.PlatformState, 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT');
+  assert.ok(registry.Agents.every((agent) => agent.Status === 'PROVISIONAL' && agent.ActivationEligible === false));
+  assert.equal(matrix.PlatformState, 'PROVISIONAL_PLATFORM_BUILD');
   assert.deepEqual(matrix.AlwaysRequiredAgents, []);
   assert.equal(matrix.FailClosed.RequiredAgents.length, 4);
-  assert.equal(matrix.Transition.ActivationGate, 'OPEN_FOR_PROJECT_DEVELOPMENT');
+  assert.equal(matrix.Transition.ActivationGate, 'CLOSED');
   const serialized = JSON.stringify({ registry, matrix });
   for (const oldId of ['APPS_SCRIPT_REVIEWER', 'ARCHITECTURE_REVIEWER', 'BOND_SPECIALIST', 'COMPANY_RATING_REVIEWER', 'DOCUMENTATION_REVIEWER', 'GOOGLE_SHEETS_REVIEWER', 'INVESTMENT_LOGIC_REVIEWER', 'PERFORMANCE_AUDITOR', 'TEST_GENERATOR', 'UX_REVIEWER']) {
     assert.equal(serialized.includes(oldId), false, `stale agent identifier: ${oldId}`);
@@ -44,22 +44,23 @@ test('first wave is active for project development with production gates open', 
 });
 
 const cases = [
-  ['production domain', 'IOS_SOURCE_SNAPSHOT/work/apps-script/Core.gs', 'no-production-write', true],
-  ['docs only', 'docs/guide.md', 'traceability', false],
-  ['governance', 'architecture/agents/review-matrix.yaml', 'governance-tamper-check', false],
-  ['profiles', '.codex/agents/ios-agent-orchestrator.toml', 'upstream-integrity', false],
-  ['tests', 'tests/agent-governance/resolver.test.mjs', 'determinism', false],
+  ['production domain', 'IOS_SOURCE_SNAPSHOT/work/apps-script/Core.gs', 'no-production-write'],
+  ['docs only', 'docs/guide.md', 'traceability'],
+  ['governance', 'architecture/agents/review-matrix.yaml', 'governance-tamper-check'],
+  ['profiles', '.codex/agents/ios-agent-orchestrator.toml', 'upstream-integrity'],
+  ['tests', 'tests/agent-governance/resolver.test.mjs', 'determinism'],
 ];
 
-for (const [label, path, requiredControl, blocked] of cases) {
-  test(`development resolver routes ${label} deterministically`, () => {
+for (const [label, path, requiredControl] of cases) {
+  test(`rollback resolver routes ${label} but blocks dispatch`, () => {
     const result = resolveRequiredAgents({ changedPaths: [path], matrix });
     assert.ok(result.RequiredAgents.length > 0);
-    assert.equal(result.MandatoryAgentAvailability, 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT');
-    assert.equal(result.OverallResult, blocked ? 'BLOCKED' : 'RESOLVED');
-    assert.equal(result.FailClosed, blocked);
+    assert.equal(result.MandatoryAgentAvailability, 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED');
+    assert.equal(result.OverallResult, 'BLOCKED');
+    assert.equal(result.FailClosed, true);
+    assert.ok(result.BlockedByUnavailableAgents.length > 0);
     assert.ok(result.RequiredControls.includes(requiredControl));
-    assert.ok(result.RequiredControls.includes('development-activation-owner-authorized'));
+    assert.ok(result.RequiredControls.includes('activation-closed'));
   });
 }
 
@@ -71,7 +72,7 @@ test('mixed and unknown changes require governance wave and remain fail-closed',
   for (const agentId of matrix.FailClosed.RequiredAgents) assert.ok(result.RequiredAgents.includes(agentId));
   assert.ok(result.RequiredAgents.includes('ios-codebase-auditor'));
   assert.deepEqual(result.UnknownPaths, ['unclassified/file.weird']);
-  assert.equal(result.MandatoryAgentAvailability, 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT');
+  assert.equal(result.MandatoryAgentAvailability, 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED');
   assert.equal(result.OverallResult, 'BLOCKED');
   assert.ok(result.BlockedByUnavailableAgents.length > 0);
 });

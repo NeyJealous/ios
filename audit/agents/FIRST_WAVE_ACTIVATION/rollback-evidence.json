@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "rollbackId": "FIRST_WAVE_ROLLBACK_20260727",
+  "trigger": "PROFILE_NOT_INVOKABLE",
+  "command": "node tools/agents/deactivate-first-wave.mjs",
+  "operationResult": "PASS",
+  "runtimeProfiles": [],
+  "runtimeDiscoveredPlatformAgents": 0,
+  "platformState": "FIRST_WAVE_DEACTIVATED_FAIL_CLOSED",
+  "runtimeDispatchStatus": "NOT_DISPATCHED_ACTIVATION_CLOSED",
+  "registryActivationAllowed": false,
+  "productionGovernanceEligible": false,
+  "productionWrites": 0,
+  "googleSheetsWrites": 0,
+  "appsScriptWrites": 0,
+  "brokerApiWrites": 0,
+  "deploymentUpdates": 0,
+  "claspPush": 0,
+  "push": 0,
+  "merge": 0
+}

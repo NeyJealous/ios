@@ -1,6 +1,6 @@
 {
-  "Version": "2.1.0-development-active",
-  "PlatformState": "FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT",
+  "Version": "2.1.0-provisional",
+  "PlatformState": "PROVISIONAL_PLATFORM_BUILD",
   "TaskTypes": [
     "orchestrator self-change",
     "upstream/profile/model",
@@ -17,7 +17,7 @@
     "privacy",
     "secret-scan",
     "architecture-impact",
-    "development-activation-owner-authorized"
+    "activation-closed"
   ],
   "Rules": [
     {
@@ -89,7 +89,7 @@
         "privacy",
         "secret-scan",
         "governance-tamper-check",
-        "development-activation-owner-authorized"
+        "activation-closed"
       ]
     },
     {
@@ -109,7 +109,7 @@
       "RequiredControls": [
         "architecture-impact",
         "traceability",
-        "development-activation-owner-authorized"
+        "activation-closed"
       ]
     },
     {
@@ -124,7 +124,7 @@
       ],
       "RequiredControls": [
         "traceability",
-        "development-activation-owner-authorized"
+        "activation-closed"
       ]
     },
     {
@@ -141,7 +141,7 @@
       "RequiredControls": [
         "determinism",
         "no-production-access",
-        "development-activation-owner-authorized"
+        "activation-closed"
       ]
     },
     {
@@ -166,7 +166,7 @@
       "RequiredControls": [
         "mandatory-domain-reviewer-not-integrated",
         "no-production-write",
-        "development-activation-owner-authorized"
+        "activation-closed"
       ]
     }
   ],
@@ -179,18 +179,18 @@
       "security-privacy-auditor",
       "audit-traceability-reviewer"
     ],
-    "MandatoryAvailability": "FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT",
+    "MandatoryAvailability": "PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED",
     "OverallResult": "BLOCKED"
   },
   "Transition": {
-    "ActiveCustomAgents": 5,
-    "ProvisionalAgents": 0,
+    "ActiveCustomAgents": 0,
+    "ProvisionalAgents": 5,
     "OldRegistryReferences": 0,
     "OldMatrixReferences": 0,
     "OldResolverReferences": 0,
     "OldManifestsAccepted": false,
     "ResolverBehavior": "FAIL_CLOSED",
-    "ActivationGate": "OPEN_FOR_PROJECT_DEVELOPMENT"
+    "ActivationGate": "CLOSED"
   },
   "AntiTamperPaths": [
     "AGENTS.md",
@@ -223,7 +223,7 @@
       "privacy",
       "secret-scan",
       "architecture-impact",
-      "development-activation-owner-authorized"
+      "activation-closed"
     ],
     "ExpiredOrUnauthorized": "BLOCK"
   }

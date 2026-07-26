@@ -120,7 +120,7 @@ function setRegistryState(root, active) {
   const oldControl = active ? 'activation-closed' : 'development-activation-owner-authorized';
   const newControl = active ? 'development-activation-owner-authorized' : 'activation-closed';
   const replaceControl = (value) => Array.isArray(value) ? value.map((item) => item === oldControl ? newControl : item) : value;
-  matrix.MandatoryControls = replaceControl(matrix.MandatoryControls);
+  matrix.BaselineControls = replaceControl(matrix.BaselineControls);
   matrix.Version = active ? '2.1.0-development-active' : '2.1.0-provisional';
   matrix.PlatformState = active ? 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT' : 'PROVISIONAL_PLATFORM_BUILD';
   for (const rule of matrix.Rules) rule.RequiredControls = replaceControl(rule.RequiredControls);

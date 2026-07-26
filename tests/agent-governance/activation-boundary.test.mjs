@@ -18,12 +18,12 @@ function fixture() {
   return target;
 }
 
-test('owner-authorized development activation discovers exactly five profiles', () => {
+test('owner-gated rollback state has no runtime-discovered profiles', () => {
   const result = validateActivationBoundary(root);
   assert.equal(result.ok, true, result.errors.join('\n'));
   assert.equal(result.provisionalStagingProfiles, 5);
-  assert.equal(result.runtimeDiscoveredPlatformAgents, 5);
-  assert.equal(result.runtimeDispatchStatus, 'ACTIVE_RUNTIME_SMOKE_PENDING');
+  assert.equal(result.runtimeDiscoveredPlatformAgents, 0);
+  assert.equal(result.runtimeDispatchStatus, 'NOT_DISPATCHED_ACTIVATION_CLOSED');
   assert.equal(result.activationCommand, 'node tools/agents/activate-first-wave.mjs');
 });
 
@@ -144,8 +144,8 @@ test('each activation prerequisite fails closed independently', () => {
   }
 });
 
-test('activation executable is owner-gated and exact discovery is available', () => {
+test('activation executable remains owner-gated after rollback', () => {
   const result = validateActivationBoundary(root);
   assert.equal(result.activationCommand, 'node tools/agents/activate-first-wave.mjs');
-  assert.equal(result.runtimeDiscoveredPlatformAgents, 5);
+  assert.equal(result.runtimeDiscoveredPlatformAgents, 0);
 });
