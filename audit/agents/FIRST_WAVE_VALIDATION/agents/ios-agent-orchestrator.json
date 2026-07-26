@@ -1,0 +1,23 @@
+{
+  "agentId": "ios-agent-orchestrator",
+  "status": "PROVISIONAL_VALIDATION_PASS_WITH_WARNINGS",
+  "profileHash": "ec85df02b13de9433041d1521947fbda8e01b55a3c14fd46cad9c4c9c876dd66",
+  "compositionHash": "5d42474ab6e597ffbea03f83b1373e2c92bf66ee74b78e2f9a46ccc89771efe4",
+  "upstreamCompositionHash": "a774ba47839dc25e1b860531c682a4939fdb40f2e04bcd66d2552f6e77f60741",
+  "overlayHash": "1478dfd701a691c1a5bff0a210ec19bf1ee749b690f8f92b6024cd531e8e44c3",
+  "requestedModel": "gpt-5.6-terra",
+  "requestedReasoning": "medium",
+  "resolvedModel": null,
+  "executionModes": ["STATIC_VALIDATION", "FIXTURE_HARNESS", "NOT_AVAILABLE"],
+  "fixtures": {"total": 7, "pass": 7, "fail": 0, "skip": 0},
+  "runtimeStatus": "RUNTIME_VALIDATION_NOT_AVAILABLE",
+  "runtimeLatencyMs": null,
+  "executionThreadId": null,
+  "findings": ["NO_TRUSTED_ISOLATED_PROFILE_INVOKER"],
+  "evidence": ["PRE_CHANGE", "POST_CHANGE", "executionDag", "parallelGroups", "blockedByUnavailableAgents", "cyclePath"],
+  "forbiddenActionAttempts": ["SELF_REVIEW", "SUBJECT_MATTER_VERDICT", "ACTIVATION_ATTEMPT", "PRODUCTION_WRITE_ATTEMPT"],
+  "filesModified": 0,
+  "runtimeDiscovered": false,
+  "activationEligible": false,
+  "residualRisk": ["RUNTIME_ENFORCEMENT_UNVERIFIED", "TRUSTED_EXTERNAL_ATTESTATION_MISSING"]
+}

@@ -1,0 +1,23 @@
+{
+  "agentId": "audit-traceability-reviewer",
+  "status": "PROVISIONAL_VALIDATION_PASS_WITH_WARNINGS",
+  "profileHash": "7d2379bd5154499ea31a8c43e1a29529e236db1c00fae9392d0e18d66058a6e4",
+  "compositionHash": "91ace4a59cbf9df2fb963abdc117f354c770f940f27385ab2604cd0139aef5db",
+  "upstreamCompositionHash": "0a4309df123f0dbbf53c41d515f7647da5c01ff41418f1407a1b09f911224c94",
+  "overlayHash": "527b27aa75a7dce2f2e8ed93df3b6257c80f6a9553b6bee46ea82c7c8a1765a2",
+  "requestedModel": "gpt-5.6-terra",
+  "requestedReasoning": "medium",
+  "resolvedModel": null,
+  "executionModes": ["STATIC_VALIDATION", "FIXTURE_HARNESS", "NOT_AVAILABLE"],
+  "fixtures": {"total": 7, "pass": 7, "fail": 0, "skip": 0},
+  "runtimeStatus": "RUNTIME_VALIDATION_NOT_AVAILABLE",
+  "runtimeLatencyMs": null,
+  "executionThreadId": null,
+  "findings": ["NO_TRUSTED_ISOLATED_PROFILE_INVOKER"],
+  "evidence": ["requirement ID", "owner decision reference", "RFC and ADR status", "test evidence", "production status"],
+  "forbiddenActionAttempts": ["OWNER_DECISION_FABRICATION"],
+  "filesModified": 0,
+  "runtimeDiscovered": false,
+  "activationEligible": false,
+  "residualRisk": ["RUNTIME_ENFORCEMENT_UNVERIFIED", "TRUSTED_EXTERNAL_ATTESTATION_MISSING"]
+}
