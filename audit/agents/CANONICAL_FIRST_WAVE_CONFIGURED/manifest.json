@@ -3,7 +3,7 @@
   "gateId": "CANONICAL_FIRST_WAVE_CONFIGURED",
   "canonicalBranch": "integration/ios-current",
   "canonicalPreMergeSha": "d2d60713e580fa1bcce8ba874216619598094093",
-  "configuredMergeSha": "8d5cb22856fa66d43baf0bfdd798a0989715aef7",
+  "configuredMergeSha": "6ca1cb0388eda644c193e603478e69bb52dc6e0e",
   "featureSourceSha": "2899461187b9ab3d03c7e6264341737f2989f4bf",
   "status": "FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL",
   "agentStatus": "CONFIGURED_NOT_RUNTIME_VERIFIED",
