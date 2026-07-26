@@ -1,0 +1,23 @@
+{
+  "ios-agent-orchestrator": {
+    "manifestSha256": "5d42474ab6e597ffbea03f83b1373e2c92bf66ee74b78e2f9a46ccc89771efe4",
+    "upstreamCompositionSha256": "a774ba47839dc25e1b860531c682a4939fdb40f2e04bcd66d2552f6e77f60741"
+  },
+  "agent-governance-auditor": {
+    "manifestSha256": "0f8279bf9d6083c2222e4c31ba90001eaa4e317dfd39b30a89f49a64dca99309",
+    "upstreamCompositionSha256": "eb122fcba1ed79a23f43ca5ffc535fe2662d475a7e23484d08d004651b148483"
+  },
+  "security-privacy-auditor": {
+    "manifestSha256": "083232a42445169e0a5d079749664b325b054c8090ffec458baa8a628207695e",
+    "upstreamCompositionSha256": "07130ca621c6b05f858bbfbf5ba2074852e5154ed46e9b8adb0d8627abf5aff9"
+  },
+  "audit-traceability-reviewer": {
+    "manifestSha256": "91ace4a59cbf9df2fb963abdc117f354c770f940f27385ab2604cd0139aef5db",
+    "upstreamCompositionSha256": "0a4309df123f0dbbf53c41d515f7647da5c01ff41418f1407a1b09f911224c94"
+  },
+  "ios-codebase-auditor": {
+    "manifestSha256": "034cf8cbbeefec6c6944199a6dc5dff38452a9660e2707c9caf0a1948127c95b",
+    "upstreamCompositionSha256": "626944224e588160c794b403f13d5108c5a9fae1d7ddc4020db148597b2029d5"
+  },
+  "compositionLockSha256": "d5cd4ea0e2ec876419800af0b282191bc9b58bdb619371d0b768fe1c799501e0"
+}

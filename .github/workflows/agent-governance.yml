@@ -23,6 +23,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: agent-governance-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   agent-governance:
     name: agent-governance
@@ -34,14 +38,31 @@ jobs:
       HEAD_BRANCH: ${{ github.event.pull_request.head.ref || inputs.branch }}
     steps:
       - name: Checkout reviewed head without credentials
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
           ref: ${{ github.event.pull_request.head.sha || inputs.head }}
           fetch-depth: 0
           persist-credentials: false
 
+      - name: Install project-local tooling without lifecycle scripts
+        run: npm ci --ignore-scripts
+
+      - name: Rebuild locked provisional profiles
+        run: npm run agents:bootstrap
+
+      - name: Verify reproducible clean checkout
+        run: |
+          npm run agents:check
+          git diff --exit-code
+
       - name: Validate registry, matrix, project agents, and instructions
         run: node tools/validate-agent-governance.mjs --all
+
+      - name: Run non-agent fail-closed safety validator
+        run: node tools/non-agent-safety-validator.mjs
+
+      - name: Run governance regression suite
+        run: node --test tests/agent-governance/*.test.mjs
 
       - name: Resolve required agents from full diff
         run: >-

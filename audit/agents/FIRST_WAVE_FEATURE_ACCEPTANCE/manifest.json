@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.0.0",
+  "gateId": "FIRST_WAVE_FEATURE_ACCEPTANCE",
+  "branch": "feature/agent-platform-v2-integration",
+  "testedHead": "4abd611f70322cb51cb24325e29b6d1696a4d03e",
+  "status": "PASS_CONFIGURED_RUNTIME_UNVERIFIED",
+  "targetCanonicalState": "FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL",
+  "firstWaveProfilesPresent": true,
+  "firstWaveProfileCount": 5,
+  "runtimeDiscoveryVerified": false,
+  "runtimeActivationComplete": false,
+  "runtimeSmokeComplete": false,
+  "productionGovernanceEligible": false,
+  "blocker": "PROJECT_LOCAL_AGENT_DISCOVERY_FAILED",
+  "rootCause": "ROOT_CAUSE_NOT_YET_ESTABLISHED",
+  "tests": {
+    "total": 121,
+    "pass": 119,
+    "fail": 0,
+    "skip": 2
+  },
+  "runtimeCustomAgentDispatches": 0,
+  "productionWrites": 0
+}

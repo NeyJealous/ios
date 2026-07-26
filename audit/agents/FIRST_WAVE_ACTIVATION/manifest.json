@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "gate": "FIRST_WAVE_ACTIVATION",
+  "ownerDecisionId": "OWNER_DECISION_ACTIVATE_FIRST_WAVE_20260727",
+  "sourceHead": "af0b389893ae605af3d65e2cbb941486f7a74cdc",
+  "activationCommit": "b3a59fe",
+  "result": "BLOCKED",
+  "blocker": "PROFILE_NOT_INVOKABLE",
+  "attemptedAgents": ["ios-agent-orchestrator"],
+  "unattemptedAgents": [
+    "agent-governance-auditor",
+    "security-privacy-auditor",
+    "audit-traceability-reviewer",
+    "ios-codebase-auditor"
+  ],
+  "rollback": "PASS",
+  "runtimeDiscoveredPlatformAgentsAfterRollback": 0,
+  "productionGovernanceEligible": false,
+  "push": 0,
+  "merge": 0,
+  "productionWrites": 0
+}

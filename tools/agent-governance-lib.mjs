@@ -1,6 +1,7 @@
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { existsSync, lstatSync, readFileSync, readdirSync } from 'node:fs';
 import { basename, join, relative, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { validateJsonSchema } from './json-schema-validator.mjs';
 
 export const REVIEW_STATUSES = [
   'PASS', 'PASS_WITH_WARNINGS', 'BLOCKED', 'FAIL',
@@ -12,14 +13,10 @@ export const EXECUTION_MODES = [
   'MANUAL_REVIEW', 'NOT_AVAILABLE',
 ];
 export const IMPLEMENTATION_STATUSES = [
-  'SPECIFIED', 'IMPLEMENTED', 'PARTIAL', 'MISSING', 'CONFLICTING', 'DEPRECATED',
+  'SPECIFIED', 'PROVISIONAL', 'IMPLEMENTED', 'CONFIGURED_NOT_RUNTIME_VERIFIED',
+  'PARTIAL', 'MISSING', 'CONFLICTING', 'DEPRECATED',
 ];
-export const CANONICAL_AGENT_IDS = [
-  'ARCHITECTURE_REVIEWER', 'APPS_SCRIPT_REVIEWER', 'PERFORMANCE_AUDITOR',
-  'INVESTMENT_LOGIC_REVIEWER', 'BOND_SPECIALIST',
-  'COMPANY_RATING_REVIEWER', 'GOOGLE_SHEETS_REVIEWER',
-  'DOCUMENTATION_REVIEWER', 'UX_REVIEWER', 'TEST_GENERATOR',
-];
+export const CANONICAL_AGENT_IDS = [];
 
 export function readJsonCompatibleYaml(path) {
   try {
@@ -27,6 +24,13 @@ export function readJsonCompatibleYaml(path) {
   } catch (error) {
     throw new Error(`Cannot parse JSON-compatible YAML ${path}: ${error.message}`);
   }
+}
+
+function readGovernanceJson(path, label, maximumBytes = 2_000_000) {
+  const stat = lstatSync(path);
+  if (!stat.isFile() || stat.isSymbolicLink()) throw new Error(`${label}: unsafe file type`);
+  if (stat.size > maximumBytes) throw new Error(`${label}: exceeds ${maximumBytes} byte cap`);
+  return JSON.parse(readFileSync(path, 'utf8'));
 }
 
 export function normalizeRepoPath(value) {
@@ -126,11 +130,14 @@ export function resolveRequiredAgents({
   if (paths.length === 0 && !allowEmpty) {
     throw new Error('Empty diff is blocked by fail-closed policy.');
   }
-  const matchedRules = matrix.Rules.filter((rule) =>
-    paths.some((path) => matchesAny(path, rule.PathPatterns)) ||
-    (branch && matchesAny(branch, rule.BranchPatterns || [])));
-
-  const unknown = paths.length > 0 && matchedRules.length === 0;
+  const pathRules = new Map(paths.map((path) => [
+    path,
+    matrix.Rules.filter((rule) => matchesAny(path, rule.PathPatterns)),
+  ]));
+  const branchRules = matrix.Rules.filter((rule) => branch && matchesAny(branch, rule.BranchPatterns || []));
+  const matchedRules = [...new Set([...pathRules.values()].flat().concat(branchRules))];
+  const unknownPaths = paths.filter((path) => pathRules.get(path).length === 0);
+  const unknown = unknownPaths.length > 0;
   const taskTypes = [...new Set(matchedRules.map((rule) => rule.TaskType))].sort();
   const required = new Set(matrix.AlwaysRequiredAgents);
   const controls = new Set(matrix.BaselineControls);
@@ -150,17 +157,28 @@ export function resolveRequiredAgents({
     for (const id of exception.ExcludedAgents) required.delete(id);
   }
 
+  const activationClosed = !['ACTIVE', 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT'].includes(matrix.PlatformState);
+  const domainReviewerUnavailable = controls.has('mandatory-domain-reviewer-not-integrated');
+  const invalidException = exceptionResults.some((result) => !result.valid);
+  const blocked = activationClosed || domainReviewerUnavailable || unknown || invalidException;
   return {
     TaskType: unknown || taskTypes.length !== 1 ? 'mixed/unknown' : taskTypes[0],
     MatchedTaskTypes: unknown ? ['mixed/unknown'] : taskTypes,
     ChangedPaths: paths,
+    UnknownPaths: unknownPaths,
     MatchedRules: matchedRules.map((rule) => rule.RuleId),
     ApplicableAgents: [...required].sort(),
     RequiredAgents: [...required].sort(),
     RequiredControls: [...controls].sort(),
     AdvisoryCandidateRoles: [...advisory].sort(),
     ExceptionResults: exceptionResults,
-    FailClosed: unknown || exceptionResults.some((result) => !result.valid),
+    BlockedByUnavailableAgents: [
+      ...(activationClosed ? [matrix.PlatformState === 'ZERO_AGENT_TRANSITION' ? 'MANDATORY_AGENT_NOT_AVAILABLE' : 'PLATFORM_ACTIVATION_CLOSED'] : []),
+      ...(domainReviewerUnavailable ? ['MANDATORY_DOMAIN_REVIEWER_NOT_INTEGRATED'] : []),
+    ],
+    MandatoryAgentAvailability: matrix.FailClosed.MandatoryAvailability || 'AVAILABLE',
+    OverallResult: blocked ? (matrix.FailClosed.OverallResult || 'BLOCKED') : 'RESOLVED',
+    FailClosed: blocked,
   };
 }
 
@@ -177,6 +195,31 @@ function requireFields(value, fields, label) {
 export function validateRegistry(registry) {
   const errors = requireFields(registry, ['Version', 'CanonicalBranch', 'Agents'], 'registry');
   if (!Array.isArray(registry.Agents)) return [...errors, 'registry: Agents must be an array'];
+  if (registry.PlatformState === 'ZERO_AGENT_TRANSITION') {
+    if (registry.Agents.length !== 0) errors.push('registry: zero-agent transition must contain no agents');
+    if (registry.ActiveCustomAgents !== 0) errors.push('registry: ActiveCustomAgents must be 0');
+    if (registry.MandatoryAgentAvailability !== 'NOT_AVAILABLE') errors.push('registry: mandatory agent must be NOT_AVAILABLE');
+    if (registry.ActivationAllowed !== false) errors.push('registry: activation must be disabled');
+    return errors;
+  }
+  if (registry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD') {
+    if (registry.ActiveCustomAgents !== 0) errors.push('registry: provisional build must contain 0 active agents');
+    if (registry.ProvisionedAgents !== registry.Agents.length) errors.push('registry: ProvisionedAgents must match Agents length');
+    if (registry.MandatoryAgentAvailability !== 'PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED') errors.push('registry: provisional availability mismatch');
+    if (registry.ActivationAllowed !== false) errors.push('registry: activation must be disabled');
+  }
+  if (registry.PlatformState === 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT') {
+    if (registry.ActiveCustomAgents !== registry.Agents.length) errors.push('registry: active agent count mismatch');
+    if (registry.ProvisionedAgents !== registry.Agents.length) errors.push('registry: provisioned agent count mismatch');
+    if (registry.MandatoryAgentAvailability !== 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT') errors.push('registry: development availability mismatch');
+    if (registry.ActivationAllowed !== true) errors.push('registry: development activation must be enabled');
+  }
+  if (registry.PlatformState === 'FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL') {
+    if (registry.ActiveCustomAgents !== 0) errors.push('registry: configured runtime-unverified state must contain 0 active agents');
+    if (registry.ProvisionedAgents !== registry.Agents.length) errors.push('registry: configured agent count mismatch');
+    if (registry.MandatoryAgentAvailability !== 'CONFIGURED_RUNTIME_NOT_AVAILABLE') errors.push('registry: configured availability mismatch');
+    if (registry.ActivationAllowed !== false) errors.push('registry: runtime-unverified activation must be disabled');
+  }
   const required = [
     'AgentId', 'Name', 'SpecificationSources', 'Purpose', 'Scope', 'Triggers',
     'RequiredInputs', 'Checks', 'ForbiddenActions', 'RequiredOutputs',
@@ -191,6 +234,12 @@ export function validateRegistry(registry) {
     if (ids.has(agent.AgentId)) errors.push(`duplicate AgentId ${agent.AgentId}`);
     ids.add(agent.AgentId);
     if (!IMPLEMENTATION_STATUSES.includes(agent.Status)) errors.push(`${agent.AgentId}: unknown status ${agent.Status}`);
+    if (registry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD' && agent.Status !== 'PROVISIONAL') errors.push(`${agent.AgentId}: provisional build requires PROVISIONAL status`);
+    if (registry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD' && agent.ActivationEligible !== false) errors.push(`${agent.AgentId}: activation must remain ineligible`);
+    if (registry.PlatformState === 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT' && agent.Status !== 'IMPLEMENTED') errors.push(`${agent.AgentId}: development activation requires IMPLEMENTED status`);
+    if (registry.PlatformState === 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT' && agent.ActivationEligible !== true) errors.push(`${agent.AgentId}: development activation requires eligibility`);
+    if (registry.PlatformState === 'FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL' && agent.Status !== 'CONFIGURED_NOT_RUNTIME_VERIFIED') errors.push(`${agent.AgentId}: configured runtime-unverified state requires CONFIGURED_NOT_RUNTIME_VERIFIED`);
+    if (registry.PlatformState === 'FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL' && agent.ActivationEligible !== false) errors.push(`${agent.AgentId}: configured runtime-unverified state requires ineligible activation`);
     for (const field of ['CanWriteRemote', 'CanApproveMerge', 'CanDeploy', 'CanProductionWrite', 'CanModifySecrets']) {
       if (agent[field] !== false) errors.push(`${agent.AgentId}: forbidden permission ${field}`);
     }
@@ -225,12 +274,22 @@ const REVIEW_FIELDS = [
 ];
 
 export function validateReview(review, expected = {}) {
+  if (!review || typeof review !== 'object' || Array.isArray(review)) return ['review UNKNOWN: must be an object'];
   const errors = requireFields(review, REVIEW_FIELDS, `review ${review.AgentId || 'UNKNOWN'}`);
+  const unexpected = Object.keys(review).filter((field) => !REVIEW_FIELDS.includes(field));
+  for (const field of unexpected) errors.push(`${review.AgentId || 'UNKNOWN'}: unexpected property ${field}`);
+  for (const field of ['FilesReviewed', 'SpecificationReferences', 'ChecksPerformed', 'Findings', 'Evidence', 'RequiredFixes']) {
+    if (!Array.isArray(review[field])) errors.push(`${review.AgentId || 'UNKNOWN'}: ${field} must be an array`);
+  }
+  if (typeof review.CommitSHA !== 'string' || !/^[0-9a-f]{40}$/.test(review.CommitSHA)) errors.push(`${review.AgentId || 'UNKNOWN'}: invalid CommitSHA`);
+  if (typeof review.Timestamp !== 'string' || Number.isNaN(Date.parse(review.Timestamp))) errors.push(`${review.AgentId || 'UNKNOWN'}: invalid Timestamp`);
   if (!REVIEW_STATUSES.includes(review.Status)) errors.push(`${review.AgentId}: invalid Status`);
   if (!SEVERITIES.includes(review.Severity)) errors.push(`${review.AgentId}: invalid Severity`);
   if (!EXECUTION_MODES.includes(review.ExecutionMode)) errors.push(`${review.AgentId}: invalid ExecutionMode`);
   for (const [field, value] of Object.entries(expected)) if (value !== undefined && review[field] !== value) errors.push(`${review.AgentId}: wrong ${field}`);
   if (review.Status === 'NOT_EXECUTED') errors.push(`${review.AgentId}: mandatory review NOT_EXECUTED`);
+  if (['BLOCKED', 'FAIL'].includes(review.Status)) errors.push(`${review.AgentId}: mandatory review ${review.Status}`);
+  if (review.ExecutionMode === 'NOT_AVAILABLE' && ['PASS', 'PASS_WITH_WARNINGS', 'NOT_APPLICABLE'].includes(review.Status)) errors.push(`${review.AgentId}: NOT_AVAILABLE cannot produce ${review.Status}`);
   if (review.Status === 'NOT_APPLICABLE' && (!review.Evidence?.length || !review.ResidualRisk)) errors.push(`${review.AgentId}: NOT_APPLICABLE lacks justification`);
   if (review.ExecutionMode === 'REAL_SUBAGENT' && !review.Evidence?.some((item) => String(item).startsWith('AgentThreadId='))) errors.push(`${review.AgentId}: REAL_SUBAGENT lacks AgentThreadId evidence`);
   const findings = Array.isArray(review.Findings) ? review.Findings : [];
@@ -246,21 +305,23 @@ export function findManifest(root, branch) {
     if (!gate.isDirectory()) continue;
     const path = join(root, gate.name, 'manifest.json');
     if (!existsSync(path)) continue;
-    const value = JSON.parse(readFileSync(path, 'utf8'));
+    const value = readGovernanceJson(path, `manifest ${gate.name}`);
     if (value.Branch === branch) candidates.push({ path, value });
   }
   if (candidates.length !== 1) throw new Error(`Expected exactly one manifest for ${branch}; found ${candidates.length}.`);
   return candidates[0];
 }
 
-export function validateManifest({ manifestPath, required, root, branch, base, actualHead }) {
-  const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
-  const errors = requireFields(manifest, [
-    'GateId', 'TaskType', 'Branch', 'BaseSHA', 'HeadSHA', 'ChangedPaths',
-    'ApplicableAgents', 'RequiredAgents', 'ExecutedAgents', 'MissingAgents',
-    'BlockingFindings', 'Warnings', 'ArchitectureImpact', 'SecurityImpact',
-    'ProductionImpact', 'OverallStatus',
-  ], 'manifest');
+export function validateManifest({ manifestPath, required, root, branch, base, actualHead, schemaRoot: explicitSchemaRoot, forbiddenPassingExecutionModes = [] }) {
+  const manifest = readGovernanceJson(manifestPath, 'manifest');
+  const schemaRoot = explicitSchemaRoot || (existsSync(join(root, 'architecture', 'agents', 'review-manifest.schema.json'))
+    ? root : resolve(import.meta.dirname, '..'));
+  const manifestSchema = JSON.parse(readFileSync(join(schemaRoot, 'architecture', 'agents', 'review-manifest.schema.json'), 'utf8'));
+  const reviewSchema = JSON.parse(readFileSync(join(schemaRoot, 'architecture', 'agents', 'review-contract.schema.json'), 'utf8'));
+  const errors = validateJsonSchema(manifest, manifestSchema, { path: 'manifest' });
+  const registryPath = join(root, 'architecture', 'agents', 'agent-registry.yaml');
+  const transitionRegistry = existsSync(registryPath) ? readJsonCompatibleYaml(registryPath) : null;
+  const zeroAgentTransition = transitionRegistry?.PlatformState === 'ZERO_AGENT_TRANSITION';
   if (manifest.Branch !== branch) errors.push('manifest: wrong branch');
   if (manifest.BaseSHA !== base) errors.push('manifest: wrong base SHA');
   if (manifest.TaskType !== required.TaskType) errors.push('manifest: wrong task type');
@@ -270,6 +331,14 @@ export function validateManifest({ manifestPath, required, root, branch, base, a
   if (JSON.stringify([...manifest.ApplicableAgents].sort()) !== JSON.stringify([...required.ApplicableAgents].sort())) errors.push('manifest: ApplicableAgents differs from resolver');
   if (manifest.MissingAgents.length) errors.push(`manifest: missing agents ${manifest.MissingAgents.join(', ')}`);
   if (manifest.BlockingFindings.length) errors.push('manifest: blocking findings present');
+  if (zeroAgentTransition) {
+    if (manifest.AgentPlatformVersion !== '2.0.0-transition') errors.push('manifest: old agent platform version is not accepted');
+    if (manifest.PlatformState !== 'ZERO_AGENT_TRANSITION') errors.push('manifest: old platform state is not accepted');
+    if (manifest.RequiredAgents.length || manifest.ExecutedAgents.length) errors.push('manifest: zero-agent transition cannot execute agents');
+    if (!manifest.BlockedByUnavailableAgents?.length) errors.push('manifest: mandatory NOT_AVAILABLE blocker missing');
+    if (manifest.OverallStatus !== 'BLOCKED') errors.push('manifest: zero-agent transition must be BLOCKED');
+    errors.push('manifest: ZERO_AGENT_TRANSITION_MANDATORY_AGENT_NOT_AVAILABLE');
+  }
   if (manifest.OwnerBypass !== undefined) {
     const bypass = manifest.OwnerBypass;
     errors.push(...requireFields(bypass, [
@@ -309,16 +378,20 @@ export function validateManifest({ manifestPath, required, root, branch, base, a
       errors.push(`missing review JSON ${agentId}`);
       continue;
     }
-    const review = JSON.parse(readFileSync(reviewPath, 'utf8'));
+    const review = readGovernanceJson(reviewPath, `review ${agentId}`);
+    errors.push(...validateJsonSchema(review, reviewSchema, { path: `review ${agentId}` }));
     errors.push(...validateReview(review, {
       AgentId: agentId, GateId: manifest.GateId, Branch: branch, CommitSHA: manifest.HeadSHA,
     }));
+    if (forbiddenPassingExecutionModes.includes(review.ExecutionMode) && ['PASS', 'PASS_WITH_WARNINGS', 'NOT_APPLICABLE'].includes(review.Status)) {
+      errors.push(`${agentId}: ${review.ExecutionMode} cannot satisfy a mandatory trusted review`);
+    }
     const markdownPath = join(root, 'docs', 'reviews', manifest.GateId, `${agentId}.md`);
     if (!existsSync(markdownPath)) errors.push(`missing review Markdown ${agentId}`);
     executed.push(agentId);
   }
   if (JSON.stringify([...manifest.ExecutedAgents].sort()) !== JSON.stringify(executed.sort())) errors.push('manifest: ExecutedAgents differs from reports');
-  if (errors.length === 0 && manifest.OverallStatus !== 'PASS') errors.push('manifest: OverallStatus must be PASS when all mandatory evidence passes');
+  if (!zeroAgentTransition && errors.length === 0 && manifest.OverallStatus !== 'PASS') errors.push('manifest: OverallStatus must be PASS when all mandatory evidence passes');
   return { errors, manifest };
 }
 
@@ -348,18 +421,23 @@ export function validateInstructionHierarchy(root) {
 
 export function validateProjectAgentFiles(root, registry) {
   const errors = [];
-  const implemented = registry.Agents.filter((agent) => CANONICAL_AGENT_IDS.includes(agent.AgentId) && agent.Status === 'IMPLEMENTED');
-  const dir = join(root, '.codex', 'agents');
+  const provisioned = registry.Agents.filter((agent) =>
+    ['PROVISIONAL', 'IMPLEMENTED', 'CONFIGURED_NOT_RUNTIME_VERIFIED'].includes(agent.Status));
+  const dir = join(root, 'architecture', 'agents', 'generated', 'provisional');
   const files = existsSync(dir) ? readdirSync(dir).filter((file) => file.endsWith('.toml')) : [];
-  if (files.length < implemented.length) errors.push(`expected at least ${implemented.length} project agents; found ${files.length}`);
+  if (files.length < provisioned.length) errors.push(`expected at least ${provisioned.length} project agents; found ${files.length}`);
   for (const file of files) {
     const text = readFileSync(join(dir, file), 'utf8');
     for (const field of ['name =', 'description =', 'developer_instructions =']) if (!text.includes(field)) errors.push(`${file}: missing ${field}`);
-    if (!/remote write|push/i.test(text)) errors.push(`${file}: missing remote-write prohibition`);
-    if (!text.includes('# upstream_repo = https://github.com/VoltAgent/awesome-codex-subagents')) errors.push(`${file}: missing upstream repository provenance`);
-    if (!text.includes('# upstream_commit = 5605c9c18b3687993919d6cc467af4a34898fee2')) errors.push(`${file}: missing pinned upstream commit`);
-    if (!text.includes('model = "gpt-5.6-terra"')) errors.push(`${file}: model must be gpt-5.6-terra`);
+    if (!/remote write|push|perform writes/i.test(text)) errors.push(`${file}: missing remote-write prohibition`);
   }
+  const runtimeDir = join(root, '.codex', 'agents');
+  const runtimeFiles = existsSync(runtimeDir) ? readdirSync(runtimeDir).filter((file) => file.endsWith('.toml')) : [];
+  if (registry.PlatformState === 'ZERO_AGENT_TRANSITION' && runtimeFiles.length !== 0) errors.push(`zero-agent transition must contain 0 runtime agents; found ${runtimeFiles.length}`);
+  if (registry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD' && files.length !== provisioned.length) errors.push(`provisional build must contain exactly ${provisioned.length} staged agents; found ${files.length}`);
+  if (registry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD' && runtimeFiles.length !== 0) errors.push(`provisional build must contain 0 runtime-discovered agents; found ${runtimeFiles.length}`);
+  if (registry.PlatformState === 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT' && runtimeFiles.length !== provisioned.length) errors.push(`development activation must contain exactly ${provisioned.length} runtime agents; found ${runtimeFiles.length}`);
+  if (registry.PlatformState === 'FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL' && runtimeFiles.length !== provisioned.length) errors.push(`configured runtime-unverified state must contain exactly ${provisioned.length} tracked profiles; found ${runtimeFiles.length}`);
   return errors;
 }
 

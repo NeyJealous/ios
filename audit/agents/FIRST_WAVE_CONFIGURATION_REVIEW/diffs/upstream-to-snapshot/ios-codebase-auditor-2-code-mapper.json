@@ -1,0 +1,23 @@
+{
+  "agentId": "ios-codebase-auditor",
+  "order": 2,
+  "repository": "VoltAgent/awesome-codex-subagents",
+  "pinnedCommit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+  "sourcePath": "categories/01-core-development/code-mapper.toml",
+  "profileId": "code-mapper",
+  "filename": "code-mapper.toml",
+  "license": "MIT",
+  "rawSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+  "normalizedSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+  "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/01-core-development/code-mapper.toml",
+  "inclusionMode": "FULL_UNMODIFIED",
+  "originalBlobSha": "a1b1ac2a0527af6abfb090f6a5917a3472012c9f",
+  "originalBlobSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+  "snapshotSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+  "generatedBlockSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+  "byteIdenticalOriginalToSnapshot": true,
+  "byteIdenticalSnapshotToGeneratedBlock": true,
+  "sourcePointer": "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/01-core-development/code-mapper.toml",
+  "diffResult": "ZERO_BYTE_DIFF",
+  "mutationDetected": false
+}

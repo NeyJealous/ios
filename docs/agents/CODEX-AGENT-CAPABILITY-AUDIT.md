@@ -15,7 +15,7 @@
 | Project-level instructions | SUPPORTED | Versioned и переносимы через Git. |
 | User-level instructions | LOCAL_ONLY | `~/.codex/AGENTS.md` — личные defaults, не repository guarantee. |
 | Реальные subagents | SUPPORTED | Codex app/CLI/IDE создают отдельные agent threads и собирают результаты. |
-| Project custom agents | SUPPORTED_WITH_LIMITS | `.codex/agents/*.toml`; формат может развиваться, доступность зависит от клиента/account. |
+| Project custom agents | SUPPORTED_WITH_LIMITS | Runtime capability exists, but this repository intentionally has zero active project profiles during the controlled transition. |
 | Automatic delegation | SUPPORTED_WITH_LIMITS | Явный prompt или applicable project/skill instruction; proactive delegation зависит от Ultra/eligibility. |
 | Reusable skills | SUPPORTED | Project/user skills подходят для повторяемых workflows, но этот PR не создаёт skill. |
 | Hooks | SUPPORTED_WITH_LIMITS | Project hooks требуют trusted project и отдельного trust exact hash; prompt/agent handlers пока пропускаются. |
@@ -27,11 +27,9 @@
 
 ## Выбранная деградация
 
-Когда клиент не предоставляет subagents, Codex последовательно выполняет
-применимые profiles и маркирует их `CODEX_ROLE_SIMULATION`. Это допустимый
-fallback, но не независимый review. `REAL_SUBAGENT` требует отдельного agent
-thread evidence. CI не запускает LLM и не использует OpenAI key; он только
-валидирует registry/matrix/manifest/reports и baseline controls.
+В текущем zero-agent transition simulation не заменяет обязательного агента и
+не может дать PASS. Любой mandatory review имеет `NOT_AVAILABLE`; CI не
+запускает LLM и проверяет fail-closed transition controls.
 
 ## Почему не hooks как глобальный gate
 
@@ -42,11 +40,6 @@ Actions и ruleset required check после отдельного owner action.
 
 ## Фактическая доступность в этом gate
 
-В текущем Codex-сеансе orchestration tools существуют, однако независимые
-reviews для этого изменения не запускались: отчёты должны честно иметь
-`CODEX_ROLE_SIMULATION`. Наличие десяти TOML-файлов означает доступный тип
-project agent в поддерживаемом клиенте, но не доказывает его конкретный запуск.
-
-Все десять project agents адаптированы из VoltAgent collection и по требованию
-репозитория используют `model = "gpt-5.6-terra"`. Это IOS override исходных
-upstream model pins; provenance остаётся pinned и проверяется validator.
+В репозитории нет активных TOML-профилей. Runtime tools могут существовать вне
+проекта, но не являются project-local Agent Platform v2 evidence. Новые роли
+не активируются до завершения supply-chain и acceptance gates.

@@ -1,0 +1,23 @@
+{
+  "agentId": "ios-codebase-auditor",
+  "order": 4,
+  "repository": "wshobson/agents",
+  "pinnedCommit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+  "sourcePath": "plugins/c4-architecture/agents/c4-code.md",
+  "profileId": "c4-code",
+  "filename": "c4-code.md",
+  "license": "MIT",
+  "rawSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+  "normalizedSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+  "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/c4-architecture/agents/c4-code.md",
+  "inclusionMode": "FULL_UNMODIFIED",
+  "originalBlobSha": "1176c620f571edc4b0f6ff977a077ad2d85860be",
+  "originalBlobSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+  "snapshotSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+  "generatedBlockSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+  "byteIdenticalOriginalToSnapshot": true,
+  "byteIdenticalSnapshotToGeneratedBlock": true,
+  "sourcePointer": "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/c4-architecture/agents/c4-code.md",
+  "diffResult": "ZERO_BYTE_DIFF",
+  "mutationDetected": false
+}

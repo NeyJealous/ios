@@ -1,0 +1,23 @@
+{
+  "agentId": "agent-governance-auditor",
+  "order": 1,
+  "repository": "VoltAgent/awesome-codex-subagents",
+  "pinnedCommit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+  "sourcePath": "categories/11-ai-governance-safety/ai-governance-auditor.toml",
+  "profileId": "ai-governance-auditor",
+  "filename": "ai-governance-auditor.toml",
+  "license": "MIT",
+  "rawSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+  "normalizedSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+  "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/11-ai-governance-safety/ai-governance-auditor.toml",
+  "inclusionMode": "FULL_UNMODIFIED",
+  "originalBlobSha": "5305c30cad2948308898eebda6d703fc14e5e8c9",
+  "originalBlobSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+  "snapshotSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+  "generatedBlockSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+  "byteIdenticalOriginalToSnapshot": true,
+  "byteIdenticalSnapshotToGeneratedBlock": true,
+  "sourcePointer": "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/11-ai-governance-safety/ai-governance-auditor.toml",
+  "diffResult": "ZERO_BYTE_DIFF",
+  "mutationDetected": false
+}

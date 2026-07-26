@@ -1,0 +1,23 @@
+{
+  "agentId": "audit-traceability-reviewer",
+  "order": 1,
+  "repository": "VoltAgent/awesome-codex-subagents",
+  "pinnedCommit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+  "sourcePath": "categories/04-quality-security/compliance-auditor.toml",
+  "profileId": "compliance-auditor",
+  "filename": "compliance-auditor.toml",
+  "license": "MIT",
+  "rawSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+  "normalizedSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+  "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/04-quality-security/compliance-auditor.toml",
+  "inclusionMode": "FULL_UNMODIFIED",
+  "originalBlobSha": "9ac2448fca322df92031b63c630e020768aeea9e",
+  "originalBlobSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+  "snapshotSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+  "generatedBlockSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+  "byteIdenticalOriginalToSnapshot": true,
+  "byteIdenticalSnapshotToGeneratedBlock": true,
+  "sourcePointer": "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/04-quality-security/compliance-auditor.toml",
+  "diffResult": "ZERO_BYTE_DIFF",
+  "mutationDetected": false
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "GAP-001",
+    "title": "R030 canonical implementation not yet verified",
+    "severity": "HIGH",
+    "status": "OPEN"
+  },
+  {
+    "id": "GAP-002",
+    "title": "Market Regime v3.1 provenance missing",
+    "severity": "MEDIUM",
+    "status": "OPEN"
+  },
+  {
+    "id": "GAP-003",
+    "title": "Old branch governance coverage incomplete",
+    "severity": "MEDIUM",
+    "status": "OPEN"
+  }
+]

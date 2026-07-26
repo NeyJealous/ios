@@ -1,0 +1,1166 @@
+{
+  "schemaVersion": "1.0.0",
+  "gate": "FIRST_WAVE_CONFIGURATION_REVIEW",
+  "validatedHeadSha": "bf0238540fae1a73a7d254937b19a9809d8a4dd2",
+  "agentId": "ios-codebase-auditor",
+  "status": "PROVISIONAL",
+  "readiness": "READY_FOR_OWNER_ACTIVATION_REVIEW",
+  "generatedProfilePath": "architecture/agents/generated/provisional/ios-codebase-auditor.toml",
+  "generatedProfileSha256": "31777f8aa5a04c74438c3cafa5d77c3ecffe431b216d5839a9ed5fdecd5943ac",
+  "compositionManifestPath": "architecture/agents/compositions/ios-codebase-auditor.yaml",
+  "compositionManifestSha256": "034cf8cbbeefec6c6944199a6dc5dff38452a9660e2707c9caf0a1948127c95b",
+  "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml",
+  "overlaySha256": "d91b146dbbed3b0072d548764d7b1da298435c079cb2c0cab3c2d2b84fce7443",
+  "capabilityEnvelopePath": "architecture/agents/contracts/capabilities/ios-codebase-auditor.json",
+  "capabilityEnvelopeSha256": "b401e7ce34e5c832ef85e7cd0cb079e855d35bcf9ec7924c0bda0d28f6e0845d",
+  "registryEntry": {
+    "agentId": "ios-codebase-auditor",
+    "displayName": "IOS Codebase Auditor",
+    "status": "PROVISIONAL",
+    "purpose": "Read-only repository-wide runtime, symbol, dependency and architecture audit.",
+    "priority": "P0",
+    "upstreamComposition": [
+      {
+        "repository": "VoltAgent/awesome-codex-subagents",
+        "commit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+        "sourcePath": "categories/09-meta-orchestration/codebase-orchestrator.toml",
+        "profileId": "codebase-orchestrator",
+        "rawHash": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+        "normalizedHash": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+        "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/09-meta-orchestration/codebase-orchestrator.toml",
+        "inclusionMode": "FULL_UNMODIFIED"
+      },
+      {
+        "repository": "VoltAgent/awesome-codex-subagents",
+        "commit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+        "sourcePath": "categories/01-core-development/code-mapper.toml",
+        "profileId": "code-mapper",
+        "rawHash": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+        "normalizedHash": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+        "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/01-core-development/code-mapper.toml",
+        "inclusionMode": "FULL_UNMODIFIED"
+      },
+      {
+        "repository": "wshobson/agents",
+        "commit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+        "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+        "profileId": "comprehensive-review-code-reviewer",
+        "rawHash": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+        "normalizedHash": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+        "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/comprehensive-review/agents/code-reviewer.md",
+        "inclusionMode": "FULL_UNMODIFIED"
+      },
+      {
+        "repository": "wshobson/agents",
+        "commit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+        "sourcePath": "plugins/c4-architecture/agents/c4-code.md",
+        "profileId": "c4-code",
+        "rawHash": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+        "normalizedHash": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+        "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/c4-architecture/agents/c4-code.md",
+        "inclusionMode": "FULL_UNMODIFIED"
+      }
+    ],
+    "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml",
+    "compositionPath": "architecture/agents/compositions/ios-codebase-auditor.yaml",
+    "generatedProfilePath": "architecture/agents/generated/provisional/ios-codebase-auditor.toml",
+    "capabilityEnvelopePath": "architecture/agents/contracts/capabilities/ios-codebase-auditor.json",
+    "capabilityEnvelope": {
+      "schemaVersion": "1.0.0",
+      "agentId": "ios-codebase-auditor",
+      "filesystemRead": true,
+      "filesystemWrite": false,
+      "networkAccess": false,
+      "mcpAccess": false,
+      "shellAccess": false,
+      "gitWrite": false,
+      "remoteWrite": false,
+      "productionWrite": false,
+      "sheetsWrite": false,
+      "appsScriptWrite": false,
+      "brokerApiWrite": false,
+      "deploy": false,
+      "merge": false,
+      "push": false,
+      "secretsAccess": "MASKED_EVIDENCE_ONLY",
+      "allowedTools": [
+        "repository.read",
+        "repository.search"
+      ],
+      "deniedTools": [
+        "network",
+        "mcp",
+        "shell",
+        "filesystem.write",
+        "git.write",
+        "remote.write",
+        "production.write",
+        "sheets.write",
+        "apps-script.write",
+        "broker-api.write",
+        "deploy",
+        "merge",
+        "push",
+        "secrets.modify",
+        "agent.install",
+        "agent.remove",
+        "package.install"
+      ],
+      "enforcementLayer": [
+        "NON_DISCOVERY_STAGING_BOUNDARY",
+        "PROFILE_SANDBOX_READ_ONLY",
+        "IOS_APPEND_ONLY_OVERLAY"
+      ],
+      "contractStatus": "LOCALLY_VALIDATED",
+      "evidenceStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED"
+    },
+    "triggers": [
+      "plan repository-wide read-only audit",
+      "inventory files, symbols, dependencies and active/dead/legacy paths",
+      "identify undocumented runtime and runtime/spec conflicts",
+      "map findings to C4 containers/components",
+      "trace Market Regime to R030 to Decision Engine",
+      "check AccountScope, Reserve Engine and provider boundaries"
+    ],
+    "permissions": [
+      "repository read-only",
+      "local symbol and dependency analysis",
+      "evidence-based findings"
+    ],
+    "forbiddenActions": [
+      "modify files",
+      "automatic refactoring or correction",
+      "delete dead code",
+      "update dependencies",
+      "access production",
+      "execute Apps Script",
+      "write Sheets",
+      "call providers, brokers or APIs",
+      "deploy",
+      "commit, push or merge"
+    ],
+    "requiredInputs": [
+      "repository root",
+      "specifications",
+      "runtime entry points",
+      "base and head SHA"
+    ],
+    "requiredOutputs": [
+      "repository inventory",
+      "symbol and dependency map",
+      "active/dead/legacy classification",
+      "runtime/spec findings",
+      "C4 mapping",
+      "domain-boundary findings"
+    ],
+    "executionModes": [
+      "REAL_SUBAGENT",
+      "CI_VALIDATOR"
+    ],
+    "modelContract": {
+      "primaryModel": "gpt-5.6-sol",
+      "primaryReasoning": "high",
+      "preflightModel": null,
+      "exceptionalEscalationModel": "gpt-5.6-sol",
+      "exceptionalEscalationReasoning": "ultra",
+      "escalationReasonRequired": true,
+      "verdictFloor": "gpt-5.6-sol/high",
+      "silentDowngradeAllowed": false
+    },
+    "independenceContract": {
+      "selfReviewAllowed": false,
+      "trustedExternalAttestation": "MISSING",
+      "selfReportedEvidenceSufficient": false
+    },
+    "runtimeExecutionStatus": "RUNTIME_PROFILE_NOT_YET_OBSERVED",
+    "activationEligible": false,
+    "platformActivationEligible": false
+  },
+  "modelContract": {
+    "exactOverlayContract": {
+      "primaryModel": "gpt-5.6-sol",
+      "primaryReasoning": "high",
+      "preflightModel": null,
+      "exceptionalEscalationModel": "gpt-5.6-sol",
+      "exceptionalEscalationReasoning": "ultra",
+      "escalationReasonRequired": true,
+      "verdictFloor": "gpt-5.6-sol/high",
+      "silentDowngradeAllowed": false
+    },
+    "exactRegistryContract": {
+      "agentId": "ios-codebase-auditor",
+      "primaryModel": "gpt-5.6-sol",
+      "primaryReasoning": "high",
+      "preflightModel": null,
+      "preflightReasoning": null,
+      "escalationModel": "gpt-5.6-sol",
+      "escalationReasoning": "ultra",
+      "escalationReasonRequired": true,
+      "finalVerdictMinimumModel": "gpt-5.6-sol/high",
+      "silentDowngradeAllowed": false,
+      "budgetClass": "CRITICAL_GATE"
+    },
+    "requestedModel": "gpt-5.6-sol",
+    "reasoning": "high",
+    "fallback": null,
+    "escalation": {
+      "model": "gpt-5.6-sol",
+      "reasoning": "ultra",
+      "exceptionalModel": "gpt-5.6-sol",
+      "exceptionalReasoning": "ultra",
+      "reasonRequired": true
+    },
+    "verdictFloor": "gpt-5.6-sol/high",
+    "silentDowngradeAllowed": false,
+    "runtimeAvailability": "RUNTIME_AVAILABLE",
+    "runtimeEvidence": {
+      "modelId": "sol",
+      "displayName": "GPT-5.6 Sol",
+      "requestedSlug": "gpt-5.6-sol",
+      "requestedReasoningLevel": "high",
+      "resolvedSlug": "gpt-5.6-sol",
+      "resolvedReasoningLevel": "high",
+      "resolutionEvidence": "EXACT_OVERRIDE_ACCEPTED_AND_EXECUTED",
+      "runtimeAvailability": "RUNTIME_AVAILABLE",
+      "smokeResult": "SUCCESS",
+      "providerDispatchResponse": {
+        "task_name": "/root/runtime_smoke_sol"
+      },
+      "executionResponse": "MODEL_RUNTIME_SMOKE_OK sol nonce=SOL-20260722-192345Z",
+      "observedEndToEndLatencyMs": 24721,
+      "agentUsableAtRuntime": true,
+      "platformActivationEligible": false,
+      "attestationStatus": "INSUFFICIENT_EVIDENCE",
+      "substitutionUsed": false
+    },
+    "unresolvedModelGaps": [
+      "TRUSTED_EXTERNAL_ATTESTATION_MISSING",
+      "PLATFORM_ACTIVATION_ELIGIBLE_FALSE"
+    ]
+  },
+  "upstreamBases": [
+    {
+      "order": 1,
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "pinnedCommit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/09-meta-orchestration/codebase-orchestrator.toml",
+      "profileId": "codebase-orchestrator",
+      "filename": "codebase-orchestrator.toml",
+      "license": "MIT",
+      "rawSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+      "normalizedSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/09-meta-orchestration/codebase-orchestrator.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "78623825b7ae5a3a9fc13af98ff99d8152c0a601",
+      "originalBlobSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+      "snapshotSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+      "generatedBlockSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/09-meta-orchestration/codebase-orchestrator.toml"
+    },
+    {
+      "order": 2,
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "pinnedCommit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/01-core-development/code-mapper.toml",
+      "profileId": "code-mapper",
+      "filename": "code-mapper.toml",
+      "license": "MIT",
+      "rawSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+      "normalizedSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/01-core-development/code-mapper.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "a1b1ac2a0527af6abfb090f6a5917a3472012c9f",
+      "originalBlobSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+      "snapshotSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+      "generatedBlockSha256": "620a2e88a628f086998682d7ae8e74c6173067e5679ee9ef2c4eb58b350e9ad2",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/01-core-development/code-mapper.toml"
+    },
+    {
+      "order": 3,
+      "repository": "wshobson/agents",
+      "pinnedCommit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+      "profileId": "comprehensive-review-code-reviewer",
+      "filename": "code-reviewer.md",
+      "license": "MIT",
+      "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/comprehensive-review/agents/code-reviewer.md",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "96198d04a6d10be9d8d5f77fdbd39db1f896dad3",
+      "originalBlobSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "snapshotSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "generatedBlockSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/comprehensive-review/agents/code-reviewer.md"
+    },
+    {
+      "order": 4,
+      "repository": "wshobson/agents",
+      "pinnedCommit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/c4-architecture/agents/c4-code.md",
+      "profileId": "c4-code",
+      "filename": "c4-code.md",
+      "license": "MIT",
+      "rawSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+      "normalizedSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/c4-architecture/agents/c4-code.md",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "1176c620f571edc4b0f6ff977a077ad2d85860be",
+      "originalBlobSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+      "snapshotSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+      "generatedBlockSha256": "48ed5c662861adec687742af5be47fb3796adb24ddecfdc270f2ebf48bcc77f9",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/c4-architecture/agents/c4-code.md"
+    }
+  ],
+  "upstreamIntegrityStatus": "UPSTREAM_UNCHANGED_BYTE_IDENTICAL",
+  "compositionOrder": [
+    "VoltAgent/awesome-codex-subagents:categories/09-meta-orchestration/codebase-orchestrator.toml",
+    "VoltAgent/awesome-codex-subagents:categories/01-core-development/code-mapper.toml",
+    "wshobson/agents:plugins/comprehensive-review/agents/code-reviewer.md",
+    "wshobson/agents:plugins/c4-architecture/agents/c4-code.md"
+  ],
+  "compositionConflicts": [
+    {
+      "conflictId": "IOS_CODEBASE_AUDITOR_CONFLICT_1",
+      "upstreamAInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/09-meta-orchestration/codebase-orchestrator.toml",
+        "exactRoleDeclaration": "Use when a task needs repository-wide refactor governance with weighted risk prioritization, diff previews, and explicit approval gates before execution."
+      },
+      "upstreamBInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/01-core-development/code-mapper.toml",
+        "exactRoleDeclaration": "Use when the parent agent needs a high-confidence map of code paths, ownership boundaries, and execution flow before changes are made."
+      },
+      "conflictType": "ORCHESTRATION_VS_MAPPING",
+      "resolutionRule": "preserve every base byte-for-byte",
+      "winningAuthority": "Owner-approved responsibility split",
+      "resultingBehavior": "Audit decomposition and symbol/dependency mapping remain separate read-only duties.",
+      "ownerDecisionReference": "OWNER_DECISION_FIRST_WAVE_20260722"
+    },
+    {
+      "conflictId": "IOS_CODEBASE_AUDITOR_CONFLICT_2",
+      "upstreamAInstruction": {
+        "sourcePointer": "wshobson/agents@undefined:plugins/comprehensive-review/agents/code-reviewer.md",
+        "exactRoleDeclaration": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance."
+      },
+      "upstreamBInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/01-core-development/code-mapper.toml",
+        "exactRoleDeclaration": "Use when the parent agent needs a high-confidence map of code paths, ownership boundaries, and execution flow before changes are made."
+      },
+      "conflictType": "CODE_REVIEW_VS_MODIFICATION",
+      "resolutionRule": "planning, mapping, defect review and C4 mapping remain distinct",
+      "winningAuthority": "IOS read-only capability envelope",
+      "resultingBehavior": "Defect review produces findings only; no refactor, correction or deletion.",
+      "ownerDecisionReference": "OWNER_DECISION_FIRST_WAVE_20260722"
+    },
+    {
+      "conflictId": "IOS_CODEBASE_AUDITOR_CONFLICT_3",
+      "upstreamAInstruction": {
+        "sourcePointer": "wshobson/agents@undefined:plugins/c4-architecture/agents/c4-code.md",
+        "exactRoleDeclaration": "Expert C4 Code-level documentation specialist. Analyzes code directories to create comprehensive C4 code-level documentation including function signatures, arguments, dependencies, and code structure. Use when documenting code at the lowest C4 level for individual directories and code modules."
+      },
+      "upstreamBInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/09-meta-orchestration/codebase-orchestrator.toml",
+        "exactRoleDeclaration": "Use when a task needs repository-wide refactor governance with weighted risk prioritization, diff previews, and explicit approval gates before execution."
+      },
+      "conflictType": "C4_SCOPE",
+      "resolutionRule": "read-only overlay wins over implementation recommendations",
+      "winningAuthority": "IOS architecture traceability contract",
+      "resultingBehavior": "C4 mapping contextualizes code evidence but cannot replace runtime/spec findings.",
+      "ownerDecisionReference": "OWNER_DECISION_FIRST_WAVE_20260722"
+    },
+    {
+      "conflictId": "IOS_CODEBASE_AUDITOR_CONFLICT_4",
+      "upstreamAInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/09-meta-orchestration/codebase-orchestrator.toml",
+        "exactRoleDeclaration": "Use when a task needs repository-wide refactor governance with weighted risk prioritization, diff previews, and explicit approval gates before execution."
+      },
+      "upstreamBInstruction": {
+        "sourcePointer": "wshobson/agents@undefined:plugins/comprehensive-review/agents/code-reviewer.md",
+        "exactRoleDeclaration": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance."
+      },
+      "conflictType": "AUTOMATIC_MODIFICATION",
+      "resolutionRule": "runtime/spec conflicts remain findings without correction",
+      "winningAuthority": "Owner-approved read-only restriction",
+      "resultingBehavior": "All implementation recommendations are non-executable; files and dependencies remain unchanged.",
+      "ownerDecisionReference": "OWNER_DECISION_FIRST_WAVE_20260722"
+    }
+  ],
+  "overlayFull": {
+    "schemaVersion": "1.0.0",
+    "agentId": "ios-codebase-auditor",
+    "mode": "APPEND_ONLY",
+    "status": "PROVISIONAL",
+    "activationEligible": false,
+    "platformActivationEligible": false,
+    "responsibilities": [
+      "plan repository-wide read-only audit",
+      "inventory files, symbols, dependencies and active/dead/legacy paths",
+      "identify undocumented runtime and runtime/spec conflicts",
+      "map findings to C4 containers/components",
+      "trace Market Regime to R030 to Decision Engine",
+      "check AccountScope, Reserve Engine and provider boundaries"
+    ],
+    "permissionEnvelope": [
+      "repository read-only",
+      "local symbol and dependency analysis",
+      "evidence-based findings"
+    ],
+    "forbiddenActions": [
+      "modify files",
+      "automatic refactoring or correction",
+      "delete dead code",
+      "update dependencies",
+      "access production",
+      "execute Apps Script",
+      "write Sheets",
+      "call providers, brokers or APIs",
+      "deploy",
+      "commit, push or merge"
+    ],
+    "requiredInputs": [
+      "repository root",
+      "specifications",
+      "runtime entry points",
+      "base and head SHA"
+    ],
+    "requiredOutputs": [
+      "repository inventory",
+      "symbol and dependency map",
+      "active/dead/legacy classification",
+      "runtime/spec findings",
+      "C4 mapping",
+      "domain-boundary findings"
+    ],
+    "modelContract": {
+      "primaryModel": "gpt-5.6-sol",
+      "primaryReasoning": "high",
+      "preflightModel": null,
+      "exceptionalEscalationModel": "gpt-5.6-sol",
+      "exceptionalEscalationReasoning": "ultra",
+      "escalationReasonRequired": true,
+      "verdictFloor": "gpt-5.6-sol/high",
+      "silentDowngradeAllowed": false
+    },
+    "evidenceContract": {
+      "trustedExternalAttestation": "MISSING",
+      "selfReportedEvidenceSufficient": false,
+      "symbolLevelEvidenceRequired": true
+    },
+    "failClosedOn": [
+      "BLOCKER",
+      "CRITICAL",
+      "UNKNOWN",
+      "WRITE_ATTEMPT",
+      "PRODUCTION_ACCESS",
+      "UNSUPPORTED_RUNTIME_CLAIM"
+    ]
+  },
+  "overlayRuleCatalog": [
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_001",
+      "additionType": "activation_restrictions",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#activationEligible",
+      "value": false,
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": true,
+      "resolution": "Keep profile staged and undiscoverable; no upstream text is removed.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_002",
+      "additionType": "activation_restrictions",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#platformActivationEligible",
+      "value": false,
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": true,
+      "resolution": "Keep Phase 3C activation gate closed.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_003",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#responsibilities[0]",
+      "value": "plan repository-wide read-only audit",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_004",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#responsibilities[1]",
+      "value": "inventory files, symbols, dependencies and active/dead/legacy paths",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_005",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#responsibilities[2]",
+      "value": "identify undocumented runtime and runtime/spec conflicts",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_006",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#responsibilities[3]",
+      "value": "map findings to C4 containers/components",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_007",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#responsibilities[4]",
+      "value": "trace Market Regime to R030 to Decision Engine",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_008",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#responsibilities[5]",
+      "value": "check AccountScope, Reserve Engine and provider boundaries",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_009",
+      "additionType": "permissions",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#permissionEnvelope[0]",
+      "value": "repository read-only",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": true,
+      "resolution": "Apply the narrower IOS permission envelope while preserving the upstream instruction as evidence.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_010",
+      "additionType": "permissions",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#permissionEnvelope[1]",
+      "value": "local symbol and dependency analysis",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": true,
+      "resolution": "Apply the narrower IOS permission envelope while preserving the upstream instruction as evidence.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_011",
+      "additionType": "permissions",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#permissionEnvelope[2]",
+      "value": "evidence-based findings",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": true,
+      "resolution": "Apply the narrower IOS permission envelope while preserving the upstream instruction as evidence.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_012",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#forbiddenActions[0]",
+      "value": "modify files",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_013",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#forbiddenActions[1]",
+      "value": "automatic refactoring or correction",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_014",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#forbiddenActions[2]",
+      "value": "delete dead code",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_015",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#forbiddenActions[3]",
+      "value": "update dependencies",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_016",
+      "additionType": "production_restrictions",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#forbiddenActions[4]",
+      "value": "access production",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_017",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#forbiddenActions[5]",
+      "value": "execute Apps Script",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_018",
+      "additionType": "production_restrictions",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#forbiddenActions[6]",
+      "value": "write Sheets",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_019",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#forbiddenActions[7]",
+      "value": "call providers, brokers or APIs",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_020",
+      "additionType": "production_restrictions",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#forbiddenActions[8]",
+      "value": "deploy",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_021",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#forbiddenActions[9]",
+      "value": "commit, push or merge",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_022",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#requiredInputs[0]",
+      "value": "repository root",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_023",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#requiredInputs[1]",
+      "value": "specifications",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_024",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#requiredInputs[2]",
+      "value": "runtime entry points",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_025",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#requiredInputs[3]",
+      "value": "base and head SHA",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_026",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#requiredOutputs[0]",
+      "value": "repository inventory",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_027",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#requiredOutputs[1]",
+      "value": "symbol and dependency map",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_028",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#requiredOutputs[2]",
+      "value": "active/dead/legacy classification",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_029",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#requiredOutputs[3]",
+      "value": "runtime/spec findings",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_030",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#requiredOutputs[4]",
+      "value": "C4 mapping",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_031",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#requiredOutputs[5]",
+      "value": "domain-boundary findings",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_032",
+      "additionType": "model_policy",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#modelContract",
+      "value": {
+        "primaryModel": "gpt-5.6-sol",
+        "primaryReasoning": "high",
+        "preflightModel": null,
+        "exceptionalEscalationModel": "gpt-5.6-sol",
+        "exceptionalEscalationReasoning": "ultra",
+        "escalationReasonRequired": true,
+        "verdictFloor": "gpt-5.6-sol/high",
+        "silentDowngradeAllowed": false
+      },
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": true,
+      "resolution": "Use the exact IOS model contract; silent downgrade remains forbidden.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_033",
+      "additionType": "evidence_contract",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#evidenceContract",
+      "value": {
+        "trustedExternalAttestation": "MISSING",
+        "selfReportedEvidenceSufficient": false,
+        "symbolLevelEvidenceRequired": true
+      },
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": true,
+      "resolution": "Self-reported output remains insufficient for trusted attestation.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_034",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#failClosedOn[0]",
+      "value": "BLOCKER",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_035",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#failClosedOn[1]",
+      "value": "CRITICAL",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_036",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#failClosedOn[2]",
+      "value": "UNKNOWN",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_037",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#failClosedOn[3]",
+      "value": "WRITE_ATTEMPT",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_038",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#failClosedOn[4]",
+      "value": "PRODUCTION_ACCESS",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_CODEBASE_AUDITOR_039",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/ios-codebase-auditor.yaml#failClosedOn[5]",
+      "value": "UNSUPPORTED_RUNTIME_CLAIM",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-codebase-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    }
+  ],
+  "categorizedAdditions": {
+    "iosContext": "Implicit IOS Agent Platform context; no separate iosContext key exists in the overlay.",
+    "additionalResponsibilities": [
+      "plan repository-wide read-only audit",
+      "inventory files, symbols, dependencies and active/dead/legacy paths",
+      "identify undocumented runtime and runtime/spec conflicts",
+      "map findings to C4 containers/components",
+      "trace Market Regime to R030 to Decision Engine",
+      "check AccountScope, Reserve Engine and provider boundaries"
+    ],
+    "requiredInputs": [
+      "repository root",
+      "specifications",
+      "runtime entry points",
+      "base and head SHA"
+    ],
+    "requiredOutputs": [
+      "repository inventory",
+      "symbol and dependency map",
+      "active/dead/legacy classification",
+      "runtime/spec findings",
+      "C4 mapping",
+      "domain-boundary findings"
+    ],
+    "evidenceContract": {
+      "trustedExternalAttestation": "MISSING",
+      "selfReportedEvidenceSufficient": false,
+      "symbolLevelEvidenceRequired": true
+    },
+    "triggers": [
+      {
+        "ruleId": "IOS_CODEBASE_AUDITOR_REGISTRY_TRIGGER_1",
+        "value": "plan repository-wide read-only audit",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.ios-codebase-auditor.triggers[0]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "IOS_CODEBASE_AUDITOR_REGISTRY_TRIGGER_2",
+        "value": "inventory files, symbols, dependencies and active/dead/legacy paths",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.ios-codebase-auditor.triggers[1]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "IOS_CODEBASE_AUDITOR_REGISTRY_TRIGGER_3",
+        "value": "identify undocumented runtime and runtime/spec conflicts",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.ios-codebase-auditor.triggers[2]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "IOS_CODEBASE_AUDITOR_REGISTRY_TRIGGER_4",
+        "value": "map findings to C4 containers/components",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.ios-codebase-auditor.triggers[3]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "IOS_CODEBASE_AUDITOR_REGISTRY_TRIGGER_5",
+        "value": "trace Market Regime to R030 to Decision Engine",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.ios-codebase-auditor.triggers[4]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "IOS_CODEBASE_AUDITOR_REGISTRY_TRIGGER_6",
+        "value": "check AccountScope, Reserve Engine and provider boundaries",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.ios-codebase-auditor.triggers[5]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      }
+    ],
+    "failClosedBehavior": [
+      "BLOCKER",
+      "CRITICAL",
+      "UNKNOWN",
+      "WRITE_ATTEMPT",
+      "PRODUCTION_ACCESS",
+      "UNSUPPORTED_RUNTIME_CLAIM"
+    ],
+    "modelPolicy": {
+      "primaryModel": "gpt-5.6-sol",
+      "primaryReasoning": "high",
+      "preflightModel": null,
+      "exceptionalEscalationModel": "gpt-5.6-sol",
+      "exceptionalEscalationReasoning": "ultra",
+      "escalationReasonRequired": true,
+      "verdictFloor": "gpt-5.6-sol/high",
+      "silentDowngradeAllowed": false
+    },
+    "permissions": [
+      "repository read-only",
+      "local symbol and dependency analysis",
+      "evidence-based findings"
+    ],
+    "forbiddenActions": [
+      "modify files",
+      "automatic refactoring or correction",
+      "delete dead code",
+      "update dependencies",
+      "access production",
+      "execute Apps Script",
+      "write Sheets",
+      "call providers, brokers or APIs",
+      "deploy",
+      "commit, push or merge"
+    ],
+    "selfReviewRestrictions": [],
+    "productionRestrictions": [
+      "access production",
+      "execute Apps Script",
+      "write Sheets",
+      "call providers, brokers or APIs",
+      "deploy"
+    ],
+    "activationRestrictions": {
+      "activationEligible": false,
+      "platformActivationEligible": false,
+      "explicitRules": []
+    },
+    "dataConfidenceRequirements": "NOT_EXPLICITLY_DECLARED_IN_FIRST_WAVE_OVERLAY",
+    "domainSpecificTraceability": [
+      "trace Market Regime to R030 to Decision Engine",
+      "check AccountScope, Reserve Engine and provider boundaries"
+    ]
+  },
+  "capabilityEnvelope": {
+    "declaredContract": {
+      "schemaVersion": "1.0.0",
+      "agentId": "ios-codebase-auditor",
+      "filesystemRead": true,
+      "filesystemWrite": false,
+      "networkAccess": false,
+      "mcpAccess": false,
+      "shellAccess": false,
+      "gitWrite": false,
+      "remoteWrite": false,
+      "productionWrite": false,
+      "sheetsWrite": false,
+      "appsScriptWrite": false,
+      "brokerApiWrite": false,
+      "deploy": false,
+      "merge": false,
+      "push": false,
+      "secretsAccess": "MASKED_EVIDENCE_ONLY",
+      "allowedTools": [
+        "repository.read",
+        "repository.search"
+      ],
+      "deniedTools": [
+        "network",
+        "mcp",
+        "shell",
+        "filesystem.write",
+        "git.write",
+        "remote.write",
+        "production.write",
+        "sheets.write",
+        "apps-script.write",
+        "broker-api.write",
+        "deploy",
+        "merge",
+        "push",
+        "secrets.modify",
+        "agent.install",
+        "agent.remove",
+        "package.install"
+      ],
+      "enforcementLayer": [
+        "NON_DISCOVERY_STAGING_BOUNDARY",
+        "PROFILE_SANDBOX_READ_ONLY",
+        "IOS_APPEND_ONLY_OVERLAY"
+      ],
+      "contractStatus": "LOCALLY_VALIDATED",
+      "evidenceStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED"
+    },
+    "installationAuthority": false,
+    "locallyValidatedBehavior": "LOCALLY_VALIDATED",
+    "runtimeEnforcementStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED",
+    "enforcementStatus": [
+      "CONTRACT_DECLARED",
+      "LOCALLY_VALIDATED",
+      "RUNTIME_ENFORCEMENT_UNVERIFIED"
+    ],
+    "runtimeEnforced": false,
+    "remainingUnverifiedControls": [
+      "filesystem sandbox enforcement",
+      "network denial enforcement",
+      "MCP denial enforcement",
+      "tool deny-list enforcement",
+      "secret access enforcement"
+    ]
+  },
+  "generatedProfileExplainedView": {
+    "metadataSource": "tools/agents/compose-agents.mjs and composition manifest",
+    "upstreamBlocks": [
+      "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/09-meta-orchestration/codebase-orchestrator.toml",
+      "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/01-core-development/code-mapper.toml",
+      "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/comprehensive-review/agents/code-reviewer.md",
+      "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/c4-architecture/agents/c4-code.md"
+    ],
+    "compositionContractSource": "architecture/agents/compositions/ios-codebase-auditor.yaml",
+    "overlaySource": "architecture/agents/overlays/ios-codebase-auditor.yaml",
+    "capabilitySource": "architecture/agents/contracts/capabilities/ios-codebase-auditor.json",
+    "modelContractSource": "architecture/agents/overlays/ios-codebase-auditor.yaml#modelContract",
+    "evidenceOutputContractSource": "architecture/agents/overlays/ios-codebase-auditor.yaml#requiredOutputs and #evidenceContract",
+    "instructionPayloadExactExpected": true,
+    "unprovenancedInstructions": []
+  },
+  "semanticDiff": {
+    "originalToSnapshot": "ZERO_BYTE_DIFF",
+    "snapshotToComposition": "NO_CONTENT_MUTATION",
+    "compositionToGenerated": "ONLY_APPEND_ONLY_IOS_OVERLAY_AND_CONTRACT_METADATA"
+  },
+  "activationEligible": false,
+  "runtimeDiscovered": false
+}

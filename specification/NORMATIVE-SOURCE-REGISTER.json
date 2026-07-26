@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0.0",
+  "authoritativeBaseline": {
+    "title": "IOS Master Specification v4.0 — Audit Baseline",
+    "version": "4.0",
+    "ownerDecision": "audit/agents/OWNER-DECISION-AGENT-PLATFORM-V2.md",
+    "repositoryRoot": "specification/IOS_Master_Specification_v4.0_Package",
+    "ownerProvidedArchiveSha256": "a8e941965c140c88434dc14804c256b83a87da40ca896c0674be319863ace889",
+    "archiveHashAlgorithm": "SHA-256 over owner-provided ZIP bytes",
+    "archiveEvidenceStatus": "ACQUISITION_VERIFIED_ARCHIVE_NOT_TRACKED",
+    "treeManifest": "specification/IOS_Master_Specification_v4.0_Package.manifest.json",
+    "retrievedAt": "2026-07-22",
+    "status": "VERSIONED_IMMUTABLE_SOURCE"
+  },
+  "agentPlatformSpecification": {
+    "title": "IOS Agent Platform Specification v2.1 — Full Upstream, Orchestration and Automatic Codex Dispatch",
+    "version": "2.1",
+    "ownerDecision": "audit/agents/OWNER-DECISION-AGENT-PLATFORM-V2.md",
+    "repositoryPath": "specification/agent-platform/v2.1/IOS_Agent_Platform_Specification_v2.1_Orchestration_Upstream_AutoDispatch.md",
+    "sha256": "797d775c5bc899432ea1a1da836f2e295672e849347b238310f9186ceea9ce93",
+    "retrievedAt": "2026-07-22",
+    "status": "VERSIONED_IMMUTABLE_SOURCE"
+  },
+  "historicalSources": {
+    "masterSpecificationV3": "IOS_HANDOFF_v4/master_specification",
+    "correctionMemo": "IOS_HANDOFF_v4/completion_pack/ARCHITECTURE_CORRECTION_MEMO_v1.md",
+    "precedence": "Historical unless an exact v4 provision explicitly incorporates or supersedes it"
+  },
+  "traceability": {
+    "rfc": "rfc/RFC-AGENT-PLATFORM-V2.md",
+    "adr": "adr/ADR-AGENT-PLATFORM-V2.md",
+    "phase3aOwnerScope": "audit/agents/OWNER-DECISION-AGENT-PLATFORM-V2-PHASE-3A.md"
+  }
+}

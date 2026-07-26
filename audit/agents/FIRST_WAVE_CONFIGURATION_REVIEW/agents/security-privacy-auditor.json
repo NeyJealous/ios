@@ -1,0 +1,1186 @@
+{
+  "schemaVersion": "1.0.0",
+  "gate": "FIRST_WAVE_CONFIGURATION_REVIEW",
+  "validatedHeadSha": "bf0238540fae1a73a7d254937b19a9809d8a4dd2",
+  "agentId": "security-privacy-auditor",
+  "status": "PROVISIONAL",
+  "readiness": "READY_FOR_OWNER_ACTIVATION_REVIEW",
+  "generatedProfilePath": "architecture/agents/generated/provisional/security-privacy-auditor.toml",
+  "generatedProfileSha256": "de7ee1a5f535c650c298f59e33c82ae92bc7ff29292b03b617fbaae551136757",
+  "compositionManifestPath": "architecture/agents/compositions/security-privacy-auditor.yaml",
+  "compositionManifestSha256": "083232a42445169e0a5d079749664b325b054c8090ffec458baa8a628207695e",
+  "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml",
+  "overlaySha256": "cd0a8c4f4a286fc82987fab32b23fa9fba9db4c7a4536877e99a528cd6acf093",
+  "capabilityEnvelopePath": "architecture/agents/contracts/capabilities/security-privacy-auditor.json",
+  "capabilityEnvelopeSha256": "edc4c8ba379a6379dacc470c900a0275e0b9fbb3471359ea05ad86762a81057b",
+  "registryEntry": {
+    "agentId": "security-privacy-auditor",
+    "displayName": "Security and Privacy Auditor",
+    "status": "PROVISIONAL",
+    "purpose": "Read-only security, privacy, secret and supply-chain review across all artifact classes.",
+    "priority": "P0",
+    "upstreamComposition": [
+      {
+        "repository": "VoltAgent/awesome-codex-subagents",
+        "commit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+        "sourcePath": "categories/04-quality-security/security-auditor.toml",
+        "profileId": "security-auditor",
+        "rawHash": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+        "normalizedHash": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+        "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/04-quality-security/security-auditor.toml",
+        "inclusionMode": "FULL_UNMODIFIED"
+      },
+      {
+        "repository": "VoltAgent/awesome-codex-subagents",
+        "commit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+        "sourcePath": "categories/04-quality-security/compliance-auditor.toml",
+        "profileId": "compliance-auditor",
+        "rawHash": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+        "normalizedHash": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+        "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/04-quality-security/compliance-auditor.toml",
+        "inclusionMode": "FULL_UNMODIFIED"
+      },
+      {
+        "repository": "wshobson/agents",
+        "commit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+        "sourcePath": "plugins/security-compliance/agents/security-auditor.md",
+        "profileId": "security-compliance-security-auditor",
+        "rawHash": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+        "normalizedHash": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+        "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/security-compliance/agents/security-auditor.md",
+        "inclusionMode": "FULL_UNMODIFIED"
+      },
+      {
+        "repository": "wshobson/agents",
+        "commit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+        "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+        "profileId": "comprehensive-review-code-reviewer",
+        "rawHash": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+        "normalizedHash": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+        "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/comprehensive-review/agents/code-reviewer.md",
+        "inclusionMode": "FULL_UNMODIFIED"
+      }
+    ],
+    "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml",
+    "compositionPath": "architecture/agents/compositions/security-privacy-auditor.yaml",
+    "generatedProfilePath": "architecture/agents/generated/provisional/security-privacy-auditor.toml",
+    "capabilityEnvelopePath": "architecture/agents/contracts/capabilities/security-privacy-auditor.json",
+    "capabilityEnvelope": {
+      "schemaVersion": "1.0.0",
+      "agentId": "security-privacy-auditor",
+      "filesystemRead": true,
+      "filesystemWrite": false,
+      "networkAccess": false,
+      "mcpAccess": false,
+      "shellAccess": false,
+      "gitWrite": false,
+      "remoteWrite": false,
+      "productionWrite": false,
+      "sheetsWrite": false,
+      "appsScriptWrite": false,
+      "brokerApiWrite": false,
+      "deploy": false,
+      "merge": false,
+      "push": false,
+      "secretsAccess": "MASKED_EVIDENCE_ONLY",
+      "allowedTools": [
+        "repository.read",
+        "repository.search"
+      ],
+      "deniedTools": [
+        "network",
+        "mcp",
+        "shell",
+        "filesystem.write",
+        "git.write",
+        "remote.write",
+        "production.write",
+        "sheets.write",
+        "apps-script.write",
+        "broker-api.write",
+        "deploy",
+        "merge",
+        "push",
+        "secrets.modify",
+        "agent.install",
+        "agent.remove",
+        "package.install"
+      ],
+      "enforcementLayer": [
+        "NON_DISCOVERY_STAGING_BOUNDARY",
+        "PROFILE_SANDBOX_READ_ONLY",
+        "IOS_APPEND_ONLY_OVERLAY"
+      ],
+      "contractStatus": "LOCALLY_VALIDATED",
+      "evidenceStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED"
+    },
+    "triggers": [
+      "scan current and historical trees",
+      "scan tracked, untracked, generated, downloaded and diff artifacts",
+      "detect secrets and mask Account ID and Script ID",
+      "review workflow permissions and bootstrap allowlist",
+      "review prompt injection and forbidden capabilities",
+      "reject path traversal and unsafe symlinks",
+      "require Linux evidence for Windows symlink SKIP"
+    ],
+    "permissions": [
+      "repository read-only",
+      "masked evidence only",
+      "local security and privacy validators"
+    ],
+    "forbiddenActions": [
+      "access unmasked secrets or use credentials",
+      "deploy or perform production writes",
+      "automatic remediation",
+      "self-approval",
+      "weaken privacy scanner",
+      "exclude untracked, generated, downloaded or diff artifacts",
+      "merge, commit or push"
+    ],
+    "requiredInputs": [
+      "current and historical paths",
+      "tracked and untracked inventory",
+      "generated/downloaded inventory",
+      "diff",
+      "workflow permissions",
+      "bootstrap plan"
+    ],
+    "requiredOutputs": [
+      "privacy findings",
+      "secret and identifier findings",
+      "supply-chain capability result",
+      "symlink/path result",
+      "Linux evidence gap"
+    ],
+    "executionModes": [
+      "REAL_SUBAGENT",
+      "CI_VALIDATOR"
+    ],
+    "modelContract": {
+      "primaryModel": "gpt-5.6-sol",
+      "primaryReasoning": "high",
+      "preflightModel": null,
+      "exceptionalEscalationModel": "gpt-5.6-sol",
+      "exceptionalEscalationReasoning": "ultra",
+      "escalationReasonRequired": true,
+      "verdictFloor": "gpt-5.6-sol/high",
+      "silentDowngradeAllowed": false
+    },
+    "independenceContract": {
+      "selfReviewAllowed": false,
+      "trustedExternalAttestation": "MISSING",
+      "selfReportedEvidenceSufficient": false
+    },
+    "runtimeExecutionStatus": "RUNTIME_PROFILE_NOT_YET_OBSERVED",
+    "activationEligible": false,
+    "platformActivationEligible": false
+  },
+  "modelContract": {
+    "exactOverlayContract": {
+      "primaryModel": "gpt-5.6-sol",
+      "primaryReasoning": "high",
+      "preflightModel": null,
+      "exceptionalEscalationModel": "gpt-5.6-sol",
+      "exceptionalEscalationReasoning": "ultra",
+      "escalationReasonRequired": true,
+      "verdictFloor": "gpt-5.6-sol/high",
+      "silentDowngradeAllowed": false
+    },
+    "exactRegistryContract": {
+      "agentId": "security-privacy-auditor",
+      "primaryModel": "gpt-5.6-sol",
+      "primaryReasoning": "high",
+      "preflightModel": null,
+      "preflightReasoning": null,
+      "escalationModel": "gpt-5.6-sol",
+      "escalationReasoning": "ultra",
+      "escalationReasonRequired": true,
+      "finalVerdictMinimumModel": "gpt-5.6-sol/high",
+      "silentDowngradeAllowed": false,
+      "budgetClass": "CRITICAL_GATE"
+    },
+    "requestedModel": "gpt-5.6-sol",
+    "reasoning": "high",
+    "fallback": null,
+    "escalation": {
+      "model": "gpt-5.6-sol",
+      "reasoning": "ultra",
+      "exceptionalModel": "gpt-5.6-sol",
+      "exceptionalReasoning": "ultra",
+      "reasonRequired": true
+    },
+    "verdictFloor": "gpt-5.6-sol/high",
+    "silentDowngradeAllowed": false,
+    "runtimeAvailability": "RUNTIME_AVAILABLE",
+    "runtimeEvidence": {
+      "modelId": "sol",
+      "displayName": "GPT-5.6 Sol",
+      "requestedSlug": "gpt-5.6-sol",
+      "requestedReasoningLevel": "high",
+      "resolvedSlug": "gpt-5.6-sol",
+      "resolvedReasoningLevel": "high",
+      "resolutionEvidence": "EXACT_OVERRIDE_ACCEPTED_AND_EXECUTED",
+      "runtimeAvailability": "RUNTIME_AVAILABLE",
+      "smokeResult": "SUCCESS",
+      "providerDispatchResponse": {
+        "task_name": "/root/runtime_smoke_sol"
+      },
+      "executionResponse": "MODEL_RUNTIME_SMOKE_OK sol nonce=SOL-20260722-192345Z",
+      "observedEndToEndLatencyMs": 24721,
+      "agentUsableAtRuntime": true,
+      "platformActivationEligible": false,
+      "attestationStatus": "INSUFFICIENT_EVIDENCE",
+      "substitutionUsed": false
+    },
+    "unresolvedModelGaps": [
+      "TRUSTED_EXTERNAL_ATTESTATION_MISSING",
+      "PLATFORM_ACTIVATION_ELIGIBLE_FALSE"
+    ]
+  },
+  "upstreamBases": [
+    {
+      "order": 1,
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "pinnedCommit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/04-quality-security/security-auditor.toml",
+      "profileId": "security-auditor",
+      "filename": "security-auditor.toml",
+      "license": "MIT",
+      "rawSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+      "normalizedSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/04-quality-security/security-auditor.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "96a1650e5b655bc42a273cb982df787f06dc59c8",
+      "originalBlobSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+      "snapshotSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+      "generatedBlockSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/04-quality-security/security-auditor.toml"
+    },
+    {
+      "order": 2,
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "pinnedCommit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/04-quality-security/compliance-auditor.toml",
+      "profileId": "compliance-auditor",
+      "filename": "compliance-auditor.toml",
+      "license": "MIT",
+      "rawSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+      "normalizedSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/04-quality-security/compliance-auditor.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "9ac2448fca322df92031b63c630e020768aeea9e",
+      "originalBlobSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+      "snapshotSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+      "generatedBlockSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/04-quality-security/compliance-auditor.toml"
+    },
+    {
+      "order": 3,
+      "repository": "wshobson/agents",
+      "pinnedCommit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/security-compliance/agents/security-auditor.md",
+      "profileId": "security-compliance-security-auditor",
+      "filename": "security-auditor.md",
+      "license": "MIT",
+      "rawSha256": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+      "normalizedSha256": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/security-compliance/agents/security-auditor.md",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "093e5ccb065a15d8d018cd929c7af2a2ca768a4d",
+      "originalBlobSha256": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+      "snapshotSha256": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+      "generatedBlockSha256": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/security-compliance/agents/security-auditor.md"
+    },
+    {
+      "order": 4,
+      "repository": "wshobson/agents",
+      "pinnedCommit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+      "profileId": "comprehensive-review-code-reviewer",
+      "filename": "code-reviewer.md",
+      "license": "MIT",
+      "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/comprehensive-review/agents/code-reviewer.md",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "96198d04a6d10be9d8d5f77fdbd39db1f896dad3",
+      "originalBlobSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "snapshotSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "generatedBlockSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/comprehensive-review/agents/code-reviewer.md"
+    }
+  ],
+  "upstreamIntegrityStatus": "UPSTREAM_UNCHANGED_BYTE_IDENTICAL",
+  "compositionOrder": [
+    "VoltAgent/awesome-codex-subagents:categories/04-quality-security/security-auditor.toml",
+    "VoltAgent/awesome-codex-subagents:categories/04-quality-security/compliance-auditor.toml",
+    "wshobson/agents:plugins/security-compliance/agents/security-auditor.md",
+    "wshobson/agents:plugins/comprehensive-review/agents/code-reviewer.md"
+  ],
+  "compositionConflicts": [
+    {
+      "conflictId": "SECURITY_PRIVACY_AUDITOR_CONFLICT_1",
+      "upstreamAInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/04-quality-security/security-auditor.toml",
+        "exactRoleDeclaration": "Use when a task needs focused security review of code, auth flows, secrets handling, input validation, or infrastructure configuration."
+      },
+      "upstreamBInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/04-quality-security/compliance-auditor.toml",
+        "exactRoleDeclaration": "Use when a task needs compliance-oriented review of controls, auditability, policy alignment, or evidence gaps in a regulated workflow."
+      },
+      "conflictType": "SECURITY_VS_COMPLIANCE",
+      "resolutionRule": "preserve overlapping security duties",
+      "winningAuthority": "Owner-approved responsibility split",
+      "resultingBehavior": "Technical security audit precedes compliance mapping; both remain intact.",
+      "ownerDecisionReference": "OWNER_DECISION_FIRST_WAVE_20260722"
+    },
+    {
+      "conflictId": "SECURITY_PRIVACY_AUDITOR_CONFLICT_2",
+      "upstreamAInstruction": {
+        "sourcePointer": "wshobson/agents@undefined:plugins/security-compliance/agents/security-auditor.md",
+        "exactRoleDeclaration": "Expert security auditor specializing in DevSecOps, comprehensive cybersecurity, and compliance frameworks. Masters vulnerability assessment, threat modeling, secure authentication (OAuth2/OIDC), OWASP standards, cloud security, and security automation. Handles DevSecOps integration, compliance (GDPR/HIPAA/SOC2), and incident response. Use PROACTIVELY for security audits, DevSecOps, or compliance implementation."
+      },
+      "upstreamBInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/04-quality-security/security-auditor.toml",
+        "exactRoleDeclaration": "Use when a task needs focused security review of code, auth flows, secrets handling, input validation, or infrastructure configuration."
+      },
+      "conflictType": "DUPLICATE_SECURITY_VALIDATION",
+      "resolutionRule": "technical audit precedes compliance mapping, independent validation and changed-code confirmation",
+      "winningAuthority": "Owner-approved composition order",
+      "resultingBehavior": "The independent security validation remains separate; overlapping duties are not deleted.",
+      "ownerDecisionReference": "OWNER_DECISION_FIRST_WAVE_20260722"
+    },
+    {
+      "conflictId": "SECURITY_PRIVACY_AUDITOR_CONFLICT_3",
+      "upstreamAInstruction": {
+        "sourcePointer": "wshobson/agents@undefined:plugins/comprehensive-review/agents/code-reviewer.md",
+        "exactRoleDeclaration": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance."
+      },
+      "upstreamBInstruction": {
+        "sourcePointer": "wshobson/agents@undefined:plugins/security-compliance/agents/security-auditor.md",
+        "exactRoleDeclaration": "Expert security auditor specializing in DevSecOps, comprehensive cybersecurity, and compliance frameworks. Masters vulnerability assessment, threat modeling, secure authentication (OAuth2/OIDC), OWASP standards, cloud security, and security automation. Handles DevSecOps integration, compliance (GDPR/HIPAA/SOC2), and incident response. Use PROACTIVELY for security audits, DevSecOps, or compliance implementation."
+      },
+      "conflictType": "CODE_REVIEW_CONFIRMATION",
+      "resolutionRule": "strictest prohibition wins",
+      "winningAuthority": "IOS security floor",
+      "resultingBehavior": "Changed-code review confirms findings but does not weaken security/compliance results.",
+      "ownerDecisionReference": "OWNER_DECISION_FIRST_WAVE_20260722"
+    },
+    {
+      "conflictId": "SECURITY_PRIVACY_AUDITOR_CONFLICT_4",
+      "upstreamAInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/04-quality-security/security-auditor.toml",
+        "exactRoleDeclaration": "Use when a task needs focused security review of code, auth flows, secrets handling, input validation, or infrastructure configuration."
+      },
+      "upstreamBInstruction": {
+        "sourcePointer": "wshobson/agents@undefined:plugins/comprehensive-review/agents/code-reviewer.md",
+        "exactRoleDeclaration": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance."
+      },
+      "conflictType": "REMEDIATION_AUTHORITY",
+      "resolutionRule": "no automatic remediation or self-approval",
+      "winningAuthority": "IOS read-only capability envelope",
+      "resultingBehavior": "Recommendations are allowed; automatic remediation and self-approval are denied.",
+      "ownerDecisionReference": "OWNER_DECISION_FIRST_WAVE_20260722"
+    }
+  ],
+  "overlayFull": {
+    "schemaVersion": "1.0.0",
+    "agentId": "security-privacy-auditor",
+    "mode": "APPEND_ONLY",
+    "status": "PROVISIONAL",
+    "activationEligible": false,
+    "platformActivationEligible": false,
+    "responsibilities": [
+      "scan current and historical trees",
+      "scan tracked, untracked, generated, downloaded and diff artifacts",
+      "detect secrets and mask Account ID and Script ID",
+      "review workflow permissions and bootstrap allowlist",
+      "review prompt injection and forbidden capabilities",
+      "reject path traversal and unsafe symlinks",
+      "require Linux evidence for Windows symlink SKIP"
+    ],
+    "permissionEnvelope": [
+      "repository read-only",
+      "masked evidence only",
+      "local security and privacy validators"
+    ],
+    "forbiddenActions": [
+      "access unmasked secrets or use credentials",
+      "deploy or perform production writes",
+      "automatic remediation",
+      "self-approval",
+      "weaken privacy scanner",
+      "exclude untracked, generated, downloaded or diff artifacts",
+      "merge, commit or push"
+    ],
+    "requiredInputs": [
+      "current and historical paths",
+      "tracked and untracked inventory",
+      "generated/downloaded inventory",
+      "diff",
+      "workflow permissions",
+      "bootstrap plan"
+    ],
+    "requiredOutputs": [
+      "privacy findings",
+      "secret and identifier findings",
+      "supply-chain capability result",
+      "symlink/path result",
+      "Linux evidence gap"
+    ],
+    "modelContract": {
+      "primaryModel": "gpt-5.6-sol",
+      "primaryReasoning": "high",
+      "preflightModel": null,
+      "exceptionalEscalationModel": "gpt-5.6-sol",
+      "exceptionalEscalationReasoning": "ultra",
+      "escalationReasonRequired": true,
+      "verdictFloor": "gpt-5.6-sol/high",
+      "silentDowngradeAllowed": false
+    },
+    "evidenceContract": {
+      "trustedExternalAttestation": "MISSING",
+      "selfReportedEvidenceSufficient": false,
+      "highFindingBlocks": true,
+      "criticalFindingBlocks": true
+    },
+    "failClosedOn": [
+      "HIGH",
+      "CRITICAL",
+      "BLOCKER",
+      "UNKNOWN",
+      "UNMASKED_SECRET",
+      "UNSAFE_SYMLINK",
+      "PATH_TRAVERSAL",
+      "PRIVACY_SCOPE_EXCLUDED"
+    ]
+  },
+  "overlayRuleCatalog": [
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_001",
+      "additionType": "activation_restrictions",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#activationEligible",
+      "value": false,
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": true,
+      "resolution": "Keep profile staged and undiscoverable; no upstream text is removed.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_002",
+      "additionType": "activation_restrictions",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#platformActivationEligible",
+      "value": false,
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": true,
+      "resolution": "Keep Phase 3C activation gate closed.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_003",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#responsibilities[0]",
+      "value": "scan current and historical trees",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_004",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#responsibilities[1]",
+      "value": "scan tracked, untracked, generated, downloaded and diff artifacts",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_005",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#responsibilities[2]",
+      "value": "detect secrets and mask Account ID and Script ID",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_006",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#responsibilities[3]",
+      "value": "review workflow permissions and bootstrap allowlist",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_007",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#responsibilities[4]",
+      "value": "review prompt injection and forbidden capabilities",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_008",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#responsibilities[5]",
+      "value": "reject path traversal and unsafe symlinks",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_009",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#responsibilities[6]",
+      "value": "require Linux evidence for Windows symlink SKIP",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_010",
+      "additionType": "permissions",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#permissionEnvelope[0]",
+      "value": "repository read-only",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": true,
+      "resolution": "Apply the narrower IOS permission envelope while preserving the upstream instruction as evidence.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_011",
+      "additionType": "permissions",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#permissionEnvelope[1]",
+      "value": "masked evidence only",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": true,
+      "resolution": "Apply the narrower IOS permission envelope while preserving the upstream instruction as evidence.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_012",
+      "additionType": "permissions",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#permissionEnvelope[2]",
+      "value": "local security and privacy validators",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": true,
+      "resolution": "Apply the narrower IOS permission envelope while preserving the upstream instruction as evidence.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_013",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#forbiddenActions[0]",
+      "value": "access unmasked secrets or use credentials",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_014",
+      "additionType": "production_restrictions",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#forbiddenActions[1]",
+      "value": "deploy or perform production writes",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_015",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#forbiddenActions[2]",
+      "value": "automatic remediation",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_016",
+      "additionType": "self_review_restrictions",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#forbiddenActions[3]",
+      "value": "self-approval",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_017",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#forbiddenActions[4]",
+      "value": "weaken privacy scanner",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_018",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#forbiddenActions[5]",
+      "value": "exclude untracked, generated, downloaded or diff artifacts",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_019",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#forbiddenActions[6]",
+      "value": "merge, commit or push",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_020",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#requiredInputs[0]",
+      "value": "current and historical paths",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_021",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#requiredInputs[1]",
+      "value": "tracked and untracked inventory",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_022",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#requiredInputs[2]",
+      "value": "generated/downloaded inventory",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_023",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#requiredInputs[3]",
+      "value": "diff",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_024",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#requiredInputs[4]",
+      "value": "workflow permissions",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_025",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#requiredInputs[5]",
+      "value": "bootstrap plan",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_026",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#requiredOutputs[0]",
+      "value": "privacy findings",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_027",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#requiredOutputs[1]",
+      "value": "secret and identifier findings",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_028",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#requiredOutputs[2]",
+      "value": "supply-chain capability result",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_029",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#requiredOutputs[3]",
+      "value": "symlink/path result",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_030",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#requiredOutputs[4]",
+      "value": "Linux evidence gap",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_031",
+      "additionType": "model_policy",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#modelContract",
+      "value": {
+        "primaryModel": "gpt-5.6-sol",
+        "primaryReasoning": "high",
+        "preflightModel": null,
+        "exceptionalEscalationModel": "gpt-5.6-sol",
+        "exceptionalEscalationReasoning": "ultra",
+        "escalationReasonRequired": true,
+        "verdictFloor": "gpt-5.6-sol/high",
+        "silentDowngradeAllowed": false
+      },
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": true,
+      "resolution": "Use the exact IOS model contract; silent downgrade remains forbidden.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_032",
+      "additionType": "evidence_contract",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#evidenceContract",
+      "value": {
+        "trustedExternalAttestation": "MISSING",
+        "selfReportedEvidenceSufficient": false,
+        "highFindingBlocks": true,
+        "criticalFindingBlocks": true
+      },
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": true,
+      "resolution": "Self-reported output remains insufficient for trusted attestation.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_033",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#failClosedOn[0]",
+      "value": "HIGH",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_034",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#failClosedOn[1]",
+      "value": "CRITICAL",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_035",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#failClosedOn[2]",
+      "value": "BLOCKER",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_036",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#failClosedOn[3]",
+      "value": "UNKNOWN",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_037",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#failClosedOn[4]",
+      "value": "UNMASKED_SECRET",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_038",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#failClosedOn[5]",
+      "value": "UNSAFE_SYMLINK",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_039",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#failClosedOn[6]",
+      "value": "PATH_TRAVERSAL",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "SECURITY_PRIVACY_AUDITOR_040",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/security-privacy-auditor.yaml#failClosedOn[7]",
+      "value": "PRIVACY_SCOPE_EXCLUDED",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "security-privacy-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    }
+  ],
+  "categorizedAdditions": {
+    "iosContext": "Implicit IOS Agent Platform context; no separate iosContext key exists in the overlay.",
+    "additionalResponsibilities": [
+      "scan current and historical trees",
+      "scan tracked, untracked, generated, downloaded and diff artifacts",
+      "detect secrets and mask Account ID and Script ID",
+      "review workflow permissions and bootstrap allowlist",
+      "review prompt injection and forbidden capabilities",
+      "reject path traversal and unsafe symlinks",
+      "require Linux evidence for Windows symlink SKIP"
+    ],
+    "requiredInputs": [
+      "current and historical paths",
+      "tracked and untracked inventory",
+      "generated/downloaded inventory",
+      "diff",
+      "workflow permissions",
+      "bootstrap plan"
+    ],
+    "requiredOutputs": [
+      "privacy findings",
+      "secret and identifier findings",
+      "supply-chain capability result",
+      "symlink/path result",
+      "Linux evidence gap"
+    ],
+    "evidenceContract": {
+      "trustedExternalAttestation": "MISSING",
+      "selfReportedEvidenceSufficient": false,
+      "highFindingBlocks": true,
+      "criticalFindingBlocks": true
+    },
+    "triggers": [
+      {
+        "ruleId": "SECURITY_PRIVACY_AUDITOR_REGISTRY_TRIGGER_1",
+        "value": "scan current and historical trees",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.security-privacy-auditor.triggers[0]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "SECURITY_PRIVACY_AUDITOR_REGISTRY_TRIGGER_2",
+        "value": "scan tracked, untracked, generated, downloaded and diff artifacts",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.security-privacy-auditor.triggers[1]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "SECURITY_PRIVACY_AUDITOR_REGISTRY_TRIGGER_3",
+        "value": "detect secrets and mask Account ID and Script ID",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.security-privacy-auditor.triggers[2]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "SECURITY_PRIVACY_AUDITOR_REGISTRY_TRIGGER_4",
+        "value": "review workflow permissions and bootstrap allowlist",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.security-privacy-auditor.triggers[3]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "SECURITY_PRIVACY_AUDITOR_REGISTRY_TRIGGER_5",
+        "value": "review prompt injection and forbidden capabilities",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.security-privacy-auditor.triggers[4]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "SECURITY_PRIVACY_AUDITOR_REGISTRY_TRIGGER_6",
+        "value": "reject path traversal and unsafe symlinks",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.security-privacy-auditor.triggers[5]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "SECURITY_PRIVACY_AUDITOR_REGISTRY_TRIGGER_7",
+        "value": "require Linux evidence for Windows symlink SKIP",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.security-privacy-auditor.triggers[6]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      }
+    ],
+    "failClosedBehavior": [
+      "HIGH",
+      "CRITICAL",
+      "BLOCKER",
+      "UNKNOWN",
+      "UNMASKED_SECRET",
+      "UNSAFE_SYMLINK",
+      "PATH_TRAVERSAL",
+      "PRIVACY_SCOPE_EXCLUDED"
+    ],
+    "modelPolicy": {
+      "primaryModel": "gpt-5.6-sol",
+      "primaryReasoning": "high",
+      "preflightModel": null,
+      "exceptionalEscalationModel": "gpt-5.6-sol",
+      "exceptionalEscalationReasoning": "ultra",
+      "escalationReasonRequired": true,
+      "verdictFloor": "gpt-5.6-sol/high",
+      "silentDowngradeAllowed": false
+    },
+    "permissions": [
+      "repository read-only",
+      "masked evidence only",
+      "local security and privacy validators"
+    ],
+    "forbiddenActions": [
+      "access unmasked secrets or use credentials",
+      "deploy or perform production writes",
+      "automatic remediation",
+      "self-approval",
+      "weaken privacy scanner",
+      "exclude untracked, generated, downloaded or diff artifacts",
+      "merge, commit or push"
+    ],
+    "selfReviewRestrictions": [
+      "self-approval"
+    ],
+    "productionRestrictions": [
+      "deploy or perform production writes"
+    ],
+    "activationRestrictions": {
+      "activationEligible": false,
+      "platformActivationEligible": false,
+      "explicitRules": []
+    },
+    "dataConfidenceRequirements": "NOT_EXPLICITLY_DECLARED_IN_FIRST_WAVE_OVERLAY",
+    "domainSpecificTraceability": [
+      "require Linux evidence for Windows symlink SKIP"
+    ]
+  },
+  "capabilityEnvelope": {
+    "declaredContract": {
+      "schemaVersion": "1.0.0",
+      "agentId": "security-privacy-auditor",
+      "filesystemRead": true,
+      "filesystemWrite": false,
+      "networkAccess": false,
+      "mcpAccess": false,
+      "shellAccess": false,
+      "gitWrite": false,
+      "remoteWrite": false,
+      "productionWrite": false,
+      "sheetsWrite": false,
+      "appsScriptWrite": false,
+      "brokerApiWrite": false,
+      "deploy": false,
+      "merge": false,
+      "push": false,
+      "secretsAccess": "MASKED_EVIDENCE_ONLY",
+      "allowedTools": [
+        "repository.read",
+        "repository.search"
+      ],
+      "deniedTools": [
+        "network",
+        "mcp",
+        "shell",
+        "filesystem.write",
+        "git.write",
+        "remote.write",
+        "production.write",
+        "sheets.write",
+        "apps-script.write",
+        "broker-api.write",
+        "deploy",
+        "merge",
+        "push",
+        "secrets.modify",
+        "agent.install",
+        "agent.remove",
+        "package.install"
+      ],
+      "enforcementLayer": [
+        "NON_DISCOVERY_STAGING_BOUNDARY",
+        "PROFILE_SANDBOX_READ_ONLY",
+        "IOS_APPEND_ONLY_OVERLAY"
+      ],
+      "contractStatus": "LOCALLY_VALIDATED",
+      "evidenceStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED"
+    },
+    "installationAuthority": false,
+    "locallyValidatedBehavior": "LOCALLY_VALIDATED",
+    "runtimeEnforcementStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED",
+    "enforcementStatus": [
+      "CONTRACT_DECLARED",
+      "LOCALLY_VALIDATED",
+      "RUNTIME_ENFORCEMENT_UNVERIFIED"
+    ],
+    "runtimeEnforced": false,
+    "remainingUnverifiedControls": [
+      "filesystem sandbox enforcement",
+      "network denial enforcement",
+      "MCP denial enforcement",
+      "tool deny-list enforcement",
+      "secret access enforcement"
+    ]
+  },
+  "generatedProfileExplainedView": {
+    "metadataSource": "tools/agents/compose-agents.mjs and composition manifest",
+    "upstreamBlocks": [
+      "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/04-quality-security/security-auditor.toml",
+      "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/04-quality-security/compliance-auditor.toml",
+      "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/security-compliance/agents/security-auditor.md",
+      "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/comprehensive-review/agents/code-reviewer.md"
+    ],
+    "compositionContractSource": "architecture/agents/compositions/security-privacy-auditor.yaml",
+    "overlaySource": "architecture/agents/overlays/security-privacy-auditor.yaml",
+    "capabilitySource": "architecture/agents/contracts/capabilities/security-privacy-auditor.json",
+    "modelContractSource": "architecture/agents/overlays/security-privacy-auditor.yaml#modelContract",
+    "evidenceOutputContractSource": "architecture/agents/overlays/security-privacy-auditor.yaml#requiredOutputs and #evidenceContract",
+    "instructionPayloadExactExpected": true,
+    "unprovenancedInstructions": []
+  },
+  "semanticDiff": {
+    "originalToSnapshot": "ZERO_BYTE_DIFF",
+    "snapshotToComposition": "NO_CONTENT_MUTATION",
+    "compositionToGenerated": "ONLY_APPEND_ONLY_IOS_OVERLAY_AND_CONTRACT_METADATA"
+  },
+  "activationEligible": false,
+  "runtimeDiscovered": false
+}

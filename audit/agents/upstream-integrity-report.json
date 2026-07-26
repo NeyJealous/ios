@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "FIRST_WAVE_PROVISIONAL_BUILD",
+  "implementationHead": "7c81e2e28f04e4bbf9e5e56744afbe600d99cfc1",
+  "repositories": 2,
+  "uniqueProfileEntries": 17,
+  "snapshotFilesIncludingLicenses": 19,
+  "checks": {
+    "exactPinnedCommit": "PASS",
+    "exactSourcePath": "PASS",
+    "rawSha256": "PASS",
+    "normalizedSha256": "PASS",
+    "license": "PASS",
+    "unexpectedFile": "PASS",
+    "pathTraversal": "PASS",
+    "snapshotMutation": "PASS",
+    "windowsSymlinkFixture": "SKIP",
+    "linuxSymlinkEvidence": "LINUX_SYMLINK_EVIDENCE_MISSING"
+  },
+  "overallLocalStatus": "PASS_WITH_PLATFORM_LIMITATION",
+  "activationEligible": false
+}

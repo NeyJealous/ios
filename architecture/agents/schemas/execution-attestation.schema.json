@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ios.local/schemas/execution-attestation.schema.json",
+  "title": "IOS Trusted Execution Attestation Envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "attestationId", "nonce", "issuedAt", "expiresAt", "issuer", "subject", "execution", "bindings", "ownerApproval", "verification"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "attestationId": { "type": "string", "minLength": 16, "maxLength": 256 },
+    "nonce": { "type": "string", "minLength": 16, "maxLength": 256 },
+    "issuedAt": { "type": "string", "format": "date-time" },
+    "expiresAt": { "type": "string", "format": "date-time" },
+    "issuer": {
+      "type": "object", "additionalProperties": false,
+      "required": ["type", "issuerUri", "audience", "trustAnchorId"],
+      "properties": {
+        "type": { "enum": ["CODEX_RUNTIME_ATTESTER", "GITHUB_OIDC_VERIFIED"] },
+        "issuerUri": { "type": "string", "format": "uri" },
+        "audience": { "const": "ios-agent-governance" },
+        "trustAnchorId": { "type": "string", "minLength": 1 }
+      }
+    },
+    "subject": {
+      "type": "object", "additionalProperties": false,
+      "required": ["agentId", "executionId", "executionMode", "independenceStatus"],
+      "properties": {
+        "agentId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "executionId": { "type": "string", "minLength": 8 },
+        "executionMode": { "const": "REAL_SUBAGENT" },
+        "independenceStatus": { "const": "INDEPENDENT" }
+      }
+    },
+    "execution": {
+      "type": "object", "additionalProperties": false,
+      "required": ["modelRequested", "modelResolved", "reasoningLevel", "startedAt", "completedAt", "resultHash"],
+      "properties": {
+        "modelRequested": { "type": "string", "minLength": 1 },
+        "modelResolved": { "type": "string", "minLength": 1 },
+        "reasoningLevel": { "enum": ["low", "medium", "high", "extra_high"] },
+        "startedAt": { "type": "string", "format": "date-time" },
+        "completedAt": { "type": "string", "format": "date-time" },
+        "resultHash": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "bindings": {
+      "type": "object", "additionalProperties": false,
+      "required": ["repository", "branch", "baseSha", "headSha", "profileHash", "overlayHash"],
+      "properties": {
+        "repository": { "type": "string", "minLength": 1 },
+        "branch": { "type": "string", "minLength": 1 },
+        "baseSha": { "$ref": "#/$defs/gitSha" },
+        "headSha": { "$ref": "#/$defs/gitSha" },
+        "profileHash": { "$ref": "#/$defs/sha256" },
+        "overlayHash": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "ownerApproval": {
+      "type": "object", "additionalProperties": false,
+      "required": ["required", "decision", "evidenceRef", "scope"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "decision": { "enum": ["APPROVED", "NOT_REQUIRED", "NOT_PROVIDED"] },
+        "evidenceRef": { "type": ["string", "null"] },
+        "scope": { "type": ["string", "null"] },
+        "approvedAt": { "type": ["string", "null"], "format": "date-time" },
+        "actorId": { "type": ["string", "null"] }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "required": { "const": true } }, "required": ["required"] },
+          "then": {
+            "required": ["approvedAt", "actorId"],
+            "properties": {
+              "decision": { "const": "APPROVED" },
+              "evidenceRef": { "type": "string", "minLength": 1 },
+              "scope": { "type": "string", "minLength": 1 },
+              "approvedAt": { "type": "string", "format": "date-time" },
+              "actorId": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      ]
+    },
+    "verification": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "signatureVerified", "verifiedAt", "verifierId", "envelopeHash", "signatureAlgorithm", "keyId", "signature"],
+      "properties": {
+        "status": { "const": "VERIFIED" },
+        "signatureVerified": { "const": true },
+        "verifiedAt": { "type": "string", "format": "date-time" },
+        "verifierId": { "type": "string", "minLength": 1 },
+        "envelopeHash": { "$ref": "#/$defs/sha256" },
+        "signatureAlgorithm": { "enum": ["EdDSA", "ES256"] },
+        "keyId": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "signature": { "type": "string", "minLength": 43, "maxLength": 2048, "pattern": "^[A-Za-z0-9_-]+$" }
+      }
+    }
+  },
+  "$defs": {
+    "gitSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

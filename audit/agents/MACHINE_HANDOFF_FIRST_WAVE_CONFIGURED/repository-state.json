@@ -1,0 +1,18 @@
+{
+  "canonicalBranch": "integration/ios-current",
+  "featureBranch": "feature/agent-platform-v2-integration",
+  "canonicalPreMergeHead": "d2d60713e580fa1bcce8ba874216619598094093",
+  "configuredAgentCount": 5,
+  "trackedRuntimeProfileCount": 5,
+  "stagingProfileCount": 5,
+  "oldProjectAgentCount": 0,
+  "secondWaveProfileCount": 0,
+  "registrySha256": "96a99ce3157e449329dc835d1ee3719da299a6cd1e527826d19513557b777100",
+  "matrixSha256": "a941e07c967c888c91aeb7daf678f574e683f08755fdf164f78c6129e1d44441",
+  "resolverSha256": "accd7ad46429446cf99a3fd5593e052de1d67adda379cb304daa1913e338c216",
+  "runtimeDiscoveryVerified": false,
+  "runtimeActivationComplete": false,
+  "runtimeSmokeComplete": false,
+  "productionGovernanceEligible": false,
+  "adrStatus": "DRAFT_NOT_ACCEPTED"
+}

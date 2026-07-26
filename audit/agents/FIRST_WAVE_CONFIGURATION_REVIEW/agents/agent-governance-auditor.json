@@ -1,0 +1,1251 @@
+{
+  "schemaVersion": "1.0.0",
+  "gate": "FIRST_WAVE_CONFIGURATION_REVIEW",
+  "validatedHeadSha": "bf0238540fae1a73a7d254937b19a9809d8a4dd2",
+  "agentId": "agent-governance-auditor",
+  "status": "PROVISIONAL",
+  "readiness": "READY_FOR_OWNER_ACTIVATION_REVIEW",
+  "generatedProfilePath": "architecture/agents/generated/provisional/agent-governance-auditor.toml",
+  "generatedProfileSha256": "377acf7ec6c48867a536c1972169b999c6ec5f1a2cf1ffe3077ef792fec4ffd9",
+  "compositionManifestPath": "architecture/agents/compositions/agent-governance-auditor.yaml",
+  "compositionManifestSha256": "0f8279bf9d6083c2222e4c31ba90001eaa4e317dfd39b30a89f49a64dca99309",
+  "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml",
+  "overlaySha256": "e024df0d9028e30e8316b97795d2196c032746cd35512df3a8bb8053ca083303",
+  "capabilityEnvelopePath": "architecture/agents/contracts/capabilities/agent-governance-auditor.json",
+  "capabilityEnvelopeSha256": "45b7381453c562427748b42f2d1b6d039922531aa1ca37dbb2a34cade438c800",
+  "registryEntry": {
+    "agentId": "agent-governance-auditor",
+    "displayName": "Agent Governance Auditor",
+    "status": "PROVISIONAL",
+    "purpose": "Independent validation of Registry, Matrix, Resolver, profiles, evidence and anti-tamper controls.",
+    "priority": "P0",
+    "upstreamComposition": [
+      {
+        "repository": "VoltAgent/awesome-codex-subagents",
+        "commit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+        "sourcePath": "categories/11-ai-governance-safety/ai-governance-auditor.toml",
+        "profileId": "ai-governance-auditor",
+        "rawHash": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+        "normalizedHash": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+        "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/11-ai-governance-safety/ai-governance-auditor.toml",
+        "inclusionMode": "FULL_UNMODIFIED"
+      },
+      {
+        "repository": "VoltAgent/awesome-codex-subagents",
+        "commit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+        "sourcePath": "categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+        "profileId": "policy-guardrail-designer",
+        "rawHash": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+        "normalizedHash": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+        "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+        "inclusionMode": "FULL_UNMODIFIED"
+      },
+      {
+        "repository": "VoltAgent/awesome-codex-subagents",
+        "commit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+        "sourcePath": "categories/13-llmops-evals-observability/eval-engineer.toml",
+        "profileId": "eval-engineer",
+        "rawHash": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+        "normalizedHash": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+        "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/13-llmops-evals-observability/eval-engineer.toml",
+        "inclusionMode": "FULL_UNMODIFIED"
+      },
+      {
+        "repository": "wshobson/agents",
+        "commit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+        "sourcePath": "plugins/conductor/agents/conductor-validator.md",
+        "profileId": "conductor-validator",
+        "rawHash": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+        "normalizedHash": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+        "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/conductor/agents/conductor-validator.md",
+        "inclusionMode": "FULL_UNMODIFIED"
+      },
+      {
+        "repository": "wshobson/agents",
+        "commit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+        "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+        "profileId": "comprehensive-review-code-reviewer",
+        "rawHash": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+        "normalizedHash": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+        "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/comprehensive-review/agents/code-reviewer.md",
+        "inclusionMode": "FULL_UNMODIFIED"
+      }
+    ],
+    "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml",
+    "compositionPath": "architecture/agents/compositions/agent-governance-auditor.yaml",
+    "generatedProfilePath": "architecture/agents/generated/provisional/agent-governance-auditor.toml",
+    "capabilityEnvelopePath": "architecture/agents/contracts/capabilities/agent-governance-auditor.json",
+    "capabilityEnvelope": {
+      "schemaVersion": "1.0.0",
+      "agentId": "agent-governance-auditor",
+      "filesystemRead": true,
+      "filesystemWrite": false,
+      "networkAccess": false,
+      "mcpAccess": false,
+      "shellAccess": false,
+      "gitWrite": false,
+      "remoteWrite": false,
+      "productionWrite": false,
+      "sheetsWrite": false,
+      "appsScriptWrite": false,
+      "brokerApiWrite": false,
+      "deploy": false,
+      "merge": false,
+      "push": false,
+      "secretsAccess": "MASKED_EVIDENCE_ONLY",
+      "allowedTools": [
+        "repository.read",
+        "repository.search"
+      ],
+      "deniedTools": [
+        "network",
+        "mcp",
+        "shell",
+        "filesystem.write",
+        "git.write",
+        "remote.write",
+        "production.write",
+        "sheets.write",
+        "apps-script.write",
+        "broker-api.write",
+        "deploy",
+        "merge",
+        "push",
+        "secrets.modify",
+        "agent.install",
+        "agent.remove",
+        "package.install"
+      ],
+      "enforcementLayer": [
+        "NON_DISCOVERY_STAGING_BOUNDARY",
+        "PROFILE_SANDBOX_READ_ONLY",
+        "IOS_APPEND_ONLY_OVERLAY"
+      ],
+      "contractStatus": "LOCALLY_VALIDATED",
+      "evidenceStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED"
+    },
+    "triggers": [
+      "Registry and Matrix consistency",
+      "Resolver determinism",
+      "upstream integrity and append-only overlays",
+      "model and execution-mode contracts",
+      "stale SHA and manifest freshness",
+      "anti-tamper and anti-self-review",
+      "fake REAL_SUBAGENT detection",
+      "automatic dispatch validation",
+      "owner bypass scope",
+      "trusted-attestation limitations"
+    ],
+    "permissions": [
+      "read governance and platform paths",
+      "run deterministic local validators",
+      "produce findings and evidence"
+    ],
+    "forbiddenActions": [
+      "weaken the security floor",
+      "cancel governance blockers with successful evaluations",
+      "review its own generated profile as independent evidence",
+      "treat self-reported evidence as trusted attestation",
+      "mutate policies, profiles or registries",
+      "merge, deploy, approve production or perform writes"
+    ],
+    "requiredInputs": [
+      "Registry",
+      "Review Matrix",
+      "Resolver output",
+      "upstream and composition locks",
+      "profiles",
+      "base and head SHA"
+    ],
+    "requiredOutputs": [
+      "contract-consistency findings",
+      "anti-tamper result",
+      "execution-mode result",
+      "automatic-dispatch result",
+      "remaining blockers"
+    ],
+    "executionModes": [
+      "REAL_SUBAGENT",
+      "CI_VALIDATOR"
+    ],
+    "modelContract": {
+      "primaryModel": "gpt-5.6-sol",
+      "primaryReasoning": "high",
+      "preflightModel": null,
+      "exceptionalEscalationModel": "gpt-5.6-sol",
+      "exceptionalEscalationReasoning": "ultra",
+      "escalationReasonRequired": true,
+      "verdictFloor": "gpt-5.6-sol/high",
+      "silentDowngradeAllowed": false
+    },
+    "independenceContract": {
+      "selfReviewAllowed": false,
+      "trustedExternalAttestation": "MISSING",
+      "selfReportedEvidenceSufficient": false
+    },
+    "runtimeExecutionStatus": "RUNTIME_PROFILE_NOT_YET_OBSERVED",
+    "activationEligible": false,
+    "platformActivationEligible": false
+  },
+  "modelContract": {
+    "exactOverlayContract": {
+      "primaryModel": "gpt-5.6-sol",
+      "primaryReasoning": "high",
+      "preflightModel": null,
+      "exceptionalEscalationModel": "gpt-5.6-sol",
+      "exceptionalEscalationReasoning": "ultra",
+      "escalationReasonRequired": true,
+      "verdictFloor": "gpt-5.6-sol/high",
+      "silentDowngradeAllowed": false
+    },
+    "exactRegistryContract": {
+      "agentId": "agent-governance-auditor",
+      "primaryModel": "gpt-5.6-sol",
+      "primaryReasoning": "high",
+      "preflightModel": null,
+      "preflightReasoning": null,
+      "escalationModel": "gpt-5.6-sol",
+      "escalationReasoning": "ultra",
+      "escalationReasonRequired": true,
+      "finalVerdictMinimumModel": "gpt-5.6-sol/high",
+      "silentDowngradeAllowed": false,
+      "budgetClass": "CRITICAL_GATE"
+    },
+    "requestedModel": "gpt-5.6-sol",
+    "reasoning": "high",
+    "fallback": null,
+    "escalation": {
+      "model": "gpt-5.6-sol",
+      "reasoning": "ultra",
+      "exceptionalModel": "gpt-5.6-sol",
+      "exceptionalReasoning": "ultra",
+      "reasonRequired": true
+    },
+    "verdictFloor": "gpt-5.6-sol/high",
+    "silentDowngradeAllowed": false,
+    "runtimeAvailability": "RUNTIME_AVAILABLE",
+    "runtimeEvidence": {
+      "modelId": "sol",
+      "displayName": "GPT-5.6 Sol",
+      "requestedSlug": "gpt-5.6-sol",
+      "requestedReasoningLevel": "high",
+      "resolvedSlug": "gpt-5.6-sol",
+      "resolvedReasoningLevel": "high",
+      "resolutionEvidence": "EXACT_OVERRIDE_ACCEPTED_AND_EXECUTED",
+      "runtimeAvailability": "RUNTIME_AVAILABLE",
+      "smokeResult": "SUCCESS",
+      "providerDispatchResponse": {
+        "task_name": "/root/runtime_smoke_sol"
+      },
+      "executionResponse": "MODEL_RUNTIME_SMOKE_OK sol nonce=SOL-20260722-192345Z",
+      "observedEndToEndLatencyMs": 24721,
+      "agentUsableAtRuntime": true,
+      "platformActivationEligible": false,
+      "attestationStatus": "INSUFFICIENT_EVIDENCE",
+      "substitutionUsed": false
+    },
+    "unresolvedModelGaps": [
+      "TRUSTED_EXTERNAL_ATTESTATION_MISSING",
+      "PLATFORM_ACTIVATION_ELIGIBLE_FALSE"
+    ]
+  },
+  "upstreamBases": [
+    {
+      "order": 1,
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "pinnedCommit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/11-ai-governance-safety/ai-governance-auditor.toml",
+      "profileId": "ai-governance-auditor",
+      "filename": "ai-governance-auditor.toml",
+      "license": "MIT",
+      "rawSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+      "normalizedSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/11-ai-governance-safety/ai-governance-auditor.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "5305c30cad2948308898eebda6d703fc14e5e8c9",
+      "originalBlobSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+      "snapshotSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+      "generatedBlockSha256": "b465a860c765b881b17c0f0a3980a6481f63780378cde30ac16262d700360879",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/11-ai-governance-safety/ai-governance-auditor.toml"
+    },
+    {
+      "order": 2,
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "pinnedCommit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+      "profileId": "policy-guardrail-designer",
+      "filename": "policy-guardrail-designer.toml",
+      "license": "MIT",
+      "rawSha256": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+      "normalizedSha256": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "105d2ed0f4065ea59f7a8bba6190e0e3948abc44",
+      "originalBlobSha256": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+      "snapshotSha256": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+      "generatedBlockSha256": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/11-ai-governance-safety/policy-guardrail-designer.toml"
+    },
+    {
+      "order": 3,
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "pinnedCommit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/13-llmops-evals-observability/eval-engineer.toml",
+      "profileId": "eval-engineer",
+      "filename": "eval-engineer.toml",
+      "license": "MIT",
+      "rawSha256": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+      "normalizedSha256": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/13-llmops-evals-observability/eval-engineer.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "d11ad37390b14a62efda8082a6e7326532bd5ac9",
+      "originalBlobSha256": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+      "snapshotSha256": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+      "generatedBlockSha256": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/13-llmops-evals-observability/eval-engineer.toml"
+    },
+    {
+      "order": 4,
+      "repository": "wshobson/agents",
+      "pinnedCommit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/conductor/agents/conductor-validator.md",
+      "profileId": "conductor-validator",
+      "filename": "conductor-validator.md",
+      "license": "MIT",
+      "rawSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+      "normalizedSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/conductor/agents/conductor-validator.md",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "f314781b513fe93a1fee8a590ea25fdba3c255bd",
+      "originalBlobSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+      "snapshotSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+      "generatedBlockSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/conductor/agents/conductor-validator.md"
+    },
+    {
+      "order": 5,
+      "repository": "wshobson/agents",
+      "pinnedCommit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+      "profileId": "comprehensive-review-code-reviewer",
+      "filename": "code-reviewer.md",
+      "license": "MIT",
+      "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/comprehensive-review/agents/code-reviewer.md",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "96198d04a6d10be9d8d5f77fdbd39db1f896dad3",
+      "originalBlobSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "snapshotSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "generatedBlockSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/comprehensive-review/agents/code-reviewer.md"
+    }
+  ],
+  "upstreamIntegrityStatus": "UPSTREAM_UNCHANGED_BYTE_IDENTICAL",
+  "compositionOrder": [
+    "VoltAgent/awesome-codex-subagents:categories/11-ai-governance-safety/ai-governance-auditor.toml",
+    "VoltAgent/awesome-codex-subagents:categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+    "VoltAgent/awesome-codex-subagents:categories/13-llmops-evals-observability/eval-engineer.toml",
+    "wshobson/agents:plugins/conductor/agents/conductor-validator.md",
+    "wshobson/agents:plugins/comprehensive-review/agents/code-reviewer.md"
+  ],
+  "compositionConflicts": [
+    {
+      "conflictId": "AGENT_GOVERNANCE_AUDITOR_CONFLICT_1",
+      "upstreamAInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/11-ai-governance-safety/ai-governance-auditor.toml",
+        "exactRoleDeclaration": "Use when a task needs an AI governance review covering controls, accountability, risk ownership, and deployment readiness."
+      },
+      "upstreamBInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+        "exactRoleDeclaration": "Use when a task needs enforceable prompt, tool, workflow, or approval guardrails for AI systems."
+      },
+      "conflictType": "GOVERNANCE_VS_GUARDRAIL_SCOPE",
+      "resolutionRule": "preserve every base byte-for-byte",
+      "winningAuthority": "IOS governance security floor",
+      "resultingBehavior": "Governance findings and policy guardrails are both retained; the strictest security floor wins.",
+      "ownerDecisionReference": "OWNER_DECISION_FIRST_WAVE_20260722"
+    },
+    {
+      "conflictId": "AGENT_GOVERNANCE_AUDITOR_CONFLICT_2",
+      "upstreamAInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/13-llmops-evals-observability/eval-engineer.toml",
+        "exactRoleDeclaration": "Use when a task needs evaluation design for prompts, retrieval, tools, or multi-step agent workflows."
+      },
+      "upstreamBInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+        "exactRoleDeclaration": "Use when a task needs enforceable prompt, tool, workflow, or approval guardrails for AI systems."
+      },
+      "conflictType": "EVALUATION_VS_POLICY",
+      "resolutionRule": "IOS security floor cannot be weakened by evaluation",
+      "winningAuthority": "IOS fail-closed contract",
+      "resultingBehavior": "A successful evaluation cannot cancel a governance blocker.",
+      "ownerDecisionReference": "OWNER_DECISION_FIRST_WAVE_20260722"
+    },
+    {
+      "conflictId": "AGENT_GOVERNANCE_AUDITOR_CONFLICT_3",
+      "upstreamAInstruction": {
+        "sourcePointer": "wshobson/agents@undefined:plugins/comprehensive-review/agents/code-reviewer.md",
+        "exactRoleDeclaration": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance."
+      },
+      "upstreamBInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/11-ai-governance-safety/ai-governance-auditor.toml",
+        "exactRoleDeclaration": "Use when a task needs an AI governance review covering controls, accountability, risk ownership, and deployment readiness."
+      },
+      "conflictType": "CODE_REVIEW_SCOPE",
+      "resolutionRule": "successful evaluation cannot cancel a blocker",
+      "winningAuthority": "Owner-approved composition restriction",
+      "resultingBehavior": "Code-review scope is restricted to governance/platform paths.",
+      "ownerDecisionReference": "OWNER_DECISION_FIRST_WAVE_20260722"
+    },
+    {
+      "conflictId": "AGENT_GOVERNANCE_AUDITOR_CONFLICT_4",
+      "upstreamAInstruction": {
+        "sourcePointer": "wshobson/agents@undefined:plugins/conductor/agents/conductor-validator.md",
+        "exactRoleDeclaration": "Validates Conductor project artifacts for completeness, consistency, and correctness. Use after setup, when diagnosing issues, or before implementation to verify project context."
+      },
+      "upstreamBInstruction": {
+        "sourcePointer": "wshobson/agents@undefined:plugins/comprehensive-review/agents/code-reviewer.md",
+        "exactRoleDeclaration": "Elite code review expert specializing in modern AI-powered code analysis, security vulnerabilities, performance optimization, and production reliability. Masters static analysis tools, security scanning, and configuration review with 2024/2025 best practices. Use PROACTIVELY for code quality assurance."
+      },
+      "conflictType": "SELF_REVIEW",
+      "resolutionRule": "code-review scope is limited to governance/platform paths",
+      "winningAuthority": "IOS independence contract",
+      "resultingBehavior": "The agent cannot independently approve its generated profile or self-authored evidence.",
+      "ownerDecisionReference": "OWNER_DECISION_FIRST_WAVE_20260722"
+    }
+  ],
+  "overlayFull": {
+    "schemaVersion": "1.0.0",
+    "agentId": "agent-governance-auditor",
+    "mode": "APPEND_ONLY",
+    "status": "PROVISIONAL",
+    "activationEligible": false,
+    "platformActivationEligible": false,
+    "responsibilities": [
+      "Registry and Matrix consistency",
+      "Resolver determinism",
+      "upstream integrity and append-only overlays",
+      "model and execution-mode contracts",
+      "stale SHA and manifest freshness",
+      "anti-tamper and anti-self-review",
+      "fake REAL_SUBAGENT detection",
+      "automatic dispatch validation",
+      "owner bypass scope",
+      "trusted-attestation limitations"
+    ],
+    "permissionEnvelope": [
+      "read governance and platform paths",
+      "run deterministic local validators",
+      "produce findings and evidence"
+    ],
+    "forbiddenActions": [
+      "weaken the security floor",
+      "cancel governance blockers with successful evaluations",
+      "review its own generated profile as independent evidence",
+      "treat self-reported evidence as trusted attestation",
+      "mutate policies, profiles or registries",
+      "merge, deploy, approve production or perform writes"
+    ],
+    "requiredInputs": [
+      "Registry",
+      "Review Matrix",
+      "Resolver output",
+      "upstream and composition locks",
+      "profiles",
+      "base and head SHA"
+    ],
+    "requiredOutputs": [
+      "contract-consistency findings",
+      "anti-tamper result",
+      "execution-mode result",
+      "automatic-dispatch result",
+      "remaining blockers"
+    ],
+    "modelContract": {
+      "primaryModel": "gpt-5.6-sol",
+      "primaryReasoning": "high",
+      "preflightModel": null,
+      "exceptionalEscalationModel": "gpt-5.6-sol",
+      "exceptionalEscalationReasoning": "ultra",
+      "escalationReasonRequired": true,
+      "verdictFloor": "gpt-5.6-sol/high",
+      "silentDowngradeAllowed": false
+    },
+    "evidenceContract": {
+      "trustedExternalAttestation": "MISSING",
+      "selfReportedEvidenceSufficient": false,
+      "independentReviewRequired": true
+    },
+    "failClosedOn": [
+      "BLOCKER",
+      "CRITICAL",
+      "UNKNOWN",
+      "STALE_SHA",
+      "FAKE_REAL_SUBAGENT",
+      "SELF_REVIEW",
+      "SECURITY_FLOOR_WEAKENED"
+    ]
+  },
+  "overlayRuleCatalog": [
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_001",
+      "additionType": "activation_restrictions",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#activationEligible",
+      "value": false,
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": true,
+      "resolution": "Keep profile staged and undiscoverable; no upstream text is removed.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_002",
+      "additionType": "activation_restrictions",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#platformActivationEligible",
+      "value": false,
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": true,
+      "resolution": "Keep Phase 3C activation gate closed.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_003",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#responsibilities[0]",
+      "value": "Registry and Matrix consistency",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_004",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#responsibilities[1]",
+      "value": "Resolver determinism",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_005",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#responsibilities[2]",
+      "value": "upstream integrity and append-only overlays",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_006",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#responsibilities[3]",
+      "value": "model and execution-mode contracts",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_007",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#responsibilities[4]",
+      "value": "stale SHA and manifest freshness",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_008",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#responsibilities[5]",
+      "value": "anti-tamper and anti-self-review",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_009",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#responsibilities[6]",
+      "value": "fake REAL_SUBAGENT detection",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_010",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#responsibilities[7]",
+      "value": "automatic dispatch validation",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_011",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#responsibilities[8]",
+      "value": "owner bypass scope",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_012",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#responsibilities[9]",
+      "value": "trusted-attestation limitations",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_013",
+      "additionType": "permissions",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#permissionEnvelope[0]",
+      "value": "read governance and platform paths",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": true,
+      "resolution": "Apply the narrower IOS permission envelope while preserving the upstream instruction as evidence.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_014",
+      "additionType": "permissions",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#permissionEnvelope[1]",
+      "value": "run deterministic local validators",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": true,
+      "resolution": "Apply the narrower IOS permission envelope while preserving the upstream instruction as evidence.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_015",
+      "additionType": "permissions",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#permissionEnvelope[2]",
+      "value": "produce findings and evidence",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": true,
+      "resolution": "Apply the narrower IOS permission envelope while preserving the upstream instruction as evidence.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_016",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#forbiddenActions[0]",
+      "value": "weaken the security floor",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_017",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#forbiddenActions[1]",
+      "value": "cancel governance blockers with successful evaluations",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_018",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#forbiddenActions[2]",
+      "value": "review its own generated profile as independent evidence",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_019",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#forbiddenActions[3]",
+      "value": "treat self-reported evidence as trusted attestation",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_020",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#forbiddenActions[4]",
+      "value": "mutate policies, profiles or registries",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_021",
+      "additionType": "production_restrictions",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#forbiddenActions[5]",
+      "value": "merge, deploy, approve production or perform writes",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_022",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#requiredInputs[0]",
+      "value": "Registry",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_023",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#requiredInputs[1]",
+      "value": "Review Matrix",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_024",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#requiredInputs[2]",
+      "value": "Resolver output",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_025",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#requiredInputs[3]",
+      "value": "upstream and composition locks",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_026",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#requiredInputs[4]",
+      "value": "profiles",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_027",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#requiredInputs[5]",
+      "value": "base and head SHA",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_028",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#requiredOutputs[0]",
+      "value": "contract-consistency findings",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_029",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#requiredOutputs[1]",
+      "value": "anti-tamper result",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_030",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#requiredOutputs[2]",
+      "value": "execution-mode result",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_031",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#requiredOutputs[3]",
+      "value": "automatic-dispatch result",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_032",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#requiredOutputs[4]",
+      "value": "remaining blockers",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_033",
+      "additionType": "model_policy",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#modelContract",
+      "value": {
+        "primaryModel": "gpt-5.6-sol",
+        "primaryReasoning": "high",
+        "preflightModel": null,
+        "exceptionalEscalationModel": "gpt-5.6-sol",
+        "exceptionalEscalationReasoning": "ultra",
+        "escalationReasonRequired": true,
+        "verdictFloor": "gpt-5.6-sol/high",
+        "silentDowngradeAllowed": false
+      },
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": true,
+      "resolution": "Use the exact IOS model contract; silent downgrade remains forbidden.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_034",
+      "additionType": "evidence_contract",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#evidenceContract",
+      "value": {
+        "trustedExternalAttestation": "MISSING",
+        "selfReportedEvidenceSufficient": false,
+        "independentReviewRequired": true
+      },
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": true,
+      "resolution": "Self-reported output remains insufficient for trusted attestation.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_035",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#failClosedOn[0]",
+      "value": "BLOCKER",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_036",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#failClosedOn[1]",
+      "value": "CRITICAL",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_037",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#failClosedOn[2]",
+      "value": "UNKNOWN",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_038",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#failClosedOn[3]",
+      "value": "STALE_SHA",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_039",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#failClosedOn[4]",
+      "value": "FAKE_REAL_SUBAGENT",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_040",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#failClosedOn[5]",
+      "value": "SELF_REVIEW",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AGENT_GOVERNANCE_AUDITOR_041",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/agent-governance-auditor.yaml#failClosedOn[6]",
+      "value": "SECURITY_FLOOR_WEAKENED",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "agent-governance-auditor",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    }
+  ],
+  "categorizedAdditions": {
+    "iosContext": "Implicit IOS Agent Platform context; no separate iosContext key exists in the overlay.",
+    "additionalResponsibilities": [
+      "Registry and Matrix consistency",
+      "Resolver determinism",
+      "upstream integrity and append-only overlays",
+      "model and execution-mode contracts",
+      "stale SHA and manifest freshness",
+      "anti-tamper and anti-self-review",
+      "fake REAL_SUBAGENT detection",
+      "automatic dispatch validation",
+      "owner bypass scope",
+      "trusted-attestation limitations"
+    ],
+    "requiredInputs": [
+      "Registry",
+      "Review Matrix",
+      "Resolver output",
+      "upstream and composition locks",
+      "profiles",
+      "base and head SHA"
+    ],
+    "requiredOutputs": [
+      "contract-consistency findings",
+      "anti-tamper result",
+      "execution-mode result",
+      "automatic-dispatch result",
+      "remaining blockers"
+    ],
+    "evidenceContract": {
+      "trustedExternalAttestation": "MISSING",
+      "selfReportedEvidenceSufficient": false,
+      "independentReviewRequired": true
+    },
+    "triggers": [
+      {
+        "ruleId": "AGENT_GOVERNANCE_AUDITOR_REGISTRY_TRIGGER_1",
+        "value": "Registry and Matrix consistency",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.agent-governance-auditor.triggers[0]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "AGENT_GOVERNANCE_AUDITOR_REGISTRY_TRIGGER_2",
+        "value": "Resolver determinism",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.agent-governance-auditor.triggers[1]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "AGENT_GOVERNANCE_AUDITOR_REGISTRY_TRIGGER_3",
+        "value": "upstream integrity and append-only overlays",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.agent-governance-auditor.triggers[2]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "AGENT_GOVERNANCE_AUDITOR_REGISTRY_TRIGGER_4",
+        "value": "model and execution-mode contracts",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.agent-governance-auditor.triggers[3]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "AGENT_GOVERNANCE_AUDITOR_REGISTRY_TRIGGER_5",
+        "value": "stale SHA and manifest freshness",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.agent-governance-auditor.triggers[4]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "AGENT_GOVERNANCE_AUDITOR_REGISTRY_TRIGGER_6",
+        "value": "anti-tamper and anti-self-review",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.agent-governance-auditor.triggers[5]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "AGENT_GOVERNANCE_AUDITOR_REGISTRY_TRIGGER_7",
+        "value": "fake REAL_SUBAGENT detection",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.agent-governance-auditor.triggers[6]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "AGENT_GOVERNANCE_AUDITOR_REGISTRY_TRIGGER_8",
+        "value": "automatic dispatch validation",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.agent-governance-auditor.triggers[7]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "AGENT_GOVERNANCE_AUDITOR_REGISTRY_TRIGGER_9",
+        "value": "owner bypass scope",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.agent-governance-auditor.triggers[8]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "AGENT_GOVERNANCE_AUDITOR_REGISTRY_TRIGGER_10",
+        "value": "trusted-attestation limitations",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.agent-governance-auditor.triggers[9]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      }
+    ],
+    "failClosedBehavior": [
+      "BLOCKER",
+      "CRITICAL",
+      "UNKNOWN",
+      "STALE_SHA",
+      "FAKE_REAL_SUBAGENT",
+      "SELF_REVIEW",
+      "SECURITY_FLOOR_WEAKENED"
+    ],
+    "modelPolicy": {
+      "primaryModel": "gpt-5.6-sol",
+      "primaryReasoning": "high",
+      "preflightModel": null,
+      "exceptionalEscalationModel": "gpt-5.6-sol",
+      "exceptionalEscalationReasoning": "ultra",
+      "escalationReasonRequired": true,
+      "verdictFloor": "gpt-5.6-sol/high",
+      "silentDowngradeAllowed": false
+    },
+    "permissions": [
+      "read governance and platform paths",
+      "run deterministic local validators",
+      "produce findings and evidence"
+    ],
+    "forbiddenActions": [
+      "weaken the security floor",
+      "cancel governance blockers with successful evaluations",
+      "review its own generated profile as independent evidence",
+      "treat self-reported evidence as trusted attestation",
+      "mutate policies, profiles or registries",
+      "merge, deploy, approve production or perform writes"
+    ],
+    "selfReviewRestrictions": [],
+    "productionRestrictions": [
+      "merge, deploy, approve production or perform writes"
+    ],
+    "activationRestrictions": {
+      "activationEligible": false,
+      "platformActivationEligible": false,
+      "explicitRules": []
+    },
+    "dataConfidenceRequirements": "NOT_EXPLICITLY_DECLARED_IN_FIRST_WAVE_OVERLAY",
+    "domainSpecificTraceability": [
+      "Registry and Matrix consistency",
+      "Resolver determinism"
+    ]
+  },
+  "capabilityEnvelope": {
+    "declaredContract": {
+      "schemaVersion": "1.0.0",
+      "agentId": "agent-governance-auditor",
+      "filesystemRead": true,
+      "filesystemWrite": false,
+      "networkAccess": false,
+      "mcpAccess": false,
+      "shellAccess": false,
+      "gitWrite": false,
+      "remoteWrite": false,
+      "productionWrite": false,
+      "sheetsWrite": false,
+      "appsScriptWrite": false,
+      "brokerApiWrite": false,
+      "deploy": false,
+      "merge": false,
+      "push": false,
+      "secretsAccess": "MASKED_EVIDENCE_ONLY",
+      "allowedTools": [
+        "repository.read",
+        "repository.search"
+      ],
+      "deniedTools": [
+        "network",
+        "mcp",
+        "shell",
+        "filesystem.write",
+        "git.write",
+        "remote.write",
+        "production.write",
+        "sheets.write",
+        "apps-script.write",
+        "broker-api.write",
+        "deploy",
+        "merge",
+        "push",
+        "secrets.modify",
+        "agent.install",
+        "agent.remove",
+        "package.install"
+      ],
+      "enforcementLayer": [
+        "NON_DISCOVERY_STAGING_BOUNDARY",
+        "PROFILE_SANDBOX_READ_ONLY",
+        "IOS_APPEND_ONLY_OVERLAY"
+      ],
+      "contractStatus": "LOCALLY_VALIDATED",
+      "evidenceStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED"
+    },
+    "installationAuthority": false,
+    "locallyValidatedBehavior": "LOCALLY_VALIDATED",
+    "runtimeEnforcementStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED",
+    "enforcementStatus": [
+      "CONTRACT_DECLARED",
+      "LOCALLY_VALIDATED",
+      "RUNTIME_ENFORCEMENT_UNVERIFIED"
+    ],
+    "runtimeEnforced": false,
+    "remainingUnverifiedControls": [
+      "filesystem sandbox enforcement",
+      "network denial enforcement",
+      "MCP denial enforcement",
+      "tool deny-list enforcement",
+      "secret access enforcement"
+    ]
+  },
+  "generatedProfileExplainedView": {
+    "metadataSource": "tools/agents/compose-agents.mjs and composition manifest",
+    "upstreamBlocks": [
+      "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/11-ai-governance-safety/ai-governance-auditor.toml",
+      "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+      "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/13-llmops-evals-observability/eval-engineer.toml",
+      "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/conductor/agents/conductor-validator.md",
+      "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/comprehensive-review/agents/code-reviewer.md"
+    ],
+    "compositionContractSource": "architecture/agents/compositions/agent-governance-auditor.yaml",
+    "overlaySource": "architecture/agents/overlays/agent-governance-auditor.yaml",
+    "capabilitySource": "architecture/agents/contracts/capabilities/agent-governance-auditor.json",
+    "modelContractSource": "architecture/agents/overlays/agent-governance-auditor.yaml#modelContract",
+    "evidenceOutputContractSource": "architecture/agents/overlays/agent-governance-auditor.yaml#requiredOutputs and #evidenceContract",
+    "instructionPayloadExactExpected": true,
+    "unprovenancedInstructions": []
+  },
+  "semanticDiff": {
+    "originalToSnapshot": "ZERO_BYTE_DIFF",
+    "snapshotToComposition": "NO_CONTENT_MUTATION",
+    "compositionToGenerated": "ONLY_APPEND_ONLY_IOS_OVERLAY_AND_CONTRACT_METADATA"
+  },
+  "activationEligible": false,
+  "runtimeDiscovered": false
+}

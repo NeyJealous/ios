@@ -1,0 +1,23 @@
+{
+  "agentId": "agent-governance-auditor",
+  "order": 2,
+  "repository": "VoltAgent/awesome-codex-subagents",
+  "pinnedCommit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+  "sourcePath": "categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+  "profileId": "policy-guardrail-designer",
+  "filename": "policy-guardrail-designer.toml",
+  "license": "MIT",
+  "rawSha256": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+  "normalizedSha256": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+  "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+  "inclusionMode": "FULL_UNMODIFIED",
+  "originalBlobSha": "105d2ed0f4065ea59f7a8bba6190e0e3948abc44",
+  "originalBlobSha256": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+  "snapshotSha256": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+  "generatedBlockSha256": "52b0f6138b184a540439b300b40aefe2b685069b0e176be3d711072f0d556c44",
+  "byteIdenticalOriginalToSnapshot": true,
+  "byteIdenticalSnapshotToGeneratedBlock": true,
+  "sourcePointer": "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/11-ai-governance-safety/policy-guardrail-designer.toml",
+  "diffResult": "ZERO_BYTE_DIFF",
+  "mutationDetected": false
+}

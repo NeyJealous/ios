@@ -1,0 +1,1287 @@
+{
+  "schemaVersion": "1.0.0",
+  "gate": "FIRST_WAVE_CONFIGURATION_REVIEW",
+  "validatedHeadSha": "bf0238540fae1a73a7d254937b19a9809d8a4dd2",
+  "agentId": "ios-agent-orchestrator",
+  "status": "PROVISIONAL",
+  "readiness": "READY_FOR_OWNER_ACTIVATION_REVIEW",
+  "generatedProfilePath": "architecture/agents/generated/provisional/ios-agent-orchestrator.toml",
+  "generatedProfileSha256": "ec85df02b13de9433041d1521947fbda8e01b55a3c14fd46cad9c4c9c876dd66",
+  "compositionManifestPath": "architecture/agents/compositions/ios-agent-orchestrator.yaml",
+  "compositionManifestSha256": "5d42474ab6e597ffbea03f83b1373e2c92bf66ee74b78e2f9a46ccc89771efe4",
+  "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml",
+  "overlaySha256": "1478dfd701a691c1a5bff0a210ec19bf1ee749b690f8f92b6024cd531e8e44c3",
+  "capabilityEnvelopePath": "architecture/agents/contracts/capabilities/ios-agent-orchestrator.json",
+  "capabilityEnvelopeSha256": "0c3d657a07e279a385ac4b805533d91e2650954644821aeacd676c47ddf8bc63",
+  "registryEntry": {
+    "agentId": "ios-agent-orchestrator",
+    "displayName": "IOS Agent Orchestrator",
+    "status": "PROVISIONAL",
+    "purpose": "Deterministic supervisor for Resolver, review DAG and report collection.",
+    "priority": "P0",
+    "upstreamComposition": [
+      {
+        "repository": "VoltAgent/awesome-codex-subagents",
+        "commit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+        "sourcePath": "categories/09-meta-orchestration/agent-organizer.toml",
+        "profileId": "agent-organizer",
+        "rawHash": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+        "normalizedHash": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+        "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/09-meta-orchestration/agent-organizer.toml",
+        "inclusionMode": "FULL_UNMODIFIED"
+      },
+      {
+        "repository": "VoltAgent/awesome-codex-subagents",
+        "commit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+        "sourcePath": "categories/09-meta-orchestration/agent-installer.toml",
+        "profileId": "agent-installer",
+        "rawHash": "e1a7b8c709791e973cd8be5d32c548d8f49c3ef655a492de56aedb894dc77d82",
+        "normalizedHash": "e1a7b8c709791e973cd8be5d32c548d8f49c3ef655a492de56aedb894dc77d82",
+        "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/09-meta-orchestration/agent-installer.toml",
+        "inclusionMode": "FULL_UNMODIFIED"
+      },
+      {
+        "repository": "wshobson/agents",
+        "commit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+        "sourcePath": "plugins/conductor/agents/conductor-validator.md",
+        "profileId": "conductor-validator",
+        "rawHash": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+        "normalizedHash": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+        "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/conductor/agents/conductor-validator.md",
+        "inclusionMode": "FULL_UNMODIFIED"
+      },
+      {
+        "repository": "wshobson/agents",
+        "commit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+        "sourcePath": "plugins/agent-teams/agents/team-lead.md",
+        "profileId": "team-lead",
+        "rawHash": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+        "normalizedHash": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+        "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/agent-teams/agents/team-lead.md",
+        "inclusionMode": "FULL_UNMODIFIED"
+      }
+    ],
+    "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml",
+    "compositionPath": "architecture/agents/compositions/ios-agent-orchestrator.yaml",
+    "generatedProfilePath": "architecture/agents/generated/provisional/ios-agent-orchestrator.toml",
+    "capabilityEnvelopePath": "architecture/agents/contracts/capabilities/ios-agent-orchestrator.json",
+    "capabilityEnvelope": {
+      "schemaVersion": "1.0.0",
+      "agentId": "ios-agent-orchestrator",
+      "filesystemRead": true,
+      "filesystemWrite": false,
+      "networkAccess": false,
+      "mcpAccess": false,
+      "shellAccess": false,
+      "gitWrite": false,
+      "remoteWrite": false,
+      "productionWrite": false,
+      "sheetsWrite": false,
+      "appsScriptWrite": false,
+      "brokerApiWrite": false,
+      "deploy": false,
+      "merge": false,
+      "push": false,
+      "secretsAccess": "NONE",
+      "allowedTools": [
+        "repository.read",
+        "repository.search"
+      ],
+      "deniedTools": [
+        "network",
+        "mcp",
+        "shell",
+        "filesystem.write",
+        "git.write",
+        "remote.write",
+        "production.write",
+        "sheets.write",
+        "apps-script.write",
+        "broker-api.write",
+        "deploy",
+        "merge",
+        "push",
+        "secrets.modify",
+        "agent.install",
+        "agent.remove",
+        "package.install",
+        "subject-matter.write"
+      ],
+      "enforcementLayer": [
+        "NON_DISCOVERY_STAGING_BOUNDARY",
+        "PROFILE_SANDBOX_READ_ONLY",
+        "IOS_APPEND_ONLY_OVERLAY",
+        "ORCHESTRATOR_ACTIVATION_GATE"
+      ],
+      "contractStatus": "LOCALLY_VALIDATED",
+      "evidenceStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED"
+    },
+    "triggers": [
+      "significant task start",
+      "scope change",
+      "pre-commit",
+      "pre-push",
+      "pre-PR",
+      "post-change"
+    ],
+    "permissions": [
+      "read repository and governance evidence",
+      "calculate delegation plans",
+      "diagnose project-local installability and missing profiles",
+      "recommend actions without executing installation"
+    ],
+    "forbiddenActions": [
+      "install or remove agents",
+      "modify global Codex profiles or user environment",
+      "modify .codex/agents without a separate governance task",
+      "update upstream automatically",
+      "download unlocked profiles",
+      "execute install scripts",
+      "install packages",
+      "mutate Registry or Model Registry autonomously",
+      "activate agents or waves",
+      "issue subject-matter verdicts",
+      "self-review",
+      "replace mandatory review with simulation",
+      "merge, deploy, approve production or perform writes"
+    ],
+    "requiredInputs": [
+      "task context",
+      "base and head SHA",
+      "changed paths",
+      "Resolver result",
+      "model availability registry"
+    ],
+    "requiredOutputs": [
+      "phase",
+      "required and advisory agents",
+      "execution DAG",
+      "parallel groups",
+      "blocked unavailable agents",
+      "report bindings",
+      "merge recommendation without approval"
+    ],
+    "executionModes": [
+      "REAL_SUBAGENT",
+      "CI_VALIDATOR"
+    ],
+    "modelContract": {
+      "primaryModel": "gpt-5.6-terra",
+      "primaryReasoning": "medium",
+      "preflightModel": "gpt-5.6-terra",
+      "preflightReasoning": "medium",
+      "escalationModel": "gpt-5.6-sol",
+      "escalationReasoning": "high",
+      "verdictFloor": "gpt-5.6-terra",
+      "silentDowngradeAllowed": false
+    },
+    "independenceContract": {
+      "selfReviewAllowed": false,
+      "trustedExternalAttestation": "MISSING",
+      "selfReportedEvidenceSufficient": false
+    },
+    "runtimeExecutionStatus": "RUNTIME_PROFILE_NOT_YET_OBSERVED",
+    "activationEligible": false,
+    "platformActivationEligible": false
+  },
+  "modelContract": {
+    "exactOverlayContract": {
+      "primaryModel": "gpt-5.6-terra",
+      "primaryReasoning": "medium",
+      "preflightModel": "gpt-5.6-terra",
+      "preflightReasoning": "medium",
+      "escalationModel": "gpt-5.6-sol",
+      "escalationReasoning": "high",
+      "verdictFloor": "gpt-5.6-terra",
+      "silentDowngradeAllowed": false
+    },
+    "exactRegistryContract": {
+      "agentId": "ios-agent-orchestrator",
+      "primaryModel": "gpt-5.6-terra",
+      "primaryReasoning": "medium",
+      "preflightModel": "gpt-5.6-terra",
+      "preflightReasoning": "medium",
+      "escalationModel": "gpt-5.6-sol",
+      "escalationReasoning": "high",
+      "finalVerdictMinimumModel": "gpt-5.6-terra",
+      "silentDowngradeAllowed": false,
+      "budgetClass": "BALANCED"
+    },
+    "requestedModel": "gpt-5.6-terra",
+    "reasoning": "medium",
+    "fallback": null,
+    "escalation": {
+      "model": "gpt-5.6-sol",
+      "reasoning": "high",
+      "exceptionalModel": null,
+      "exceptionalReasoning": null,
+      "reasonRequired": false
+    },
+    "verdictFloor": "gpt-5.6-terra",
+    "silentDowngradeAllowed": false,
+    "runtimeAvailability": "RUNTIME_AVAILABLE",
+    "runtimeEvidence": {
+      "modelId": "terra",
+      "displayName": "GPT-5.6 Terra",
+      "requestedSlug": "gpt-5.6-terra",
+      "requestedReasoningLevel": "medium",
+      "resolvedSlug": "gpt-5.6-terra",
+      "resolvedReasoningLevel": "medium",
+      "resolutionEvidence": "EXACT_OVERRIDE_ACCEPTED_AND_EXECUTED",
+      "runtimeAvailability": "RUNTIME_AVAILABLE",
+      "smokeResult": "SUCCESS",
+      "providerDispatchResponse": {
+        "task_name": "/root/runtime_smoke_terra"
+      },
+      "executionResponse": "MODEL_RUNTIME_SMOKE_OK terra nonce=TERRA-20260722-192245Z",
+      "observedEndToEndLatencyMs": 23884,
+      "agentUsableAtRuntime": true,
+      "platformActivationEligible": false,
+      "attestationStatus": "INSUFFICIENT_EVIDENCE",
+      "substitutionUsed": false
+    },
+    "unresolvedModelGaps": [
+      "TRUSTED_EXTERNAL_ATTESTATION_MISSING",
+      "PLATFORM_ACTIVATION_ELIGIBLE_FALSE"
+    ]
+  },
+  "upstreamBases": [
+    {
+      "order": 1,
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "pinnedCommit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/09-meta-orchestration/agent-organizer.toml",
+      "profileId": "agent-organizer",
+      "filename": "agent-organizer.toml",
+      "license": "MIT",
+      "rawSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+      "normalizedSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/09-meta-orchestration/agent-organizer.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "349416d67efe17db0a6e8feda96c369c63376097",
+      "originalBlobSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+      "snapshotSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+      "generatedBlockSha256": "3bbd908a8a0664a9a57c8503151200a2855f8de9e1c3e98edc7d289fdfe269cf",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/09-meta-orchestration/agent-organizer.toml"
+    },
+    {
+      "order": 2,
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "pinnedCommit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/09-meta-orchestration/agent-installer.toml",
+      "profileId": "agent-installer",
+      "filename": "agent-installer.toml",
+      "license": "MIT",
+      "rawSha256": "e1a7b8c709791e973cd8be5d32c548d8f49c3ef655a492de56aedb894dc77d82",
+      "normalizedSha256": "e1a7b8c709791e973cd8be5d32c548d8f49c3ef655a492de56aedb894dc77d82",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/09-meta-orchestration/agent-installer.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "4ba2b693ff5ed88949c7cc758822ee191a29fe9e",
+      "originalBlobSha256": "e1a7b8c709791e973cd8be5d32c548d8f49c3ef655a492de56aedb894dc77d82",
+      "snapshotSha256": "e1a7b8c709791e973cd8be5d32c548d8f49c3ef655a492de56aedb894dc77d82",
+      "generatedBlockSha256": "e1a7b8c709791e973cd8be5d32c548d8f49c3ef655a492de56aedb894dc77d82",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/09-meta-orchestration/agent-installer.toml"
+    },
+    {
+      "order": 3,
+      "repository": "wshobson/agents",
+      "pinnedCommit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/conductor/agents/conductor-validator.md",
+      "profileId": "conductor-validator",
+      "filename": "conductor-validator.md",
+      "license": "MIT",
+      "rawSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+      "normalizedSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/conductor/agents/conductor-validator.md",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "f314781b513fe93a1fee8a590ea25fdba3c255bd",
+      "originalBlobSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+      "snapshotSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+      "generatedBlockSha256": "f7957d977522813b6d3f5ad4ecf3636b6fe7878c94d1a7d14665b7cbd411ced6",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/conductor/agents/conductor-validator.md"
+    },
+    {
+      "order": 4,
+      "repository": "wshobson/agents",
+      "pinnedCommit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/agent-teams/agents/team-lead.md",
+      "profileId": "team-lead",
+      "filename": "team-lead.md",
+      "license": "MIT",
+      "rawSha256": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+      "normalizedSha256": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/agent-teams/agents/team-lead.md",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "d0b0e0fc3b8f60c62d8c46af34d8703e6d5b8771",
+      "originalBlobSha256": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+      "snapshotSha256": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+      "generatedBlockSha256": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/agent-teams/agents/team-lead.md"
+    }
+  ],
+  "upstreamIntegrityStatus": "UPSTREAM_UNCHANGED_BYTE_IDENTICAL",
+  "compositionOrder": [
+    "VoltAgent/awesome-codex-subagents:categories/09-meta-orchestration/agent-organizer.toml",
+    "VoltAgent/awesome-codex-subagents:categories/09-meta-orchestration/agent-installer.toml",
+    "wshobson/agents:plugins/conductor/agents/conductor-validator.md",
+    "wshobson/agents:plugins/agent-teams/agents/team-lead.md"
+  ],
+  "compositionConflicts": [
+    {
+      "conflictId": "IOS_AGENT_ORCHESTRATOR_CONFLICT_1",
+      "upstreamAInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/09-meta-orchestration/agent-installer.toml",
+        "exactRoleDeclaration": "Use when a task needs help selecting, copying, or organizing custom agent files from this repository into Codex agent directories."
+      },
+      "upstreamBInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/09-meta-orchestration/agent-organizer.toml",
+        "exactRoleDeclaration": "Use when the parent agent needs help choosing subagents and dividing a larger task into clean delegated threads."
+      },
+      "conflictType": "INSTALLATION_AUTHORITY",
+      "resolutionRule": "preserve every base byte-for-byte",
+      "winningAuthority": "IOS owner decision and capability envelope",
+      "resultingBehavior": "Installer expertise is diagnostic only; installation/package/global-profile authority is denied.",
+      "ownerDecisionReference": "OWNER_DECISION_FIRST_WAVE_20260722"
+    },
+    {
+      "conflictId": "IOS_AGENT_ORCHESTRATOR_CONFLICT_2",
+      "upstreamAInstruction": {
+        "sourcePointer": "wshobson/agents@undefined:plugins/agent-teams/agents/team-lead.md",
+        "exactRoleDeclaration": "Team orchestrator that decomposes work into parallel tasks with file ownership boundaries, manages team lifecycle, and synthesizes results. Use when coordinating multi-agent teams, decomposing complex tasks, or managing parallel workstreams."
+      },
+      "upstreamBInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/09-meta-orchestration/agent-organizer.toml",
+        "exactRoleDeclaration": "Use when the parent agent needs help choosing subagents and dividing a larger task into clean delegated threads."
+      },
+      "conflictType": "TEAM_DECISION_AUTHORITY",
+      "resolutionRule": "capability envelope removes installation, mutation and activation authority",
+      "winningAuthority": "IOS supervisor-only restriction",
+      "resultingBehavior": "Team planning is allowed; subject-matter verdict and owner authority are not.",
+      "ownerDecisionReference": "OWNER_DECISION_FIRST_WAVE_20260722"
+    },
+    {
+      "conflictId": "IOS_AGENT_ORCHESTRATOR_CONFLICT_3",
+      "upstreamAInstruction": {
+        "sourcePointer": "wshobson/agents@undefined:plugins/conductor/agents/conductor-validator.md",
+        "exactRoleDeclaration": "Validates Conductor project artifacts for completeness, consistency, and correctness. Use after setup, when diagnosing issues, or before implementation to verify project context."
+      },
+      "upstreamBInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/09-meta-orchestration/agent-organizer.toml",
+        "exactRoleDeclaration": "Use when the parent agent needs help choosing subagents and dividing a larger task into clean delegated threads."
+      },
+      "conflictType": "REVIEW_AND_SELF_REVIEW",
+      "resolutionRule": "Resolver and evidence contracts control routing",
+      "winningAuthority": "IOS anti-self-review contract",
+      "resultingBehavior": "Conductor validation may coordinate external reports but cannot validate the orchestrator itself.",
+      "ownerDecisionReference": "OWNER_DECISION_FIRST_WAVE_20260722"
+    },
+    {
+      "conflictId": "IOS_AGENT_ORCHESTRATOR_CONFLICT_4",
+      "upstreamAInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/09-meta-orchestration/agent-organizer.toml",
+        "exactRoleDeclaration": "Use when the parent agent needs help choosing subagents and dividing a larger task into clean delegated threads."
+      },
+      "upstreamBInstruction": {
+        "sourcePointer": "wshobson/agents@undefined:plugins/conductor/agents/conductor-validator.md",
+        "exactRoleDeclaration": "Validates Conductor project artifacts for completeness, consistency, and correctness. Use after setup, when diagnosing issues, or before implementation to verify project context."
+      },
+      "conflictType": "SUPERVISOR_SCOPE",
+      "resolutionRule": "supervisor cannot issue subject-matter verdicts or self-review",
+      "winningAuthority": "IOS Agent Platform v2.1 supervisor contract",
+      "resultingBehavior": "Resolver/DAG/report collection only; no activation or subject-matter verdict.",
+      "ownerDecisionReference": "OWNER_DECISION_FIRST_WAVE_20260722"
+    }
+  ],
+  "overlayFull": {
+    "schemaVersion": "1.0.0",
+    "agentId": "ios-agent-orchestrator",
+    "mode": "APPEND_ONLY",
+    "status": "PROVISIONAL",
+    "activationEligible": false,
+    "platformActivationEligible": false,
+    "responsibilities": [
+      "invoke deterministic Resolver",
+      "run PRE_CHANGE and POST_CHANGE phases",
+      "separate mandatory and advisory agents",
+      "build an acyclic execution DAG and parallel groups",
+      "validate model availability without downgrade",
+      "collect separate commit-bound reports",
+      "stop on BLOCKER, CRITICAL, UNKNOWN or mandatory NOT_AVAILABLE"
+    ],
+    "permissionEnvelope": [
+      "read repository and governance evidence",
+      "calculate delegation plans",
+      "diagnose project-local installability and missing profiles",
+      "recommend actions without executing installation"
+    ],
+    "forbiddenActions": [
+      "install or remove agents",
+      "modify global Codex profiles or user environment",
+      "modify .codex/agents without a separate governance task",
+      "update upstream automatically",
+      "download unlocked profiles",
+      "execute install scripts",
+      "install packages",
+      "mutate Registry or Model Registry autonomously",
+      "activate agents or waves",
+      "issue subject-matter verdicts",
+      "self-review",
+      "replace mandatory review with simulation",
+      "merge, deploy, approve production or perform writes"
+    ],
+    "requiredInputs": [
+      "task context",
+      "base and head SHA",
+      "changed paths",
+      "Resolver result",
+      "model availability registry"
+    ],
+    "requiredOutputs": [
+      "phase",
+      "required and advisory agents",
+      "execution DAG",
+      "parallel groups",
+      "blocked unavailable agents",
+      "report bindings",
+      "merge recommendation without approval"
+    ],
+    "modelContract": {
+      "primaryModel": "gpt-5.6-terra",
+      "primaryReasoning": "medium",
+      "preflightModel": "gpt-5.6-terra",
+      "preflightReasoning": "medium",
+      "escalationModel": "gpt-5.6-sol",
+      "escalationReasoning": "high",
+      "verdictFloor": "gpt-5.6-terra",
+      "silentDowngradeAllowed": false
+    },
+    "evidenceContract": {
+      "trustedExternalAttestation": "MISSING",
+      "selfReportedEvidenceSufficient": false,
+      "commitBindingRequired": true
+    },
+    "failClosedOn": [
+      "BLOCKER",
+      "CRITICAL",
+      "UNKNOWN",
+      "MANDATORY_AGENT_NOT_AVAILABLE",
+      "DAG_CYCLE",
+      "MODEL_FLOOR_UNAVAILABLE",
+      "SELF_REVIEW"
+    ]
+  },
+  "overlayRuleCatalog": [
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_001",
+      "additionType": "activation_restrictions",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#activationEligible",
+      "value": false,
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "Keep profile staged and undiscoverable; no upstream text is removed.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_002",
+      "additionType": "activation_restrictions",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#platformActivationEligible",
+      "value": false,
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "Keep Phase 3C activation gate closed.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_003",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#responsibilities[0]",
+      "value": "invoke deterministic Resolver",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_004",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#responsibilities[1]",
+      "value": "run PRE_CHANGE and POST_CHANGE phases",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_005",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#responsibilities[2]",
+      "value": "separate mandatory and advisory agents",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_006",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#responsibilities[3]",
+      "value": "build an acyclic execution DAG and parallel groups",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_007",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#responsibilities[4]",
+      "value": "validate model availability without downgrade",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_008",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#responsibilities[5]",
+      "value": "collect separate commit-bound reports",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_009",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#responsibilities[6]",
+      "value": "stop on BLOCKER, CRITICAL, UNKNOWN or mandatory NOT_AVAILABLE",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_010",
+      "additionType": "permissions",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#permissionEnvelope[0]",
+      "value": "read repository and governance evidence",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "Apply the narrower IOS permission envelope while preserving the upstream instruction as evidence.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_011",
+      "additionType": "permissions",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#permissionEnvelope[1]",
+      "value": "calculate delegation plans",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "Apply the narrower IOS permission envelope while preserving the upstream instruction as evidence.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_012",
+      "additionType": "permissions",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#permissionEnvelope[2]",
+      "value": "diagnose project-local installability and missing profiles",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "Apply the narrower IOS permission envelope while preserving the upstream instruction as evidence.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_013",
+      "additionType": "permissions",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#permissionEnvelope[3]",
+      "value": "recommend actions without executing installation",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "Apply the narrower IOS permission envelope while preserving the upstream instruction as evidence.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_014",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#forbiddenActions[0]",
+      "value": "install or remove agents",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_015",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#forbiddenActions[1]",
+      "value": "modify global Codex profiles or user environment",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_016",
+      "additionType": "activation_restrictions",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#forbiddenActions[2]",
+      "value": "modify .codex/agents without a separate governance task",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_017",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#forbiddenActions[3]",
+      "value": "update upstream automatically",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_018",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#forbiddenActions[4]",
+      "value": "download unlocked profiles",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_019",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#forbiddenActions[5]",
+      "value": "execute install scripts",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_020",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#forbiddenActions[6]",
+      "value": "install packages",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_021",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#forbiddenActions[7]",
+      "value": "mutate Registry or Model Registry autonomously",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_022",
+      "additionType": "activation_restrictions",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#forbiddenActions[8]",
+      "value": "activate agents or waves",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_023",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#forbiddenActions[9]",
+      "value": "issue subject-matter verdicts",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_024",
+      "additionType": "self_review_restrictions",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#forbiddenActions[10]",
+      "value": "self-review",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_025",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#forbiddenActions[11]",
+      "value": "replace mandatory review with simulation",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_026",
+      "additionType": "production_restrictions",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#forbiddenActions[12]",
+      "value": "merge, deploy, approve production or perform writes",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_027",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#requiredInputs[0]",
+      "value": "task context",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_028",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#requiredInputs[1]",
+      "value": "base and head SHA",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_029",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#requiredInputs[2]",
+      "value": "changed paths",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_030",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#requiredInputs[3]",
+      "value": "Resolver result",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_031",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#requiredInputs[4]",
+      "value": "model availability registry",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_032",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#requiredOutputs[0]",
+      "value": "phase",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_033",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#requiredOutputs[1]",
+      "value": "required and advisory agents",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_034",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#requiredOutputs[2]",
+      "value": "execution DAG",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_035",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#requiredOutputs[3]",
+      "value": "parallel groups",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_036",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#requiredOutputs[4]",
+      "value": "blocked unavailable agents",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_037",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#requiredOutputs[5]",
+      "value": "report bindings",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_038",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#requiredOutputs[6]",
+      "value": "merge recommendation without approval",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_039",
+      "additionType": "model_policy",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#modelContract",
+      "value": {
+        "primaryModel": "gpt-5.6-terra",
+        "primaryReasoning": "medium",
+        "preflightModel": "gpt-5.6-terra",
+        "preflightReasoning": "medium",
+        "escalationModel": "gpt-5.6-sol",
+        "escalationReasoning": "high",
+        "verdictFloor": "gpt-5.6-terra",
+        "silentDowngradeAllowed": false
+      },
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "Use the exact IOS model contract; silent downgrade remains forbidden.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_040",
+      "additionType": "evidence_contract",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#evidenceContract",
+      "value": {
+        "trustedExternalAttestation": "MISSING",
+        "selfReportedEvidenceSufficient": false,
+        "commitBindingRequired": true
+      },
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": true,
+      "resolution": "Self-reported output remains insufficient for trusted attestation.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_041",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#failClosedOn[0]",
+      "value": "BLOCKER",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_042",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#failClosedOn[1]",
+      "value": "CRITICAL",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_043",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#failClosedOn[2]",
+      "value": "UNKNOWN",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_044",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#failClosedOn[3]",
+      "value": "MANDATORY_AGENT_NOT_AVAILABLE",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_045",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#failClosedOn[4]",
+      "value": "DAG_CYCLE",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_046",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#failClosedOn[5]",
+      "value": "MODEL_FLOOR_UNAVAILABLE",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "IOS_AGENT_ORCHESTRATOR_047",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/ios-agent-orchestrator.yaml#failClosedOn[6]",
+      "value": "SELF_REVIEW",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "ios-agent-orchestrator",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    }
+  ],
+  "categorizedAdditions": {
+    "iosContext": "Implicit IOS Agent Platform context; no separate iosContext key exists in the overlay.",
+    "additionalResponsibilities": [
+      "invoke deterministic Resolver",
+      "run PRE_CHANGE and POST_CHANGE phases",
+      "separate mandatory and advisory agents",
+      "build an acyclic execution DAG and parallel groups",
+      "validate model availability without downgrade",
+      "collect separate commit-bound reports",
+      "stop on BLOCKER, CRITICAL, UNKNOWN or mandatory NOT_AVAILABLE"
+    ],
+    "requiredInputs": [
+      "task context",
+      "base and head SHA",
+      "changed paths",
+      "Resolver result",
+      "model availability registry"
+    ],
+    "requiredOutputs": [
+      "phase",
+      "required and advisory agents",
+      "execution DAG",
+      "parallel groups",
+      "blocked unavailable agents",
+      "report bindings",
+      "merge recommendation without approval"
+    ],
+    "evidenceContract": {
+      "trustedExternalAttestation": "MISSING",
+      "selfReportedEvidenceSufficient": false,
+      "commitBindingRequired": true
+    },
+    "triggers": [
+      {
+        "ruleId": "IOS_AGENT_ORCHESTRATOR_REGISTRY_TRIGGER_1",
+        "value": "significant task start",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.ios-agent-orchestrator.triggers[0]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "IOS_AGENT_ORCHESTRATOR_REGISTRY_TRIGGER_2",
+        "value": "scope change",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.ios-agent-orchestrator.triggers[1]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "IOS_AGENT_ORCHESTRATOR_REGISTRY_TRIGGER_3",
+        "value": "pre-commit",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.ios-agent-orchestrator.triggers[2]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "IOS_AGENT_ORCHESTRATOR_REGISTRY_TRIGGER_4",
+        "value": "pre-push",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.ios-agent-orchestrator.triggers[3]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "IOS_AGENT_ORCHESTRATOR_REGISTRY_TRIGGER_5",
+        "value": "pre-PR",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.ios-agent-orchestrator.triggers[4]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "IOS_AGENT_ORCHESTRATOR_REGISTRY_TRIGGER_6",
+        "value": "post-change",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.ios-agent-orchestrator.triggers[5]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      }
+    ],
+    "failClosedBehavior": [
+      "BLOCKER",
+      "CRITICAL",
+      "UNKNOWN",
+      "MANDATORY_AGENT_NOT_AVAILABLE",
+      "DAG_CYCLE",
+      "MODEL_FLOOR_UNAVAILABLE",
+      "SELF_REVIEW"
+    ],
+    "modelPolicy": {
+      "primaryModel": "gpt-5.6-terra",
+      "primaryReasoning": "medium",
+      "preflightModel": "gpt-5.6-terra",
+      "preflightReasoning": "medium",
+      "escalationModel": "gpt-5.6-sol",
+      "escalationReasoning": "high",
+      "verdictFloor": "gpt-5.6-terra",
+      "silentDowngradeAllowed": false
+    },
+    "permissions": [
+      "read repository and governance evidence",
+      "calculate delegation plans",
+      "diagnose project-local installability and missing profiles",
+      "recommend actions without executing installation"
+    ],
+    "forbiddenActions": [
+      "install or remove agents",
+      "modify global Codex profiles or user environment",
+      "modify .codex/agents without a separate governance task",
+      "update upstream automatically",
+      "download unlocked profiles",
+      "execute install scripts",
+      "install packages",
+      "mutate Registry or Model Registry autonomously",
+      "activate agents or waves",
+      "issue subject-matter verdicts",
+      "self-review",
+      "replace mandatory review with simulation",
+      "merge, deploy, approve production or perform writes"
+    ],
+    "selfReviewRestrictions": [
+      "self-review"
+    ],
+    "productionRestrictions": [
+      "merge, deploy, approve production or perform writes"
+    ],
+    "activationRestrictions": {
+      "activationEligible": false,
+      "platformActivationEligible": false,
+      "explicitRules": [
+        "modify .codex/agents without a separate governance task",
+        "activate agents or waves"
+      ]
+    },
+    "dataConfidenceRequirements": "NOT_EXPLICITLY_DECLARED_IN_FIRST_WAVE_OVERLAY",
+    "domainSpecificTraceability": [
+      "invoke deterministic Resolver"
+    ]
+  },
+  "capabilityEnvelope": {
+    "declaredContract": {
+      "schemaVersion": "1.0.0",
+      "agentId": "ios-agent-orchestrator",
+      "filesystemRead": true,
+      "filesystemWrite": false,
+      "networkAccess": false,
+      "mcpAccess": false,
+      "shellAccess": false,
+      "gitWrite": false,
+      "remoteWrite": false,
+      "productionWrite": false,
+      "sheetsWrite": false,
+      "appsScriptWrite": false,
+      "brokerApiWrite": false,
+      "deploy": false,
+      "merge": false,
+      "push": false,
+      "secretsAccess": "NONE",
+      "allowedTools": [
+        "repository.read",
+        "repository.search"
+      ],
+      "deniedTools": [
+        "network",
+        "mcp",
+        "shell",
+        "filesystem.write",
+        "git.write",
+        "remote.write",
+        "production.write",
+        "sheets.write",
+        "apps-script.write",
+        "broker-api.write",
+        "deploy",
+        "merge",
+        "push",
+        "secrets.modify",
+        "agent.install",
+        "agent.remove",
+        "package.install",
+        "subject-matter.write"
+      ],
+      "enforcementLayer": [
+        "NON_DISCOVERY_STAGING_BOUNDARY",
+        "PROFILE_SANDBOX_READ_ONLY",
+        "IOS_APPEND_ONLY_OVERLAY",
+        "ORCHESTRATOR_ACTIVATION_GATE"
+      ],
+      "contractStatus": "LOCALLY_VALIDATED",
+      "evidenceStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED"
+    },
+    "installationAuthority": false,
+    "locallyValidatedBehavior": "LOCALLY_VALIDATED",
+    "runtimeEnforcementStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED",
+    "enforcementStatus": [
+      "CONTRACT_DECLARED",
+      "LOCALLY_VALIDATED",
+      "RUNTIME_ENFORCEMENT_UNVERIFIED"
+    ],
+    "runtimeEnforced": false,
+    "remainingUnverifiedControls": [
+      "filesystem sandbox enforcement",
+      "network denial enforcement",
+      "MCP denial enforcement",
+      "tool deny-list enforcement",
+      "secret access enforcement"
+    ]
+  },
+  "generatedProfileExplainedView": {
+    "metadataSource": "tools/agents/compose-agents.mjs and composition manifest",
+    "upstreamBlocks": [
+      "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/09-meta-orchestration/agent-organizer.toml",
+      "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/09-meta-orchestration/agent-installer.toml",
+      "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/conductor/agents/conductor-validator.md",
+      "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/agent-teams/agents/team-lead.md"
+    ],
+    "compositionContractSource": "architecture/agents/compositions/ios-agent-orchestrator.yaml",
+    "overlaySource": "architecture/agents/overlays/ios-agent-orchestrator.yaml",
+    "capabilitySource": "architecture/agents/contracts/capabilities/ios-agent-orchestrator.json",
+    "modelContractSource": "architecture/agents/overlays/ios-agent-orchestrator.yaml#modelContract",
+    "evidenceOutputContractSource": "architecture/agents/overlays/ios-agent-orchestrator.yaml#requiredOutputs and #evidenceContract",
+    "instructionPayloadExactExpected": true,
+    "unprovenancedInstructions": []
+  },
+  "semanticDiff": {
+    "originalToSnapshot": "ZERO_BYTE_DIFF",
+    "snapshotToComposition": "NO_CONTENT_MUTATION",
+    "compositionToGenerated": "ONLY_APPEND_ONLY_IOS_OVERLAY_AND_CONTRACT_METADATA"
+  },
+  "activationEligible": false,
+  "runtimeDiscovered": false
+}

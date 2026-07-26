@@ -1,0 +1,23 @@
+{
+  "agentId": "ios-codebase-auditor",
+  "status": "PROVISIONAL_VALIDATION_PASS_WITH_WARNINGS",
+  "profileHash": "31777f8aa5a04c74438c3cafa5d77c3ecffe431b216d5839a9ed5fdecd5943ac",
+  "compositionHash": "034cf8cbbeefec6c6944199a6dc5dff38452a9660e2707c9caf0a1948127c95b",
+  "upstreamCompositionHash": "626944224e588160c794b403f13d5108c5a9fae1d7ddc4020db148597b2029d5",
+  "overlayHash": "d91b146dbbed3b0072d548764d7b1da298435c079cb2c0cab3c2d2b84fce7443",
+  "requestedModel": "gpt-5.6-sol",
+  "requestedReasoning": "high",
+  "resolvedModel": null,
+  "executionModes": ["STATIC_VALIDATION", "FIXTURE_HARNESS", "NOT_AVAILABLE"],
+  "fixtures": {"total": 7, "pass": 7, "fail": 0, "skip": 0},
+  "runtimeStatus": "RUNTIME_VALIDATION_NOT_AVAILABLE",
+  "runtimeLatencyMs": null,
+  "executionThreadId": null,
+  "findings": ["NO_TRUSTED_ISOLATED_PROFILE_INVOKER"],
+  "evidence": ["active/dead/legacy paths", "module ownership", "dependency graph", "symbol-level evidence", "IOS boundary traces"],
+  "forbiddenActionAttempts": ["FILE_MODIFICATION", "GIT_WRITE", "DEPENDENCY_CHANGE", "REFACTORING"],
+  "filesModified": 0,
+  "runtimeDiscovered": false,
+  "activationEligible": false,
+  "residualRisk": ["RUNTIME_ENFORCEMENT_UNVERIFIED", "TRUSTED_EXTERNAL_ATTESTATION_MISSING"]
+}

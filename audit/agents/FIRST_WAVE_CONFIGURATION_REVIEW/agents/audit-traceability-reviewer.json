@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "1.0.0",
+  "gate": "FIRST_WAVE_CONFIGURATION_REVIEW",
+  "validatedHeadSha": "bf0238540fae1a73a7d254937b19a9809d8a4dd2",
+  "agentId": "audit-traceability-reviewer",
+  "status": "PROVISIONAL",
+  "readiness": "READY_FOR_OWNER_ACTIVATION_REVIEW",
+  "generatedProfilePath": "architecture/agents/generated/provisional/audit-traceability-reviewer.toml",
+  "generatedProfileSha256": "7d2379bd5154499ea31a8c43e1a29529e236db1c00fae9392d0e18d66058a6e4",
+  "compositionManifestPath": "architecture/agents/compositions/audit-traceability-reviewer.yaml",
+  "compositionManifestSha256": "91ace4a59cbf9df2fb963abdc117f354c770f940f27385ab2604cd0139aef5db",
+  "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml",
+  "overlaySha256": "527b27aa75a7dce2f2e8ed93df3b6257c80f6a9553b6bee46ea82c7c8a1765a2",
+  "capabilityEnvelopePath": "architecture/agents/contracts/capabilities/audit-traceability-reviewer.json",
+  "capabilityEnvelopeSha256": "cff941d600d9e919c801e427f5b7a44d10b6b762d9a60a8a08ab69d9cdcca247",
+  "registryEntry": {
+    "agentId": "audit-traceability-reviewer",
+    "displayName": "Audit Traceability Reviewer",
+    "status": "PROVISIONAL",
+    "purpose": "Requirement-to-production traceability and evidence/status consistency review.",
+    "priority": "P0",
+    "upstreamComposition": [
+      {
+        "repository": "VoltAgent/awesome-codex-subagents",
+        "commit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+        "sourcePath": "categories/04-quality-security/compliance-auditor.toml",
+        "profileId": "compliance-auditor",
+        "rawHash": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+        "normalizedHash": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+        "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/04-quality-security/compliance-auditor.toml",
+        "inclusionMode": "FULL_UNMODIFIED"
+      },
+      {
+        "repository": "VoltAgent/awesome-codex-subagents",
+        "commit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+        "sourcePath": "categories/06-developer-experience/documentation-engineer.toml",
+        "profileId": "documentation-engineer",
+        "rawHash": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+        "normalizedHash": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+        "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/06-developer-experience/documentation-engineer.toml",
+        "inclusionMode": "FULL_UNMODIFIED"
+      },
+      {
+        "repository": "wshobson/agents",
+        "commit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+        "sourcePath": "plugins/code-documentation/agents/docs-architect.md",
+        "profileId": "code-documentation-docs-architect",
+        "rawHash": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+        "normalizedHash": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+        "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/code-documentation/agents/docs-architect.md",
+        "inclusionMode": "FULL_UNMODIFIED"
+      },
+      {
+        "repository": "wshobson/agents",
+        "commit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+        "sourcePath": "plugins/business-analytics/agents/business-analyst.md",
+        "profileId": "business-analyst",
+        "rawHash": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+        "normalizedHash": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+        "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/business-analytics/agents/business-analyst.md",
+        "inclusionMode": "FULL_UNMODIFIED"
+      }
+    ],
+    "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml",
+    "compositionPath": "architecture/agents/compositions/audit-traceability-reviewer.yaml",
+    "generatedProfilePath": "architecture/agents/generated/provisional/audit-traceability-reviewer.toml",
+    "capabilityEnvelopePath": "architecture/agents/contracts/capabilities/audit-traceability-reviewer.json",
+    "capabilityEnvelope": {
+      "schemaVersion": "1.0.0",
+      "agentId": "audit-traceability-reviewer",
+      "filesystemRead": true,
+      "filesystemWrite": false,
+      "networkAccess": false,
+      "mcpAccess": false,
+      "shellAccess": false,
+      "gitWrite": false,
+      "remoteWrite": false,
+      "productionWrite": false,
+      "sheetsWrite": false,
+      "appsScriptWrite": false,
+      "brokerApiWrite": false,
+      "deploy": false,
+      "merge": false,
+      "push": false,
+      "secretsAccess": "MASKED_EVIDENCE_ONLY",
+      "allowedTools": [
+        "repository.read",
+        "repository.search"
+      ],
+      "deniedTools": [
+        "network",
+        "mcp",
+        "shell",
+        "filesystem.write",
+        "git.write",
+        "remote.write",
+        "production.write",
+        "sheets.write",
+        "apps-script.write",
+        "broker-api.write",
+        "deploy",
+        "merge",
+        "push",
+        "secrets.modify",
+        "agent.install",
+        "agent.remove",
+        "package.install"
+      ],
+      "enforcementLayer": [
+        "NON_DISCOVERY_STAGING_BOUNDARY",
+        "PROFILE_SANDBOX_READ_ONLY",
+        "IOS_APPEND_ONLY_OVERLAY"
+      ],
+      "contractStatus": "LOCALLY_VALIDATED",
+      "evidenceStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED"
+    },
+    "triggers": [
+      "trace business requirement to owner decision to RFC/ADR to specification to implementation to tests to evidence to production status",
+      "detect orphan requirements",
+      "detect undocumented runtime and documented-only features",
+      "detect stale evidence and superseded decisions",
+      "detect missing owner, next gate and status mismatch",
+      "separate documentation accuracy from documentation architecture"
+    ],
+    "permissions": [
+      "read specifications, decisions, source, tests and evidence",
+      "produce traceability findings"
+    ],
+    "forbiddenActions": [
+      "create business requirements for the owner",
+      "interpret ambiguity as owner decision",
+      "change RFC or ADR status",
+      "treat documentation as runtime evidence",
+      "treat runtime as normative acceptance",
+      "merge, deploy, approve production or perform writes"
+    ],
+    "requiredInputs": [
+      "requirements",
+      "owner decisions",
+      "RFC and ADR",
+      "specifications",
+      "implementation paths",
+      "tests",
+      "evidence",
+      "production status"
+    ],
+    "requiredOutputs": [
+      "traceability chain",
+      "orphan and documented-only findings",
+      "stale/superseded findings",
+      "missing owner and next-gate findings"
+    ],
+    "executionModes": [
+      "REAL_SUBAGENT",
+      "CI_VALIDATOR"
+    ],
+    "modelContract": {
+      "primaryModel": "gpt-5.6-terra",
+      "primaryReasoning": "medium",
+      "preflightModel": "gpt-5.6-terra",
+      "preflightReasoning": "medium",
+      "escalationModel": "gpt-5.6-sol",
+      "escalationReasoning": "high",
+      "verdictFloor": "gpt-5.6-terra",
+      "silentDowngradeAllowed": false
+    },
+    "independenceContract": {
+      "selfReviewAllowed": false,
+      "trustedExternalAttestation": "MISSING",
+      "selfReportedEvidenceSufficient": false
+    },
+    "runtimeExecutionStatus": "RUNTIME_PROFILE_NOT_YET_OBSERVED",
+    "activationEligible": false,
+    "platformActivationEligible": false
+  },
+  "modelContract": {
+    "exactOverlayContract": {
+      "primaryModel": "gpt-5.6-terra",
+      "primaryReasoning": "medium",
+      "preflightModel": "gpt-5.6-terra",
+      "preflightReasoning": "medium",
+      "escalationModel": "gpt-5.6-sol",
+      "escalationReasoning": "high",
+      "verdictFloor": "gpt-5.6-terra",
+      "silentDowngradeAllowed": false
+    },
+    "exactRegistryContract": {
+      "agentId": "audit-traceability-reviewer",
+      "primaryModel": "gpt-5.6-terra",
+      "primaryReasoning": "medium",
+      "preflightModel": "gpt-5.6-terra",
+      "preflightReasoning": "medium",
+      "escalationModel": "gpt-5.6-sol",
+      "escalationReasoning": "high",
+      "finalVerdictMinimumModel": "gpt-5.6-terra",
+      "silentDowngradeAllowed": false,
+      "budgetClass": "BALANCED"
+    },
+    "requestedModel": "gpt-5.6-terra",
+    "reasoning": "medium",
+    "fallback": null,
+    "escalation": {
+      "model": "gpt-5.6-sol",
+      "reasoning": "high",
+      "exceptionalModel": null,
+      "exceptionalReasoning": null,
+      "reasonRequired": false
+    },
+    "verdictFloor": "gpt-5.6-terra",
+    "silentDowngradeAllowed": false,
+    "runtimeAvailability": "RUNTIME_AVAILABLE",
+    "runtimeEvidence": {
+      "modelId": "terra",
+      "displayName": "GPT-5.6 Terra",
+      "requestedSlug": "gpt-5.6-terra",
+      "requestedReasoningLevel": "medium",
+      "resolvedSlug": "gpt-5.6-terra",
+      "resolvedReasoningLevel": "medium",
+      "resolutionEvidence": "EXACT_OVERRIDE_ACCEPTED_AND_EXECUTED",
+      "runtimeAvailability": "RUNTIME_AVAILABLE",
+      "smokeResult": "SUCCESS",
+      "providerDispatchResponse": {
+        "task_name": "/root/runtime_smoke_terra"
+      },
+      "executionResponse": "MODEL_RUNTIME_SMOKE_OK terra nonce=TERRA-20260722-192245Z",
+      "observedEndToEndLatencyMs": 23884,
+      "agentUsableAtRuntime": true,
+      "platformActivationEligible": false,
+      "attestationStatus": "INSUFFICIENT_EVIDENCE",
+      "substitutionUsed": false
+    },
+    "unresolvedModelGaps": [
+      "TRUSTED_EXTERNAL_ATTESTATION_MISSING",
+      "PLATFORM_ACTIVATION_ELIGIBLE_FALSE"
+    ]
+  },
+  "upstreamBases": [
+    {
+      "order": 1,
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "pinnedCommit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/04-quality-security/compliance-auditor.toml",
+      "profileId": "compliance-auditor",
+      "filename": "compliance-auditor.toml",
+      "license": "MIT",
+      "rawSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+      "normalizedSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/04-quality-security/compliance-auditor.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "9ac2448fca322df92031b63c630e020768aeea9e",
+      "originalBlobSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+      "snapshotSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+      "generatedBlockSha256": "f4def31cb3fab54036b8d4b365e38637379e5f7191b3caa01ba9e50d92dba809",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/04-quality-security/compliance-auditor.toml"
+    },
+    {
+      "order": 2,
+      "repository": "VoltAgent/awesome-codex-subagents",
+      "pinnedCommit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+      "sourcePath": "categories/06-developer-experience/documentation-engineer.toml",
+      "profileId": "documentation-engineer",
+      "filename": "documentation-engineer.toml",
+      "license": "MIT",
+      "rawSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+      "normalizedSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+      "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/06-developer-experience/documentation-engineer.toml",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "b67ce4e0039f62305fb0ecef863b6df77efc1cea",
+      "originalBlobSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+      "snapshotSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+      "generatedBlockSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/06-developer-experience/documentation-engineer.toml"
+    },
+    {
+      "order": 3,
+      "repository": "wshobson/agents",
+      "pinnedCommit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/code-documentation/agents/docs-architect.md",
+      "profileId": "code-documentation-docs-architect",
+      "filename": "docs-architect.md",
+      "license": "MIT",
+      "rawSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+      "normalizedSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/code-documentation/agents/docs-architect.md",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "f00cb829cdc3f3121adc28f10622ade6ff4c3cf1",
+      "originalBlobSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+      "snapshotSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+      "generatedBlockSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/code-documentation/agents/docs-architect.md"
+    },
+    {
+      "order": 4,
+      "repository": "wshobson/agents",
+      "pinnedCommit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+      "sourcePath": "plugins/business-analytics/agents/business-analyst.md",
+      "profileId": "business-analyst",
+      "filename": "business-analyst.md",
+      "license": "MIT",
+      "rawSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+      "normalizedSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+      "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/business-analytics/agents/business-analyst.md",
+      "inclusionMode": "FULL_UNMODIFIED",
+      "originalBlobSha": "23f3398c904ed7f2c534482393bcb5e990fdee9a",
+      "originalBlobSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+      "snapshotSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+      "generatedBlockSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+      "byteIdenticalOriginalToSnapshot": true,
+      "byteIdenticalSnapshotToGeneratedBlock": true,
+      "sourcePointer": "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/business-analytics/agents/business-analyst.md"
+    }
+  ],
+  "upstreamIntegrityStatus": "UPSTREAM_UNCHANGED_BYTE_IDENTICAL",
+  "compositionOrder": [
+    "VoltAgent/awesome-codex-subagents:categories/04-quality-security/compliance-auditor.toml",
+    "VoltAgent/awesome-codex-subagents:categories/06-developer-experience/documentation-engineer.toml",
+    "wshobson/agents:plugins/code-documentation/agents/docs-architect.md",
+    "wshobson/agents:plugins/business-analytics/agents/business-analyst.md"
+  ],
+  "compositionConflicts": [
+    {
+      "conflictId": "AUDIT_TRACEABILITY_REVIEWER_CONFLICT_1",
+      "upstreamAInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/06-developer-experience/documentation-engineer.toml",
+        "exactRoleDeclaration": "Use when a task needs technical documentation that must stay faithful to current code, tooling, and operator workflows."
+      },
+      "upstreamBInstruction": {
+        "sourcePointer": "wshobson/agents@undefined:plugins/code-documentation/agents/docs-architect.md",
+        "exactRoleDeclaration": "Creates comprehensive technical documentation from existing codebases. Analyzes architecture, design patterns, and implementation details to produce long-form technical manuals and ebooks. Use PROACTIVELY for system documentation, architecture guides, or technical deep-dives."
+      },
+      "conflictType": "DOCUMENTATION_ROLES",
+      "resolutionRule": "preserve every base byte-for-byte",
+      "winningAuthority": "Owner-approved responsibility split",
+      "resultingBehavior": "Documentation accuracy/maintainability and corpus architecture/navigation remain distinct.",
+      "ownerDecisionReference": "OWNER_DECISION_FIRST_WAVE_20260722"
+    },
+    {
+      "conflictId": "AUDIT_TRACEABILITY_REVIEWER_CONFLICT_2",
+      "upstreamAInstruction": {
+        "sourcePointer": "wshobson/agents@undefined:plugins/business-analytics/agents/business-analyst.md",
+        "exactRoleDeclaration": "Master modern business analysis with AI-powered analytics, real-time dashboards, and data-driven insights. Build comprehensive KPI frameworks, predictive models, and strategic recommendations. Use PROACTIVELY for business intelligence or strategic analysis."
+      },
+      "upstreamBInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/04-quality-security/compliance-auditor.toml",
+        "exactRoleDeclaration": "Use when a task needs compliance-oriented review of controls, auditability, policy alignment, or evidence gaps in a regulated workflow."
+      },
+      "conflictType": "BUSINESS_ANALYSIS_AUTHORITY",
+      "resolutionRule": "documentation accuracy and documentation architecture remain distinct",
+      "winningAuthority": "IOS owner-decision boundary",
+      "resultingBehavior": "Business traceability is retained, but the agent cannot create owner requirements or decisions.",
+      "ownerDecisionReference": "OWNER_DECISION_FIRST_WAVE_20260722"
+    },
+    {
+      "conflictId": "AUDIT_TRACEABILITY_REVIEWER_CONFLICT_3",
+      "upstreamAInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/06-developer-experience/documentation-engineer.toml",
+        "exactRoleDeclaration": "Use when a task needs technical documentation that must stay faithful to current code, tooling, and operator workflows."
+      },
+      "upstreamBInstruction": {
+        "sourcePointer": "wshobson/agents@undefined:plugins/business-analytics/agents/business-analyst.md",
+        "exactRoleDeclaration": "Master modern business analysis with AI-powered analytics, real-time dashboards, and data-driven insights. Build comprehensive KPI frameworks, predictive models, and strategic recommendations. Use PROACTIVELY for business intelligence or strategic analysis."
+      },
+      "conflictType": "DOCUMENTATION_VS_RUNTIME_EVIDENCE",
+      "resolutionRule": "business analysis cannot create owner requirements",
+      "winningAuthority": "IOS evidence contract",
+      "resultingBehavior": "Documentation is not runtime evidence and runtime behavior is not normative acceptance.",
+      "ownerDecisionReference": "OWNER_DECISION_FIRST_WAVE_20260722"
+    },
+    {
+      "conflictId": "AUDIT_TRACEABILITY_REVIEWER_CONFLICT_4",
+      "upstreamAInstruction": {
+        "sourcePointer": "VoltAgent/awesome-codex-subagents@undefined:categories/04-quality-security/compliance-auditor.toml",
+        "exactRoleDeclaration": "Use when a task needs compliance-oriented review of controls, auditability, policy alignment, or evidence gaps in a regulated workflow."
+      },
+      "upstreamBInstruction": {
+        "sourcePointer": "wshobson/agents@undefined:plugins/code-documentation/agents/docs-architect.md",
+        "exactRoleDeclaration": "Creates comprehensive technical documentation from existing codebases. Analyzes architecture, design patterns, and implementation details to produce long-form technical manuals and ebooks. Use PROACTIVELY for system documentation, architecture guides, or technical deep-dives."
+      },
+      "conflictType": "STATUS_CONFLICT",
+      "resolutionRule": "least-advanced evidenced status wins",
+      "winningAuthority": "IOS fail-closed traceability contract",
+      "resultingBehavior": "The least-advanced evidenced status wins and missing owner evidence blocks.",
+      "ownerDecisionReference": "OWNER_DECISION_FIRST_WAVE_20260722"
+    }
+  ],
+  "overlayFull": {
+    "schemaVersion": "1.0.0",
+    "agentId": "audit-traceability-reviewer",
+    "mode": "APPEND_ONLY",
+    "status": "PROVISIONAL",
+    "activationEligible": false,
+    "platformActivationEligible": false,
+    "responsibilities": [
+      "trace business requirement to owner decision to RFC/ADR to specification to implementation to tests to evidence to production status",
+      "detect orphan requirements",
+      "detect undocumented runtime and documented-only features",
+      "detect stale evidence and superseded decisions",
+      "detect missing owner, next gate and status mismatch",
+      "separate documentation accuracy from documentation architecture"
+    ],
+    "permissionEnvelope": [
+      "read specifications, decisions, source, tests and evidence",
+      "produce traceability findings"
+    ],
+    "forbiddenActions": [
+      "create business requirements for the owner",
+      "interpret ambiguity as owner decision",
+      "change RFC or ADR status",
+      "treat documentation as runtime evidence",
+      "treat runtime as normative acceptance",
+      "merge, deploy, approve production or perform writes"
+    ],
+    "requiredInputs": [
+      "requirements",
+      "owner decisions",
+      "RFC and ADR",
+      "specifications",
+      "implementation paths",
+      "tests",
+      "evidence",
+      "production status"
+    ],
+    "requiredOutputs": [
+      "traceability chain",
+      "orphan and documented-only findings",
+      "stale/superseded findings",
+      "missing owner and next-gate findings"
+    ],
+    "modelContract": {
+      "primaryModel": "gpt-5.6-terra",
+      "primaryReasoning": "medium",
+      "preflightModel": "gpt-5.6-terra",
+      "preflightReasoning": "medium",
+      "escalationModel": "gpt-5.6-sol",
+      "escalationReasoning": "high",
+      "verdictFloor": "gpt-5.6-terra",
+      "silentDowngradeAllowed": false
+    },
+    "evidenceContract": {
+      "trustedExternalAttestation": "MISSING",
+      "selfReportedEvidenceSufficient": false,
+      "missingOwnerResult": "INSUFFICIENT_EVIDENCE_OR_BLOCKED"
+    },
+    "failClosedOn": [
+      "BLOCKER",
+      "CRITICAL",
+      "UNKNOWN",
+      "MISSING_OWNER",
+      "MISSING_EVIDENCE",
+      "STATUS_MISMATCH"
+    ]
+  },
+  "overlayRuleCatalog": [
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_001",
+      "additionType": "activation_restrictions",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#activationEligible",
+      "value": false,
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": true,
+      "resolution": "Keep profile staged and undiscoverable; no upstream text is removed.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_002",
+      "additionType": "activation_restrictions",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#platformActivationEligible",
+      "value": false,
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": true,
+      "resolution": "Keep Phase 3C activation gate closed.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_003",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#responsibilities[0]",
+      "value": "trace business requirement to owner decision to RFC/ADR to specification to implementation to tests to evidence to production status",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_004",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#responsibilities[1]",
+      "value": "detect orphan requirements",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_005",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#responsibilities[2]",
+      "value": "detect undocumented runtime and documented-only features",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_006",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#responsibilities[3]",
+      "value": "detect stale evidence and superseded decisions",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_007",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#responsibilities[4]",
+      "value": "detect missing owner, next gate and status mismatch",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_008",
+      "additionType": "additional_responsibilities",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#responsibilities[5]",
+      "value": "separate documentation accuracy from documentation architecture",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_009",
+      "additionType": "permissions",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#permissionEnvelope[0]",
+      "value": "read specifications, decisions, source, tests and evidence",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": true,
+      "resolution": "Apply the narrower IOS permission envelope while preserving the upstream instruction as evidence.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_010",
+      "additionType": "permissions",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#permissionEnvelope[1]",
+      "value": "produce traceability findings",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": true,
+      "resolution": "Apply the narrower IOS permission envelope while preserving the upstream instruction as evidence.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_011",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#forbiddenActions[0]",
+      "value": "create business requirements for the owner",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_012",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#forbiddenActions[1]",
+      "value": "interpret ambiguity as owner decision",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_013",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#forbiddenActions[2]",
+      "value": "change RFC or ADR status",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_014",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#forbiddenActions[3]",
+      "value": "treat documentation as runtime evidence",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_015",
+      "additionType": "forbidden_actions",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#forbiddenActions[4]",
+      "value": "treat runtime as normative acceptance",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_016",
+      "additionType": "production_restrictions",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#forbiddenActions[5]",
+      "value": "merge, deploy, approve production or perform writes",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": true,
+      "resolution": "The strictest IOS prohibition controls executable capability; upstream bytes remain present.",
+      "canNarrowPermission": true,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_017",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#requiredInputs[0]",
+      "value": "requirements",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_018",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#requiredInputs[1]",
+      "value": "owner decisions",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_019",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#requiredInputs[2]",
+      "value": "RFC and ADR",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_020",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#requiredInputs[3]",
+      "value": "specifications",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_021",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#requiredInputs[4]",
+      "value": "implementation paths",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_022",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#requiredInputs[5]",
+      "value": "tests",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_023",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#requiredInputs[6]",
+      "value": "evidence",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_024",
+      "additionType": "required_inputs",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#requiredInputs[7]",
+      "value": "production status",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_025",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#requiredOutputs[0]",
+      "value": "traceability chain",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_026",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#requiredOutputs[1]",
+      "value": "orphan and documented-only findings",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_027",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#requiredOutputs[2]",
+      "value": "stale/superseded findings",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_028",
+      "additionType": "required_outputs",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#requiredOutputs[3]",
+      "value": "missing owner and next-gate findings",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_029",
+      "additionType": "model_policy",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#modelContract",
+      "value": {
+        "primaryModel": "gpt-5.6-terra",
+        "primaryReasoning": "medium",
+        "preflightModel": "gpt-5.6-terra",
+        "preflightReasoning": "medium",
+        "escalationModel": "gpt-5.6-sol",
+        "escalationReasoning": "high",
+        "verdictFloor": "gpt-5.6-terra",
+        "silentDowngradeAllowed": false
+      },
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": true,
+      "resolution": "Use the exact IOS model contract; silent downgrade remains forbidden.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_030",
+      "additionType": "evidence_contract",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#evidenceContract",
+      "value": {
+        "trustedExternalAttestation": "MISSING",
+        "selfReportedEvidenceSufficient": false,
+        "missingOwnerResult": "INSUFFICIENT_EVIDENCE_OR_BLOCKED"
+      },
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": true,
+      "resolution": "Self-reported output remains insufficient for trusted attestation.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_031",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#failClosedOn[0]",
+      "value": "BLOCKER",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_032",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#failClosedOn[1]",
+      "value": "CRITICAL",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_033",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#failClosedOn[2]",
+      "value": "UNKNOWN",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_034",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#failClosedOn[3]",
+      "value": "MISSING_OWNER",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_035",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#failClosedOn[4]",
+      "value": "MISSING_EVIDENCE",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    },
+    {
+      "overlayRuleId": "AUDIT_TRACEABILITY_REVIEWER_036",
+      "additionType": "fail_closed_behavior",
+      "overlayPath": "architecture/agents/overlays/audit-traceability-reviewer.yaml#failClosedOn[5]",
+      "value": "STATUS_MISMATCH",
+      "sourceRequirement": "IOS Agent Platform Specification v2.1; audit/agents/OWNER-DECISION-FIRST-WAVE-2026-07-22.md (OWNER_DECISION_FIRST_WAVE_20260722)",
+      "targetAgent": "audit-traceability-reviewer",
+      "upstreamConflict": false,
+      "resolution": "Append without editing any upstream instruction.",
+      "canNarrowPermission": false,
+      "canRemoveUpstreamInstruction": false
+    }
+  ],
+  "categorizedAdditions": {
+    "iosContext": "Implicit IOS Agent Platform context; no separate iosContext key exists in the overlay.",
+    "additionalResponsibilities": [
+      "trace business requirement to owner decision to RFC/ADR to specification to implementation to tests to evidence to production status",
+      "detect orphan requirements",
+      "detect undocumented runtime and documented-only features",
+      "detect stale evidence and superseded decisions",
+      "detect missing owner, next gate and status mismatch",
+      "separate documentation accuracy from documentation architecture"
+    ],
+    "requiredInputs": [
+      "requirements",
+      "owner decisions",
+      "RFC and ADR",
+      "specifications",
+      "implementation paths",
+      "tests",
+      "evidence",
+      "production status"
+    ],
+    "requiredOutputs": [
+      "traceability chain",
+      "orphan and documented-only findings",
+      "stale/superseded findings",
+      "missing owner and next-gate findings"
+    ],
+    "evidenceContract": {
+      "trustedExternalAttestation": "MISSING",
+      "selfReportedEvidenceSufficient": false,
+      "missingOwnerResult": "INSUFFICIENT_EVIDENCE_OR_BLOCKED"
+    },
+    "triggers": [
+      {
+        "ruleId": "AUDIT_TRACEABILITY_REVIEWER_REGISTRY_TRIGGER_1",
+        "value": "trace business requirement to owner decision to RFC/ADR to specification to implementation to tests to evidence to production status",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.audit-traceability-reviewer.triggers[0]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "AUDIT_TRACEABILITY_REVIEWER_REGISTRY_TRIGGER_2",
+        "value": "detect orphan requirements",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.audit-traceability-reviewer.triggers[1]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "AUDIT_TRACEABILITY_REVIEWER_REGISTRY_TRIGGER_3",
+        "value": "detect undocumented runtime and documented-only features",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.audit-traceability-reviewer.triggers[2]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "AUDIT_TRACEABILITY_REVIEWER_REGISTRY_TRIGGER_4",
+        "value": "detect stale evidence and superseded decisions",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.audit-traceability-reviewer.triggers[3]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "AUDIT_TRACEABILITY_REVIEWER_REGISTRY_TRIGGER_5",
+        "value": "detect missing owner, next gate and status mismatch",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.audit-traceability-reviewer.triggers[4]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      },
+      {
+        "ruleId": "AUDIT_TRACEABILITY_REVIEWER_REGISTRY_TRIGGER_6",
+        "value": "separate documentation accuracy from documentation architecture",
+        "sourcePointer": "architecture/agents/registry/agents.yaml#agents.audit-traceability-reviewer.triggers[5]",
+        "sourceRequirement": "IOS Agent Platform Specification v2.1; OWNER_DECISION_FIRST_WAVE_20260722",
+        "note": "Registry trigger; not silently attributed to the overlay file."
+      }
+    ],
+    "failClosedBehavior": [
+      "BLOCKER",
+      "CRITICAL",
+      "UNKNOWN",
+      "MISSING_OWNER",
+      "MISSING_EVIDENCE",
+      "STATUS_MISMATCH"
+    ],
+    "modelPolicy": {
+      "primaryModel": "gpt-5.6-terra",
+      "primaryReasoning": "medium",
+      "preflightModel": "gpt-5.6-terra",
+      "preflightReasoning": "medium",
+      "escalationModel": "gpt-5.6-sol",
+      "escalationReasoning": "high",
+      "verdictFloor": "gpt-5.6-terra",
+      "silentDowngradeAllowed": false
+    },
+    "permissions": [
+      "read specifications, decisions, source, tests and evidence",
+      "produce traceability findings"
+    ],
+    "forbiddenActions": [
+      "create business requirements for the owner",
+      "interpret ambiguity as owner decision",
+      "change RFC or ADR status",
+      "treat documentation as runtime evidence",
+      "treat runtime as normative acceptance",
+      "merge, deploy, approve production or perform writes"
+    ],
+    "selfReviewRestrictions": [],
+    "productionRestrictions": [
+      "merge, deploy, approve production or perform writes"
+    ],
+    "activationRestrictions": {
+      "activationEligible": false,
+      "platformActivationEligible": false,
+      "explicitRules": []
+    },
+    "dataConfidenceRequirements": "NOT_EXPLICITLY_DECLARED_IN_FIRST_WAVE_OVERLAY",
+    "domainSpecificTraceability": [
+      "trace business requirement to owner decision to RFC/ADR to specification to implementation to tests to evidence to production status",
+      "detect stale evidence and superseded decisions"
+    ]
+  },
+  "capabilityEnvelope": {
+    "declaredContract": {
+      "schemaVersion": "1.0.0",
+      "agentId": "audit-traceability-reviewer",
+      "filesystemRead": true,
+      "filesystemWrite": false,
+      "networkAccess": false,
+      "mcpAccess": false,
+      "shellAccess": false,
+      "gitWrite": false,
+      "remoteWrite": false,
+      "productionWrite": false,
+      "sheetsWrite": false,
+      "appsScriptWrite": false,
+      "brokerApiWrite": false,
+      "deploy": false,
+      "merge": false,
+      "push": false,
+      "secretsAccess": "MASKED_EVIDENCE_ONLY",
+      "allowedTools": [
+        "repository.read",
+        "repository.search"
+      ],
+      "deniedTools": [
+        "network",
+        "mcp",
+        "shell",
+        "filesystem.write",
+        "git.write",
+        "remote.write",
+        "production.write",
+        "sheets.write",
+        "apps-script.write",
+        "broker-api.write",
+        "deploy",
+        "merge",
+        "push",
+        "secrets.modify",
+        "agent.install",
+        "agent.remove",
+        "package.install"
+      ],
+      "enforcementLayer": [
+        "NON_DISCOVERY_STAGING_BOUNDARY",
+        "PROFILE_SANDBOX_READ_ONLY",
+        "IOS_APPEND_ONLY_OVERLAY"
+      ],
+      "contractStatus": "LOCALLY_VALIDATED",
+      "evidenceStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED"
+    },
+    "installationAuthority": false,
+    "locallyValidatedBehavior": "LOCALLY_VALIDATED",
+    "runtimeEnforcementStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED",
+    "enforcementStatus": [
+      "CONTRACT_DECLARED",
+      "LOCALLY_VALIDATED",
+      "RUNTIME_ENFORCEMENT_UNVERIFIED"
+    ],
+    "runtimeEnforced": false,
+    "remainingUnverifiedControls": [
+      "filesystem sandbox enforcement",
+      "network denial enforcement",
+      "MCP denial enforcement",
+      "tool deny-list enforcement",
+      "secret access enforcement"
+    ]
+  },
+  "generatedProfileExplainedView": {
+    "metadataSource": "tools/agents/compose-agents.mjs and composition manifest",
+    "upstreamBlocks": [
+      "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/04-quality-security/compliance-auditor.toml",
+      "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/06-developer-experience/documentation-engineer.toml",
+      "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/code-documentation/agents/docs-architect.md",
+      "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/business-analytics/agents/business-analyst.md"
+    ],
+    "compositionContractSource": "architecture/agents/compositions/audit-traceability-reviewer.yaml",
+    "overlaySource": "architecture/agents/overlays/audit-traceability-reviewer.yaml",
+    "capabilitySource": "architecture/agents/contracts/capabilities/audit-traceability-reviewer.json",
+    "modelContractSource": "architecture/agents/overlays/audit-traceability-reviewer.yaml#modelContract",
+    "evidenceOutputContractSource": "architecture/agents/overlays/audit-traceability-reviewer.yaml#requiredOutputs and #evidenceContract",
+    "instructionPayloadExactExpected": true,
+    "unprovenancedInstructions": []
+  },
+  "semanticDiff": {
+    "originalToSnapshot": "ZERO_BYTE_DIFF",
+    "snapshotToComposition": "NO_CONTENT_MUTATION",
+    "compositionToGenerated": "ONLY_APPEND_ONLY_IOS_OVERLAY_AND_CONTRACT_METADATA"
+  },
+  "activationEligible": false,
+  "runtimeDiscovered": false
+}

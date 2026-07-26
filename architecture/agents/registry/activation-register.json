@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "1.0.0",
+  "platformState": "FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL",
+  "platformActivationEligible": false,
+  "activationGate": "CONFIGURED_RUNTIME_UNVERIFIED",
+  "provisionalStagingPath": "architecture/agents/generated/provisional",
+  "runtimeDiscoveryPath": ".codex/agents",
+  "activationCommand": "node tools/agents/activate-first-wave.mjs",
+  "activationOperationStatus": "PROJECT_LOCAL_AGENT_DISCOVERY_FAILED_IN_CURRENT_CLIENT_ENVIRONMENT",
+  "runtimeDiscoveredPlatformAgents": 5,
+  "activeAgents": 0,
+  "provisionalAgents": [
+    {
+      "agentId": "ios-agent-orchestrator",
+      "status": "CONFIGURED_NOT_RUNTIME_VERIFIED",
+      "activationEligible": false
+    },
+    {
+      "agentId": "agent-governance-auditor",
+      "status": "CONFIGURED_NOT_RUNTIME_VERIFIED",
+      "activationEligible": false
+    },
+    {
+      "agentId": "security-privacy-auditor",
+      "status": "CONFIGURED_NOT_RUNTIME_VERIFIED",
+      "activationEligible": false
+    },
+    {
+      "agentId": "audit-traceability-reviewer",
+      "status": "CONFIGURED_NOT_RUNTIME_VERIFIED",
+      "activationEligible": false
+    },
+    {
+      "agentId": "ios-codebase-auditor",
+      "status": "CONFIGURED_NOT_RUNTIME_VERIFIED",
+      "activationEligible": false
+    }
+  ],
+  "activationBlockers": [
+    "TRUSTED_EXTERNAL_ATTESTATION_MISSING",
+    "GITHUB_POSITIVE_NEGATIVE_CANARY_MISSING",
+    "REQUIRED_RULESET_EVIDENCE_MISSING",
+    "LINUX_SYMLINK_CI_EVIDENCE_MISSING",
+    "ADR_DRAFT_NOT_ACCEPTED"
+  ],
+  "requiredFutureGates": [
+    "ADR_ACCEPTED",
+    "OWNER_ACTIVATION_DECISION",
+    "TRUSTED_VERIFIER_VERIFIED",
+    "REQUIRED_REVIEWS_PASS",
+    "MODEL_ELIGIBILITY_PASS",
+    "LINUX_SYMLINK_EVIDENCE_PRESENT",
+    "GITHUB_CANARY_PASS",
+    "REQUIRED_RULESET_VERIFIED",
+    "TRUSTED_EXTERNAL_ATTESTATION_PRESENT"
+  ],
+  "ownerDecisionRequired": false,
+  "productionGovernanceEligible": false,
+  "runtimeReloadRequirement": "DIAGNOSIS_DEFERRED_TO_CLEAN_MACHINE",
+  "runtimeSmokeAttemptedInCurrentSession": false,
+  "runtimeDiscoveryVerified": false,
+  "runtimeActivationComplete": false,
+  "runtimeSmokeComplete": false,
+  "rootCause": "ROOT_CAUSE_NOT_YET_ESTABLISHED"
+}

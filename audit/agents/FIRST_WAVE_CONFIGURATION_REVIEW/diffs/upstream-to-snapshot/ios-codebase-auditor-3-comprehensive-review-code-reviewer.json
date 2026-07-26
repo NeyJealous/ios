@@ -1,0 +1,23 @@
+{
+  "agentId": "ios-codebase-auditor",
+  "order": 3,
+  "repository": "wshobson/agents",
+  "pinnedCommit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+  "sourcePath": "plugins/comprehensive-review/agents/code-reviewer.md",
+  "profileId": "comprehensive-review-code-reviewer",
+  "filename": "code-reviewer.md",
+  "license": "MIT",
+  "rawSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+  "normalizedSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+  "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/comprehensive-review/agents/code-reviewer.md",
+  "inclusionMode": "FULL_UNMODIFIED",
+  "originalBlobSha": "96198d04a6d10be9d8d5f77fdbd39db1f896dad3",
+  "originalBlobSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+  "snapshotSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+  "generatedBlockSha256": "1d4be63448f48c10956e4395e54c91fde6874dca26567944aaf657acc7f9e35e",
+  "byteIdenticalOriginalToSnapshot": true,
+  "byteIdenticalSnapshotToGeneratedBlock": true,
+  "sourcePointer": "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/comprehensive-review/agents/code-reviewer.md",
+  "diffResult": "ZERO_BYTE_DIFF",
+  "mutationDetected": false
+}

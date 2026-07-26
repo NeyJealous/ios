@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "1.1.0",
+  "policy": {
+    "statusSource": "ACTUAL_CODEX_RUNTIME_SMOKE_ONLY",
+    "silentDowngradeAllowed": false,
+    "unavailableResult": "MODEL_NOT_AVAILABLE",
+    "trustedAttestationRequiredForPlatformActivation": true
+  },
+  "probeWindow": {
+    "startedAt": "2026-07-22T19:22:45.0881997Z",
+    "completedAt": "2026-07-22T19:24:50.2278672Z",
+    "branch": "feature/agent-platform-v2-integration",
+    "repositoryHead": "a744cbd8d4139b9a65c4d755b467767127b03117"
+  },
+  "models": [
+    {
+      "modelId": "terra",
+      "displayName": "GPT-5.6 Terra",
+      "requestedSlug": "gpt-5.6-terra",
+      "requestedReasoningLevel": "medium",
+      "resolvedSlug": "gpt-5.6-terra",
+      "resolvedReasoningLevel": "medium",
+      "resolutionEvidence": "EXACT_OVERRIDE_ACCEPTED_AND_EXECUTED",
+      "runtimeAvailability": "RUNTIME_AVAILABLE",
+      "smokeResult": "SUCCESS",
+      "providerDispatchResponse": {"task_name": "/root/runtime_smoke_terra"},
+      "executionResponse": "MODEL_RUNTIME_SMOKE_OK terra nonce=TERRA-20260722-192245Z",
+      "observedEndToEndLatencyMs": 23884,
+      "agentUsableAtRuntime": true,
+      "platformActivationEligible": false,
+      "attestationStatus": "INSUFFICIENT_EVIDENCE",
+      "substitutionUsed": false
+    },
+    {
+      "modelId": "luna",
+      "displayName": "GPT-5.6 Luna",
+      "requestedSlug": "gpt-5.6-luna",
+      "requestedReasoningLevel": "medium",
+      "resolvedSlug": null,
+      "resolvedReasoningLevel": null,
+      "resolutionEvidence": "EXACT_OVERRIDE_REJECTED_BY_RUNTIME_PROVIDER",
+      "runtimeAvailability": "MODEL_NOT_AVAILABLE",
+      "smokeResult": "FAILURE",
+      "providerDispatchResponse": "Unknown model gpt-5.6-luna for spawn_agent",
+      "executionResponse": null,
+      "observedEndToEndLatencyMs": 17259,
+      "agentUsableAtRuntime": false,
+      "platformActivationEligible": false,
+      "attestationStatus": "INSUFFICIENT_EVIDENCE",
+      "substitutionUsed": false
+    },
+    {
+      "modelId": "sol",
+      "displayName": "GPT-5.6 Sol",
+      "requestedSlug": "gpt-5.6-sol",
+      "requestedReasoningLevel": "high",
+      "resolvedSlug": "gpt-5.6-sol",
+      "resolvedReasoningLevel": "high",
+      "resolutionEvidence": "EXACT_OVERRIDE_ACCEPTED_AND_EXECUTED",
+      "runtimeAvailability": "RUNTIME_AVAILABLE",
+      "smokeResult": "SUCCESS",
+      "providerDispatchResponse": {"task_name": "/root/runtime_smoke_sol"},
+      "executionResponse": "MODEL_RUNTIME_SMOKE_OK sol nonce=SOL-20260722-192345Z",
+      "observedEndToEndLatencyMs": 24721,
+      "agentUsableAtRuntime": true,
+      "platformActivationEligible": false,
+      "attestationStatus": "INSUFFICIENT_EVIDENCE",
+      "substitutionUsed": false
+    },
+    {
+      "modelId": "sol-ultra",
+      "displayName": "GPT-5.6 Sol Ultra",
+      "requestedSlug": "gpt-5.6-sol",
+      "requestedReasoningLevel": "ultra",
+      "resolvedSlug": "gpt-5.6-sol",
+      "resolvedReasoningLevel": "ultra",
+      "resolutionEvidence": "EXACT_OVERRIDE_ACCEPTED_AND_EXECUTED",
+      "runtimeAvailability": "RUNTIME_AVAILABLE",
+      "smokeResult": "SUCCESS",
+      "providerDispatchResponse": {"task_name": "/root/runtime_smoke_sol_ultra"},
+      "executionResponse": "MODEL_RUNTIME_SMOKE_OK sol-ultra nonce=SOL-ULTRA-20260722-192419Z",
+      "observedEndToEndLatencyMs": 30486,
+      "agentUsableAtRuntime": true,
+      "platformActivationEligible": false,
+      "attestationStatus": "INSUFFICIENT_EVIDENCE",
+      "substitutionUsed": false
+    }
+  ]
+}

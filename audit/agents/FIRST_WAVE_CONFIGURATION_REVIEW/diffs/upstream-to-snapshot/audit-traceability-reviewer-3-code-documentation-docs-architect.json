@@ -1,0 +1,23 @@
+{
+  "agentId": "audit-traceability-reviewer",
+  "order": 3,
+  "repository": "wshobson/agents",
+  "pinnedCommit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+  "sourcePath": "plugins/code-documentation/agents/docs-architect.md",
+  "profileId": "code-documentation-docs-architect",
+  "filename": "docs-architect.md",
+  "license": "MIT",
+  "rawSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+  "normalizedSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+  "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/code-documentation/agents/docs-architect.md",
+  "inclusionMode": "FULL_UNMODIFIED",
+  "originalBlobSha": "f00cb829cdc3f3121adc28f10622ade6ff4c3cf1",
+  "originalBlobSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+  "snapshotSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+  "generatedBlockSha256": "cafadb5c85b45eaff0ec9d16808774b5e0c81034f1e06d0fbacb3a6c12f60dad",
+  "byteIdenticalOriginalToSnapshot": true,
+  "byteIdenticalSnapshotToGeneratedBlock": true,
+  "sourcePointer": "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/code-documentation/agents/docs-architect.md",
+  "diffResult": "ZERO_BYTE_DIFF",
+  "mutationDetected": false
+}

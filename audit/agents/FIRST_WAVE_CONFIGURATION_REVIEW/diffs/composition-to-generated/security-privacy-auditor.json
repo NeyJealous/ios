@@ -1,0 +1,11 @@
+{
+  "agentId": "security-privacy-auditor",
+  "result": "ONLY_APPEND_ONLY_IOS_OVERLAY_AND_CONTRACT_METADATA",
+  "instructionPayloadExactExpected": true,
+  "embeddedOverlayDeepEqual": true,
+  "embeddedCapabilityDeepEqual": true,
+  "unprovenancedInstructions": [],
+  "deletionDetected": false,
+  "replacementDetected": false,
+  "semanticRewriteDetected": false
+}

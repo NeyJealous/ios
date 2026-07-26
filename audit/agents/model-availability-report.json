@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "1.0.0",
+  "testedAt": "2026-07-22T08:24:31.5074370Z",
+  "branch": "feature/agent-platform-v2-integration",
+  "repositoryHeadAtProbe": "bc3314ac6f95aa6acf15fc6a86736e4fb8a2e8da",
+  "overallStatus": "PARTIAL_INSUFFICIENT_EVIDENCE",
+  "silentDowngrade": false,
+  "productionWrites": 0,
+  "results": [
+    {
+      "requested": "gpt-5.6-terra",
+      "resolved": "gpt-5.6-terra",
+      "runtimeDispatch": "ACCEPTED",
+      "executionReference": "AgentThreadId=/root/terra_smoke",
+      "probeResponse": "MODEL_SMOKE_INSUFFICIENT_EVIDENCE",
+      "availability": "AVAILABLE_CANDIDATE",
+      "trustedAttestation": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "requested": "gpt-5.6-sol",
+      "resolved": "gpt-5.6-sol",
+      "runtimeDispatch": "ACCEPTED",
+      "executionReference": "AgentThreadId=/root/sol_smoke",
+      "probeResponse": "MODEL_SMOKE_OK",
+      "availability": "AVAILABLE_CANDIDATE",
+      "trustedAttestation": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "requested": "gpt-5.6-luna",
+      "resolved": null,
+      "runtimeDispatch": "NOT_ATTEMPTED_CATALOG_ABSENT",
+      "probeResponse": null,
+      "availability": "MODEL_NOT_AVAILABLE",
+      "trustedAttestation": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "requested": "gpt-5.6-sol-pro",
+      "resolved": null,
+      "runtimeDispatch": "NOT_ATTEMPTED_CATALOG_ABSENT",
+      "probeResponse": null,
+      "availability": "MODEL_NOT_AVAILABLE",
+      "trustedAttestation": "INSUFFICIENT_EVIDENCE"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "agentId": "ios-agent-orchestrator",
+  "order": 4,
+  "repository": "wshobson/agents",
+  "pinnedCommit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+  "sourcePath": "plugins/agent-teams/agents/team-lead.md",
+  "profileId": "team-lead",
+  "filename": "team-lead.md",
+  "license": "MIT",
+  "rawSha256": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+  "normalizedSha256": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+  "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/agent-teams/agents/team-lead.md",
+  "inclusionMode": "FULL_UNMODIFIED",
+  "originalBlobSha": "d0b0e0fc3b8f60c62d8c46af34d8703e6d5b8771",
+  "originalBlobSha256": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+  "snapshotSha256": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+  "generatedBlockSha256": "a87785bac5111c47e1160f64ef43ef58e6671fe7a96f9e0ac14c5f248c139a48",
+  "byteIdenticalOriginalToSnapshot": true,
+  "byteIdenticalSnapshotToGeneratedBlock": true,
+  "sourcePointer": "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/agent-teams/agents/team-lead.md",
+  "diffResult": "ZERO_BYTE_DIFF",
+  "mutationDetected": false
+}

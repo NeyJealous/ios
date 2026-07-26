@@ -1,0 +1,25 @@
+{
+  "stage": "FINAL_FEATURE_VALIDATION",
+  "staticFirstWaveValidation": "PASS",
+  "fixtureValidation": {
+    "total": 35,
+    "pass": 34,
+    "fail": 0,
+    "skip": 1
+  },
+  "upstreamIntegrity": "PASS",
+  "capabilityContracts": "PASS",
+  "activationBoundary": "PASS_CONFIGURED_RUNTIME_UNVERIFIED",
+  "nodeGovernanceSuite": {
+    "total": 121,
+    "pass": 119,
+    "fail": 0,
+    "skip": 2,
+    "freshCheckoutBootstrapZeroDiff": "PASS"
+  },
+  "privacyScan": "PASS",
+  "nonAgentSafetyValidator": "PASS",
+  "gitDiffCheck": "PASS",
+  "runtimeSmoke": "NOT_EXECUTED_BY_OWNER_DECISION",
+  "productionWrites": 0
+}

@@ -1,0 +1,42 @@
+{
+  "GateId": "MODEL_RUNTIME_SMOKE_20260722",
+  "AgentPlatformVersion": "2.0.0-transition",
+  "PlatformState": "ZERO_AGENT_TRANSITION",
+  "TaskType": "governance/model-policy",
+  "Branch": "feature/agent-platform-v2-integration",
+  "BaseSHA": "a744cbd8d4139b9a65c4d755b467767127b03117",
+  "HeadSHA": "62129358f48b7cc98a3c2b61feef17626cf11324",
+  "ChangedPaths": [
+    "adr/ADR-AGENT-PLATFORM-V2.md",
+    "architecture/agents/registry/model-availability.yaml",
+    "audit/agents/MODEL_RUNTIME_SMOKE_20260722/acceptance-report.md",
+    "audit/agents/MODEL_RUNTIME_SMOKE_20260722/model-availability-report.json",
+    "audit/agents/MODEL_RUNTIME_SMOKE_20260722/model-availability-report.md",
+    "audit/agents/OWNER-DECISION-MODEL-RUNTIME-SMOKE-2026-07-22.md",
+    "rfc/RFC-AGENT-PLATFORM-V2.md",
+    "tests/agent-governance/model-availability.test.mjs",
+    "tools/agents/render-model-availability-report.mjs"
+  ],
+  "ApplicableAgents": [],
+  "RequiredAgents": [],
+  "ExecutedAgents": [],
+  "MissingAgents": [],
+  "BlockedByUnavailableAgents": ["MANDATORY_AGENT_NOT_AVAILABLE"],
+  "BlockingFindings": [
+    "No external signed provider/model/owner attestation or durable replay store",
+    "No GitHub positive/negative canary or protected required-ruleset evidence",
+    "Resolver mandatory agent availability remains NOT_AVAILABLE in zero-agent transition",
+    "ADR remains DRAFT_NOT_ACCEPTED"
+  ],
+  "Warnings": [
+    "One filesystem-symlink privacy fixture is skipped on Windows",
+    "Luna exact runtime request returned MODEL_NOT_AVAILABLE",
+    "Runtime observations are not trusted attestation",
+    "Supplementary independent Codex review tasks are recorded but are not counted as active platform-agent executions",
+    "Review reports are bound to the implementation SHA before this permitted audit/docs evidence tail"
+  ],
+  "ArchitectureImpact": "Governance and development-platform model evidence only; no agent generation or activation and no IOS runtime source-of-truth change.",
+  "SecurityImpact": "Records actual runtime observations with no downgrade and fail-closed activation; external signed identity and protected enforcement remain absent.",
+  "ProductionImpact": "NONE: production writes=0; clasp push=0; deployments=0; Google Sheets writes=0; broker/API writes=0.",
+  "OverallStatus": "BLOCKED"
+}

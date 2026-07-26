@@ -1,0 +1,19 @@
+{
+  "AgentId": "TEST_GENERATOR",
+  "AgentVersion": "1.0.0",
+  "GateId": "POST_CHANGE_AGENT_PLATFORM_V2_PHASE_3A",
+  "Branch": "feature/agent-platform-v2-integration",
+  "CommitSHA": "54fe944138d304e47d693dd508a507a92e7dc2ac",
+  "ReviewScope": "Final deterministic regression and failure-path coverage",
+  "FilesReviewed": ["tests/agent-governance/", "tests/connection-recovery/", "tools/trusted-governance/", "tools/agents/", "tools/publication-privacy-check.mjs"],
+  "SpecificationReferences": ["IOS Agent Platform Specification v2.1 sections 17, 20 and 22", "IOS Master Specification v4.0 section 25"],
+  "ChecksPerformed": ["full governance and recovery suite", "attestation spoof/missing/malformed cases", "privacy tracked/untracked secret cases", "pinned upstream blob cases", "CRLF and resolver determinism", "git diff check"],
+  "Findings": [{"Severity": "LOW", "Description": "One real filesystem-symlink privacy fixture is skipped on Windows and awaits Linux CI evidence."}],
+  "Severity": "LOW",
+  "Evidence": ["AgentThreadId=/root/phase3a_test_review", "135 tests: 134 PASS, 0 FAIL, 1 SKIP", "Privacy scan PASS", "git diff --check PASS", "Requested/resolved runtime role model gpt-5.6-terra; trusted model attestation=INSUFFICIENT_EVIDENCE"],
+  "RequiredFixes": [],
+  "ResidualRisk": "Hosted Linux and external trust-boundary evidence remain acceptance gates.",
+  "Status": "PASS_WITH_WARNINGS",
+  "Timestamp": "2026-07-22T19:04:00Z",
+  "ExecutionMode": "REAL_SUBAGENT"
+}

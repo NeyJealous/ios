@@ -2,7 +2,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import {
-  changedPathsFromGit, readJsonCompatibleYaml, resolveRequiredAgents,
+  changedPathsFromGit, git, readJsonCompatibleYaml, resolveRequiredAgents,
 } from './agent-governance-lib.mjs';
 
 function parseArgs(argv) {
@@ -21,10 +21,12 @@ export function resolveForPaths({ paths, branch = '', matrix, exceptions = [], o
 }
 
 export function resolveForGit({ root, base, head, branch = '', matrix, exceptions = [], ownerApproved = false }) {
-  const diff = changedPathsFromGit(root, base, head);
+  const baseSha = git(root, ['rev-parse', '--verify', `${base}^{commit}`]).stdout.trim();
+  const headSha = git(root, ['rev-parse', '--verify', `${head}^{commit}`]).stdout.trim();
+  const diff = changedPathsFromGit(root, baseSha, headSha);
   return {
-    BaseSHA: base,
-    HeadSHA: head,
+    BaseSHA: baseSha,
+    HeadSHA: headSha,
     Changes: diff.changes,
     ...resolveRequiredAgents({ changedPaths: diff.paths, branch, matrix, exceptions, ownerApproved }),
   };
@@ -52,7 +54,8 @@ function main() {
   const serialized = `${JSON.stringify(result, null, 2)}\n`;
   if (args.output) writeFileSync(resolve(root, args.output), serialized, 'utf8');
   process.stdout.write(serialized);
-  if (result.FailClosed && result.ExceptionResults.some((item) => !item.valid)) process.exitCode = 2;
+  if (result.OverallResult === 'BLOCKED' || result.MandatoryAgentAvailability === 'NOT_AVAILABLE' ||
+      (result.FailClosed && result.ExceptionResults.some((item) => !item.valid))) process.exitCode = 2;
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === resolve(import.meta.filename)) {

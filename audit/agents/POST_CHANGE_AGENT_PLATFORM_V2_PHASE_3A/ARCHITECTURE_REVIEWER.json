@@ -1,0 +1,23 @@
+{
+  "AgentId": "ARCHITECTURE_REVIEWER",
+  "AgentVersion": "1.0.0",
+  "GateId": "POST_CHANGE_AGENT_PLATFORM_V2_PHASE_3A",
+  "Branch": "feature/agent-platform-v2-integration",
+  "CommitSHA": "54fe944138d304e47d693dd508a507a92e7dc2ac",
+  "ReviewScope": "Final Phase 3A architecture cohesion, trust boundaries, provenance, rollback and non-activation",
+  "FilesReviewed": [".github/workflows/trusted-agent-governance.yml", "tools/trusted-governance/", "architecture/agents/", "specification/", "rfc/RFC-AGENT-PLATFORM-V2.md", "adr/ADR-AGENT-PLATFORM-V2.md"],
+  "SpecificationReferences": ["IOS Master Specification v4.0", "IOS Agent Platform Specification v2.1", "Correction Memo v1", "RFC-AGENT-PLATFORM-V2", "ADR-AGENT-PLATFORM-V2"],
+  "ChecksPerformed": ["base-owned verifier boundary", "complete expected-plan probe", "immutable normative source manifest", "exact Git-blob provenance", "privacy and non-activation boundary", "rollback and dependency direction"],
+  "Findings": [
+    {"Severity": "LOW", "Description": "Filesystem-symlink privacy fixture is skipped on Windows; Git-index symlink/submodule boundaries pass."},
+    {"Severity": "BLOCKER", "Description": "External GitHub canonical-base canary and protected ruleset evidence is absent."},
+    {"Severity": "BLOCKER", "Description": "External cryptographic runtime/OIDC/owner attester and durable replay service are absent."}
+  ],
+  "Severity": "BLOCKER",
+  "Evidence": ["AgentThreadId=/root/phase3a_architecture_review", "Reviewed base bc3314ac6f95aa6acf15fc6a86736e4fb8a2e8da and head 54fe944138d304e47d693dd508a507a92e7dc2ac", "135 tests: 134 PASS, 0 FAIL, 1 SKIP", "No .codex/agents generation or runtime/production path change", "Runtime role model evidence is unsigned; trusted attestation=INSUFFICIENT_EVIDENCE"],
+  "RequiredFixes": ["Obtain canonical-base canary and protected ruleset evidence", "Implement and independently validate the external attestation and replay trust boundary"],
+  "ResidualRisk": "Local design is fail-closed, but external enforcement and identity/model/owner provenance remain unproven.",
+  "Status": "BLOCKED",
+  "Timestamp": "2026-07-22T19:00:57Z",
+  "ExecutionMode": "REAL_SUBAGENT"
+}
