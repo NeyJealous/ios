@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "platformState": "FIRST_WAVE_DEACTIVATED_FAIL_CLOSED",
+  "platformState": "PROVISIONAL_PLATFORM_BUILD",
   "platformActivationEligible": false,
   "activationGate": "CLOSED",
   "provisionalStagingPath": "architecture/agents/generated/provisional",

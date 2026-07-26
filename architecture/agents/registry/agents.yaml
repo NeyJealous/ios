@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "sourceOfTruth": "architecture/agents/registry/agents.yaml",
   "canonicalBranch": "integration/ios-current",
-  "platformState": "FIRST_WAVE_DEACTIVATED_FAIL_CLOSED",
+  "platformState": "PROVISIONAL_PLATFORM_BUILD",
   "activationAllowed": false,
   "activeAgents": 0,
   "provisionalAgents": 5,
@@ -174,7 +174,7 @@
         "trustedExternalAttestation": "MISSING",
         "selfReportedEvidenceSufficient": false
       },
-      "runtimeExecutionStatus": "NOT_DISPATCHED_ACTIVATION_CLOSED",
+      "runtimeExecutionStatus": "RUNTIME_PROFILE_NOT_YET_OBSERVED",
       "activationEligible": false,
       "platformActivationEligible": false
     },
@@ -348,7 +348,7 @@
         "trustedExternalAttestation": "MISSING",
         "selfReportedEvidenceSufficient": false
       },
-      "runtimeExecutionStatus": "NOT_DISPATCHED_ACTIVATION_CLOSED",
+      "runtimeExecutionStatus": "RUNTIME_PROFILE_NOT_YET_OBSERVED",
       "activationEligible": false,
       "platformActivationEligible": false
     },
@@ -510,7 +510,7 @@
         "trustedExternalAttestation": "MISSING",
         "selfReportedEvidenceSufficient": false
       },
-      "runtimeExecutionStatus": "NOT_DISPATCHED_ACTIVATION_CLOSED",
+      "runtimeExecutionStatus": "RUNTIME_PROFILE_NOT_YET_OBSERVED",
       "activationEligible": false,
       "platformActivationEligible": false
     },
@@ -670,7 +670,7 @@
         "trustedExternalAttestation": "MISSING",
         "selfReportedEvidenceSufficient": false
       },
-      "runtimeExecutionStatus": "NOT_DISPATCHED_ACTIVATION_CLOSED",
+      "runtimeExecutionStatus": "RUNTIME_PROFILE_NOT_YET_OBSERVED",
       "activationEligible": false,
       "platformActivationEligible": false
     },
@@ -833,7 +833,7 @@
         "trustedExternalAttestation": "MISSING",
         "selfReportedEvidenceSufficient": false
       },
-      "runtimeExecutionStatus": "NOT_DISPATCHED_ACTIVATION_CLOSED",
+      "runtimeExecutionStatus": "RUNTIME_PROFILE_NOT_YET_OBSERVED",
       "activationEligible": false,
       "platformActivationEligible": false
     }

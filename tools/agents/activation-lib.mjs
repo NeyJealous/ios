@@ -73,7 +73,7 @@ export function verifyActivationInputs(root) {
 function setRegistryState(root, active) {
   const registryPath = resolve(root, REGISTRY_PATH);
   const registry = json(registryPath);
-  registry.platformState = active ? 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT' : 'FIRST_WAVE_DEACTIVATED_FAIL_CLOSED';
+  registry.platformState = active ? 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT' : 'PROVISIONAL_PLATFORM_BUILD';
   registry.activationAllowed = active;
   registry.activeAgents = active ? FIRST_WAVE.length : 0;
   registry.provisionalAgents = active ? 0 : FIRST_WAVE.length;
@@ -81,7 +81,7 @@ function setRegistryState(root, active) {
     agent.status = active ? 'ACTIVE_FOR_PROJECT_DEVELOPMENT' : 'PROVISIONAL';
     agent.activationEligible = active;
     agent.platformActivationEligible = false;
-    agent.runtimeExecutionStatus = active ? 'RUNTIME_SMOKE_PENDING' : 'NOT_DISPATCHED_ACTIVATION_CLOSED';
+    agent.runtimeExecutionStatus = active ? 'RUNTIME_SMOKE_PENDING' : 'RUNTIME_PROFILE_NOT_YET_OBSERVED';
   }
   save(registryPath, registry);
   const compatPath = resolve(root, COMPAT_REGISTRY_PATH);

@@ -6,7 +6,7 @@
   "operationResult": "PASS",
   "runtimeProfiles": [],
   "runtimeDiscoveredPlatformAgents": 0,
-  "platformState": "FIRST_WAVE_DEACTIVATED_FAIL_CLOSED",
+  "platformState": "PROVISIONAL_PLATFORM_BUILD",
   "runtimeDispatchStatus": "NOT_DISPATCHED_ACTIVATION_CLOSED",
   "registryActivationAllowed": false,
   "productionGovernanceEligible": false,
