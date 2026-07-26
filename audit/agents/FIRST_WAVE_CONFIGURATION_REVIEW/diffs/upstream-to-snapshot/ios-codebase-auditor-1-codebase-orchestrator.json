@@ -1,0 +1,23 @@
+{
+  "agentId": "ios-codebase-auditor",
+  "order": 1,
+  "repository": "VoltAgent/awesome-codex-subagents",
+  "pinnedCommit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+  "sourcePath": "categories/09-meta-orchestration/codebase-orchestrator.toml",
+  "profileId": "codebase-orchestrator",
+  "filename": "codebase-orchestrator.toml",
+  "license": "MIT",
+  "rawSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+  "normalizedSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+  "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/09-meta-orchestration/codebase-orchestrator.toml",
+  "inclusionMode": "FULL_UNMODIFIED",
+  "originalBlobSha": "78623825b7ae5a3a9fc13af98ff99d8152c0a601",
+  "originalBlobSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+  "snapshotSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+  "generatedBlockSha256": "c0094728463e2460567774287aa983933c497e71c3e1fa83fc56cc1636e81c15",
+  "byteIdenticalOriginalToSnapshot": true,
+  "byteIdenticalSnapshotToGeneratedBlock": true,
+  "sourcePointer": "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/09-meta-orchestration/codebase-orchestrator.toml",
+  "diffResult": "ZERO_BYTE_DIFF",
+  "mutationDetected": false
+}

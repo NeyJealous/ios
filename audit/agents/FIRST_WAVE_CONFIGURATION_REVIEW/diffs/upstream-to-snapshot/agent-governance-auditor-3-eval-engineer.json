@@ -1,0 +1,23 @@
+{
+  "agentId": "agent-governance-auditor",
+  "order": 3,
+  "repository": "VoltAgent/awesome-codex-subagents",
+  "pinnedCommit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+  "sourcePath": "categories/13-llmops-evals-observability/eval-engineer.toml",
+  "profileId": "eval-engineer",
+  "filename": "eval-engineer.toml",
+  "license": "MIT",
+  "rawSha256": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+  "normalizedSha256": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+  "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/13-llmops-evals-observability/eval-engineer.toml",
+  "inclusionMode": "FULL_UNMODIFIED",
+  "originalBlobSha": "d11ad37390b14a62efda8082a6e7326532bd5ac9",
+  "originalBlobSha256": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+  "snapshotSha256": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+  "generatedBlockSha256": "6ebae980912d4e4e1813d3f1fa9c6a2aebf9156205b070920bb57dd66d8cb9f6",
+  "byteIdenticalOriginalToSnapshot": true,
+  "byteIdenticalSnapshotToGeneratedBlock": true,
+  "sourcePointer": "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/13-llmops-evals-observability/eval-engineer.toml",
+  "diffResult": "ZERO_BYTE_DIFF",
+  "mutationDetected": false
+}

@@ -1,0 +1,23 @@
+{
+  "agentId": "security-privacy-auditor",
+  "order": 3,
+  "repository": "wshobson/agents",
+  "pinnedCommit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+  "sourcePath": "plugins/security-compliance/agents/security-auditor.md",
+  "profileId": "security-compliance-security-auditor",
+  "filename": "security-auditor.md",
+  "license": "MIT",
+  "rawSha256": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+  "normalizedSha256": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+  "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/security-compliance/agents/security-auditor.md",
+  "inclusionMode": "FULL_UNMODIFIED",
+  "originalBlobSha": "093e5ccb065a15d8d018cd929c7af2a2ca768a4d",
+  "originalBlobSha256": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+  "snapshotSha256": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+  "generatedBlockSha256": "c6872ac56afaa3ffd099c6f36a6137aa770962bff7b3b0511b39c027484305b6",
+  "byteIdenticalOriginalToSnapshot": true,
+  "byteIdenticalSnapshotToGeneratedBlock": true,
+  "sourcePointer": "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/security-compliance/agents/security-auditor.md",
+  "diffResult": "ZERO_BYTE_DIFF",
+  "mutationDetected": false
+}

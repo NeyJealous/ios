@@ -1,0 +1,23 @@
+{
+  "agentId": "security-privacy-auditor",
+  "order": 1,
+  "repository": "VoltAgent/awesome-codex-subagents",
+  "pinnedCommit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+  "sourcePath": "categories/04-quality-security/security-auditor.toml",
+  "profileId": "security-auditor",
+  "filename": "security-auditor.toml",
+  "license": "MIT",
+  "rawSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+  "normalizedSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+  "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/04-quality-security/security-auditor.toml",
+  "inclusionMode": "FULL_UNMODIFIED",
+  "originalBlobSha": "96a1650e5b655bc42a273cb982df787f06dc59c8",
+  "originalBlobSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+  "snapshotSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+  "generatedBlockSha256": "42c5889265a61de205a4bd622e4c736d9d05cdceb09502326bd7da4a1ab0aa71",
+  "byteIdenticalOriginalToSnapshot": true,
+  "byteIdenticalSnapshotToGeneratedBlock": true,
+  "sourcePointer": "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/04-quality-security/security-auditor.toml",
+  "diffResult": "ZERO_BYTE_DIFF",
+  "mutationDetected": false
+}

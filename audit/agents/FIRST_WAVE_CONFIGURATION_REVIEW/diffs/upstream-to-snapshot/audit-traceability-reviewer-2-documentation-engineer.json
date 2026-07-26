@@ -1,0 +1,23 @@
+{
+  "agentId": "audit-traceability-reviewer",
+  "order": 2,
+  "repository": "VoltAgent/awesome-codex-subagents",
+  "pinnedCommit": "5605c9c18b3687993919d6cc467af4a34898fee2",
+  "sourcePath": "categories/06-developer-experience/documentation-engineer.toml",
+  "profileId": "documentation-engineer",
+  "filename": "documentation-engineer.toml",
+  "license": "MIT",
+  "rawSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+  "normalizedSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+  "snapshotPath": "architecture/agents/upstream/voltagent/5605c9c18b3687993919d6cc467af4a34898fee2/categories/06-developer-experience/documentation-engineer.toml",
+  "inclusionMode": "FULL_UNMODIFIED",
+  "originalBlobSha": "b67ce4e0039f62305fb0ecef863b6df77efc1cea",
+  "originalBlobSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+  "snapshotSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+  "generatedBlockSha256": "82456132ae788a91c4c42383a04e7ac4e6035c3af12dc7155f1d1e9e9c9b9ac5",
+  "byteIdenticalOriginalToSnapshot": true,
+  "byteIdenticalSnapshotToGeneratedBlock": true,
+  "sourcePointer": "VoltAgent/awesome-codex-subagents@5605c9c18b3687993919d6cc467af4a34898fee2:categories/06-developer-experience/documentation-engineer.toml",
+  "diffResult": "ZERO_BYTE_DIFF",
+  "mutationDetected": false
+}

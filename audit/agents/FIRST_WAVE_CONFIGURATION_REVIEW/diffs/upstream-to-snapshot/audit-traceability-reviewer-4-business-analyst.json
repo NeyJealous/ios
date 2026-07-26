@@ -1,0 +1,23 @@
+{
+  "agentId": "audit-traceability-reviewer",
+  "order": 4,
+  "repository": "wshobson/agents",
+  "pinnedCommit": "b6af3711058190e4b5c5274b9758498fe626ec5a",
+  "sourcePath": "plugins/business-analytics/agents/business-analyst.md",
+  "profileId": "business-analyst",
+  "filename": "business-analyst.md",
+  "license": "MIT",
+  "rawSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+  "normalizedSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+  "snapshotPath": "architecture/agents/upstream/wshobson/b6af3711058190e4b5c5274b9758498fe626ec5a/plugins/business-analytics/agents/business-analyst.md",
+  "inclusionMode": "FULL_UNMODIFIED",
+  "originalBlobSha": "23f3398c904ed7f2c534482393bcb5e990fdee9a",
+  "originalBlobSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+  "snapshotSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+  "generatedBlockSha256": "c9803de647add89642afcee05ec27c7ab1e1736fb2586990010efbad6b76ca7a",
+  "byteIdenticalOriginalToSnapshot": true,
+  "byteIdenticalSnapshotToGeneratedBlock": true,
+  "sourcePointer": "wshobson/agents@b6af3711058190e4b5c5274b9758498fe626ec5a:plugins/business-analytics/agents/business-analyst.md",
+  "diffResult": "ZERO_BYTE_DIFF",
+  "mutationDetected": false
+}
