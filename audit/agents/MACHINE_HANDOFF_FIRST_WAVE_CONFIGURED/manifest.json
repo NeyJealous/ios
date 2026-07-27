@@ -4,9 +4,11 @@
   "repositoryUrl": "https://github.com/NeyJealous/ios.git",
   "featureBranch": "feature/agent-platform-v2-integration",
   "canonicalBranch": "integration/ios-current",
-  "featureHead": "PENDING_FINAL_FEATURE_ACCEPTANCE_COMMIT",
+  "featureHead": "2899461187b9ab3d03c7e6264341737f2989f4bf",
   "canonicalPreMergeHead": "d2d60713e580fa1bcce8ba874216619598094093",
-  "finalCanonicalSha": "PENDING_CANONICAL_MERGE",
+  "configuredMergeSha": "6ca1cb0388eda644c193e603478e69bb52dc6e0e",
+  "finalCanonicalRef": "refs/heads/integration/ios-current",
+  "finalCanonicalTag": "refs/tags/agent-platform-v2-first-wave-configured-v1",
   "tag": "agent-platform-v2-first-wave-configured-v1",
   "environment": {
     "node": "v24.18.0",

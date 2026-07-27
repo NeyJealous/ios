@@ -1,0 +1,9 @@
+{
+  "blocker": "PROJECT_LOCAL_AGENT_DISCOVERY_FAILED",
+  "environmentQualifiedStatus": "PROJECT_LOCAL_AGENT_DISCOVERY_FAILED_IN_CURRENT_CLIENT_ENVIRONMENT",
+  "rootCause": "ROOT_CAUSE_NOT_YET_ESTABLISHED",
+  "observedProbe": "unknown agent_type 'ios-agent-orchestrator'",
+  "customAgentRuntimeDispatchesInCanonicalization": 0,
+  "runtimeSmokeComplete": false,
+  "nextGate": "CLEAN_MACHINE_DISCOVERY_DIAGNOSTIC_WITH_NEW_OWNER_AUTHORIZATION"
+}
