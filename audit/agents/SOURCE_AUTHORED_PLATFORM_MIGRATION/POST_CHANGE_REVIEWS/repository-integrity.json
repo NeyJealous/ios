@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0.0",
+  "baseSha": "574c1cc145aa736f55efb479fbf591c1cd23b5b6",
+  "reviewedCommitSha": "b0c75fb0b3cfeb94b09acfa79f530d53a045f68d",
+  "branch": "feature/source-authored-agent-platform",
+  "beforeEachReview": [
+    {
+      "agentId": "agent-governance-auditor",
+      "statusShort": "",
+      "diffExitCode": 0,
+      "cachedDiffExitCode": 0
+    },
+    {
+      "agentId": "security-privacy-auditor",
+      "statusShort": "",
+      "diffExitCode": 0,
+      "cachedDiffExitCode": 0
+    },
+    {
+      "agentId": "audit-traceability-reviewer",
+      "statusShort": "",
+      "diffExitCode": 0,
+      "cachedDiffExitCode": 0
+    }
+  ],
+  "afterEachReview": [
+    {
+      "agentId": "agent-governance-auditor",
+      "statusShort": "",
+      "diffExitCode": 0,
+      "cachedDiffExitCode": 0
+    },
+    {
+      "agentId": "security-privacy-auditor",
+      "statusShort": "",
+      "diffExitCode": 0,
+      "cachedDiffExitCode": 0
+    },
+    {
+      "agentId": "audit-traceability-reviewer",
+      "statusShort": "",
+      "diffExitCode": 0,
+      "cachedDiffExitCode": 0
+    }
+  ],
+  "reviewerWritesDetected": false,
+  "expectedNewPathOnly": "audit/agents/SOURCE_AUTHORED_PLATFORM_MIGRATION/POST_CHANGE_REVIEWS/",
+  "canonicalProfilesChanged": false,
+  "sourceArchitectureChanged": false,
+  "registryChanged": false,
+  "adrStatusChanged": false,
+  "activationRegisterChanged": false,
+  "activationPerformed": false,
+  "mergePerformed": false,
+  "pushPerformed": false
+}

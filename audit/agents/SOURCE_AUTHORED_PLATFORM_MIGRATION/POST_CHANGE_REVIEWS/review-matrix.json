@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "1.0.0",
+  "baseSha": "574c1cc145aa736f55efb479fbf591c1cd23b5b6",
+  "reviewedCommitSha": "b0c75fb0b3cfeb94b09acfa79f530d53a045f68d",
+  "reviews": [
+    {
+      "review": "Governance",
+      "agentId": "agent-governance-auditor",
+      "runtimeStarted": true,
+      "executionMode": "REAL_SUBAGENT",
+      "marker": "GOVERNANCE_POST_CHANGE_REVIEW_COMPLETE",
+      "result": "BLOCKED",
+      "criticalFindings": 1,
+      "highFindings": 3,
+      "prVerdict": "BLOCKED",
+      "mergeVerdict": "BLOCKED",
+      "activationVerdict": "BLOCKED"
+    },
+    {
+      "review": "Security/Privacy",
+      "agentId": "security-privacy-auditor",
+      "runtimeStarted": true,
+      "executionMode": "REAL_SUBAGENT",
+      "marker": "SECURITY_PRIVACY_POST_CHANGE_REVIEW_COMPLETE",
+      "result": "BLOCKED",
+      "criticalFindings": 0,
+      "highFindings": 2,
+      "prVerdict": "BLOCKED",
+      "mergeVerdict": "BLOCKED",
+      "activationVerdict": "BLOCKED"
+    },
+    {
+      "review": "Documentation/Traceability",
+      "agentId": "audit-traceability-reviewer",
+      "runtimeStarted": true,
+      "executionMode": "REAL_SUBAGENT",
+      "marker": "DOCUMENTATION_TRACEABILITY_REVIEW_COMPLETE",
+      "result": "BLOCKED",
+      "criticalFindings": 2,
+      "highFindings": 3,
+      "prVerdict": "BLOCKED",
+      "mergeVerdict": "BLOCKED",
+      "activationVerdict": "BLOCKED"
+    }
+  ],
+  "conflicts": [],
+  "convergence": [
+    "Runtime evidence is not trusted commit-bound evidence for b0c75fb0b3cfeb94b09acfa79f530d53a045f68d",
+    "ADR owner acceptance is outstanding",
+    "PR, merge and activation remain blocked",
+    "Activation must remain closed"
+  ],
+  "consolidationRule": "Any BLOCKED review yields REVIEW_GATE_BLOCKED",
+  "overallResult": "REVIEW_GATE_BLOCKED"
+}

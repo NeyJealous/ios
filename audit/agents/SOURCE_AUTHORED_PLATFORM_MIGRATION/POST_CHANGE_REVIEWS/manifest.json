@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "1.0.0",
+  "gate": "SOURCE_AUTHORED_PLATFORM_POST_CHANGE_REVIEWS",
+  "baseSha": "574c1cc145aa736f55efb479fbf591c1cd23b5b6",
+  "reviewedCommitSha": "b0c75fb0b3cfeb94b09acfa79f530d53a045f68d",
+  "branch": "feature/source-authored-agent-platform",
+  "executionOrder": [
+    "agent-governance-auditor",
+    "security-privacy-auditor",
+    "audit-traceability-reviewer"
+  ],
+  "executionMode": "REAL_SUBAGENT",
+  "reviews": [
+    {
+      "agentId": "agent-governance-auditor",
+      "profilePath": ".codex/agents/agent-governance-auditor.toml",
+      "profileSha256": "8d17857163b4bce2584254faf711ed37c3ed972178a87603a00e8c8952a4574c",
+      "requestedModel": "gpt-5.6-sol",
+      "resolvedModel": "NOT_DISCLOSED_BY_RUNTIME",
+      "requestedReasoning": "high",
+      "resolvedReasoning": "NOT_DISCLOSED_BY_RUNTIME",
+      "runtimeTask": "/root/governance_commit_review",
+      "startedAt": "2026-07-28T05:24:21.8087914Z",
+      "durationSeconds": 461.851,
+      "marker": "GOVERNANCE_POST_CHANGE_REVIEW_COMPLETE",
+      "result": "BLOCKED",
+      "noFallbackStatus": "NOT_DETECTED_RESOLUTION_NOT_ATTESTED",
+      "evidencePath": "audit/agents/SOURCE_AUTHORED_PLATFORM_MIGRATION/POST_CHANGE_REVIEWS/governance-review.md"
+    },
+    {
+      "agentId": "security-privacy-auditor",
+      "profilePath": ".codex/agents/security-privacy-auditor.toml",
+      "profileSha256": "f1537198ff24f7bf831c46251d7c959d5ddb09ed64b56b50339dbd3643687afa",
+      "requestedModel": "gpt-5.6-sol",
+      "resolvedModel": "gpt-5.6-sol",
+      "requestedReasoning": "high",
+      "resolvedReasoning": "high",
+      "runtimeTask": "/root/security_commit_review",
+      "startedAt": "2026-07-28T05:32:03.7466227Z",
+      "durationSeconds": 559.239,
+      "marker": "SECURITY_PRIVACY_POST_CHANGE_REVIEW_COMPLETE",
+      "result": "BLOCKED",
+      "noFallbackStatus": "PASS_NO_FALLBACK_REPORTED",
+      "evidencePath": "audit/agents/SOURCE_AUTHORED_PLATFORM_MIGRATION/POST_CHANGE_REVIEWS/security-privacy-review.md"
+    },
+    {
+      "agentId": "audit-traceability-reviewer",
+      "profilePath": ".codex/agents/audit-traceability-reviewer.toml",
+      "profileSha256": "8566e116886b0b5a7d496efa8512275428da7f638c21895748b1445dcbed2969",
+      "requestedModel": "gpt-5.6-terra",
+      "resolvedModel": "NOT_DISCLOSED_BY_RUNTIME",
+      "requestedReasoning": "medium",
+      "resolvedReasoning": "NOT_DISCLOSED_BY_RUNTIME",
+      "runtimeTask": "/root/traceability_commit_review",
+      "startedAt": "2026-07-28T05:41:23.0831518Z",
+      "durationSeconds": 173.309,
+      "marker": "DOCUMENTATION_TRACEABILITY_REVIEW_COMPLETE",
+      "result": "BLOCKED",
+      "noFallbackStatus": "NOT_DETECTED_RESOLUTION_NOT_ATTESTED",
+      "evidencePath": "audit/agents/SOURCE_AUTHORED_PLATFORM_MIGRATION/POST_CHANGE_REVIEWS/documentation-traceability-review.md"
+    }
+  ],
+  "reviewedPathScope": {
+    "changedFiles": 106,
+    "groups": [
+      ".codex/agents/*.toml",
+      "ADR and RFC",
+      "Agent Integrity Registry, schema and validator",
+      "capability contracts",
+      "activation policy, register and validation tooling",
+      "Registry, Review Matrix, Resolver and model registry",
+      "validators and tests",
+      "removed overlays, generator, compositions, generated profiles and composition lock",
+      "PRE_CHANGE and POST_CHANGE evidence including runtime and escalation results",
+      "rollback plan"
+    ]
+  },
+  "criticalFindings": [
+    "Mandatory commit-bound governance evidence was absent from the reviewed implementation commit",
+    "No independently reviewable owner-acceptance artifact exists for the proposed successor ADR"
+  ],
+  "highFindings": [
+    "Runtime-verified statuses exceed commit-bound trusted evidence",
+    "Escalation smoke is absent from the machine-readable activation gate",
+    "PR governance path is deterministically blocked",
+    "Integrity validator permits Windows path traversal and decoy hash substitution",
+    "Runtime evidence is accepted by existence rather than commit/profile/attestation binding",
+    "Static, privacy and runtime claims lack independently retained commit-bound raw execution evidence",
+    "Legacy normative documentation conflicts with the proposed successor architecture"
+  ],
+  "overallResult": "REVIEW_GATE_BLOCKED",
+  "repositoryWritesByReviewers": false,
+  "activationPerformed": false,
+  "pushPerformed": false
+}
