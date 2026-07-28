@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/NeyJealous/ios/architecture/agents/schemas/agent-integrity-registry.schema.json",
+  "title": "IOS Agent Integrity Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "sourceOfTruth", "platformStatus", "agents"],
+  "properties": {
+    "schemaVersion": {"const": "1.0.0"},
+    "sourceOfTruth": {"const": ".codex/agents/*.toml"},
+    "platformStatus": {"const": "SOURCE_AUTHORED_DEVELOPMENT_READY"},
+    "agents": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "agentId", "profilePath", "profileSha256", "profileVersion", "upstream",
+          "model", "reasoning", "sandboxMode", "capabilityContractPath",
+          "discoveryStatus", "positiveSmokeStatus", "negativeSmokeStatus",
+          "runtimeEvidencePath", "status", "lastVerifiedAt"
+        ],
+        "properties": {
+          "agentId": {"type": "string", "minLength": 1},
+          "profilePath": {"type": "string", "pattern": "^\\.codex/agents/[a-z0-9-]+\\.toml$"},
+          "profileSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "profileVersion": {"type": "string", "minLength": 1},
+          "upstream": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["repository", "path", "commit"],
+            "properties": {
+              "repository": {"type": "string", "minLength": 1},
+              "path": {"type": "string", "minLength": 1},
+              "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"}
+            }
+          },
+          "model": {"type": "string", "minLength": 1},
+          "reasoning": {"enum": ["low", "medium", "high", "xhigh", "max", "ultra"]},
+          "sandboxMode": {"const": "read-only"},
+          "capabilityContractPath": {"type": "string", "minLength": 1},
+          "discoveryStatus": {"enum": ["PENDING_REVALIDATION", "PASS", "FAIL"]},
+          "positiveSmokeStatus": {"enum": ["PENDING_REVALIDATION", "PASS", "FAIL"]},
+          "negativeSmokeStatus": {"enum": ["PENDING_REVALIDATION", "PASS", "FAIL"]},
+          "runtimeEvidencePath": {"type": ["string", "null"]},
+          "status": {"enum": ["DRAFT", "READY"]},
+          "lastVerifiedAt": {"type": ["string", "null"]}
+        }
+      }
+    }
+  }
+}

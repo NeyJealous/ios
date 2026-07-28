@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "1.0.0",
+  "capturedAt": "2026-07-27",
+  "branch": "feature/source-authored-agent-platform",
+  "headSHA": "574c1cc145aa736f55efb479fbf591c1cd23b5b6",
+  "runtimeViabilityReport": "external owner-visible report FIRST_WAVE_RUNTIME_VIABILITY_REPORT dated 2026-07-27",
+  "agents": [
+    {
+      "agentId": "ios-agent-orchestrator",
+      "profilePath": ".codex/agents/ios-agent-orchestrator.toml",
+      "profileSha256": "d04f524e26bd1249ee3396893f0d2eb331bf35e94f639db7b971c78c5ecf5a77",
+      "model": "gpt-5.6-terra",
+      "reasoning": "high",
+      "sandboxMode": "read-only",
+      "runtimeViabilityStatus": "VIABLE_REFERENCE_CANON",
+      "canonicalDecision": "ACCEPT_AS_REFERENCE_CANON"
+    },
+    {
+      "agentId": "agent-governance-auditor",
+      "profilePath": ".codex/agents/agent-governance-auditor.toml",
+      "profileSha256": "54a4c3d8384eb4af53802d4655ffc70ae3ebd05a85b0ee3fb0bcfdcdc39f8576",
+      "model": "gpt-5.6-sol",
+      "reasoning": "high",
+      "sandboxMode": "read-only",
+      "runtimeViabilityStatus": "VIABLE_REFERENCE_CANON",
+      "canonicalDecision": "ACCEPT_AS_REFERENCE_CANON"
+    },
+    {
+      "agentId": "security-privacy-auditor",
+      "profilePath": ".codex/agents/security-privacy-auditor.toml",
+      "profileSha256": "e967687f422e98af13c92d2d1c0524942269e9197e947bb82d8fd465702450c3",
+      "model": "gpt-5.6-sol",
+      "reasoning": "high",
+      "sandboxMode": "read-only",
+      "runtimeViabilityStatus": "VIABLE_REFERENCE_CANON",
+      "canonicalDecision": "ACCEPT_AS_REFERENCE_CANON"
+    },
+    {
+      "agentId": "audit-traceability-reviewer",
+      "profilePath": ".codex/agents/audit-traceability-reviewer.toml",
+      "profileSha256": "fce0c2f2113c7e3e2e564a90d563daab92c75c03c95df300cf37c56e20fa61bc",
+      "model": "gpt-5.6-terra",
+      "reasoning": "medium",
+      "sandboxMode": "read-only",
+      "runtimeViabilityStatus": "VIABLE_REFERENCE_CANON",
+      "canonicalDecision": "ACCEPT_AS_REFERENCE_CANON"
+    },
+    {
+      "agentId": "ios-codebase-auditor",
+      "profilePath": ".codex/agents/ios-codebase-auditor.toml",
+      "profileSha256": "421857033e9072d663d5e0612afd54de669494e0745021da33500b15ef4c5b43",
+      "model": "gpt-5.6-sol",
+      "reasoning": "high",
+      "sandboxMode": "read-only",
+      "runtimeViabilityStatus": "VIABLE_REFERENCE_CANON",
+      "canonicalDecision": "ACCEPT_AS_REFERENCE_CANON"
+    }
+  ],
+  "baselineInvariants": {
+    "topLevelModelsMustRemainUnchanged": true,
+    "reasoningMustRemainUnchanged": true,
+    "sandboxMustRemainReadOnly": true,
+    "roleBehaviorMustBePreserved": true,
+    "generatedProfilesMustNotReplaceCanonicalProfiles": true,
+    "hashMismatchWithGeneratedProfilesIsNotAViabilityFailure": true
+  }
+}

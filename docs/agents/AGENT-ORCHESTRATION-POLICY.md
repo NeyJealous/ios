@@ -1,75 +1,73 @@
 # Agent Orchestration Policy
 
-## Scope
+## Status and scope
 
-Политика действует для любой ветки/worktree, в checkout которой присутствуют
-governance-файлы, и для каждого PR в canonical через CI. Prompt задачи не может
-отключить обязательного агента или baseline control.
+This policy applies to personal development of the owner-operated IOS
+repository. The accepted architecture is defined by
+`adr/ADR-SOURCE-AUTHORED-IOS-AGENT-PROFILES.md`.
 
-## Task lifecycle
+Production deployment, external multi-maintainer operation and handling of
+production credentials remain outside this policy and require a separate
+hardening gate.
 
-1. Прочитать Master Specification, Correction Memo, связанные RFC/ADR.
-2. Проверить remote, canonical base, clean status, Git operation state,
-   privacy и recovery checkpoints.
-3. Создать отдельную branch/worktree от `origin/integration/ios-current`.
-4. Получить changed paths и transition result детерминированным resolver.
-5. Реализовать изменение без production write.
-6. В `ZERO_AGENT_TRANSITION` зафиксировать mandatory agent как
-   `NOT_AVAILABLE` и остановить gate; simulation не заменяет review.
-7. Материализовать JSON+Markdown reports и manifest.
-8. Исправить CRITICAL/BLOCKER, повторить reviews на актуальном reviewed SHA.
-9. Выполнить tests, Architecture Impact Check, privacy/secret scan и docs.
-10. Создать PR в canonical; не merge без отдельного разрешения.
+## Development workflow
 
-## Agent selection и fail closed
+1. Work in a task or feature branch based on `integration/ios-current`.
+2. Confirm branch, base, remote and clean worktree.
+3. Run privacy/secret preflight.
+4. Use Resolver and orchestration preflight to classify the change and select
+   useful local agents and controls.
+5. Run the applicable static validators and tests.
+6. Preserve read-only boundaries for all audit profiles.
+7. Publish through a PR and merge only with explicit owner authorization.
 
-`tools/resolve-required-agents.mjs` нормализует Windows/Linux paths, учитывает
-rename/delete/add и объединяет все matching rules. Empty diff блокируется.
-Unknown path блокируется. В переходном состоянии любой diff также блокируется:
-active agents отсутствуют, `BlockedByUnavailableAgents` не пуст и общий result
-равен `BLOCKED`. Versioned exception не может отключить этот safety floor.
+## Local reviews
 
-## Execution и authority
+Review Matrix results identify appropriate local review profiles. They are
+recommendations for development quality, not a requirement for external
+attestation or approval by another GitHub user.
 
-Активные project custom agents отсутствуют. Ни simulation, ни transition
-metadata не получают merge/deploy/remote/production authority. Owner/ruleset —
-единственная approval authority.
+The owner may accept locally verified evidence for personal development.
+Review reports and manifests are required only when the task or owner
+explicitly requests them. A missing independent reviewer does not block a
+personal-development PR by itself.
 
-## Inheritance
+Self-review remains prohibited: an orchestrator is not scheduled as reviewer
+of its own profile or orchestration implementation. Other selected controls
+and owner review remain applicable.
 
-После merge в canonical новые branches наследуют файлы обычным Git checkout.
-Существующие branches не обновляются автоматически. Worktree использует файлы
-своей ветки. User-level config и local hook trust не считаются частью механизма.
-CI проверяет PR независимо от локального Codex.
+## CI contract
 
-## Anti-tamper
+The active `Agent Governance` workflow is read-only and validates:
 
-Изменения `AGENTS.md`, вложенных instructions, `.codex/agents/**`,
-`architecture/agents/**`, `docs/agents/**`, `tools/*agent*` и workflow требуют
-Architecture Reviewer, Security Reviewer, Documentation Reviewer, owner
-approval и ADR при изменении модели. CODEOWNERS рекомендуется, но адреса не
-добавляются без подтверждения владельца.
+- source-authored canonical profiles;
+- registry, matrix and instruction contracts;
+- agent-platform regression tests;
+- privacy and secret scanning;
+- patch formatting.
 
-## SOLO_MAINTAINER_OWNER_BYPASS
+The workflow must not use `pull_request_target`, execute production writes,
+require trusted attestation, or require review manifests for ordinary personal
+development.
 
-В репозитории с единственным активным уполномоченным reviewer владелец может
-однократно обойти только требование независимого approval для конкретного PR.
-Bypass допустим, только если все обязательные CI checks имеют `PASS`, нет
-CRITICAL/BLOCKER findings, unresolved conversations равны нулю, ветка не
-отстаёт от canonical и авторизацию дал владелец репозитория.
+## GitHub rules
 
-Причина, scope и evidence фиксируются в PR и `OwnerBypass` audit manifest:
-`ReviewMode=SOLO_MAINTAINER_OWNER_BYPASS`,
-`IndependentReviewer=NOT_AVAILABLE`, `CIEvidence=PASS` и явная human
-authorization. Bypass не является review и не может выдаваться за независимое
-одобрение. Он не обходит status checks, conversation resolution, актуальность
-base/head, privacy, secrets, manifest или иные protections. Он не разрешает
-production write, deployment, `clasp push`, Sheets write или ослабление
-ruleset. Применение ограничено approval requirement одного указанного PR.
+The canonical branch ruleset must:
 
-## Recovery
+- require changes through a pull request;
+- prevent branch deletion;
+- prevent non-fast-forward updates;
+- allow zero required approving reviews for the sole owner;
+- require resolution of review conversations when conversations exist.
 
-После disconnect/timeout нельзя повторять external write до read-only
-классификации результата. Возобновление начинается с проверки worktree,
-branch, HEAD, diff, manifest/reports и remote status. `UNKNOWN` останавливает
-работу. Recovery не расширяет разрешения.
+The ruleset does not grant direct-push, deployment or production authority.
+
+## Production hardening
+
+Before external deployment, team expansion or production credential access,
+create a separate RFC/ADR and versioned gate. That phase may reintroduce
+trusted attestation, independent approvals, protected required checks,
+cryptographic runtime identity and production activation controls.
+
+Historical trusted-governance artifacts remain traceability evidence and do
+not represent an active development gate.

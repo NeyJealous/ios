@@ -15,7 +15,8 @@ const REQUIRED_DENIALS = [
   'network', 'mcp', 'shell', 'filesystem.write', 'git.write', 'remote.write',
   'production.write', 'sheets.write', 'apps-script.write', 'broker-api.write',
   'deploy', 'merge', 'push', 'secrets.modify', 'agent.install', 'agent.remove',
-  'package.install',
+  'package.install', 'model.switch', 'model.fallback', 'model.override',
+  'reasoning.override', 'model.escalation.spawn',
 ];
 const FALSE_FIELDS = [
   'filesystemWrite', 'networkAccess', 'mcpAccess', 'shellAccess', 'gitWrite',
@@ -30,8 +31,9 @@ export function validateCapabilityEnvelope(envelope, schema, expectedAgentId) {
   for (const denial of REQUIRED_DENIALS) if (!envelope.deniedTools?.includes(denial)) errors.push(`DENIED_TOOL_MISSING:${denial}`);
   if (envelope.evidenceStatus !== 'RUNTIME_ENFORCEMENT_UNVERIFIED') errors.push('RUNTIME_ENFORCEMENT_CLAIM_REJECTED');
   if (envelope.contractStatus !== 'LOCALLY_VALIDATED') errors.push('CONTRACT_STATUS_INVALID');
-  if (!envelope.enforcementLayer?.includes('NON_DISCOVERY_STAGING_BOUNDARY')) errors.push('STAGING_BOUNDARY_LAYER_MISSING');
+  if (!envelope.enforcementLayer?.includes('CANONICAL_SOURCE_PROFILE_HASH')) errors.push('CANONICAL_PROFILE_HASH_LAYER_MISSING');
   if (!envelope.enforcementLayer?.includes('PROFILE_SANDBOX_READ_ONLY')) errors.push('READ_ONLY_SANDBOX_LAYER_MISSING');
+  if (!envelope.enforcementLayer?.includes('CAPABILITY_CONTRACT_DENY_BY_DEFAULT')) errors.push('DENY_BY_DEFAULT_LAYER_MISSING');
   if (expectedAgentId === 'ios-agent-orchestrator') {
     for (const denial of ['agent.install', 'agent.remove', 'package.install', 'subject-matter.write']) {
       if (!envelope.deniedTools?.includes(denial)) errors.push(`ORCHESTRATOR_DENIAL_MISSING:${denial}`);

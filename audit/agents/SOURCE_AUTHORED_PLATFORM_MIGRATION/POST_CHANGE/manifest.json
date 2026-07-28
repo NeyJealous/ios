@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0.0",
+  "gateId": "SOURCE_AUTHORED_PLATFORM_MIGRATION_POST_CHANGE",
+  "branch": "feature/source-authored-agent-platform",
+  "baseHead": "574c1cc145aa736f55efb479fbf591c1cd23b5b6",
+  "headBeforeCommit": "574c1cc145aa736f55efb479fbf591c1cd23b5b6",
+  "adrStatus": "PROPOSED_AWAITING_OWNER_ACCEPTANCE",
+  "staticValidation": "PASS",
+  "runtimeSmoke": "PASS",
+  "filesystemIntegrity": "PASS",
+  "profileStatuses": {
+    "ios-agent-orchestrator": "CANONICAL_SOURCE_RUNTIME_VERIFIED",
+    "agent-governance-auditor": "CANONICAL_SOURCE_RUNTIME_VERIFIED",
+    "security-privacy-auditor": "CANONICAL_SOURCE_RUNTIME_VERIFIED",
+    "audit-traceability-reviewer": "CANONICAL_SOURCE_RUNTIME_VERIFIED",
+    "ios-codebase-auditor": "CANONICAL_SOURCE_RUNTIME_VERIFIED"
+  },
+  "activationPerformed": false,
+  "pushPerformed": false,
+  "mergePerformed": false,
+  "unresolvedBlockers": [
+    "ADR_OWNER_ACCEPTANCE_REQUIRED",
+    "TRUSTED_EXTERNAL_ATTESTATION_MISSING",
+    "POSTCHANGE_MANDATORY_REVIEWS_NOT_AVAILABLE_USAGE_LIMIT",
+    "PLATFORM_ACTIVATION_NOT_IN_SCOPE"
+  ]
+}

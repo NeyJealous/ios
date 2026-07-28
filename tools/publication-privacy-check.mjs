@@ -10,8 +10,9 @@ function gitFiles(root, args, label) {
 
 export function scanPublicationPrivacy(root) {
   const trackedFiles = gitFiles(root, ['ls-files', '-z'], 'git ls-files');
+  const deletedFiles = new Set(gitFiles(root, ['ls-files', '--deleted', '-z'], 'git deleted listing'));
   const untrackedFiles = gitFiles(root, ['ls-files', '--others', '--exclude-standard', '-z'], 'git untracked listing');
-  const files = [...new Set([...trackedFiles, ...untrackedFiles])];
+  const files = [...new Set([...trackedFiles.filter((file) => !deletedFiles.has(file)), ...untrackedFiles])];
   const windowsUserPath = new RegExp('C:' + String.raw`\\Users\\`, 'i');
   const slashUserPath = new RegExp('C:' + '/Users/', 'i');
   const privateWorktreeName = new RegExp(['IOS', 'CODEX'].join('_') + '_', 'i');
@@ -70,7 +71,7 @@ export function scanPublicationPrivacy(root) {
   const trackedArchives = trackedFiles.filter((file) => /\.(?:zip|xlsx?|csv|tsv)$/i.test(file));
   const trackedPrivate = trackedFiles.filter((file) => prohibitedDirectory.test(file.replaceAll('\\', '/')));
   const ok = prohibitedPaths.length === 0 && unsafeInputs.length === 0 && Object.values(findings).every((items) => items.length === 0);
-  return { ok, trackedFiles: trackedFiles.length, untrackedFiles: untrackedFiles.length, scannedFiles: files.length, maximumFileBytes, prohibitedPaths, unsafeInputs, trackedClasp, trackedArchives, trackedPrivate, findings };
+  return { ok, trackedFiles: trackedFiles.length, deletedFiles: deletedFiles.size, untrackedFiles: untrackedFiles.length, scannedFiles: files.length, maximumFileBytes, prohibitedPaths, unsafeInputs, trackedClasp, trackedArchives, trackedPrivate, findings };
 }
 
 function main() {

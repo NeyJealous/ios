@@ -2,7 +2,7 @@ import { validateJsonSchema } from '../json-schema-validator.mjs';
 
 const TRUSTED_TRANSPORTS = new Set(['CODEX_RUNTIME_CHANNEL', 'GITHUB_OIDC_CHANNEL']);
 const REQUIRED_EXPECTED_FIELDS = [
-  'repository', 'branch', 'baseSha', 'headSha', 'profileHash', 'overlayHash',
+  'repository', 'branch', 'baseSha', 'headSha', 'profileHash', 'capabilityContractHash',
   'agentId', 'executionId', 'executionMode', 'independenceStatus',
   'modelRequested', 'modelResolved', 'reasoningLevel', 'startedAt', 'completedAt', 'resultHash',
   'issuerType', 'issuerUri', 'audience', 'trustAnchorId', 'verifierId', 'keyId',
@@ -20,7 +20,7 @@ export function validateTrustedExpectedPlan(expected) {
   const stringFields = REQUIRED_EXPECTED_FIELDS.filter((key) => !['ownerApprovalRequired', 'maxTtlSeconds'].includes(key));
   for (const key of stringFields) if (typeof expected[key] !== 'string' || !expected[key].trim()) errors.push(`ATTESTATION_EXPECTED_PLAN_INVALID: ${key}`);
   for (const key of ['baseSha', 'headSha']) if (typeof expected[key] === 'string' && !/^[0-9a-f]{40}$/.test(expected[key])) errors.push(`ATTESTATION_EXPECTED_PLAN_INVALID: ${key}`);
-  for (const key of ['profileHash', 'overlayHash', 'resultHash']) if (typeof expected[key] === 'string' && !/^[0-9a-f]{64}$/.test(expected[key])) errors.push(`ATTESTATION_EXPECTED_PLAN_INVALID: ${key}`);
+  for (const key of ['profileHash', 'capabilityContractHash', 'resultHash']) if (typeof expected[key] === 'string' && !/^[0-9a-f]{64}$/.test(expected[key])) errors.push(`ATTESTATION_EXPECTED_PLAN_INVALID: ${key}`);
   for (const key of ['startedAt', 'completedAt']) if (typeof expected[key] === 'string' && !Number.isFinite(Date.parse(expected[key]))) errors.push(`ATTESTATION_EXPECTED_PLAN_INVALID: ${key}`);
   if (expected.executionMode !== 'REAL_SUBAGENT') errors.push('ATTESTATION_EXPECTED_PLAN_INVALID: executionMode');
   if (expected.independenceStatus !== 'INDEPENDENT') errors.push('ATTESTATION_EXPECTED_PLAN_INVALID: independenceStatus');
@@ -44,7 +44,7 @@ export function evaluateTrustedAttestation({ attestation, schema, expected, tran
   }
   if (TRANSPORT_ISSUER.get(transport) && attestation?.issuer?.type !== TRANSPORT_ISSUER.get(transport)) errors.push('ATTESTATION_TRANSPORT_ISSUER_MISMATCH');
   const bindings = attestation?.bindings || {};
-  for (const key of ['repository', 'branch', 'baseSha', 'headSha', 'profileHash', 'overlayHash']) {
+  for (const key of ['repository', 'branch', 'baseSha', 'headSha', 'profileHash', 'capabilityContractHash']) {
     if (bindings[key] !== expected?.[key]) errors.push(`ATTESTATION_BINDING_MISMATCH: ${key}`);
   }
   const expectedPaths = [

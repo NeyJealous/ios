@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0.0",
+  "result": "PASS",
+  "checks": {
+    "realTomlParser": "PASS",
+    "agentIntegrityRegistryValidator": "PASS",
+    "modelContractBinding": "PASS",
+    "capabilityValidator": "PASS",
+    "escalationPatternValidator": "PASS",
+    "governanceValidator": "PASS",
+    "unitTests": {"status":"PASS","passed":99,"failed":0,"skipped":1,"skipReason":"Windows symlink capability unavailable"},
+    "privacySecretScan": "PASS",
+    "gitDiffCheck": "PASS"
+  },
+  "activationPerformed": false
+}

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "1.0.0",
+  "validator": "tools/agents/validate-agent-integrity-registry.mjs",
+  "result": "PASS",
+  "agents": 5,
+  "legacyKeysPresent": false,
+  "profileHashesMatch": true,
+  "modelContractsMatch": true,
+  "capabilityContractsExist": true,
+  "activationPerformed": false
+}

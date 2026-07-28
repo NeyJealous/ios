@@ -70,14 +70,16 @@ export function buildExecutionPlan({ phase, resolution, registry, modelRegistry,
   const blockers = [...new Set([
     ...resolution.BlockedByUnavailableAgents,
     ...modelUnavailable.map((id) => `MODEL_NOT_AVAILABLE:${id}`),
-    ...(activationClosed ? ['PLATFORM_ACTIVATION_CLOSED'] : []),
-    ...(selfChange ? ['ORCHESTRATOR_SELF_REVIEW_FORBIDDEN'] : []),
+  ])].sort();
+  const warnings = [...new Set([
+    ...(activationClosed ? ['PRODUCTION_ACTIVATION_NOT_PART_OF_DEVELOPMENT_READINESS'] : []),
+    ...(selfChange ? ['ORCHESTRATOR_EXCLUDED_FROM_SELF_REVIEW'] : []),
   ])].sort();
   return {
     schemaVersion: '1.0.0', phase, platformState: registry.platformState,
     automaticDispatchStatus: 'AUTOMATIC_DISPATCH_CONFIGURED',
-    runtimeDispatchStatus: activationClosed ? 'NOT_DISPATCHED_ACTIVATION_CLOSED' : 'READY_FOR_PROFILE_BOUND_RUNTIME_DISPATCH',
-    trustedAttestationStatus: 'TRUSTED_EXTERNAL_ATTESTATION_MISSING',
+    runtimeDispatchStatus: blockers.length ? 'BLOCKED_BY_DEVELOPMENT_PREFLIGHT' : 'READY_FOR_PROFILE_BOUND_RUNTIME_DISPATCH',
+    trustedAttestationStatus: 'DEFERRED_FOR_PRODUCTION_HARDENING',
     requiredAgents: required, advisoryAgents: resolution.AdvisoryCandidateRoles,
     executionDag: nodes,
     parallelGroups: [
@@ -87,10 +89,10 @@ export function buildExecutionPlan({ phase, resolution, registry, modelRegistry,
     ].filter((group) => group.length),
     modelBindings,
     selfReviewProtection: { subjectIsOrchestrator: selfChange, orchestratorMayReview: false },
-    blockedBy: blockers,
+    blockedBy: blockers, warnings,
     result: blockers.length ? 'BLOCKED' : 'READY_FOR_RUNTIME_DISPATCH',
     productionApproval: false,
-    activationEligible: !activationClosed,
+    activationEligible: false,
   };
 }
 

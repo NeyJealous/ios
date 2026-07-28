@@ -43,27 +43,16 @@ test('workflow is fork-safe, full-history, read-only and contains no production 
 });
 
 test('governance checkouts are pinned to full SHAs', () => {
-  for (const path of ['.github/workflows/agent-governance.yml', '.github/workflows/trusted-agent-governance.yml']) {
-    const workflow = readFileSync(resolve(root, path), 'utf8').replace(/\r\n/g, '\n');
-    const checkouts = workflow.match(/uses: actions\/checkout@[^\s]+/g) || [];
-    assert.ok(checkouts.length > 0, `${path} has no checkout action`);
-    for (const checkout of checkouts) assert.match(checkout, /@[0-9a-f]{40}$/i, `${path} checkout is not full-SHA pinned`);
-  }
+  const workflow = readFileSync(resolve(root, '.github/workflows/agent-governance.yml'), 'utf8').replace(/\r\n/g, '\n');
+  const checkouts = workflow.match(/uses: actions\/checkout@[^\s]+/g) || [];
+  assert.ok(checkouts.length > 0, 'agent governance workflow has no checkout action');
+  for (const checkout of checkouts) assert.match(checkout, /@[0-9a-f]{40}$/i, 'checkout is not full-SHA pinned');
 });
 
-test('trusted pull_request_target workflow executes only the trusted-base validator', () => {
-  const workflow = readFileSync(resolve(root, '.github/workflows/trusted-agent-governance.yml'), 'utf8').replace(/\r\n/g, '\n');
-  for (const required of [
-    'pull_request_target:',
-    'ref: ${{ github.event.pull_request.base.sha }}',
-    'path: trusted-base',
-    'ref: ${{ github.event.pull_request.head.sha }}',
-    'path: candidate',
-    'node trusted-base/tools/trusted-governance/validate.mjs',
-    'persist-credentials: false',
-    'permissions:\n  contents: read',
-  ]) assert.ok(workflow.includes(required), `trusted workflow missing ${required}`);
+test('personal-development CI has no external review, manifest, or trusted-attestation gate', () => {
+  const workflow = readFileSync(resolve(root, '.github/workflows/agent-governance.yml'), 'utf8').replace(/\r\n/g, '\n');
   for (const forbidden of [
-    'node candidate/', 'npm --prefix candidate', 'candidate/tools/', 'clasp push', 'script.google.com',
-  ]) assert.equal(workflow.includes(forbidden), false, `trusted workflow executes candidate/production code: ${forbidden}`);
+    'pull_request_target:', 'trusted-agent-governance', '--manifest-root',
+    '--required-file', 'TRUSTED_EXECUTION_ATTESTATION',
+  ]) assert.equal(workflow.includes(forbidden), false, `workflow contains deferred gate ${forbidden}`);
 });

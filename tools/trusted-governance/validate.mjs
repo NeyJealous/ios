@@ -96,6 +96,12 @@ export function validateTrusted(options) {
   if (headRegistry.PlatformState === 'FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL') {
     errors.push('CONFIGURED_RUNTIME_DISCOVERY_NOT_VERIFIED');
   }
+  if (headRegistry.PlatformState === 'SOURCE_AUTHORED_MIGRATION_PENDING_REVALIDATION') {
+    errors.push('SOURCE_AUTHORED_ACTIVATION_CLOSED');
+  }
+  if (headRegistry.PlatformState === 'SOURCE_AUTHORED_RUNTIME_VERIFIED_ACTIVATION_CLOSED') {
+    errors.push('SOURCE_AUTHORED_ACTIVATION_CLOSED');
+  }
 
   const baseResolution = resolveRequiredAgents({ changedPaths: paths, branch, matrix: baseMatrix });
   const headResolution = resolveRequiredAgents({ changedPaths: paths, branch, matrix: headMatrix });
