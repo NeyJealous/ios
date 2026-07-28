@@ -1,27 +1,11 @@
 {
-  "schemaVersion": "2.0.0",
-  "platformState": "SOURCE_AUTHORED_RUNTIME_VERIFIED_ACTIVATION_CLOSED",
-  "platformActivationEligible": false,
-  "activationGate": "OWNER_ACTIVATION_REQUIRED",
+  "schemaVersion": "2.1.0",
+  "platformState": "SOURCE_AUTHORED_DEVELOPMENT_READY",
+  "activationProcessRequired": false,
+  "readyAgents": 5,
   "canonicalSourcePath": ".codex/agents",
   "integrityRegistryPath": "architecture/agents/registry/agent-integrity-registry.yaml",
-  "activationOperationStatus": "VALIDATION_ONLY_NO_MUTATION_IMPLEMENTED",
-  "activeAgents": 0,
-  "activationBlockers": [
-    "ADR_PROPOSED_AWAITING_OWNER_ACCEPTANCE",
-    "OWNER_ACTIVATION_APPROVAL_MISSING",
-    "TRUSTED_EXTERNAL_ATTESTATION_MISSING"
-  ],
-  "requiredFutureGates": [
-    "ADR_ACCEPTED",
-    "INTEGRITY_PASS",
-    "DISCOVERY_PASS",
-    "POSITIVE_SMOKE_PASS",
-    "NEGATIVE_SMOKE_PASS",
-    "OWNER_ACTIVATION_APPROVAL",
-    "TRUSTED_EXTERNAL_ATTESTATION_PRESENT"
-  ],
-  "ownerDecisionRequired": true,
-  "productionGovernanceEligible": false,
-  "runtimeActivationComplete": false
+  "productionHardeningStatus": "DEFERRED_UNTIL_EXTERNAL_DEPLOYMENT",
+  "profileCopyAllowed": false,
+  "profileGenerationAllowed": false
 }

@@ -1,9 +1,11 @@
 # ADR: Source-authored IOS Agent Profiles
 
-- Status: `PROPOSED_AWAITING_OWNER_ACCEPTANCE`
+- Status: `ACCEPTED`
 - Date: 2026-07-27
+- Accepted: 2026-07-28
+- Owner decision: accepted for personal development of the closed IOS project
 - Related RFC: `rfc/RFC-SOURCE-AUTHORED-IOS-AGENT-PROFILES.md`
-- Supersedes after owner acceptance: `adr/ADR-AGENT-PLATFORM-V2.md`
+- Supersedes: `adr/ADR-AGENT-PLATFORM-V2.md`
 
 ## Context
 
@@ -37,6 +39,23 @@ truth and could overwrite that reviewed behavior.
     route. Actual universal escalation agents are deferred; maximum escalation
     requires explicit owner approval.
 11. Obsidian Mind remains a separate deferred memory subsystem.
+12. The platform is intended for personal development of the closed IOS
+    project. Agent status is limited to `DRAFT` and `READY`.
+13. `READY` requires valid TOML, project discovery, the configured model,
+    positive role smoke, negative capability smoke and read-only filesystem
+    integrity.
+14. Production-grade trusted attestation, cryptographic runtime identity,
+    independent review gates and a separate activation process are not
+    required for personal development. They are deferred to a hardening phase
+    before any external or production deployment.
+
+## Owner acceptance
+
+On 2026-07-28 the owner accepted the source-authored TOML architecture and the
+five current profiles as the canonical development platform. Overlays,
+generator, generated profiles and the composition pipeline remain retired.
+Earlier independent findings remain historical risk documentation but do not
+block use of `READY` agents for personal development.
 
 ## Alternatives considered
 
@@ -63,28 +82,27 @@ overlay, composition or generated-profile equality.
 3. Introduce the integrity registry, schema and fail-closed validator.
 4. Migrate capability, model, review and activation gates to canonical paths.
 5. Remove live overlay, composition and generator artifacts and tests.
-6. Run static validation, then sequential runtime revalidation.
-7. Bind post-change evidence and update statuses only after all checks pass.
+6. Run static validation and sequential runtime smoke.
+7. Set an agent to `READY` only after its required smoke evidence passes.
 
 ## Rollback strategy
 
 Before merge, revert the migration commits in reverse order. Do not regenerate
 or overwrite `.codex/agents/`. Historical v2 artifacts remain recoverable from
-Git history. If runtime revalidation fails, retain the source files with
-`CANONICAL_SOURCE_PENDING_REVALIDATION`, keep activation closed and repair only
-through a new reviewed change.
+Git history. If validation fails, retain the source file with `DRAFT` status
+and repair it through a separate change. Never regenerate or overwrite the
+canonical TOML.
 
 ## Validation requirements
 
-TOML parsing, required fields, unique identity, exact profile SHA, model matrix,
-capability contract, escalation-pattern, secret/privacy, governance, unit and
-runtime smoke checks must pass. Runtime smoke must prove discovery, exact model
-and reasoning, no fallback, role behavior, negative capability refusal,
-escalation output and filesystem integrity.
+TOML parsing, required fields, unique identity, exact canonical path, profile
+SHA, model binding, capability contract, secret/privacy scan and direct-model-
+switching checks must pass. `READY` additionally requires discovery, positive
+role smoke, negative capability smoke and read-only filesystem integrity.
 
 ## Superseded documents
 
-On owner acceptance, this ADR supersedes the target-architecture decisions in
+This accepted ADR supersedes the target-architecture decisions in
 `ADR-AGENT-PLATFORM-V2.md` and the corresponding generated/overlay sections of
 `RFC-AGENT-PLATFORM-V2.md`. Historical audit evidence is not superseded or
 rewritten.
@@ -94,8 +112,7 @@ rewritten.
 - capability envelopes and read-only sandbox;
 - Registry/Review Matrix/Resolver fail-closed governance;
 - pinned upstream provenance and license snapshots;
-- owner approval, anti-self-review and trusted-evidence requirements;
-- activation as a separate evidence-bound governance decision.
+- owner control of production, merge and remote-write decisions.
 
 ## Removed contracts
 
@@ -104,6 +121,8 @@ rewritten.
 - generated provisional profile equality;
 - overlay, composition and generated hashes;
 - file-copy activation/deactivation.
+- mandatory trusted attestation or separate platform activation for personal
+  development.
 
 ## Deferred work
 
@@ -111,3 +130,4 @@ rewritten.
 - maximum escalation agent with owner approval;
 - orchestrator runtime routing implementation;
 - Obsidian Mind integration.
+- production hardening before any external deployment.

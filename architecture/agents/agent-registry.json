@@ -1,13 +1,13 @@
 {
-  "Version": "2.2.0-source-authored-runtime-verified",
+  "Version": "2.3.0-source-authored-development",
   "Purpose": "Compatibility index; canonical integrity source is architecture/agents/registry/agent-integrity-registry.yaml.",
-  "PlatformState": "SOURCE_AUTHORED_RUNTIME_VERIFIED_ACTIVATION_CLOSED",
-  "ActiveCount": 0,
+  "PlatformState": "SOURCE_AUTHORED_DEVELOPMENT_READY",
+  "ReadyCount": 5,
   "Roles": [
-    {"AgentId":"ios-agent-orchestrator","Status":"CANONICAL_SOURCE_RUNTIME_VERIFIED","ActivationEligible":false},
-    {"AgentId":"agent-governance-auditor","Status":"CANONICAL_SOURCE_RUNTIME_VERIFIED","ActivationEligible":false},
-    {"AgentId":"security-privacy-auditor","Status":"CANONICAL_SOURCE_RUNTIME_VERIFIED","ActivationEligible":false},
-    {"AgentId":"audit-traceability-reviewer","Status":"CANONICAL_SOURCE_RUNTIME_VERIFIED","ActivationEligible":false},
-    {"AgentId":"ios-codebase-auditor","Status":"CANONICAL_SOURCE_RUNTIME_VERIFIED","ActivationEligible":false}
+    {"AgentId":"ios-agent-orchestrator","Status":"READY"},
+    {"AgentId":"agent-governance-auditor","Status":"READY"},
+    {"AgentId":"security-privacy-auditor","Status":"READY"},
+    {"AgentId":"audit-traceability-reviewer","Status":"READY"},
+    {"AgentId":"ios-codebase-auditor","Status":"READY"}
   ]
 }

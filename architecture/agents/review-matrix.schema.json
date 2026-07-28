@@ -6,11 +6,11 @@
   "additionalProperties": false,
   "required": ["Version", "PlatformState", "TaskTypes", "AlwaysRequiredAgents", "BaselineControls", "Rules", "FailClosed", "Transition"],
   "properties": {
-    "Version": { "enum": ["2.1.0-provisional", "2.1.0-development-active", "2.1.0-configured-runtime-unverified", "2.2.0-source-authored-pending-revalidation", "2.2.0-source-authored-runtime-verified"] },
-    "PlatformState": { "enum": ["PROVISIONAL_PLATFORM_BUILD", "FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT", "FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL", "SOURCE_AUTHORED_MIGRATION_PENDING_REVALIDATION", "SOURCE_AUTHORED_RUNTIME_VERIFIED_ACTIVATION_CLOSED"] },
+    "Version": { "const": "2.3.0-source-authored-development" },
+    "PlatformState": { "const": "SOURCE_AUTHORED_DEVELOPMENT_READY" },
     "TaskTypes": { "type": "array", "minItems": 7, "uniqueItems": true, "items": { "type": "string" } },
     "AlwaysRequiredAgents": { "const": [] },
-    "BaselineControls": { "type": "array", "contains": { "enum": ["activation-closed", "development-activation-owner-authorized", "runtime-discovery-unverified"] }, "minContains": 1 },
+    "BaselineControls": { "type": "array", "contains": { "const": "runtime-discovery" }, "minContains": 1 },
     "Rules": {
       "type": "array",
       "minItems": 7,
@@ -37,7 +37,7 @@
         "UnknownTaskType": { "const": "mixed/unknown" },
         "EmptyDiff": { "const": "BLOCK" },
         "RequiredAgents": { "type": "array", "minItems": 4, "uniqueItems": true },
-        "MandatoryAvailability": { "enum": ["PROVISIONAL_AVAILABLE_ACTIVATION_CLOSED", "FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT", "CONFIGURED_RUNTIME_NOT_AVAILABLE", "RUNTIME_AVAILABLE_ACTIVATION_CLOSED"] },
+        "MandatoryAvailability": { "const": "READY_FOR_PERSONAL_DEVELOPMENT" },
         "OverallResult": { "const": "BLOCKED" }
       }
     },
@@ -53,7 +53,7 @@
         "OldResolverReferences": { "const": 0 },
         "OldManifestsAccepted": { "const": false },
         "ResolverBehavior": { "const": "FAIL_CLOSED" },
-        "ActivationGate": { "enum": ["CLOSED", "OPEN_FOR_PROJECT_DEVELOPMENT", "CONFIGURED_RUNTIME_UNVERIFIED", "OWNER_ACTIVATION_REQUIRED"] }
+        "ActivationGate": { "const": "NOT_REQUIRED_FOR_PERSONAL_DEVELOPMENT" }
       }
     },
     "AntiTamperPaths": { "type": "array", "items": { "type": "string" } },

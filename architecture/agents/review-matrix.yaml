@@ -1,6 +1,6 @@
 {
-  "Version": "2.2.0-source-authored-runtime-verified",
-  "PlatformState": "SOURCE_AUTHORED_RUNTIME_VERIFIED_ACTIVATION_CLOSED",
+  "Version": "2.3.0-source-authored-development",
+  "PlatformState": "SOURCE_AUTHORED_DEVELOPMENT_READY",
   "TaskTypes": [
     "orchestrator self-change",
     "upstream/profile/model",
@@ -17,7 +17,7 @@
     "privacy",
     "secret-scan",
     "architecture-impact",
-    "runtime-discovery-unverified"
+    "runtime-discovery"
   ],
   "Rules": [
     {
@@ -89,7 +89,7 @@
         "privacy",
         "secret-scan",
         "governance-tamper-check",
-        "runtime-discovery-unverified"
+        "runtime-discovery"
       ]
     },
     {
@@ -109,7 +109,7 @@
       "RequiredControls": [
         "architecture-impact",
         "traceability",
-        "runtime-discovery-unverified"
+        "runtime-discovery"
       ]
     },
     {
@@ -124,7 +124,7 @@
       ],
       "RequiredControls": [
         "traceability",
-        "runtime-discovery-unverified"
+        "runtime-discovery"
       ]
     },
     {
@@ -141,7 +141,7 @@
       "RequiredControls": [
         "determinism",
         "no-production-access",
-        "runtime-discovery-unverified"
+        "runtime-discovery"
       ]
     },
     {
@@ -166,7 +166,7 @@
       "RequiredControls": [
         "mandatory-domain-reviewer-not-integrated",
         "no-production-write",
-        "runtime-discovery-unverified"
+        "runtime-discovery"
       ]
     }
   ],
@@ -179,18 +179,18 @@
       "security-privacy-auditor",
       "audit-traceability-reviewer"
     ],
-    "MandatoryAvailability": "RUNTIME_AVAILABLE_ACTIVATION_CLOSED",
+    "MandatoryAvailability": "READY_FOR_PERSONAL_DEVELOPMENT",
     "OverallResult": "BLOCKED"
   },
   "Transition": {
-    "ActiveCustomAgents": 0,
+    "ActiveCustomAgents": 5,
     "ProvisionalAgents": 0,
     "OldRegistryReferences": 0,
     "OldMatrixReferences": 0,
     "OldResolverReferences": 0,
     "OldManifestsAccepted": false,
     "ResolverBehavior": "FAIL_CLOSED",
-    "ActivationGate": "OWNER_ACTIVATION_REQUIRED"
+    "ActivationGate": "NOT_REQUIRED_FOR_PERSONAL_DEVELOPMENT"
   },
   "AntiTamperPaths": [
     "AGENTS.md",

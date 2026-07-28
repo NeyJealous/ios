@@ -1,8 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "sourceOfTruth": ".codex/agents/*.toml",
-  "platformStatus": "SOURCE_AUTHORED_RUNTIME_VERIFIED",
-  "activationAllowed": false,
+  "platformStatus": "SOURCE_AUTHORED_DEVELOPMENT_READY",
   "agents": [
     {
       "agentId": "ios-agent-orchestrator",
@@ -18,7 +17,7 @@
       "positiveSmokeStatus": "PASS",
       "negativeSmokeStatus": "PASS",
       "runtimeEvidencePath": "audit/agents/SOURCE_AUTHORED_PLATFORM_MIGRATION/POST_CHANGE/runtime-smoke-results.json",
-      "canonicalStatus": "CANONICAL_SOURCE_RUNTIME_VERIFIED",
+      "status": "READY",
       "lastVerifiedAt": "2026-07-27T10:17:52Z"
     },
     {
@@ -35,7 +34,7 @@
       "positiveSmokeStatus": "PASS",
       "negativeSmokeStatus": "PASS",
       "runtimeEvidencePath": "audit/agents/SOURCE_AUTHORED_PLATFORM_MIGRATION/POST_CHANGE/runtime-smoke-results.json",
-      "canonicalStatus": "CANONICAL_SOURCE_RUNTIME_VERIFIED",
+      "status": "READY",
       "lastVerifiedAt": "2026-07-27T10:17:52Z"
     },
     {
@@ -52,7 +51,7 @@
       "positiveSmokeStatus": "PASS",
       "negativeSmokeStatus": "PASS",
       "runtimeEvidencePath": "audit/agents/SOURCE_AUTHORED_PLATFORM_MIGRATION/POST_CHANGE/runtime-smoke-results.json",
-      "canonicalStatus": "CANONICAL_SOURCE_RUNTIME_VERIFIED",
+      "status": "READY",
       "lastVerifiedAt": "2026-07-27T10:17:52Z"
     },
     {
@@ -69,7 +68,7 @@
       "positiveSmokeStatus": "PASS",
       "negativeSmokeStatus": "PASS",
       "runtimeEvidencePath": "audit/agents/SOURCE_AUTHORED_PLATFORM_MIGRATION/POST_CHANGE/runtime-smoke-results.json",
-      "canonicalStatus": "CANONICAL_SOURCE_RUNTIME_VERIFIED",
+      "status": "READY",
       "lastVerifiedAt": "2026-07-27T10:17:52Z"
     },
     {
@@ -86,7 +85,7 @@
       "positiveSmokeStatus": "PASS",
       "negativeSmokeStatus": "PASS",
       "runtimeEvidencePath": "audit/agents/SOURCE_AUTHORED_PLATFORM_MIGRATION/POST_CHANGE/runtime-smoke-results.json",
-      "canonicalStatus": "CANONICAL_SOURCE_RUNTIME_VERIFIED",
+      "status": "READY",
       "lastVerifiedAt": "2026-07-27T10:17:52Z"
     }
   ]

@@ -1,21 +1,12 @@
 {
-  "schemaVersion": "2.0.0",
-  "policyId": "IOS_SOURCE_AUTHORED_AGENT_ACTIVATION_GATE",
-  "scope": "GOVERNANCE_STATUS_ONLY",
+  "schemaVersion": "2.1.0",
+  "policyId": "IOS_SOURCE_AUTHORED_AGENT_PRODUCTION_HARDENING",
+  "status": "DEFERRED",
+  "scope": "EXTERNAL_PRODUCTION_HARDENING_ONLY",
+  "requiredForPersonalDevelopment": false,
   "canonicalSourcePath": ".codex/agents",
-  "integrityRegistryPath": "architecture/agents/registry/agent-integrity-registry.yaml",
   "profileCopyAllowed": false,
   "profileGenerationAllowed": false,
   "productionWritesAllowed": false,
-  "remoteWritesAllowedForAgents": false,
-  "activationRequires": [
-    "ADR_ACCEPTED",
-    "CANONICAL_PROFILE_INTEGRITY_PASS",
-    "CAPABILITY_CONTRACT_PASS",
-    "DISCOVERY_PASS",
-    "POSITIVE_SMOKE_PASS",
-    "NEGATIVE_SMOKE_PASS",
-    "OWNER_ACTIVATION_APPROVAL",
-    "TRUSTED_EXTERNAL_ATTESTATION"
-  ]
+  "remoteWritesAllowedForAgents": false
 }

@@ -2,49 +2,43 @@
   "schemaVersion": "2.0.0",
   "sourceOfTruth": "architecture/agents/registry/agent-integrity-registry.yaml",
   "canonicalBranch": "integration/ios-current",
-  "platformState": "SOURCE_AUTHORED_RUNTIME_VERIFIED_ACTIVATION_CLOSED",
-  "activationAllowed": false,
-  "activeAgents": 0,
+  "platformState": "SOURCE_AUTHORED_DEVELOPMENT_READY",
+  "readyAgents": 5,
   "agents": [
     {
       "agentId": "ios-agent-orchestrator",
-      "status": "CANONICAL_SOURCE_RUNTIME_VERIFIED",
+      "status": "READY",
       "profilePath": ".codex/agents/ios-agent-orchestrator.toml",
       "capabilityEnvelopePath": "architecture/agents/contracts/capabilities/ios-agent-orchestrator.json",
-      "activationEligible": false,
-      "platformActivationEligible": false
+      "developmentUseAllowed": true
     },
     {
       "agentId": "agent-governance-auditor",
-      "status": "CANONICAL_SOURCE_RUNTIME_VERIFIED",
+      "status": "READY",
       "profilePath": ".codex/agents/agent-governance-auditor.toml",
       "capabilityEnvelopePath": "architecture/agents/contracts/capabilities/agent-governance-auditor.json",
-      "activationEligible": false,
-      "platformActivationEligible": false
+      "developmentUseAllowed": true
     },
     {
       "agentId": "security-privacy-auditor",
-      "status": "CANONICAL_SOURCE_RUNTIME_VERIFIED",
+      "status": "READY",
       "profilePath": ".codex/agents/security-privacy-auditor.toml",
       "capabilityEnvelopePath": "architecture/agents/contracts/capabilities/security-privacy-auditor.json",
-      "activationEligible": false,
-      "platformActivationEligible": false
+      "developmentUseAllowed": true
     },
     {
       "agentId": "audit-traceability-reviewer",
-      "status": "CANONICAL_SOURCE_RUNTIME_VERIFIED",
+      "status": "READY",
       "profilePath": ".codex/agents/audit-traceability-reviewer.toml",
       "capabilityEnvelopePath": "architecture/agents/contracts/capabilities/audit-traceability-reviewer.json",
-      "activationEligible": false,
-      "platformActivationEligible": false
+      "developmentUseAllowed": true
     },
     {
       "agentId": "ios-codebase-auditor",
-      "status": "CANONICAL_SOURCE_RUNTIME_VERIFIED",
+      "status": "READY",
       "profilePath": ".codex/agents/ios-codebase-auditor.toml",
       "capabilityEnvelopePath": "architecture/agents/contracts/capabilities/ios-codebase-auditor.json",
-      "activationEligible": false,
-      "platformActivationEligible": false
+      "developmentUseAllowed": true
     }
   ]
 }

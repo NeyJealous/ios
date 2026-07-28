@@ -52,6 +52,11 @@ export function validateAgentIntegrityRegistry(root) {
     for (const entry of registry.agents || []) {
       if (ids.has(entry.agentId)) errors.push(`${entry.agentId}:DUPLICATE_AGENT_ID`);
       ids.add(entry.agentId);
+      const expectedProfilePath = `.codex/agents/${entry.agentId}.toml`;
+      if (entry.profilePath !== expectedProfilePath) {
+        errors.push(`${entry.agentId}:PROFILE_PATH_MUST_EQUAL:${expectedProfilePath}`);
+        continue;
+      }
       const profile = resolve(root, entry.profilePath);
       if (!existsSync(profile)) {
         errors.push(`${entry.agentId}:PROFILE_MISSING`);
@@ -91,11 +96,11 @@ export function validateAgentIntegrityRegistry(root) {
         'recommended_escalation_class', 'owner_approval_required',
         'prohibited_next_actions',
       ]) if (!body.includes(field)) errors.push(`${entry.agentId}:ESCALATION_FIELD_MISSING:${field}`);
-      if (entry.canonicalStatus === 'CANONICAL_SOURCE_RUNTIME_VERIFIED') {
+      if (entry.status === 'READY') {
         if (entry.discoveryStatus !== 'PASS' || entry.positiveSmokeStatus !== 'PASS' ||
             entry.negativeSmokeStatus !== 'PASS' || !entry.lastVerifiedAt ||
             !entry.runtimeEvidencePath || !existsSync(resolve(root, entry.runtimeEvidencePath))) {
-          errors.push(`${entry.agentId}:RUNTIME_VERIFIED_WITHOUT_COMPLETE_EVIDENCE`);
+          errors.push(`${entry.agentId}:READY_WITHOUT_SMOKE_EVIDENCE`);
         }
       }
     }

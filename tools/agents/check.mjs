@@ -8,10 +8,18 @@ const steps = [
   ['upstream provenance', 'tools/agents/validate-upstream-integrity.mjs', []],
   ['canonical integrity', 'tools/agents/validate-agent-integrity-registry.mjs', [root]],
   ['capability envelopes', 'tools/agents/validate-capability-envelopes.mjs', [root]],
-  ['activation boundary', 'tools/agents/validate-activation-boundary.mjs', [root]],
   ['first-wave validation', 'tools/agents/validate-first-wave-agents.mjs', ['--root', root]],
   ['governance structures', 'tools/validate-agent-governance.mjs', ['--root', root, '--base', 'HEAD', '--head', 'HEAD']],
-  ['governance tests', '--test', ['tests/agent-governance/*.test.mjs']],
+  ['development agent tests', '--test', [
+    'tests/agent-governance/capability-envelope.test.mjs',
+    'tests/agent-governance/model-availability.test.mjs',
+    'tests/agent-governance/orchestrator.test.mjs',
+    'tests/agent-governance/privacy-scan.test.mjs',
+    'tests/agent-governance/registry-matrix.test.mjs',
+    'tests/agent-governance/resolver.test.mjs',
+    'tests/agent-governance/source-authored-agent-platform.test.mjs',
+    'tests/agent-governance/upstream-selection.test.mjs',
+  ]],
   ['privacy', 'tools/publication-privacy-check.mjs', []],
 ];
 const results = [];

@@ -4,12 +4,11 @@
   "title": "IOS Agent Integrity Registry",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "sourceOfTruth", "platformStatus", "activationAllowed", "agents"],
+  "required": ["schemaVersion", "sourceOfTruth", "platformStatus", "agents"],
   "properties": {
     "schemaVersion": {"const": "1.0.0"},
     "sourceOfTruth": {"const": ".codex/agents/*.toml"},
-    "platformStatus": {"enum": ["SOURCE_AUTHORED_MIGRATION", "SOURCE_AUTHORED_RUNTIME_VERIFIED"]},
-    "activationAllowed": {"const": false},
+    "platformStatus": {"const": "SOURCE_AUTHORED_DEVELOPMENT_READY"},
     "agents": {
       "type": "array",
       "minItems": 5,
@@ -21,11 +20,11 @@
           "agentId", "profilePath", "profileSha256", "profileVersion", "upstream",
           "model", "reasoning", "sandboxMode", "capabilityContractPath",
           "discoveryStatus", "positiveSmokeStatus", "negativeSmokeStatus",
-          "runtimeEvidencePath", "canonicalStatus", "lastVerifiedAt"
+          "runtimeEvidencePath", "status", "lastVerifiedAt"
         ],
         "properties": {
           "agentId": {"type": "string", "minLength": 1},
-          "profilePath": {"type": "string", "pattern": "^\\.codex/agents/[^/]+\\.toml$"},
+          "profilePath": {"type": "string", "pattern": "^\\.codex/agents/[a-z0-9-]+\\.toml$"},
           "profileSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
           "profileVersion": {"type": "string", "minLength": 1},
           "upstream": {
@@ -46,7 +45,7 @@
           "positiveSmokeStatus": {"enum": ["PENDING_REVALIDATION", "PASS", "FAIL"]},
           "negativeSmokeStatus": {"enum": ["PENDING_REVALIDATION", "PASS", "FAIL"]},
           "runtimeEvidencePath": {"type": ["string", "null"]},
-          "canonicalStatus": {"enum": ["CANONICAL_SOURCE_PENDING_REVALIDATION", "CANONICAL_SOURCE_RUNTIME_VERIFIED"]},
+          "status": {"enum": ["DRAFT", "READY"]},
           "lastVerifiedAt": {"type": ["string", "null"]}
         }
       }

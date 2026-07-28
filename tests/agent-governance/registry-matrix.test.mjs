@@ -27,16 +27,16 @@ test('all governance JSON schemas are syntactically valid draft 2020-12 document
   }
 });
 
-test('source-authored first wave is runtime-verified but activation-closed', () => {
-  assert.equal(registry.PlatformState, 'SOURCE_AUTHORED_RUNTIME_VERIFIED_ACTIVATION_CLOSED');
-  assert.equal(registry.ActiveCustomAgents, 0);
+test('source-authored first wave is READY for personal development', () => {
+  assert.equal(registry.PlatformState, 'SOURCE_AUTHORED_DEVELOPMENT_READY');
+  assert.equal(registry.ActiveCustomAgents, 5);
   assert.equal(registry.ProvisionedAgents, 5);
   assert.equal(registry.Agents.length, 5);
-  assert.ok(registry.Agents.every((agent) => agent.Status === 'CANONICAL_SOURCE_RUNTIME_VERIFIED' && agent.ActivationEligible === false));
-  assert.equal(matrix.PlatformState, 'SOURCE_AUTHORED_RUNTIME_VERIFIED_ACTIVATION_CLOSED');
+  assert.ok(registry.Agents.every((agent) => agent.Status === 'READY' && agent.ActivationEligible === false));
+  assert.equal(matrix.PlatformState, 'SOURCE_AUTHORED_DEVELOPMENT_READY');
   assert.deepEqual(matrix.AlwaysRequiredAgents, []);
   assert.equal(matrix.FailClosed.RequiredAgents.length, 4);
-  assert.equal(matrix.Transition.ActivationGate, 'OWNER_ACTIVATION_REQUIRED');
+  assert.equal(matrix.Transition.ActivationGate, 'NOT_REQUIRED_FOR_PERSONAL_DEVELOPMENT');
   const serialized = JSON.stringify({ registry, matrix });
   for (const oldId of ['APPS_SCRIPT_REVIEWER', 'ARCHITECTURE_REVIEWER', 'BOND_SPECIALIST', 'COMPANY_RATING_REVIEWER', 'DOCUMENTATION_REVIEWER', 'GOOGLE_SHEETS_REVIEWER', 'INVESTMENT_LOGIC_REVIEWER', 'PERFORMANCE_AUDITOR', 'TEST_GENERATOR', 'UX_REVIEWER']) {
     assert.equal(serialized.includes(oldId), false, `stale agent identifier: ${oldId}`);
@@ -52,15 +52,21 @@ const cases = [
 ];
 
 for (const [label, path, requiredControl] of cases) {
-  test(`configured resolver routes ${label} but blocks dispatch`, () => {
+  test(`configured resolver routes ${label} for development use`, () => {
     const result = resolveRequiredAgents({ changedPaths: [path], matrix });
     assert.ok(result.RequiredAgents.length > 0);
-    assert.equal(result.MandatoryAgentAvailability, 'RUNTIME_AVAILABLE_ACTIVATION_CLOSED');
-    assert.equal(result.OverallResult, 'BLOCKED');
-    assert.equal(result.FailClosed, true);
-    assert.ok(result.BlockedByUnavailableAgents.length > 0);
+    assert.equal(result.MandatoryAgentAvailability, 'READY_FOR_PERSONAL_DEVELOPMENT');
+    if (label === 'production domain') {
+      assert.equal(result.OverallResult, 'BLOCKED');
+      assert.equal(result.FailClosed, true);
+      assert.deepEqual(result.BlockedByUnavailableAgents, ['MANDATORY_DOMAIN_REVIEWER_NOT_INTEGRATED']);
+    } else {
+      assert.equal(result.OverallResult, 'RESOLVED');
+      assert.equal(result.FailClosed, false);
+      assert.deepEqual(result.BlockedByUnavailableAgents, []);
+    }
     assert.ok(result.RequiredControls.includes(requiredControl));
-    assert.ok(result.RequiredControls.includes('runtime-discovery-unverified') || result.RequiredControls.includes('runtime-evidence'));
+    assert.ok(result.RequiredControls.includes('runtime-discovery') || result.RequiredControls.includes('runtime-evidence'));
   });
 }
 
@@ -72,7 +78,7 @@ test('mixed and unknown changes require governance wave and remain fail-closed',
   for (const agentId of matrix.FailClosed.RequiredAgents) assert.ok(result.RequiredAgents.includes(agentId));
   assert.ok(result.RequiredAgents.includes('ios-codebase-auditor'));
   assert.deepEqual(result.UnknownPaths, ['unclassified/file.weird']);
-  assert.equal(result.MandatoryAgentAvailability, 'RUNTIME_AVAILABLE_ACTIVATION_CLOSED');
+  assert.equal(result.MandatoryAgentAvailability, 'READY_FOR_PERSONAL_DEVELOPMENT');
   assert.equal(result.OverallResult, 'BLOCKED');
-  assert.ok(result.BlockedByUnavailableAgents.length > 0);
+  assert.deepEqual(result.BlockedByUnavailableAgents, ['MANDATORY_DOMAIN_REVIEWER_NOT_INTEGRATED']);
 });

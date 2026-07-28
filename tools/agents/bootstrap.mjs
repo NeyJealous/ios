@@ -8,7 +8,6 @@ const steps = [
   ['validate locked upstream provenance', 'tools/agents/validate-upstream-integrity.mjs'],
   ['validate canonical profile integrity', 'tools/agents/validate-agent-integrity-registry.mjs'],
   ['validate capability envelopes', 'tools/agents/validate-capability-envelopes.mjs'],
-  ['validate activation governance boundary', 'tools/agents/validate-activation-boundary.mjs'],
 ];
 const results = [];
 for (const [name, script] of steps) {
