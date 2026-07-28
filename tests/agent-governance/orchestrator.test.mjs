@@ -8,14 +8,17 @@ const root = resolve(import.meta.dirname, '../..');
 const matrix = readJsonCompatibleYaml(resolve(root, 'architecture/agents/review-matrix.yaml'));
 const platform = loadPlatform(root);
 
-test('governance plan is deterministic, parallel and activation-closed after rollback', () => {
+test('governance plan is deterministic and ready for personal-development dispatch', () => {
   const resolution = resolveRequiredAgents({ changedPaths: ['architecture/agents/registry/agents.yaml'], matrix });
   const first = buildExecutionPlan({ phase: 'PRE_CHANGE', resolution, ...platform });
   const second = buildExecutionPlan({ phase: 'PRE_CHANGE', resolution, ...platform });
   assert.deepEqual(first, second);
-  assert.equal(first.result, 'BLOCKED');
-  assert.ok(first.blockedBy.includes('PLATFORM_ACTIVATION_CLOSED'));
-  assert.equal(first.runtimeDispatchStatus, 'NOT_DISPATCHED_ACTIVATION_CLOSED');
+  assert.equal(first.result, 'READY_FOR_RUNTIME_DISPATCH');
+  assert.deepEqual(first.blockedBy, []);
+  assert.ok(first.warnings.includes('PRODUCTION_ACTIVATION_NOT_PART_OF_DEVELOPMENT_READINESS'));
+  assert.equal(first.runtimeDispatchStatus, 'READY_FOR_PROFILE_BOUND_RUNTIME_DISPATCH');
+  assert.equal(first.trustedAttestationStatus, 'DEFERRED_FOR_PRODUCTION_HARDENING');
+  assert.equal(first.activationEligible, false);
   assert.ok(first.parallelGroups.some((group) => group.length >= 3));
   assert.ok(first.modelBindings.every((binding) => binding.silentDowngradeUsed === false));
 });
@@ -25,7 +28,8 @@ test('orchestrator self-change cannot schedule orchestrator as its own reviewer'
   const plan = buildExecutionPlan({ phase: 'POST_CHANGE', resolution, ...platform });
   assert.equal(plan.selfReviewProtection.subjectIsOrchestrator, true);
   assert.equal(plan.executionDag.some((node) => node.id === 'ios-agent-orchestrator'), false);
-  assert.ok(plan.blockedBy.includes('ORCHESTRATOR_SELF_REVIEW_FORBIDDEN'));
+  assert.ok(plan.warnings.includes('ORCHESTRATOR_EXCLUDED_FROM_SELF_REVIEW'));
+  assert.equal(plan.result, 'READY_FOR_RUNTIME_DISPATCH');
 });
 
 test('DAG cycles and unknown dependencies are rejected', () => {

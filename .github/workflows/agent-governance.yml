@@ -64,38 +64,8 @@ jobs:
       - name: Run governance regression suite
         run: node --test tests/agent-governance/*.test.mjs
 
-      - name: Resolve required agents from full diff
-        run: >-
-          node tools/resolve-required-agents.mjs
-          --base "$BASE_SHA"
-          --head "$HEAD_SHA"
-          --branch "$HEAD_BRANCH"
-          --output "$RUNNER_TEMP/required-agents.json"
-
-      - name: Validate manifest and mandatory reports
-        run: >-
-          node tools/validate-agent-governance.mjs
-          --manifest-root audit/agents
-          --required-file "$RUNNER_TEMP/required-agents.json"
-          --branch "$HEAD_BRANCH"
-          --base "$BASE_SHA"
-          --head "$HEAD_SHA"
-
       - name: Privacy and secret scan
         run: node tools/publication-privacy-check.mjs
 
-      - name: Publish deterministic summary
-        if: always()
-        shell: bash
-        run: |
-          {
-            echo '## Agent Governance'
-            echo
-            echo '```json'
-            if test -f "$RUNNER_TEMP/required-agents.json"; then
-              cat "$RUNNER_TEMP/required-agents.json"
-            else
-              echo '{"status":"resolver output unavailable"}'
-            fi
-            echo '```'
-          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Check patch formatting
+        run: git diff --check "$BASE_SHA" "$HEAD_SHA"

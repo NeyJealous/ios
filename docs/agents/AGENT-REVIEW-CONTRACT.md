@@ -1,46 +1,45 @@
 # Agent Review Contract
 
-Каждый review создаёт:
+## Development use
+
+Agent reviews are local, read-only quality controls for the owner-operated IOS
+project. They are executed when requested by the task, selected by the owner,
+or useful for a high-risk change. Independent GitHub approval and external
+trusted attestation are not mandatory for ordinary personal development.
+
+## Evidence format
+
+When a versioned review package is required, use:
 
 - `audit/agents/<GATE>/<AGENT_ID>.json`;
-- `docs/reviews/<GATE>/<AGENT_ID>.md`.
+- `docs/reviews/<GATE>/<AGENT_ID>.md`;
+- optional `audit/agents/<GATE>/manifest.json`.
 
-Обязательные поля: AgentId, AgentVersion, GateId, Branch, CommitSHA,
-ReviewScope, FilesReviewed, SpecificationReferences, ChecksPerformed,
-Findings, Severity, Evidence, RequiredFixes, ResidualRisk, Status, Timestamp и
-ExecutionMode. JSON schema: `architecture/agents/review-contract.schema.json`.
+The JSON contract retains:
 
-ExecutionMode: `REAL_SUBAGENT`, `CODEX_ROLE_SIMULATION`, `CI_VALIDATOR`,
-`MANUAL_REVIEW`, `NOT_AVAILABLE`. Для `REAL_SUBAGENT` нужен
-`AgentThreadId=<id>` в evidence. Симуляция не является независимым review.
+`AgentId`, `AgentVersion`, `GateId`, `Branch`, `CommitSHA`, `ReviewScope`,
+`FilesReviewed`, `SpecificationReferences`, `ChecksPerformed`, `Findings`,
+`Severity`, `Evidence`, `RequiredFixes`, `ResidualRisk`, `Status`,
+`Timestamp`, and `ExecutionMode`.
 
-Status: `PASS`, `PASS_WITH_WARNINGS`, `BLOCKED`, `FAIL`, `NOT_APPLICABLE`,
-`NOT_EXECUTED`. Severity: `INFO`, `LOW`, `MEDIUM`, `HIGH`, `CRITICAL`,
-`BLOCKER`.
+Execution modes remain `REAL_SUBAGENT`, `CODEX_ROLE_SIMULATION`,
+`CI_VALIDATOR`, `MANUAL_REVIEW`, and `NOT_AVAILABLE`. Simulation must never be
+reported as independent execution.
 
-- CRITICAL/BLOCKER блокируют PR.
-- Обязательный NOT_EXECUTED блокирует PR.
-- NOT_APPLICABLE требует конкретного evidence и residual-risk justification.
-- PASS без проверяемого evidence недействителен.
+## Results
 
-Manifest `audit/agents/<GATE>/manifest.json` содержит GateId, TaskType, Branch,
-BaseSHA, HeadSHA, ChangedPaths, ApplicableAgents, RequiredAgents,
-ExecutedAgents, MissingAgents, BlockingFindings, Warnings, ArchitectureImpact,
-SecurityImpact, ProductionImpact и OverallStatus (`PASS`, `BLOCKED`, `FAIL`,
-`INCOMPLETE`).
+Review status values remain `PASS`, `PASS_WITH_WARNINGS`, `BLOCKED`, `FAIL`,
+`NOT_APPLICABLE`, and `NOT_EXECUTED`. Severity values remain `INFO`, `LOW`,
+`MEDIUM`, `HIGH`, `CRITICAL`, and `BLOCKER`.
 
-Опциональный `OwnerBypass` фиксирует применение
-`SOLO_MAINTAINER_OWNER_BYPASS`. Это approval metadata, а не agent review:
-`ReviewMode`, `IndependentReviewer`, `CIEvidence`, `HumanAuthorization`,
-`AuthorizedActor`, `Reason`, `Scope`, `OtherProtectionsBypassed`,
-`ProductionDeploymentAuthorized`, `UnresolvedConversations` и `Timestamp`.
-Разрешено только `Scope=APPROVAL_REQUIREMENT_ONLY`; остальные protections и
-production/deployment gates должны оставаться необойдёнными.
+No review may fabricate execution, evidence, identity, model resolution or
+filesystem integrity. A recorded `CRITICAL` or `BLOCKER` must be presented to
+the owner, but historical findings do not automatically block use of an agent
+that the owner has separately accepted as `READY`.
 
-## Reviewed SHA и attestation tail
+## Production boundary
 
-Самоссылающийся commit невозможен: файл внутри commit не может надёжно хранить
-SHA этого же commit. Поэтому reports могут находиться в последующем attestation
-commit. Manifest `HeadSHA` указывает последний reviewed implementation commit;
-CI разрешает хвост только из `audit/agents/**` и `docs/reviews/**`. Любой другой
-файл после reviewed SHA делает evidence stale и блокирует PR.
+This development contract does not authorize deployment, production writes,
+secret access, repository visibility changes or bypass of a future
+production-hardening gate. Independent approvals and trusted attestations may
+become mandatory in that separate phase.
