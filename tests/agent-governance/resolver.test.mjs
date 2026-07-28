@@ -51,7 +51,7 @@ test('a valid exception cannot override rollback activation closure', () => {
     changedPaths: ['docs/guide.md'], matrix, exceptions: [valid], ownerApproved: true,
   });
   assert.equal(result.ExceptionResults[0].valid, true);
-  assert.equal(result.MandatoryAgentAvailability, 'CONFIGURED_RUNTIME_NOT_AVAILABLE');
+  assert.equal(result.MandatoryAgentAvailability, 'RUNTIME_AVAILABLE_ACTIVATION_CLOSED');
   assert.equal(result.OverallResult, 'BLOCKED');
   assert.equal(result.FailClosed, true);
   assert.ok(result.BlockedByUnavailableAgents.length > 0);
@@ -76,7 +76,7 @@ test('a mixed known and unknown path always blocks after rollback', () => {
   assert.equal(result.FailClosed, true);
   assert.equal(result.TaskType, 'mixed/unknown');
   assert.deepEqual(result.RequiredAgents, matrix.FailClosed.RequiredAgents.slice().sort());
-  assert.equal(result.MandatoryAgentAvailability, 'CONFIGURED_RUNTIME_NOT_AVAILABLE');
+  assert.equal(result.MandatoryAgentAvailability, 'RUNTIME_AVAILABLE_ACTIVATION_CLOSED');
   assert.equal(result.OverallResult, 'BLOCKED');
   assert.ok(result.BlockedByUnavailableAgents.length > 0);
 });
@@ -114,7 +114,7 @@ test('Git add, delete, and rename changes are classified from both affected path
     assert.deepEqual(addDiff.changes, [{ status: 'A', path: 'docs/added.md' }]);
     const addResolution = resolveRequiredAgents({ changedPaths: addDiff.paths, matrix });
     assert.equal(addResolution.OverallResult, 'BLOCKED');
-    assert.equal(addResolution.MandatoryAgentAvailability, 'CONFIGURED_RUNTIME_NOT_AVAILABLE');
+    assert.equal(addResolution.MandatoryAgentAvailability, 'RUNTIME_AVAILABLE_ACTIVATION_CLOSED');
 
     git(fixture, 'rm', 'docs/added.md');
     const afterDelete = commit(fixture, 'delete docs');
@@ -122,7 +122,7 @@ test('Git add, delete, and rename changes are classified from both affected path
     assert.deepEqual(deleteDiff.changes, [{ status: 'D', path: 'docs/added.md' }]);
     const deleteResolution = resolveRequiredAgents({ changedPaths: deleteDiff.paths, matrix });
     assert.equal(deleteResolution.OverallResult, 'BLOCKED');
-    assert.equal(deleteResolution.MandatoryAgentAvailability, 'CONFIGURED_RUNTIME_NOT_AVAILABLE');
+    assert.equal(deleteResolution.MandatoryAgentAvailability, 'RUNTIME_AVAILABLE_ACTIVATION_CLOSED');
 
     write(fixture, 'docs/before.md');
     const beforeRename = commit(fixture, 'rename source');
@@ -136,7 +136,7 @@ test('Git add, delete, and rename changes are classified from both affected path
     const resolved = resolveRequiredAgents({ changedPaths: renameDiff.paths, matrix });
     assert.ok(resolved.RequiredAgents.includes('ios-agent-orchestrator'));
     assert.equal(resolved.OverallResult, 'BLOCKED');
-    assert.equal(resolved.MandatoryAgentAvailability, 'CONFIGURED_RUNTIME_NOT_AVAILABLE');
+    assert.equal(resolved.MandatoryAgentAvailability, 'RUNTIME_AVAILABLE_ACTIVATION_CLOSED');
     assert.ok(resolved.RequiredControls.includes('runtime-discovery-unverified'));
   } finally {
     rmSync(fixture, { recursive: true, force: true });
@@ -165,7 +165,7 @@ test('resolver CLI resolves HEAD and blocks dispatch after rollback', () => {
     assert.match(output.HeadSHA, /^[0-9a-f]{40}$/i);
     assert.equal(output.HeadSHA, head);
     assert.equal(output.OverallResult, 'BLOCKED');
-    assert.equal(output.MandatoryAgentAvailability, 'CONFIGURED_RUNTIME_NOT_AVAILABLE');
+    assert.equal(output.MandatoryAgentAvailability, 'RUNTIME_AVAILABLE_ACTIVATION_CLOSED');
   } finally {
     rmSync(fixture, { recursive: true, force: true });
   }

@@ -45,14 +45,14 @@
     },
     "bindings": {
       "type": "object", "additionalProperties": false,
-      "required": ["repository", "branch", "baseSha", "headSha", "profileHash", "overlayHash"],
+      "required": ["repository", "branch", "baseSha", "headSha", "profileHash", "capabilityContractHash"],
       "properties": {
         "repository": { "type": "string", "minLength": 1 },
         "branch": { "type": "string", "minLength": 1 },
         "baseSha": { "$ref": "#/$defs/gitSha" },
         "headSha": { "$ref": "#/$defs/gitSha" },
         "profileHash": { "$ref": "#/$defs/sha256" },
-        "overlayHash": { "$ref": "#/$defs/sha256" }
+        "capabilityContractHash": { "$ref": "#/$defs/sha256" }
       }
     },
     "ownerApproval": {

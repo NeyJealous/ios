@@ -1,48 +1,21 @@
 {
-  "schemaVersion": "1.0.0",
-  "policyId": "IOS_AGENT_PLATFORM_V2_FIRST_WAVE_DEVELOPMENT_ACTIVATION",
-  "ownerDecisionId": "OWNER_DECISION_ACTIVATE_FIRST_WAVE_20260727",
-  "scope": "PROJECT_DEVELOPMENT_ONLY",
-  "approvedAgents": [
-    "ios-agent-orchestrator",
-    "agent-governance-auditor",
-    "security-privacy-auditor",
-    "audit-traceability-reviewer",
-    "ios-codebase-auditor"
-  ],
-  "sourcePath": "architecture/agents/generated/provisional",
-  "runtimeDiscoveryPath": ".codex/agents",
-  "denyAdditionalProfiles": true,
-  "idempotent": true,
-  "productionGovernanceEligible": false,
+  "schemaVersion": "2.0.0",
+  "policyId": "IOS_SOURCE_AUTHORED_AGENT_ACTIVATION_GATE",
+  "scope": "GOVERNANCE_STATUS_ONLY",
+  "canonicalSourcePath": ".codex/agents",
+  "integrityRegistryPath": "architecture/agents/registry/agent-integrity-registry.yaml",
+  "profileCopyAllowed": false,
+  "profileGenerationAllowed": false,
   "productionWritesAllowed": false,
   "remoteWritesAllowedForAgents": false,
   "activationRequires": [
-    "OWNER_DECISION_ACTIVATE_FIRST_WAVE_20260727",
-    "EXACT_PROFILE_HASHES",
-    "EXACT_COMPOSITION_HASHES",
-    "EXACT_OVERLAY_HASHES",
-    "MODEL_CONTRACT_MATCH",
-    "CAPABILITY_CONTRACT_MATCH",
-    "ACTIVATION_DRY_RUN_PASS"
-  ],
-  "rollbackOn": [
-    "PROFILE_NOT_INVOKABLE",
-    "MODEL_MISMATCH",
-    "FILE_MUTATION",
-    "CAPABILITY_VIOLATION",
-    "UNEXPECTED_VERDICT",
-    "HASH_MISMATCH",
-    "ADDITIONAL_PROFILE_DISCOVERED"
-  ],
-  "externalGatesRemainOpen": [
-    "LINUX_SYMLINK_EVIDENCE_MISSING",
-    "GITHUB_CANARY_NOT_EXECUTED",
-    "REQUIRED_RULESET_NOT_VERIFIED",
-    "TRUSTED_EXTERNAL_ATTESTATION_MISSING",
-    "REPLAY_STORE_NOT_IMPLEMENTED",
-    "KEY_LIFECYCLE_NOT_VERIFIED",
-    "RUNTIME_ENFORCEMENT_UNVERIFIED",
-    "ADR_DRAFT_NOT_ACCEPTED"
+    "ADR_ACCEPTED",
+    "CANONICAL_PROFILE_INTEGRITY_PASS",
+    "CAPABILITY_CONTRACT_PASS",
+    "DISCOVERY_PASS",
+    "POSITIVE_SMOKE_PASS",
+    "NEGATIVE_SMOKE_PASS",
+    "OWNER_ACTIVATION_APPROVAL",
+    "TRUSTED_EXTERNAL_ATTESTATION"
   ]
 }

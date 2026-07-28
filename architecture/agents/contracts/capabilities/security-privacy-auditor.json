@@ -17,8 +17,8 @@
   "push": false,
   "secretsAccess": "MASKED_EVIDENCE_ONLY",
   "allowedTools": ["repository.read", "repository.search"],
-  "deniedTools": ["network", "mcp", "shell", "filesystem.write", "git.write", "remote.write", "production.write", "sheets.write", "apps-script.write", "broker-api.write", "deploy", "merge", "push", "secrets.modify", "agent.install", "agent.remove", "package.install"],
-  "enforcementLayer": ["NON_DISCOVERY_STAGING_BOUNDARY", "PROFILE_SANDBOX_READ_ONLY", "IOS_APPEND_ONLY_OVERLAY"],
+  "deniedTools": ["network", "mcp", "shell", "filesystem.write", "git.write", "remote.write", "production.write", "sheets.write", "apps-script.write", "broker-api.write", "deploy", "merge", "push", "secrets.modify", "agent.install", "agent.remove", "package.install", "model.switch", "model.fallback", "model.override", "reasoning.override", "model.escalation.spawn"],
+  "enforcementLayer": ["CANONICAL_SOURCE_PROFILE_HASH", "PROFILE_SANDBOX_READ_ONLY", "CAPABILITY_CONTRACT_DENY_BY_DEFAULT"],
   "contractStatus": "LOCALLY_VALIDATED",
   "evidenceStatus": "RUNTIME_ENFORCEMENT_UNVERIFIED"
 }

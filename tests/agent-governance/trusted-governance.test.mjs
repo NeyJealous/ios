@@ -144,7 +144,7 @@ test('trusted validator blocks legacy manifest evidence while activation is roll
 
     const result = validateTrusted(trustedOptions(fixture.root, candidate, fixture.sha, candidateSha));
     assert.equal(result.OverallStatus, 'BLOCKED');
-    assert.ok(result.IntegrityErrors.includes('PROVISIONAL_PLATFORM_ACTIVATION_CLOSED'));
+    assert.ok(result.IntegrityErrors.includes('SOURCE_AUTHORED_ACTIVATION_CLOSED'));
     assert.notEqual(result.IntegrityStatus, 'PASS');
   } finally {
     rmSync(candidate, { recursive: true, force: true });
@@ -172,7 +172,7 @@ test('trusted verifier is BLOCKED after rollback even with fabricated legacy REA
     assert.equal(result.AttestationStatus, 'INSUFFICIENT_EVIDENCE');
     assert.ok(result.AttestationErrors.includes('TRUSTED_EXECUTION_ATTESTATION_INSUFFICIENT_EVIDENCE'));
     assert.equal(result.TrustRootChanged, false);
-    assert.ok(result.IntegrityErrors.includes('PROVISIONAL_PLATFORM_ACTIVATION_CLOSED'));
+    assert.ok(result.IntegrityErrors.includes('SOURCE_AUTHORED_ACTIVATION_CLOSED'));
   } finally {
     rmSync(candidate, { recursive: true, force: true });
     rmSync(fixture.root, { recursive: true, force: true });
@@ -194,7 +194,7 @@ test('trusted verifier remains BLOCKED after rollback with simulated legacy repo
 
     const result = validateTrusted(trustedOptions(fixture.root, candidate, fixture.sha, candidateSha));
     assert.equal(result.OverallStatus, 'BLOCKED');
-    assert.ok(result.IntegrityErrors.includes('PROVISIONAL_PLATFORM_ACTIVATION_CLOSED'));
+    assert.ok(result.IntegrityErrors.includes('SOURCE_AUTHORED_ACTIVATION_CLOSED'));
   } finally {
     rmSync(candidate, { recursive: true, force: true });
     rmSync(fixture.root, { recursive: true, force: true });

@@ -1,0 +1,101 @@
+{
+  "schemaVersion": "1.0.0",
+  "gateId": "SOURCE_AUTHORED_PLATFORM_MIGRATION_PRE_CHANGE",
+  "taskType": "governance architecture migration",
+  "branch": "feature/source-authored-agent-platform",
+  "baseBranch": "integration/ios-current",
+  "baseSHA": "574c1cc145aa736f55efb479fbf591c1cd23b5b6",
+  "headSHA": "574c1cc145aa736f55efb479fbf591c1cd23b5b6",
+  "canonicalRemote": "https://github.com/NeyJealous/ios.git",
+  "ownerAuthorization": {
+    "source": "owner task instruction dated 2026-07-27",
+    "sourceAuthoredProfilesApproved": true,
+    "approvedAgentIds": [
+      "ios-agent-orchestrator",
+      "agent-governance-auditor",
+      "security-privacy-auditor",
+      "audit-traceability-reviewer",
+      "ios-codebase-auditor"
+    ],
+    "topLevelModelChangesAuthorized": false,
+    "platformActivationAuthorized": false,
+    "pushAuthorized": false,
+    "mergeAuthorized": false,
+    "universalEscalationAgentsAuthorized": false,
+    "obsidianMindIntegrationAuthorized": false
+  },
+  "plannedChangeClasses": [
+    "source-authored canonical profiles",
+    "governance self-change",
+    "registry and schema change",
+    "overlay decommissioning",
+    "generator and composition decommissioning",
+    "validate-only activation boundary",
+    "centralized escalation request contract",
+    "tests and documentation"
+  ],
+  "resolver": {
+    "overallResult": "BLOCKED",
+    "mandatoryAgentAvailability": "CONFIGURED_RUNTIME_NOT_AVAILABLE",
+    "blockedBy": [
+      "ORCHESTRATOR_SELF_REVIEW_FORBIDDEN",
+      "PLATFORM_ACTIVATION_CLOSED"
+    ],
+    "unknownPaths": [
+      "audit/agents/SOURCE_AUTHORED_PLATFORM_MIGRATION/PRE_CHANGE/manifest.json"
+    ],
+    "interpretation": "Blocks activation and automatic dispatch. Local owner-authorized implementation remains isolated in the feature branch; independent reviews are dispatched manually and cannot self-approve."
+  },
+  "preChangeReviews": [
+    {
+      "agentId": "ios-agent-orchestrator",
+      "executionMode": "REAL_SUBAGENT",
+      "purpose": "routing and DAG only",
+      "selfReview": false,
+      "result": "BLOCKED_FOR_ACTIVATION"
+    },
+    {
+      "agentId": "agent-governance-auditor",
+      "executionMode": "REAL_SUBAGENT",
+      "result": "BLOCKED_FOR_ACTIVATION_AND_PR"
+    },
+    {
+      "agentId": "security-privacy-auditor",
+      "executionMode": "REAL_SUBAGENT",
+      "result": "BLOCKED_FOR_ACTIVATION_AND_PR"
+    },
+    {
+      "agentId": "audit-traceability-reviewer",
+      "executionMode": "REAL_SUBAGENT",
+      "result": "BLOCKED_PENDING_VERSIONED_SUPERSESSION_AND_FRESH_EVIDENCE"
+    },
+    {
+      "agentId": "ios-codebase-auditor",
+      "executionMode": "REAL_SUBAGENT",
+      "result": "BLOCKED_PENDING_SAFE_CONSUMER_MIGRATION"
+    }
+  ],
+  "baselineControls": {
+    "privacySecretScan": "PASS",
+    "trackedFilesScanned": 1046,
+    "privacyFindings": 0,
+    "productionImpact": "NONE",
+    "deploymentImpact": "NONE",
+    "activationGate": "CLOSED"
+  },
+  "implementationBoundary": {
+    "localImplementationAuthorized": true,
+    "activationEligible": false,
+    "pushEligible": false,
+    "mergeEligible": false,
+    "productionGovernanceEligible": false
+  },
+  "requiredDocuments": [
+    "current-platform-inventory.md",
+    "dependency-map.md",
+    "five-agent-baseline.json",
+    "migration-scope.md"
+  ],
+  "overallStatus": "BLOCKED",
+  "statusMeaning": "BLOCKED for activation, PR readiness, merge and acceptance; local implementation is explicitly owner-authorized in the isolated feature branch."
+}

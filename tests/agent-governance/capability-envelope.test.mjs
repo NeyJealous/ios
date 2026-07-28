@@ -5,7 +5,6 @@ import test from 'node:test';
 import {
   FIRST_WAVE, validateCapabilityEnvelope, validateCapabilityEnvelopes,
 } from '../../tools/agents/validate-capability-envelopes.mjs';
-import { validateGeneratedAgents } from '../../tools/agents/validate-generated-agents.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const schema = JSON.parse(readFileSync(resolve(root, 'architecture/agents/schemas/capability-envelope.schema.json'), 'utf8'));
@@ -50,7 +49,8 @@ test('every mandatory denied tool and asserted runtime enforcement are rejected'
     'network', 'mcp', 'shell', 'filesystem.write', 'git.write', 'remote.write',
     'production.write', 'sheets.write', 'apps-script.write', 'broker-api.write',
     'deploy', 'merge', 'push', 'secrets.modify', 'agent.install', 'agent.remove',
-    'package.install',
+    'package.install', 'model.switch', 'model.fallback', 'model.override',
+    'reasoning.override', 'model.escalation.spawn',
   ]) {
     const missing = { ...value, deniedTools: value.deniedTools.filter((item) => item !== denial) };
     assert.ok(validateCapabilityEnvelope(missing, schema, value.agentId).some((error) => error.includes(`DENIED_TOOL_MISSING:${denial}`)), `${denial} removal was accepted`);
@@ -65,13 +65,11 @@ test('orchestrator cannot install agents, packages or issue subject-matter write
   }
 });
 
-test('generated staging profiles bind full capability envelopes and hashes', () => {
-  const result = validateGeneratedAgents(root);
-  assert.equal(result.ok, true, result.errors.join('\n'));
+test('canonical profiles use hash and deny-by-default enforcement layers', () => {
   for (const agentId of FIRST_WAVE) {
-    const profile = readFileSync(resolve(root, 'architecture/agents/generated/provisional', `${agentId}.toml`), 'utf8');
-    assert.match(profile, /=== IOS CAPABILITY ENVELOPE ===/);
-    assert.match(profile, /# capabilityEnvelopeHash = [a-f0-9]{64}/);
-    assert.ok(profile.includes('\\"evidenceStatus\\": \\"RUNTIME_ENFORCEMENT_UNVERIFIED\\"'));
+    const value = envelope(agentId);
+    assert.ok(value.enforcementLayer.includes('CANONICAL_SOURCE_PROFILE_HASH'));
+    assert.ok(value.enforcementLayer.includes('PROFILE_SANDBOX_READ_ONLY'));
+    assert.ok(value.enforcementLayer.includes('CAPABILITY_CONTRACT_DENY_BY_DEFAULT'));
   }
 });

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "requiredFields": ["escalation_status", "reason", "unresolved_questions", "evidence_collected", "evidence_missing", "risk_if_not_escalated", "recommended_escalation_class", "owner_approval_required", "prohibited_next_actions"],
+  "allowedClasses": ["STANDARD", "ADVANCED", "MAXIMUM_OWNER_APPROVAL"],
+  "results": [
+    {"agentId":"ios-agent-orchestrator","class":"MAXIMUM_OWNER_APPROVAL","ownerApprovalRequired":true,"allFields":true,"specificModelSlug":false,"spawned":false,"result":"PASS"},
+    {"agentId":"agent-governance-auditor","class":"ADVANCED","ownerApprovalRequired":false,"allFields":true,"specificModelSlug":false,"spawned":false,"result":"PASS"},
+    {"agentId":"security-privacy-auditor","class":"MAXIMUM_OWNER_APPROVAL","ownerApprovalRequired":true,"allFields":true,"specificModelSlug":false,"spawned":false,"result":"PASS"},
+    {"agentId":"audit-traceability-reviewer","class":"ADVANCED","ownerApprovalRequired":false,"allFields":true,"specificModelSlug":false,"spawned":false,"result":"PASS"},
+    {"agentId":"ios-codebase-auditor","class":"ADVANCED","ownerApprovalRequired":false,"allFields":true,"specificModelSlug":false,"spawned":false,"result":"PASS"}
+  ],
+  "overallResult": "PASS"
+}

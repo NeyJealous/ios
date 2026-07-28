@@ -1,5 +1,9 @@
 # RFC-AGENT-PLATFORM-V2
 
+> Historical architecture. Generated/overlay/composition target decisions are
+> superseded by `RFC-SOURCE-AUTHORED-IOS-AGENT-PROFILES.md`.
+> Retained for traceability; not the current runtime source.
+
 - Статус: `PHASE_3B_REMEDIATION_IN_REVIEW`
 - Дата: 2026-07-18
 - Область: repository-wide Agent Platform v2 migration

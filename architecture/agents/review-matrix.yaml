@@ -1,6 +1,6 @@
 {
-  "Version": "2.1.0-configured-runtime-unverified",
-  "PlatformState": "FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL",
+  "Version": "2.2.0-source-authored-runtime-verified",
+  "PlatformState": "SOURCE_AUTHORED_RUNTIME_VERIFIED_ACTIVATION_CLOSED",
   "TaskTypes": [
     "orchestrator self-change",
     "upstream/profile/model",
@@ -25,9 +25,7 @@
       "TaskType": "orchestrator self-change",
       "PathPatterns": [
         ".codex/agents/ios-agent-orchestrator.toml",
-        "architecture/agents/generated/provisional/ios-agent-orchestrator.toml",
-        "architecture/agents/overlays/ios-agent-orchestrator.yaml",
-        "architecture/agents/compositions/ios-agent-orchestrator.yaml",
+        "architecture/agents/registry/agent-integrity-registry.yaml",
         "tools/agents/orchestrate.mjs"
       ],
       "RequiredAgents": [
@@ -45,9 +43,7 @@
       "TaskType": "upstream/profile/model",
       "PathPatterns": [
         "architecture/agents/upstream/**",
-        "architecture/agents/generated/provisional/**",
-        "architecture/agents/overlays/**",
-        "architecture/agents/compositions/**",
+        "architecture/agents/contracts/capabilities/**",
         "architecture/agents/registry/**",
         ".codex/agents/**"
       ],
@@ -58,9 +54,10 @@
       ],
       "RequiredControls": [
         "upstream-integrity",
-        "append-only-overlay",
+        "canonical-profile-integrity",
+        "deny-by-default-capability",
         "no-silent-downgrade",
-        "runtime-discovery-unverified"
+        "runtime-evidence"
       ]
     },
     {
@@ -70,9 +67,12 @@
         "AGENTS.md",
         "**/AGENTS.md",
         "architecture/agents/**",
+        "audit/agents/**",
         "docs/agents/**",
+        "package.json",
         "tools/*agent*",
         "tools/agents/**",
+        "tools/publication-privacy-check.mjs",
         "tools/trusted-governance/**",
         ".github/workflows/*agent*",
         "rfc/**",
@@ -179,24 +179,24 @@
       "security-privacy-auditor",
       "audit-traceability-reviewer"
     ],
-    "MandatoryAvailability": "CONFIGURED_RUNTIME_NOT_AVAILABLE",
+    "MandatoryAvailability": "RUNTIME_AVAILABLE_ACTIVATION_CLOSED",
     "OverallResult": "BLOCKED"
   },
   "Transition": {
     "ActiveCustomAgents": 0,
-    "ProvisionalAgents": 5,
+    "ProvisionalAgents": 0,
     "OldRegistryReferences": 0,
     "OldMatrixReferences": 0,
     "OldResolverReferences": 0,
     "OldManifestsAccepted": false,
     "ResolverBehavior": "FAIL_CLOSED",
-    "ActivationGate": "CONFIGURED_RUNTIME_UNVERIFIED"
+    "ActivationGate": "OWNER_ACTIVATION_REQUIRED"
   },
   "AntiTamperPaths": [
     "AGENTS.md",
     "**/AGENTS.md",
     ".codex/agents/**",
-    "architecture/agents/generated/provisional/**",
+    ".codex/agents/**",
     "architecture/agents/**",
     "docs/agents/**",
     "tools/agents/**",

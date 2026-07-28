@@ -14,6 +14,7 @@ export const EXECUTION_MODES = [
 ];
 export const IMPLEMENTATION_STATUSES = [
   'SPECIFIED', 'PROVISIONAL', 'IMPLEMENTED', 'CONFIGURED_NOT_RUNTIME_VERIFIED',
+  'CANONICAL_SOURCE_PENDING_REVALIDATION', 'CANONICAL_SOURCE_RUNTIME_VERIFIED',
   'PARTIAL', 'MISSING', 'CONFLICTING', 'DEPRECATED',
 ];
 export const CANONICAL_AGENT_IDS = [];
@@ -220,6 +221,18 @@ export function validateRegistry(registry) {
     if (registry.MandatoryAgentAvailability !== 'CONFIGURED_RUNTIME_NOT_AVAILABLE') errors.push('registry: configured availability mismatch');
     if (registry.ActivationAllowed !== false) errors.push('registry: runtime-unverified activation must be disabled');
   }
+  if (registry.PlatformState === 'SOURCE_AUTHORED_MIGRATION_PENDING_REVALIDATION') {
+    if (registry.ActiveCustomAgents !== 0) errors.push('registry: pending revalidation must contain 0 active agents');
+    if (registry.ProvisionedAgents !== registry.Agents.length) errors.push('registry: source-authored agent count mismatch');
+    if (registry.MandatoryAgentAvailability !== 'CONFIGURED_RUNTIME_NOT_AVAILABLE') errors.push('registry: pending runtime availability mismatch');
+    if (registry.ActivationAllowed !== false) errors.push('registry: source-authored activation must remain disabled');
+  }
+  if (registry.PlatformState === 'SOURCE_AUTHORED_RUNTIME_VERIFIED_ACTIVATION_CLOSED') {
+    if (registry.ActiveCustomAgents !== 0) errors.push('registry: activation-closed state must contain 0 active agents');
+    if (registry.ProvisionedAgents !== registry.Agents.length) errors.push('registry: verified agent count mismatch');
+    if (registry.MandatoryAgentAvailability !== 'RUNTIME_AVAILABLE_ACTIVATION_CLOSED') errors.push('registry: verified runtime availability mismatch');
+    if (registry.ActivationAllowed !== false) errors.push('registry: verified source-authored activation must remain disabled');
+  }
   const required = [
     'AgentId', 'Name', 'SpecificationSources', 'Purpose', 'Scope', 'Triggers',
     'RequiredInputs', 'Checks', 'ForbiddenActions', 'RequiredOutputs',
@@ -240,6 +253,10 @@ export function validateRegistry(registry) {
     if (registry.PlatformState === 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT' && agent.ActivationEligible !== true) errors.push(`${agent.AgentId}: development activation requires eligibility`);
     if (registry.PlatformState === 'FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL' && agent.Status !== 'CONFIGURED_NOT_RUNTIME_VERIFIED') errors.push(`${agent.AgentId}: configured runtime-unverified state requires CONFIGURED_NOT_RUNTIME_VERIFIED`);
     if (registry.PlatformState === 'FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL' && agent.ActivationEligible !== false) errors.push(`${agent.AgentId}: configured runtime-unverified state requires ineligible activation`);
+    if (registry.PlatformState === 'SOURCE_AUTHORED_MIGRATION_PENDING_REVALIDATION' && agent.Status !== 'CANONICAL_SOURCE_PENDING_REVALIDATION') errors.push(`${agent.AgentId}: source-authored migration requires pending revalidation status`);
+    if (registry.PlatformState === 'SOURCE_AUTHORED_MIGRATION_PENDING_REVALIDATION' && agent.ActivationEligible !== false) errors.push(`${agent.AgentId}: source-authored migration requires ineligible activation`);
+    if (registry.PlatformState === 'SOURCE_AUTHORED_RUNTIME_VERIFIED_ACTIVATION_CLOSED' && agent.Status !== 'CANONICAL_SOURCE_RUNTIME_VERIFIED') errors.push(`${agent.AgentId}: runtime-verified state requires verified profile status`);
+    if (registry.PlatformState === 'SOURCE_AUTHORED_RUNTIME_VERIFIED_ACTIVATION_CLOSED' && agent.ActivationEligible !== false) errors.push(`${agent.AgentId}: runtime-verified state remains activation-ineligible`);
     for (const field of ['CanWriteRemote', 'CanApproveMerge', 'CanDeploy', 'CanProductionWrite', 'CanModifySecrets']) {
       if (agent[field] !== false) errors.push(`${agent.AgentId}: forbidden permission ${field}`);
     }
@@ -422,8 +439,9 @@ export function validateInstructionHierarchy(root) {
 export function validateProjectAgentFiles(root, registry) {
   const errors = [];
   const provisioned = registry.Agents.filter((agent) =>
-    ['PROVISIONAL', 'IMPLEMENTED', 'CONFIGURED_NOT_RUNTIME_VERIFIED'].includes(agent.Status));
-  const dir = join(root, 'architecture', 'agents', 'generated', 'provisional');
+    ['PROVISIONAL', 'IMPLEMENTED', 'CONFIGURED_NOT_RUNTIME_VERIFIED', 'CANONICAL_SOURCE_PENDING_REVALIDATION', 'CANONICAL_SOURCE_RUNTIME_VERIFIED'].includes(agent.Status));
+  const sourceAuthored = registry.PlatformState?.startsWith('SOURCE_AUTHORED_');
+  const dir = sourceAuthored ? join(root, '.codex', 'agents') : join(root, 'architecture', 'agents', 'generated', 'provisional');
   const files = existsSync(dir) ? readdirSync(dir).filter((file) => file.endsWith('.toml')) : [];
   if (files.length < provisioned.length) errors.push(`expected at least ${provisioned.length} project agents; found ${files.length}`);
   for (const file of files) {
@@ -438,6 +456,7 @@ export function validateProjectAgentFiles(root, registry) {
   if (registry.PlatformState === 'PROVISIONAL_PLATFORM_BUILD' && runtimeFiles.length !== 0) errors.push(`provisional build must contain 0 runtime-discovered agents; found ${runtimeFiles.length}`);
   if (registry.PlatformState === 'FIRST_WAVE_ACTIVE_FOR_PROJECT_DEVELOPMENT' && runtimeFiles.length !== provisioned.length) errors.push(`development activation must contain exactly ${provisioned.length} runtime agents; found ${runtimeFiles.length}`);
   if (registry.PlatformState === 'FIRST_WAVE_IMPLEMENTED_AND_CONFIGURED_IN_CANONICAL' && runtimeFiles.length !== provisioned.length) errors.push(`configured runtime-unverified state must contain exactly ${provisioned.length} tracked profiles; found ${runtimeFiles.length}`);
+  if (sourceAuthored && runtimeFiles.length !== provisioned.length) errors.push(`source-authored state must contain exactly ${provisioned.length} canonical profiles; found ${runtimeFiles.length}`);
   return errors;
 }
 

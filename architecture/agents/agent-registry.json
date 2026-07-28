@@ -1,34 +1,13 @@
 {
-  "Version": "2.1.0-provisional",
-  "Purpose": "Compatibility index; canonical source is architecture/agents/registry/agents.yaml.",
-  "PlatformState": "PROVISIONAL_PLATFORM_BUILD",
+  "Version": "2.2.0-source-authored-runtime-verified",
+  "Purpose": "Compatibility index; canonical integrity source is architecture/agents/registry/agent-integrity-registry.yaml.",
+  "PlatformState": "SOURCE_AUTHORED_RUNTIME_VERIFIED_ACTIVATION_CLOSED",
   "ActiveCount": 0,
-  "ProvisionalCount": 5,
   "Roles": [
-    {
-      "AgentId": "ios-agent-orchestrator",
-      "Status": "PROVISIONAL",
-      "ActivationEligible": false
-    },
-    {
-      "AgentId": "agent-governance-auditor",
-      "Status": "PROVISIONAL",
-      "ActivationEligible": false
-    },
-    {
-      "AgentId": "security-privacy-auditor",
-      "Status": "PROVISIONAL",
-      "ActivationEligible": false
-    },
-    {
-      "AgentId": "audit-traceability-reviewer",
-      "Status": "PROVISIONAL",
-      "ActivationEligible": false
-    },
-    {
-      "AgentId": "ios-codebase-auditor",
-      "Status": "PROVISIONAL",
-      "ActivationEligible": false
-    }
+    {"AgentId":"ios-agent-orchestrator","Status":"CANONICAL_SOURCE_RUNTIME_VERIFIED","ActivationEligible":false},
+    {"AgentId":"agent-governance-auditor","Status":"CANONICAL_SOURCE_RUNTIME_VERIFIED","ActivationEligible":false},
+    {"AgentId":"security-privacy-auditor","Status":"CANONICAL_SOURCE_RUNTIME_VERIFIED","ActivationEligible":false},
+    {"AgentId":"audit-traceability-reviewer","Status":"CANONICAL_SOURCE_RUNTIME_VERIFIED","ActivationEligible":false},
+    {"AgentId":"ios-codebase-auditor","Status":"CANONICAL_SOURCE_RUNTIME_VERIFIED","ActivationEligible":false}
   ]
 }

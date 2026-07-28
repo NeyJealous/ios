@@ -11,110 +11,48 @@ export const FIRST_WAVE = [
   'ios-codebase-auditor',
 ];
 
-const EXPECTED_FILES = FIRST_WAVE.map((agentId) => `${agentId}.toml`).sort();
-const STAGING_PATH = 'architecture/agents/generated/provisional';
-const DISCOVERY_PATH = '.codex/agents';
-const readJson = (path) => JSON.parse(readFileSync(path, 'utf8'));
-
-function regularTomlFiles(directory, errors, label) {
-  if (!existsSync(directory)) return [];
-  if (lstatSync(directory).isSymbolicLink()) {
-    errors.push(`${label}_SYMLINK_REJECTED`);
-    return [];
-  }
-  const files = [];
-  for (const entry of readdirSync(directory, { withFileTypes: true })) {
-    if (!entry.name.endsWith('.toml')) continue;
-    const path = resolve(directory, entry.name);
-    if (!entry.isFile() || lstatSync(path).isSymbolicLink()) errors.push(`${label}_UNSAFE_FILE:${entry.name}`);
-    else files.push(entry.name);
-  }
-  return files.sort();
-}
-
 export function validateActivationRequest(request, { expectedHead } = {}) {
-  const errors = [];
-  if (!request || typeof request !== 'object' || Array.isArray(request)) return ['ACTIVATION_REQUEST_INVALID'];
-  // Phase 3B deliberately has no activation operation or trusted external
-  // verifier adapter. Repository-authored PASS/VERIFIED strings can describe
-  // claims but can never authorize activation.
-  errors.push('ACTIVATION_OPERATION_NOT_IMPLEMENTED');
-  errors.push('TRUSTED_EXTERNAL_ACTIVATION_VERIFIER_NOT_IMPLEMENTED');
-  if (!expectedHead || request.headSha !== expectedHead) errors.push('STALE_ACTIVATION_MANIFEST');
-  if (!/^OWNER_ACTIVATION_[A-Z0-9_-]+$/.test(request.ownerDecisionId || '')) errors.push('OWNER_ACTIVATION_EVIDENCE_UNTRUSTED');
+  const errors = ['ACTIVATION_STATUS_MUTATION_NOT_IMPLEMENTED'];
+  if (!request || typeof request !== 'object' || Array.isArray(request)) return [...errors, 'ACTIVATION_REQUEST_INVALID'];
+  if (!expectedHead || request.headSha !== expectedHead) errors.push('STALE_ACTIVATION_EVIDENCE');
+  if (request.integrityStatus !== 'PASS') errors.push('INTEGRITY_NOT_PASSED');
+  if (request.discoveryStatus !== 'PASS') errors.push('DISCOVERY_NOT_PASSED');
+  if (request.positiveSmokeStatus !== 'PASS') errors.push('POSITIVE_SMOKE_NOT_PASSED');
+  if (request.negativeSmokeStatus !== 'PASS') errors.push('NEGATIVE_SMOKE_NOT_PASSED');
+  if (request.ownerApprovalStatus !== 'APPROVED') errors.push('OWNER_APPROVAL_MISSING');
   if (request.adrStatus !== 'ACCEPTED') errors.push('ADR_NOT_ACCEPTED');
-  if (request.trustedVerifierStatus !== 'VERIFIED') errors.push('TRUSTED_VERIFIER_NOT_VERIFIED');
-  if (request.requiredReviewsStatus !== 'PASS') errors.push('REQUIRED_REVIEWS_NOT_PASSED');
-  if (request.modelEligibilityStatus !== 'PASS') errors.push('MODEL_ELIGIBILITY_NOT_PASSED');
-  if (request.externalEvidenceStatus !== 'PASS') errors.push('EXTERNAL_EVIDENCE_NOT_PASSED');
-  if (request.authoritySource !== 'TRUSTED_EXTERNAL_ATTESTATION') errors.push('OWNER_ACTIVATION_EVIDENCE_UNTRUSTED');
-  if (JSON.stringify([...(request.requestedAgents || [])].sort()) !== JSON.stringify(FIRST_WAVE.slice().sort())) errors.push('ACTIVATION_AGENT_SET_INVALID');
+  if (request.authoritySource !== 'TRUSTED_EXTERNAL_ATTESTATION') errors.push('TRUSTED_ATTESTATION_MISSING');
   return [...new Set(errors)].sort();
 }
 
 export function validateActivationBoundary(root) {
   const errors = [];
-  const stagingDirectory = resolve(root, STAGING_PATH);
-  const discoveryDirectory = resolve(root, DISCOVERY_PATH);
-  const staged = regularTomlFiles(stagingDirectory, errors, 'PROVISIONAL_STAGING');
-  const discovered = regularTomlFiles(discoveryDirectory, errors, 'RUNTIME_DISCOVERY');
-  const discoveredPlatform = discovered.filter((name) => EXPECTED_FILES.includes(name));
-  const additionalProfiles = discovered.filter((name) => !EXPECTED_FILES.includes(name));
-  if (JSON.stringify(staged) !== JSON.stringify(EXPECTED_FILES)) errors.push('PROVISIONAL_STAGING_PROFILE_SET_INVALID');
-
-  const registry = readJson(resolve(root, 'architecture/agents/registry/agents.yaml'));
-  const activation = readJson(resolve(root, 'architecture/agents/registry/activation-register.json'));
-  const active = activation.activationGate === 'OPEN_FOR_PROJECT_DEVELOPMENT';
-  const configured = activation.activationGate === 'CONFIGURED_RUNTIME_UNVERIFIED';
-  if (additionalProfiles.length) errors.push(`RUNTIME_DISCOVERY_ADDITIONAL_PROFILE:${additionalProfiles.join(',')}`);
-  if (active) {
-    if (JSON.stringify(discoveredPlatform) !== JSON.stringify(EXPECTED_FILES)) errors.push('RUNTIME_DISCOVERY_ACTIVE_SET_INVALID');
-    if (registry.activationAllowed !== true || registry.activeAgents !== FIRST_WAVE.length ||
-        registry.agents.some((agent) => agent.activationEligible !== true || agent.platformActivationEligible !== false)) {
-      errors.push('REGISTRY_DEVELOPMENT_ACTIVATION_INVALID');
-    }
-  } else if (configured) {
-    if (JSON.stringify(discoveredPlatform) !== JSON.stringify(EXPECTED_FILES)) errors.push('RUNTIME_DISCOVERY_CONFIGURED_SET_INVALID');
-    if (registry.activationAllowed !== false || registry.activeAgents !== 0 ||
-        registry.agents.some((agent) =>
-          agent.status !== 'CONFIGURED_NOT_RUNTIME_VERIFIED' ||
-          agent.activationEligible !== false ||
-          agent.platformActivationEligible !== false)) {
-      errors.push('REGISTRY_CONFIGURED_RUNTIME_STATE_INVALID');
-    }
-    for (const name of EXPECTED_FILES) {
-      if (existsSync(resolve(discoveryDirectory, name)) &&
-          readFileSync(resolve(discoveryDirectory, name)).compare(readFileSync(resolve(stagingDirectory, name))) !== 0) {
-        errors.push(`RUNTIME_PROFILE_HASH_MISMATCH:${name}`);
-      }
-    }
+  const discovery = resolve(root, '.codex/agents');
+  const expected = FIRST_WAVE.map((id) => `${id}.toml`).sort();
+  if (!existsSync(discovery) || lstatSync(discovery).isSymbolicLink()) {
+    errors.push('CANONICAL_DISCOVERY_DIRECTORY_INVALID');
   } else {
-    if (discoveredPlatform.length) errors.push(`RUNTIME_DISCOVERY_CONTAINS_PROVISIONAL_PROFILE:${discoveredPlatform.join(',')}`);
-    if (registry.activationAllowed !== false || registry.activeAgents !== 0 ||
-        registry.agents.some((agent) => agent.activationEligible !== false)) errors.push('REGISTRY_ACTIVATION_GATE_OPEN');
+    const actual = readdirSync(discovery, { withFileTypes: true })
+      .filter((entry) => entry.name.endsWith('.toml'))
+      .map((entry) => entry.name)
+      .sort();
+    if (JSON.stringify(actual) !== JSON.stringify(expected)) errors.push('CANONICAL_PROFILE_SET_INVALID');
   }
-  for (const agentId of FIRST_WAVE) {
-    const composition = readJson(resolve(root, `architecture/agents/compositions/${agentId}.yaml`));
-    if (composition.generatedPath !== `${STAGING_PATH}/${agentId}.toml`) errors.push(`${agentId}:GENERATED_PATH_NOT_STAGED`);
+  const registry = JSON.parse(readFileSync(resolve(root, 'architecture/agents/registry/agents.yaml'), 'utf8'));
+  const integrity = JSON.parse(readFileSync(resolve(root, 'architecture/agents/registry/agent-integrity-registry.yaml'), 'utf8'));
+  if (registry.activationAllowed !== false || registry.activeAgents !== 0 ||
+      registry.agents?.some((agent) => agent.activationEligible !== false || agent.platformActivationEligible !== false)) {
+    errors.push('REGISTRY_ACTIVATION_NOT_CLOSED');
   }
-
-  if (!['CLOSED', 'CONFIGURED_RUNTIME_UNVERIFIED', 'OPEN_FOR_PROJECT_DEVELOPMENT'].includes(activation.activationGate) ||
-      activation.runtimeDiscoveryPath !== DISCOVERY_PATH || activation.provisionalStagingPath !== STAGING_PATH ||
-      activation.platformActivationEligible !== false || activation.productionGovernanceEligible === true) {
-    errors.push('ACTIVATION_REGISTER_INVALID');
-  }
-
+  if (integrity.activationAllowed !== false) errors.push('INTEGRITY_REGISTRY_ACTIVATION_NOT_CLOSED');
   return {
     ok: errors.length === 0,
     platformState: registry.platformState,
-    provisionalStagingProfiles: staged.length,
-    runtimeDiscoveredPlatformAgents: discoveredPlatform.length,
-    runtimeDispatchStatus: active
-      ? 'ACTIVE_RUNTIME_SMOKE_PENDING'
-      : configured
-        ? 'NOT_DISPATCHED_RUNTIME_DISCOVERY_UNVERIFIED'
-        : 'NOT_DISPATCHED_ACTIVATION_CLOSED',
-    activationCommand: activation.activationCommand,
+    canonicalProfiles: FIRST_WAVE.length,
+    runtimeDiscoveryPath: '.codex/agents',
+    runtimeDispatchStatus: 'NOT_DISPATCHED_OWNER_ACTIVATION_REQUIRED',
+    activationMutationImplemented: false,
+    productionWrites: 0,
     errors,
   };
 }

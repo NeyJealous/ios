@@ -17,7 +17,7 @@ test('governance plan is deterministic, parallel and activation-closed after rol
   assert.ok(first.blockedBy.includes('PLATFORM_ACTIVATION_CLOSED'));
   assert.equal(first.runtimeDispatchStatus, 'NOT_DISPATCHED_ACTIVATION_CLOSED');
   assert.ok(first.parallelGroups.some((group) => group.length >= 3));
-  assert.ok(first.modelBindings.every((binding) => binding.status === 'RUNTIME_AVAILABLE'));
+  assert.ok(first.modelBindings.every((binding) => binding.silentDowngradeUsed === false));
 });
 
 test('orchestrator self-change cannot schedule orchestrator as its own reviewer', () => {
@@ -33,9 +33,10 @@ test('DAG cycles and unknown dependencies are rejected', () => {
   assert.throws(() => assertAcyclic([{ id: 'a', dependsOn: ['missing'] }]), /DAG_UNKNOWN_DEPENDENCY/);
 });
 
-test('Luna is not eligible for automatic dispatch and no substitution is allowed', () => {
-  assert.equal(platform.modelRegistry.lunaPolicy.spawnAgentAvailability, 'MODEL_NOT_AVAILABLE');
-  assert.equal(platform.modelRegistry.lunaPolicy.automaticDispatchEligible, false);
-  assert.equal(platform.modelRegistry.lunaPolicy.substitutionAllowed, false);
+test('profile model escalation is centralized and no substitution is allowed', () => {
+  assert.equal(platform.modelRegistry.escalationPolicy.profileMaySelectModel, false);
+  assert.equal(platform.modelRegistry.escalationPolicy.profileMaySwitchModel, false);
+  assert.equal(platform.modelRegistry.escalationPolicy.profileMaySpawnEscalationAgent, false);
+  assert.equal(platform.modelRegistry.escalationPolicy.runtimeRoutingImplemented, false);
   assert.ok(platform.modelRegistry.agents.every((item) => item.silentDowngradeAllowed === false));
 });

@@ -1,5 +1,9 @@
 # ADR-AGENT-PLATFORM-V2
 
+> Historical architecture. Target decisions are superseded by
+> `ADR-SOURCE-AUTHORED-IOS-AGENT-PROFILES.md` after owner acceptance.
+> Retained for traceability; not a current implementation contract.
+
 - Статус: `DRAFT_NOT_ACCEPTED`
 - Дата: 2026-07-18
 - Связанный RFC: `rfc/RFC-AGENT-PLATFORM-V2.md`

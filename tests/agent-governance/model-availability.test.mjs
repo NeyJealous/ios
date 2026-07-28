@@ -14,7 +14,7 @@ const report = JSON.parse(readFileSync(reportPath, 'utf8'));
 test('availability status comes only from actual Codex runtime smoke and forbids downgrade', () => {
   assert.equal(registry.policy.statusSource, 'ACTUAL_CODEX_RUNTIME_SMOKE_ONLY');
   assert.equal(registry.policy.silentDowngradeAllowed, false);
-  assert.deepEqual(registry.models.map((model) => model.modelId), ['terra', 'luna', 'sol', 'sol-ultra']);
+  assert.deepEqual(registry.models.map((model) => model.modelId), ['terra', 'terra-high', 'luna', 'sol', 'sol-ultra']);
   assert.ok(registry.models.every((model) => model.substitutionUsed === false));
 });
 
@@ -29,6 +29,18 @@ test('Terra, Sol and Sol Ultra have successful exact runtime execution evidence'
     assert.match(model.executionResponse, /^MODEL_RUNTIME_SMOKE_OK /);
     assert.equal(model.agentUsableAtRuntime, true);
   }
+});
+
+test('source-authored orchestrator has successful exact Terra high runtime evidence', () => {
+  const model = registry.models.find((candidate) => candidate.modelId === 'terra-high');
+  assert.equal(model.requestedSlug, 'gpt-5.6-terra');
+  assert.equal(model.requestedReasoningLevel, 'high');
+  assert.equal(model.resolvedSlug, model.requestedSlug);
+  assert.equal(model.resolvedReasoningLevel, model.requestedReasoningLevel);
+  assert.equal(model.runtimeAvailability, 'RUNTIME_AVAILABLE');
+  assert.equal(model.smokeResult, 'SUCCESS');
+  assert.equal(model.substitutionUsed, false);
+  assert.equal(model.executionResponse, 'IOS_ORCHESTRATOR_SMOKE_OK');
 });
 
 test('Luna is unavailable only because the exact runtime request was rejected', () => {
@@ -57,10 +69,13 @@ test('runtime success does not fabricate trusted activation evidence', () => {
   }
 });
 
-test('JSON and Markdown reports are deterministic full projections of registry evidence', () => {
-  assert.deepEqual(report, buildModelAvailabilityJson(registry));
+test('historical July 22 reports remain preserved while current evidence is stored separately', () => {
   assert.equal(report.overallStatus, 'RUNTIME_SMOKE_COMPLETE_WITH_UNAVAILABLE_MODELS');
-  assert.equal(readFileSync(markdownPath, 'utf8').replaceAll('\r\n', '\n'), buildModelAvailabilityMarkdown(registry));
+  assert.equal(report.branch, 'feature/agent-platform-v2-integration');
+  assert.deepEqual(report.results.map((item) => item.modelId), ['terra', 'luna', 'sol', 'sol-ultra']);
+  assert.ok(readFileSync(markdownPath, 'utf8').includes('MODEL_NOT_AVAILABLE') || readFileSync(markdownPath, 'utf8').includes('FAILURE'));
+  const current = JSON.parse(readFileSync(resolve(root, 'audit/agents/SOURCE_AUTHORED_PLATFORM_MIGRATION/POST_CHANGE/runtime-smoke-results.json'), 'utf8'));
+  assert.equal(current.overallResult, 'PASS');
 });
 
 test('current policy uses Sol Ultra while historical Phase 3A evidence remains byte-preserved', () => {

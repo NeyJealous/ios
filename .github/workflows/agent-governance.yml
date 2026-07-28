@@ -47,7 +47,7 @@ jobs:
       - name: Install project-local tooling without lifecycle scripts
         run: npm ci --ignore-scripts
 
-      - name: Rebuild locked provisional profiles
+      - name: Validate source-authored canonical profiles
         run: npm run agents:bootstrap
 
       - name: Verify reproducible clean checkout

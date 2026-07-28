@@ -8,16 +8,16 @@ privacy, approval или remote-write ограничения.
 
 1. Прочитать Master Specification, Correction Memo и связанные RFC/ADR.
 2. Зафиксировать canonical base `integration/ios-current`, тип изменения и
-   применимые review profiles через `tools/resolve-required-agents.mjs`.
+   review profiles через `tools/resolve-required-agents.mjs`.
 3. Выполнить privacy/secret preflight и остановиться при dirty tree,
    неизвестном remote, baseline mismatch, незавершённой Git-операции или FAIL.
 4. Работать только в отдельной task branch/worktree от актуального canonical.
 5. Не менять production без отдельного versioned gate и явного разрешения.
-6. Выполнить все обязательные reviews и создать contract-совместимые отчёты и
+6. Выполнить обязательные reviews и создать contract-совместимые отчёты и
    `audit/agents/<GATE>/manifest.json`.
 7. Устранить `BLOCKER` и `CRITICAL`; обязательный `NOT_EXECUTED` блокирует PR.
-8. Не заявлять `PASS` без проверяемого evidence. Не выдавать
-   `CODEX_ROLE_SIMULATION` за независимый `REAL_SUBAGENT`.
+8. Не заявлять `PASS` без evidence. Не выдавать `CODEX_ROLE_SIMULATION` за
+   независимый `REAL_SUBAGENT`.
 9. Обновить документацию, Architecture Impact Check и privacy/secret scan.
 10. Создать PR в canonical branch и остановиться перед merge без отдельного
     разрешения владельца.
@@ -43,10 +43,8 @@ privacy, approval или remote-write ограничения.
 - Каждая задача использует отдельную branch/worktree от актуального
   `origin/integration/ios-current`.
 - Новые ветки наследуют governance только после merge файлов в canonical.
-  Существующие ветки требуют явного merge/rebase/cherry-pick и не считаются
-  покрытыми автоматически.
 - Субагенты не выполняют commit, push, PR mutation, merge, deployment или
-  любые remote/production writes.
+  remote/production writes.
 
 ## Apps Script, Sheets, production и секреты
 
@@ -63,17 +61,19 @@ privacy, approval или remote-write ограничения.
 проверку branch/worktree, HEAD, diff, checkpoints и внешнего статуса. Не
 повторять external write, пока исход предыдущей операции не классифицирован как
 `NOT_STARTED`, `SUCCEEDED`, `FAILED`, `PARTIAL` или `UNKNOWN`. При `UNKNOWN`
-остановиться. Следовать `docs/governance/CODEX-CONNECTION-RECOVERY-INSTRUCTIONS.md`.
+остановиться. Следовать
+`docs/governance/CODEX-CONNECTION-RECOVERY-INSTRUCTIONS.md`.
 
 ## Status и evidence
 
-- Agent implementation: `SPECIFIED`, `PROVISIONAL`, `IMPLEMENTED`, `PARTIAL`, `MISSING`,
-  `CONFLICTING`, `DEPRECATED`.
+- Agent implementation: `SPECIFIED`, `PROVISIONAL`, `IMPLEMENTED`, `PARTIAL`,
+  `MISSING`, `CONFLICTING`, `DEPRECATED`,
+  `CANONICAL_SOURCE_PENDING_REVALIDATION`,
+  `CANONICAL_SOURCE_RUNTIME_VERIFIED`.
 - Review: `PASS`, `PASS_WITH_WARNINGS`, `BLOCKED`, `FAIL`, `NOT_APPLICABLE`,
   `NOT_EXECUTED`.
 - Severity: `INFO`, `LOW`, `MEDIUM`, `HIGH`, `CRITICAL`, `BLOCKER`.
-- Evidence должно содержать команды/результаты, файлы и ссылки на требования;
-  наличие файла или теста не доказывает его корректность или прохождение.
+- Evidence содержит команды/результаты, файлы и ссылки на требования.
 - Никогда не фабриковать запуск, роль, независимость review, разрешение,
   remote state или production result.
 
@@ -84,25 +84,30 @@ Documentation Reviewer, Test Generator и baseline security/privacy controls.
 Изменение governance-файлов требует Architecture Reviewer, Security Reviewer,
 Documentation Reviewer, owner approval и ADR при изменении модели.
 
-## Provisional Agent Platform v2 workflow
+## Source-authored Agent Platform workflow
 
 Перед значимым изменением выполнить `tools/agents/preflight.mjs`, получить
-детерминированный Resolver result и delegation plan `ios-agent-orchestrator`.
-После изменения scope и после фактического diff повторить Resolver через
+Resolver result и delegation plan `ios-agent-orchestrator`. После изменения
+scope и после фактического diff повторить Resolver через
 `tools/agents/postflight.mjs`, собрать отдельные commit-bound reports и
 остановиться при `BLOCKER`, `CRITICAL`, `UNKNOWN`, mandatory `NOT_AVAILABLE`,
-model-floor failure или stale evidence. Точки обязательного повторения:
-task start, перед первым write, scope change, pre-commit, pre-push, pre-PR,
-governance/profile/model/upstream changes, migrations и production-related paths.
+model-floor failure или stale evidence. Обязательные точки повтора: task start,
+перед первым write, scope change, pre-commit, pre-push, pre-PR,
+governance/profile/model/upstream changes, migrations и production paths.
 
-Первая волна имеет `PlatformState=PROVISIONAL_PLATFORM_BUILD`, все пять
-профилей имеют `status=PROVISIONAL`, `activationEligible=false` и хранятся
-только в `architecture/agents/generated/provisional/`. Runtime discovery path
-`.codex/agents/` не должен содержать first-wave platform profiles; bootstrap
-не копирует их туда, а activation command не реализован. Поэтому tooling может
-только вычислять Resolver/DAG и возвращает
-`AUTOMATIC_DISPATCH_CONFIGURED`, `NOT_DISPATCHED_ACTIVATION_CLOSED` и
-`TRUSTED_EXTERNAL_ATTESTATION_MISSING`; он не запускает provisional agents.
-Simulation и PR-authored text не заменяют обязательный независимый review.
-Automatic dispatch не даёт merge, deploy, production-write или owner-approval
-authority и не ослабляет sandbox permissions.
+Канонические first-wave profiles находятся только в `.codex/agents/*.toml`.
+Их целостность фиксируется в
+`architecture/agents/registry/agent-integrity-registry.yaml`. Overlays,
+compositions и generated provisional profiles не являются каноническими или
+runtime-слоями. Capability contracts сохраняются как отдельный deny-by-default
+контроль. Bootstrap только валидирует и не создаёт или копирует профили.
+
+Профильный агент не выбирает и не меняет модель, не запускает escalation agent
+и не использует silent fallback. Он может вернуть только structured
+`ESCALATION_REQUIRED`. Фактический universal escalation routing не реализован.
+
+Runtime verification пяти профилей не активирует платформу. Activation остаётся
+закрытой до полного evidence, owner approval, trusted attestation и принятия
+`adr/ADR-SOURCE-AUTHORED-IOS-AGENT-PROFILES.md`. Automatic dispatch не даёт
+merge, deploy, production-write или owner-approval authority и не ослабляет
+sandbox permissions.

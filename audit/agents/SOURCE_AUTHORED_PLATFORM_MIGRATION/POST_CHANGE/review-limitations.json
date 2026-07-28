@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0.0",
+  "capturedAt": "2026-07-28T07:23:59.2632119+03:00",
+  "status": "NOT_AVAILABLE",
+  "attemptedReviews": [
+    {
+      "role": "agent-governance-auditor",
+      "executionMode": "REAL_SUBAGENT",
+      "result": "NOT_AVAILABLE",
+      "error": "Codex usage limit reached before review execution"
+    },
+    {
+      "role": "security-privacy-auditor",
+      "executionMode": "REAL_SUBAGENT",
+      "result": "NOT_AVAILABLE",
+      "error": "Codex usage limit reached before review execution"
+    },
+    {
+      "role": "Documentation Reviewer",
+      "executionMode": "REAL_SUBAGENT",
+      "result": "NOT_AVAILABLE",
+      "error": "Codex usage limit reached before review execution"
+    }
+  ],
+  "notClaimed": [
+    "No PASS is claimed for the unavailable reviews",
+    "No independent self-review is claimed",
+    "No PR or merge readiness is claimed"
+  ],
+  "effect": {
+    "localStaticValidation": "PASS",
+    "profileRuntimeRevalidation": "PASS",
+    "localCommit": "PERMITTED_BY_OWNER_PHASE_COMMIT_GATE",
+    "pullRequest": "BLOCKED",
+    "merge": "BLOCKED",
+    "activation": "BLOCKED"
+  }
+}
